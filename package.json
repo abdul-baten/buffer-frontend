@@ -1,6 +1,33 @@
 {
   "name": "buffer",
   "version": "0.0.0",
+  "description": "Create, Save, Schedule",
+  "author": {
+    "name": "Abdul Baten",
+    "email": "baten.mab@gmail.com",
+    "url": "https://github.com/abdul-baten/buffer-client.git"
+  },
+  "contributors": [
+    {
+      "name": "Abdul Baten",
+      "email": "baten.mab@gmail.com",
+      "url": "https://github.com/abdul-baten/buffer-client.git"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/abdul-baten/buffer-client/issues"
+  },
+  "maintainers": [
+    {
+      "name": "Abdul Baten",
+      "email": "baten.mab@gmail.com",
+      "url": "https://github.com/abdul-baten/buffer-client.git"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdul-baten/buffer-client.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,7 +35,8 @@
     "build:prod": "ng build --prod=true --aot=true --buildOptimizer=true --optimization=true --sourceMap=false",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "pretty-quick": "pretty-quick --staged"
   },
   "private": true,
   "dependencies": {
@@ -46,15 +74,16 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "npm-run-all": "^4.1.5",
     "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
+    "standard-version": "^7.0.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
   },
-  "description": "Create, Save, Schedule",
   "husky": {
-    "pre-commit": "pretty-quick --staged && ng lint",
-    "pre-push": "npm run build:prod"
+    "pre-commit": "run-s pretty-quick lint",
+    "pre-push": "run-s build:prod"
   }
 }
