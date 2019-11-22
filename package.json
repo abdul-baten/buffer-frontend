@@ -36,6 +36,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "clean": "rimraf dist",
     "pretty-quick": "pretty-quick --staged"
   },
   "private": true,
@@ -78,6 +79,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
+    "rimraf": "^3.0.0",
     "standard-version": "^7.0.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
@@ -86,7 +88,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "run-s pretty-quick lint",
-      "pre-push": "run-s build:prod"
+      "pre-push": "run-s build:prod clean"
     }
   }
 }
