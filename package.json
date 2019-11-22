@@ -1,6 +1,6 @@
 {
   "name": "buffer",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Create, Save, Schedule",
   "author": {
     "name": "Abdul Baten",
@@ -30,15 +30,15 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build:prod": "ng build --prod --aot --buildOptimizer --optimization --sourceMap=false",
+    "e2e": "ng e2e",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "version": "standard-version",
+    "start": "ng serve",
+    "build": "ng build",
     "clean": "rimraf dist",
-    "pretty-quick": "pretty-quick --staged"
+    "release": "standard-version",
+    "pretty-quick": "pretty-quick --staged",
+    "build:prod": "ng build --prod --aot --buildOptimizer --optimization --sourceMap=false"
   },
   "private": true,
   "dependencies": {
