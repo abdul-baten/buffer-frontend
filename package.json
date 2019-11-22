@@ -75,6 +75,7 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "protractor": "~5.4.0",
     "standard-version": "^7.0.1",
@@ -83,7 +84,9 @@
     "typescript": "~3.5.3"
   },
   "husky": {
-    "pre-commit": "run-s pretty-quick lint",
-    "pre-push": "run-s build:prod"
+    "hooks": {
+      "pre-commit": "run-s pretty-quick lint",
+      "pre-push": "run-s build:prod"
+    }
   }
 }
