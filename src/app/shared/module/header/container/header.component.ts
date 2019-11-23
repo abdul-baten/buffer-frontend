@@ -28,7 +28,7 @@ import { VisibilityState, Direction } from '../enum/header.enum';
   ]
 })
 export class HeaderComponent implements AfterViewInit, OnDestroy {
-  private isVisible: boolean = false;
+  private isVisible = false;
 
   private subscriptions$: SubSink = new SubSink();
 
