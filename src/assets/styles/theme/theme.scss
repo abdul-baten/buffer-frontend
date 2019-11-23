@@ -1,0 +1,102 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$mat-buffer--dark-blue: (
+  50: #e7e6fa,
+  100: #c4c1f3,
+  200: #9c98ec,
+  300: #746ee4,
+  400: #574fde,
+  500: #3930d8,
+  600: #332bd4,
+  700: #2c24ce,
+  800: #241ec8,
+  900: #1713bf,
+  A100: #efefff,
+  A200: #bdbcff,
+  A400: #8b89ff,
+  A700: #726fff,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+$mat-buffer--orange: (
+  50: #ffffff,
+  100: #fcdfd8,
+  200: #f8b4a3,
+  300: #f37d61,
+  400: #f16544,
+  500: #ef4e28,
+  600: #e73a11,
+  700: #cb330f,
+  800: #ae2c0d,
+  900: #92250b,
+  A100: #ffffff,
+  A200: #ffc0b1,
+  A400: #ff6d4b,
+  A700: #f65e3b,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
+
+$buffer-primary: mat-palette($mat-buffer--dark-blue);
+$buffer-accent: mat-palette($mat-buffer--orange);
+
+// The warn palette is optional (defaults to red).
+$buffer-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($buffer-theme);
+
+// Define a custom typography config that overrides the font-family as well as the
+// `headlines` and `body-1` levels.
+$buffer-typography: mat-typography-config(
+  $button: mat-typography-level($buffer--font-size-sm, 14px, 400),
+  $input: mat-typography-level($buffer--font-size-sm, 1, 400)
+);
+
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include angular-material-typography($buffer-typography);

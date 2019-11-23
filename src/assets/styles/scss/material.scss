@@ -1,0 +1,227 @@
+/*
+    * MATERIAL TOOLBAR
+*/
+mat-toolbar {
+  box-shadow: $buffer--box-shadow;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 0 !important;
+}
+
+.mat-toolbar {
+  .mat-input-element {
+    font-size: 100% !important;
+    vertical-align: $buffer--vertical-align-middle;
+  }
+}
+
+/*
+    * MATERIAL SIDENAV
+*/
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  width: $buffer--width-full;
+  min-width: $buffer--width-56;
+  height: $buffer--height-full;
+  box-shadow: $buffer--box-shadow;
+}
+
+mat-sidenav {
+  width: $buffer--width-auto;
+}
+
+.mat-drawer-container {
+  background-color: $buffer--background-color-gray-100 !important;
+}
+
+/*
+    * MATERIAL LIST
+*/
+.mat-list-base {
+  padding-top: 0 !important;
+}
+
+/*
+    * MATERIAL EXPANSION PANEL
+*/
+.mat-expansion-panel {
+  margin: 10px 0 !important;
+}
+
+.mat-expansion-panel {
+  box-shadow: $buffer--box-shadow !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 15px !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 16px !important;
+}
+
+/*
+    * MATERIAL CARD
+*/
+mat-card {
+  border-radius: $buffer--border-width-8 !important;
+  box-shadow: $buffer--box-shadow-md !important;
+
+  &:hover {
+    box-shadow: $buffer--box-shadow !important;
+  }
+
+  .mat-card-actions {
+    padding: 0 !important;
+  }
+}
+
+/*
+    * MATERIAL BUTTON
+*/
+.mat-flat-button {
+  padding: 8px !important;
+}
+
+/*
+    * MATERIAL DIALOG
+*/
+.mat-dialog-container {
+  box-shadow: $buffer--box-shadow-lg !important;
+}
+
+/*
+    * MATERIAL MENU ITEM
+*/
+.mat-menu-item {
+  font-size: $buffer--font-size-sm !important;
+  font-weight: $buffer--font-weight-medium !important;
+}
+
+/*
+    * MATERIAL FORM
+*/
+.mat-form-field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mat-form-field-appearance-outline {
+  .mat-form-field-subscript-wrapper {
+    padding: 0 !important;
+  }
+}
+
+.mat-form-field-appearance-fill {
+  .mat-form-field-flex {
+    padding: 7px 15px !important;
+    align-items: center !important;
+    color: $buffer--text-color-black;
+    border-width: $buffer--border-width;
+    border-color: $buffer--border-gray-200;
+    border-style: $buffer--border-style-solid;
+    border-radius: $buffer--border-width-4 !important;
+    background-color: $buffer--background-color-gray-200 !important;
+
+    &:hover,
+    &:focus {
+      box-shadow: $buffer--box-shadow;
+
+      .mat-form-field-suffix {
+        .mat-icon {
+          color: $buffer--text-color-blue-500 !important;
+        }
+      }
+    }
+  }
+
+  .mat-form-field-infix {
+    border: none;
+    padding: 0 !important;
+  }
+}
+
+.mat-form-field-underline {
+  width: 0;
+  display: none;
+}
+
+.mat-form-field-wrapper {
+  padding: 0;
+}
+
+/*
+    * MATERIAL AUTO COMPLETE
+*/
+.mat-autocomplete-panel {
+  top: 11px;
+  max-height: $buffer--height-64 !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+  border-bottom-left-radius: $buffer--border-width-4 !important;
+  border-bottom-right-radius: $buffer--border-width-4 !important;
+}
+
+/*
+    * MATERIAL OPTION
+*/
+.mat-option {
+  font-size: $buffer--font-size-sm !important;
+}
+
+/*
+    * MATERIAL CDK OVERLAY
+*/
+.cdk-overlay-dark-backdrop,
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/*
+    * MATERIAL TAB
+*/
+.mat-tab-label {
+  opacity: 1 !important;
+  text-transform: uppercase !important;
+  color: $buffer--text-color-black !important;
+  font-size: $buffer--font-size-sm !important;
+  font-weight: $buffer--font-weight-bold !important;
+}
+
+.mat-tab-label-active {
+  color: $buffer--text-color-blue-500 !important;
+}
+
+/*
+    * MATERIAL CHIP LIST
+*/
+.mat-chip {
+  padding-left: $buffer--width-4 !important;
+  padding-right: $buffer--width-4 !important;
+  text-align: $buffer--text-align-center !important;
+}
+
+/*
+    * MATERIAL TOOLTIP
+*/
+.mat-tooltip {
+  font-size: $buffer--font-size-xs !important;
+}
+
+/*
+    * MATERIAL RANGE SLIDE
+*/
+.mat-slider-thumb-label {
+  transform: rotate(45deg) !important;
+  border-radius: 50% 50% 0 !important;
+}
+
+.mat-slider-thumb {
+  transform: scale(0) !important;
+}
+
+.mat-slider-thumb-label-text {
+  opacity: 1 !important;
+}

@@ -1,32 +1,120 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$buffer-primary: mat-palette($mat-indigo);
-$buffer-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$buffer-warn: mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($buffer-theme);
+@import './assets/styles/app.scss';
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.clearfix {
+  &::after {
+    content: '';
+    display: $buffer--display-table;
+    clear: both;
+  }
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+*::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html,
+body {
+  height: $buffer--height-full;
+}
+body {
+  margin: 0;
+  font-family: $buffer--font-family-regular;
+  font-size: $buffer--font-size-base;
+  font-weight: $buffer--font-weight-medium;
+  letter-spacing: $buffer--letter-spacing-tracking-normal;
+}
+
+a {
+  color: $buffer--text-color-black;
+  text-decoration: $buffer--text-decoration-none;
+
+  &:hover {
+    color: $buffer--text-color-blue-500;
+  }
+}
+
+ul {
+  padding: 0;
+
+  li {
+    list-style-type: $buffer--list-style-type-none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $buffer--font-family-bold;
+}
+
+p {
+  font-family: $buffer--font-family-regular;
+}
+
+/*
+  * BREAKS
+*/
+.buffer--break-normal {
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.buffer--break-words {
+  overflow-wrap: break-word;
+}
+
+.buffer--break-all {
+  word-break: break-all;
+}
+
+.buffer--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+    * CONTAINER
+*/
+.buffer--container {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: $buffer--width-full;
+  height: $buffer--height-auto;
+}
