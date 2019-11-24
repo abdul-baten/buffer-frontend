@@ -5,7 +5,17 @@ import { LandingComponent } from './container/landing.component';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent
+    component: LandingComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('../signup/signup.module').then(m => m.SignupModule)
+      },
+      {
+        path: 'sign-up',
+        loadChildren: () => import('../signup/signup.module').then(m => m.SignupModule)
+      }
+    ]
   }
 ];
 

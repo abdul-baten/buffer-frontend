@@ -1,0 +1,64 @@
+<div class="clearfix">
+  <form class="buffer--padding-y-2" [formGroup]="signupForm" novalidate>
+    <div class="clearfix">
+      <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="userName" required />
+        <mat-error align="end" *ngIf="signupForm.controls.userName.invalid">Enter a valid username.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+        <mat-label>Email address</mat-label>
+        <input type="text" matInput autocomplete="off" formControlName="emailAddress" required />
+        <mat-error align="end" *ngIf="signupForm.controls.emailAddress.invalid">Enter a valid email address.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" required />
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hide">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Enter a valid password.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input [type]="hideConfirmPassword ? 'password' : 'text'" matInput formControlName="confirmPassword" required />
+        <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
+          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error align="end" *ngIf="signupForm.controls.confirmPassword.invalid">Enter a valid password.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <div class="buffer--margin-bottom-5">
+        <mat-checkbox
+          color="primary"
+          class="buffer--font-family-regular buffer--font-size-sm"
+          formControlName="termsAndCondition"
+          required
+          >I agree to Buffer's Terms of Service
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="signupForm.invalid"
+        class="buffer--width-full buffer--font-family-regular buffer--box-shadow-md"
+      >
+        Sign Up
+      </button>
+    </div>
+  </form>
+</div>

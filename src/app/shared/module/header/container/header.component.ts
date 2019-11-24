@@ -14,15 +14,9 @@ import { VisibilityState, Direction } from '../enum/header.enum';
   styleUrls: ['./header.component.scss'],
   animations: [
     trigger('toggleHeader', [
-      state('void', style({ opacity: 0 })),
-      state(
-        VisibilityState.Hidden,
-        style({ opacity: 0, visibility: VisibilityState.Hidden, transform: 'translateY(-100%)' })
-      ),
-      state(
-        VisibilityState.Visible,
-        style({ opacity: 1, visibility: VisibilityState.Visible, transform: 'translateY(0)' })
-      ),
+      state('void', style({ opacity: 0, display: 'none' })),
+      state(VisibilityState.Hidden, style({ opacity: 0, display: 'none', transform: 'translateY(-100%)' })),
+      state(VisibilityState.Visible, style({ opacity: 1, display: 'block', transform: 'translateY(0)' })),
       transition('* => *', animate('100ms ease-in'))
     ])
   ]

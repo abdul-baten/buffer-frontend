@@ -56,6 +56,13 @@
 }
 
 /*
+    * ITEM ALIGNMENT
+*/
+.buffer--align-items-center {
+  align-items: $buffer--align-items-center !important;
+}
+
+/*
     * OBJECT FIT
 */
 .buffer--object-contain {

@@ -25,6 +25,7 @@ $buffer--font-size-3xl: 1.875rem;
 $buffer--font-size-4xl: 2.25rem;
 $buffer--font-size-5xl: 3rem;
 $buffer--font-size-6xl: 4rem;
+$buffer--font-size-7xl: 6rem;
 $buffer--font-size-8xl: 8rem;
 
 /*
@@ -75,8 +76,8 @@ $buffer--text-align-justify: justify;
     * TEXT COLOR
 */
 $buffer--text-color-transparent: transparent;
-$buffer--text-color-black: #2d2d2d;
-$buffer--text-color-white: #fff;
+$buffer--text-color-black: #000000;
+$buffer--text-color-white: #ffffff;
 
 $buffer--text-color-gray-100: #f5f5f5;
 $buffer--text-color-gray-200: #eeeeee;

@@ -1,0 +1,25 @@
+:host {
+  .buffer--auth-menu {
+    width: 100%;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      li {
+        float: left;
+        width: calc(50% - 10px);
+
+        button {
+          width: 100%;
+          border-radius: 4px;
+          padding: 1rem 0 !important;
+          border: 2px solid #000000;
+        }
+
+        .buffer-page-active {
+          color: #ffffff;
+          background-color: #000000 !important;
+        }
+      }
+    }
+  }
+}
