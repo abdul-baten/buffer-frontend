@@ -12,8 +12,8 @@ $buffer--background-attachment-scroll: scroll;
     * BACKGROUND COLOR
 */
 $buffer--background-color-transparent: transparent;
-$buffer--background-color-black: #2d2d2d;
-$buffer--background-color-white: #fff;
+$buffer--background-color-black: #000000;
+$buffer--background-color-white: #ffffff;
 
 $buffer--background-color-gray-100: #f5f5f5;
 $buffer--background-color-gray-200: #eeeeee;
@@ -36,7 +36,7 @@ $buffer--background-color-red-800: #c62828;
 $buffer--background-color-red-900: #b71c1c;
 
 $buffer--background-color-orange-100: #fcdfd8;
-$buffer--background-color-orange-200: #f8b4a3;
+$buffer--background-color-orange-200: #f78b7e;
 $buffer--background-color-orange-300: #f37d61;
 $buffer--background-color-orange-400: #f16544;
 $buffer--background-color-orange-500: #ef4e28;
@@ -62,7 +62,7 @@ $buffer--background-color-green-400: #14d31d;
 $buffer--background-color-green-500: #11b719;
 $buffer--background-color-green-600: #0e9b15;
 $buffer--background-color-green-700: #0c7f11;
-$buffer--background-color-green-800: #09630e;
+$buffer--background-color-green-800: #164d59;
 $buffer--background-color-green-900: #07470a;
 
 $buffer--background-color-teal-100: #e6fffa;
@@ -77,7 +77,7 @@ $buffer--background-color-teal-900: #234e52;
 
 $buffer--background-color-blue-100: #c4c1f3;
 $buffer--background-color-blue-200: #9c98ec;
-$buffer--background-color-blue-300: #746ee4;
+$buffer--background-color-blue-300: #b4d0e7;
 $buffer--background-color-blue-400: #574fde;
 $buffer--background-color-blue-500: #3930d8;
 $buffer--background-color-blue-600: #332bd4;
@@ -94,6 +94,7 @@ $buffer--background-color-indigo-600: #5a67d8;
 $buffer--background-color-indigo-700: #4c51bf;
 $buffer--background-color-indigo-800: #434190;
 $buffer--background-color-indigo-900: #3c366b;
+
 $buffer--background-color-purple-100: #faf5ff;
 $buffer--background-color-purple-200: #e9d8fd;
 $buffer--background-color-purple-300: #d6bcfa;
@@ -103,6 +104,7 @@ $buffer--background-color-purple-600: #805ad5;
 $buffer--background-color-purple-700: #6b46c1;
 $buffer--background-color-purple-800: #553c9a;
 $buffer--background-color-purple-900: #44337a;
+
 $buffer--background-color-pink-100: #fff5f7;
 $buffer--background-color-pink-200: #fed7e2;
 $buffer--background-color-pink-300: #fbb6ce;

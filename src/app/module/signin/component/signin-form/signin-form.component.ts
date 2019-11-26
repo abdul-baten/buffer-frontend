@@ -29,7 +29,6 @@ export class SigninFormComponent implements OnInit {
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
-          PasswordValidator.oneSpecialChar,
           PasswordValidator.allowedPasswordSpecialChars
         ])
       )

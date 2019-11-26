@@ -1,22 +1,37 @@
 <div class="clearfix">
   <div class="buffer--auth-menu">
-    <ul>
+    <ul class="buffer--display-flex buffer--align-items-center buffer--flex-justify-content-end">
       <li>
-        <button
-          mat-flat-button
-          class="buffer--font-family-regular buffer--font-size-base"
+        <a
+          href="javascript:void(0)"
+          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
           (click)="navigateToSignInPage()"
+          >Why Buffer?</a
         >
-          Sign In
-        </button>
+      </li>
+      <li>
+        <a
+          href=""
+          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
+          (click)="navigateToSignInPage()"
+          >Pricing</a
+        >
+      </li>
+      <li>
+        <a
+          href=""
+          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
+          (click)="navigateToSignInPage()"
+          >Sign in</a
+        >
       </li>
       <li>
         <button
           mat-flat-button
-          class="buffer--font-family-regular buffer--font-size-base buffer-page-active buffer--box-shadow-md"
+          class="buffer--font-family-semi-bold buffer--font-size-base buffer--background-color-green-800 buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--margin-left-8 buffer--box-shadow-lg buffer--box-shadow-hover-xl"
           (click)="navigateToSignupPage('/')"
         >
-          Sign Up
+          Get started
         </button>
       </li>
     </ul>

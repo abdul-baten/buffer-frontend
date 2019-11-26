@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { PasswordValidator } from 'src/app/core/validation/password.validation';
 import { CommonValidator } from 'src/app/core/validation/common.validation';
-import { debounceTime, distinctUntilChanged, share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup-form',
@@ -17,11 +16,6 @@ export class SignupFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.signupForm = this.buildSignupForm();
-
-    this.signupForm.valueChanges.pipe(debounceTime(10), share(), distinctUntilChanged()).subscribe(() => {
-      console.log(this.signupForm);
-      console.log(this.signupForm.valid);
-    });
   }
 
   ngOnInit() {}
