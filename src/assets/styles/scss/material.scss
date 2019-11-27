@@ -177,7 +177,11 @@ mat-card {
 /*
     * MATERIAL FORM FIELD
 */
+.mat-form-field-flex {
+  border-width: 1px !important;
+}
 .mat-form-field-outline-thick {
   border: none;
   opacity: 1 !important;
+  background-color: #f9f9f9;
 }

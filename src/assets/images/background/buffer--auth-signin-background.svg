@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="200"
+   viewBox="0 0 800 200"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="buffer--auth-signin-background.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.64"
+     inkscape:cx="400"
+     inkscape:cy="300"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="713"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="false"
+     showborder="true"
+     inkscape:showpageshadow="false" />
+  <defs
+     id="defs6804">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1466">
+      <path
+         d="m 205.659,343.197 c -19.78,-22.684 -21.599,-44.789 -51.837,-53.202 v 0 c -10.942,-3.044 -23.498,-0.06 -35.843,2.924 v 0 c -18.427,4.455 -36.388,8.91 -47.82,-6.683 v 0 -12.01 h 189.778 v 92.565 c -0.347,0.007 -0.697,0.01 -1.044,0.01 v 0 c -19.51,0.001 -38.562,-10.155 -53.234,-23.604"
+         id="path1464"
+         inkscape:connector-curvature="0" />
+    </clipPath>
+  </defs>
+  <metadata
+     id="metadata6807">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1"
+     transform="translate(0,-400)">
+    <g
+       id="g5659"
+       transform="matrix(4.2314564,0,0,-1.7665866,-296.83091,1087.8226)"
+       style="fill:#175073;fill-opacity:1">
+      <path
+         style="fill:#175073;stroke-width:0.85516983;fill-opacity:1"
+         d="m 208.387,370.55633 c -3.138,-2.2956 -5.811,-4.88957 -8.226,-7.63274 v 0 c -0.751,-0.84832 -1.473,-1.70616 -2.183,-2.57423 v 0 C 186.015,345.6448 182.844,319.86081 144.867,317.45698 v 0 C 103.738,314.863 90.267,311.8222 70.159,293.79966 v 0 -19.57366 h 189.778 v 107.08359 c -2.919,0.53898 -5.907,0.87831 -8.907,1.01726 v 0 h -0.042 c -1.226,0.0614 -2.455,0.0922 -3.685,0.0922 v 0 c -14.748,0 -29.523,-4.36815 -38.916,-11.86267"
+         id="path1414"
+         inkscape:connector-curvature="0" />
+      <g
+         style="fill:#175073;fill-opacity:1"
+         id="g1460">
+        <g
+           style="fill:#175073;fill-opacity:1"
+           clip-path="url(#clipPath1466)"
+           id="g1462">
+          <g
+             style="fill:#175073;fill-opacity:1"
+             id="g1468">
+            <g
+               style="fill:#175073;fill-opacity:1"
+               id="g1470">
+              <path
+                 inkscape:connector-curvature="0"
+                 id="path1478"
+                 style="fill:#175073;stroke:none;fill-opacity:1"
+                 d="m 205.659,343.197 c -19.78,-22.684 -21.599,-44.789 -51.837,-53.202 v 0 c -10.942,-3.044 -23.498,-0.06 -35.843,2.924 v 0 c -18.427,4.455 -36.388,8.91 -47.82,-6.683 v 0 -12.01 h 189.778 v 92.565 c -0.347,0.007 -0.697,0.01 -1.044,0.01 v 0 c -19.51,0.001 -38.562,-10.155 -53.234,-23.604" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

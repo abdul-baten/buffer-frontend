@@ -1,29 +1,18 @@
-<div class="clearfix">
-  <div class="buffer--margin-5">
-    <div class="clearfix">
-      <div class="buffer--float-left">
-        <h2 class="buffer--font-family-bold buffer--font-size-2xl buffer--line-height-leading-none">Sign in</h2>
-        <p class="buffer--font-size-xs">
-          or
-          <a class="buffer--text-color-blue-500" (click)="onCloseButtonClicked()">Create an account</a>
-        </p>
-      </div>
-      <div class="buffer--float-right">
-        <div
-          class="buffer--close-button buffer--cursor-pointer buffer--box-shadow"
-          matTooltip="Close"
-          matTooltipPosition="left"
-          (click)="onCloseButtonClicked()"
-        >
-          <i class="material-icons">
-            close
-          </i>
-        </div>
-      </div>
-    </div>
+<section class="buffer--signin-header-section" class="buffer--signin-header-section">
+  <div class="clearfix">
+    <buffer--signin-header></buffer--signin-header>
+  </div>
+</section>
 
-    <div class="clearfix">
-      <app-signin-form></app-signin-form>
+<section class="buffer--auth-signin-section" class="buffer--auth-signin-section">
+  <div class="buffer--container clearfix">
+    <div class="buffer--signin-form-content">
+      <div class="buffer--width-percent-49">
+        <buffer--signin-jumbo></buffer--signin-jumbo>
+      </div>
+      <div class="buffer--width-percent-49">
+        <buffer--signin-form></buffer--signin-form>
+      </div>
     </div>
   </div>
-</div>
+</section>

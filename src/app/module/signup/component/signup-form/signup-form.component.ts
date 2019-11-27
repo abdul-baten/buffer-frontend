@@ -4,7 +4,7 @@ import { PasswordValidator } from 'src/app/core/validation/password.validation';
 import { CommonValidator } from 'src/app/core/validation/common.validation';
 
 @Component({
-  selector: 'app-signup-form',
+  selector: 'buffer--signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
@@ -23,7 +23,8 @@ export class SignupFormComponent implements OnInit {
   private buildSignupForm(): FormGroup {
     return this.formBuilder.group(
       {
-        userName: new FormControl('', Validators.compose([Validators.required, CommonValidator.alphaNumeric])),
+        firstName: new FormControl('', Validators.compose([Validators.required, CommonValidator.alphaNumeric])),
+        lastName: new FormControl('', Validators.compose([Validators.required, CommonValidator.alphaNumeric])),
         emailAddress: new FormControl('', Validators.compose([Validators.required, Validators.email])),
         password: new FormControl(
           '',

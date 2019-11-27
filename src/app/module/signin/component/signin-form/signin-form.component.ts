@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { PasswordValidator } from 'src/app/core/validation/password.validation';
 
 @Component({
-  selector: 'app-signin-form',
+  selector: 'buffer--signin-form',
   templateUrl: './signin-form.component.html',
   styleUrls: ['./signin-form.component.scss']
 })

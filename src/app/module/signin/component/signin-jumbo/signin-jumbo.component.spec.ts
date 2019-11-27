@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JumboComponent } from './jumbo.component';
+import { SigninJumboComponent } from './signin-jumbo.component';
 
-describe('JumboComponent', () => {
-  let component: JumboComponent;
-  let fixture: ComponentFixture<JumboComponent>;
+describe('SigninJumboComponent', () => {
+  let component: SigninJumboComponent;
+  let fixture: ComponentFixture<SigninJumboComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [JumboComponent]
+      declarations: [SigninJumboComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JumboComponent);
+    fixture = TestBed.createComponent(SigninJumboComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

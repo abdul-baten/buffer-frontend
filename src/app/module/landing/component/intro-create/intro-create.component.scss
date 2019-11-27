@@ -1,0 +1,27 @@
+:host {
+  width: 100%;
+  position: relative;
+
+  .buffer--intro-create-content {
+    height: 400px;
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .buffer--intro-create-content-text {
+      order: 1;
+    }
+
+    .buffer--intro-create-content-photo {
+      order: 2;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-image: url('/assets/images/background/buffer--planning-graphics.svg');
+    }
+  }
+}

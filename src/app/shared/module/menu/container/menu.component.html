@@ -2,26 +2,17 @@
   <div class="buffer--auth-menu">
     <ul class="buffer--display-flex buffer--align-items-center buffer--flex-justify-content-end">
       <li>
-        <a
-          href="javascript:void(0)"
-          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
-          (click)="navigateToSignInPage()"
+        <a href="javascript:void(0)" class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
           >Why Buffer?</a
         >
       </li>
       <li>
-        <a
-          href=""
-          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
-          (click)="navigateToSignInPage()"
+        <a href="javascript:void(0)" class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
           >Pricing</a
         >
       </li>
       <li>
-        <a
-          href=""
-          class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
-          (click)="navigateToSignInPage()"
+        <a [routerLink]="['/sign-in']" class="buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
           >Sign in</a
         >
       </li>
@@ -29,7 +20,7 @@
         <button
           mat-flat-button
           class="buffer--font-family-semi-bold buffer--font-size-base buffer--background-color-green-800 buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--margin-left-8 buffer--box-shadow-lg buffer--box-shadow-hover-xl"
-          (click)="navigateToSignupPage('/')"
+          (click)="navigateToSignupPage('sign-up')"
         >
           Get started
         </button>

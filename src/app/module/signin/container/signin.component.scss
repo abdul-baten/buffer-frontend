@@ -1,6 +1,10 @@
-.buffer--close-button {
-  height: 40px;
-  width: 40px;
-  padding: 8px;
-  border-radius: 50%;
+:host {
+  display: block;
+
+  .buffer--signin-form-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
 }
