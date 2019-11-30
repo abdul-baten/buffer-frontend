@@ -1,4 +1,9 @@
+// Core
 import { Component, OnInit } from '@angular/core';
+
+// Application Specific
+import { LandingFacade } from '../facade/landing.facade';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'buffer--landing',
@@ -6,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent implements OnInit {
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute, private landingFacade: LandingFacade) {
+    const {
+      data: { title }
+    } = this.activatedRoute.snapshot;
+    this.landingFacade.setDocumentTitle(title);
+  }
 
   ngOnInit() {}
 }

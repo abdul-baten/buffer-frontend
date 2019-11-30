@@ -13,7 +13,14 @@
         <div class="clearfix">
           <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
             <mat-label>Email address</mat-label>
-            <input type="text" matInput autocomplete="off" formControlName="emailAddress" required />
+            <input
+              type="text"
+              matInput
+              autocomplete="off"
+              formControlName="emailAddress"
+              autocomplete="current-password"
+              required
+            />
             <mat-error align="end" *ngIf="signinForm.controls.emailAddress.invalid"
               >Enter a valid email address.</mat-error
             >
@@ -23,7 +30,13 @@
         <div class="clearfix">
           <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
             <mat-label>Password</mat-label>
-            <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" required />
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              matInput
+              formControlName="password"
+              autocomplete="current-password"
+              required
+            />
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
               <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>

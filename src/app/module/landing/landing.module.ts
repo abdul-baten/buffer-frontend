@@ -14,9 +14,11 @@ import { LandingComponent } from './container/landing.component';
 import { IntroJumboComponent } from './component/intro-jumbo/intro-jumbo.component';
 import { IntroCreateComponent } from './component/intro-create/intro-create.component';
 import { IntroPublishComponent } from './component/intro-publish/intro-publish.component';
+import { LandingFacade } from './facade/landing.facade';
 
 @NgModule({
   declarations: [LandingComponent, IntroJumboComponent, IntroCreateComponent, IntroPublishComponent],
-  imports: [CommonModule, LandingRoutingModule, HeaderModule, MatButtonModule]
+  imports: [CommonModule, LandingRoutingModule, HeaderModule, MatButtonModule],
+  providers: [LandingFacade]
 })
 export class LandingModule {}
