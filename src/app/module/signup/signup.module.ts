@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Application Specific Modules
+import { SignupFacade } from './facade/signup.facade';
 import { LogoModule } from '@shared/module/logo/logo.module';
 import { SignupRoutingModule } from './signup-routing.module';
 
@@ -25,13 +26,12 @@ import { SignupHeaderComponent } from './component/signup-header/signup-header.c
     CommonModule,
     SignupRoutingModule,
     ReactiveFormsModule,
-
     LogoModule,
-
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule
-  ]
+  ],
+  providers: [SignupFacade]
 })
 export class SignupModule {}
