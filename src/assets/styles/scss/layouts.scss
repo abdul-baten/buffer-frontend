@@ -63,6 +63,17 @@
 }
 
 /*
+    * FLEX DIRECTION
+*/
+.buffer--display-flex-direction-row {
+  flex-direction: $buffer--display-flex-direction-row !important;
+}
+
+.buffer--display-flex-direction-column {
+  flex-direction: $buffer--display-flex-direction-column !important;
+}
+
+/*
     * JUSTIFY CONTENT
 */
 .buffer--flex-justify-content-start {

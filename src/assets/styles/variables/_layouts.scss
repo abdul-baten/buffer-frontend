@@ -27,6 +27,12 @@ $buffer--float-none: none;
 $buffer--align-items-center: center;
 
 /*
+    * FLEX DIRECTION
+*/
+$buffer--display-flex-direction-row: row;
+$buffer--display-flex-direction-column: column;
+
+/*
     * JUSTIFY CONTENT
 */
 $buffer--flex-justify-content-start: flex-start;

@@ -1,23 +1,4 @@
 /*
-    * MATERIAL TOOLBAR
-*/
-mat-toolbar {
-  box-shadow: $buffer--box-shadow;
-}
-
-.mat-toolbar-row,
-.mat-toolbar-single-row {
-  padding: 0 !important;
-}
-
-.mat-toolbar {
-  .mat-input-element {
-    font-size: 100% !important;
-    vertical-align: $buffer--vertical-align-middle;
-  }
-}
-
-/*
     * MATERIAL SIDENAV
 */
 mat-sidenav-container,
@@ -42,6 +23,10 @@ mat-sidenav {
 */
 .mat-list-base {
   padding-top: 0 !important;
+}
+
+.mat-list-item-content {
+  padding: 0 !important;
 }
 
 /*
@@ -87,6 +72,28 @@ mat-card {
 }
 
 /*
+    * MATERIAL BUTTON GROUP
+*/
+.mat-button-toggle-button {
+  font-size: $buffer--font-size-sm !important;
+  font-family: $buffer--font-family-semi-bold !important;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border-radius: 0.5rem !important;
+}
+
+.mat-button-toggle-label-content {
+  line-height: 36px !important;
+  padding: 0px 16px !important;
+}
+
+.mat-button-toggle-checked {
+  background-color: $buffer--background-color-indigo-100 !important;
+}
+
+/*
     * MATERIAL DIALOG
 */
 .mat-dialog-container {
@@ -116,7 +123,7 @@ mat-card {
     * MATERIAL OPTION
 */
 .mat-option {
-  font-size: $buffer--font-size-sm !important;
+  font-size: $buffer--font-size-xs !important;
 }
 
 /*

@@ -1,0 +1,22 @@
+<div class="clearfix">
+  <div class="clearfix">
+    <button
+      mat-icon-button
+      class="buffer--background-color-indigo-100 buffer--text-color-gray-900"
+      [matMenuTriggerFor]="accountMenu"
+    >
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #accountMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>perm_contact_calendar</mat-icon>
+        <span>Account</span>
+      </button>
+      <mat-divider color="warn" class="buffer--margin-y-2"></mat-divider>
+      <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign out</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

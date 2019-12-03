@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+
+  .buffer--schedule-week-menu-sec {
+    height: 70px;
+    border-bottom: 1px solid #eceaea;
+  }
+}
