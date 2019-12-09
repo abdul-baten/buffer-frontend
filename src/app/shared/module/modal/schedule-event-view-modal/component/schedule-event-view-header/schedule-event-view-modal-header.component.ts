@@ -10,7 +10,7 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class ScheduleEventViewModalHeaderComponent {
   @Input() eventTitle = '';
-  @Output() bottomSheetClosed = new EventEmitter();
+  @Output() bottomSheetClosed = new EventEmitter<any>();
 
   constructor() {}
 
