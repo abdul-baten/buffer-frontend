@@ -1,23 +1,27 @@
-// Core Module
+// Core Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Application Specific Module
+// Application Specific Modules
 import { ScheduleWeekRoutingModule } from './schedule-week-routing.module';
 import { ScheduleSocialAccountsModule } from '@shared/module/schedule-social-accounts/schedule-social-accounts.module';
+import { ScheduleEventViewModalModule } from '@shared/module/modal/schedule-event-view-modal/schedule-event-view-modal.module';
 
-// Third Party Module
-import { MatListModule } from '@angular/material/list';
+// Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
-// Component
+// Services
+import { ScheduleService } from '@core/service/schedule/schedule.service';
+
+// Facades
+import { ScheduleWeekFacade } from './facade/schedule-week.facade';
+
+// Components
 import { ScheduleWeekComponent } from './container/schedule-week.component';
 import { ScheduleWeekHeaderComponent } from './component/schedule-week-header/schedule-week-header.component';
 import { ScheduleWeekCalendarComponent } from './component/schedule-week-calendar/schedule-week-calendar.component';
@@ -35,19 +39,18 @@ import { ScheduleWeekCalendarOptionsComponent } from './component/schedule-week-
     ScheduleWeekRoutingModule,
     ScheduleSocialAccountsModule,
 
-    MatListModule,
     MatIconModule,
-    MatMenuModule,
     MatButtonModule,
-    MatDividerModule,
     MatTooltipModule,
     MatButtonToggleModule,
+
+    ScheduleEventViewModalModule,
 
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
     })
   ],
-  providers: []
+  providers: [ScheduleWeekFacade, ScheduleService]
 })
 export class ScheduleWeekModule {}

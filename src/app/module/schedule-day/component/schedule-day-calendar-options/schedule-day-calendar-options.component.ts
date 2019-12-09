@@ -2,8 +2,12 @@
 import { Component } from '@angular/core';
 
 // Third Party Module
-import * as moment from 'moment';
+import { format } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+
+// Service
+import { ScheduleDayFacade } from '../../facade/schedule-day.facade';
 
 @Component({
   selector: 'buffer--schedule-day-calendar-options',
@@ -11,12 +15,13 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
   styleUrls: ['./schedule-day-calendar-options.component.scss']
 })
 export class ScheduleDayCalendarOptionsComponent {
-  presentDate = moment().format('dddd, MMMM DD');
-  selected = 'day';
+  currentDate = format(new Date(), 'eeee, MMMM dd');
 
-  calendarSelected(a: MatButtonToggleChange): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('', a.value);
-    console.warn('============= console.warn ends =============');
+  selectedCalendarView = CalendarView.Day;
+
+  constructor(private scheduleDayFacade: ScheduleDayFacade) {}
+
+  onCalendarViewChanged(calendarViewSelection: MatButtonToggleChange): void {
+    this.scheduleDayFacade.changeCalendarViewOption(calendarViewSelection.value);
   }
 }

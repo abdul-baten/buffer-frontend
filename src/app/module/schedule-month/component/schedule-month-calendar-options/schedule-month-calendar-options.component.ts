@@ -2,8 +2,12 @@
 import { Component } from '@angular/core';
 
 // Third Party Module
-import * as moment from 'moment';
+import { format } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+
+// Service
+import { ScheduleMonthFacade } from '../../facade/schedule-month.facade';
 
 @Component({
   selector: 'buffer--schedule-month-calendar-options',
@@ -11,12 +15,13 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
   styleUrls: ['./schedule-month-calendar-options.component.scss']
 })
 export class ScheduleMonthCalendarOptionsComponent {
-  presentDate = moment().format('dddd, MMMM DD');
-  selected = 'month';
+  currentDate = format(new Date(), 'eeee, MMMM dd');
 
-  calendarSelected(a: MatButtonToggleChange): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('', a.value);
-    console.warn('============= console.warn ends =============');
+  selectedCalendarView = CalendarView.Month;
+
+  constructor(private scheduleMonthFacade: ScheduleMonthFacade) {}
+
+  onCalendarViewChanged(calendarViewSelection: MatButtonToggleChange): void {
+    this.scheduleMonthFacade.changeCalendarViewOption(calendarViewSelection.value);
   }
 }

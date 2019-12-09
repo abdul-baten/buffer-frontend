@@ -10,4 +10,16 @@
       width: calc(100% / 7) !important;
     }
   }
+
+  .schedule-week-header-date {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+    padding-top: 4px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
 }

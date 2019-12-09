@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 
 // Third Party Module
 import { CalendarEvent } from 'angular-calendar';
-import { addHours, startOfDay, addDays } from 'date-fns';
+import { addHours, startOfDay } from 'date-fns';
 
 // weekStartsOn option is ignored when using moment, as it needs to be configured globally for the moment locale
 
@@ -15,6 +15,10 @@ import { addHours, startOfDay, addDays } from 'date-fns';
 export class ScheduleDayCalendarComponent {
   viewDate: Date = new Date();
 
+  hourSegments = 1;
+  eventSnapSize = 2;
+  hourSegmentHeight = 60;
+
   events: CalendarEvent[] = [
     {
       title: 'Event 01',
@@ -22,21 +26,19 @@ export class ScheduleDayCalendarComponent {
     },
     {
       title: 'Event 02',
-      start: addHours(startOfDay(addDays(new Date('December 10, 2019'), 1)), 2)
+      start: addHours(startOfDay(new Date()), 2)
+    },
+    {
+      title: 'Event 03',
+      start: addHours(startOfDay(new Date()), 3)
     }
   ];
 
-  clickedDate: Date;
-
   constructor() {}
 
-  onDayClicked(event: any): void {
+  onHourClicked(event: any): void {
     console.warn('============= console.warn starts =============');
-    console.warn('event', event.day);
+    console.warn('event', event);
     console.warn('============= console.warn ends =============');
-  }
-
-  alert(t: string): void {
-    window.alert(t);
   }
 }

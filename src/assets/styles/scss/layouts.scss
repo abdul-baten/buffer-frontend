@@ -255,5 +255,23 @@
   z-index: $buffer--z-index-auto !important;
 }
 
+/*
+    * OUTLINE
+*/
+.buffer--outline-none {
+  outline: $buffer--outline-none !important;
+}
+
+/*
+    * VERTICAL ALIGN
+*/
+.buffer--vertical-align-bottom {
+  vertical-align: $buffer--vertical-align-bottom !important;
+}
+
+.buffer--vertical-align-middle {
+  vertical-align: $buffer--vertical-align-middle !important;
+}
+
 /* ************************************* LAYOUT ENDS ************************************* */
 /* ************************************* LAYOUT ENDS ************************************* */

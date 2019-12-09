@@ -1,24 +1,4 @@
 /*
-    * MATERIAL SIDENAV
-*/
-mat-sidenav-container,
-mat-sidenav-content,
-mat-sidenav {
-  width: $buffer--width-full;
-  min-width: $buffer--width-56;
-  height: $buffer--height-full;
-  box-shadow: $buffer--box-shadow;
-}
-
-mat-sidenav {
-  width: $buffer--width-auto;
-}
-
-.mat-drawer-container {
-  background-color: $buffer--background-color-gray-100 !important;
-}
-
-/*
     * MATERIAL LIST
 */
 .mat-list-base {
@@ -68,13 +48,20 @@ mat-card {
     * MATERIAL BUTTON
 */
 .mat-flat-button {
-  padding: 8px !important;
+  padding: 0.55rem !important;
+}
+
+button {
+  &:disabled {
+    outline: $buffer--outline-none !important;
+  }
 }
 
 /*
     * MATERIAL BUTTON GROUP
 */
 .mat-button-toggle-button {
+  outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
   font-family: $buffer--font-family-semi-bold !important;
 }
@@ -90,14 +77,17 @@ mat-card {
 }
 
 .mat-button-toggle-checked {
-  background-color: $buffer--background-color-indigo-100 !important;
+  color: $buffer--text-color-white !important;
+  background-color: $buffer--background-color-green-800 !important;
 }
 
 /*
     * MATERIAL DIALOG
 */
 .mat-dialog-container {
-  box-shadow: $buffer--box-shadow-lg !important;
+  padding: 0 !important;
+  box-shadow: $buffer--box-shadow-2xl !important;
+  border-radius: $buffer--border-radius-lg !important;
 }
 
 /*
@@ -124,14 +114,6 @@ mat-card {
 */
 .mat-option {
   font-size: $buffer--font-size-xs !important;
-}
-
-/*
-    * MATERIAL CDK OVERLAY
-*/
-.cdk-overlay-dark-backdrop,
-.mat-drawer-backdrop.mat-drawer-shown {
-  background-color: rgba(0, 0, 0, 0.9) !important;
 }
 
 /*
@@ -187,8 +169,117 @@ mat-card {
 .mat-form-field-flex {
   border-width: 1px !important;
 }
+
+.mat-form-field-infix {
+  border-top: 0 !important;
+}
+
 .mat-form-field-outline-thick {
   border: none;
   opacity: 1 !important;
-  background-color: #f9f9f9;
+  background-color: rgba(0, 0, 0, 0.08);
 }
+
+.cdk-textarea-autosize {
+  overflow: $buffer--overflow-hidden !important;
+}
+
+.mat-form-field-underline {
+  display: $buffer--display-hidden !important;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 1rem !important;
+}
+
+.mat-form-field-appearance-fill {
+  .mat-form-field-flex {
+    padding: 0.5rem 0.75rem !important;
+    border-radius: $buffer--border-radius-lg !important;
+  }
+
+  .mat-form-field-infix {
+    padding: 1rem 0 !important;
+  }
+}
+
+/*
+    * MATERIAL BOTTOM SHEET
+*/
+.buffer--dialog-bottom-sheet-custom-backdrop {
+  opacity: $buffer--opacity-75 !important;
+  background-color: $buffer--background-color-white;
+}
+
+.buffer--dialog-bottom-sheet-custom-panel {
+  color: $buffer--text-color-black !important;
+  background-color: $buffer--background-color-white !important;
+}
+
+.mat-bottom-sheet-container-large {
+  max-width: $buffer--width-64 !important;
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
+}
+
+.mat-bottom-sheet-container {
+  padding: 1.25rem !important;
+}
+
+/*
+    * MATERIAL STEPPER
+*/
+.mat-horizontal-stepper-header-container {
+  // background-color: #082d44 !important;
+  display: $buffer--display-hidden !important;
+}
+
+.mat-horizontal-content-container {
+  padding: 1.25rem !important;
+}
+
+// .mat-horizontal-stepper-header {
+//   height: 60px !important;
+//   .mat-step-label {
+//     font-size: $buffer--font-size-base !important;
+//     font-family: $buffer--font-family-semi-bold !important;
+//   }
+// }
+
+// .mat-step-header {
+//   .mat-step-label-active {
+//     color: $buffer--text-color-white !important;
+//   }
+// }
+
+// .mat-horizontal-stepper-header {
+//   background-color: $buffer--background-color-gray-300;
+
+//   &:hover {
+//     background-color: $buffer--background-color-gray-500 !important;
+//   }
+
+//   .mat-step-icon {
+//     display: $buffer--display-hidden !important;
+//   }
+// }
+
+// .mat-stepper-horizontal-line {
+//   border: 0 !important;
+//   display: $buffer--display-hidden !important;
+// }
+
+// .mat-step-header {
+//   margin: 1rem;
+//   border-radius: $buffer--border-radius-lg;
+//   justify-content: space-evenly !important;
+//   width: $buffer--width-percent-33 !important;
+// }
+
+// .mat-step-header[aria-selected='true'] {
+//   background-color: $buffer--background-color-green-800 !important;
+// }
+
+// .mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label {
+//   padding: 0 !important;
+// }

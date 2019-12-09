@@ -1,11 +1,15 @@
-// Core Module
+// Core Modules
 import { Component } from '@angular/core';
 
-// Third Party Module
-import { CalendarEvent, CalendarView } from 'angular-calendar';
+// Third Party Modules
+import { CalendarView } from 'angular-calendar';
 import { addHours, startOfDay, addDays } from 'date-fns';
 
-// weekStartsOn option is ignored when using moment, as it needs to be configured globally for the moment locale
+// Facades
+import { ScheduleMonthFacade } from '../../facade/schedule-month.facade';
+
+// Models
+import { ICalendarEvent } from '@core/model/schedule/schedule.model';
 
 @Component({
   selector: 'buffer--schedule-month-calendar',
@@ -17,30 +21,38 @@ export class ScheduleMonthCalendarComponent {
 
   viewDate: Date = new Date();
 
-  // just for the purposes of the demo so it all fits in one screen
-
-  events: CalendarEvent[] = [
+  events: ICalendarEvent[] = [
     {
       title: 'Event 01',
+      imageUrls: [
+        'https://www.workable.com/static/images/prefooter/prefooter-illu.webp',
+        'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png'
+      ],
+      socialAccounts: ['facebook'],
       start: addHours(startOfDay(new Date()), 2)
     },
     {
       title: 'Event 02',
+      imageUrls: [],
+      socialAccounts: ['facebook'],
       start: addHours(startOfDay(addDays(new Date('December 10, 2019'), 1)), 2)
     }
   ];
 
-  clickedDate: Date;
-
-  constructor() {}
+  constructor(private scheduleMonthFacade: ScheduleMonthFacade) {}
 
   onDayClicked(event: any): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('event', event.day);
-    console.warn('============= console.warn ends =============');
+    const {
+      day: { date }
+    } = event;
+
+    this.scheduleMonthFacade.openCreatePostForm(date);
   }
 
-  alert(t: string): void {
-    window.alert(t);
+  onScheduleMonthCalendarEventClicked(mouseEvent: MouseEvent, calEvent: ICalendarEvent): void {
+    mouseEvent.preventDefault();
+    mouseEvent.stopPropagation();
+
+    this.scheduleMonthFacade.viewPostDetails(calEvent);
   }
 }

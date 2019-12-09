@@ -11,6 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -21,14 +22,16 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ScheduleDayComponent } from './container/schedule-day.component';
 import { ScheduleDayHeaderComponent } from './component/schedule-day-header/schedule-day-header.component';
 import { ScheduleDayCalendarComponent } from './component/schedule-day-calendar/schedule-day-calendar.component';
+import { ScheduleDayCreateModalComponent } from './component/schedule-day-create-modal/schedule-day-create-modal.component';
 import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-calendar-options/schedule-day-calendar-options.component';
 
 @NgModule({
   declarations: [
     ScheduleDayComponent,
     ScheduleDayHeaderComponent,
-    ScheduleDayCalendarOptionsComponent,
-    ScheduleDayCalendarComponent
+    ScheduleDayCalendarComponent,
+    ScheduleDayCreateModalComponent,
+    ScheduleDayCalendarOptionsComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-ca
     MatIconModule,
     MatMenuModule,
     MatButtonModule,
+    MatDialogModule,
     MatDividerModule,
     MatTooltipModule,
     MatButtonToggleModule,
@@ -48,6 +52,7 @@ import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-ca
       useFactory: adapterFactory
     })
   ],
-  providers: []
+  providers: [],
+  entryComponents: [ScheduleDayCreateModalComponent]
 })
 export class ScheduleDayModule {}

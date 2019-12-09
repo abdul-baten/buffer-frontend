@@ -1,12 +1,12 @@
-// Core Module
+// Core Modules
 import { Component, OnInit } from '@angular/core';
 
-// Third Party Module
+// Application Specific Modules
 
-// Application Specific Module
+// Third Party Modules
+
+// Services
 import { KeyboardEventService } from '@core/service/keyboard-event/keyboard-event.service';
-
-// Application Specific
 
 @Component({
   selector: 'buffer--schedule-month',

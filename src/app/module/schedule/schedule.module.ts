@@ -1,18 +1,18 @@
-// Core Module
+// Core Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Application Specific Module
+// Application Specific Modules
 import { ScheduleRoutingModule } from './schedule-routing.module';
-import { DashboardHeaderModule } from '@shared/module/dashboard-header/dashboard-header.module';
+import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 
-// Third Party Module
+// Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
-// Component
+// Components
 import { ScheduleComponent } from './container/schedule.component';
 
 @NgModule({
@@ -20,7 +20,9 @@ import { ScheduleComponent } from './container/schedule.component';
   imports: [
     CommonModule,
     ScheduleRoutingModule,
+
     DashboardHeaderModule,
+
     MatIconModule,
     MatButtonModule,
     MatMenuModule,

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { KeyboardEventService } from './keyboard-event.service';
 
-describe('TitleService', () => {
+describe('KeyboardEventService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

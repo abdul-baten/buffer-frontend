@@ -1,0 +1,24 @@
+<div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
+  <section id="buffer--schedule-event-view-header-sec" class="buffer--schedule-event-view-header-sec">
+    <buffer--schedule-event-view-modal-header
+      [eventTitle]="data.title"
+      (onBottomSheetClosed)="onBottomSheetClosed()"
+    ></buffer--schedule-event-view-modal-header>
+  </section>
+
+  <section id="buffer--schedule-event-view-time-sec" class="buffer--schedule-event-view-time-sec">
+    <buffer--schedule-event-view-modal-time [eventDateAndTime]="data.start"></buffer--schedule-event-view-modal-time>
+  </section>
+
+  <section id="buffer--schedule-event-view-images-sec" class="buffer--schedule-event-view-images-sec">
+    <buffer--schedule-event-view-modal-images [eventImages]="data.imageUrls"></buffer--schedule-event-view-modal-images>
+  </section>
+
+  <section id="buffer--schedule-event-view-videos-sec" class="buffer--schedule-event-view-videos-sec">
+    <buffer--schedule-event-view-modal-videos [eventVideos]="data.videoUrls"></buffer--schedule-event-view-modal-videos>
+  </section>
+
+  <section id="buffer--schedule-event-view-footer-sec" class="buffer--schedule-event-view-footer-sec">
+    <buffer--schedule-event-view-modal-footer></buffer--schedule-event-view-modal-footer>
+  </section>
+</div>

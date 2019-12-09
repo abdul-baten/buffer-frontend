@@ -12,18 +12,25 @@
       let-dayClicked="dayClicked"
       let-eventDropped="eventDropped"
     >
-      <div class="cal-day-headers cursor-default">
+      <div class="cal-day-headers buffer--padding-y-5 buffer--display-flex">
         <div
           class="cal-header"
           *ngFor="let day of days"
           [class.cal-past]="day.isPast"
           [class.cal-future]="day.isFuture"
         >
-          <div class="top" [class.today]="day.isToday">
-            <div class="buffer--font-size-xs buffer--text-transform-uppercase">
+          <div class="clearfix">
+            <p
+              class="buffer--font-size-xs buffer--font-family-semi-bold buffer--text-transform-uppercase buffer--line-height-leading-zero buffer--text-color-gray-800"
+            >
               {{ day.date | date: 'E' }}
-            </div>
-            <div class="buffer--font-size-2xl">{{ day.date | date: 'dd' }}</div>
+            </p>
+            <h2
+              [ngClass]="{ 'buffer--text-color-white buffer--background-color-green-800': day.isToday }"
+              class="buffer--cursor-pointer buffer--font-size-2xl buffer--font-family-semi-bold buffer--text-transform-uppercase buffer--line-height-leading-normal schedule-week-header-date"
+            >
+              {{ day.date | date: 'dd' }}
+            </h2>
           </div>
         </div>
       </div>

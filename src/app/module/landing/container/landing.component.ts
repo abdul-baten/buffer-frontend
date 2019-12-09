@@ -1,9 +1,9 @@
 // Core
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 // Application Specific
 import { LandingFacade } from '../facade/landing.facade';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'buffer--landing',

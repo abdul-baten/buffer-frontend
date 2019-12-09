@@ -5,7 +5,7 @@
     <div class="clearfix">
       <button
         mat-stroked-button
-        [matTooltip]="presentDate"
+        [matTooltip]="currentDate"
         class="buffer--font-weight-bold buffer--font-family-semi-bold buffer--border-radius-lg"
       >
         <span class="buffer--text-transform-none">Today</span>
@@ -22,15 +22,10 @@
       </button>
     </div>
     <div class="clearfix">
-      <mat-button-toggle-group
-        name="fontStyle"
-        aria-label="Font Style"
-        [(value)]="selected"
-        (change)="calendarSelected($event)"
-      >
+      <mat-button-toggle-group [value]="selectedCalendarView" (change)="onCalendarViewChanged($event)">
         <mat-button-toggle value="month">Month</mat-button-toggle>
         <mat-button-toggle value="week">Week</mat-button-toggle>
-        <mat-button-toggle value="day">Day</mat-button-toggle>
+        <!-- <mat-button-toggle value="day">Day</mat-button-toggle> -->
       </mat-button-toggle-group>
     </div>
   </div>

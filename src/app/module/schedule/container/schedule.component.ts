@@ -1,7 +1,5 @@
-// Core
+// Core MOdules
 import { Component, OnInit } from '@angular/core';
-
-// Application Specific
 
 @Component({
   selector: 'buffer--schedule',

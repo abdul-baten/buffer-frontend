@@ -1,11 +1,11 @@
-// Core Module
+// Core Modules
 import { Component } from '@angular/core';
 
-// Third Party Module
-import { CalendarEvent } from 'angular-calendar';
+// Third Party Modules
 import { addHours, startOfDay, addDays } from 'date-fns';
 
-// weekStartsOn option is ignored when using moment, as it needs to be configured globally for the moment locale
+// Models
+import { ICalendarEvent } from '@core/model/schedule/schedule.model';
 
 @Component({
   selector: 'buffer--schedule-week-calendar',
@@ -15,15 +15,17 @@ import { addHours, startOfDay, addDays } from 'date-fns';
 export class ScheduleWeekCalendarComponent {
   viewDate: Date = new Date();
 
-  // just for the purposes of the demo so it all fits in one screen
-
-  events: CalendarEvent[] = [
+  events: ICalendarEvent[] = [
     {
       title: 'Event 01',
+      imageUrls: [],
+      socialAccounts: [],
       start: addHours(startOfDay(new Date()), 2)
     },
     {
       title: 'Event 02',
+      imageUrls: [],
+      socialAccounts: [],
       start: addHours(startOfDay(addDays(new Date('December 10, 2019'), 1)), 2)
     }
   ];

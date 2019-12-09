@@ -3,11 +3,15 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 // Application Specific
+import { environment } from '@env/environment';
 import { PAGES } from '@core/constant/page/page.constant';
 
 // Third Party Module
 import { fromEvent } from 'rxjs';
-import { distinctUntilKeyChanged, pluck } from 'rxjs/operators';
+import { distinctUntilKeyChanged, pluck, shareReplay, distinctUntilChanged } from 'rxjs/operators';
+
+// Constants
+const SCHEDULE_URL = environment.scheduleURL;
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +21,17 @@ export class KeyboardEventService {
 
   handleKeyboardEvent() {
     fromEvent(document, 'keypress')
-      .pipe(distinctUntilKeyChanged<KeyboardEvent>('keyCode'), pluck('keyCode'))
+      .pipe(distinctUntilKeyChanged<KeyboardEvent>('keyCode'), distinctUntilChanged(), pluck('keyCode'), shareReplay())
       .subscribe((keyCode: number) => {
         switch (keyCode) {
           case 109:
-            console.log(109, 'm pressed');
-            this.router.navigateByUrl(`schedule/${PAGES.SCHEDULE_MONTH_PAGE.ROUTE}`);
+            this.router.navigateByUrl(`${SCHEDULE_URL}/${PAGES.SCHEDULE_MONTH_PAGE.ROUTE}`);
             break;
           case 119:
-            console.log(119, 'w pressed');
-            this.router.navigateByUrl(`schedule/${PAGES.SCHEDULE_WEEK_PAGE.ROUTE}`);
+            this.router.navigateByUrl(`${SCHEDULE_URL}/${PAGES.SCHEDULE_WEEK_PAGE.ROUTE}`);
             break;
           case 100:
-            console.log(100, 'd pressed');
-            this.router.navigateByUrl(`schedule/${PAGES.SCHEDULE_DAY_PAGE.ROUTE}`);
+            this.router.navigateByUrl(`${SCHEDULE_URL}/${PAGES.SCHEDULE_DAY_PAGE.ROUTE}`);
             break;
           default:
             break;

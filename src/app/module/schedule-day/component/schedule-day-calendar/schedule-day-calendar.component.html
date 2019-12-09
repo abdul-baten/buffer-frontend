@@ -1,3 +1,21 @@
 <div class="clearfix">
-  <mwl-calendar-day-view [viewDate]="viewDate" [events]="events"></mwl-calendar-day-view>
+  <mwl-calendar-day-view
+    [events]="events"
+    [viewDate]="viewDate"
+    [hourSegments]="hourSegments"
+    [eventSnapSize]="eventSnapSize"
+    [hourSegmentHeight]="hourSegmentHeight"
+    (hourSegmentClicked)="onHourClicked($event)"
+    [tooltipTemplate]="scheduleDayCustomTooltipTemplate"
+    [eventTitleTemplate]="scheduleDayCustomEventTemplate"
+  >
+    <ng-template #scheduleDayCustomEventTemplate let-event="event">
+      <div class="clearfix">
+        <div class="buffer--border-radius-lg">
+          <p>{{ event | json }}</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #scheduleDayCustomTooltipTemplate> </ng-template>
+  </mwl-calendar-day-view>
 </div>

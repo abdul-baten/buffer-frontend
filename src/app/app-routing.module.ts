@@ -32,7 +32,7 @@ const routes: Routes = [
       enableTracing: false,
       scrollOffset: [0, 0],
       anchorScrolling: 'enabled',
-      urlUpdateStrategy: 'eager',
+      urlUpdateStrategy: 'deferred',
       onSameUrlNavigation: 'ignore',
       scrollPositionRestoration: 'top',
       relativeLinkResolution: 'corrected'

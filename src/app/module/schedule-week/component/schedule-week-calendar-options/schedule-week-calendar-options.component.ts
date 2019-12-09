@@ -2,8 +2,12 @@
 import { Component } from '@angular/core';
 
 // Third Party Module
-import * as moment from 'moment';
+import { format } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+
+// Service
+import { ScheduleWeekFacade } from '../../facade/schedule-week.facade';
 
 @Component({
   selector: 'buffer--schedule-week-calendar-options',
@@ -11,13 +15,14 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
   styleUrls: ['./schedule-week-calendar-options.component.scss']
 })
 export class ScheduleWeekCalendarOptionsComponent {
-  presentDate = moment().format('dddd, MMMM DD');
-  selected = 'week';
+  currentDate = format(new Date(), 'eeee, MMMM dd');
 
-  calendarSelected(a: MatButtonToggleChange): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('', a.value);
-    console.warn('============= console.warn ends =============');
+  selectedCalendarView = CalendarView.Week;
+
+  constructor(private scheduleWeekFacade: ScheduleWeekFacade) {}
+
+  onCalendarViewChanged(calendarViewSelection: MatButtonToggleChange): void {
+    this.scheduleWeekFacade.changeCalendarViewOption(calendarViewSelection.value);
   }
 
   onPreviousWeekClicked() {}
