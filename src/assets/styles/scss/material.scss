@@ -44,13 +44,6 @@ mat-card {
   }
 }
 
-/*
-    * MATERIAL BUTTON
-*/
-.mat-flat-button {
-  padding: 0.55rem !important;
-}
-
 button {
   &:disabled {
     outline: $buffer--outline-none !important;
@@ -166,8 +159,9 @@ button {
 /*
     * MATERIAL FORM FIELD
 */
+
 .mat-form-field-flex {
-  border-width: 1px !important;
+  border: 1px solid $buffer--background-color-green-800 !important;
 }
 
 .mat-form-field-infix {
@@ -194,13 +188,31 @@ button {
 
 .mat-form-field-appearance-fill {
   .mat-form-field-flex {
-    padding: 0.5rem 0.75rem !important;
+    padding: 0.1rem 1rem !important;
     border-radius: $buffer--border-radius-lg !important;
+    background-color: $buffer--background-color-white !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
   }
 
   .mat-form-field-infix {
     padding: 1rem 0 !important;
   }
+}
+
+.mat-form-field-invalid {
+  .mat-form-field-flex {
+    border: 1px solid $buffer--border-red-500 !important;
+  }
+}
+
+.mat-focused {
+  .mat-form-field-flex {
+    border: 1px solid $buffer--border-green-800 !important;
+  }
+}
+
+textarea.mat-input-element {
+  padding: 0 !important;
 }
 
 /*
@@ -225,61 +237,3 @@ button {
 .mat-bottom-sheet-container {
   padding: 1.25rem !important;
 }
-
-/*
-    * MATERIAL STEPPER
-*/
-.mat-horizontal-stepper-header-container {
-  // background-color: #082d44 !important;
-  display: $buffer--display-hidden !important;
-}
-
-.mat-horizontal-content-container {
-  padding: 1.25rem !important;
-}
-
-// .mat-horizontal-stepper-header {
-//   height: 60px !important;
-//   .mat-step-label {
-//     font-size: $buffer--font-size-base !important;
-//     font-family: $buffer--font-family-semi-bold !important;
-//   }
-// }
-
-// .mat-step-header {
-//   .mat-step-label-active {
-//     color: $buffer--text-color-white !important;
-//   }
-// }
-
-// .mat-horizontal-stepper-header {
-//   background-color: $buffer--background-color-gray-300;
-
-//   &:hover {
-//     background-color: $buffer--background-color-gray-500 !important;
-//   }
-
-//   .mat-step-icon {
-//     display: $buffer--display-hidden !important;
-//   }
-// }
-
-// .mat-stepper-horizontal-line {
-//   border: 0 !important;
-//   display: $buffer--display-hidden !important;
-// }
-
-// .mat-step-header {
-//   margin: 1rem;
-//   border-radius: $buffer--border-radius-lg;
-//   justify-content: space-evenly !important;
-//   width: $buffer--width-percent-33 !important;
-// }
-
-// .mat-step-header[aria-selected='true'] {
-//   background-color: $buffer--background-color-green-800 !important;
-// }
-
-// .mat-stepper-label-position-bottom .mat-horizontal-stepper-header .mat-step-label {
-//   padding: 0 !important;
-// }

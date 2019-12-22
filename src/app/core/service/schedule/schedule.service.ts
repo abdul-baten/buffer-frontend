@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 
 // Application Specific Modules
 import { environment } from '@env/environment';
+import { ScheduleEventViewModalComponent } from 'src/app/module/schedule/module/modal/schedule-event-view-modal/container/schedule-event-view-modal.component';
+import { ScheduleEventCreateModalComponent } from 'src/app/module/schedule/module/modal/schedule-event-create-modal/container/schedule-event-create-modal.component';
 
 // Third Party Modules
 import { MatDialog } from '@angular/material/dialog';
@@ -13,15 +15,11 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ICalendarEvent } from '@core/model/schedule/schedule.model';
 
 // Components
-import { ScheduleEventViewModalComponent } from '@shared/module/modal/schedule-event-view-modal/container/schedule-event-view-modal.component';
-import { ScheduleEventCreateModalComponent } from '@shared/module/modal/schedule-event-create-modal/container/schedule-event-create-modal.component';
 
 // Constants
 const SCHEDULE_URL = environment.scheduleURL;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ScheduleService {
   constructor(private router: Router, private matBottomSheet: MatBottomSheet, private matDialog: MatDialog) {}
 
@@ -43,9 +41,8 @@ export class ScheduleService {
     });
   }
 
-  openCreatePostForm(eventDate: Date): void {
+  openCreatePostFormDialog(): void {
     this.matDialog.open(ScheduleEventCreateModalComponent, {
-      data: eventDate,
       position: {
         top: '',
         bottom: '',
@@ -53,11 +50,11 @@ export class ScheduleService {
         right: ''
       },
       role: 'dialog',
-      minWidth: '550px',
+      width: '600px',
       autoFocus: true,
       direction: 'ltr',
       hasBackdrop: true,
-      disableClose: false,
+      disableClose: true,
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',

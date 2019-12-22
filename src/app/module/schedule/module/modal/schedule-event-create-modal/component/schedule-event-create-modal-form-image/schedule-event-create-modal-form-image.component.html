@@ -1,0 +1,110 @@
+<div class="clearfix">
+  <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
+    <buffer--schedule-event-create-modal-form-header
+      [formHeader]="formHeader"
+      [formHeaderIcon]="formHeaderIcon"
+      (closeChooseTypeModal)="onChooseTypeModalClosed()"
+    ></buffer--schedule-event-create-modal-form-header>
+  </section>
+
+  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec">
+    <div class="buffer--margin-top-5">
+      <div
+        class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-space-between"
+      >
+        <div class="clearfix">
+          <!-- uploader -->
+          <buffer--schedule-event-create-modal-form-media-selection-image
+            (enableNextButton)="onNextButtonEnabled($event)"
+          ></buffer--schedule-event-create-modal-form-media-selection-image>
+          <!-- uploader -->
+        </div>
+        <div class="clearfix">
+          <form [formGroup]="eventCreateTypeImageForm" class="buffer--margin-top-5" novalidate>
+            <div class="clearfix">
+              <label for="postCaption" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+                >Caption</label
+              >
+              <mat-form-field
+                class="buffer--width-full buffer--font-family-regular buffer--margin-top-3"
+                appearance="fill"
+              >
+                <textarea
+                  matInput
+                  required
+                  id="postCaption"
+                  spellcheck="false"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="2"
+                  cdkAutosizeMaxRows="3"
+                  formControlName="postCaption"
+                  placeholder="Write something"
+                  #autosize="cdkTextareaAutosize"
+                  [errorStateMatcher]="eventCreatePostFormErrorMatcher"
+                  class="buffer--cursor-pointer buffer--line-height-leading-relaxed"
+                ></textarea>
+              </mat-form-field>
+            </div>
+
+            <div class="clearfix">
+              <label for="postDate" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+                >Date</label
+              >
+              <mat-form-field
+                class="buffer--width-full buffer--font-family-regular buffer--margin-y-3"
+                appearance="fill"
+              >
+                <input
+                  matInput
+                  readonly
+                  type="text"
+                  id="postDate"
+                  autocomplete="off"
+                  [min]="currentDateTime"
+                  [owlDateTime]="postDate"
+                  formControlName="postDate"
+                  class="buffer--cursor-pointer"
+                  [owlDateTimeTrigger]="postDate"
+                  [errorStateMatcher]="eventCreatePostFormErrorMatcher"
+                />
+                <owl-date-time
+                  #postDate
+                  [stepMinute]="15"
+                  [hour12Timer]="true"
+                  [hideOtherMonths]="true"
+                  [startAt]="currentDateTime"
+                  panelClass="buffer--dialog-bottom-sheet-custom-panel"
+                ></owl-date-time>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
+    <div
+      class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
+    >
+      <div class="clearfix buffer--width-percent-20">
+        <a
+          (click)="onPreviousButtonClicked()"
+          class="buffer--default-link buffer--get-started-short-link buffer--font-size-sm buffer--line-height-leading-normal buffer--font-family-regular"
+        >
+          <span>Back</span>
+        </a>
+      </div>
+      <div class="clearfix buffer--width-percent-33">
+        <button
+          color="primary"
+          mat-flat-button
+          [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
+          class="buffer--width-full buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

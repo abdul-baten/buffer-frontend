@@ -1,19 +1,33 @@
 // Core Modules
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 // Application Specific Modules
 import { ScheduleRoutingModule } from './schedule-routing.module';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
+import { ScheduleEventViewModalModule } from './module/modal/schedule-event-view-modal/schedule-event-view-modal.module';
+import { ScheduleEventCreateModalModule } from './module/modal/schedule-event-create-modal/schedule-event-create-modal.module';
 
 // Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
+// Facades
+import { ScheduleFacade } from './facade/schedule.facade';
+
+// Services
+import { ScheduleService } from '@core/service/schedule/schedule.service';
 
 // Components
 import { ScheduleComponent } from './container/schedule.component';
+
+// Store
+import { StoreModule } from '@ngrx/store';
+import * as fromSchedulePostReducer from './reducer';
 
 @NgModule({
   declarations: [ScheduleComponent],
@@ -26,7 +40,15 @@ import { ScheduleComponent } from './container/schedule.component';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatDividerModule
-  ]
+    MatDividerModule,
+    MatDialogModule,
+    MatBottomSheetModule,
+
+    ScheduleEventViewModalModule,
+    ScheduleEventCreateModalModule,
+
+    StoreModule.forFeature(fromSchedulePostReducer.schedulePostFeatureKey, fromSchedulePostReducer.reducer)
+  ],
+  providers: [ScheduleFacade, ScheduleService, DatePipe]
 })
 export class ScheduleModule {}
