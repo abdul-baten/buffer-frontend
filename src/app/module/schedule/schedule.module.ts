@@ -21,6 +21,8 @@ import { ScheduleFacade } from './facade/schedule.facade';
 
 // Services
 import { ScheduleService } from '@core/service/schedule/schedule.service';
+import { PostTypeImageService } from './service/post-type-image.service';
+import { PostTypeVideoService } from './service/post-type-video.service';
 
 // Components
 import { ScheduleComponent } from './container/schedule.component';
@@ -28,7 +30,6 @@ import { ScheduleComponent } from './container/schedule.component';
 // Store
 import { StoreModule } from '@ngrx/store';
 import * as fromSchedulePostReducer from './reducer';
-
 @NgModule({
   declarations: [ScheduleComponent],
   imports: [
@@ -49,6 +50,6 @@ import * as fromSchedulePostReducer from './reducer';
 
     StoreModule.forFeature(fromSchedulePostReducer.schedulePostFeatureKey, fromSchedulePostReducer.reducer)
   ],
-  providers: [ScheduleFacade, ScheduleService, DatePipe]
+  providers: [ScheduleFacade, ScheduleService, DatePipe, PostTypeImageService, PostTypeVideoService]
 })
 export class ScheduleModule {}

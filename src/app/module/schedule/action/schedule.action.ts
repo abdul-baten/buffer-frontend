@@ -7,6 +7,8 @@ import { PostScheduleState } from '../model/schedule.model';
 // Enums
 import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
 
+export const setDefaultPostData = createAction('[Schedule Facade] Set Schedule Post Type');
+
 export const setPostDate = createAction(
   '[Schedule Facade] Set Schedule Post Date',
   props<{ postOriginalDate: string }>()

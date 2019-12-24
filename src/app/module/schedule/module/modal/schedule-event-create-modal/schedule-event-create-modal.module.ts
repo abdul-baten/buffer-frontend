@@ -29,8 +29,7 @@ import { ScheduleEventCreateModalFormImageComponent } from './component/schedule
 import { ScheduleEventCreateModalFormVideoComponent } from './component/schedule-event-create-modal-form-video/schedule-event-create-modal-form-video.component';
 import { ScheduleEventCreateModalFormTypeComponent } from './component/schedule-event-create-modal-form-type/schedule-event-create-modal-form-type.component';
 import { ScheduleEventCreateModalFormHeaderComponent } from './component/schedule-event-create-modal-form-header/schedule-event-create-modal-form-header.component';
-import { ScheduleEventCreateModalFormMediaSelectionImageComponent } from './component/schedule-event-create-modal-form-media-selection-image/schedule-event-create-modal-form-media-selection-image.component';
-import { ScheduleEventCreateModalFormMediaSelectionVideoComponent } from './component/schedule-event-create-modal-form-media-selection-video/schedule-event-create-modal-form-media-selection-video.component';
+import { ScheduleEventCreateModalFormMediaSelectionComponent } from './component/schedule-event-create-modal-form-media-selection/schedule-event-create-modal-form-media-selection.component';
 
 // Store
 
@@ -43,8 +42,7 @@ import { ScheduleEventCreateModalFormMediaSelectionVideoComponent } from './comp
     ScheduleEventCreateModalFormImageComponent,
     ScheduleEventCreateModalFormVideoComponent,
     ScheduleEventCreateModalFormHeaderComponent,
-    ScheduleEventCreateModalFormMediaSelectionImageComponent,
-    ScheduleEventCreateModalFormMediaSelectionVideoComponent
+    ScheduleEventCreateModalFormMediaSelectionComponent
   ],
   imports: [
     // Core Modules

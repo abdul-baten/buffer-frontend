@@ -1,34 +1,35 @@
 // Core Modules
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { MetaDefinition } from '@angular/platform-browser';
 
 // Application Specific Modules
 
 // Third Party Modules
 import { Observable } from 'rxjs';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { format, getHours, getMonth, getDate, getMinutes, getYear } from 'date-fns';
+
+// Enums
+import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
+
+// Models
+import { postTypeMap } from '../model/post-type.model';
+import { PostScheduleState } from '../model/schedule.model';
+import { ICalendarEvent } from '@core/model/schedule/schedule.model';
 
 // Services
 import { ScheduleService } from '@core/service/schedule/schedule.service';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
-
-// Models
-import { ICalendarEvent } from '@core/model/schedule/schedule.model';
 
 // Store
 import { Store } from '@ngrx/store';
 import { fromScheduleActions } from '../action';
 import { selectPostType, selectPostDate } from '../selector/schedule.selector';
 
-// Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
-
-// Models
-import { PostScheduleState } from '../model/schedule.model';
-
 @Injectable()
 export class ScheduleFacade {
   constructor(
+    private injector: Injector,
     private scheduleService: ScheduleService,
     private metaService: DocumentMetaService,
     private store: Store<PostScheduleState>
@@ -63,6 +64,10 @@ export class ScheduleFacade {
     return new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes).toISOString();
   }
 
+  setDefaultPostData(): void {
+    this.store.dispatch(fromScheduleActions.setDefaultPostData());
+  }
+
   setPostType(postType: POST_TYPE): void {
     this.store.dispatch(fromScheduleActions.setPostType({ postType }));
   }
@@ -85,5 +90,11 @@ export class ScheduleFacade {
     const postData = Object.assign(formData, { postDate, postTime });
 
     this.store.dispatch(fromScheduleActions.setPostData({ postData }));
+  }
+
+  generateDropZoneConfig(type: POST_TYPE): DropzoneConfigInterface {
+    const injectableService = postTypeMap.get(type);
+    const service = this.injector.get(injectableService);
+    return service.generateConfig();
   }
 }

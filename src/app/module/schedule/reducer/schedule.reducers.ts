@@ -21,6 +21,7 @@ export const initialState: PostScheduleState = {
 
 export const postDataReducer = createReducer(
   initialState,
+  on(fromScheduleActions.setDefaultPostData, _ => initialState),
   on(fromScheduleActions.setPostDate, (state, action) => {
     return {
       ...state,

@@ -4,40 +4,38 @@ import { Component, Inject, Output, EventEmitter } from '@angular/core';
 
 // Third Party Modules
 import { of, noop } from 'rxjs';
-import { tap, delay } from 'rxjs/operators';
+import { tap, delay, filter, defaultIfEmpty } from 'rxjs/operators';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
+// Enums
+import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-event-create-modal.enum';
+
+// Facades
+import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+
 @Component({
-  selector: 'buffer--schedule-event-create-modal-form-media-selection-image',
-  templateUrl: './schedule-event-create-modal-form-media-selection-image.component.html',
-  styleUrls: ['./schedule-event-create-modal-form-media-selection-image.component.scss']
+  selector: 'buffer--schedule-event-create-modal-form-media-selection',
+  templateUrl: './schedule-event-create-modal-form-media-selection.component.html',
+  styleUrls: ['./schedule-event-create-modal-form-media-selection.component.scss']
 })
-export class ScheduleEventCreateModalFormMediaSelectionImageComponent {
+export class ScheduleEventCreateModalFormMediaSelectionComponent {
   filesAdded = 0;
   mediaMaxFilesReached = false;
   config: DropzoneConfigInterface;
 
   @Output() enableNextButton = new EventEmitter<boolean>();
 
-  constructor(@Inject(DOCUMENT) private document: Document) {
-    this.config = {
-      maxFiles: 5,
-      autoQueue: true,
-      clickable: true,
-      autoReset: null,
-      maxFilesize: 100,
-      errorReset: null,
-      cancelReset: null,
-      parallelUploads: 1,
-      addRemoveLinks: false,
-      uploadMultiple: false,
-      autoProcessQueue: true,
-      createImageThumbnails: true,
-      url: 'https://httpbin.org/post',
-      acceptedFiles: 'image/jpg,image/png,image/jpeg',
-      dictDefaultMessage:
-        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload upto 5 images</span>'
-    };
+  constructor(private scheduleFacade: ScheduleFacade, @Inject(DOCUMENT) private document: Document) {
+    this.scheduleFacade
+      .getPostType()
+      .pipe(
+        defaultIfEmpty(POST_TYPE.TEXT),
+        filter((type: POST_TYPE) => type === POST_TYPE.IMAGE || type === POST_TYPE.VIDEO),
+        tap((type: POST_TYPE) => {
+          this.config = this.scheduleFacade.generateDropZoneConfig(type);
+        })
+      )
+      .subscribe(noop);
   }
 
   onUploadInit(args: any): void {
