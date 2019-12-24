@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  position: relative;
+
+  .buffer--calendar-week-view-header-sec {
+    height: 80px;
+
+    .buffer--calendar-week-view-header-day {
+      text-align: center;
+      width: calc(100% / 7) !important;
+    }
+  }
+
+  .schedule-week-header-date {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+    padding-top: 4px;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+}

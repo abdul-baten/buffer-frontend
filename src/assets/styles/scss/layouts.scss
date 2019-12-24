@@ -63,6 +63,17 @@
 }
 
 /*
+    * FLEX DIRECTION
+*/
+.buffer--display-flex-direction-row {
+  flex-direction: $buffer--display-flex-direction-row !important;
+}
+
+.buffer--display-flex-direction-column {
+  flex-direction: $buffer--display-flex-direction-column !important;
+}
+
+/*
     * JUSTIFY CONTENT
 */
 .buffer--flex-justify-content-start {
@@ -242,6 +253,24 @@
 
 .buffer--z-index-auto {
   z-index: $buffer--z-index-auto !important;
+}
+
+/*
+    * OUTLINE
+*/
+.buffer--outline-none {
+  outline: $buffer--outline-none !important;
+}
+
+/*
+    * VERTICAL ALIGN
+*/
+.buffer--vertical-align-bottom {
+  vertical-align: $buffer--vertical-align-bottom !important;
+}
+
+.buffer--vertical-align-middle {
+  vertical-align: $buffer--vertical-align-middle !important;
 }
 
 /* ************************************* LAYOUT ENDS ************************************* */

@@ -2,7 +2,7 @@
 /* ************************************* LAYOUT STARTS ************************************* */
 
 /*
-    * DISPLAY
+    * DISPLAY 
 */
 $buffer--display-block: block;
 $buffer--display-inline-block: inline-block;
@@ -25,6 +25,12 @@ $buffer--float-none: none;
     * ITEM ALIGNMENT
 */
 $buffer--align-items-center: center;
+
+/*
+    * FLEX DIRECTION
+*/
+$buffer--display-flex-direction-row: row;
+$buffer--display-flex-direction-column: column;
 
 /*
     * JUSTIFY CONTENT
@@ -90,6 +96,17 @@ $buffer--z-index-30: 30;
 $buffer--z-index-40: 40;
 $buffer--z-index-50: 50;
 $buffer--z-index-auto: auto;
+
+/*
+    * OUTLINE
+*/
+$buffer--outline-none: none;
+
+/*
+    * VERTICAL ALIGN
+*/
+$buffer--vertical-align-bottom: bottom;
+$buffer--vertical-align-middle: middle;
 
 /* ************************************* LAYOUT ENDS ************************************* */
 /* ************************************* LAYOUT ENDS ************************************* */

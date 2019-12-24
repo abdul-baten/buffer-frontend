@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  position: relative;
+
+  .buffer--calendar-month-view-header-sec {
+    .buffer--calendar-month-view-header-day {
+      text-align: center;
+      width: calc(100% / 7) !important;
+    }
+  }
+
+  .buffer--border-left-social-facebook {
+    border-left: 2px solid #164d59;
+  }
+}

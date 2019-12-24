@@ -1,0 +1,32 @@
+<div class="clearfix">
+  <div
+    class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
+  >
+    <div class="clearfix">
+      <button
+        mat-stroked-button
+        [matTooltip]="currentDate"
+        class="buffer--font-weight-bold buffer--font-family-semi-bold buffer--border-radius-lg"
+      >
+        <span class="buffer--text-transform-none">Today</span>
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-x-1">
+      <button mat-icon-button matTooltip="Previous Month">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-x-1">
+      <button mat-icon-button matTooltip="Next Month">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+    <div class="clearfix">
+      <mat-button-toggle-group [value]="selectedCalendarView" (change)="onCalendarViewChanged($event)">
+        <mat-button-toggle value="month">Month</mat-button-toggle>
+        <mat-button-toggle value="week">Week</mat-button-toggle>
+        <!-- <mat-button-toggle value="day">Day</mat-button-toggle> -->
+      </mat-button-toggle-group>
+    </div>
+  </div>
+</div>

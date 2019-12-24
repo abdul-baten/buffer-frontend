@@ -12,6 +12,22 @@ const PAGES: IPage = {
   SIGN_UP_PAGE: {
     ROUTE: 'sign-up',
     TITLE: 'Sign Up | Buffer'
+  },
+  SCHEDULE_PAGE: {
+    ROUTE: 'schedule',
+    TITLE: 'Schedule | Buffer'
+  },
+  SCHEDULE_MONTH_PAGE: {
+    ROUTE: 'month',
+    TITLE: 'Month | Buffer'
+  },
+  SCHEDULE_WEEK_PAGE: {
+    ROUTE: 'week',
+    TITLE: 'Week | Buffer'
+  },
+  SCHEDULE_DAY_PAGE: {
+    ROUTE: 'day',
+    TITLE: 'Day | Buffer'
   }
 };
 

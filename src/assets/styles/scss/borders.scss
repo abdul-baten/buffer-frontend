@@ -401,23 +401,23 @@
 */
 
 .buffer--border-radius-none {
-  border-radius: 0 !important;
+  border-radius: $buffer--border-radius-none !important;
 }
 
 .buffer--border-radius-sm {
-  border-radius: 0.125rem !important;
+  border-radius: $buffer--border-radius-sm !important;
 }
 
 .buffer--border-radius {
-  border-radius: 0.25rem !important;
+  border-radius: $buffer--border-radius !important;
 }
 
 .buffer--border-radius-lg {
-  border-radius: 0.5rem !important;
+  border-radius: $buffer--border-radius-lg !important;
 }
 
 .buffer--border-radius-full {
-  border-radius: 9999px !important;
+  border-radius: $buffer--border-radius-full !important;
 }
 
 .buffer--border-radius-top-none {

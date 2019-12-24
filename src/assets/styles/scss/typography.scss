@@ -76,6 +76,10 @@
   font-size: $buffer--font-size-8xl !important;
 }
 
+.buffer--font-size-inherit {
+  font-size: $buffer--font-size-inherit !important;
+}
+
 /*
     * FONT WEIGHT
 */
@@ -118,6 +122,10 @@
 /*
     * LINE HEIGHT
 */
+.buffer--line-height-leading-zero {
+  line-height: $buffer--line-height-leading-zero !important;
+}
+
 .buffer--line-height-leading-none {
   line-height: $buffer--line-height-leading-none !important;
 }

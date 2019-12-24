@@ -27,6 +27,7 @@ $buffer--font-size-5xl: 3rem;
 $buffer--font-size-6xl: 4rem;
 $buffer--font-size-7xl: 4.5rem;
 $buffer--font-size-8xl: 5rem;
+$buffer--font-size-inherit: inherit;
 
 /*
     * FONT WEIGHT
@@ -44,6 +45,7 @@ $buffer--font-weight-black: 900;
 /*
     * LINE HEIGHT
 */
+$buffer--line-height-leading-zero: 0;
 $buffer--line-height-leading-none: 1;
 $buffer--line-height-leading-tight: 1.25;
 $buffer--line-height-leading-snug: 1.375;

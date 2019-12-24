@@ -20,4 +20,9 @@ export class CommonValidator {
     const r = /^(?=.*\d)[\d ]+$/;
     return !r.test(c.value) || c.value.trim() === '' ? { numberSpaceOnly: true } : null;
   }
+
+  static validURL(c: FormControl): { [s: string]: boolean } {
+    const r = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+    return c.value ? (!r.test(c.value) ? { validURL: true } : null) : null;
+  }
 }

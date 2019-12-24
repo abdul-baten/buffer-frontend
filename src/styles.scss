@@ -48,7 +48,7 @@ body {
   letter-spacing: $buffer--letter-spacing-tracking-normal;
 }
 
-a {
+a.buffer--default-link {
   width: auto;
   padding: 5px 0;
   cursor: $buffer--cursor-pointer;
@@ -101,6 +101,8 @@ h6 {
 }
 
 p {
+  margin: 0;
+  padding: 0;
   font-family: $buffer--font-family-regular;
 }
 
