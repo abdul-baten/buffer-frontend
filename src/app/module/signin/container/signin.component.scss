@@ -1,0 +1,10 @@
+:host {
+  display: block;
+
+  .buffer--signin-form-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,93 @@
+<div class="clearfix">
+  <div class="buffer--background-color-white buffer--border-radius-lg buffer--box-shadow-xl buffer--padding-12">
+    <div class="clearfix">
+      <h2
+        class="buffer--text-color-green-800 buffer--font-family-bold buffer--font-size-3xl buffer--line-height-leading-loose buffer--margin-bottom-3"
+      >
+        Try free
+      </h2>
+    </div>
+
+    <div class="clearfix">
+      <form [formGroup]="signupForm" novalidate>
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>First name</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="firstName" required />
+            <mat-error align="end" *ngIf="signupForm.controls.firstName.invalid">Enter a valid first name.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Last name</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="lastName" required />
+            <mat-error align="end" *ngIf="signupForm.controls.lastName.invalid">Enter a valid last name.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Email address</mat-label>
+            <input type="text" matInput autocomplete="off" formControlName="emailAddress" required />
+            <mat-error align="end" *ngIf="signupForm.controls.emailAddress.invalid"
+              >Enter a valid email address.</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input [type]="hidePassword ? 'password' : 'text'" matInput formControlName="password" required />
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Enter a valid password.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              matInput
+              formControlName="confirmPassword"
+              required
+            />
+            <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
+              <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error align="end" *ngIf="signupForm.controls.confirmPassword.invalid"
+              >Enter a valid password.</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <div class="buffer--margin-bottom-5">
+            <mat-checkbox
+              color="primary"
+              class="buffer--font-family-regular buffer--font-size-sm"
+              formControlName="termsAndCondition"
+              required
+              >I agree to Buffer's Terms of Service
+            </mat-checkbox>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <button
+            color="primary"
+            mat-flat-button
+            [disabled]="signupForm.invalid"
+            class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--box-shadow-lg buffer--box-shadow-hover-xl"
+          >
+            Try free for 15 days
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

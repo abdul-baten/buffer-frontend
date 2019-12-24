@@ -1,0 +1,23 @@
+// Core Modules
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+// Application Specific Modules
+
+// Third Party Modules
+
+// Components
+import { SignupComponent } from './container/signup.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: SignupComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class SignupRoutingModule {}

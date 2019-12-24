@@ -22,6 +22,18 @@ $buffer--float-left: left;
 $buffer--float-none: none;
 
 /*
+    * ITEM ALIGNMENT
+*/
+$buffer--align-items-center: center;
+
+/*
+    * JUSTIFY CONTENT
+*/
+$buffer--flex-justify-content-start: flex-start;
+$buffer--flex-justify-content-end: flex-end;
+$buffer--flex-justify-content-space-between: space-between;
+
+/*
     * OBJECT FIT
 */
 $buffer--object-contain: contain;

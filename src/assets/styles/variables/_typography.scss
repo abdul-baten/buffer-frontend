@@ -25,7 +25,8 @@ $buffer--font-size-3xl: 1.875rem;
 $buffer--font-size-4xl: 2.25rem;
 $buffer--font-size-5xl: 3rem;
 $buffer--font-size-6xl: 4rem;
-$buffer--font-size-8xl: 8rem;
+$buffer--font-size-7xl: 4.5rem;
+$buffer--font-size-8xl: 5rem;
 
 /*
     * FONT WEIGHT
@@ -75,8 +76,8 @@ $buffer--text-align-justify: justify;
     * TEXT COLOR
 */
 $buffer--text-color-transparent: transparent;
-$buffer--text-color-black: #2d2d2d;
-$buffer--text-color-white: #fff;
+$buffer--text-color-black: #000000;
+$buffer--text-color-white: #ffffff;
 
 $buffer--text-color-gray-100: #f5f5f5;
 $buffer--text-color-gray-200: #eeeeee;
@@ -125,7 +126,7 @@ $buffer--text-color-green-400: #14d31d;
 $buffer--text-color-green-500: #11b719;
 $buffer--text-color-green-600: #0e9b15;
 $buffer--text-color-green-700: #0c7f11;
-$buffer--text-color-green-800: #09630e;
+$buffer--text-color-green-800: #164d59;
 $buffer--text-color-green-900: #07470a;
 
 $buffer--text-color-teal-100: #e6fffa;

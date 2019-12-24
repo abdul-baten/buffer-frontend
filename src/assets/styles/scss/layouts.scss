@@ -56,6 +56,28 @@
 }
 
 /*
+    * ITEM ALIGNMENT
+*/
+.buffer--align-items-center {
+  align-items: $buffer--align-items-center !important;
+}
+
+/*
+    * JUSTIFY CONTENT
+*/
+.buffer--flex-justify-content-start {
+  justify-content: $buffer--flex-justify-content-start !important;
+}
+
+.buffer--flex-justify-content-end {
+  justify-content: $buffer--flex-justify-content-end !important;
+}
+
+.buffer--flex-justify-content-space-between {
+  justify-content: $buffer--flex-justify-content-space-between !important;
+}
+
+/*
     * OBJECT FIT
 */
 .buffer--object-contain {
