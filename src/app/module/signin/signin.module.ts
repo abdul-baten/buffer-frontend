@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // Application Specific Modules
+import { SigninFacade } from './facade/signin.facade';
 import { LogoModule } from '@shared/module/logo/logo.module';
 import { SigninRoutingModule } from '../signin/signin-routing.module';
 
@@ -30,7 +31,6 @@ import { SigninHeaderComponent } from './component/signin-header/signin-header.c
     MatButtonModule,
     MatIconModule
   ],
-  exports: [SigninComponent],
-  entryComponents: [SigninComponent]
+  providers: [SigninFacade]
 })
 export class SigninModule {}
