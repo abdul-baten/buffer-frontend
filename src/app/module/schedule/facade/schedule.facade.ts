@@ -107,4 +107,8 @@ export class ScheduleFacade {
   openSnackbar(message: string, action: string = ''): void {
     this.snackbarService.openSnackBar(message, action);
   }
+
+  openCalenderSettings(): void {
+    this.scheduleService.openCalendarSettingsDialog();
+  }
 }

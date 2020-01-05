@@ -41,7 +41,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   header = {
     left: 'title',
     center: '',
-    right: ''
+    right: 'calendarSettingsButton'
   };
   slotLabelFormat = {
     hour: 'numeric',
@@ -51,7 +51,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   };
   selectable = true;
   snapDuration = 15;
-  eventLimit = false;
+  eventLimit = false; // TODO Settings
   allDaySlot = false;
   nowIndicator = true;
   columnHeader = true;
@@ -59,13 +59,22 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   slotLabelInterval = {
     minutes: 2
   };
-  businessHours = false;
-  fixedWeekCount = false;
-  calendarWeekends = true;
+  customButtons = {
+    calendarSettingsButton: {
+      text: 'Settings',
+      click: () => {
+        this.scheduleFacade.openCalenderSettings();
+      }
+    }
+  };
+
+  businessHours = false; // TODO Settings
+  fixedWeekCount = false; // TODO Settings
+  calendarWeekends = true; // TODO Settings
   slotEventOverlap = false;
   displayEventTime = false;
-  slotDuration = '00:15:00';
-  showNonCurrentDates = true;
+  slotDuration = '00:15:00'; // TODO Settings
+  showNonCurrentDates = true; // TODO Settings
   eventLimitClick = 'popover';
   progressiveEventRendering = false;
 
@@ -75,7 +84,23 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     {
       id: '100',
       title: 'Event Now',
-      start: '2020-01-02T13:30:00',
+      start: new Date(),
+      allDay: false,
+      editable: true,
+      overlap: false,
+      hasEnd: false,
+      imageUrls: [
+        {
+          fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
+          fileType: 'img'
+        }
+      ],
+      socialAccounts: ['facebook']
+    },
+    {
+      id: '100',
+      title: 'Event Now',
+      start: '2020-01-06T02:30:00',
       allDay: false,
       editable: true,
       overlap: false,

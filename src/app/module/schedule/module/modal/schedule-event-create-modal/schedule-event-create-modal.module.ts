@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 // Application Specific Modules
+import { EventPropagationDirectiveModule } from '@core/directive/event-propagation/event-propagation.directive.module';
 
 // Third Party Modules
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
@@ -51,7 +52,6 @@ import { ScheduleEventCreateModalFormMediaSelectionComponent } from './component
     ReactiveFormsModule,
 
     // Material Modules
-
     MatIconModule,
     MatInputModule,
     MatRadioModule,
@@ -65,7 +65,9 @@ import { ScheduleEventCreateModalFormMediaSelectionComponent } from './component
     MatProgressSpinnerModule,
 
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+
+    EventPropagationDirectiveModule
   ],
   providers: [],
   exports: [ScheduleEventCreateModalComponent],

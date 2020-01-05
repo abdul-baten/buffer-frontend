@@ -16,9 +16,9 @@ body .fc {
 /* Colors
 --------------------------------------------------------------------------------------------------*/
 .fc-highlight {
-  opacity: $buffer--opacity-50;
+  opacity: $buffer--opacity-75;
   /* when user is selecting cells */
-  background: $buffer--background-color-green-500;
+  background: $buffer--background-color-green-100;
 }
 
 .fc-bgevent {
@@ -594,77 +594,19 @@ TODO: more distinction between this file and common.css
   opacity: $buffer--opacity-25;
 }
 
-/* Icons
---------------------------------------------------------------------------------------------------
-from https://feathericons.com/ and built with IcoMoon
-*/
-@font-face {
-  font-family: 'fcicons';
-  src: url('data:application/x-font-ttf;charset=utf-8;base64,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')
-    format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-.fc-icon {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'fcicons' !important;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.fc-icon-chevron-left:before {
-  content: '';
-}
-
-.fc-icon-chevron-right:before {
-  content: '';
-}
-
-.fc-icon-chevrons-left:before {
-  content: '';
-}
-
-.fc-icon-chevrons-right:before {
-  content: '';
-}
-
-.fc-icon-minus-square:before {
-  content: '';
-}
-
-.fc-icon-plus-square:before {
-  content: '';
-}
-
-.fc-icon-x:before {
-  content: '';
-}
-
-.fc-icon {
-  display: $buffer--display-inline-block;
-  width: 1em;
-  height: 1em;
-  text-align: center;
-}
-
 /* Buttons
 --------------------------------------------------------------------------------------------------
 Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 */
 /* reset */
 .fc-button {
+  margin: 0;
+  outline: none;
   border-radius: 0;
   overflow: visible;
-  text-transform: none;
-  margin: 0;
-  font-family: inherit;
   font-size: inherit;
+  text-transform: none;
+  font-family: inherit;
   line-height: inherit;
 }
 
@@ -684,9 +626,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* theme */
 .fc-button {
   user-select: none;
-  padding: 0.8rem 1rem;
   -ms-user-select: none;
   -moz-user-select: none;
+  padding: 0.7rem 0.8rem;
   -webkit-user-select: none;
   font-size: $buffer--font-size-sm;
   color: $buffer--text-color-black;
@@ -696,14 +638,14 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   font-family: $buffer--font-family-semi-bold;
   vertical-align: $buffer--vertical-align-middle;
   line-height: $buffer--line-height-leading-none;
-  background-color: $buffer--background-color-green-500;
-  border: $buffer--border-width $buffer--border-style-solid $buffer--border-transparent;
+  background-color: $buffer--background-color-white;
+  border: $buffer--border-width $buffer--border-style-solid $buffer--border-gray-100;
 }
 
 .fc-button:not(:disabled):hover {
   outline: $buffer--outline-none;
-  box-shadow: $buffer--box-shadow-lg;
-  -webkit-box-shadow: $buffer--box-shadow-lg;
+  box-shadow: $buffer--box-shadow-md;
+  -webkit-box-shadow: $buffer--box-shadow-md;
 }
 
 .fc-button:disabled {
@@ -713,9 +655,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* "primary" coloring */
 .fc-button-primary {
-  color: $buffer--text-color-white;
+  color: $buffer--text-color-black;
+  background-color: $buffer--background-color-white;
   text-transform: $buffer--text-transform-capitalize;
-  background-color: $buffer--background-color-green-500;
 }
 
 .fc-button-primary:focus {
@@ -806,7 +748,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-toolbar.fc-header-toolbar {
   width: 99.99%;
-  padding: 1.25rem;
+  padding: 1rem 1.25rem;
   border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-gray-100;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-gray-100;
 }
@@ -1276,17 +1218,19 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 --------------------------------------------------------------------------------------------------*/
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
+  padding: 0.2rem;
   margin: 0 2.5% 0 2px;
 }
 
 .fc-rtl .fc-time-grid .fc-event-container {
   /* space on the sides of events for RTL */
+  padding: 0.5rem;
   margin: 0 2px 0 2.5%;
 }
 
 .fc-time-grid .fc-event,
 .fc-time-grid .fc-bgevent {
-  position: $buffer--position-absolute;
+  position: $buffer--position-relative;
   z-index: 1;
   /* scope inner z-index's */
 }
@@ -1303,7 +1247,10 @@ We use the full "fc-time-grid-event" class instead of using descendants because 
 be a descendant of the grid when it is being dragged.
 */
 .fc-time-grid-event {
-  margin-bottom: 1px;
+  left: 0 !important;
+  margin: 0.5rem 0;
+  width: $buffer--width-full;
+  max-width: $buffer--width-40;
 }
 
 .fc-time-grid-event-inset {

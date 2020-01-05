@@ -42,7 +42,7 @@ export class ScheduleEventCreateModalFormTextComponent {
 
   private buildEventCreateTypeTextForm(): FormGroup {
     return this.formBuilder.group({
-      postLocation: [null],
+      postLocation: null,
       postDate: [null, Validators.required],
       postCaption: [null, Validators.required],
       postLink: [null, CommonValidator.validURL]

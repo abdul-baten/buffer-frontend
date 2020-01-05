@@ -15,6 +15,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
+import { ScheduleCalendarSettingsModalComponent } from 'src/app/module/schedule/module/modal/schedule-calendar-settings-modal/container/schedule-calendar-settings-modal.component';
 
 // Components
 
@@ -80,6 +81,27 @@ export class ScheduleService {
       disableClose: true,
       restoreFocus: false,
       data: postInfo,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+    });
+  }
+
+  openCalendarSettingsDialog(): void {
+    this.matDialog.open(ScheduleCalendarSettingsModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      width: '500px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
       backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'

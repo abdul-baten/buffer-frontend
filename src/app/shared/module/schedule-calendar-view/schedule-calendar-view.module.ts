@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Third Party Modules
+import { MatIconModule } from '@angular/material/icon';
 import { FullCalendarModule } from '@fullcalendar/angular';
 
 // Components
@@ -10,7 +11,7 @@ import { ScheduleCalendarViewComponent } from './container/schedule-calendar-vie
 
 @NgModule({
   declarations: [ScheduleCalendarViewComponent],
-  imports: [CommonModule, FullCalendarModule],
+  imports: [CommonModule, MatIconModule, FullCalendarModule],
   exports: [ScheduleCalendarViewComponent]
 })
 export class ScheduleCalendarViewModule {}

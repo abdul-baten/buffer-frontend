@@ -8,6 +8,7 @@ import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/da
 import { ScheduleEventViewModalModule } from './module/modal/schedule-event-view-modal/schedule-event-view-modal.module';
 import { ScheduleEventDragModalModule } from './module/modal/schedule-event-drag-modal/schedule-event-drag-modal.module';
 import { ScheduleEventCreateModalModule } from './module/modal/schedule-event-create-modal/schedule-event-create-modal.module';
+import { ScheduleCalendarSettingsModalModule } from './module/modal/schedule-calendar-settings-modal/schedule-calendar-settings-modal.module';
 
 // Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
@@ -22,10 +23,10 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { ScheduleFacade } from './facade/schedule.facade';
 
 // Services
-import { ScheduleService } from '@core/service/schedule/schedule.service';
 import { PostTypeImageService } from './service/post-type-image.service';
 import { PostTypeVideoService } from './service/post-type-video.service';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { ScheduleService } from '@core/service/schedule/schedule.service';
 
 // Components
 import { ScheduleComponent } from './container/schedule.component';
@@ -56,6 +57,7 @@ import { ScheduleEffects } from './effect/schedule.effects';
     ScheduleEventViewModalModule,
     ScheduleEventDragModalModule,
     ScheduleEventCreateModalModule,
+    ScheduleCalendarSettingsModalModule,
 
     StoreModule.forFeature(fromSchedulePostReducer.schedulePostFeatureKey, fromSchedulePostReducer.reducer),
 
