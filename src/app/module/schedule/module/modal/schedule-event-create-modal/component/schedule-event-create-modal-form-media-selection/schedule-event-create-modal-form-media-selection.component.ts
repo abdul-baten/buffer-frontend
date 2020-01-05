@@ -1,11 +1,12 @@
 // Core Modules
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
 
 // Third Party Modules
 import { of, noop } from 'rxjs';
-import { tap, delay, filter, defaultIfEmpty } from 'rxjs/operators';
+import { SubSink } from 'subsink';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { tap, delay, filter, defaultIfEmpty } from 'rxjs/operators';
 
 // Enums
 import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-event-create-modal.enum';
@@ -18,38 +19,38 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
   templateUrl: './schedule-event-create-modal-form-media-selection.component.html',
   styleUrls: ['./schedule-event-create-modal-form-media-selection.component.scss']
 })
-export class ScheduleEventCreateModalFormMediaSelectionComponent {
+export class ScheduleEventCreateModalFormMediaSelectionComponent implements OnDestroy {
   filesAdded = 0;
   mediaMaxFilesReached = false;
   config: DropzoneConfigInterface;
 
+  private subscriptions$ = new SubSink();
+
   @Output() enableNextButton = new EventEmitter<boolean>();
 
   constructor(private scheduleFacade: ScheduleFacade, @Inject(DOCUMENT) private document: Document) {
-    this.scheduleFacade
-      .getPostType()
-      .pipe(
-        defaultIfEmpty(POST_TYPE.TEXT),
-        filter((type: POST_TYPE) => type === POST_TYPE.IMAGE || type === POST_TYPE.VIDEO),
-        tap((type: POST_TYPE) => {
-          this.config = this.scheduleFacade.generateDropZoneConfig(type);
-        })
-      )
-      .subscribe(noop);
+    const postType = this.scheduleFacade.getPostType().pipe(
+      defaultIfEmpty(POST_TYPE.TEXT),
+      filter((type: POST_TYPE) => type === POST_TYPE.IMAGE || type === POST_TYPE.VIDEO),
+      tap((type: POST_TYPE) => {
+        this.config = this.scheduleFacade.generateDropZoneConfig(type);
+      })
+    );
+    this.subscriptions$.add(postType.subscribe(noop));
   }
 
   onUploadInit(args: any): void {
     console.log('onUploadInit:', args);
 
-    of(true)
-      .pipe(
-        delay(0),
-        tap(() => {
-          this.config.previewTemplate = this.document.querySelector('#template').innerHTML;
-          this.config.previewsContainer = this.document.querySelector('#previews');
-        })
-      )
-      .subscribe(noop);
+    const dzPreview = of(true).pipe(
+      delay(0),
+      tap(() => {
+        this.config.previewTemplate = this.document.querySelector('#template').innerHTML;
+        this.config.previewsContainer = this.document.querySelector('#previews');
+      })
+    );
+
+    this.subscriptions$.add(dzPreview.subscribe(noop));
   }
 
   onUploadError(args: any): void {
@@ -78,5 +79,10 @@ export class ScheduleEventCreateModalFormMediaSelectionComponent {
 
   onMaxFilesReached(): void {
     this.mediaMaxFilesReached = true;
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
   }
 }

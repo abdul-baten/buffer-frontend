@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 
 // Third Party Modules
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UploadMediaService {
   constructor() {}
 }

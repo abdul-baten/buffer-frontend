@@ -1,6 +1,6 @@
 // Core Modules
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Error States
 import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
@@ -42,10 +42,10 @@ export class ScheduleEventCreateModalFormTextComponent {
 
   private buildEventCreateTypeTextForm(): FormGroup {
     return this.formBuilder.group({
-      postLink: new FormControl(null, CommonValidator.validURL),
-      postLocation: new FormControl(null),
-      postCaption: new FormControl(null, Validators.required),
-      postDate: new FormControl(null, Validators.required)
+      postLocation: [null],
+      postDate: [null, Validators.required],
+      postCaption: [null, Validators.required],
+      postLink: [null, CommonValidator.validURL]
     });
   }
 
@@ -62,6 +62,8 @@ export class ScheduleEventCreateModalFormTextComponent {
       const { value } = this.eventCreateTypeTextForm;
 
       this.scheduleFacade.setPostData(value);
+      this.onChooseTypeModalClosed();
+      this.scheduleFacade.removePostData();
     }
   }
 }

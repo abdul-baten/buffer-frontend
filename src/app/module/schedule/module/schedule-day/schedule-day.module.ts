@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 
 // Application Specific Module
 import { ScheduleDayRoutingModule } from './schedule-day-routing.module';
+import { ScheduleCalendarViewModule } from '@shared/module/schedule-calendar-view/schedule-calendar-view.module';
 import { ScheduleSocialAccountsModule } from '@shared/module/schedule-social-accounts/schedule-social-accounts.module';
+import { ScheduleCalendarDateSelectionModule } from '@shared/module/schedule-calendar-date-selection/schedule-calendar-date-selection.module';
+import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-calendar-add-post-button/schedule-calendar-add-post-button.module';
 
 // Third Party Module
 import { MatListModule } from '@angular/material/list';
@@ -14,15 +17,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 // Component
 import { ScheduleDayComponent } from './container/schedule-day.component';
 import { ScheduleDayHeaderComponent } from './component/schedule-day-header/schedule-day-header.component';
 import { ScheduleDayCalendarComponent } from './component/schedule-day-calendar/schedule-day-calendar.component';
-import { ScheduleDayCreateModalComponent } from './component/schedule-day-create-modal/schedule-day-create-modal.component';
 import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-calendar-options/schedule-day-calendar-options.component';
 
 @NgModule({
@@ -30,12 +30,13 @@ import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-ca
     ScheduleDayComponent,
     ScheduleDayHeaderComponent,
     ScheduleDayCalendarComponent,
-    ScheduleDayCreateModalComponent,
     ScheduleDayCalendarOptionsComponent
   ],
   imports: [
     CommonModule,
+
     ScheduleDayRoutingModule,
+    ScheduleCalendarViewModule,
     ScheduleSocialAccountsModule,
 
     MatListModule,
@@ -46,13 +47,8 @@ import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-ca
     MatDividerModule,
     MatTooltipModule,
     MatButtonToggleModule,
-
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    })
-  ],
-  providers: [],
-  entryComponents: [ScheduleDayCreateModalComponent]
+    ScheduleCalendarAddPostButtonModule,
+    ScheduleCalendarDateSelectionModule
+  ]
 })
 export class ScheduleDayModule {}

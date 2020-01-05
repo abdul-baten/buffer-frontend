@@ -19,6 +19,8 @@ import { reducers } from './reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './app.effects';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
@@ -48,7 +50,14 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
       routerState: RouterState.Minimal
     })
   ],
-  providers: [{ provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig }],
+  providers: [
+    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggerInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

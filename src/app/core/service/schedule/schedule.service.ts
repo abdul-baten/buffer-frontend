@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 // Application Specific Modules
 import { environment } from '@env/environment';
 import { ScheduleEventViewModalComponent } from 'src/app/module/schedule/module/modal/schedule-event-view-modal/container/schedule-event-view-modal.component';
+import { ScheduleEventDragModalComponent } from 'src/app/module/schedule/module/modal/schedule-event-drag-modal/container/schedule-event-drag-modal.component';
 import { ScheduleEventCreateModalComponent } from 'src/app/module/schedule/module/modal/schedule-event-create-modal/container/schedule-event-create-modal.component';
 
 // Third Party Modules
@@ -12,7 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 // Models
-import { ICalendarEvent } from '@core/model/schedule/schedule.model';
+import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
+import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
 
 // Components
 
@@ -27,7 +29,7 @@ export class ScheduleService {
     this.router.navigateByUrl(`${SCHEDULE_URL}/${calendarViewOptionToNavigate}`);
   }
 
-  viewPostDetails(event: ICalendarEvent): void {
+  viewPostDetails(event: CalPostInterface): void {
     this.matBottomSheet.open(ScheduleEventViewModalComponent, {
       data: event,
       direction: 'ltr',
@@ -49,13 +51,35 @@ export class ScheduleService {
         left: '',
         right: ''
       },
+      width: '650px',
       role: 'dialog',
-      width: '600px',
       autoFocus: true,
       direction: 'ltr',
       hasBackdrop: true,
       disableClose: true,
       restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+    });
+  }
+
+  openPostDragAlert(postInfo: CalPostInfoInterface): void {
+    this.matDialog.open(ScheduleEventDragModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      width: '400px',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      role: 'alertdialog',
+      disableClose: true,
+      restoreFocus: false,
+      data: postInfo,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
       backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'

@@ -15,10 +15,11 @@ import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
 // Models
 import { postTypeMap } from '../model/post-type.model';
 import { PostScheduleState } from '../model/schedule.model';
-import { ICalendarEvent } from '@core/model/schedule/schedule.model';
+import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
 // Services
 import { ScheduleService } from '@core/service/schedule/schedule.service';
+import { SnackbarService } from '@core/service/snackbar/snackbar.service';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
 
 // Store
@@ -30,9 +31,10 @@ import { selectPostType, selectPostDate } from '../selector/schedule.selector';
 export class ScheduleFacade {
   constructor(
     private injector: Injector,
+    private store: Store<PostScheduleState>,
     private scheduleService: ScheduleService,
     private metaService: DocumentMetaService,
-    private store: Store<PostScheduleState>
+    private snackbarService: SnackbarService
   ) {}
 
   updateDocumentMetaTag(tag: MetaDefinition): void {
@@ -43,7 +45,7 @@ export class ScheduleFacade {
     this.scheduleService.changeCalendarViewOption(viewOption);
   }
 
-  viewPostDetails(event: ICalendarEvent): void {
+  viewPostDetails(event: any): void {
     this.scheduleService.viewPostDetails(event);
   }
 
@@ -64,8 +66,12 @@ export class ScheduleFacade {
     return new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes).toISOString();
   }
 
-  setDefaultPostData(): void {
-    this.store.dispatch(fromScheduleActions.setDefaultPostData());
+  onPostDragged(postInfo: CalPostInfoInterface): void {
+    this.scheduleService.openPostDragAlert(postInfo);
+  }
+
+  removePostData(): void {
+    this.store.dispatch(fromScheduleActions.removePostData());
   }
 
   setPostType(postType: POST_TYPE): void {
@@ -96,5 +102,9 @@ export class ScheduleFacade {
     const injectableService = postTypeMap.get(type);
     const service = this.injector.get(injectableService);
     return service.generateConfig();
+  }
+
+  openSnackbar(message: string, action: string = ''): void {
+    this.snackbarService.openSnackBar(message, action);
   }
 }

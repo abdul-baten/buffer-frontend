@@ -6,17 +6,18 @@
       <button
         mat-stroked-button
         [matTooltip]="currentDate"
+        (click)="onTodayBtnClicked()"
         class="buffer--font-weight-bold buffer--font-family-semi-bold buffer--border-radius-lg"
       >
         <span class="buffer--text-transform-none">Today</span>
       </button>
     </div>
     <div class="clearfix buffer--margin-x-1">
-      <button mat-icon-button matTooltip="Previous Week" (click)="onPreviousWeekClicked()">
+      <button mat-icon-button matTooltip="Previous Week" (click)="onPrevBtnClicked()">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </div>
-    <div class="clearfix buffer--margin-x-1">
+    <div class="clearfix buffer--margin-x-1" (click)="onNextBtnClicked()">
       <button mat-icon-button matTooltip="Next Week">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
@@ -25,7 +26,7 @@
       <mat-button-toggle-group [value]="selectedCalendarView" (change)="onCalendarViewChanged($event)">
         <mat-button-toggle value="month">Month</mat-button-toggle>
         <mat-button-toggle value="week">Week</mat-button-toggle>
-        <!-- <mat-button-toggle value="day">Day</mat-button-toggle> -->
+        <mat-button-toggle value="day">Day</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>

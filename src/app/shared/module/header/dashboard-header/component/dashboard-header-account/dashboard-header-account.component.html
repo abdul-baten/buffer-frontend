@@ -1,11 +1,11 @@
-<div class="buffer--width-full clearfix">
-  <button
-    mat-stroked-button
-    class="buffer--width-full buffer--text-color-gray-900 buffer--text-align-left buffer--border-radius-lg"
+<div class="clearfix buffer--width-full buffer--cursor-pointer">
+  <div
     [matMenuTriggerFor]="accountMenu"
+    class="buffer--width-full buffer--text-color-black buffer--font-family-regular buffer--text-align-center"
   >
-    <mat-icon>person</mat-icon>
-  </button>
+    <mat-icon class="buffer--width-full">person</mat-icon>
+    <span class="buffer--font-size-xs">Profile</span>
+  </div>
   <mat-menu #accountMenu="matMenu">
     <button mat-menu-item>
       <mat-icon>perm_contact_calendar</mat-icon>

@@ -71,7 +71,7 @@ button {
 
 .mat-button-toggle-checked {
   color: $buffer--text-color-white !important;
-  background-color: $buffer--background-color-green-800 !important;
+  background-color: $buffer--background-color-green-500 !important;
 }
 
 /*
@@ -137,7 +137,7 @@ button {
     * MATERIAL TOOLTIP
 */
 .mat-tooltip {
-  font-size: $buffer--font-size-xs !important;
+  font-size: $buffer--font-size-sm !important;
 }
 
 /*
@@ -161,7 +161,7 @@ button {
 */
 
 .mat-form-field-flex {
-  border: 1px solid $buffer--background-color-green-800 !important;
+  border: 1px solid $buffer--background-color-green-500 !important;
 }
 
 .mat-form-field-infix {
@@ -189,9 +189,14 @@ button {
 .mat-form-field-appearance-fill {
   .mat-form-field-flex {
     padding: 0.1rem 1rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-radius: $buffer--border-radius-lg !important;
     background-color: $buffer--background-color-white !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+
+    &:hover {
+      box-shadow: $buffer--box-shadow-inner;
+      background-color: $buffer--background-color-white !important;
+    }
   }
 
   .mat-form-field-infix {
@@ -201,13 +206,7 @@ button {
 
 .mat-form-field-invalid {
   .mat-form-field-flex {
-    border: 1px solid $buffer--border-red-500 !important;
-  }
-}
-
-.mat-focused {
-  .mat-form-field-flex {
-    border: 1px solid $buffer--border-green-800 !important;
+    border-color: $buffer--border-red-500 !important;
   }
 }
 

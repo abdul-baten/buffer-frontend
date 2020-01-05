@@ -1,5 +1,5 @@
 // Core Modules
-import { Component, ViewChild, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 
 // Third Party Modules
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ import { ScheduleEventCreateModalFormTypeComponent } from '../schedule-event-cre
   templateUrl: './schedule-event-create-modal-form.component.html',
   styleUrls: ['./schedule-event-create-modal-form.component.scss']
 })
-export class ScheduleEventCreateModalFormComponent implements OnDestroy {
+export class ScheduleEventCreateModalFormComponent {
   postType$: Observable<POST_TYPE>;
 
   @Output() closeChooseTypeModal = new EventEmitter<any>();
@@ -58,7 +58,4 @@ export class ScheduleEventCreateModalFormComponent implements OnDestroy {
   onChooseTypeModalClosed(): void {
     this.closeChooseTypeModal.emit();
   }
-
-  @HostListener('window:beforeunload')
-  ngOnDestroy() {}
 }

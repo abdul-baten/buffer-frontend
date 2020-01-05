@@ -1,0 +1,33 @@
+<div class="clearfix">
+  <full-calendar
+    #calendar
+    [header]="header"
+    [eventLimit]="eventLimit"
+    [allDaySlot]="allDaySlot"
+    [selectable]="selectable"
+    [selectAllow]="selectAllow"
+    [defaultView]="calendarView"
+    [plugins]="calendarPlugins"
+    [handleWindowResize]="false"
+    [snapDuration]="snapDuration"
+    [slotDuration]="slotDuration"
+    [columnHeader]="columnHeader"
+    [nowIndicator]="nowIndicator"
+    [eventOverlap]="eventOverlap"
+    [weekends]="calendarWeekends"
+    [businessHours]="businessHours"
+    [fixedWeekCount]="fixedWeekCount"
+    [events]="calendarEvents | async"
+    (select)="handleDateClick($event)"
+    [eventLimitClick]="eventLimitClick"
+    [slotLabelFormat]="slotLabelFormat"
+    (eventDrop)="handleEventDrop($event)"
+    [slotEventOverlap]="slotEventOverlap"
+    [displayEventTime]="displayEventTime"
+    [slotLabelInterval]="slotLabelInterval"
+    (eventRender)="handleEventRender($event)"
+    [showNonCurrentDates]="showNonCurrentDates"
+    [columnHeaderText]="handleColumnHeaderText"
+    [progressiveEventRendering]="progressiveEventRendering"
+  ></full-calendar>
+</div>

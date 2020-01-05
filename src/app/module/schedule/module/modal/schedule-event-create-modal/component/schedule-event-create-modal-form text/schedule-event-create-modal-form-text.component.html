@@ -7,8 +7,8 @@
     ></buffer--schedule-event-create-modal-form-header>
   </section>
 
-  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec">
-    <form novalidate class="buffer--margin-y-5" [formGroup]="eventCreateTypeTextForm">
+  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec buffer--overflow-y-auto">
+    <form novalidate [formGroup]="eventCreateTypeTextForm" class="buffer--height-64 buffer--padding-10">
       <div class="clearfix">
         <label for="postCaption" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
           >Caption</label
@@ -20,8 +20,8 @@
             id="postCaption"
             spellcheck="false"
             cdkTextareaAutosize
-            cdkAutosizeMinRows="2"
-            cdkAutosizeMaxRows="3"
+            cdkAutosizeMinRows="3"
+            cdkAutosizeMaxRows="5"
             formControlName="postCaption"
             placeholder="Write something"
             #autosize="cdkTextareaAutosize"
@@ -100,24 +100,27 @@
 
   <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
     <div
-      class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
+      class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-gray-100 buffer--border-width-0 buffer--border-top-width buffer--border-style-solid"
     >
-      <div class="clearfix buffer--width-percent-20">
-        <a
+      <div class="clearfix buffer--text-align-left buffer--width-percent-50">
+        <button
+          color="accent"
+          mat-stroked-button
           (click)="onPreviousButtonClicked()"
-          class="buffer--default-link buffer--get-started-short-link buffer--font-size-sm buffer--line-height-leading-normal buffer--font-family-regular"
+          class="buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--border-radius-lg"
         >
+          <mat-icon>keyboard_arrow_left</mat-icon>
           <span>Back</span>
-        </a>
+        </button>
       </div>
-      <div class="clearfix buffer--width-percent-33">
+      <div class="clearfix buffer--text-align-right buffer--width-percent-50">
         <button
           type="submit"
           color="primary"
           mat-flat-button
           (click)="onTextFormSubmit()"
           [disabled]="eventCreateTypeTextForm.invalid"
-          class="buffer--width-full buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg"
+          class="buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg"
         >
           Next
         </button>

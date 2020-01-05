@@ -1,7 +1,6 @@
 <div class="clearfix">
-  <mat-horizontal-stepper labelPosition="bottom" linear>
-    <mat-step label="Step 1" state="phone" [stepControl]="eventCreateChooseTypeForm">
-      <ng-template matStepLabel>Type</ng-template>
+  <mat-horizontal-stepper linear>
+    <mat-step [stepControl]="eventCreateChooseTypeForm">
       <buffer--schedule-event-create-modal-form-type
         #postTypeChooseStep
         (closeChooseTypeModal)="onChooseTypeModalClosed()"
@@ -26,19 +25,5 @@
         (closeChooseTypeModal)="onChooseTypeModalClosed()"
       ></buffer--schedule-event-create-modal-form-video>
     </mat-step>
-    <!-- <mat-step [stepControl]="eventCreateTypeImageForm"> </mat-step>
-    <mat-step [stepControl]="eventCreateTypeVideoForm"> </mat-step> -->
-
-    <mat-step label="Step 1" state="phone" [stepControl]="eventCreateChooseTypeForm">
-      <ng-template matStepLabel>Confirmation</ng-template>
-      <buffer--schedule-event-create-modal-form-type
-        #postTypeChooseStep
-        (closeChooseTypeModal)="onChooseTypeModalClosed()"
-      ></buffer--schedule-event-create-modal-form-type>
-    </mat-step>
-
-    <ng-template matStepperIcon="phone">
-      <mat-icon>call_end</mat-icon>
-    </ng-template>
   </mat-horizontal-stepper>
 </div>

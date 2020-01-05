@@ -4,15 +4,15 @@
 
   ::ng-deep {
     .mat-horizontal-stepper-header-container {
-      display: none !important;
+      display: none;
     }
 
     .mat-horizontal-content-container {
-      padding: 0 !important;
+      padding: 0;
     }
 
     .buffer--schedule-post-action-button {
-      padding: 0.5rem 1rem !important;
+      padding: 0.3rem 1.5rem;
     }
   }
 }

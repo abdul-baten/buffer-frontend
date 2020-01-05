@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Components
 import { DashboardHeaderComponent } from './container/dashboard-header.component';
@@ -18,7 +19,15 @@ import { DashboardHeaderAccountComponent } from './component/dashboard-header-ac
 
 @NgModule({
   declarations: [DashboardHeaderComponent, DashboardHeaderMenuComponent, DashboardHeaderAccountComponent],
-  imports: [CommonModule, LogoIconModule, MatButtonModule, MatMenuModule, MatIconModule, MatDividerModule],
+  imports: [
+    CommonModule,
+    LogoIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatTooltipModule
+  ],
   exports: [DashboardHeaderComponent]
 })
 export class DashboardHeaderModule {}

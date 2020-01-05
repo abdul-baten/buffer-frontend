@@ -1,11 +1,8 @@
 // Core Module
 import { Component } from '@angular/core';
 
-// Third Party Module
-import { CalendarEvent } from 'angular-calendar';
-import { addHours, startOfDay } from 'date-fns';
-
-// weekStartsOn option is ignored when using moment, as it needs to be configured globally for the moment locale
+// Enums
+import { CALENDAR_VIEW } from 'src/app/module/schedule/enum/calendar-view-options.enum';
 
 @Component({
   selector: 'buffer--schedule-day-calendar',
@@ -13,32 +10,7 @@ import { addHours, startOfDay } from 'date-fns';
   styleUrls: ['./schedule-day-calendar.component.scss']
 })
 export class ScheduleDayCalendarComponent {
-  viewDate: Date = new Date();
-
-  hourSegments = 1;
-  eventSnapSize = 2;
-  hourSegmentHeight = 60;
-
-  events: CalendarEvent[] = [
-    {
-      title: 'Event 01',
-      start: addHours(startOfDay(new Date()), 2)
-    },
-    {
-      title: 'Event 02',
-      start: addHours(startOfDay(new Date()), 2)
-    },
-    {
-      title: 'Event 03',
-      start: addHours(startOfDay(new Date()), 3)
-    }
-  ];
+  calendarView = CALENDAR_VIEW.TIME_GRID_DAY;
 
   constructor() {}
-
-  onHourClicked(event: any): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('event', event);
-    console.warn('============= console.warn ends =============');
-  }
 }

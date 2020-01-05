@@ -4,22 +4,17 @@ import { CommonModule } from '@angular/common';
 
 // Application Specific Modules
 import { ScheduleWeekRoutingModule } from './schedule-week-routing.module';
+import { ScheduleCalendarViewModule } from '@shared/module/schedule-calendar-view/schedule-calendar-view.module';
 import { ScheduleEventViewModalModule } from '../modal/schedule-event-view-modal/schedule-event-view-modal.module';
 import { ScheduleSocialAccountsModule } from '@shared/module/schedule-social-accounts/schedule-social-accounts.module';
+import { ScheduleCalendarDateSelectionModule } from '@shared/module/schedule-calendar-date-selection/schedule-calendar-date-selection.module';
+import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-calendar-add-post-button/schedule-calendar-add-post-button.module';
 
 // Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
-// Services
-import { ScheduleService } from '@core/service/schedule/schedule.service';
-
-// Facades
-import { ScheduleWeekFacade } from './facade/schedule-week.facade';
 
 // Components
 import { ScheduleWeekComponent } from './container/schedule-week.component';
@@ -36,7 +31,9 @@ import { ScheduleWeekCalendarOptionsComponent } from './component/schedule-week-
   ],
   imports: [
     CommonModule,
+
     ScheduleWeekRoutingModule,
+    ScheduleCalendarViewModule,
     ScheduleSocialAccountsModule,
 
     MatIconModule,
@@ -45,12 +42,8 @@ import { ScheduleWeekCalendarOptionsComponent } from './component/schedule-week-
     MatButtonToggleModule,
 
     ScheduleEventViewModalModule,
-
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    })
-  ],
-  providers: [ScheduleWeekFacade, ScheduleService]
+    ScheduleCalendarAddPostButtonModule,
+    ScheduleCalendarDateSelectionModule
+  ]
 })
 export class ScheduleWeekModule {}

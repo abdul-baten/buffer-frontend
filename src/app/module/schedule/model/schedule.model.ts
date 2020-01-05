@@ -15,3 +15,16 @@ export interface PostScheduleState {
   postVideos?: string[];
   postOriginalDate: string;
 }
+
+import { EventInput } from '@fullcalendar/core';
+
+export interface CalPostFileInterface {
+  fileURL: string;
+  fileType: string;
+}
+
+export interface CalPostInterface extends EventInput {
+  imageUrls?: CalPostFileInterface[];
+  videoUrls?: CalPostFileInterface[];
+  socialAccounts: string[];
+}

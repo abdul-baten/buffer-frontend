@@ -4,15 +4,16 @@ import { CommonModule } from '@angular/common';
 
 // Application Specific Modules
 import { ScheduleMonthRoutingModule } from './schedule-month-routing.module';
+import { ScheduleCalendarViewModule } from '@shared/module/schedule-calendar-view/schedule-calendar-view.module';
 import { ScheduleSocialAccountsModule } from '@shared/module/schedule-social-accounts/schedule-social-accounts.module';
+import { ScheduleCalendarDateSelectionModule } from '@shared/module/schedule-calendar-date-selection/schedule-calendar-date-selection.module';
+import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-calendar-add-post-button/schedule-calendar-add-post-button.module';
 
 // Third Party Modules
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 // Components
 import { ScheduleMonthComponent } from './container/schedule-month.component';
@@ -30,18 +31,16 @@ import { ScheduleMonthCalendarOptionsComponent } from './component/schedule-mont
   imports: [
     CommonModule,
 
-    ScheduleMonthRoutingModule,
-    ScheduleSocialAccountsModule,
-
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
     MatButtonToggleModule,
 
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    })
+    ScheduleCalendarViewModule,
+    ScheduleMonthRoutingModule,
+    ScheduleSocialAccountsModule,
+    ScheduleCalendarAddPostButtonModule,
+    ScheduleCalendarDateSelectionModule
   ]
 })
 export class ScheduleMonthModule {}

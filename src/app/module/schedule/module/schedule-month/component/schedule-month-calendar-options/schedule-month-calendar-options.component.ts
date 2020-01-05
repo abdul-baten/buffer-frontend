@@ -2,12 +2,18 @@
 import { Component } from '@angular/core';
 
 // Third Party Module
+import { Observable } from 'rxjs';
 import { format } from 'date-fns';
-import { CalendarView } from 'angular-calendar';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 // Facade
 import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+
+// Enums
+import { CALENDAR_VIEW_OPTIONS } from 'src/app/module/schedule/enum/calendar-view-options.enum';
+
+// Components
+import { ScheduleCalendarViewComponent } from '@shared/module/schedule-calendar-view/container/schedule-calendar-view.component';
 
 @Component({
   selector: 'buffer--schedule-month-calendar-options',
@@ -16,12 +22,25 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 })
 export class ScheduleMonthCalendarOptionsComponent {
   currentDate = format(new Date(), 'eeee, MMMM dd');
+  calendarDateTitle: Observable<string>;
 
-  selectedCalendarView = CalendarView.Month;
+  selectedCalendarView = CALENDAR_VIEW_OPTIONS.MONTH;
 
   constructor(private scheduleFacade: ScheduleFacade) {}
 
   onCalendarViewChanged(calendarViewSelection: MatButtonToggleChange): void {
     this.scheduleFacade.changeCalendarViewOption(calendarViewSelection.value);
+  }
+
+  onTodayBtnClicked(): void {
+    ScheduleCalendarViewComponent.calendarToday();
+  }
+
+  onPrevBtnClicked(): void {
+    ScheduleCalendarViewComponent.calendarPrev();
+  }
+
+  onNextBtnClicked(): void {
+    ScheduleCalendarViewComponent.calendarNext();
   }
 }

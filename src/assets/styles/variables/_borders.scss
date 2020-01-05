@@ -5,10 +5,10 @@
     * BORDER COLOR
 */
 $buffer--border-transparent: transparent;
-$buffer--border-black: #2d2d2d;
+$buffer--border-black: #333232;
 $buffer--border-white: #fff;
 
-$buffer--border-gray-100: #f5f5f5;
+$buffer--border-gray-100: rgba(0, 0, 0, 0.08);
 $buffer--border-gray-200: #eeeeee;
 $buffer--border-gray-300: #e0e0e0;
 $buffer--border-gray-400: #bdbdbd;
@@ -48,15 +48,15 @@ $buffer--border-yellow-700: #b7791f;
 $buffer--border-yellow-800: #975a16;
 $buffer--border-yellow-900: #744210;
 
-$buffer--border-green-100: #90f595;
-$buffer--border-green-200: #5df064;
-$buffer--border-green-300: #1bea25;
-$buffer--border-green-400: #14d31d;
-$buffer--border-green-500: #11b719;
-$buffer--border-green-600: #0e9b15;
-$buffer--border-green-700: #0c7f11;
-$buffer--border-green-800: #164d59;
-$buffer--border-green-900: #07470a;
+$buffer--border-green-100: #e0f0ee;
+$buffer--border-green-200: #b3d9d5;
+$buffer--border-green-300: #80c0b9;
+$buffer--border-green-400: #4da69d;
+$buffer--border-green-500: #008073;
+$buffer--border-green-600: #00786b;
+$buffer--border-green-700: #006d60;
+$buffer--border-green-800: #006356;
+$buffer--border-green-900: #005043;
 
 $buffer--border-teal-100: #e6fffa;
 $buffer--border-teal-200: #b2f5ea;
@@ -87,6 +87,7 @@ $buffer--border-indigo-600: #5a67d8;
 $buffer--border-indigo-700: #4c51bf;
 $buffer--border-indigo-800: #434190;
 $buffer--border-indigo-900: #3c366b;
+
 $buffer--border-purple-100: #faf5ff;
 $buffer--border-purple-200: #e9d8fd;
 $buffer--border-purple-300: #d6bcfa;
@@ -96,6 +97,7 @@ $buffer--border-purple-600: #805ad5;
 $buffer--border-purple-700: #6b46c1;
 $buffer--border-purple-800: #553c9a;
 $buffer--border-purple-900: #44337a;
+
 $buffer--border-pink-100: #fff5f7;
 $buffer--border-pink-200: #fed7e2;
 $buffer--border-pink-300: #fbb6ce;

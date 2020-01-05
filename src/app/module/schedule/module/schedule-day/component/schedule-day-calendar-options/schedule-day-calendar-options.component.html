@@ -6,18 +6,19 @@
       <button
         mat-stroked-button
         [matTooltip]="currentDate"
+        (click)="onTodayBtnClicked()"
         class="buffer--font-weight-bold buffer--font-family-semi-bold buffer--border-radius-lg"
       >
         <span class="buffer--text-transform-none">Today</span>
       </button>
     </div>
     <div class="clearfix buffer--margin-x-1">
-      <button mat-icon-button matTooltip="Previous Day">
+      <button mat-icon-button matTooltip="Previous Day" (click)="onPrevBtnClicked()">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </div>
     <div class="clearfix buffer--margin-x-1">
-      <button mat-icon-button matTooltip="Next Day">
+      <button mat-icon-button matTooltip="Next Day" (click)="onNextBtnClicked()">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>
     </div>

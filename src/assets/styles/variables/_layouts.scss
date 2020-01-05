@@ -35,8 +35,10 @@ $buffer--display-flex-direction-column: column;
 /*
     * JUSTIFY CONTENT
 */
-$buffer--flex-justify-content-start: flex-start;
 $buffer--flex-justify-content-end: flex-end;
+$buffer--flex-justify-content-start: flex-start;
+$buffer--flex-justify-content-space-around: space-around;
+$buffer--flex-justify-content-space-evenly: space-evenly;
 $buffer--flex-justify-content-space-between: space-between;
 
 /*
@@ -105,6 +107,7 @@ $buffer--outline-none: none;
 /*
     * VERTICAL ALIGN
 */
+$buffer--vertical-align-top: top;
 $buffer--vertical-align-bottom: bottom;
 $buffer--vertical-align-middle: middle;
 

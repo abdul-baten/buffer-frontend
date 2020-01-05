@@ -81,19 +81,19 @@
     .dropzone.dz-wrapper .dz-message {
       margin: 0;
       width: 100%;
-      padding: 1rem;
+      padding: 2rem;
       max-width: 100%;
       overflow: hidden;
       position: relative;
       border-radius: 0.5rem;
       color: rgba(0, 0, 0, 0.2);
       background-color: #ffffff;
-      border: 1px dashed rgba(0, 0, 0, 0.08);
+      border: 2px dashed rgba(0, 0, 0, 0.08);
       animation: slideInDown 0.5s linear;
 
       &:hover {
-        color: #164d59;
-        border-color: #164d59;
+        color: #00756a;
+        border-color: #00756a;
       }
     }
 

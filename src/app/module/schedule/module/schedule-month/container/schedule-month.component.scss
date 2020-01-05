@@ -1,7 +1,8 @@
 :host {
   display: block;
-  position: relative;
   overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
 
   .buffer--schedule-month-menu-sec {
     height: 65px;

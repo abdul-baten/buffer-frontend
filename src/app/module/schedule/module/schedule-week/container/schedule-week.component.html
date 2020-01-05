@@ -9,7 +9,20 @@
 
 <section
   id="buffer--schedule-week-calendar-view-sec"
-  class="buffer--schedule-week-calendar-view-sec buffer--padding-5 buffer--overflow-y-auto buffer--overflow-x-hidden"
+  class="buffer--schedule-week-calendar-view-sec buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--overflow-y-auto buffer--overflow-x-hidden"
 >
-  <buffer--schedule-week-calendar></buffer--schedule-week-calendar>
+  <div class="clearfix buffer--schedule-calendar-sec">
+    <buffer--schedule-week-calendar></buffer--schedule-week-calendar>
+  </div>
+  <div
+    class="clearfix buffer--background-color-white buffer--position-fixed buffer--width-64 buffer--height-full buffer--z-index-10 buffer--schedule-sidenav-sec"
+  >
+    <div class="clearfix">
+      <buffer--schedule-calendar-add-post-button></buffer--schedule-calendar-add-post-button>
+    </div>
+
+    <div class="clearfix">
+      <buffer--schedule-calendar-date-selection></buffer--schedule-calendar-date-selection>
+    </div>
+  </div>
 </section>

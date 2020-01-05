@@ -1,10 +1,6 @@
 /*
     * MONTH VIEW CALENDAR
 */
-.cal-month-view {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
-  border-radius: $buffer--border-radius-lg;
-}
 
 .cal-month-view .cal-header {
   font-size: $buffer--font-size-sm;
@@ -69,8 +65,8 @@
 }
 
 .cal-month-view .cal-day-cell {
+  min-height: 110px;
   outline: $buffer--outline-none;
-  min-height: 120px;
 }
 
 .cal-month-view .cal-day-cell:not(:last-child) {
@@ -88,7 +84,7 @@
 }
 
 .cal-month-view .cal-day-cell.cal-today .cal-day-number {
-  color: $buffer--text-color-green-800 !important;
+  color: $buffer--text-color-green-500 !important;
 }
 
 .cal-month-view {
@@ -316,7 +312,7 @@
 }
 
 .cal-week-view .cal-current-time-marker {
-  background-color: $buffer--background-color-green-800;
+  background-color: $buffer--background-color-green-500;
 }
 
 /*

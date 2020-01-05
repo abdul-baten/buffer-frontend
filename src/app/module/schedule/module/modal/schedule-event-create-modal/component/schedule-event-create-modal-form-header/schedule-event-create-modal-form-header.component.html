@@ -1,25 +1,21 @@
-<div class="clearfix">
-  <div
-    class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
-  >
-    <div class="clearfix">
-      <p class="buffer--font-size-xl buffer--font-family-semi-bold buffer--line-height-leading-zero">
-        <i
-          class="material-icons"
-          [ngClass]="{
-            'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-green-800 buffer--margin-right-2': formHeaderIcon
-          }"
-          >{{ formHeaderIcon }}</i
-        >
-        {{ formHeader }}
-      </p>
-    </div>
-    <div class="clearfix" (click)="onChooseTypeModalClosed()">
-      <span matTooltip="Close" class="buffer--cursor-pointer">
-        <i class="material-icons">
-          close
-        </i>
-      </span>
-    </div>
+<div
+  class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-gray-100 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid"
+>
+  <div class="clearfix buffer--padding-5 buffer--width-full">
+    <p class="buffer--font-size-xl buffer--font-family-semi-bold">
+      <i
+        class="material-icons"
+        [ngClass]="{
+          'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-green-500  buffer--margin-right-2': formHeaderIcon
+        }"
+        >{{ formHeaderIcon }}</i
+      >
+      {{ formHeader }}
+    </p>
+  </div>
+  <div matTooltip="Close" (click)="onChooseTypeModalClosed()" class="clearfix buffer--padding-5 buffer--cursor-pointer">
+    <i class="material-icons">
+      close
+    </i>
   </div>
 </div>

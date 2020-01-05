@@ -84,8 +84,16 @@
   justify-content: $buffer--flex-justify-content-end !important;
 }
 
+.buffer--flex-justify-content-space-around {
+  justify-content: $buffer--flex-justify-content-space-around !important;
+}
+
 .buffer--flex-justify-content-space-between {
   justify-content: $buffer--flex-justify-content-space-between !important;
+}
+
+.buffer--flex-justify-content-space-evenly {
+  justify-content: $buffer--flex-justify-content-space-evenly !important;
 }
 
 /*
@@ -265,6 +273,10 @@
 /*
     * VERTICAL ALIGN
 */
+.buffer--vertical-align-top {
+  vertical-align: $buffer--vertical-align-top !important;
+}
+
 .buffer--vertical-align-bottom {
   vertical-align: $buffer--vertical-align-bottom !important;
 }
