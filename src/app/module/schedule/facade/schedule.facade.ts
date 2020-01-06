@@ -37,6 +37,24 @@ export class ScheduleFacade {
     private snackbarService: SnackbarService
   ) {}
 
+  private calendarApi: any;
+
+  setCalendarApi(calendar: any): void {
+    this.calendarApi = calendar;
+  }
+
+  calendarToday() {
+    this.calendarApi.today();
+  }
+
+  calendarPrev() {
+    this.calendarApi.prev();
+  }
+
+  calendarNext() {
+    this.calendarApi.next();
+  }
+
   updateDocumentMetaTag(tag: MetaDefinition): void {
     this.metaService.updateDocumentMetaTag(tag);
   }

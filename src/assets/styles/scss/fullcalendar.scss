@@ -741,14 +741,18 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
 .fc-toolbar {
+  top: 0;
   display: $buffer--display-flex;
+  position: $buffer--position-sticky;
   align-items: $buffer--align-items-center;
   justify-content: $buffer--flex-justify-content-space-between;
 }
 
 .fc-toolbar.fc-header-toolbar {
-  width: 99.99%;
   padding: 1rem 1.25rem;
+  width: $buffer--width-full;
+  z-index: $buffer--z-index-10;
+  background-color: $buffer--background-color-white;
   border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-gray-100;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-gray-100;
 }
@@ -1101,11 +1105,13 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   font-size: $buffer--font-size-xs;
   color: $buffer--text-color-black;
   white-space: $buffer--white-space-normal;
+  font-family: $buffer--font-family-semi-bold;
   /* .fc to overcome default cell styles */
   vertical-align: $buffer--vertical-align-middle;
 }
 
 .fc-ltr .fc-axis {
+  width: $buffer--width-16 !important;
   text-align: $buffer--text-align-right;
 }
 
@@ -1196,7 +1202,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-time-grid .fc-slats .fc-minor td {
-  border-top-style: $buffer--border-style-dotted;
+  border-top-style: $buffer--border-style-solid;
 }
 
 /* TimeGrid Highlighting Slots
@@ -1230,8 +1236,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-time-grid .fc-event,
 .fc-time-grid .fc-bgevent {
-  position: $buffer--position-relative;
   z-index: 1;
+  box-shadow: $buffer--box-shadow-lg;
+  position: $buffer--position-absolute;
   /* scope inner z-index's */
 }
 
@@ -1247,10 +1254,11 @@ We use the full "fc-time-grid-event" class instead of using descendants because 
 be a descendant of the grid when it is being dragged.
 */
 .fc-time-grid-event {
-  left: 0 !important;
-  margin: 0.5rem 0;
+  // left: 0 !important;
+  height: fit-content;
+  margin-bottom: 0.5rem;
   width: $buffer--width-full;
-  max-width: $buffer--width-40;
+  max-width: $buffer--width-64;
 }
 
 .fc-time-grid-event-inset {
@@ -1399,4 +1407,12 @@ be a descendant of the grid when it is being dragged.
   font-size: $buffer--font-size-xs;
   color: $buffer--text-color-black;
   text-transform: $buffer--text-transform-uppercase;
+}
+
+.fc-head-container {
+  top: 4.45rem;
+  z-index: $buffer--z-index-10;
+  position: $buffer--position-sticky;
+  box-shadow: $buffer--box-shadow;
+  background-color: $buffer--background-color-white;
 }

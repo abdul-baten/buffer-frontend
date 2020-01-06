@@ -11,18 +11,23 @@
   id="buffer--schedule-month-calendar-view-sec"
   class="buffer--schedule-month-calendar-view-sec buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--overflow-y-auto buffer--overflow-x-hidden"
 >
-  <div class="clearfix buffer--schedule-calendar-sec">
-    <buffer--schedule-month-calendar></buffer--schedule-month-calendar>
-  </div>
-  <div
-    class="clearfix buffer--background-color-white buffer--position-fixed buffer--width-64 buffer--height-full buffer--schedule-sidenav-sec"
-  >
-    <div class="clearfix">
-      <buffer--schedule-calendar-add-post-button></buffer--schedule-calendar-add-post-button>
-    </div>
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <div class="clearfix buffer--schedule-calendar-sec">
+        <buffer--schedule-month-calendar></buffer--schedule-month-calendar>
+      </div>
+    </mat-sidenav-content>
 
-    <div class="clearfix">
-      <buffer--schedule-calendar-date-selection></buffer--schedule-calendar-date-selection>
-    </div>
-  </div>
+    <mat-sidenav mode="side" opened position="end" [fixedTopGap]="65" [fixedInViewport]="true" class="buffer--width-64">
+      <div class="clearfix buffer--width-full buffer--height-full buffer--background-color-white">
+        <div class="clearfix">
+          <buffer--schedule-calendar-add-post-button></buffer--schedule-calendar-add-post-button>
+        </div>
+
+        <div class="clearfix">
+          <buffer--schedule-calendar-date-selection></buffer--schedule-calendar-date-selection>
+        </div>
+      </div>
+    </mat-sidenav>
+  </mat-sidenav-container>
 </section>

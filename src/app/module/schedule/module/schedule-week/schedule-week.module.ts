@@ -14,6 +14,7 @@ import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-cal
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Components
@@ -26,8 +27,8 @@ import { ScheduleWeekCalendarOptionsComponent } from './component/schedule-week-
   declarations: [
     ScheduleWeekComponent,
     ScheduleWeekHeaderComponent,
-    ScheduleWeekCalendarOptionsComponent,
-    ScheduleWeekCalendarComponent
+    ScheduleWeekCalendarComponent,
+    ScheduleWeekCalendarOptionsComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +40,7 @@ import { ScheduleWeekCalendarOptionsComponent } from './component/schedule-week-
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
+    MatSidenavModule,
     MatButtonToggleModule,
 
     ScheduleEventViewModalModule,

@@ -11,9 +11,6 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 // Enums
 import { CALENDAR_VIEW_OPTIONS } from 'src/app/module/schedule/enum/calendar-view-options.enum';
 
-// Components
-import { ScheduleCalendarViewComponent } from '@shared/module/schedule-calendar-view/container/schedule-calendar-view.component';
-
 @Component({
   selector: 'buffer--schedule-week-calendar-options',
   templateUrl: './schedule-week-calendar-options.component.html',
@@ -31,14 +28,14 @@ export class ScheduleWeekCalendarOptionsComponent {
   }
 
   onTodayBtnClicked(): void {
-    ScheduleCalendarViewComponent.calendarToday();
+    this.scheduleFacade.calendarToday();
   }
 
   onPrevBtnClicked(): void {
-    ScheduleCalendarViewComponent.calendarPrev();
+    this.scheduleFacade.calendarPrev();
   }
 
   onNextBtnClicked(): void {
-    ScheduleCalendarViewComponent.calendarNext();
+    this.scheduleFacade.calendarNext();
   }
 }

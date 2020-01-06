@@ -9,14 +9,10 @@ import { ScheduleSocialAccountsModule } from '@shared/module/schedule-social-acc
 import { ScheduleCalendarDateSelectionModule } from '@shared/module/schedule-calendar-date-selection/schedule-calendar-date-selection.module';
 import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-calendar-add-post-button/schedule-calendar-add-post-button.module';
 
-// Third Party Module
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Component
@@ -39,14 +35,12 @@ import { ScheduleDayCalendarOptionsComponent } from './component/schedule-day-ca
     ScheduleCalendarViewModule,
     ScheduleSocialAccountsModule,
 
-    MatListModule,
     MatIconModule,
-    MatMenuModule,
     MatButtonModule,
-    MatDialogModule,
-    MatDividerModule,
     MatTooltipModule,
+    MatSidenavModule,
     MatButtonToggleModule,
+
     ScheduleCalendarAddPostButtonModule,
     ScheduleCalendarDateSelectionModule
   ]

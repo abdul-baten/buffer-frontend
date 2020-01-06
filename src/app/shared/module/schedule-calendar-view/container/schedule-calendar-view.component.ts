@@ -24,6 +24,7 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
+import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-event-create-modal.enum';
 
 @Component({
   selector: 'buffer--schedule-calendar-view',
@@ -32,11 +33,10 @@ import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
-  private static calendarApi: any;
-
   @Input() calendarView: string;
-
   @ViewChild('calendar', { static: true }) calendar: FullCalendarComponent;
+
+  private calendarApi: any;
 
   header = {
     left: 'title',
@@ -56,6 +56,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   nowIndicator = true;
   columnHeader = true;
   eventOverlap = false;
+  maxTime = '24:00:00';
   slotLabelInterval = {
     minutes: 2
   };
@@ -71,7 +72,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   businessHours = false; // TODO Settings
   fixedWeekCount = false; // TODO Settings
   calendarWeekends = true; // TODO Settings
-  slotEventOverlap = false;
+  slotEventOverlap = true;
   displayEventTime = false;
   slotDuration = '00:15:00'; // TODO Settings
   showNonCurrentDates = true; // TODO Settings
@@ -84,10 +85,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     {
       id: '100',
       title: 'Event Now',
-      start: new Date(),
+      start: '2020-01-07T20:30:00',
       allDay: false,
       editable: true,
-      overlap: false,
+      overlap: true,
       hasEnd: false,
       imageUrls: [
         {
@@ -99,11 +100,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     },
     {
       id: '100',
-      title: 'Event Now',
-      start: '2020-01-06T02:30:00',
+      title: 'Event Now 1',
+      start: '2020-01-07T20:45:00',
       allDay: false,
       editable: true,
-      overlap: false,
+      overlap: true,
       hasEnd: false,
       imageUrls: [
         {
@@ -115,22 +116,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     }
   ]);
 
-  static calendarToday() {
-    ScheduleCalendarViewComponent.calendarApi.today();
-  }
-
-  static calendarPrev() {
-    ScheduleCalendarViewComponent.calendarApi.prev();
-  }
-
-  static calendarNext() {
-    ScheduleCalendarViewComponent.calendarApi.next();
-  }
-
   constructor(private renderer: Renderer2, private scheduleFacade: ScheduleFacade) {}
 
   ngAfterViewInit() {
-    ScheduleCalendarViewComponent.calendarApi = this.calendar.getApi();
+    this.calendarApi = this.calendar.getApi();
+    this.scheduleFacade.setCalendarApi(this.calendarApi);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -194,23 +184,20 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     this.renderer.appendChild(element, clearfixDiv);
 
     if (eventInfo.event.extendedProps.imageUrls) {
-      const { fileURL, fileType } = eventInfo.event.extendedProps.imageUrls[0];
-      this.appendMediaToElement(fileURL, fileType, element);
+      this.appendMediaToElement(POST_TYPE.IMAGE, element);
     } else if (eventInfo.event.extendedProps.videoUrls) {
-      const { fileURL, fileType } = eventInfo.event.extendedProps.videoUrls[0];
-      this.appendMediaToElement(fileURL, fileType, element);
+      this.appendMediaToElement(POST_TYPE.VIDEO, element);
     }
   }
 
-  private appendMediaToElement(mediaFileURL: string, mediaFileType: string, element: HTMLElement): void {
+  private appendMediaToElement(fileType: POST_TYPE, element: HTMLElement): void {
     const clearfixDiv: HTMLDivElement = this.createDivElement();
 
-    const mediaElem: HTMLMediaElement = this.renderer.createElement(mediaFileType);
-    mediaElem.className = 'buffer--width-full buffer--background-color-gray-100';
-    mediaElem.src = `${mediaFileURL}`;
-    mediaElem.controls = true;
+    const iconElem: HTMLMediaElement = this.renderer.createElement('i');
+    iconElem.className = 'material-icons buffer--margin-2 buffer--font-size-xl';
+    iconElem.innerText = fileType === POST_TYPE.IMAGE ? 'filter' : 'subscriptions';
 
-    this.renderer.appendChild(clearfixDiv, mediaElem);
+    this.renderer.appendChild(clearfixDiv, iconElem);
     this.renderer.appendChild(element, clearfixDiv);
   }
 
@@ -223,5 +210,17 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
 
   handleColumnHeaderText(date: Date): string {
     return format(date, 'EEE');
+  }
+
+  calendarToday() {
+    this.scheduleFacade.calendarToday();
+  }
+
+  calendarPrev() {
+    this.scheduleFacade.calendarPrev();
+  }
+
+  calendarNext() {
+    this.scheduleFacade.calendarNext();
   }
 }

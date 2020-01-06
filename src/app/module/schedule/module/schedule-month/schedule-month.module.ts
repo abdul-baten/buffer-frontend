@@ -13,6 +13,7 @@ import { ScheduleCalendarAddPostButtonModule } from '@shared/module/schedule-cal
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 // Components
@@ -34,6 +35,7 @@ import { ScheduleMonthCalendarOptionsComponent } from './component/schedule-mont
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
+    MatSidenavModule,
     MatButtonToggleModule,
 
     ScheduleCalendarViewModule,
