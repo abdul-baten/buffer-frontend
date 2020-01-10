@@ -1,0 +1,40 @@
+:host {
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+  .dashboard-header-sec {
+    top: 0;
+    left: 0;
+    width: 5rem;
+    display: block;
+    position: fixed;
+    height: 100vh;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .dashboard-route-sec {
+    width: calc(100vw - 5rem);
+  }
+
+  ::ng-deep {
+    .mat-drawer-end {
+      border: none;
+    }
+
+    .fc-widget-header {
+      border-right-width: 0;
+      margin-right: 0 !important;
+    }
+
+    .mat-calendar-body-cell {
+      font-size: 0.75rem;
+      font-family: 'Averta SemiBold';
+    }
+
+    .buffer--schedule-calendar-sec {
+      width: 100%;
+    }
+  }
+}

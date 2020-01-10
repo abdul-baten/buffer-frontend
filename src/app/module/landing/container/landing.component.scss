@@ -1,0 +1,90 @@
+:host {
+  height: auto;
+  display: block;
+  position: relative;
+
+  .buffer--intro-hero-sec {
+    background-image: url('/assets/images/background/buffer--intro-social-background.svg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  @media screen and (max-width: 599px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1279px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1919px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 1920px) and (max-width: 5000px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (max-width: 1919px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 960px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .buffer--landing-jumbo-section {
+      max-width: 45rem;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    .buffer--landing-jumbo-section {
+      max-width: 50rem;
+    }
+  }
+}

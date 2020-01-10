@@ -1,0 +1,36 @@
+<div class="clearfix">
+  <div class="buffer--auth-menu">
+    <ul class="buffer--display-flex buffer--align-items-center buffer--flex-justify-content-end">
+      <li>
+        <a
+          href="javascript:void(0)"
+          class="buffer--default-link buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
+          >Why Buffer?</a
+        >
+      </li>
+      <li>
+        <a
+          href="javascript:void(0)"
+          class="buffer--default-link buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
+          >Pricing</a
+        >
+      </li>
+      <li>
+        <a
+          [routerLink]="['/sign-in']"
+          class="buffer--default-link buffer--font-family-regular buffer--font-size-base buffer--margin-left-8"
+          >Sign in</a
+        >
+      </li>
+      <li>
+        <button
+          mat-flat-button
+          class="buffer--font-family-semi-bold buffer--font-size-base buffer--background-color-green-500 buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--margin-left-8 buffer--box-shadow-lg buffer--box-shadow-hover-xl"
+          (click)="navigateToSignupPage('sign-up')"
+        >
+          Get started
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

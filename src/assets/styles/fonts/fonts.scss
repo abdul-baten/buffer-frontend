@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Averta Light';
+  src: url('#{$font-path}/averta/light/averta-light.eot?#iefix');
+  src: url('#{$font-path}/averta/light/averta-light.eot?#iefix') format('eot'),
+    url('#{$font-path}/averta/light/averta-light.woff2') format('woff2'),
+    url('#{$font-path}/averta/light/averta-light.woff') format('woff'),
+    url('#{$font-path}/averta/light/averta-light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Averta Regular';
+  src: url('#{$font-path}/averta/regular/averta-regular.eot?#iefix');
+  src: url('#{$font-path}/averta/regular/averta-regular.eot?#iefix') format('eot'),
+    url('#{$font-path}/averta/regular/averta-regular.woff2') format('woff2'),
+    url('#{$font-path}/averta/regular/averta-regular.woff') format('woff'),
+    url('#{$font-path}/averta/regular/averta-regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Averta Semibold';
+  src: url('#{$font-path}/averta/semi-bold/averta-semi-bold.eot?#iefix');
+  src: url('#{$font-path}/averta/semi-bold/averta-semi-bold.eot?#iefix') format('eot'),
+    url('#{$font-path}/averta/semi-bold/averta-semi-bold.woff2') format('woff2'),
+    url('#{$font-path}/averta/semi-bold/averta-semi-bold.woff') format('woff'),
+    url('#{$font-path}/averta/semi-bold/averta-semi-bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Averta Bold';
+  src: url('#{$font-path}/averta/bold/averta-bold.eot?#iefix');
+  src: url('#{$font-path}/averta/bold/averta-bold.eot?#iefix') format('eot'),
+    url('#{$font-path}/averta/bold/averta-bold.woff2') format('woff2'),
+    url('#{$font-path}/averta/bold/averta-bold.woff') format('woff'),
+    url('#{$font-path}/averta/bold/averta-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Averta ExtraBold';
+  src: url('#{$font-path}/averta/extra-bold/averta-extra-bold.eot?#iefix');
+  src: url('#{$font-path}/averta/extra-bold/averta-extra-bold.eot?#iefix') format('eot'),
+    url('#{$font-path}/averta/extra-bold/averta-extra-bold.woff2') format('woff2'),
+    url('#{$font-path}/averta/extra-bold/averta-extra-bold.woff') format('woff'),
+    url('#{$font-path}/averta/extra-bold/averta-extra-bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('#{$font-path}/material/MaterialIcons-Regular.eot?#iefix'); /* For IE6-8 */
+  src: local('Material Icons'), local('MaterialIcons-Regular'),
+    url('#{$font-path}/material/MaterialIcons-Regular.eot?#iefix') format('eot'),
+    url('#{$font-path}/material/MaterialIcons-Regular.woff2') format('woff2'),
+    url('#{$font-path}/material/MaterialIcons-Regular.woff') format('woff'),
+    url('#{$font-path}/material/MaterialIcons-Regular.ttf') format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

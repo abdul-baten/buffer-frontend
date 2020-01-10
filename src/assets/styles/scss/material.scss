@@ -1,0 +1,238 @@
+/*
+    * MATERIAL LIST
+*/
+.mat-list-base {
+  padding-top: 0 !important;
+}
+
+.mat-list-item-content {
+  padding: 0 !important;
+}
+
+/*
+    * MATERIAL EXPANSION PANEL
+*/
+.mat-expansion-panel {
+  margin: 10px 0 !important;
+}
+
+.mat-expansion-panel {
+  box-shadow: $buffer--box-shadow !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 15px !important;
+}
+
+.mat-expansion-panel-body {
+  padding: 16px !important;
+}
+
+/*
+    * MATERIAL CARD
+*/
+mat-card {
+  border-radius: $buffer--border-width-8 !important;
+  box-shadow: $buffer--box-shadow-md !important;
+
+  &:hover {
+    box-shadow: $buffer--box-shadow !important;
+  }
+
+  .mat-card-actions {
+    padding: 0 !important;
+  }
+}
+
+button {
+  &:disabled {
+    outline: $buffer--outline-none !important;
+  }
+}
+
+/*
+    * MATERIAL BUTTON GROUP
+*/
+.mat-button-toggle-button {
+  outline: $buffer--outline-none !important;
+  font-size: $buffer--font-size-sm !important;
+  font-family: $buffer--font-family-semi-bold !important;
+}
+
+.mat-button-toggle-group-appearance-standard,
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border-radius: 0.5rem !important;
+}
+
+.mat-button-toggle-label-content {
+  line-height: 36px !important;
+  padding: 0px 16px !important;
+}
+
+.mat-button-toggle-checked {
+  color: $buffer--text-color-white !important;
+  background-color: $buffer--background-color-green-500 !important;
+}
+
+/*
+    * MATERIAL DIALOG
+*/
+.mat-dialog-container {
+  padding: 0 !important;
+  box-shadow: $buffer--box-shadow-2xl !important;
+  border-radius: $buffer--border-radius-lg !important;
+}
+
+/*
+    * MATERIAL MENU ITEM
+*/
+.mat-menu-item {
+  font-size: $buffer--font-size-sm !important;
+  font-weight: $buffer--font-weight-medium !important;
+}
+
+/*
+    * MATERIAL AUTO COMPLETE
+*/
+.mat-autocomplete-panel {
+  top: 11px;
+  max-height: $buffer--height-64 !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+  border-bottom-left-radius: $buffer--border-width-4 !important;
+  border-bottom-right-radius: $buffer--border-width-4 !important;
+}
+
+/*
+    * MATERIAL OPTION
+*/
+.mat-option {
+  font-size: $buffer--font-size-xs !important;
+}
+
+/*
+    * MATERIAL TAB
+*/
+.mat-tab-label {
+  opacity: 1 !important;
+  text-transform: uppercase !important;
+  color: $buffer--text-color-black !important;
+  font-size: $buffer--font-size-sm !important;
+  font-weight: $buffer--font-weight-bold !important;
+}
+
+.mat-tab-label-active {
+  color: $buffer--text-color-blue-500 !important;
+}
+
+/*
+    * MATERIAL CHIP LIST
+*/
+.mat-chip {
+  padding-left: $buffer--width-4 !important;
+  padding-right: $buffer--width-4 !important;
+  text-align: $buffer--text-align-center !important;
+}
+
+/*
+    * MATERIAL TOOLTIP
+*/
+.mat-tooltip {
+  font-size: $buffer--font-size-sm !important;
+}
+
+/*
+    * MATERIAL RANGE SLIDE
+*/
+.mat-slider-thumb-label {
+  transform: rotate(45deg) !important;
+  border-radius: 50% 50% 0 !important;
+}
+
+.mat-slider-thumb {
+  transform: scale(0) !important;
+}
+
+.mat-slider-thumb-label-text {
+  opacity: 1 !important;
+}
+
+/*
+    * MATERIAL FORM FIELD
+*/
+
+.mat-form-field-flex {
+  border: 1px solid $buffer--background-color-green-500 !important;
+}
+
+.mat-form-field-infix {
+  border-top: 0 !important;
+}
+
+.mat-form-field-outline-thick {
+  border: none;
+  opacity: 1 !important;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.cdk-textarea-autosize {
+  overflow: $buffer--overflow-hidden !important;
+}
+
+.mat-form-field-underline {
+  display: $buffer--display-hidden !important;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 1rem !important;
+}
+
+.mat-form-field-appearance-fill {
+  .mat-form-field-flex {
+    padding: 0.1rem 1rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: $buffer--border-radius-lg !important;
+    background-color: $buffer--background-color-white !important;
+
+    &:hover {
+      box-shadow: $buffer--box-shadow-inner;
+      background-color: $buffer--background-color-white !important;
+    }
+  }
+
+  .mat-form-field-infix {
+    padding: 1rem 0 !important;
+  }
+}
+
+.mat-form-field-invalid {
+  .mat-form-field-flex {
+    border-color: $buffer--border-red-500 !important;
+  }
+}
+
+textarea.mat-input-element {
+  padding: 0 !important;
+}
+
+/*
+    * MATERIAL BOTTOM SHEET
+*/
+.buffer--dialog-bottom-sheet-custom-backdrop {
+  opacity: $buffer--opacity-75 !important;
+  background-color: $buffer--background-color-white;
+}
+
+.buffer--dialog-bottom-sheet-custom-panel {
+  color: $buffer--text-color-black !important;
+  background-color: $buffer--background-color-white !important;
+}
+
+.mat-bottom-sheet-container-large {
+  max-width: $buffer--width-64 !important;
+  border-top-left-radius: 0.5rem !important;
+  border-top-right-radius: 0.5rem !important;
+}
+
+.mat-bottom-sheet-container {
+  padding: 1.25rem !important;
+}

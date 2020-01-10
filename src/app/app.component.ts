@@ -1,10 +1,9 @@
+// Core Modules
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'buffer--root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'buffer';
-}
+export class AppComponent {}
