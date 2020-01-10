@@ -6,8 +6,15 @@ import { MetaDefinition } from '@angular/platform-browser';
 
 // Third Party Modules
 import { Observable } from 'rxjs';
+import format from 'date-fns/format';
+import getDate from 'date-fns/getDate';
+import getYear from 'date-fns/getYear';
+import getHours from 'date-fns/getHours';
+import getMonth from 'date-fns/getMonth';
+import formatISO from 'date-fns/formatISO';
+import getMinutes from 'date-fns/getMinutes';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { format, getHours, getMonth, getDate, getMinutes, getYear } from 'date-fns';
+import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 
 // Enums
 import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
@@ -74,14 +81,17 @@ export class ScheduleFacade {
   }
 
   private getCurrentTime(date: Date): string {
-    const currentDate = new Date();
-    const getCurrentHours = getHours(currentDate);
-    const getCurrentMinutes = getMinutes(currentDate);
-    const getCurrentDate = getDate(date);
-    const getCurrentMonth = getMonth(date);
-    const getCurrentYear = getYear(date);
-
-    return new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes).toISOString();
+    if (!getHours(date) && !getMinutes(date)) {
+      const currentDate = new Date();
+      const getCurrentHours = getHours(currentDate);
+      const getCurrentMinutes = getMinutes(currentDate);
+      const getCurrentDate = getDate(date);
+      const getCurrentMonth = getMonth(date);
+      const getCurrentYear = getYear(date);
+      return formatISO(new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes));
+    } else {
+      return formatISO(new Date(date));
+    }
   }
 
   onPostDragged(postInfo: CalPostInfoInterface): void {
@@ -100,7 +110,8 @@ export class ScheduleFacade {
     return this.store.select(selectPostType);
   }
 
-  private setPostDate(postOriginalDate: string): void {
+  private setPostDate(postDateTime: string): void {
+    const postOriginalDate = formatISO(roundToNearestMinutes(new Date(postDateTime), { nearestTo: 15 }));
     this.store.dispatch(fromScheduleActions.setPostDate({ postOriginalDate }));
   }
 

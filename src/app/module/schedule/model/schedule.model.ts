@@ -1,3 +1,6 @@
+// Models
+import { EventInput } from '@fullcalendar/core';
+
 // Enums
 import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
 
@@ -16,15 +19,14 @@ export interface PostScheduleState {
   postOriginalDate: string;
 }
 
-import { EventInput } from '@fullcalendar/core';
-
 export interface CalPostFileInterface {
   fileURL: string;
   fileType: string;
 }
 
 export interface CalPostInterface extends EventInput {
+  socialAccounts: string[];
   imageUrls?: CalPostFileInterface[];
   videoUrls?: CalPostFileInterface[];
-  socialAccounts: string[];
+  postType: 'text' | 'image' | 'video';
 }

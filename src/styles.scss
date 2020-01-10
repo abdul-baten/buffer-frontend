@@ -43,6 +43,8 @@ body {
 body {
   margin: 0;
   font-size: $buffer--font-size-base;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   font-weight: $buffer--font-weight-medium;
   font-family: $buffer--font-family-regular;
   letter-spacing: $buffer--letter-spacing-tracking-normal;

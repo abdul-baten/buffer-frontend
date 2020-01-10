@@ -3,6 +3,8 @@
     #calendar
     [header]="header"
     [maxTime]="maxTime"
+    [allDayDefault]="false"
+    [scrollTime]="scrollTime"
     [eventLimit]="eventLimit"
     [allDaySlot]="allDaySlot"
     [selectable]="selectable"
@@ -28,7 +30,6 @@
     [slotLabelInterval]="slotLabelInterval"
     (eventRender)="handleEventRender($event)"
     [showNonCurrentDates]="showNonCurrentDates"
-    [columnHeaderText]="handleColumnHeaderText"
     [progressiveEventRendering]="progressiveEventRendering"
   ></full-calendar>
 </div>

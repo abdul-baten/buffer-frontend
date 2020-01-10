@@ -15,17 +15,6 @@ body .fc {
 
 /* Colors
 --------------------------------------------------------------------------------------------------*/
-.fc-highlight {
-  opacity: $buffer--opacity-75;
-  /* when user is selecting cells */
-  background: $buffer--background-color-green-100;
-}
-
-.fc-bgevent {
-  /* default look for background events */
-  opacity: $buffer--opacity-50;
-  background: $buffer--background-color-green-500;
-}
 
 .fc-nonbusiness {
   /* default look for non-business-hours areas */
@@ -242,9 +231,11 @@ temporary rendered events).
 /* Scrolling Container
 --------------------------------------------------------------------------------------------------*/
 .fc-scroller {
+  width: 100%;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+  height: calc(100vh - 12rem) !important;
   -webkit-overflow-scrolling: touch;
-  height: $buffer--height-full !important;
-  overflow: $buffer--overflow-hidden !important;
 }
 
 /* TODO: move to timegrid/daygrid */
@@ -465,9 +456,9 @@ We use the full "fc-day-grid-event" class instead of using descendants because t
 be a descendant of the grid when it is being dragged.
 */
 .fc-day-grid-event {
-  margin: 3px;
   /* spacing between events and edges */
   padding: 0;
+  margin: 2px 0;
   box-shadow: $buffer--box-shadow-lg;
   border-radius: $buffer--border-radius-lg;
 }
@@ -540,7 +531,7 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 .fc-now-indicator {
   position: $buffer--position-absolute;
-  border: 0$buffer--border-style-solid $buffer--border-green-500;
+  border: 0 $buffer--border-style-solid $buffer--border-green-500;
 }
 
 /* Utilities
@@ -970,8 +961,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   .fc-day-grid-container,
   .fc-time-grid-container {
     /* */
-    height: $buffer--height-auto !important;
-    overflow: $buffer--overflow-visible !important;
+    max-height: calc(100vh - 10rem);
+    overflow-x: $buffer--overflow-x-hidden !important;
+    overflow-y: $buffer--overflow-y-scroll !important;
   }
 
   /* kill the horizontal border/padding used to compensate for scrollbars */
@@ -1035,7 +1027,6 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-ltr .fc-dayGrid-view .fc-day-top {
-  height: 2rem;
   cursor: $buffer--cursor-default;
   line-height: $buffer--line-height-leading-relaxed;
 }
@@ -1101,17 +1092,17 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* TimeGrid axis running down the side (for both the all-day area and the slot area)
 --------------------------------------------------------------------------------------------------*/
 .fc .fc-axis {
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   font-size: $buffer--font-size-xs;
   color: $buffer--text-color-black;
   white-space: $buffer--white-space-normal;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-regular;
   /* .fc to overcome default cell styles */
   vertical-align: $buffer--vertical-align-middle;
 }
 
 .fc-ltr .fc-axis {
-  width: $buffer--width-16 !important;
+  width: $buffer--width-20 !important;
   text-align: $buffer--text-align-right;
 }
 
@@ -1335,62 +1326,48 @@ be a descendant of the grid when it is being dragged.
   /* undo padding from above */
 }
 
-/* resizer (cursor device) */
-.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 8px;
-  overflow: $buffer--overflow-hidden;
-  line-height: 8px;
-  font-size: 11px;
-  font-family: monospace;
-  text-align: center;
-  cursor: s-resize;
-}
-
-.fc-time-grid-event.fc-allow-mouse-resize .fc-resizer:after {
-  content: '=';
-}
-
-/* resizer (touch device) */
-.fc-time-grid-event.fc-selected .fc-resizer {
-  /* 10x10 dot */
-  border-radius: 5px;
-  border-width: 1px;
-  width: 8px;
-  height: 8px;
-  border-style: $buffer--border-style-solid;
-  border-color: inherit;
-  background: $buffer--background-color-white;
-  /* horizontally center */
-  left: 50%;
-  margin-left: -5px;
-  /* center on the bottom edge */
-  bottom: -5px;
-}
-
 /* Now Indicator
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-now-indicator-line {
-  left: 0;
-  right: 0;
-  border-top-width: $buffer--border-top-width-2;
+  left: -100vw;
+  right: -100vw;
+  border-top-width: $buffer--border-top-width;
   border-top-style: $buffer--border-style-dashed;
 }
 
 /* arrow on axis */
 .fc-time-grid .fc-now-indicator-arrow {
-  margin-top: -5px;
+  margin-top: -6px;
+  width: $buffer--width-1;
+  height: $buffer--height-1;
   /* vertically center on top coordinate */
 }
 
 .fc-ltr .fc-time-grid .fc-now-indicator-arrow {
-  left: 0;
+  left: 6.55rem;
   /* triangle pointing right... */
-  border-width: 5px 0 5px 6px;
-  border-top-color: $buffer--border-transparent;
-  border-bottom-color: $buffer--border-transparent;
+  border-width: 5px;
+  border-radius: 50%;
+  animation: pulse-green 2s infinite;
+  background-color: $buffer--background-color-green-500;
+  box-shadow: 0 0 0 0 $buffer--background-color-green-500;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 128, 115, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0);
+  }
 }
 
 .fc-rtl .fc-time-grid .fc-now-indicator-arrow {
@@ -1409,10 +1386,23 @@ be a descendant of the grid when it is being dragged.
   text-transform: $buffer--text-transform-uppercase;
 }
 
-.fc-head-container {
-  top: 4.45rem;
-  z-index: $buffer--z-index-10;
-  position: $buffer--position-sticky;
-  box-shadow: $buffer--box-shadow;
-  background-color: $buffer--background-color-white;
+.fc-day:not(.fc-past):hover,
+.fc-day:not(.fc-past):active,
+.fc-bg .fc-day:not(.fc-past):hover,
+.fc-bg .fc-day:not(.fc-past):active {
+  margin-top: -1px;
+  width: $buffer--width-full;
+  height: $buffer--height-full;
+  display: $buffer--display-flex;
+  font-size: $buffer--font-size-4xl;
+  border: $buffer--border-transparent;
+  color: $buffer--text-color-green-500;
+  background-color: rgba(0, 0, 0, 0.02);
+  align-items: $buffer--align-items-center;
+  justify-content: $buffer--align-items-center;
+
+  &:before {
+    font-family: 'Material Icons';
+    content: 'add';
+  }
 }

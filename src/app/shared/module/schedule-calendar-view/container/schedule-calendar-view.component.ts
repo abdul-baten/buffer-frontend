@@ -1,22 +1,26 @@
 // Core Modules
 import {
+  Input,
+  Injector,
   Component,
   ViewChild,
-  Renderer2,
-  AfterViewInit,
-  ChangeDetectionStrategy,
   OnChanges,
   SimpleChanges,
-  Input
+  AfterViewInit,
+  ApplicationRef,
+  InjectionToken,
+  ChangeDetectionStrategy,
+  ComponentFactoryResolver
 } from '@angular/core';
+import { DomPortalOutlet, PortalInjector, ComponentPortal } from '@angular/cdk/portal';
 
 // Third Party Modules
 import { Observable, of } from 'rxjs';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGrigPlugin from '@fullcalendar/timegrid';
-import { differenceInDays, format } from 'date-fns';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { differenceInDays, format, subMinutes } from 'date-fns';
 
 // Facades
 import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
@@ -24,7 +28,11 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
-import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-event-create-modal.enum';
+
+// Component
+import { ScheduleCalendarViewEventComponent } from '../components/schedule-calendar-view-event/schedule-calendar-view-event.component';
+
+export const CALENDAR_POST_DATA = new InjectionToken<CalPostInfoInterface>('CALENDAR_POST_DATA');
 
 @Component({
   selector: 'buffer--schedule-calendar-view',
@@ -35,6 +43,8 @@ import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-event-create-mo
 export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   @Input() calendarView: string;
   @ViewChild('calendar', { static: true }) calendar: FullCalendarComponent;
+
+  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
 
   private calendarApi: any;
 
@@ -54,7 +64,9 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   eventLimit = false; // TODO Settings
   allDaySlot = false;
   nowIndicator = true;
-  columnHeader = true;
+  columnHeader = {
+    week: 'd'
+  };
   eventOverlap = false;
   maxTime = '24:00:00';
   slotLabelInterval = {
@@ -79,7 +91,18 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   eventLimitClick = 'popover';
   progressiveEventRendering = false;
 
-  calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
+  scrollTime = format(subMinutes(new Date(), 5), 'HH:mm:ss');
+
+  // https://fullcalendar.io/docs/date-formatting
+  titleFormat = {
+    // month: 'long',
+    // year: 'numeric',
+    // day: '2-digit',
+    // week: 'long',
+    // meridiem: '',
+    // omitZeroMinute: false,
+    // omitCommas: true
+  };
 
   calendarEvents: Observable<CalPostInterface[]> = of([
     {
@@ -96,7 +119,8 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
           fileType: 'img'
         }
       ],
-      socialAccounts: ['facebook']
+      socialAccounts: ['facebook'],
+      postType: 'image'
     },
     {
       id: '100',
@@ -106,17 +130,23 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
       editable: true,
       overlap: true,
       hasEnd: false,
-      imageUrls: [
+      videoUrls: [
         {
-          fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
-          fileType: 'img'
+          fileURL: 'https://www.videvo.net/videvo_files/converted/2015_03/preview/BirdNoSound.mp480023.webm',
+          fileType: 'video'
         }
       ],
-      socialAccounts: ['facebook']
+      socialAccounts: ['facebook'],
+      postType: 'video'
     }
   ]);
 
-  constructor(private renderer: Renderer2, private scheduleFacade: ScheduleFacade) {}
+  constructor(
+    private injector: Injector,
+    private scheduleFacade: ScheduleFacade,
+    private applicationRef: ApplicationRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   ngAfterViewInit() {
     this.calendarApi = this.calendar.getApi();
@@ -152,64 +182,24 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     const element = eventInfo.el.querySelector('.fc-content');
     eventInfo.el.querySelector('.fc-title').remove();
 
-    const clearfixDiv: HTMLDivElement = this.createDivElement();
-
-    const titleSec: HTMLParagraphElement = this.renderer.createElement('p');
-    titleSec.className = `
-    buffer--width-full
-    buffer--padding-x-2
-    buffer--padding-top-2
-    buffer--text-color-green-500
-    buffer--font-family-semi-bold
-    `;
-    titleSec.innerText = `${eventInfo.event.title}`;
-
-    const time = this.createDivElement();
-    time.className = 'buffer--display-flex buffer--align-items-center buffer--padding-x-2 buffer--padding-bottom-2';
-    const timeSec: HTMLParagraphElement = this.renderer.createElement('span');
-    timeSec.className = 'buffer--font-size-xs buffer--margin-left-1';
-    timeSec.innerText = format(eventInfo.event.start, 'p');
-
-    const timeIconSec: HTMLElement = this.renderer.createElement('i');
-    timeIconSec.className = `
-    material-icons
-    buffer--font-size-base
-    `;
-    timeIconSec.innerText = 'timer';
-
-    this.renderer.appendChild(clearfixDiv, titleSec);
-    this.renderer.appendChild(time, timeIconSec);
-    this.renderer.appendChild(time, timeSec);
-    this.renderer.appendChild(clearfixDiv, time);
-    this.renderer.appendChild(element, clearfixDiv);
-
-    if (eventInfo.event.extendedProps.imageUrls) {
-      this.appendMediaToElement(POST_TYPE.IMAGE, element);
-    } else if (eventInfo.event.extendedProps.videoUrls) {
-      this.appendMediaToElement(POST_TYPE.VIDEO, element);
-    }
+    const bodyPortalHost = new DomPortalOutlet(
+      element,
+      this.componentFactoryResolver,
+      this.applicationRef,
+      this.injector
+    );
+    const componentToAppend = new ComponentPortal(
+      ScheduleCalendarViewEventComponent,
+      null,
+      this.createPostDataInjector(eventInfo)
+    );
+    bodyPortalHost.attach(componentToAppend);
   }
 
-  private appendMediaToElement(fileType: POST_TYPE, element: HTMLElement): void {
-    const clearfixDiv: HTMLDivElement = this.createDivElement();
-
-    const iconElem: HTMLMediaElement = this.renderer.createElement('i');
-    iconElem.className = 'material-icons buffer--margin-2 buffer--font-size-xl';
-    iconElem.innerText = fileType === POST_TYPE.IMAGE ? 'filter' : 'subscriptions';
-
-    this.renderer.appendChild(clearfixDiv, iconElem);
-    this.renderer.appendChild(element, clearfixDiv);
-  }
-
-  private createDivElement(): HTMLDivElement {
-    const div = this.renderer.createElement('div');
-    div.className = 'clearfix';
-
-    return div;
-  }
-
-  handleColumnHeaderText(date: Date): string {
-    return format(date, 'EEE');
+  private createPostDataInjector(eventInfo: CalPostInfoInterface): PortalInjector {
+    const injectorToken = new WeakMap();
+    injectorToken.set(CALENDAR_POST_DATA, eventInfo);
+    return new PortalInjector(this.injector, injectorToken);
   }
 
   calendarToday() {

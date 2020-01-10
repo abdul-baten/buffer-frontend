@@ -19,6 +19,15 @@
   }
 
   ::ng-deep {
+    .mat-drawer-end {
+      border: none;
+    }
+
+    .fc-widget-header {
+      border-right-width: 0;
+      margin-right: 0 !important;
+    }
+
     .mat-calendar-body-cell {
       font-size: 0.75rem;
       font-family: 'Averta SemiBold';
@@ -26,10 +35,6 @@
 
     .buffer--schedule-calendar-sec {
       width: 100%;
-    }
-
-    .buffer--schedule-sidenav-sec {
-      right: 0.5rem;
     }
   }
 }
