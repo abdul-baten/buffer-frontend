@@ -5,7 +5,7 @@ import { createAction, props } from '@ngrx/store';
 import { PostScheduleState } from '../model/schedule.model';
 
 // Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
+import { POST_TYPE } from '../enum/schedule-post-create-modal.enum';
 
 export const removePostData = createAction('[Schedule Effect] Remove Post Data');
 

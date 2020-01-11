@@ -194,9 +194,9 @@ row content (which contains day/week numbers and events) as well as "mirror" (wh
 temporary rendered events).
 */
 .fc-row .fc-content-skeleton {
-  position: $buffer--position-relative;
   z-index: 4;
   padding-bottom: 2px;
+  position: $buffer--position-relative;
   /* matches the space above the events */
 }
 
@@ -209,11 +209,11 @@ temporary rendered events).
 .fc .fc-row .fc-mirror-skeleton td {
   /* see-through to the background below */
   /* extra precedence to prevent theme-provided backgrounds */
-  background: none;
   /* in case <td>s are globally styled */
-  border-color: $buffer--border-transparent;
+  padding: 0.2rem 0.3rem;
+  background: none;
   text-align: center;
-  padding: 0.2rem 0.5rem;
+  border-color: $buffer--border-transparent;
 }
 
 .fc-row .fc-content-skeleton td,
@@ -531,7 +531,7 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 .fc-now-indicator {
   position: $buffer--position-absolute;
-  border: 0 $buffer--border-style-solid $buffer--border-green-500;
+  border: 0 $buffer--border-style-solid $buffer--border-color-primary-500;
 }
 
 /* Utilities
@@ -630,7 +630,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   vertical-align: $buffer--vertical-align-middle;
   line-height: $buffer--line-height-leading-none;
   background-color: $buffer--background-color-white;
-  border: $buffer--border-width $buffer--border-style-solid $buffer--border-gray-100;
+  border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
 }
 
 .fc-button:not(:disabled):hover {
@@ -659,8 +659,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-button-primary:not(:disabled):active,
 .fc-button-primary:not(:disabled).fc-button-active {
   color: $buffer--text-color-white;
-  border-color: $buffer--background-color-green-500;
-  background-color: $buffer--background-color-green-500;
+  border-color: $buffer--background-color-primary-500;
+  background-color: $buffer--background-color-primary-500;
 }
 
 .fc-button-primary:not(:disabled):active:focus,
@@ -726,7 +726,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* List View
 --------------------------------------------------------------------------------------------------*/
 .fc-unthemed .fc-list-item:hover td {
-  background-color: $buffer--background-color-green-500;
+  background-color: $buffer--background-color-primary-500;
 }
 
 /* Toolbar
@@ -744,8 +744,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
   background-color: $buffer--background-color-white;
-  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-gray-100;
-  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-gray-100;
+  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-color-gray;
+  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
 }
 
 .fc-toolbar.fc-footer-toolbar {
@@ -811,7 +811,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   .fc thead,
   .fc tbody,
   .fc-row {
-    border-color: $buffer--border-gray-100 !important;
+    border-color: $buffer--border-color-gray !important;
     background: $buffer--background-color-white !important;
   }
 
@@ -1249,7 +1249,7 @@ be a descendant of the grid when it is being dragged.
   height: fit-content;
   margin-bottom: 0.5rem;
   width: $buffer--width-full;
-  max-width: $buffer--width-64;
+  max-width: $buffer--width-40;
 }
 
 .fc-time-grid-event-inset {
@@ -1349,8 +1349,8 @@ be a descendant of the grid when it is being dragged.
   border-width: 5px;
   border-radius: 50%;
   animation: pulse-green 2s infinite;
-  background-color: $buffer--background-color-green-500;
-  box-shadow: 0 0 0 0 $buffer--background-color-green-500;
+  background-color: $buffer--background-color-primary-500;
+  box-shadow: 0 0 0 0 $buffer--background-color-primary-500;
 }
 
 @keyframes pulse-green {
@@ -1396,7 +1396,7 @@ be a descendant of the grid when it is being dragged.
   display: $buffer--display-flex;
   font-size: $buffer--font-size-4xl;
   border: $buffer--border-transparent;
-  color: $buffer--text-color-green-500;
+  color: $buffer--text-color-primary-500;
   background-color: rgba(0, 0, 0, 0.02);
   align-items: $buffer--align-items-center;
   justify-content: $buffer--align-items-center;

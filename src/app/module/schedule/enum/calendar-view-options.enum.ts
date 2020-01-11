@@ -7,9 +7,3 @@ export enum CALENDAR_VIEW {
   DAY_GRID_WEEK = 'dayGridWeek',
   DAY_GRID_MONTH = 'dayGridMonth'
 }
-
-export enum CALENDAR_VIEW_OPTIONS {
-  MONTH = 'month',
-  WEEK = 'week',
-  DAY = 'day'
-}

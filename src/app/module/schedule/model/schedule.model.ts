@@ -2,7 +2,7 @@
 import { EventInput } from '@fullcalendar/core';
 
 // Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
+import { POST_TYPE } from '../enum/schedule-post-create-modal.enum';
 
 export interface PostScheduleState {
   postDate: string;

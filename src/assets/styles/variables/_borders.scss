@@ -4,109 +4,40 @@
 /*
     * BORDER COLOR
 */
+$buffer--border-color-black: #333232;
+$buffer--border-color-white: #ffffff;
 $buffer--border-transparent: transparent;
-$buffer--border-black: #333232;
-$buffer--border-white: #fff;
+$buffer--border-color-gray: rgba(0, 0, 0, 0.08);
 
-$buffer--border-gray-100: rgba(0, 0, 0, 0.08);
-$buffer--border-gray-200: #eeeeee;
-$buffer--border-gray-300: #e0e0e0;
-$buffer--border-gray-400: #bdbdbd;
-$buffer--border-gray-500: #9e9e9e;
-$buffer--border-gray-600: #757575;
-$buffer--border-gray-700: #616161;
-$buffer--border-gray-800: #424242;
-$buffer--border-gray-900: #212121;
+$buffer--border-color-warn-100: #ffcdd2;
+$buffer--border-color-warn-200: #ef9a9a;
+$buffer--border-color-warn-300: #e57373;
+$buffer--border-color-warn-400: #ef5350;
+$buffer--border-color-warn-500: #f44336;
+$buffer--border-color-warn-600: #e53935;
+$buffer--border-color-warn-700: #d32f2f;
+$buffer--border-color-warn-800: #c62828;
+$buffer--border-color-warn-900: #b71c1c;
 
-$buffer--border-red-100: #ffcdd2;
-$buffer--border-red-200: #ef9a9a;
-$buffer--border-red-300: #e57373;
-$buffer--border-red-400: #ef5350;
-$buffer--border-red-500: #f44336;
-$buffer--border-red-600: #e53935;
-$buffer--border-red-700: #d32f2f;
-$buffer--border-red-800: #c62828;
-$buffer--border-red-900: #b71c1c;
+$buffer--border-color-accent-100: #fed1c2;
+$buffer--border-color-accent-200: #feb29a;
+$buffer--border-color-accent-300: #fe9372;
+$buffer--border-color-accent-400: #fd7b53;
+$buffer--border-color-accent-500: #fd6435;
+$buffer--border-color-accent-600: #fd5c30;
+$buffer--border-color-accent-700: #fc5228;
+$buffer--border-color-accent-800: #fc4822;
+$buffer--border-color-accent-900: #fc3616;
 
-$buffer--border-orange-100: #fcdfd8;
-$buffer--border-orange-200: #f8b4a3;
-$buffer--border-orange-300: #f37d61;
-$buffer--border-orange-400: #f16544;
-$buffer--border-orange-500: #ef4e28;
-$buffer--border-orange-600: #e73a11;
-$buffer--border-orange-700: #cb330f;
-$buffer--border-orange-800: #ae2c0d;
-$buffer--border-orange-900: #92250b;
-
-$buffer--border-yellow-100: #fffff0;
-$buffer--border-yellow-200: #fefcbf;
-$buffer--border-yellow-300: #faf089;
-$buffer--border-yellow-400: #f6e05e;
-$buffer--border-yellow-500: #ecc94b;
-$buffer--border-yellow-600: #d69e2e;
-$buffer--border-yellow-700: #b7791f;
-$buffer--border-yellow-800: #975a16;
-$buffer--border-yellow-900: #744210;
-
-$buffer--border-green-100: #e0f0ee;
-$buffer--border-green-200: #b3d9d5;
-$buffer--border-green-300: #80c0b9;
-$buffer--border-green-400: #4da69d;
-$buffer--border-green-500: #008073;
-$buffer--border-green-600: #00786b;
-$buffer--border-green-700: #006d60;
-$buffer--border-green-800: #006356;
-$buffer--border-green-900: #005043;
-
-$buffer--border-teal-100: #e6fffa;
-$buffer--border-teal-200: #b2f5ea;
-$buffer--border-teal-300: #81e6d9;
-$buffer--border-teal-400: #4fd1c5;
-$buffer--border-teal-500: #38b2ac;
-$buffer--border-teal-600: #319795;
-$buffer--border-teal-700: #2c7a7b;
-$buffer--border-teal-800: #285e61;
-$buffer--border-teal-900: #234e52;
-
-$buffer--border-blue-100: #c4c1f3;
-$buffer--border-blue-200: #9c98ec;
-$buffer--border-blue-300: #746ee4;
-$buffer--border-blue-400: #574fde;
-$buffer--border-blue-500: #3930d8;
-$buffer--border-blue-600: #332bd4;
-$buffer--border-blue-700: #2c24ce;
-$buffer--border-blue-800: #241ec8;
-$buffer--border-blue-900: #1713bf;
-
-$buffer--border-indigo-100: #ebf4ff;
-$buffer--border-indigo-200: #c3dafe;
-$buffer--border-indigo-300: #a3bffa;
-$buffer--border-indigo-400: #7f9cf5;
-$buffer--border-indigo-500: #667eea;
-$buffer--border-indigo-600: #5a67d8;
-$buffer--border-indigo-700: #4c51bf;
-$buffer--border-indigo-800: #434190;
-$buffer--border-indigo-900: #3c366b;
-
-$buffer--border-purple-100: #faf5ff;
-$buffer--border-purple-200: #e9d8fd;
-$buffer--border-purple-300: #d6bcfa;
-$buffer--border-purple-400: #b794f4;
-$buffer--border-purple-500: #9f7aea;
-$buffer--border-purple-600: #805ad5;
-$buffer--border-purple-700: #6b46c1;
-$buffer--border-purple-800: #553c9a;
-$buffer--border-purple-900: #44337a;
-
-$buffer--border-pink-100: #fff5f7;
-$buffer--border-pink-200: #fed7e2;
-$buffer--border-pink-300: #fbb6ce;
-$buffer--border-pink-400: #f687b3;
-$buffer--border-pink-500: #ed64a6;
-$buffer--border-pink-600: #d53f8c;
-$buffer--border-pink-700: #b83280;
-$buffer--border-pink-800: #97266d;
-$buffer--border-pink-900: #702459;
+$buffer--border-color-primary-100: #b9e4c9;
+$buffer--border-color-primary-200: #9ab4ac;
+$buffer--border-color-primary-300: #72958b;
+$buffer--border-color-primary-400: #537f72;
+$buffer--border-color-primary-500: #356859;
+$buffer--border-color-primary-600: #306051;
+$buffer--border-color-primary-700: #285548;
+$buffer--border-color-primary-800: #224b3e;
+$buffer--border-color-primary-900: #163a2e;
 
 /*
     * BORDER STYLE

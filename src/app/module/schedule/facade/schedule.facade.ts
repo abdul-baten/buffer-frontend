@@ -5,7 +5,7 @@ import { MetaDefinition } from '@angular/platform-browser';
 // Application Specific Modules
 
 // Third Party Modules
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getYear from 'date-fns/getYear';
@@ -17,7 +17,7 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 
 // Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
+import { POST_TYPE } from '../enum/schedule-post-create-modal.enum';
 
 // Models
 import { postTypeMap } from '../model/post-type.model';
@@ -45,6 +45,15 @@ export class ScheduleFacade {
   ) {}
 
   private calendarApi: any;
+  private createModal$ = new Subject();
+
+  setPostCreateModalObservable(): void {
+    this.createModal$.next();
+  }
+
+  getPostCreateModalObservable(): Observable<any> {
+    return this.createModal$;
+  }
 
   setCalendarApi(calendar: any): void {
     this.calendarApi = calendar;
@@ -62,12 +71,16 @@ export class ScheduleFacade {
     this.calendarApi.next();
   }
 
+  calendarDate(date: Date): void {
+    this.calendarApi.gotoDate(date);
+  }
+
   updateDocumentMetaTag(tag: MetaDefinition): void {
     this.metaService.updateDocumentMetaTag(tag);
   }
 
   changeCalendarViewOption(viewOption: string) {
-    this.scheduleService.changeCalendarViewOption(viewOption);
+    this.calendarApi.changeView(viewOption);
   }
 
   viewPostDetails(event: any): void {
