@@ -2,27 +2,25 @@
 import { Injectable, Injector } from '@angular/core';
 import { MetaDefinition } from '@angular/platform-browser';
 
-// Application Specific Modules
-
 // Third Party Modules
-import { Observable, Subject } from 'rxjs';
 import format from 'date-fns/format';
 import getDate from 'date-fns/getDate';
 import getYear from 'date-fns/getYear';
 import getHours from 'date-fns/getHours';
 import getMonth from 'date-fns/getMonth';
+import { Observable, Subject } from 'rxjs';
 import formatISO from 'date-fns/formatISO';
 import getMinutes from 'date-fns/getMinutes';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 
 // Enums
-import { POST_TYPE } from '../enum/schedule-post-create-modal.enum';
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
 // Models
-import { postTypeMap } from '../model/post-type.model';
-import { PostScheduleState } from '../model/schedule.model';
-import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
+import { postTypeMap } from '@app/schedule/model/post-type.model';
+import { ScheduleState } from '@app/schedule/model/schedule.model';
+import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
 // Services
 import { ScheduleService } from '@core/service/schedule/schedule.service';
@@ -31,28 +29,34 @@ import { DocumentMetaService } from '@core/service/document-meta/document-meta.s
 
 // Store
 import { Store } from '@ngrx/store';
-import { fromScheduleActions } from '../action';
-import { selectPostType, selectPostDate } from '../selector/schedule.selector';
+import { AppScheduleState } from '@app/schedule/reducer';
+import { fromScheduleActions, fromCalendarActions } from '@app/schedule/action';
+import {
+  selectPostType,
+  selectPostDate,
+  selectCalendarFirstDay,
+  selectCalendarNonCurrentDates
+} from '@app/schedule/selector/schedule.selector';
 
 @Injectable()
 export class ScheduleFacade {
   constructor(
     private injector: Injector,
-    private store: Store<PostScheduleState>,
+    private store: Store<AppScheduleState>,
     private scheduleService: ScheduleService,
     private metaService: DocumentMetaService,
     private snackbarService: SnackbarService
   ) {}
 
-  private calendarApi: any;
-  private createModal$ = new Subject();
+  private calendarApi: Calendar;
+  private createPostModalSubject$ = new Subject();
 
   setPostCreateModalObservable(): void {
-    this.createModal$.next();
+    this.createPostModalSubject$.next();
   }
 
   getPostCreateModalObservable(): Observable<any> {
-    return this.createModal$;
+    return this.createPostModalSubject$;
   }
 
   setCalendarApi(calendar: any): void {
@@ -108,7 +112,7 @@ export class ScheduleFacade {
   }
 
   onPostDragged(postInfo: CalPostInfoInterface): void {
-    this.scheduleService.openPostDragAlert(postInfo);
+    this.scheduleService.openPostRescheduleConfirmDialog(postInfo);
   }
 
   removePostData(): void {
@@ -132,7 +136,7 @@ export class ScheduleFacade {
     return this.store.select(selectPostDate);
   }
 
-  setPostData(formData: PostScheduleState): void {
+  setPostData(formData: ScheduleState): void {
     const postDate = format(new Date(formData.postDate), 'MM/dd/yyyy');
     const postTime = format(new Date(formData.postDate), 'hh:mm a');
     const postData = Object.assign(formData, { postDate, postTime });
@@ -152,5 +156,25 @@ export class ScheduleFacade {
 
   openCalenderSettings(): void {
     this.scheduleService.openCalendarSettingsDialog();
+  }
+
+  openPostDeleteDialog(postId: string): void {
+    this.scheduleService.openPostDeleteDialog(postId);
+  }
+
+  setCalendarFirstDay(firstDay: number): void {
+    this.store.dispatch(fromCalendarActions.setCalendarFirstDay({ firstDay }));
+  }
+
+  setCalendarNonCurrentDates(showNonCurrentDates: boolean): void {
+    this.store.dispatch(fromCalendarActions.setCalendarNonCurrentDates({ showNonCurrentDates }));
+  }
+
+  getCalendarFirstDay(): Observable<number> {
+    return this.store.select(selectCalendarFirstDay);
+  }
+
+  getCalendarNonCurrentDates(): Observable<boolean> {
+    return this.store.select(selectCalendarNonCurrentDates);
   }
 }

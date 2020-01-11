@@ -13,12 +13,7 @@ export class SchedulePostViewModalComponent {
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private matBottomSheetRef: MatBottomSheetRef<SchedulePostViewModalComponent>
-  ) {
-    console.warn('============= console.warn starts =============');
-    console.warn(this.matBottomSheetRef);
-    console.warn(this.data);
-    console.warn('============= console.warn ends =============');
-  }
+  ) {}
 
   onBottomSheetClosed(): void {
     this.matBottomSheetRef.dismiss();

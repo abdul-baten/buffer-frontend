@@ -1,7 +1,9 @@
 // Core Modules
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SigninFacade } from '../facade/signin.facade';
+
+// Facade
+import { SigninFacade } from '@app/signin/facade/signin.facade';
 
 @Component({
   selector: 'buffer--signin',

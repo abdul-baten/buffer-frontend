@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+// Core Modules
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { PasswordValidator } from 'src/app/core/validation/password.validation';
+
+// Validators
+import { PasswordValidator } from '@core/validation/password.validation';
 
 @Component({
   selector: 'buffer--signin-form',
   templateUrl: './signin-form.component.html',
   styleUrls: ['./signin-form.component.scss']
 })
-export class SigninFormComponent implements OnInit {
+export class SigninFormComponent {
   signinForm: FormGroup;
 
   hidePassword = true;
@@ -15,8 +18,6 @@ export class SigninFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.signinForm = this.buildSigninForm();
   }
-
-  ngOnInit() {}
 
   private buildSigninForm(): FormGroup {
     return this.formBuilder.group({

@@ -12,8 +12,6 @@ export class SchedulePostViewModalHeaderComponent {
   @Input() eventTitle = '';
   @Output() bottomSheetClosed = new EventEmitter<any>();
 
-  constructor() {}
-
   onBottomSheetClicked(): void {
     this.bottomSheetClosed.emit();
   }

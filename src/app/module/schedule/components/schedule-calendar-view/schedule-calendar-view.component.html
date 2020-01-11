@@ -12,6 +12,7 @@
     [defaultView]="calendarView"
     [plugins]="calendarPlugins"
     [handleWindowResize]="false"
+    [firstDay]="firstDay | async"
     [slotDuration]="slotDuration"
     [columnHeader]="columnHeader"
     [nowIndicator]="nowIndicator"
@@ -29,7 +30,8 @@
     [displayEventTime]="displayPostTime"
     [slotLabelInterval]="slotLabelInterval"
     (eventRender)="handlePostRender($event)"
-    [showNonCurrentDates]="showNonCurrentDates"
+    [showNonCurrentDates]="showNonCurrentDates | async"
     [progressiveEventRendering]="progressivePostRendering"
+    [weekNumbersWithinDays]="true"
   ></full-calendar>
 </div>

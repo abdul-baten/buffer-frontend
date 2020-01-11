@@ -1,7 +1,10 @@
+// Core Modules
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { PasswordValidator } from 'src/app/core/validation/password.validation';
-import { CommonValidator } from 'src/app/core/validation/common.validation';
+
+// Validators
+import { CommonValidator } from '@core/validation/common.validation';
+import { PasswordValidator } from '@core/validation/password.validation';
 
 @Component({
   selector: 'buffer--signup-form',

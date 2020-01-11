@@ -1,3 +1,22 @@
-export * from './schedule.reducers';
+// Store
+import { ActionReducerMap } from '@ngrx/store';
+import * as fromScheduleReducer from './schedule.reducers';
+import * as fromCalendarReducer from './calendar.reducers';
 
-export const schedulePostFeatureKey = 'schedulePostData';
+// Models
+import { CalViewState } from '@app/schedule/model/calendar.model';
+import { ScheduleState } from '@app/schedule/model/schedule.model';
+
+const schedulePostFeatureKey = 'schedulePostData';
+
+interface AppScheduleState {
+  calendar: CalViewState;
+  schedule: ScheduleState;
+}
+
+const reducers: ActionReducerMap<AppScheduleState> = {
+  calendar: fromCalendarReducer.reducer,
+  schedule: fromScheduleReducer.reducer
+};
+
+export { reducers, AppScheduleState, schedulePostFeatureKey };

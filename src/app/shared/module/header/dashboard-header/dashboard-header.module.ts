@@ -13,9 +13,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Components
-import { DashboardHeaderComponent } from './container/dashboard-header.component';
-import { DashboardHeaderMenuComponent } from './component/dashboard-header-menu/dashboard-header-menu.component';
-import { DashboardHeaderAccountComponent } from './component/dashboard-header-account/dashboard-header-account.component';
+import { DashboardHeaderComponent } from '@shared/module/header/dashboard-header/container/dashboard-header.component';
+import { DashboardHeaderMenuComponent } from '@shared/module/header/dashboard-header/component/dashboard-header-menu/dashboard-header-menu.component';
+import { DashboardHeaderAccountComponent } from '@shared/module/header/dashboard-header/component/dashboard-header-account/dashboard-header-account.component';
 
 @NgModule({
   declarations: [DashboardHeaderComponent, DashboardHeaderMenuComponent, DashboardHeaderAccountComponent],

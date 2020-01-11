@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 
 // Enums
-import { CALENDAR_VIEW } from 'src/app/module/schedule/enum/calendar-view-options.enum';
+import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 
 @Component({
   selector: 'buffer--schedule-calendar',

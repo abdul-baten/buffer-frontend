@@ -1,8 +1,8 @@
 // Core Modules
 import { Component, Input } from '@angular/core';
 
-// Facades
-import { ScheduleFacade } from '../../facade/schedule.facade';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-header',

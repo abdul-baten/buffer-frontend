@@ -10,6 +10,4 @@ import { Component, Input } from '@angular/core';
 })
 export class SchedulePostViewModalVideosComponent {
   @Input() eventVideos: string[] = [];
-
-  constructor() {}
 }

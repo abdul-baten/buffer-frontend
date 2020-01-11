@@ -77,19 +77,20 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-transparent: transparent;
 $buffer--text-color-black: #333232;
 $buffer--text-color-white: #ffffff;
+$buffer--text-color-transparent: transparent;
+$buffer--text-color-gray: rgba(0, 0, 0, 0.08);
 
-$buffer--text-color-warn-100: #ffcdd2;
-$buffer--text-color-warn-200: #ef9a9a;
-$buffer--text-color-warn-300: #e57373;
-$buffer--text-color-warn-400: #ef5350;
-$buffer--text-color-warn-500: #f44336;
-$buffer--text-color-warn-600: #e53935;
-$buffer--text-color-warn-700: #d32f2f;
-$buffer--text-color-warn-800: #c62828;
-$buffer--text-color-warn-900: #b71c1c;
+$buffer--text-color-warn-100: #f7b4be;
+$buffer--text-color-warn-200: #f18292;
+$buffer--text-color-warn-300: #eb4f66;
+$buffer--text-color-warn-400: #e72a46;
+$buffer--text-color-warn-500: #e30425;
+$buffer--text-color-warn-600: #e00321;
+$buffer--text-color-warn-700: #dc031b;
+$buffer--text-color-warn-800: #d80216;
+$buffer--text-color-warn-900: #d0010d;
 
 $buffer--text-color-accent-100: #fed1c2;
 $buffer--text-color-accent-200: #feb29a;

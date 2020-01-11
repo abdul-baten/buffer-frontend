@@ -4,16 +4,18 @@
       class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
     >
       <div class="clearfix buffer--float-left">
-        <p class="buffer--font-family-semi-bold buffer--font-size-xs">
+        <p
+          matTooltipPosition="after"
+          matTooltipClass="buffer--font-size-xs"
+          class="buffer--font-family-semi-bold buffer--font-size-xs"
+          [matTooltip]="upcomingPost ? 'Upcoming post' : 'Past post'"
+        >
           <i
-            matTooltipPosition="left"
-            matTooltipClass="buffer--font-size-xs"
-            [matTooltip]="upcomingPost ? 'Upcoming post' : 'Past post'"
-            class="material-icons buffer--font-size-sm buffer--vertical-align-text-top"
             [ngClass]="{
               'buffer--text-color-primary-500': upcomingPost,
-              'buffer--text-color-accent-500': !upcomingPost
+              'buffer--text-color-warn-500': !upcomingPost
             }"
+            class="material-icons buffer--font-size-sm buffer--vertical-align-text-top"
             >adjust</i
           >
           {{ calendarData.event.start | date: 'shortTime' }}
@@ -60,14 +62,14 @@
 <mat-menu #menu="matMenu">
   <button mat-menu-item>
     <mat-icon>description</mat-icon>
-    <span>View</span>
+    <span class="buffer--vertical-align-middle">View</span>
   </button>
   <button mat-menu-item>
     <mat-icon>query_builder</mat-icon>
-    <span>Reschedule</span>
+    <span class="buffer--vertical-align-middle">Reschedule</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onPostDeleteBtnClicked()">
     <mat-icon>delete</mat-icon>
-    <span>Delete</span>
+    <span class="buffer--vertical-align-middle">Delete</span>
   </button>
 </mat-menu>

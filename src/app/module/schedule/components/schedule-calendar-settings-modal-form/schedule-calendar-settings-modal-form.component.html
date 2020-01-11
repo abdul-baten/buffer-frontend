@@ -1,0 +1,73 @@
+<div class="clearfix buffer--padding-10">
+  <section id="schedule-calendar-settings-modal-form-sec" class="schedule-calendar-settings-modal-form-sec">
+    <form [formGroup]="calendarSettingsForm" novalidate>
+      <div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
+        <div class="clearfix">
+          <div class="clearfix">
+            <h1 class="buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-black">
+              Start my week on?
+            </h1>
+          </div>
+
+          <div class="clearfix buffer--margin-y-2">
+            <div class="clearfix">
+              <mat-radio-group
+                color="primary"
+                formControlName="firstDay"
+                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
+              >
+                <mat-radio-button
+                  [value]="i"
+                  class="buffer--margin-y-2"
+                  *ngFor="let weekDay of weekDays; let i = index"
+                >
+                  {{ weekDay }}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix buffer--margin-top-5">
+          <div class="clearfix">
+            <h1 class="buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-black">
+              Show non current dates?
+            </h1>
+          </div>
+
+          <div class="clearfix buffer--margin-y-2">
+            <div class="clearfix">
+              <mat-radio-group
+                color="primary"
+                formControlName="showNonCurrentDates"
+                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
+              >
+                <mat-radio-button [value]="true" class="buffer--margin-y-2">
+                  Yes
+                </mat-radio-button>
+                <mat-radio-button [value]="false" class="buffer--margin-y-2">
+                  No
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section
+    id="schedule-calendar-settings-modal-form-footer-sec"
+    class="schedule-calendar-settings-modal-form-footer-sec"
+  >
+    <div class="clearfix buffer--margin-top-10 buffer--display-flex buffer--flex-justify-content-end">
+      <button
+        mat-button
+        color="accent"
+        mat-dialog-close
+        class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-12 buffer--padding-x-8 buffer--border-radius-lg"
+      >
+        Close
+      </button>
+    </div>
+  </section>
+</div>

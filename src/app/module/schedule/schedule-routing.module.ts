@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Guard
-import { ScheduleGuard } from './guard/schedule.guard';
+import { ScheduleGuard } from '@app/schedule/guard/schedule.guard';
 
 // Component
-import { ScheduleComponent } from './container/schedule.component';
+import { ScheduleComponent } from '@app/schedule/container/schedule.component';
 
 const routes: Routes = [
   {

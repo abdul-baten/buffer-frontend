@@ -7,11 +7,12 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
-import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
-import { SchedulePostViewModalComponent } from 'src/app/module/schedule/components/schedule-post-view-modal/schedule-post-view-modal.component';
-import { SchedulePostCreateModalComponent } from 'src/app/module/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
-import { SchedulePostRescheduleModalComponent } from 'src/app/module/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
-import { ScheduleCalendarSettingsModalComponent } from 'src/app/module/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { SchedulePostViewModalComponent } from '@app/schedule/components/schedule-post-view-modal/schedule-post-view-modal.component';
+import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
+import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
+import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
+import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
 
 @Injectable()
 export class ScheduleService {
@@ -23,7 +24,7 @@ export class ScheduleService {
       direction: 'ltr',
       autoFocus: false,
       hasBackdrop: true,
-      disableClose: false,
+      disableClose: true,
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
@@ -52,8 +53,8 @@ export class ScheduleService {
     });
   }
 
-  openPostDragAlert(postInfo: CalPostInfoInterface): void {
-    this.matDialog.open(SchedulePostRescheduleModalComponent, {
+  openPostRescheduleConfirmDialog(postInfo: CalPostInfoInterface): void {
+    this.matDialog.open(SchedulePostRescheduleConfirmModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -61,7 +62,7 @@ export class ScheduleService {
         right: ''
       },
       data: postInfo,
-      width: '250px',
+      width: '400px',
       autoFocus: false,
       direction: 'ltr',
       hasBackdrop: true,
@@ -81,7 +82,29 @@ export class ScheduleService {
         left: '',
         right: ''
       },
-      width: '500px',
+      width: '450px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+    });
+  }
+
+  openPostDeleteDialog(postId: string): void {
+    this.matDialog.open(ScheduleDeletePostModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      data: postId,
+      width: '400px',
       role: 'dialog',
       autoFocus: false,
       direction: 'ltr',

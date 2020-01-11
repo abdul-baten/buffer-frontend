@@ -7,7 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 // Third Party Modules
 
 // Components
-import { SigninComponent } from './container/signin.component';
+import { SigninComponent } from '@app/signin/container/signin.component';
 
 const routes: Routes = [
   {

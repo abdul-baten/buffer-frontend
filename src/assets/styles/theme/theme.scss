@@ -11,7 +11,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$mat-buffer--dark-blue: (
+$mat-buffer--green: (
   50: #e7edeb,
   100: #b9e4c9,
   200: #9ab4ac,
@@ -77,11 +77,42 @@ $mat-buffer--orange: (
   )
 );
 
-$buffer-primary: mat-palette($mat-buffer--dark-blue);
-$buffer-accent: mat-palette($mat-buffer--orange);
+$mat-buffer--red: (
+  50: #fce1e5,
+  100: #f7b4be,
+  200: #f18292,
+  300: #eb4f66,
+  400: #e72a46,
+  500: #e30425,
+  600: #e00321,
+  700: #dc031b,
+  800: #d80216,
+  900: #d0010d,
+  A100: #fff8f8,
+  A200: #ffc5c7,
+  A400: #ff9295,
+  A700: #ff797c,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text
+  )
+);
 
-// The warn palette is optional (defaults to red).
-$buffer-warn: mat-palette($mat-red);
+$buffer-warn: mat-palette($mat-buffer--red);
+$buffer-primary: mat-palette($mat-buffer--green);
+$buffer-accent: mat-palette($mat-buffer--orange);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);

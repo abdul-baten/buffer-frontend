@@ -9,10 +9,10 @@ import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { tap, delay, filter, defaultIfEmpty } from 'rxjs/operators';
 
 // Enums
-import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-post-create-modal.enum';
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
-// Facades
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-media-selection',

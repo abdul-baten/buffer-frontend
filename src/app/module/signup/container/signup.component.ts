@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-// Application Specific Modules
-import { SignupFacade } from '../facade/signup.facade';
+// Facade
+import { SignupFacade } from '@app/signup/facade/signup.facade';
 
 @Component({
   selector: 'buffer--signup',

@@ -2,12 +2,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-// Application Specific Modules
-
-// Third Party Modules
-
-// Components
-
 @Component({
   selector: 'buffer--signin-header',
   templateUrl: './signin-header.component.html',

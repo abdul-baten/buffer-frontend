@@ -9,7 +9,7 @@ import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.st
 import { MatStepper } from '@angular/material/stepper';
 
 // Facade
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Validators
 import { CommonValidator } from '@core/validation/common.validation';

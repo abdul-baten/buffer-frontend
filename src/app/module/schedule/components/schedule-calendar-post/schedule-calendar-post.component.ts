@@ -7,8 +7,11 @@ import differenceInDays from 'date-fns/differenceInDays';
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+
 // Data
-import { CALENDAR_POST_DATA } from 'src/app/module/schedule/data/calendar-post.data';
+import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 
 @Component({
   selector: 'buffer--schedule-calendar-post',
@@ -18,7 +21,14 @@ import { CALENDAR_POST_DATA } from 'src/app/module/schedule/data/calendar-post.d
 export class ScheduleCalendarViewPostComponent {
   upcomingPost: boolean;
 
-  constructor(@Inject(CALENDAR_POST_DATA) public calendarData: CalPostInfoInterface) {
+  constructor(
+    private scheduleFacade: ScheduleFacade,
+    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInfoInterface
+  ) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
+  }
+
+  onPostDeleteBtnClicked(): void {
+    this.scheduleFacade.openPostDeleteDialog(this.calendarData.event.id);
   }
 }

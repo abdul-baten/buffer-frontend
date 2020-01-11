@@ -20,7 +20,7 @@
     "noImplicitReturns": true,
     "pretty": true,
     "paths": {
-      "@app/*": ["src/app/modules/*"],
+      "@app/*": ["src/app/module/*"],
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
       "@env/*": ["src/environments/*"]

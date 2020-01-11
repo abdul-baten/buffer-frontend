@@ -21,15 +21,15 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { differenceInDays, format, subMinutes } from 'date-fns';
 
-// Facades
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Models
-import { CalPostInterface } from 'src/app/module/schedule/model/schedule.model';
-import { EventInput as CalPostInfoInterface, Calendar } from '@fullcalendar/core';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
 // Data
-import { CALENDAR_POST_DATA } from 'src/app/module/schedule/data/calendar-post.data';
+import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 
 // Component
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
@@ -61,7 +61,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   };
   selectable = true;
   snapDuration = 15;
-  eventLimit = false; // TODO Settings
+  eventLimit = false;
   allDaySlot = false;
   nowIndicator = true;
   columnHeader = {
@@ -81,65 +81,65 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     }
   };
 
-  businessHours = false; // TODO Settings
-  fixedWeekCount = false; // TODO Settings
-  calendarWeekends = true; // TODO Settings
+  get firstDay(): Observable<number> {
+    return this.scheduleFacade.getCalendarFirstDay();
+  }
+
+  get showNonCurrentDates(): Observable<boolean> {
+    return this.scheduleFacade.getCalendarNonCurrentDates();
+  }
+
+  businessHours = false;
+  fixedWeekCount = false;
+  calendarWeekends = true;
   slotEventOverlap = true;
   displayPostTime = false;
-  slotDuration = '00:15:00'; // TODO Settings
-  showNonCurrentDates = true; // TODO Settings
+  slotDuration = '00:15:00';
   eventLimitClick = 'popover';
   progressivePostRendering = false;
 
-  scrollTime = format(subMinutes(new Date(), 5), 'HH:mm:ss');
+  get scrollTime(): string {
+    return format(subMinutes(new Date(), 5), 'HH:mm:ss');
+  }
 
-  // https://fullcalendar.io/docs/date-formatting
-  titleFormat = {
-    // month: 'long',
-    // year: 'numeric',
-    // day: '2-digit',
-    // week: 'long',
-    // meridiem: '',
-    // omitZeroMinute: false,
-    // omitCommas: true
-  };
-
-  calendarPosts: Observable<CalPostInterface[]> = of([
-    {
-      id: '100',
-      title: 'Post Now',
-      start: '2020-01-07T20:30:00',
-      allDay: false,
-      editable: true,
-      overlap: true,
-      hasEnd: false,
-      imageUrls: [
-        {
-          fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
-          fileType: 'img'
-        }
-      ],
-      socialAccounts: ['facebook'],
-      postType: 'image'
-    },
-    {
-      id: '1001',
-      title: 'Post Now 1',
-      start: '2020-01-11T20:45:00',
-      allDay: false,
-      editable: true,
-      overlap: true,
-      hasEnd: false,
-      videoUrls: [
-        {
-          fileURL: 'https://www.videvo.net/videvo_files/converted/2015_03/preview/BirdNoSound.mp480023.webm',
-          fileType: 'video'
-        }
-      ],
-      socialAccounts: ['facebook'],
-      postType: 'video'
-    }
-  ]);
+  get calendarPosts(): Observable<CalPostInterface[]> {
+    return of([
+      {
+        id: '100',
+        title: 'Post Now',
+        start: '2020-01-07T20:30:00',
+        allDay: false,
+        editable: true,
+        overlap: true,
+        hasEnd: false,
+        imageUrls: [
+          {
+            fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
+            fileType: 'img'
+          }
+        ],
+        socialAccounts: ['facebook'],
+        postType: 'image'
+      },
+      {
+        id: '1001',
+        title: 'Post Now 1',
+        start: '2020-01-11T20:45:00',
+        allDay: false,
+        editable: true,
+        overlap: true,
+        hasEnd: false,
+        videoUrls: [
+          {
+            fileURL: 'https://www.videvo.net/videvo_files/converted/2015_03/preview/BirdNoSound.mp480023.webm',
+            fileType: 'video'
+          }
+        ],
+        socialAccounts: ['facebook'],
+        postType: 'video'
+      }
+    ]);
+  }
 
   constructor(
     private injector: Injector,

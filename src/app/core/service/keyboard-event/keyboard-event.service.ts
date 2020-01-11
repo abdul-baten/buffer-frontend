@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { fromEvent } from 'rxjs';
 import { distinctUntilKeyChanged, pluck, shareReplay, distinctUntilChanged } from 'rxjs/operators';
 
-// Facades
+// Facade
 import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 
 // Enums

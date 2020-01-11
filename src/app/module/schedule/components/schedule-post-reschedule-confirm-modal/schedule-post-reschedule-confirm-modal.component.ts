@@ -8,14 +8,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
 @Component({
-  selector: 'buffer--schedule-post-reschedule-modal',
-  templateUrl: './schedule-post-reschedule-modal.component.html',
-  styleUrls: ['./schedule-post-reschedule-modal.component.scss']
+  selector: 'buffer--schedule-post-reschedule-confirm-modal',
+  templateUrl: './schedule-post-reschedule-confirm-modal.component.html',
+  styleUrls: ['./schedule-post-reschedule-confirm-modal.component.scss']
 })
-export class SchedulePostRescheduleModalComponent {
+export class SchedulePostRescheduleConfirmModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CalPostInfoInterface,
-    private matDialogRef: MatDialogRef<SchedulePostRescheduleModalComponent>
+    private matDialogRef: MatDialogRef<SchedulePostRescheduleConfirmModalComponent>
   ) {}
 
   onRescheduleModalClosed(): void {

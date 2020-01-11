@@ -4,17 +4,17 @@ import { Component, ViewChild } from '@angular/core';
 // Third Party Modules
 import { Observable } from 'rxjs';
 
-// Enums
-import { POST_TYPE } from 'src/app/module/schedule/enum/schedule-post-create-modal.enum';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
-// Facades
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+// Enums
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
 // Components
-import { SchedulePostCreateModalFormTextComponent } from '../schedule-post-create-modal-form text/schedule-post-create-modal-form-text.component';
-import { SchedulePostCreateModalFormImageComponent } from '../schedule-post-create-modal-form-image/schedule-post-create-modal-form-image.component';
-import { SchedulePostCreateModalFormVideoComponent } from '../schedule-post-create-modal-form-video/schedule-post-create-modal-form-video.component';
-import { SchedulePostCreateModalFormTypeComponent } from '../schedule-post-create-modal-form-type/schedule-post-create-modal-form-type.component';
+import { SchedulePostCreateModalFormTextComponent } from '@app/schedule/components/schedule-post-create-modal-form text/schedule-post-create-modal-form-text.component';
+import { SchedulePostCreateModalFormImageComponent } from '@app/schedule/components/schedule-post-create-modal-form-image/schedule-post-create-modal-form-image.component';
+import { SchedulePostCreateModalFormVideoComponent } from '@app/schedule/components/schedule-post-create-modal-form-video/schedule-post-create-modal-form-video.component';
+import { SchedulePostCreateModalFormTypeComponent } from '@app/schedule/components/schedule-post-create-modal-form-type/schedule-post-create-modal-form-type.component';
 
 @Component({
   selector: 'buffer--schedule-post-create-modal-form',

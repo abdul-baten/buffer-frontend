@@ -88,10 +88,10 @@
     >
       <div class="clearfix buffer--text-align-left buffer--width-percent-50">
         <button
+          mat-button
           color="accent"
-          mat-stroked-button
           (click)="onPreviousButtonClicked()"
-          class="buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--border-radius-lg"
+          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-12 buffer--padding-x-8 buffer--border-radius-lg"
         >
           <mat-icon>keyboard_arrow_left</mat-icon>
           <span>Back</span>
@@ -103,7 +103,7 @@
           color="primary"
           mat-flat-button
           [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
-          class="buffer--schedule-post-action-button buffer--font-family-semi-bold buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg"
+          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-12 buffer--padding-x-8 buffer--border-radius-lg"
         >
           Next
         </button>

@@ -9,7 +9,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
 
 // Facade
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-image',

@@ -3,32 +3,32 @@
   overflow: hidden;
   position: relative;
 
-  .dashboard-header-sec {
-    top: 0;
-    left: 0;
-    width: 5rem;
-    display: block;
-    position: fixed;
-    height: 100vh;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .buffer--schedule-menu-sec {
-    height: 65px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .buffer--schedule-calendar-view-sec {
-    height: calc(100vh - 65px);
-  }
-
-  .dashboard-route-sec {
-    width: calc(100vw - 5rem);
-  }
-
   ::ng-deep {
     .mat-drawer-end {
       border: none;
+    }
+
+    .dashboard-header-sec {
+      top: 0;
+      left: 0;
+      width: 5rem;
+      display: block;
+      position: fixed;
+      height: 100vh;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .buffer--schedule-menu-sec {
+      height: 65px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .buffer--schedule-calendar-view-sec {
+      height: calc(100vh - 65px);
+    }
+
+    .dashboard-route-sec {
+      width: calc(100vw - 5rem);
     }
 
     .fc-widget-header {

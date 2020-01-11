@@ -1,15 +1,9 @@
-// Core
-import { Component, OnInit } from '@angular/core';
-
-// Application Specific
+// Core Modules
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--dashboard-header',
   templateUrl: './dashboard-header.component.html',
   styleUrls: ['./dashboard-header.component.scss']
 })
-export class DashboardHeaderComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class DashboardHeaderComponent {}

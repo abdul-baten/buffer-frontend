@@ -2,12 +2,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Application Specific Modules
-
-// Third Party Modules
-
 // Components
-import { MainLogoComponent } from './container/main-logo.component';
+import { MainLogoComponent } from '@shared/module/logo/main-logo/container/main-logo.component';
 
 @NgModule({
   declarations: [MainLogoComponent],

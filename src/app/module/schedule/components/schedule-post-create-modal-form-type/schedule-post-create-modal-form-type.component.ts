@@ -5,8 +5,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 // Third Party Modules
 import { MatStepper } from '@angular/material/stepper';
 
-// Facades
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-type',

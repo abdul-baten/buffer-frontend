@@ -6,10 +6,10 @@ import { format } from 'date-fns';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 
 // Facade
-import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Enums
-import { CALENDAR_VIEW } from 'src/app/module/schedule/enum/calendar-view-options.enum';
+import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 
 @Component({
   selector: 'buffer--schedule-calendar-options',

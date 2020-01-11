@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './schedule-calendar-settings-modal.component.html',
   styleUrls: ['./schedule-calendar-settings-modal.component.scss']
 })
-export class ScheduleCalendarSettingsModalComponent {
-  favoriteSeason = 'Monday';
-  seasons: string[] = ['Sunday', 'Monday'];
-
-  constructor() {}
-}
+export class ScheduleCalendarSettingsModalComponent {}

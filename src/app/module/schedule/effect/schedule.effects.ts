@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
 // Third Party Modules
 import { tap } from 'rxjs/operators';
 
-// Facades
-import { ScheduleFacade } from '../facade/schedule.facade';
+// Facade
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
-// Stores
-import { fromScheduleActions } from '../action';
+// Store
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { fromScheduleActions, fromCalendarActions } from '@app/schedule/action';
 
 @Injectable()
 export class ScheduleEffects {
@@ -18,6 +18,15 @@ export class ScheduleEffects {
       this.actions$.pipe(
         ofType(fromScheduleActions.removePostData),
         tap(_ => this.scheduleFacade.openSnackbar('Post scheduled successfully'))
+      ),
+    { dispatch: false }
+  );
+
+  setCalendarSettings$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromCalendarActions.setCalendarFirstDay),
+        tap(_ => {})
       ),
     { dispatch: false }
   );

@@ -346,18 +346,18 @@ temporary rendered events).
   bottom: -1px;
   left: -1px;
   /* darkening effect */
+  opacity: $buffer--opacity-25;
   background: $buffer--background-color-black;
-  opacity: 0.25;
 }
 
 /* Event Dragging
 --------------------------------------------------------------------------------------------------*/
 .fc-event.fc-dragging.fc-selected {
-  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: $buffer--box-shadow-lg;
 }
 
 .fc-event.fc-dragging:not(.fc-selected) {
-  opacity: 0.75;
+  opacity: $buffer--opacity-75;
 }
 
 /* Horizontal Events
@@ -543,7 +543,7 @@ a.fc-more:hover {
   -ms-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: $buffer--background-color-transparent;
 }
 
 /*
@@ -559,7 +559,7 @@ TODO: more distinction between this file and common.css
 .fc-unthemed .fc-popover,
 .fc-unthemed .fc-list-view,
 .fc-unthemed .fc-list-heading td {
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: $buffer--border-color-gray;
 }
 
 .fc-unthemed th {
@@ -567,22 +567,22 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed .fc-popover {
-  background-color: #fff;
+  background-color: $buffer--background-color-white;
 }
 
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-popover .fc-header,
 .fc-unthemed .fc-list-heading td {
-  background: #eee;
+  background: $buffer--background-color-gray;
 }
 
 .fc-unthemed td.fc-today {
-  background: rgba(22, 77, 89, 0.05);
+  background: $buffer--background-color-gray;
 }
 
 .fc-unthemed .fc-disabled-day {
-  background: #d7d7d7;
   opacity: $buffer--opacity-25;
+  background: $buffer--background-color-gray;
 }
 
 /* Buttons
@@ -640,8 +640,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button:disabled {
-  color: rgba(0, 0, 0, 0.26);
-  background-color: rgba(0, 0, 0, 0.12);
+  color: $buffer--text-color-black;
+  background-color: $buffer--background-color-gray;
 }
 
 /* "primary" coloring */
@@ -993,8 +993,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-dayGrid-view .fc-body .fc-row {
   min-height: 7rem;
-  height: auto !important;
-  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid rgba(0, 0, 0, 0.08);
+  height: $buffer--height-auto !important;
+  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
   /* ensure that all rows are at least this tall */
 }
 
@@ -1390,18 +1390,18 @@ be a descendant of the grid when it is being dragged.
 .fc-day:not(.fc-past):active,
 .fc-bg .fc-day:not(.fc-past):hover,
 .fc-bg .fc-day:not(.fc-past):active {
-  margin-top: -1px;
   width: $buffer--width-full;
   height: $buffer--height-full;
   display: $buffer--display-flex;
   font-size: $buffer--font-size-4xl;
-  border: $buffer--border-transparent;
   color: $buffer--text-color-primary-500;
-  background-color: rgba(0, 0, 0, 0.02);
   align-items: $buffer--align-items-center;
   justify-content: $buffer--align-items-center;
+  border: $buffer--border-width-0 $buffer--border-style-none $buffer--border-transparent;
 
-  &:before {
+  cursor: cell;
+
+  &:after {
     font-family: 'Material Icons';
     content: 'add';
   }
