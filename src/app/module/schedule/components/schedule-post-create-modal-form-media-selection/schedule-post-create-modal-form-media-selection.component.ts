@@ -39,6 +39,11 @@ export class SchedulePostCreateModalFormMediaSelectionComponent implements OnDes
     this.subscriptions$.add(postType.subscribe(noop));
   }
 
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
+  }
+
   onUploadInit(args: any): void {
     console.log('onUploadInit:', args);
 
@@ -79,10 +84,5 @@ export class SchedulePostCreateModalFormMediaSelectionComponent implements OnDes
 
   onMaxFilesReached(): void {
     this.mediaMaxFilesReached = true;
-  }
-
-  @HostListener('window:beforeunload')
-  ngOnDestroy() {
-    this.subscriptions$.unsubscribe();
   }
 }

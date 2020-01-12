@@ -28,7 +28,24 @@ export class ScheduleCalendarViewPostComponent {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }
 
-  onPostDeleteBtnClicked(): void {
-    this.scheduleFacade.openPostDeleteDialog(this.calendarData.event.id);
+  onPostActionBtnClicked(action: string): void {
+    const { id, start } = this.calendarData.event;
+    switch (action) {
+      case 'view':
+        this.scheduleFacade.openPostDeleteDialog(id);
+        break;
+
+      case 'edit':
+        this.scheduleFacade.openPostDeleteDialog(id);
+        break;
+
+      case 'reschedule':
+        this.scheduleFacade.openPostRescheduleDialog(id, start);
+        break;
+
+      case 'delete':
+        this.scheduleFacade.openPostDeleteDialog(id);
+        break;
+    }
   }
 }

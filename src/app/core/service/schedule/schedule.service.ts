@@ -11,6 +11,7 @@ import { CalPostInterface } from '@app/schedule/model/schedule.model';
 import { SchedulePostViewModalComponent } from '@app/schedule/components/schedule-post-view-modal/schedule-post-view-modal.component';
 import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
 import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
+import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
 import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
 import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
 
@@ -104,6 +105,28 @@ export class ScheduleService {
         right: ''
       },
       data: postId,
+      width: '400px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+    });
+  }
+
+  openPostRescheduleDialog(postId: string, postDate: Date): void {
+    this.matDialog.open(SchedulePostRescheduleModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      data: { postId, postDate },
       width: '400px',
       role: 'dialog',
       autoFocus: false,

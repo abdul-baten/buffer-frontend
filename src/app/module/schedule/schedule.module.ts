@@ -25,6 +25,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
@@ -57,6 +58,7 @@ import { SchedulePostViewModalImagesComponent } from '@app/schedule/components/s
 import { SchedulePostViewModalVideosComponent } from '@app/schedule/components/schedule-post-view-videos/schedule-post-view-modal-videos.component';
 import { SchedulePostViewModalFooterComponent } from '@app/schedule/components/schedule-post-view-footer/schedule-post-view-modal-footer.component';
 import { SchedulePostViewModalHeaderComponent } from '@app/schedule/components/schedule-post-view-header/schedule-post-view-modal-header.component';
+import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
 import { SchedulePostCreateModalFormComponent } from '@app/schedule/components/schedule-post-create-modal-form/schedule-post-create-modal-form.component';
 import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
 import { SchedulePostCreateModalFormTypeComponent } from '@app/schedule/components/schedule-post-create-modal-form-type/schedule-post-create-modal-form-type.component';
@@ -97,6 +99,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     SchedulePostViewModalImagesComponent,
     SchedulePostViewModalVideosComponent,
     SchedulePostCreateModalFormComponent,
+    SchedulePostRescheduleModalComponent,
     ScheduleCalendarSettingsModalComponent,
     SchedulePostCreateModalFormTypeComponent,
     SchedulePostCreateModalFormTextComponent,
@@ -141,7 +144,11 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     OwlNativeDateTimeModule,
 
     StoreModule.forFeature(fromScheduleReducer.schedulePostFeatureKey, fromScheduleReducer.reducers),
-    EffectsModule.forFeature([ScheduleEffects])
+    EffectsModule.forFeature([ScheduleEffects]),
+
+    LazyLoadImageModule.forRoot({
+      preset: scrollPreset
+    })
   ],
   providers: [
     DatePipe,
@@ -156,6 +163,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     ScheduleDeletePostModalComponent,
     SchedulePostCreateModalComponent,
     ScheduleCalendarViewPostComponent,
+    SchedulePostRescheduleModalComponent,
     ScheduleCalendarSettingsModalComponent,
     SchedulePostRescheduleConfirmModalComponent
   ]

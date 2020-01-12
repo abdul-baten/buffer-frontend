@@ -172,7 +172,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
         break;
       default:
         postInfo.revert();
-        this.scheduleFacade.openSnackbar('Post can not be reschedule to past date', 'Ok');
+        this.scheduleFacade.openSnackbar('Post can not be reschedule to past date');
         break;
     }
   }

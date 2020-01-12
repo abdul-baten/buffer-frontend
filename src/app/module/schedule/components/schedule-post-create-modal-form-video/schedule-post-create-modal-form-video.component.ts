@@ -1,8 +1,9 @@
 // Core Modules
-import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, HostListener, OnDestroy } from '@angular/core';
 
 // Third Party Modules
+import { SubSink } from 'subsink';
 import { MatStepper } from '@angular/material/stepper';
 
 // Error States
@@ -16,10 +17,12 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
   templateUrl: './schedule-post-create-modal-form-video.component.html',
   styleUrls: ['./schedule-post-create-modal-form-video.component.scss']
 })
-export class SchedulePostCreateModalFormVideoComponent {
+export class SchedulePostCreateModalFormVideoComponent implements OnDestroy {
   nextButtonDisabled = true;
   @Input() formHeaderIcon = 'filter';
   @Input() formHeader = 'Upload your media';
+
+  private subscriptions$ = new SubSink();
 
   currentDateTime: Date;
 
@@ -30,10 +33,17 @@ export class SchedulePostCreateModalFormVideoComponent {
   constructor(private stepper: MatStepper, private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
     this.eventCreateTypeVideoForm = this.biuldPostCreateTypeImageForm();
 
-    this.scheduleFacade.getPostDate().subscribe(postDate => {
-      this.currentDateTime = new Date(postDate);
-      this.eventCreateTypeVideoForm.patchValue({ postDate: new Date(postDate) });
-    });
+    this.subscriptions$.add(
+      this.scheduleFacade.getPostDate().subscribe(postDate => {
+        this.currentDateTime = new Date(postDate);
+        this.eventCreateTypeVideoForm.patchValue({ postDate: new Date(postDate) });
+      })
+    );
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
   }
 
   private biuldPostCreateTypeImageForm(): FormGroup {

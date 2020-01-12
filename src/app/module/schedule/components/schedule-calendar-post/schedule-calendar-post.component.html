@@ -3,7 +3,7 @@
     <div
       class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
     >
-      <div class="clearfix buffer--float-left">
+      <div class="clearfix">
         <p
           matTooltipPosition="after"
           matTooltipClass="buffer--font-size-xs"
@@ -21,7 +21,7 @@
           {{ calendarData.event.start | date: 'shortTime' }}
         </p>
       </div>
-      <div class="clearfix buffer--float-right">
+      <div class="clearfix">
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon class="buffer--font-size-base">more_vert</mat-icon>
         </button>
@@ -32,8 +32,9 @@
         <div *ngSwitchCase="'image'">
           <div class="clearfix">
             <img
-              [src]="calendarData.event.extendedProps.imageUrls[0].fileURL"
               class="buffer--width-full buffer--border-radius-lg"
+              [defaultImage]="calendarData.event.extendedProps.imageUrls[0].fileURL"
+              [lazyLoad]="calendarData.event.extendedProps.imageUrls[0].fileURL"
             />
           </div>
         </div>
@@ -60,15 +61,19 @@
 </div>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="onPostActionBtnClicked('view')">
     <mat-icon>description</mat-icon>
-    <span class="buffer--vertical-align-middle">View</span>
+    <span class="buffer--vertical-align-middle">Details</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item *ngIf="upcomingPost" (click)="onPostActionBtnClicked('edit')">
+    <mat-icon>create</mat-icon>
+    <span class="buffer--vertical-align-middle">Edit</span>
+  </button>
+  <button mat-menu-item (click)="onPostActionBtnClicked('reschedule')">
     <mat-icon>query_builder</mat-icon>
-    <span class="buffer--vertical-align-middle">Reschedule</span>
+    <span class="buffer--vertical-align-middle">Re-schedule</span>
   </button>
-  <button mat-menu-item (click)="onPostDeleteBtnClicked()">
+  <button mat-menu-item (click)="onPostActionBtnClicked('delete')">
     <mat-icon>delete</mat-icon>
     <span class="buffer--vertical-align-middle">Delete</span>
   </button>

@@ -1,11 +1,12 @@
 // Core Modules
-import { Component } from '@angular/core';
+import { Component, OnDestroy, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Error States
 import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
 
 // Third Party Modules
+import { SubSink } from 'subsink';
 import { MatStepper } from '@angular/material/stepper';
 
 // Facade
@@ -19,9 +20,11 @@ import { CommonValidator } from '@core/validation/common.validation';
   templateUrl: './schedule-post-create-modal-form-text.component.html',
   styleUrls: ['./schedule-post-create-modal-form-text.component.scss']
 })
-export class SchedulePostCreateModalFormTextComponent {
+export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
   formHeader = 'Write status';
   formHeaderIcon = 'text_fields';
+
+  private subscriptions$ = new SubSink();
 
   currentDateTime: Date;
 
@@ -32,10 +35,17 @@ export class SchedulePostCreateModalFormTextComponent {
   constructor(private formBuilder: FormBuilder, private stepper: MatStepper, private scheduleFacade: ScheduleFacade) {
     this.eventCreateTypeTextForm = this.buildPostCreateTypeTextForm();
 
-    this.scheduleFacade.getPostDate().subscribe(postDate => {
-      this.currentDateTime = new Date(postDate);
-      this.eventCreateTypeTextForm.patchValue({ postDate: new Date(postDate) });
-    });
+    this.subscriptions$.add(
+      this.scheduleFacade.getPostDate().subscribe(postDate => {
+        this.currentDateTime = new Date(postDate);
+        this.eventCreateTypeTextForm.patchValue({ postDate: new Date(postDate) });
+      })
+    );
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
   }
 
   private buildPostCreateTypeTextForm(): FormGroup {

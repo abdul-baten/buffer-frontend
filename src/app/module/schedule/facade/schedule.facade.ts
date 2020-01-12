@@ -150,7 +150,7 @@ export class ScheduleFacade {
     return service.generateConfig();
   }
 
-  openSnackbar(message: string, action: string = ''): void {
+  openSnackbar(message: string, action: string = 'Close'): void {
     this.snackbarService.openSnackBar(message, action);
   }
 
@@ -160,6 +160,10 @@ export class ScheduleFacade {
 
   openPostDeleteDialog(postId: string): void {
     this.scheduleService.openPostDeleteDialog(postId);
+  }
+
+  openPostRescheduleDialog(postId: string, postDate: Date): void {
+    this.scheduleService.openPostRescheduleDialog(postId, postDate);
   }
 
   setCalendarFirstDay(firstDay: number): void {

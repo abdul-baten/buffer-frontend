@@ -2,20 +2,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 // Component
-import { ScheduleCalendarViewEventComponent } from './schedule-calendar-view-event.component';
+import { ScheduleCalendarViewPostComponent } from './schedule-calendar-post.component';
 
-describe('ScheduleCalendarViewEventComponent', () => {
-  let component: ScheduleCalendarViewEventComponent;
-  let fixture: ComponentFixture<ScheduleCalendarViewEventComponent>;
+describe('ScheduleCalendarViewPostComponent', () => {
+  let component: ScheduleCalendarViewPostComponent;
+  let fixture: ComponentFixture<ScheduleCalendarViewPostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleCalendarViewEventComponent]
+      declarations: [ScheduleCalendarViewPostComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ScheduleCalendarViewEventComponent);
+    fixture = TestBed.createComponent(ScheduleCalendarViewPostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -21,6 +21,6 @@ export class ScheduleDeletePostModalComponent {
 
   onDeletePostModalClosed(): void {
     this.matDialogRef.close();
-    this.matDialogRef.afterClosed().subscribe(_ => this.scheduleFacade.openSnackbar('Post deleted', 'Ok'));
+    this.matDialogRef.afterClosed().subscribe(_ => this.scheduleFacade.openSnackbar('Post deleted'));
   }
 }

@@ -1,8 +1,9 @@
 // Core Modules
-import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 
 // Third Party Modules
+import { SubSink } from 'subsink';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 // Facade
@@ -16,10 +17,12 @@ import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
   templateUrl: './schedule-calendar-settings-modal-form.component.html',
   styleUrls: ['./schedule-calendar-settings-modal-form.component.scss']
 })
-export class ScheduleCalendarSettingsModalFormComponent {
+export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
   weekDays = ['Sunday', 'Monday'];
 
   calendarSettingsForm: FormGroup;
+
+  private subscriptions$ = new SubSink();
 
   constructor(private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
     this.calendarSettingsForm = this.buildCalendarSettingsForm();
@@ -30,6 +33,11 @@ export class ScheduleCalendarSettingsModalFormComponent {
     this.getCalendarNonCurrentDates();
   }
 
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
+  }
+
   private buildCalendarSettingsForm(): FormGroup {
     return this.formBuilder.group({
       firstDay: [WEEK_DAY.MONDAY],
@@ -38,30 +46,38 @@ export class ScheduleCalendarSettingsModalFormComponent {
   }
 
   private setCalendarFirstDay(): void {
-    this.calendarSettingsForm.controls.firstDay.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe((firstDay: number) => {
-        this.scheduleFacade.setCalendarFirstDay(firstDay);
-      });
+    this.subscriptions$.add(
+      this.calendarSettingsForm.controls.firstDay.valueChanges
+        .pipe(distinctUntilChanged())
+        .subscribe((firstDay: number) => {
+          this.scheduleFacade.setCalendarFirstDay(firstDay);
+        })
+    );
   }
 
   private getCalendarFirstDay(): void {
-    this.scheduleFacade.getCalendarFirstDay().subscribe((firstDay: number) => {
-      this.calendarSettingsForm.controls.firstDay.setValue(firstDay);
-    });
+    this.subscriptions$.add(
+      this.scheduleFacade.getCalendarFirstDay().subscribe((firstDay: number) => {
+        this.calendarSettingsForm.controls.firstDay.setValue(firstDay);
+      })
+    );
   }
 
   private setCalendarNonCurrentDates(): void {
-    this.calendarSettingsForm.controls.showNonCurrentDates.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe((showNonCurrentDates: boolean) => {
-        this.scheduleFacade.setCalendarNonCurrentDates(showNonCurrentDates);
-      });
+    this.subscriptions$.add(
+      this.calendarSettingsForm.controls.showNonCurrentDates.valueChanges
+        .pipe(distinctUntilChanged())
+        .subscribe((showNonCurrentDates: boolean) => {
+          this.scheduleFacade.setCalendarNonCurrentDates(showNonCurrentDates);
+        })
+    );
   }
 
   private getCalendarNonCurrentDates(): void {
-    this.scheduleFacade.getCalendarNonCurrentDates().subscribe((showNonCurrentDates: boolean) => {
-      this.calendarSettingsForm.controls.showNonCurrentDates.setValue(showNonCurrentDates);
-    });
+    this.subscriptions$.add(
+      this.scheduleFacade.getCalendarNonCurrentDates().subscribe((showNonCurrentDates: boolean) => {
+        this.calendarSettingsForm.controls.showNonCurrentDates.setValue(showNonCurrentDates);
+      })
+    );
   }
 }

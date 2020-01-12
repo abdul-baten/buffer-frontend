@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 // Component
 import { AppComponent } from './app.component';
 
-import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
@@ -21,6 +20,7 @@ import { AppEffects } from './app.effects';
 import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
+import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
