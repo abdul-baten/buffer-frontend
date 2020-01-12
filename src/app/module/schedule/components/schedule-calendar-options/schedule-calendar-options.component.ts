@@ -14,7 +14,7 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 @Component({
   selector: 'buffer--schedule-calendar-options',
   templateUrl: './schedule-calendar-options.component.html',
-  styleUrls: ['./schedule-calendar-options.component.scss']
+  styleUrls: ['./schedule-calendar-options.component.scss'],
 })
 export class ScheduleCalendarOptionsComponent {
   currentDate = format(new Date(), 'eeee, MMMM dd');

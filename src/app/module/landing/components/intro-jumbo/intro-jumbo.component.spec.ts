@@ -8,7 +8,7 @@ describe('IntroJumboComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntroJumboComponent]
+      declarations: [IntroJumboComponent],
     }).compileComponents();
   }));
 

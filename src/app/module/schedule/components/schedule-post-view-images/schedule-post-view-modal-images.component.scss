@@ -1,10 +1,10 @@
 :host {
-  display: block;
   position: relative;
+  display: block;
 
   .buffer--schedule-post-view-image {
     padding: 5px;
-    border-radius: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem;
   }
 }

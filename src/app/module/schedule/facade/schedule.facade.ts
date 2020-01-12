@@ -35,7 +35,7 @@ import {
   selectPostType,
   selectPostDate,
   selectCalendarFirstDay,
-  selectCalendarNonCurrentDates
+  selectCalendarNonCurrentDates,
 } from '@app/schedule/selector/schedule.selector';
 
 @Injectable()
@@ -45,7 +45,7 @@ export class ScheduleFacade {
     private store: Store<AppScheduleState>,
     private scheduleService: ScheduleService,
     private metaService: DocumentMetaService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
   ) {}
 
   private calendarApi: Calendar;
@@ -85,10 +85,6 @@ export class ScheduleFacade {
 
   changeCalendarViewOption(viewOption: string) {
     this.calendarApi.changeView(viewOption);
-  }
-
-  viewPostDetails(event: any): void {
-    this.scheduleService.viewPostDetails(event);
   }
 
   openCreatePostForm(postDate: Date): void {

@@ -18,7 +18,7 @@ import { CommonValidator } from '@core/validation/common.validation';
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-text',
   templateUrl: './schedule-post-create-modal-form-text.component.html',
-  styleUrls: ['./schedule-post-create-modal-form-text.component.scss']
+  styleUrls: ['./schedule-post-create-modal-form-text.component.scss'],
 })
 export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
   formHeader = 'Write status';
@@ -39,7 +39,7 @@ export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeTextForm.patchValue({ postDate: new Date(postDate) });
-      })
+      }),
     );
   }
 
@@ -53,7 +53,7 @@ export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
       postLocation: null,
       postDate: [null, Validators.required],
       postCaption: [null, Validators.required],
-      postLink: [null, CommonValidator.validURL]
+      postLink: [null, CommonValidator.validURL],
     });
   }
 

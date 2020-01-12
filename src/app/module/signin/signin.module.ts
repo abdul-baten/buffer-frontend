@@ -32,8 +32,8 @@ import { SigninHeaderComponent } from '@app/signin/components/signin-header/sign
 
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
-  providers: [SigninFacade]
+  providers: [SigninFacade],
 })
 export class SigninModule {}

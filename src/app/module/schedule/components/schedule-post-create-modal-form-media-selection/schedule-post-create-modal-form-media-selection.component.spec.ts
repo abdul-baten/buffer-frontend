@@ -10,7 +10,7 @@ describe('SchedulePostCreateModalFormMediaSelectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SchedulePostCreateModalFormMediaSelectionComponent]
+      declarations: [SchedulePostCreateModalFormMediaSelectionComponent],
     }).compileComponents();
   }));
 

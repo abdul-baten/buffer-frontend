@@ -10,7 +10,7 @@ describe('ScheduleEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ScheduleEffects, provideMockActions(() => actions$)]
+      providers: [ScheduleEffects, provideMockActions(() => actions$)],
     });
 
     effects = TestBed.get<ScheduleEffects>(ScheduleEffects);

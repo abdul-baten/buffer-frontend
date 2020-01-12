@@ -10,7 +10,7 @@ describe('ScheduleAddPostButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleAddPostButtonComponent]
+      declarations: [ScheduleAddPostButtonComponent],
     }).compileComponents();
   }));
 

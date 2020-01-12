@@ -10,7 +10,7 @@ describe('ScheduleDeletePostModalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleDeletePostModalComponent]
+      declarations: [ScheduleDeletePostModalComponent],
     }).compileComponents();
   }));
 

@@ -12,7 +12,7 @@ interface PostTypeGenerateInterface {
 const postTypeMap = new Map([
   ['text', null],
   ['image', PostTypeImageService],
-  ['video', PostTypeVideoService]
+  ['video', PostTypeVideoService],
 ]);
 
 export { postTypeMap, PostTypeGenerateInterface };

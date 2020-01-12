@@ -7,7 +7,7 @@ describe('SigninHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SigninHeaderComponent]
+      declarations: [SigninHeaderComponent],
     }).compileComponents();
   }));
 

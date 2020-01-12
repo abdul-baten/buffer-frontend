@@ -8,12 +8,12 @@ import { LandingComponent } from '@app/landing/container/landing.component';
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent
-  }
+    component: LandingComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class LandingRoutingModule {}

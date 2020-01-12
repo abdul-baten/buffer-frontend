@@ -8,7 +8,7 @@ import { PasswordValidator } from '@core/validation/password.validation';
 @Component({
   selector: 'buffer--signin-form',
   templateUrl: './signin-form.component.html',
-  styleUrls: ['./signin-form.component.scss']
+  styleUrls: ['./signin-form.component.scss'],
 })
 export class SigninFormComponent {
   signinForm: FormGroup;
@@ -30,9 +30,9 @@ export class SigninFormComponent {
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
-          PasswordValidator.allowedPasswordSpecialChars
-        ])
-      )
+          PasswordValidator.allowedPasswordSpecialChars,
+        ]),
+      ),
     });
   }
 }

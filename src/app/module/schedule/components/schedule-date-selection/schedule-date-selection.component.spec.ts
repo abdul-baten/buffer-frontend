@@ -10,7 +10,7 @@ describe('ScheduleDateSelectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleDateSelectionComponent]
+      declarations: [ScheduleDateSelectionComponent],
     }).compileComponents();
   }));
 

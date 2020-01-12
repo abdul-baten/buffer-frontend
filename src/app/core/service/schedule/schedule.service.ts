@@ -3,12 +3,9 @@ import { Injectable } from '@angular/core';
 
 // Third Party Modules
 import { MatDialog } from '@angular/material/dialog';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 // Models
 import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
-import { SchedulePostViewModalComponent } from '@app/schedule/components/schedule-post-view-modal/schedule-post-view-modal.component';
 import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
 import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
 import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
@@ -17,21 +14,7 @@ import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/compo
 
 @Injectable()
 export class ScheduleService {
-  constructor(private matBottomSheet: MatBottomSheet, private matDialog: MatDialog) {}
-
-  viewPostDetails(event: CalPostInterface): void {
-    this.matBottomSheet.open(SchedulePostViewModalComponent, {
-      data: event,
-      direction: 'ltr',
-      autoFocus: false,
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
-    });
-  }
+  constructor(private matDialog: MatDialog) {}
 
   openCreatePostFormDialog(): void {
     this.matDialog.open(SchedulePostCreateModalComponent, {
@@ -39,7 +22,7 @@ export class ScheduleService {
         top: '',
         bottom: '',
         left: '',
-        right: ''
+        right: '',
       },
       width: '700px',
       role: 'dialog',
@@ -50,7 +33,7 @@ export class ScheduleService {
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 
@@ -60,7 +43,7 @@ export class ScheduleService {
         top: '',
         bottom: '',
         left: '',
-        right: ''
+        right: '',
       },
       data: postInfo,
       width: '400px',
@@ -71,7 +54,7 @@ export class ScheduleService {
       disableClose: true,
       restoreFocus: false,
       closeOnNavigation: true,
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 
@@ -81,7 +64,7 @@ export class ScheduleService {
         top: '',
         bottom: '',
         left: '',
-        right: ''
+        right: '',
       },
       width: '450px',
       role: 'dialog',
@@ -92,7 +75,7 @@ export class ScheduleService {
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 
@@ -102,7 +85,7 @@ export class ScheduleService {
         top: '',
         bottom: '',
         left: '',
-        right: ''
+        right: '',
       },
       data: postId,
       width: '400px',
@@ -114,7 +97,7 @@ export class ScheduleService {
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 
@@ -124,7 +107,7 @@ export class ScheduleService {
         top: '',
         bottom: '',
         left: '',
-        right: ''
+        right: '',
       },
       data: { postId, postDate },
       width: '400px',
@@ -136,7 +119,7 @@ export class ScheduleService {
       restoreFocus: false,
       closeOnNavigation: true,
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop'
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 }

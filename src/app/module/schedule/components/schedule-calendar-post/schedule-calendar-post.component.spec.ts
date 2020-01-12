@@ -10,7 +10,7 @@ describe('ScheduleCalendarViewPostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleCalendarViewPostComponent]
+      declarations: [ScheduleCalendarViewPostComponent],
     }).compileComponents();
   }));
 

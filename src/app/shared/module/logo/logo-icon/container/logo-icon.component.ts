@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'buffer--logo-icon',
   templateUrl: './logo-icon.component.html',
-  styleUrls: ['./logo-icon.component.scss']
+  styleUrls: ['./logo-icon.component.scss'],
 })
 export class LogoIconComponent {
   constructor(private router: Router) {}

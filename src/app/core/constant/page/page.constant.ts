@@ -3,20 +3,20 @@ import { IPage } from '../../model/page/page.model';
 const PAGES: IPage = {
   LANDING_PAGE: {
     ROUTE: '',
-    TITLE: 'Buffer'
+    TITLE: 'Buffer',
   },
   SIGN_IN_PAGE: {
     ROUTE: 'sign-in',
-    TITLE: 'Sign In | Buffer'
+    TITLE: 'Sign In | Buffer',
   },
   SIGN_UP_PAGE: {
     ROUTE: 'sign-up',
-    TITLE: 'Sign Up | Buffer'
+    TITLE: 'Sign Up | Buffer',
   },
   SCHEDULE_PAGE: {
     ROUTE: 'schedule',
-    TITLE: 'Schedule | Buffer'
-  }
+    TITLE: 'Schedule | Buffer',
+  },
 };
 
 export { PAGES };

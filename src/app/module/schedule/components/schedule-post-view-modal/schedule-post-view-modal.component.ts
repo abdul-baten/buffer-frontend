@@ -7,12 +7,12 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bott
 @Component({
   selector: 'buffer--schedule-post-view-modal',
   templateUrl: './schedule-post-view-modal.component.html',
-  styleUrls: ['./schedule-post-view-modal.component.scss']
+  styleUrls: ['./schedule-post-view-modal.component.scss'],
 })
 export class SchedulePostViewModalComponent {
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
-    private matBottomSheetRef: MatBottomSheetRef<SchedulePostViewModalComponent>
+    private matBottomSheetRef: MatBottomSheetRef<SchedulePostViewModalComponent>,
   ) {}
 
   onBottomSheetClosed(): void {

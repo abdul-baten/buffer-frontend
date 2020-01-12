@@ -10,7 +10,7 @@ describe('ScheduleCalendarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleCalendarComponent]
+      declarations: [ScheduleCalendarComponent],
     }).compileComponents();
   }));
 

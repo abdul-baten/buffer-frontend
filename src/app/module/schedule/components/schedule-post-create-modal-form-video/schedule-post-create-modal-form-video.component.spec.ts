@@ -10,7 +10,7 @@ describe('SchedulePostCreateModalFormVideoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SchedulePostCreateModalFormVideoComponent]
+      declarations: [SchedulePostCreateModalFormVideoComponent],
     }).compileComponents();
   }));
 

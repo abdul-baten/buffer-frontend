@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'buffer--schedule-post-view-modal-images',
   templateUrl: './schedule-post-view-modal-images.component.html',
-  styleUrls: ['./schedule-post-view-modal-images.component.scss']
+  styleUrls: ['./schedule-post-view-modal-images.component.scss'],
 })
 export class SchedulePostViewModalImagesComponent {
   @Input() eventImages: string[] = [];

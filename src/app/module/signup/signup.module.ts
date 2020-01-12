@@ -34,8 +34,8 @@ import { SignupHeaderComponent } from '@app/signup/components/signup-header/sign
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
   ],
-  providers: [SignupFacade]
+  providers: [SignupFacade],
 })
 export class SignupModule {}

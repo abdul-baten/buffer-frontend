@@ -10,7 +10,7 @@ import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
 
 const initialCalendarState: CalViewState = {
   firstDay: WEEK_DAY.MONDAY,
-  showNonCurrentDates: true
+  showNonCurrentDates: true,
 };
 
 const calendarSettingsReducer = createReducer(
@@ -19,16 +19,16 @@ const calendarSettingsReducer = createReducer(
     const { firstDay } = action;
     return {
       ...state,
-      firstDay
+      firstDay,
     };
   }),
   on(fromCalendarActions.setCalendarNonCurrentDates, (state, action) => {
     const { showNonCurrentDates } = action;
     return {
       ...state,
-      showNonCurrentDates
+      showNonCurrentDates,
     };
-  })
+  }),
 );
 
 function reducer(state: CalViewState | undefined, action: Action) {

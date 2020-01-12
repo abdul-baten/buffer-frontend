@@ -1,20 +1,20 @@
 :host {
-  display: block;
   position: relative;
+  display: block;
 
   .buffer--upload-media-sec {
     .upload-item-content {
+      position: relative;
       float: left;
+      margin: 0.5rem;
       width: 90px;
       height: 90px;
-      margin: 0.5rem;
-      position: relative;
-      border-radius: 0.5rem;
       border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0.5rem;
 
       &:nth-of-type(odd) {
-        margin-left: 0.5rem;
         margin-right: 0.5rem;
+        margin-left: 0.5rem;
       }
 
       .uploaded-item-preview {
@@ -23,23 +23,23 @@
       }
 
       .cancel-item {
+        position: absolute;
         top: 5px;
         right: 5px;
+        padding: 2px;
         width: 20px;
         height: 20px;
-        padding: 2px;
-        position: absolute;
         border-radius: 50%;
         background-color: rgba(0, 0, 0, 0.5);
       }
 
       .progress-text-content {
+        position: absolute;
         top: 0;
         left: 0;
+        display: flex;
         width: 100%;
         height: 100%;
-        display: flex;
-        position: absolute;
         text-align: center;
         align-items: center;
         justify-content: center;
@@ -49,84 +49,84 @@
 
   ::ng-deep {
     .dropzone {
+      padding: 1rem !important;
       min-height: 150px;
       border-radius: 0.5rem;
-      padding: 1rem !important;
       background-color: rgba(0, 0, 0, 0.08) !important;
 
       .dropzone.dz-wrapper {
-        width: 100%;
-        border: none;
+        position: relative;
         display: flex;
+        flex-direction: column;
+        overflow: hidden;
         min-height: 0;
         max-height: 100%;
-        color: #323232;
-        overflow: hidden;
-        position: relative;
-        flex-direction: column;
+        width: 100%;
+        border: none;
         background: transparent;
+        color: #323232;
       }
     }
 
     .dropzone.dz-wrapper .dz-message .dz-text {
-      width: 100%;
-      display: flex;
-      text-align: center;
       position: relative;
-      align-items: center;
+      display: flex;
       flex-direction: column;
+      width: 100%;
+      text-align: center;
+      align-items: center;
       justify-content: center;
     }
 
     .dropzone.dz-wrapper .dz-message {
+      position: relative;
+      overflow: hidden;
       margin: 0;
+      max-width: 100%;
       width: 100%;
       height: 8rem;
-      max-width: 100%;
-      color: #323232;
-      overflow: hidden;
-      position: relative;
-      border-radius: 0.5rem;
-      animation: slideInDown 0.5s linear;
       border: 2px dashed rgba(0, 0, 0, 0.1);
+      border-radius: 0.5rem;
+      color: #323232;
+      animation: slideInDown 0.5s linear;
     }
 
     .dropzone .dz-preview .dz-details {
-      opacity: 1;
-      font-size: 13px;
       padding: 2em 1em;
-      text-align: center;
       color: rgba(0, 0, 0, 0.9);
+      text-align: center;
+      font-size: 13px;
+      opacity: 1;
     }
 
     .dropzone .dz-preview .dz-progress {
-      opacity: 1;
-      z-index: 1000;
-      pointer-events: none;
-      height: 16px;
-      left: 50%;
       top: 50%;
-      margin-top: -8px;
-      width: 80px;
-      margin-left: -40px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
+      left: 50%;
+      z-index: 1000;
       overflow: hidden;
+      margin-top: -8px;
+      margin-left: -40px;
+      width: 80px;
+      height: 16px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      opacity: 1;
+      pointer-events: none;
     }
 
     .dz-processing {
       .dz-upload-progress {
+        position: absolute;
+        display: flex;
         width: 100%;
         height: 100%;
-        display: flex;
-        position: absolute;
-        align-items: center;
-        justify-content: center;
         -webkit-transition: display 300ms ease-in-out;
         -moz-transition: display 300ms ease-in-out;
         -ms-transition: display 300ms ease-in-out;
         -o-transition: display 300ms ease-in-out;
         transition: display 300ms ease-in-out;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -140,10 +140,11 @@
 
 @-webkit-keyframes slideInDown {
   0% {
+    visibility: visible;
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
-    visibility: visible;
   }
+
   to {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -151,16 +152,18 @@
 }
 @keyframes slideInDown {
   0% {
+    visibility: visible;
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
-    visibility: visible;
   }
+
   to {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
 }
+
 .slideInDown {
-  -webkit-animation-name: slideInDown;
+  -webkit-animation-name: slideindown;
   animation-name: slideInDown;
 }

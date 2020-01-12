@@ -12,14 +12,14 @@ const routes: Routes = [
   {
     path: '',
     component: ScheduleComponent,
-    canActivate: [ScheduleGuard]
-  }
+    canActivate: [ScheduleGuard],
+  },
 ];
 
 @NgModule({
   declarations: [],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [ScheduleGuard]
+  providers: [ScheduleGuard],
 })
 export class ScheduleRoutingModule {}

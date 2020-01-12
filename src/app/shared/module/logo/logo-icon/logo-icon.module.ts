@@ -8,6 +8,6 @@ import { LogoIconComponent } from '@shared/module/logo/logo-icon/container/logo-
 @NgModule({
   declarations: [LogoIconComponent],
   imports: [CommonModule],
-  exports: [LogoIconComponent]
+  exports: [LogoIconComponent],
 })
 export class LogoIconModule {}

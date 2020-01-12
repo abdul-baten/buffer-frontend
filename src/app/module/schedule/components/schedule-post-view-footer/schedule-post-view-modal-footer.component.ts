@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'buffer--schedule-post-view-modal-footer',
   templateUrl: './schedule-post-view-modal-footer.component.html',
-  styleUrls: ['./schedule-post-view-modal-footer.component.scss']
+  styleUrls: ['./schedule-post-view-modal-footer.component.scss'],
 })
 export class SchedulePostViewModalFooterComponent {}

@@ -11,7 +11,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-type',
   templateUrl: './schedule-post-create-modal-form-type.component.html',
-  styleUrls: ['./schedule-post-create-modal-form-type.component.scss']
+  styleUrls: ['./schedule-post-create-modal-form-type.component.scss'],
 })
 export class SchedulePostCreateModalFormTypeComponent implements OnInit {
   formHeaderIcon = 'text_fields';
@@ -29,7 +29,7 @@ export class SchedulePostCreateModalFormTypeComponent implements OnInit {
 
   private buildPostCreateChooseTypeForm(): FormGroup {
     return this.formBuilder.group({
-      postType: new FormControl('', Validators.required)
+      postType: new FormControl('', Validators.required),
     });
   }
 

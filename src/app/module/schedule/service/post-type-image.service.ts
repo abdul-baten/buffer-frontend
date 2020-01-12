@@ -23,7 +23,7 @@ export class PostTypeImageService implements PostTypeGenerateInterface {
       url: 'https://httpbin.org/post',
       acceptedFiles: 'image/jpg,image/png,image/jpeg',
       dictDefaultMessage:
-        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload upto 5 images</span>'
+        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload upto 5 images</span>',
     };
 
     return config;

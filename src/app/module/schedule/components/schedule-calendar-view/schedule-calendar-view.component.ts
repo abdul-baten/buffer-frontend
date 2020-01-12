@@ -9,7 +9,7 @@ import {
   AfterViewInit,
   ApplicationRef,
   ChangeDetectionStrategy,
-  ComponentFactoryResolver
+  ComponentFactoryResolver,
 } from '@angular/core';
 import { DomPortalOutlet, PortalInjector, ComponentPortal } from '@angular/cdk/portal';
 
@@ -38,7 +38,7 @@ import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/sch
   selector: 'buffer--schedule-calendar-view',
   templateUrl: './schedule-calendar-view.component.html',
   styleUrls: ['./schedule-calendar-view.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   @Input() calendarView: string;
@@ -51,13 +51,13 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   header = {
     left: 'title',
     center: '',
-    right: 'calendarSettingsButton'
+    right: 'calendarSettingsButton',
   };
   slotLabelFormat = {
     hour: 'numeric',
     minute: '2-digit',
     omitZeroMinute: false,
-    meridiem: 'long'
+    meridiem: 'long',
   };
   selectable = true;
   snapDuration = 15;
@@ -65,20 +65,20 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   allDaySlot = false;
   nowIndicator = true;
   columnHeader = {
-    week: 'd'
+    week: 'd',
   };
   eventOverlap = false;
   maxTime = '24:00:00';
   slotLabelInterval = {
-    minutes: 2
+    minutes: 2,
   };
   customButtons = {
     calendarSettingsButton: {
       text: 'Settings',
       click: () => {
         this.scheduleFacade.openCalenderSettings();
-      }
-    }
+      },
+    },
   };
 
   get firstDay(): Observable<number> {
@@ -115,11 +115,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
         imageUrls: [
           {
             fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
-            fileType: 'img'
-          }
+            fileType: 'img',
+          },
         ],
         socialAccounts: ['facebook'],
-        postType: 'image'
+        postType: 'image',
       },
       {
         id: '1001',
@@ -132,12 +132,12 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
         videoUrls: [
           {
             fileURL: 'https://www.videvo.net/videvo_files/converted/2015_03/preview/BirdNoSound.mp480023.webm',
-            fileType: 'video'
-          }
+            fileType: 'video',
+          },
         ],
         socialAccounts: ['facebook'],
-        postType: 'video'
-      }
+        postType: 'video',
+      },
     ]);
   }
 
@@ -145,7 +145,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     private injector: Injector,
     private scheduleFacade: ScheduleFacade,
     private applicationRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {}
 
   ngAfterViewInit() {
@@ -185,12 +185,12 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
       element,
       this.componentFactoryResolver,
       this.applicationRef,
-      this.injector
+      this.injector,
     );
     const componentToAppend = new ComponentPortal(
       ScheduleCalendarViewPostComponent,
       null,
-      this.createPostDataInjector(eventInfo)
+      this.createPostDataInjector(eventInfo),
     );
     bodyPortalHost.attach(componentToAppend);
   }

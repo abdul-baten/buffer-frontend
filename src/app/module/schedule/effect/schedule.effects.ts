@@ -17,18 +17,18 @@ export class ScheduleEffects {
     () =>
       this.actions$.pipe(
         ofType(fromScheduleActions.removePostData),
-        tap(_ => this.scheduleFacade.openSnackbar('Post scheduled successfully'))
+        tap(_ => this.scheduleFacade.openSnackbar('Post scheduled successfully')),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   setCalendarSettings$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(fromCalendarActions.setCalendarFirstDay),
-        tap(_ => {})
+        tap(_ => {}),
       ),
-    { dispatch: false }
+    { dispatch: false },
   );
 
   constructor(private actions$: Actions, private scheduleFacade: ScheduleFacade) {}

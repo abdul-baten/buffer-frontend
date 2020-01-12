@@ -7,7 +7,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 @Component({
   selector: 'buffer--schedule-date-selection',
   templateUrl: './schedule-date-selection.component.html',
-  styleUrls: ['./schedule-date-selection.component.scss']
+  styleUrls: ['./schedule-date-selection.component.scss'],
 })
 export class ScheduleDateSelectionComponent {
   currentDate: Date = new Date();

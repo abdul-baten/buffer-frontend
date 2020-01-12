@@ -26,8 +26,8 @@ import { DashboardHeaderAccountComponent } from '@shared/module/header/dashboard
     MatMenuModule,
     MatIconModule,
     MatDividerModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
-  exports: [DashboardHeaderComponent]
+  exports: [DashboardHeaderComponent],
 })
 export class DashboardHeaderModule {}

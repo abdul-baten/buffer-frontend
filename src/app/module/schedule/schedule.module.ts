@@ -109,7 +109,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     SchedulePostCreateModalFormHeaderComponent,
     ScheduleCalendarSettingsModalFormComponent,
     SchedulePostRescheduleConfirmModalComponent,
-    SchedulePostCreateModalFormMediaSelectionComponent
+    SchedulePostCreateModalFormMediaSelectionComponent,
   ],
   imports: [
     CommonModule,
@@ -147,8 +147,8 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     EffectsModule.forFeature([ScheduleEffects]),
 
     LazyLoadImageModule.forRoot({
-      preset: scrollPreset
-    })
+      preset: scrollPreset,
+    }),
   ],
   providers: [
     DatePipe,
@@ -157,7 +157,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     SnackbarService,
     PostTypeImageService,
     PostTypeVideoService,
-    KeyboardEventService
+    KeyboardEventService,
   ],
   entryComponents: [
     ScheduleDeletePostModalComponent,
@@ -165,7 +165,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     ScheduleCalendarViewPostComponent,
     SchedulePostRescheduleModalComponent,
     ScheduleCalendarSettingsModalComponent,
-    SchedulePostRescheduleConfirmModalComponent
-  ]
+    SchedulePostRescheduleConfirmModalComponent,
+  ],
 })
 export class ScheduleModule {}

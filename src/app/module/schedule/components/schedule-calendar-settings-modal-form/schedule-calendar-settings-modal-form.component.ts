@@ -15,7 +15,7 @@ import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
 @Component({
   selector: 'buffer--schedule-calendar-settings-modal-form',
   templateUrl: './schedule-calendar-settings-modal-form.component.html',
-  styleUrls: ['./schedule-calendar-settings-modal-form.component.scss']
+  styleUrls: ['./schedule-calendar-settings-modal-form.component.scss'],
 })
 export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
   weekDays = ['Sunday', 'Monday'];
@@ -41,7 +41,7 @@ export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
   private buildCalendarSettingsForm(): FormGroup {
     return this.formBuilder.group({
       firstDay: [WEEK_DAY.MONDAY],
-      showNonCurrentDates: [true]
+      showNonCurrentDates: [true],
     });
   }
 
@@ -51,7 +51,7 @@ export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((firstDay: number) => {
           this.scheduleFacade.setCalendarFirstDay(firstDay);
-        })
+        }),
     );
   }
 
@@ -59,7 +59,7 @@ export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
     this.subscriptions$.add(
       this.scheduleFacade.getCalendarFirstDay().subscribe((firstDay: number) => {
         this.calendarSettingsForm.controls.firstDay.setValue(firstDay);
-      })
+      }),
     );
   }
 
@@ -69,7 +69,7 @@ export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((showNonCurrentDates: boolean) => {
           this.scheduleFacade.setCalendarNonCurrentDates(showNonCurrentDates);
-        })
+        }),
     );
   }
 
@@ -77,7 +77,7 @@ export class ScheduleCalendarSettingsModalFormComponent implements OnDestroy {
     this.subscriptions$.add(
       this.scheduleFacade.getCalendarNonCurrentDates().subscribe((showNonCurrentDates: boolean) => {
         this.calendarSettingsForm.controls.showNonCurrentDates.setValue(showNonCurrentDates);
-      })
+      }),
     );
   }
 }

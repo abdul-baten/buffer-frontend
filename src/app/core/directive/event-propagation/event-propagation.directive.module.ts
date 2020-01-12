@@ -6,6 +6,6 @@ import { EventPropagationDirective } from './event-propagation.directive';
 
 @NgModule({
   declarations: [EventPropagationDirective],
-  exports: [EventPropagationDirective]
+  exports: [EventPropagationDirective],
 })
 export class EventPropagationDirectiveModule {}

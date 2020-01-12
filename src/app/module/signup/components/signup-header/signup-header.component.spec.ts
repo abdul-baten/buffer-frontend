@@ -7,7 +7,7 @@ describe('SignupHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SignupHeaderComponent]
+      declarations: [SignupHeaderComponent],
     }).compileComponents();
   }));
 

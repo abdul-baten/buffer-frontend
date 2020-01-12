@@ -23,7 +23,7 @@ export class PostTypeVideoService implements PostTypeGenerateInterface {
       url: 'https://httpbin.org/post',
       acceptedFiles: 'video/mp4',
       dictDefaultMessage:
-        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload</span>'
+        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload</span>',
     };
 
     return config;

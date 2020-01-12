@@ -21,6 +21,6 @@ import { LandingFacade } from '@app/landing/facade/landing.facade';
 @NgModule({
   declarations: [LandingComponent, IntroJumboComponent, IntroCreateComponent, IntroPublishComponent],
   imports: [CommonModule, LandingRoutingModule, MainHeaderModule, MatButtonModule],
-  providers: [LandingFacade]
+  providers: [LandingFacade],
 })
 export class LandingModule {}

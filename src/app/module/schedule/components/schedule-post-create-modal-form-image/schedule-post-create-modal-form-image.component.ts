@@ -15,7 +15,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-image',
   templateUrl: './schedule-post-create-modal-form-image.component.html',
-  styleUrls: ['./schedule-post-create-modal-form-image.component.scss']
+  styleUrls: ['./schedule-post-create-modal-form-image.component.scss'],
 })
 export class SchedulePostCreateModalFormImageComponent implements OnDestroy {
   nextButtonDisabled = true;
@@ -37,14 +37,14 @@ export class SchedulePostCreateModalFormImageComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeImageForm.patchValue({ postDate: new Date(postDate) });
-      })
+      }),
     );
   }
 
   private biuldPostCreateTypeImageForm(): FormGroup {
     return this.formBuilder.group({
       postDate: new FormControl(null, Validators.required),
-      postCaption: new FormControl(null, Validators.required)
+      postCaption: new FormControl(null, Validators.required),
     });
   }
 

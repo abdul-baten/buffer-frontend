@@ -1,8 +1,8 @@
 :host {
+  position: relative;
+  display: flex;
   padding: 0;
   height: 400px;
-  display: flex;
-  position: relative;
   align-items: center;
   justify-content: center;
 }

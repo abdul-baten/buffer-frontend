@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpResponse,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 
 // Third Party Modules
@@ -21,16 +21,16 @@ export class LoggerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap(
         (event: HttpEvent<any>) => (resStatus = event instanceof HttpResponse ? 'succeeded' : ''),
-        (_: HttpErrorResponse) => (resStatus = 'failed')
+        (_: HttpErrorResponse) => (resStatus = 'failed'),
       ),
       finalize(() => {
         const elapsedTime = Date.now() - reqStarted;
         const message = `${req.method} "${req.urlWithParams}" ${resStatus} in ${elapsedTime} ms`;
         Logger.info({
           level: resStatus === 'failed' ? 'error' : 'info',
-          message
+          message,
         });
-      })
+      }),
     );
   }
 }

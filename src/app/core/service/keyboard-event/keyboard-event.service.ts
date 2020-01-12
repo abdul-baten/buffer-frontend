@@ -13,7 +13,7 @@ import { ScheduleFacade } from 'src/app/module/schedule/facade/schedule.facade';
 import { CALENDAR_VIEW } from 'src/app/module/schedule/enum/calendar-view-options.enum';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class KeyboardEventService implements OnDestroy {
   private subscriptions$ = new SubSink();
@@ -32,7 +32,7 @@ export class KeyboardEventService implements OnDestroy {
           distinctUntilKeyChanged<KeyboardEvent>('keyCode'),
           distinctUntilChanged(),
           pluck('keyCode'),
-          shareReplay()
+          shareReplay(),
         )
         .subscribe((keyCode: number) => {
           switch (keyCode) {
@@ -48,7 +48,7 @@ export class KeyboardEventService implements OnDestroy {
             default:
               break;
           }
-        })
+        }),
     );
   }
 }

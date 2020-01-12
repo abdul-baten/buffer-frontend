@@ -19,7 +19,7 @@ import { SchedulePostCreateModalFormTypeComponent } from '@app/schedule/componen
 @Component({
   selector: 'buffer--schedule-post-create-modal-form',
   templateUrl: './schedule-post-create-modal-form.component.html',
-  styleUrls: ['./schedule-post-create-modal-form.component.scss']
+  styleUrls: ['./schedule-post-create-modal-form.component.scss'],
 })
 export class SchedulePostCreateModalFormComponent {
   postType$: Observable<POST_TYPE>;

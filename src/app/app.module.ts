@@ -1,7 +1,8 @@
 // Core Module
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 
 // Application Specific Module
 import { AppRoutingModule } from './app-routing.module';
@@ -26,38 +27,40 @@ import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/
 export const customTooltipConfig: MatTooltipDefaultOptions = {
   showDelay: 500,
   hideDelay: 100,
-  touchendHideDelay: 500
+  touchendHideDelay: 500,
 };
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    BrowserTransferStateModule,
+    BrowserModule.withServerTransition({ appId: 'buffer' }),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
         strictStateSerializability: true,
-        strictActionSerializability: true
-      }
+        strictActionSerializability: true,
+      },
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AppEffects]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
-      routerState: RouterState.Minimal
-    })
+      routerState: RouterState.Minimal,
+    }),
   ],
   providers: [
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

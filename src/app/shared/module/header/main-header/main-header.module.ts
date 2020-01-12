@@ -12,6 +12,6 @@ import { MainHeaderComponent } from '@shared/module/header/main-header/container
 @NgModule({
   declarations: [MainHeaderComponent],
   imports: [CommonModule, MainLogoModule, MenuModule],
-  exports: [MainHeaderComponent]
+  exports: [MainHeaderComponent],
 })
 export class MainHeaderModule {}

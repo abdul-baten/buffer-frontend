@@ -8,7 +8,7 @@ describe('SignupJumboComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SignupJumboComponent]
+      declarations: [SignupJumboComponent],
     }).compileComponents();
   }));
 

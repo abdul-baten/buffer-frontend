@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'buffer--main-logo',
   templateUrl: './main-logo.component.html',
-  styleUrls: ['./main-logo.component.scss']
+  styleUrls: ['./main-logo.component.scss'],
 })
 export class MainLogoComponent implements OnInit {
   constructor(private router: Router) {}

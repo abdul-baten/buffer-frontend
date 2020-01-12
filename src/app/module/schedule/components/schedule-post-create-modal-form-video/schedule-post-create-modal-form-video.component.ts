@@ -15,7 +15,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 @Component({
   selector: 'buffer--schedule-post-create-modal-form-video',
   templateUrl: './schedule-post-create-modal-form-video.component.html',
-  styleUrls: ['./schedule-post-create-modal-form-video.component.scss']
+  styleUrls: ['./schedule-post-create-modal-form-video.component.scss'],
 })
 export class SchedulePostCreateModalFormVideoComponent implements OnDestroy {
   nextButtonDisabled = true;
@@ -37,7 +37,7 @@ export class SchedulePostCreateModalFormVideoComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeVideoForm.patchValue({ postDate: new Date(postDate) });
-      })
+      }),
     );
   }
 
@@ -49,7 +49,7 @@ export class SchedulePostCreateModalFormVideoComponent implements OnDestroy {
   private biuldPostCreateTypeImageForm(): FormGroup {
     return this.formBuilder.group({
       postDate: [null, Validators.required],
-      postCaption: [null, Validators.required]
+      postCaption: [null, Validators.required],
     });
   }
 

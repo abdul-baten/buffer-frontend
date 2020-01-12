@@ -8,7 +8,7 @@ describe('IntroCreateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IntroCreateComponent]
+      declarations: [IntroCreateComponent],
     }).compileComponents();
   }));
 

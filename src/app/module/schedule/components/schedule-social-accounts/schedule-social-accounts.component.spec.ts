@@ -10,7 +10,7 @@ describe('ScheduleSocialAccountsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ScheduleSocialAccountsComponent]
+      declarations: [ScheduleSocialAccountsComponent],
     }).compileComponents();
   }));
 

@@ -16,7 +16,7 @@ interface AppScheduleState {
 
 const reducers: ActionReducerMap<AppScheduleState> = {
   calendar: fromCalendarReducer.reducer,
-  schedule: fromScheduleReducer.reducer
+  schedule: fromScheduleReducer.reducer,
 };
 
 export { reducers, AppScheduleState, schedulePostFeatureKey };

@@ -10,7 +10,7 @@ describe('SchedulePostViewModalFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SchedulePostViewModalFooterComponent]
+      declarations: [SchedulePostViewModalFooterComponent],
     }).compileComponents();
   }));
 

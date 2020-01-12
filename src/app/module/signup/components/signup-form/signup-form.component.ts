@@ -9,7 +9,7 @@ import { PasswordValidator } from '@core/validation/password.validation';
 @Component({
   selector: 'buffer--signup-form',
   templateUrl: './signup-form.component.html',
-  styleUrls: ['./signup-form.component.scss']
+  styleUrls: ['./signup-form.component.scss'],
 })
 export class SignupFormComponent implements OnInit {
   signupForm: FormGroup;
@@ -37,8 +37,8 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars
-          ])
+            PasswordValidator.allowedPasswordSpecialChars,
+          ]),
         ),
         confirmPassword: new FormControl(
           '',
@@ -48,12 +48,12 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars
-          ])
+            PasswordValidator.allowedPasswordSpecialChars,
+          ]),
         ),
-        termsAndCondition: new FormControl(false, Validators.required)
+        termsAndCondition: new FormControl(false, Validators.required),
       },
-      { validator: PasswordValidator.passwordMismatch }
+      { validator: PasswordValidator.passwordMismatch },
     );
   }
 }

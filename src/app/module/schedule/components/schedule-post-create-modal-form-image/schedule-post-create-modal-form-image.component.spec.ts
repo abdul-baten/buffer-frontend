@@ -10,7 +10,7 @@ describe('SchedulePostCreateModalFormImageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SchedulePostCreateModalFormImageComponent]
+      declarations: [SchedulePostCreateModalFormImageComponent],
     }).compileComponents();
   }));
 

@@ -16,6 +16,6 @@ import { MenuComponent } from '@shared/module/menu/container/menu.component';
 @NgModule({
   declarations: [MenuComponent],
   imports: [CommonModule, RouterModule, SigninModule, MatButtonModule, MatDialogModule],
-  exports: [MenuComponent]
+  exports: [MenuComponent],
 })
 export class MenuModule {}

@@ -16,7 +16,7 @@ export const initialState: ScheduleState = {
   postDraft: false,
   postCaption: null,
   postLocation: null,
-  postOriginalDate: null
+  postOriginalDate: null,
 };
 
 export const postDataReducer = createReducer(
@@ -24,23 +24,23 @@ export const postDataReducer = createReducer(
   on(fromScheduleActions.setPostDate, (state, action) => {
     return {
       ...state,
-      postOriginalDate: action.postOriginalDate
+      postOriginalDate: action.postOriginalDate,
     };
   }),
   on(fromScheduleActions.setPostType, (state, action) => {
     return {
       ...state,
       postType: action.postType,
-      postOriginalDate: state.postOriginalDate
+      postOriginalDate: state.postOriginalDate,
     };
   }),
   on(fromScheduleActions.setPostData, (state, action) => {
     return {
       ...state,
-      ...action.postData
+      ...action.postData,
     };
   }),
-  on(fromScheduleActions.removePostData, _ => initialState)
+  on(fromScheduleActions.removePostData, _ => initialState),
 );
 
 export function reducer(state: ScheduleState | undefined, action: Action) {

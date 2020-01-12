@@ -10,7 +10,7 @@ describe('SchedulePostCreateModalFormHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SchedulePostCreateModalFormHeaderComponent]
+      declarations: [SchedulePostCreateModalFormHeaderComponent],
     }).compileComponents();
   }));
 

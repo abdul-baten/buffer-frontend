@@ -40,8 +40,8 @@ $mat-buffer--green: (
     A100: $dark-primary-text,
     A200: $dark-primary-text,
     A400: $dark-primary-text,
-    A700: $dark-primary-text
-  )
+    A700: $dark-primary-text,
+  ),
 );
 
 $mat-buffer--orange: (
@@ -73,8 +73,8 @@ $mat-buffer--orange: (
     A100: $dark-primary-text,
     A200: $dark-primary-text,
     A400: $dark-primary-text,
-    A700: $dark-primary-text
-  )
+    A700: $dark-primary-text,
+  ),
 );
 
 $mat-buffer--red: (
@@ -106,8 +106,8 @@ $mat-buffer--red: (
     A100: $dark-primary-text,
     A200: $dark-primary-text,
     A400: $dark-primary-text,
-    A700: $dark-primary-text
-  )
+    A700: $dark-primary-text,
+  ),
 );
 
 $buffer-warn: mat-palette($mat-buffer--red);
@@ -127,7 +127,7 @@ $buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
 $buffer-typography: mat-typography-config(
   $font-family: $buffer--font-family-regular,
   $button: mat-typography-level($buffer--font-size-sm, 14px, 400),
-  $input: mat-typography-level($buffer--font-size-sm, 1, 400)
+  $input: mat-typography-level($buffer--font-size-sm, 1, 400),
 );
 
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
