@@ -7,7 +7,7 @@ import { MainLogoComponent } from '@shared/module/logo/main-logo/container/main-
 
 @NgModule({
   declarations: [MainLogoComponent],
-  imports: [CommonModule],
   exports: [MainLogoComponent],
+  imports: [CommonModule],
 })
 export class MainLogoModule {}

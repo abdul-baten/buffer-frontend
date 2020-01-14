@@ -1,6 +1,6 @@
 // Core Modules
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 // Application Specific Modules
@@ -15,7 +15,7 @@ import { MenuComponent } from '@shared/module/menu/container/menu.component';
 
 @NgModule({
   declarations: [MenuComponent],
-  imports: [CommonModule, RouterModule, SigninModule, MatButtonModule, MatDialogModule],
   exports: [MenuComponent],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, RouterModule, SigninModule],
 })
 export class MenuModule {}

@@ -16,13 +16,8 @@ import { SubSink } from 'subsink';
 export class SchedulePostCreateModalComponent implements OnDestroy {
   private subscriptions$ = new SubSink();
 
-  constructor() // private scheduleFacade: ScheduleFacade,
-  // private eventCreateModalRef: MatDialogRef<SchedulePostCreateModalComponent>
-  {
-    this.subscriptions$
-      .add
-      // this.scheduleFacade.getPostCreateModalObservable().subscribe(() => this.eventCreateModalRef.close())
-      ();
+  constructor() {
+    this.subscriptions$.add();
   }
 
   @HostListener('window:beforeunload')

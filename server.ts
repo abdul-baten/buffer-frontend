@@ -1,15 +1,20 @@
 import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
 
+import { join } from 'path';
+import * as https from 'https';
+import * as domino from 'domino';
+import { readFileSync } from 'fs';
+import * as express from 'express';
+import * as compression from 'compression';
+
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 
-import * as compression from 'compression';
-import * as domino from 'domino';
-import * as express from 'express';
+const privateKey = readFileSync('cert/cert.key', 'utf8');
+const certificate = readFileSync('cert/cert.crt', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
@@ -40,6 +45,7 @@ global['Prism'] = null;
 
 // Config renderer
 const app = express();
+const httpsServer = https.createServer(credentials, app);
 try {
   app.engine('html', (_, options: any, callback) => {
     const engine = ngExpressEngine({
@@ -71,6 +77,6 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+httpsServer.listen(PORT, () => {
   console.log(`Node Express server listening on http://localhost:${PORT}!`);
 });
