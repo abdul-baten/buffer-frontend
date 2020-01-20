@@ -1,0 +1,75 @@
+<div class="clearfix">
+  <div class="buffer--background-color-white buffer--border-radius-lg buffer--box-shadow-xl buffer--padding-12">
+    <div class="clearfix">
+      <h2
+        class="buffer--text-color-primary-800 buffer--font-family-bold buffer--font-size-3xl buffer--line-height-leading-loose buffer--margin-bottom-3"
+      >
+        Sign in
+      </h2>
+    </div>
+
+    <div class="clearfix">
+      <form [formGroup]="signinForm" novalidate>
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Email address</mat-label>
+            <input
+              type="text"
+              matInput
+              autocomplete="off"
+              formControlName="emailAddress"
+              autocomplete="current-password"
+              required
+            />
+            <mat-error align="end" *ngIf="signinForm.controls.emailAddress.invalid"
+              >Enter a valid email address.</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              matInput
+              formControlName="password"
+              autocomplete="current-password"
+              required
+            />
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error align="end" *ngIf="signinForm.controls.password.invalid">Enter a valid password.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="clearfix">
+          <div class="buffer--margin-y-2">
+            <button
+              color="primary"
+              mat-flat-button
+              [disabled]="signinForm.invalid"
+              class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--box-shadow-lg buffer--box-shadow-hover-xl"
+            >
+              Sign in
+            </button>
+          </div>
+        </div>
+
+        <div class="clearfix">
+          <a
+            class="buffer--get-started-short-link buffer--font-size-base buffer--line-height-leading-normal buffer--font-family-regular buffer--margin-top-5"
+          >
+            <span>Forgot your password? Reset now</span>
+            <span
+              ><i class="material-icons buffer--margin-left-2 buffer--get-started-short-link-icon"
+                >arrow_forward</i
+              ></span
+            >
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

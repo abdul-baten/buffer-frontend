@@ -1,14 +1,14 @@
 :host {
-  display: block;
-  background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
-  background-image: url('/assets/images/background/buffer--auth-signin-background.svg');
+	display: block;
+	background-image: url('/assets/images/background/buffer--auth-signin-background.svg');
+	background-position: bottom center;
+	background-size: cover;
+	background-repeat: no-repeat;
 
-  .buffer--signup-form-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
+	.buffer--signup-form-content {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
 }

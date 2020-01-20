@@ -65,5 +65,5 @@ export enum HTTP_STATUS {
   StatusInsufficientStorage = 507, // RFC 4918, 11.5
   StatusLoopDetected = 508, // RFC 5842, 7.2
   StatusNotExtended = 510, // RFC 2774, 7
-  StatusNetworkAuthenticationRequired = 511 // RFC 6585, 6
+  StatusNetworkAuthenticationRequired = 511, // RFC 6585, 6
 }

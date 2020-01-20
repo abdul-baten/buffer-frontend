@@ -8,372 +8,124 @@
   border-color: $buffer--border-transparent !important;
 }
 
-.buffer--border-black {
-  border-color: $buffer--border-black !important;
+.buffer--border-color-black {
+  border-color: $buffer--border-color-black !important;
 }
 
-.buffer--border-white {
-  border-color: $buffer--border-white !important;
+.buffer--border-color-white {
+  border-color: $buffer--border-color-white !important;
 }
 
-.buffer--border-gray-100 {
-  border-color: $buffer--border-gray-100 !important;
+.buffer--border-color-gray {
+  border-color: $buffer--border-color-gray !important;
 }
 
-.buffer--border-gray-200 {
-  border-color: $buffer--border-gray-200 !important;
+.buffer--border-color-warn-100 {
+  border-color: $buffer--border-color-warn-100 !important;
 }
 
-.buffer--border-gray-300 {
-  border-color: $buffer--border-gray-300 !important;
+.buffer--border-color-warn-200 {
+  border-color: $buffer--border-color-warn-200 !important;
 }
 
-.buffer--border-gray-400 {
-  border-color: $buffer--border-gray-400 !important;
+.buffer--border-color-warn-300 {
+  border-color: $buffer--border-color-warn-300 !important;
 }
 
-.buffer--border-gray-500 {
-  border-color: $buffer--border-gray-500 !important;
+.buffer--border-color-warn-400 {
+  border-color: $buffer--border-color-warn-400 !important;
 }
 
-.buffer--border-gray-600 {
-  border-color: $buffer--border-gray-600 !important;
+.buffer--border-color-warn-500 {
+  border-color: $buffer--border-color-warn-500 !important;
 }
 
-.buffer--border-gray-700 {
-  border-color: $buffer--border-gray-700 !important;
+.buffer--border-color-warn-600 {
+  border-color: $buffer--border-color-warn-600 !important;
 }
 
-.buffer--border-gray-800 {
-  border-color: $buffer--border-gray-800 !important;
+.buffer--border-color-warn-700 {
+  border-color: $buffer--border-color-warn-700 !important;
 }
 
-.buffer--border-gray-900 {
-  border-color: $buffer--border-gray-900 !important;
+.buffer--border-color-warn-800 {
+  border-color: $buffer--border-color-warn-800 !important;
 }
 
-.buffer--border-red-100 {
-  border-color: $buffer--border-red-100 !important;
+.buffer--border-color-warn-900 {
+  border-color: $buffer--border-color-warn-900 !important;
 }
 
-.buffer--border-red-200 {
-  border-color: $buffer--border-red-200 !important;
+.buffer--border-color-accent-100 {
+  border-color: $buffer--border-color-accent-100 !important;
 }
 
-.buffer--border-red-300 {
-  border-color: $buffer--border-red-300 !important;
+.buffer--border-color-accent-200 {
+  border-color: $buffer--border-color-accent-200 !important;
 }
 
-.buffer--border-red-400 {
-  border-color: $buffer--border-red-400 !important;
+.buffer--border-color-accent-300 {
+  border-color: $buffer--border-color-accent-300 !important;
 }
 
-.buffer--border-red-500 {
-  border-color: $buffer--border-red-500 !important;
+.buffer--border-color-accent-400 {
+  border-color: $buffer--border-color-accent-400 !important;
 }
 
-.buffer--border-red-600 {
-  border-color: $buffer--border-red-600 !important;
+.buffer--border-color-accent-500 {
+  border-color: $buffer--border-color-accent-500 !important;
 }
 
-.buffer--border-red-700 {
-  border-color: $buffer--border-red-700 !important;
+.buffer--border-color-accent-600 {
+  border-color: $buffer--border-color-accent-600 !important;
 }
 
-.buffer--border-red-800 {
-  border-color: $buffer--border-red-800 !important;
+.buffer--border-color-accent-700 {
+  border-color: $buffer--border-color-accent-700 !important;
 }
 
-.buffer--border-red-900 {
-  border-color: $buffer--border-red-900 !important;
+.buffer--border-color-accent-800 {
+  border-color: $buffer--border-color-accent-800 !important;
 }
 
-.buffer--border-orange-100 {
-  border-color: $buffer--border-orange-100 !important;
+.buffer--border-color-accent-900 {
+  border-color: $buffer--border-color-accent-900 !important;
 }
 
-.buffer--border-orange-200 {
-  border-color: $buffer--border-orange-200 !important;
+.buffer--border-color-primary-100 {
+  border-color: $buffer--border-color-primary-100 !important;
 }
 
-.buffer--border-orange-300 {
-  border-color: $buffer--border-orange-300 !important;
+.buffer--border-color-primary-200 {
+  border-color: $buffer--border-color-primary-200 !important;
 }
 
-.buffer--border-orange-400 {
-  border-color: $buffer--border-orange-400 !important;
+.buffer--border-color-primary-300 {
+  border-color: $buffer--border-color-primary-300 !important;
 }
 
-.buffer--border-orange-500 {
-  border-color: $buffer--border-orange-500 !important;
+.buffer--border-color-primary-400 {
+  border-color: $buffer--border-color-primary-400 !important;
 }
 
-.buffer--border-orange-600 {
-  border-color: $buffer--border-orange-600 !important;
+.buffer--border-color-primary-500 {
+  border-color: $buffer--border-color-primary-500 !important;
 }
 
-.buffer--border-orange-700 {
-  border-color: $buffer--border-orange-700 !important;
+.buffer--border-color-primary-600 {
+  border-color: $buffer--border-color-primary-600 !important;
 }
 
-.buffer--border-orange-800 {
-  border-color: $buffer--border-orange-800 !important;
+.buffer--border-color-primary-700 {
+  border-color: $buffer--border-color-primary-700 !important;
 }
 
-.buffer--border-orange-900 {
-  border-color: $buffer--border-orange-900 !important;
+.buffer--border-color-primary-800 {
+  border-color: $buffer--border-color-primary-800 !important;
 }
 
-.buffer--border-yellow-100 {
-  border-color: $buffer--border-yellow-100 !important;
-}
-
-.buffer--border-yellow-200 {
-  border-color: $buffer--border-yellow-200 !important;
-}
-
-.buffer--border-yellow-300 {
-  border-color: $buffer--border-yellow-300 !important;
-}
-
-.buffer--border-yellow-400 {
-  border-color: $buffer--border-yellow-400 !important;
-}
-
-.buffer--border-yellow-500 {
-  border-color: $buffer--border-yellow-500 !important;
-}
-
-.buffer--border-yellow-600 {
-  border-color: $buffer--border-yellow-600 !important;
-}
-
-.buffer--border-yellow-700 {
-  border-color: $buffer--border-yellow-700 !important;
-}
-
-.buffer--border-yellow-800 {
-  border-color: $buffer--border-yellow-800 !important;
-}
-
-.buffer--border-yellow-900 {
-  border-color: $buffer--border-yellow-900 !important;
-}
-
-.buffer--border-green-100 {
-  border-color: $buffer--border-green-100 !important;
-}
-
-.buffer--border-green-200 {
-  border-color: $buffer--border-green-200 !important;
-}
-
-.buffer--border-green-300 {
-  border-color: $buffer--border-green-300 !important;
-}
-
-.buffer--border-green-400 {
-  border-color: $buffer--border-green-400 !important;
-}
-
-.buffer--border-green-500 {
-  border-color: $buffer--border-green-500 !important;
-}
-
-.buffer--border-green-600 {
-  border-color: $buffer--border-green-600 !important;
-}
-
-.buffer--border-green-700 {
-  border-color: $buffer--border-green-700 !important;
-}
-
-.buffer--border-green-800 {
-  border-color: $buffer--border-green-800 !important;
-}
-
-.buffer--border-green-900 {
-  border-color: $buffer--border-green-900 !important;
-}
-
-.buffer--border-teal-100 {
-  border-color: $buffer--border-teal-100 !important;
-}
-
-.buffer--border-teal-200 {
-  border-color: $buffer--border-teal-200 !important;
-}
-
-.buffer--border-teal-300 {
-  border-color: $buffer--border-teal-300 !important;
-}
-
-.buffer--border-teal-400 {
-  border-color: $buffer--border-teal-400 !important;
-}
-
-.buffer--border-teal-500 {
-  border-color: $buffer--border-teal-500 !important;
-}
-
-.buffer--border-teal-600 {
-  border-color: $buffer--border-teal-600 !important;
-}
-
-.buffer--border-teal-700 {
-  border-color: $buffer--border-teal-700 !important;
-}
-
-.buffer--border-teal-800 {
-  border-color: $buffer--border-teal-800 !important;
-}
-
-.buffer--border-teal-900 {
-  border-color: $buffer--border-teal-900 !important;
-}
-
-.buffer--border-blue-100 {
-  border-color: $buffer--border-blue-100 !important;
-}
-
-.buffer--border-blue-200 {
-  border-color: $buffer--border-blue-200 !important;
-}
-
-.buffer--border-blue-300 {
-  border-color: $buffer--border-blue-300 !important;
-}
-
-.buffer--border-blue-400 {
-  border-color: $buffer--border-blue-400 !important;
-}
-
-.buffer--border-blue-500 {
-  border-color: $buffer--border-blue-500 !important;
-}
-
-.buffer--border-blue-600 {
-  border-color: $buffer--border-blue-600 !important;
-}
-
-.buffer--border-blue-700 {
-  border-color: $buffer--border-blue-700 !important;
-}
-
-.buffer--border-blue-800 {
-  border-color: $buffer--border-blue-800 !important;
-}
-
-.buffer--border-blue-900 {
-  border-color: $buffer--border-blue-900 !important;
-}
-
-.buffer--border-indigo-100 {
-  border-color: $buffer--border-indigo-100 !important;
-}
-
-.buffer--border-indigo-200 {
-  border-color: $buffer--border-indigo-200 !important;
-}
-
-.buffer--border-indigo-300 {
-  border-color: $buffer--border-indigo-300 !important;
-}
-
-.buffer--border-indigo-400 {
-  border-color: $buffer--border-indigo-400 !important;
-}
-
-.buffer--border-indigo-500 {
-  border-color: $buffer--border-indigo-500 !important;
-}
-
-.buffer--border-indigo-600 {
-  border-color: $buffer--border-indigo-600 !important;
-}
-
-.buffer--border-indigo-700 {
-  border-color: $buffer--border-indigo-700 !important;
-}
-
-.buffer--border-indigo-800 {
-  border-color: $buffer--border-indigo-800 !important;
-}
-
-.buffer--border-indigo-900 {
-  border-color: $buffer--border-indigo-900 !important;
-}
-
-.buffer--border-purple-100 {
-  border-color: $buffer--border-purple-100 !important;
-}
-
-.buffer--border-purple-200 {
-  border-color: $buffer--border-purple-200 !important;
-}
-
-.buffer--border-purple-300 {
-  border-color: $buffer--border-purple-300 !important;
-}
-
-.buffer--border-purple-400 {
-  border-color: $buffer--border-purple-400 !important;
-}
-
-.buffer--border-purple-500 {
-  border-color: $buffer--border-purple-500 !important;
-}
-
-.buffer--border-purple-600 {
-  border-color: $buffer--border-purple-600 !important;
-}
-
-.buffer--border-purple-700 {
-  border-color: $buffer--border-purple-700 !important;
-}
-
-.buffer--border-purple-800 {
-  border-color: $buffer--border-purple-800 !important;
-}
-
-.buffer--border-purple-900 {
-  border-color: $buffer--border-purple-900 !important;
-}
-
-.buffer--border-pink-100 {
-  border-color: $buffer--border-pink-100 !important;
-}
-
-.buffer--border-pink-200 {
-  border-color: $buffer--border-pink-200 !important;
-}
-
-.buffer--border-pink-300 {
-  border-color: $buffer--border-pink-300 !important;
-}
-
-.buffer--border-pink-400 {
-  border-color: $buffer--border-pink-400 !important;
-}
-
-.buffer--border-pink-500 {
-  border-color: $buffer--border-pink-500 !important;
-}
-
-.buffer--border-pink-600 {
-  border-color: $buffer--border-pink-600 !important;
-}
-
-.buffer--border-pink-700 {
-  border-color: $buffer--border-pink-700 !important;
-}
-
-.buffer--border-pink-800 {
-  border-color: $buffer--border-pink-800 !important;
-}
-
-.buffer--border-pink-900 {
-  border-color: $buffer--border-pink-900 !important;
+.buffer--border-color-primary-900 {
+  border-color: $buffer--border-color-primary-900 !important;
 }
 
 /*
@@ -598,378 +350,6 @@
 
 .buffer--border-radius-bottom-left-full {
   border-bottom-left-radius: 9999px !important;
-}
-
-.buffer--border-transparent {
-  border-color: $buffer--border-transparent !important;
-}
-
-.buffer--border-black {
-  border-color: $buffer--border-black !important;
-}
-
-.buffer--border-white {
-  border-color: $buffer--border-white !important;
-}
-
-.buffer--border-gray-100 {
-  border-color: $buffer--border-gray-100 !important;
-}
-
-.buffer--border-gray-200 {
-  border-color: $buffer--border-gray-200 !important;
-}
-
-.buffer--border-gray-300 {
-  border-color: $buffer--border-gray-300 !important;
-}
-
-.buffer--border-gray-400 {
-  border-color: $buffer--border-gray-400 !important;
-}
-
-.buffer--border-gray-500 {
-  border-color: $buffer--border-gray-500 !important;
-}
-
-.buffer--border-gray-600 {
-  border-color: $buffer--border-gray-600 !important;
-}
-
-.buffer--border-gray-700 {
-  border-color: $buffer--border-gray-700 !important;
-}
-
-.buffer--border-gray-800 {
-  border-color: $buffer--border-gray-800 !important;
-}
-
-.buffer--border-gray-900 {
-  border-color: $buffer--border-gray-900 !important;
-}
-
-.buffer--border-red-100 {
-  border-color: $buffer--border-red-100 !important;
-}
-
-.buffer--border-red-200 {
-  border-color: $buffer--border-red-200 !important;
-}
-
-.buffer--border-red-300 {
-  border-color: $buffer--border-red-300 !important;
-}
-
-.buffer--border-red-400 {
-  border-color: $buffer--border-red-400 !important;
-}
-
-.buffer--border-red-500 {
-  border-color: $buffer--border-red-500 !important;
-}
-
-.buffer--border-red-600 {
-  border-color: $buffer--border-red-600 !important;
-}
-
-.buffer--border-red-700 {
-  border-color: $buffer--border-red-700 !important;
-}
-
-.buffer--border-red-800 {
-  border-color: $buffer--border-red-800 !important;
-}
-
-.buffer--border-red-900 {
-  border-color: $buffer--border-red-900 !important;
-}
-
-.buffer--border-orange-100 {
-  border-color: $buffer--border-orange-100 !important;
-}
-
-.buffer--border-orange-200 {
-  border-color: $buffer--border-orange-200 !important;
-}
-
-.buffer--border-orange-300 {
-  border-color: $buffer--border-orange-300 !important;
-}
-
-.buffer--border-orange-400 {
-  border-color: $buffer--border-orange-400 !important;
-}
-
-.buffer--border-orange-500 {
-  border-color: $buffer--border-orange-500 !important;
-}
-
-.buffer--border-orange-600 {
-  border-color: $buffer--border-orange-600 !important;
-}
-
-.buffer--border-orange-700 {
-  border-color: $buffer--border-orange-700 !important;
-}
-
-.buffer--border-orange-800 {
-  border-color: $buffer--border-orange-800 !important;
-}
-
-.buffer--border-orange-900 {
-  border-color: $buffer--border-orange-900 !important;
-}
-
-.buffer--border-yellow-100 {
-  border-color: $buffer--border-yellow-100 !important;
-}
-
-.buffer--border-yellow-200 {
-  border-color: $buffer--border-yellow-200 !important;
-}
-
-.buffer--border-yellow-300 {
-  border-color: $buffer--border-yellow-300 !important;
-}
-
-.buffer--border-yellow-400 {
-  border-color: $buffer--border-yellow-400 !important;
-}
-
-.buffer--border-yellow-500 {
-  border-color: $buffer--border-yellow-500 !important;
-}
-
-.buffer--border-yellow-600 {
-  border-color: $buffer--border-yellow-600 !important;
-}
-
-.buffer--border-yellow-700 {
-  border-color: $buffer--border-yellow-700 !important;
-}
-
-.buffer--border-yellow-800 {
-  border-color: $buffer--border-yellow-800 !important;
-}
-
-.buffer--border-yellow-900 {
-  border-color: $buffer--border-yellow-900 !important;
-}
-
-.buffer--border-green-100 {
-  border-color: $buffer--border-green-100 !important;
-}
-
-.buffer--border-green-200 {
-  border-color: $buffer--border-green-200 !important;
-}
-
-.buffer--border-green-300 {
-  border-color: $buffer--border-green-300 !important;
-}
-
-.buffer--border-green-400 {
-  border-color: $buffer--border-green-400 !important;
-}
-
-.buffer--border-green-500 {
-  border-color: $buffer--border-green-500 !important;
-}
-
-.buffer--border-green-600 {
-  border-color: $buffer--border-green-600 !important;
-}
-
-.buffer--border-green-700 {
-  border-color: $buffer--border-green-700 !important;
-}
-
-.buffer--border-green-800 {
-  border-color: $buffer--border-green-800 !important;
-}
-
-.buffer--border-green-900 {
-  border-color: $buffer--border-green-900 !important;
-}
-
-.buffer--border-teal-100 {
-  border-color: $buffer--border-teal-100 !important;
-}
-
-.buffer--border-teal-200 {
-  border-color: $buffer--border-teal-200 !important;
-}
-
-.buffer--border-teal-300 {
-  border-color: $buffer--border-teal-300 !important;
-}
-
-.buffer--border-teal-400 {
-  border-color: $buffer--border-teal-400 !important;
-}
-
-.buffer--border-teal-500 {
-  border-color: $buffer--border-teal-500 !important;
-}
-
-.buffer--border-teal-600 {
-  border-color: $buffer--border-teal-600 !important;
-}
-
-.buffer--border-teal-700 {
-  border-color: $buffer--border-teal-700 !important;
-}
-
-.buffer--border-teal-800 {
-  border-color: $buffer--border-teal-800 !important;
-}
-
-.buffer--border-teal-900 {
-  border-color: $buffer--border-teal-900 !important;
-}
-
-.buffer--border-blue-100 {
-  border-color: $buffer--border-blue-100 !important;
-}
-
-.buffer--border-blue-200 {
-  border-color: $buffer--border-blue-200 !important;
-}
-
-.buffer--border-blue-300 {
-  border-color: $buffer--border-blue-300 !important;
-}
-
-.buffer--border-blue-400 {
-  border-color: $buffer--border-blue-400 !important;
-}
-
-.buffer--border-blue-500 {
-  border-color: $buffer--border-blue-500 !important;
-}
-
-.buffer--border-blue-600 {
-  border-color: $buffer--border-blue-600 !important;
-}
-
-.buffer--border-blue-700 {
-  border-color: $buffer--border-blue-700 !important;
-}
-
-.buffer--border-blue-800 {
-  border-color: $buffer--border-blue-800 !important;
-}
-
-.buffer--border-blue-900 {
-  border-color: $buffer--border-blue-900 !important;
-}
-
-.buffer--border-indigo-100 {
-  border-color: $buffer--border-indigo-100 !important;
-}
-
-.buffer--border-indigo-200 {
-  border-color: $buffer--border-indigo-200 !important;
-}
-
-.buffer--border-indigo-300 {
-  border-color: $buffer--border-indigo-300 !important;
-}
-
-.buffer--border-indigo-400 {
-  border-color: $buffer--border-indigo-400 !important;
-}
-
-.buffer--border-indigo-500 {
-  border-color: $buffer--border-indigo-500 !important;
-}
-
-.buffer--border-indigo-600 {
-  border-color: $buffer--border-indigo-600 !important;
-}
-
-.buffer--border-indigo-700 {
-  border-color: $buffer--border-indigo-700 !important;
-}
-
-.buffer--border-indigo-800 {
-  border-color: $buffer--border-indigo-800 !important;
-}
-
-.buffer--border-indigo-900 {
-  border-color: $buffer--border-indigo-900 !important;
-}
-
-.buffer--border-purple-100 {
-  border-color: $buffer--border-purple-100 !important;
-}
-
-.buffer--border-purple-200 {
-  border-color: $buffer--border-purple-200 !important;
-}
-
-.buffer--border-purple-300 {
-  border-color: $buffer--border-purple-300 !important;
-}
-
-.buffer--border-purple-400 {
-  border-color: $buffer--border-purple-400 !important;
-}
-
-.buffer--border-purple-500 {
-  border-color: $buffer--border-purple-500 !important;
-}
-
-.buffer--border-purple-600 {
-  border-color: $buffer--border-purple-600 !important;
-}
-
-.buffer--border-purple-700 {
-  border-color: $buffer--border-purple-700 !important;
-}
-
-.buffer--border-purple-800 {
-  border-color: $buffer--border-purple-800 !important;
-}
-
-.buffer--border-purple-900 {
-  border-color: $buffer--border-purple-900 !important;
-}
-
-.buffer--border-pink-100 {
-  border-color: $buffer--border-pink-100 !important;
-}
-
-.buffer--border-pink-200 {
-  border-color: $buffer--border-pink-200 !important;
-}
-
-.buffer--border-pink-300 {
-  border-color: $buffer--border-pink-300 !important;
-}
-
-.buffer--border-pink-400 {
-  border-color: $buffer--border-pink-400 !important;
-}
-
-.buffer--border-pink-500 {
-  border-color: $buffer--border-pink-500 !important;
-}
-
-.buffer--border-pink-600 {
-  border-color: $buffer--border-pink-600 !important;
-}
-
-.buffer--border-pink-700 {
-  border-color: $buffer--border-pink-700 !important;
-}
-
-.buffer--border-pink-800 {
-  border-color: $buffer--border-pink-800 !important;
-}
-
-.buffer--border-pink-900 {
-  border-color: $buffer--border-pink-900 !important;
 }
 
 /*

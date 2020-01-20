@@ -1,0 +1,134 @@
+<div class="clearfix">
+  <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
+    <buffer--schedule-post-create-modal-form-header
+      [formHeader]="formHeader"
+      [formHeaderIcon]="formHeaderIcon"
+    ></buffer--schedule-post-create-modal-form-header>
+  </section>
+
+  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec buffer--overflow-y-auto">
+    <form
+      novalidate
+      [formGroup]="eventCreateTypeTextForm"
+      class="buffer--height-70 buffer--padding-x-10 buffer--padding-y-5"
+    >
+      <div class="clearfix">
+        <label for="postCaption" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+          >Caption</label
+        >
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <textarea
+            matInput
+            required
+            id="postCaption"
+            spellcheck="false"
+            cdkTextareaAutosize
+            cdkAutosizeMinRows="3"
+            cdkAutosizeMaxRows="5"
+            bufferEventPropagation
+            formControlName="postCaption"
+            placeholder="Write something"
+            #autosize="cdkTextareaAutosize"
+            [errorStateMatcher]="eventCreatePostFormErrorMatcher"
+            class="buffer--cursor-pointer buffer--line-height-leading-relaxed"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="clearfix">
+        <label
+          for="postLink"
+          class="buffer--cursor-pointer buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+          >Link Preview</label
+        >
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input
+            matInput
+            type="url"
+            id="postLink"
+            spellcheck="false"
+            formControlName="postLink"
+            class="buffer--cursor-pointer"
+            placeholder="Insert your link here"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="clearfix">
+        <label for="postLocation" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+          >Location</label
+        >
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input
+            matInput
+            type="text"
+            id="postLocation"
+            spellcheck="false"
+            placeholder="Add a location"
+            class="buffer--cursor-pointer"
+            formControlName="postLocation"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="clearfix">
+        <label for="postDate" class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm"
+          >Date</label
+        >
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input
+            matInput
+            readonly
+            type="text"
+            id="postDate"
+            autocomplete="off"
+            [min]="currentDateTime"
+            [owlDateTime]="postDate"
+            formControlName="postDate"
+            class="buffer--cursor-pointer"
+            [owlDateTimeTrigger]="postDate"
+            [errorStateMatcher]="eventCreatePostFormErrorMatcher"
+          />
+          <owl-date-time
+            #postDate
+            readonly
+            [stepMinute]="15"
+            [hour12Timer]="true"
+            [hideOtherMonths]="false"
+            [startAt]="currentDateTime"
+            panelClass="buffer--dialog-bottom-sheet-custom-panel"
+          ></owl-date-time>
+        </mat-form-field>
+      </div>
+    </form>
+  </section>
+
+  <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
+    <div
+      class="buffer--padding-x-10 buffer--padding-y-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-color-gray buffer--border-width-0 buffer--border-top-width buffer--border-style-solid"
+    >
+      <div class="clearfix">
+        <button
+          mat-button
+          color="accent"
+          (click)="onPreviousButtonClicked()"
+          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-12 buffer--padding-x-8 buffer--border-radius-lg"
+        >
+          <span>Back</span>
+        </button>
+      </div>
+      <div class="clearfix">
+        <button
+          type="submit"
+          color="primary"
+          mat-flat-button
+          (click)="onTextFormSubmit()"
+          [disabled]="eventCreateTypeTextForm.invalid"
+          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-12 buffer--padding-x-8 buffer--border-radius-lg"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,11 +1,11 @@
 // Core Modules
-import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'buffer--main-logo',
+  styleUrls: ['./main-logo.component.scss'],
   templateUrl: './main-logo.component.html',
-  styleUrls: ['./main-logo.component.scss']
 })
 export class MainLogoComponent implements OnInit {
   constructor(private router: Router) {}

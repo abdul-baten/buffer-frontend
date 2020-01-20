@@ -71,7 +71,7 @@ button {
 
 .mat-button-toggle-checked {
   color: $buffer--text-color-white !important;
-  background-color: $buffer--background-color-green-500 !important;
+  background-color: $buffer--background-color-primary-500 !important;
 }
 
 /*
@@ -121,7 +121,7 @@ button {
 }
 
 .mat-tab-label-active {
-  color: $buffer--text-color-blue-500 !important;
+  color: $buffer--text-color-primary-500 !important;
 }
 
 /*
@@ -136,9 +136,9 @@ button {
 /*
     * MATERIAL TOOLTIP
 */
-.mat-tooltip {
-  font-size: $buffer--font-size-sm !important;
-}
+// .mat-tooltip {
+//   font-size: $buffer--font-size-xs !important;
+// }
 
 /*
     * MATERIAL RANGE SLIDE
@@ -161,7 +161,7 @@ button {
 */
 
 .mat-form-field-flex {
-  border: 1px solid $buffer--background-color-green-500 !important;
+  border: 1px solid $buffer--background-color-primary-500 !important;
 }
 
 .mat-form-field-infix {
@@ -206,7 +206,7 @@ button {
 
 .mat-form-field-invalid {
   .mat-form-field-flex {
-    border-color: $buffer--border-red-500 !important;
+    border-color: $buffer--border-color-warn-500 !important;
   }
 }
 

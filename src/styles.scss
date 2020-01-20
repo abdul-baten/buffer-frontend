@@ -11,8 +11,8 @@
 .clearfix {
   &::after {
     content: '';
-    display: $buffer--display-table;
     clear: both;
+    display: $buffer--display-table;
   }
 }
 
@@ -55,7 +55,7 @@ a.buffer--default-link {
   padding: 5px 0;
   cursor: $buffer--cursor-pointer;
   position: $buffer--position-relative;
-  color: $buffer--text-color-green-500;
+  color: $buffer--text-color-primary-500;
   display: $buffer--display-inline-block;
   text-decoration: $buffer--text-decoration-none;
 
@@ -64,7 +64,7 @@ a.buffer--default-link {
     content: '';
     bottom: -2px;
     position: absolute;
-    border-bottom: 2px solid $buffer--text-color-green-500;
+    border-bottom: 2px solid $buffer--text-color-primary-500;
     transition: width 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
@@ -157,7 +157,7 @@ p {
 }
 
 .buffer--heading-span {
-  color: #00756a;
+  color: #356859;
   position: relative;
   &:after {
     left: 0px;

@@ -222,11 +222,11 @@
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
   border-color: rgba(0, 0, 0, 0.4);
-  background-color: $buffer--background-color-indigo-100;
+  background-color: $buffer--background-color-primary-100;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected {
   color: rgba(255, 255, 255, 0.85);
-  background-color: $buffer--background-color-green-500;
+  background-color: $buffer--background-color-primary-500;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected.owl-dt-calendar-cell-today {
   -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
@@ -430,7 +430,7 @@
   border-radius: $buffer--border-radius-full;
   width: $buffer--width-6;
   height: $buffer--height-6;
-  color: $buffer--text-color-green-500;
+  color: $buffer--text-color-primary-500;
 }
 .owl-dt-control-arrow-button[disabled] {
   cursor: $buffer--cursor-default;
@@ -552,7 +552,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 .owl-dt-container-info .owl-dt-container-info-active {
-  color: $buffer--background-color-green-500;
+  color: $buffer--background-color-primary-500;
 }
 .owl-dt-container-disabled,
 .owl-dt-trigger-disabled {
@@ -577,7 +577,7 @@
   -moz-box-align: $buffer--text-align-center;
   -ms-flex-align: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
-  color: $buffer--background-color-green-500;
+  color: $buffer--background-color-primary-500;
   width: $buffer--width-percent-33;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box {
@@ -600,7 +600,7 @@
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:focus .owl-dt-control-button-content,
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:hover .owl-dt-control-button-content {
   color: $buffer--text-color-white;
-  background: $buffer--background-color-green-500;
+  background: $buffer--background-color-primary-500;
 }
 .owl-dt-calendar-only-current-month .owl-dt-calendar-cell-out {
   visibility: hidden;

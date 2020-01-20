@@ -1,40 +1,49 @@
 :host {
-  height: 100%;
-  display: block;
-  overflow: hidden;
-  position: relative;
+	position: relative;
+	display: block;
+	overflow: hidden;
 
-  .dashboard-header-sec {
-    top: 0;
-    left: 0;
-    width: 5rem;
-    display: block;
-    position: fixed;
-    height: 100vh;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-  }
+	::ng-deep {
 
-  .dashboard-route-sec {
-    width: calc(100vw - 5rem);
-  }
+		.mat-drawer-end {
+			border: none;
+		}
 
-  ::ng-deep {
-    .mat-drawer-end {
-      border: none;
-    }
+		.dashboard-header-sec {
+			position: fixed;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 5rem;
+			height: 100vh;
+			border-right: 1px solid rgba(0, 0, 0, 0.08);
+		}
 
-    .fc-widget-header {
-      border-right-width: 0;
-      margin-right: 0 !important;
-    }
+		.buffer--schedule-menu-sec {
+			height: 65px;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+		}
 
-    .mat-calendar-body-cell {
-      font-size: 0.75rem;
-      font-family: 'Averta SemiBold';
-    }
+		.buffer--schedule-calendar-view-sec {
+			height: calc(100vh - 65px);
+		}
 
-    .buffer--schedule-calendar-sec {
-      width: 100%;
-    }
-  }
+		.dashboard-route-sec {
+			width: calc(100vw - 5rem);
+		}
+
+		.fc-widget-header {
+			margin-right: 0 !important;
+			border-right-width: 0;
+		}
+
+		.mat-calendar-body-cell {
+			font-family: 'Averta SemiBold';
+			font-size: 0.75rem;
+		}
+
+		.buffer--schedule-calendar-sec {
+			width: 100%;
+		}
+	}
 }

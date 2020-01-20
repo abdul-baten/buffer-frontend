@@ -1,0 +1,80 @@
+<div [ngClass]="{ 'buffer--opacity-50': !upcomingPost }" class="clearfix buffer--padding-x-2 buffer--border-radius-lg">
+  <div class="clearfix buffer--position-relative">
+    <div
+      class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
+    >
+      <div class="clearfix">
+        <p
+          matTooltipPosition="after"
+          matTooltipClass="buffer--font-size-xs"
+          class="buffer--font-family-semi-bold buffer--font-size-xs"
+          [matTooltip]="upcomingPost ? 'Upcoming post' : 'Past post'"
+        >
+          <i
+            [ngClass]="{
+              'buffer--text-color-primary-500': upcomingPost,
+              'buffer--text-color-warn-500': !upcomingPost
+            }"
+            class="material-icons buffer--font-size-sm buffer--vertical-align-text-top"
+            >adjust</i
+          >
+          {{ calendarData.event.start | date: 'shortTime' }}
+        </p>
+      </div>
+      <div class="clearfix">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class="buffer--font-size-base">more_vert</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="clearfix">
+      <div [ngSwitch]="calendarData.event.extendedProps.postType">
+        <div *ngSwitchCase="'image'">
+          <div class="clearfix">
+            <img
+              class="buffer--width-full buffer--border-radius-lg"
+              [defaultImage]="calendarData.event.extendedProps.imageUrls[0].fileURL"
+              [lazyLoad]="calendarData.event.extendedProps.imageUrls[0].fileURL"
+            />
+          </div>
+        </div>
+        <div *ngSwitchCase="'video'">
+          <div class="clearfix">
+            <video
+              controls
+              preload="none"
+              disablePictureInPicture
+              controlslist="nodownload nofullscreen noremoteplayback"
+              class="buffer--width-full buffer--border-radius-lg buffer--outline-none"
+            >
+              <source [src]="calendarData.event.extendedProps.videoUrls[0].fileURL" />
+            </video>
+          </div>
+        </div>
+
+        <div *ngSwitchDefault>
+          <h1>asassa</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onPostActionBtnClicked('view')">
+    <mat-icon>description</mat-icon>
+    <span class="buffer--vertical-align-middle">Details</span>
+  </button>
+  <button mat-menu-item *ngIf="upcomingPost" (click)="onPostActionBtnClicked('edit')">
+    <mat-icon>create</mat-icon>
+    <span class="buffer--vertical-align-middle">Edit</span>
+  </button>
+  <button mat-menu-item (click)="onPostActionBtnClicked('reschedule')">
+    <mat-icon>query_builder</mat-icon>
+    <span class="buffer--vertical-align-middle">Re-schedule</span>
+  </button>
+  <button mat-menu-item (click)="onPostActionBtnClicked('delete')">
+    <mat-icon>delete</mat-icon>
+    <span class="buffer--vertical-align-middle">Delete</span>
+  </button>
+</mat-menu>

@@ -15,7 +15,7 @@ export class SnackbarService {
       direction: 'ltr',
       politeness: 'polite',
       verticalPosition: 'bottom',
-      horizontalPosition: 'center'
+      horizontalPosition: 'center',
     });
   }
 }

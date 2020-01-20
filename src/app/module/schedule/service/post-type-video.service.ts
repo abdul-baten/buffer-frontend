@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 // Models
-import { PostTypeGenerateInterface } from '../model/post-type.model';
+import { PostTypeGenerateInterface } from '@app/schedule/model/post-type.model';
 
 @Injectable()
 export class PostTypeVideoService implements PostTypeGenerateInterface {
@@ -23,7 +23,7 @@ export class PostTypeVideoService implements PostTypeGenerateInterface {
       url: 'https://httpbin.org/post',
       acceptedFiles: 'video/mp4',
       dictDefaultMessage:
-        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload</span>'
+        '<i class="material-icons">add_to_photos</i><span class="buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload</span>',
     };
 
     return config;

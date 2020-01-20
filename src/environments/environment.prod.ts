@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  scheduleURL: 'schedule'
+  scheduleURL: 'schedule',
+  version: require('../../package.json').version,
 };
