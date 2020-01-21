@@ -15,7 +15,7 @@ import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 export class SchedulePostRescheduleConfirmModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: CalPostInfoInterface,
-    private matDialogRef: MatDialogRef<SchedulePostRescheduleConfirmModalComponent>,
+    private matDialogRef: MatDialogRef<SchedulePostRescheduleConfirmModalComponent>
   ) {}
 
   onRescheduleModalClosed(): void {

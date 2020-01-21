@@ -28,7 +28,7 @@ const calendarSettingsReducer = createReducer(
       ...state,
       showNonCurrentDates,
     };
-  }),
+  })
 );
 
 function reducer(state: CalViewState | undefined, action: Action) {

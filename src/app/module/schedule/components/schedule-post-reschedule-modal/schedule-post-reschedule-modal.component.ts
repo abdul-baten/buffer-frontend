@@ -21,7 +21,7 @@ export class SchedulePostRescheduleModalComponent {
   constructor(
     private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { postId: string; postDate: Date },
-    private matDialogRef: MatDialogRef<SchedulePostRescheduleModalComponent>,
+    private matDialogRef: MatDialogRef<SchedulePostRescheduleModalComponent>
   ) {
     this.postRescheduleForm = this.buildPostRescheduleForm();
   }

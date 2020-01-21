@@ -1,15 +1,14 @@
 :host {
-	position: relative;
-	display: block;
+  position: relative;
+  display: block;
 
-	::ng-deep {
+  ::ng-deep {
+    .mat-horizontal-stepper-header-container {
+      display: none;
+    }
 
-		.mat-horizontal-stepper-header-container {
-			display: none;
-		}
-
-		.mat-horizontal-content-container {
-			padding: 0;
-		}
-	}
+    .mat-horizontal-content-container {
+      padding: 0;
+    }
+  }
 }

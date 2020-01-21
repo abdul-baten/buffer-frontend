@@ -39,7 +39,7 @@ export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeTextForm.patchValue({ postDate: new Date(postDate) });
-      }),
+      })
     );
   }
 

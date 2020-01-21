@@ -45,7 +45,7 @@ export class ScheduleFacade {
     private store: Store<AppScheduleState>,
     private scheduleService: ScheduleService,
     private metaService: DocumentMetaService,
-    private snackbarService: SnackbarService,
+    private snackbarService: SnackbarService
   ) {}
 
   private calendarApi: Calendar;

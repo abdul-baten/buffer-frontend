@@ -1,12 +1,9 @@
 :host {
-
-	::ng-deep {
-
-		.buffer--header-menu-list-item {
-
-			&:hover {
-				background-color: rgba(0, 0, 0, 0.08);
-			}
-		}
-	}
+  ::ng-deep {
+    .buffer--header-menu-list-item {
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
 }

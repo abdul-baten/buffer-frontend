@@ -32,7 +32,7 @@ export class KeyboardEventService implements OnDestroy {
           distinctUntilKeyChanged<KeyboardEvent>('keyCode'),
           distinctUntilChanged(),
           pluck('keyCode'),
-          shareReplay(),
+          shareReplay()
         )
         .subscribe((keyCode: number) => {
           switch (keyCode) {
@@ -48,7 +48,7 @@ export class KeyboardEventService implements OnDestroy {
             default:
               break;
           }
-        }),
+        })
     );
   }
 }

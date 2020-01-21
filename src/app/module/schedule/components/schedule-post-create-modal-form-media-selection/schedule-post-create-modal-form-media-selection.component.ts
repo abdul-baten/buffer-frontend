@@ -34,7 +34,7 @@ export class SchedulePostCreateModalFormMediaSelectionComponent implements OnDes
       filter((type: POST_TYPE) => type === POST_TYPE.IMAGE || type === POST_TYPE.VIDEO),
       tap((type: POST_TYPE) => {
         this.config = this.scheduleFacade.generateDropZoneConfig(type);
-      }),
+      })
     );
     this.subscriptions$.add(postType.subscribe(noop));
   }
@@ -52,7 +52,7 @@ export class SchedulePostCreateModalFormMediaSelectionComponent implements OnDes
       tap(() => {
         this.config.previewTemplate = this.document.querySelector('#template').innerHTML;
         this.config.previewsContainer = this.document.querySelector('#previews');
-      }),
+      })
     );
 
     this.subscriptions$.add(dzPreview.subscribe(noop));

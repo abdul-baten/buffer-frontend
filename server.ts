@@ -25,11 +25,13 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 enableProdMode();
 
 // Provide support for window on the server
+
 const template = readFileSync(join('dist/browser', 'index.html')).toString();
 const fetch = require('node-fetch');
 const win = domino.createWindow(template);
 
 win.fetch = fetch;
+// @ts-ignore:next-line
 global['window'] = win;
 Object.defineProperty(win.document.body.style, 'transform', {
   value: () => {
@@ -39,11 +41,15 @@ Object.defineProperty(win.document.body.style, 'transform', {
     };
   },
 });
+// @ts-ignore:next-line
 global['document'] = win.document;
+// @ts-ignore:next-line
 global['CSS'] = null;
+// @ts-ignore:next-line
 global['Prism'] = null;
 
 // Config renderer
+const shrinkRay = require('shrink-ray-current');
 const app = express();
 const httpsServer = https.createServer(credentials, app);
 try {
@@ -62,6 +68,7 @@ try {
 app.enable('etag');
 
 // Middleware
+app.use(shrinkRay({ useZopfliForGzip: false, zlib: { level: 9 }, brotli: { quality: 11 } }));
 app.use(compression());
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);

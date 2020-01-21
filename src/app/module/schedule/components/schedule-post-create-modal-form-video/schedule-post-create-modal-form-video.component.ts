@@ -37,7 +37,7 @@ export class SchedulePostCreateModalFormVideoComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeVideoForm.patchValue({ postDate: new Date(postDate) });
-      }),
+      })
     );
   }
 

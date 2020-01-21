@@ -37,7 +37,7 @@ export class SchedulePostCreateModalFormImageComponent implements OnDestroy {
       this.scheduleFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeImageForm.patchValue({ postDate: new Date(postDate) });
-      }),
+      })
     );
   }
 

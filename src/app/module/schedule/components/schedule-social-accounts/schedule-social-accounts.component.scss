@@ -1,42 +1,40 @@
 :host {
+  ::ng-deep {
+    .buffer--social-account-image {
+      width: 40px;
+      height: 40px;
+    }
 
-	::ng-deep {
+    .buffer--social-account-logo {
+      margin: -25px 0 0 25px;
+      width: 20px;
+      height: 20px;
+      border: 3px solid #ffffff;
+    }
 
-		.buffer--social-account-image {
-			width: 40px;
-			height: 40px;
-		}
+    .buffer--social-account-logo-facebook {
+      background: #1877f2 url('/assets/images/icon/facebook.svg');
+      background-size: cover;
+    }
 
-		.buffer--social-account-logo {
-			margin: -25px 0 0 25px;
-			width: 20px;
-			height: 20px;
-			border: 3px solid #ffffff;
-		}
+    .buffer--social-account-logo-linkedin {
+      background: #007bb5 url('/assets/images/icon/linkedin.svg');
+      background-size: cover;
+    }
 
-		.buffer--social-account-logo-facebook {
-			background: #1877f2 url('/assets/images/icon/facebook.svg');
-			background-size: cover;
-		}
+    .buffer--social-account-logo-twitter {
+      background: #1da1f2 url('/assets/images/icon/twitter.svg');
+      background-size: cover;
+    }
 
-		.buffer--social-account-logo-linkedin {
-			background: #007bb5 url('/assets/images/icon/linkedin.svg');
-			background-size: cover;
-		}
+    .buffer--social-account-logo-instagram {
+      background: #f46f30 url('/assets/images/icon/instagram.svg');
+      background-size: cover;
+    }
 
-		.buffer--social-account-logo-twitter {
-			background: #1da1f2 url('/assets/images/icon/twitter.svg');
-			background-size: cover;
-		}
-
-		.buffer--social-account-logo-instagram {
-			background: #f46f30 url('/assets/images/icon/instagram.svg');
-			background-size: cover;
-		}
-
-		.buffer--social-account-logo-pinterest {
-			background: #bd081c url('/assets/images/icon/pinterest.svg');
-			background-size: cover;
-		}
-	}
+    .buffer--social-account-logo-pinterest {
+      background: #bd081c url('/assets/images/icon/pinterest.svg');
+      background-size: cover;
+    }
+  }
 }

@@ -14,7 +14,7 @@ const selectCalendarSettings = createSelector(selectPostDataState, calSettings =
 const selectCalendarFirstDay = createSelector(selectCalendarSettings, calSettings => calSettings.firstDay);
 const selectCalendarNonCurrentDates = createSelector(
   selectCalendarSettings,
-  calSettings => calSettings.showNonCurrentDates,
+  calSettings => calSettings.showNonCurrentDates
 );
 
 export {

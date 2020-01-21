@@ -5,7 +5,7 @@ const setCalendarFirstDay = createAction('[Schedule Facade] Set Calendar First D
 
 const setCalendarNonCurrentDates = createAction(
   '[Schedule Facade] Set Calendar NonCurrentDates',
-  props<{ showNonCurrentDates: boolean }>(),
+  props<{ showNonCurrentDates: boolean }>()
 );
 
 export { setCalendarFirstDay, setCalendarNonCurrentDates };

@@ -17,6 +17,11 @@
   <section id="buffer--schedule-calendar-view-sec" class="buffer--schedule-calendar-view-sec">
     <mat-sidenav-container>
       <mat-sidenav-content class="buffer--border-transparent">
+
+        <div class="clearfix">
+        <h1>{{ currency$ | async | json }}</h1>
+        </div>
+
         <div class="clearfix buffer--schedule-calendar-sec">
           <div class="clearfix">
             <buffer--schedule-calendar-view [calendarView]="calendarView"></buffer--schedule-calendar-view>

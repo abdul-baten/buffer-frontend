@@ -145,7 +145,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
     private injector: Injector,
     private scheduleFacade: ScheduleFacade,
     private applicationRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {}
 
   ngAfterViewInit() {
@@ -185,12 +185,12 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
       element,
       this.componentFactoryResolver,
       this.applicationRef,
-      this.injector,
+      this.injector
     );
     const componentToAppend = new ComponentPortal(
       ScheduleCalendarViewPostComponent,
       null,
-      this.createPostDataInjector(eventInfo),
+      this.createPostDataInjector(eventInfo)
     );
     bodyPortalHost.attach(componentToAppend);
   }

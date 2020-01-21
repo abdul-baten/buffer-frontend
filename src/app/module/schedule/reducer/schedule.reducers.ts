@@ -40,7 +40,7 @@ export const postDataReducer = createReducer(
       ...action.postData,
     };
   }),
-  on(fromScheduleActions.removePostData, _ => initialState),
+  on(fromScheduleActions.removePostData, _ => initialState)
 );
 
 export function reducer(state: ScheduleState | undefined, action: Action) {

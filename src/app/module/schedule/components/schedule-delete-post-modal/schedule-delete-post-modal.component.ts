@@ -12,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ScheduleDeletePostModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: string,
-    private matDialogRef: MatDialogRef<ScheduleDeletePostModalComponent>,
+    private matDialogRef: MatDialogRef<ScheduleDeletePostModalComponent>
   ) {}
 
   onDeletePostModalClosed(): void {

@@ -23,7 +23,7 @@ export class ScheduleCalendarViewPostComponent {
 
   constructor(
     private scheduleFacade: ScheduleFacade,
-    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInfoInterface,
+    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInfoInterface
   ) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }

@@ -21,7 +21,7 @@ export class LoggerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap(
         (event: HttpEvent<any>) => (resStatus = event instanceof HttpResponse ? 'succeeded' : ''),
-        (_: HttpErrorResponse) => (resStatus = 'failed'),
+        (_: HttpErrorResponse) => (resStatus = 'failed')
       ),
       finalize(() => {
         const elapsedTime = Date.now() - reqStarted;
@@ -30,7 +30,7 @@ export class LoggerInterceptor implements HttpInterceptor {
           level: resStatus === 'failed' ? 'error' : 'info',
           message,
         });
-      }),
+      })
     );
   }
 }

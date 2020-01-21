@@ -22,6 +22,7 @@ import { StoreRouterConnectingModule, RouterState } from '@ngrx/router-store';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
+import { GraphQLModule } from './graphql.module';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
@@ -52,6 +53,7 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
       stateKey: 'router',
       routerState: RouterState.Minimal,
     }),
+    GraphQLModule,
   ],
   providers: [
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },

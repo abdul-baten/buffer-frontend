@@ -38,7 +38,7 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
             PasswordValidator.allowedPasswordSpecialChars,
-          ]),
+          ])
         ),
         confirmPassword: new FormControl(
           '',
@@ -49,11 +49,11 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
             PasswordValidator.allowedPasswordSpecialChars,
-          ]),
+          ])
         ),
         termsAndCondition: new FormControl(false, Validators.required),
       },
-      { validator: PasswordValidator.passwordMismatch },
+      { validator: PasswordValidator.passwordMismatch }
     );
   }
 }

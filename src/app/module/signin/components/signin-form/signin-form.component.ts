@@ -31,7 +31,7 @@ export class SigninFormComponent {
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
           PasswordValidator.allowedPasswordSpecialChars,
-        ]),
+        ])
       ),
     });
   }
