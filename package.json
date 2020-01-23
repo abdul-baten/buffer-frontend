@@ -41,7 +41,7 @@
     "format:check": "npm run format -- --check",
     "format:watch": "onchange '**/*.{ts,json,md,scss,js}' -- prettier --config .prettierrc --ignore-path .prettierignore --write {{changed}}",
     "format:write": "npm run format -- --write",
-    "lint": "ng lint && npm run stylelint",
+    "lint": "ng lint",
     "ssr:build": "npm run build:client-and-server-bundles && npm run ssr:webpack",
     "ssr:serve": "node dist/server.js",
     "ssr:webpack": "webpack --config webpack.server.config.js --progress --colors",
