@@ -8,11 +8,11 @@
     }
 
     .mat-radio-button {
-      border-radius: 0.5rem;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 2px 4px rgba(1, 14, 40, 0.05);
-      height: 10rem;
       width: calc(33.3333% - 1rem);
+      height: 10rem;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(1, 14, 40, 0.05);
     }
 
     .mat-radio-checked {
