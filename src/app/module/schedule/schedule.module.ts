@@ -11,6 +11,7 @@ import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/da
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -75,6 +76,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromScheduleReducer from '@app/schedule/reducer';
 import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
+import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
 
 // import { LoggerService } from '@core/service/logger/logger.service';
 
@@ -105,6 +107,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     SchedulePostCreateModalFormTextComponent,
     SchedulePostCreateModalFormTextComponent,
     SchedulePostCreateModalFormImageComponent,
+    ScheduleCalendarPostDetailsModalComponent,
     SchedulePostCreateModalFormVideoComponent,
     SchedulePostCreateModalFormHeaderComponent,
     ScheduleCalendarSettingsModalFormComponent,
@@ -138,6 +141,8 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     MatButtonToggleModule,
     MatProgressSpinnerModule,
 
+    SlickCarouselModule,
+
     DropzoneModule,
     OwlDateTimeModule,
     FullCalendarModule,
@@ -165,6 +170,7 @@ import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
     ScheduleCalendarViewPostComponent,
     SchedulePostRescheduleModalComponent,
     ScheduleCalendarSettingsModalComponent,
+    ScheduleCalendarPostDetailsModalComponent,
     SchedulePostRescheduleConfirmModalComponent,
   ],
 })

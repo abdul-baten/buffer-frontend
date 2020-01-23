@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  graphQLURL: 'https://o5x5jzoo7z.sse.codesandbox.io/graphql',
   production: false,
-  scheduleURL: 'schedule',
   version: require('../../package.json').version,
 };
 

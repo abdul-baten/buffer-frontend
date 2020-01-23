@@ -1,52 +1,46 @@
-// Core Modules
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
+import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
+import { differenceInDays, format, subMinutes } from 'date-fns';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { Observable, of } from 'rxjs';
+import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import {
-  Input,
-  Injector,
-  Component,
-  ViewChild,
-  OnChanges,
-  SimpleChanges,
   AfterViewInit,
   ApplicationRef,
   ChangeDetectionStrategy,
+  Component,
   ComponentFactoryResolver,
+  Injector,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+  OnInit,
 } from '@angular/core';
-import { DomPortalOutlet, PortalInjector, ComponentPortal } from '@angular/cdk/portal';
-
-// Third Party Modules
-import { Observable, of } from 'rxjs';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import { differenceInDays, format, subMinutes } from 'date-fns';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Models
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
-import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
-
-// Data
-import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
-
-// Component
-import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 
 @Component({
-  selector: 'buffer--schedule-calendar-view',
-  templateUrl: './schedule-calendar-view.component.html',
-  styleUrls: ['./schedule-calendar-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'buffer--schedule-calendar-view',
+  styleUrls: ['./schedule-calendar-view.component.scss'],
+  templateUrl: './schedule-calendar-view.component.html',
 })
-export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
+export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, OnInit {
   @Input() calendarView: string;
   @ViewChild('calendar', { static: true }) calendar: FullCalendarComponent;
 
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
 
   private calendarApi: Calendar;
+
+  rates: any[];
+  loading = false;
+  error: any;
 
   header = {
     left: 'title',
@@ -72,6 +66,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   slotLabelInterval = {
     minutes: 2,
   };
+  handleWindowResize = false;
   customButtons = {
     calendarSettingsButton: {
       text: 'Settings',
@@ -90,13 +85,13 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   }
 
   businessHours = false;
-  fixedWeekCount = false;
   calendarWeekends = true;
-  slotEventOverlap = true;
   displayPostTime = false;
-  slotDuration = '00:15:00';
   eventLimitClick = 'popover';
+  fixedWeekCount = false;
   progressivePostRendering = false;
+  slotDuration = '00:15:00';
+  slotEventOverlap = true;
 
   get scrollTime(): string {
     return format(subMinutes(new Date(), 5), 'HH:mm:ss');
@@ -142,10 +137,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
   }
 
   constructor(
-    private injector: Injector,
-    private scheduleFacade: ScheduleFacade,
     private applicationRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector,
+    private scheduleFacade: ScheduleFacade
   ) {}
 
   ngAfterViewInit() {
@@ -211,5 +206,32 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges {
 
   calendarNext() {
     this.scheduleFacade.calendarNext();
+  }
+
+  ngOnInit() {
+    // this.apollo
+    //   .watchQuery({
+    //     query: gql`
+    //       {
+    //         rates(currency: "USD") {
+    //           currency
+    //           rate
+    //         }
+    //       }
+    //     `,
+    //   })
+    //   .valueChanges.subscribe((result: any) => {
+    //     this.rates = result.data && result.data.rates;
+    //     this.loading = result.loading;
+    //     this.error = result.error;
+    //   });
+  }
+
+  handleLoading(): void {
+    console.warn('============= console.warn starts =============');
+    console.warn('loading');
+    console.warn('============= console.warn ends =============');
+    alert('aaaa');
+    this.loading = true;
   }
 }

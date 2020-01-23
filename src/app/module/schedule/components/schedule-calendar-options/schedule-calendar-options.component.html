@@ -4,21 +4,21 @@
   >
     <div class="clearfix">
       <button
-        mat-stroked-button
-        [matTooltip]="currentDate"
         (click)="onTodayBtnClicked()"
+        [matTooltip]="currentDate"
+        class="buffer--font-weight-bold buffer--font-family-semi-bold"
+        mat-stroked-button
         matTooltipClass="buffer--font-size-xs"
-        class="buffer--font-weight-bold buffer--font-family-semi-bold buffer--border-radius-lg"
       >
         <span class="buffer--text-transform-none">Today</span>
       </button>
     </div>
-    <div class="clearfix buffer--margin-x-1">
+    <div class="clearfix buffer--margin-x-2">
       <button mat-icon-button matTooltip="Previous" matTooltipClass="buffer--font-size-xs" (click)="onPrevBtnClicked()">
         <mat-icon>keyboard_arrow_left</mat-icon>
       </button>
     </div>
-    <div class="clearfix buffer--margin-x-1">
+    <div class="clearfix buffer--margin-x-2">
       <button mat-icon-button matTooltip="Next" matTooltipClass="buffer--font-size-xs" (click)="onNextBtnClicked()">
         <mat-icon>keyboard_arrow_right</mat-icon>
       </button>

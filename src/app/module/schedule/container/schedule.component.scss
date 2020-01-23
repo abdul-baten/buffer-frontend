@@ -1,7 +1,7 @@
 :host {
-  position: relative;
   display: block;
   overflow: hidden;
+  position: relative;
 
   ::ng-deep {
     .mat-drawer-end {
@@ -9,18 +9,18 @@
     }
 
     .dashboard-header-sec {
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      display: block;
+      height: 100vh;
+      left: 0;
       position: fixed;
       top: 0;
-      left: 0;
-      display: block;
       width: 5rem;
-      height: 100vh;
-      border-right: 1px solid rgba(0, 0, 0, 0.08);
     }
 
     .buffer--schedule-menu-sec {
-      height: 65px;
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      height: 65px;
     }
 
     .buffer--schedule-calendar-view-sec {
@@ -32,8 +32,8 @@
     }
 
     .fc-widget-header {
-      margin-right: 0 !important;
       border-right-width: 0;
+      margin-right: 0 !important;
     }
 
     .mat-calendar-body-cell {

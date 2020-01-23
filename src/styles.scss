@@ -1,4 +1,4 @@
-@import './assets/styles/app.scss';
+@import 'assets/styles/app';
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -137,7 +137,7 @@ p {
   width: 100%;
   margin: 0 auto;
   min-width: 1080px;
-  padding: 20px 60px;
+  padding: 0 60px;
   height: $buffer--height-auto;
 }
 

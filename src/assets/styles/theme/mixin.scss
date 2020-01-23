@@ -1,0 +1,27 @@
+@mixin buffer--button-border-radius($arc) {
+  -moz-border-radius: $arc;
+  -webkit-border-radius: $arc;
+  border-radius: $arc;
+}
+
+@mixin buffer--button-height($height) {
+  height: $height;
+}
+
+@mixin buffer--button-padding($padding) {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
+@mixin buffer--button-box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin buffer--user-select($selection) {
+  -khtml-user-select: $selection;
+  -moz-user-select: $selection;
+  -ms-user-select: $selection;
+  -webkit-user-select: $selection;
+  user-select: $selection;
+}

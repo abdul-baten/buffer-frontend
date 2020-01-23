@@ -1,46 +1,56 @@
 <div class="clearfix">
-  <div class="buffer--background-color-white buffer--border-radius-lg buffer--box-shadow-xl buffer--padding-12">
+  <div class="buffer--background-color-white buffer--border-radius-lg buffer--box-shadow-lg buffer--border-width buffer--border-style-solid buffer--border-color-primary-500 buffer--padding-16">
+    
+
+
     <div class="clearfix">
-      <h2
-        class="buffer--text-color-primary-800 buffer--font-family-bold buffer--font-size-3xl buffer--line-height-leading-loose buffer--margin-bottom-3"
+      <buffer--main-logo></buffer--main-logo>
+    </div>
+
+
+
+    <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
+      <p
+        class="buffer--font-family-semi-bold buffer--font-size-2xl buffer--line-height-leading-normal"
       >
         Sign in
-      </h2>
+    </p>
+    <p
+    class="buffer--font-family-semi-bold buffer--font-size-base buffer--line-height-leading-normal"
+    >Continue to grow</p
+      >
     </div>
+
 
     <div class="clearfix">
       <form [formGroup]="signinForm" novalidate>
-        <div class="clearfix">
-          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
-            <mat-label>Email address</mat-label>
+        <div class="clearfix buffer--margin-y-2">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="fill">
             <input
-              type="text"
-              matInput
+              autocomplete="current-password"
               autocomplete="off"
               formControlName="emailAddress"
-              autocomplete="current-password"
+              matInput
+              placeholder="Email address"
               required
+              type="text"
             />
-            <mat-error align="end" *ngIf="signinForm.controls.emailAddress.invalid"
-              >Enter a valid email address.</mat-error
-            >
           </mat-form-field>
         </div>
 
-        <div class="clearfix">
-          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="outline">
-            <mat-label>Password</mat-label>
+        <div class="clearfix buffer--margin-y-2">
+          <mat-form-field class="buffer--width-full buffer--font-family-regular" appearance="fill">
             <input
               [type]="hidePassword ? 'password' : 'text'"
-              matInput
-              formControlName="password"
               autocomplete="current-password"
+              formControlName="password"
+              matInput
+              placeholder="Password"
               required
             />
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
               <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
-            <mat-error align="end" *ngIf="signinForm.controls.password.invalid">Enter a valid password.</mat-error>
           </mat-form-field>
         </div>
 
@@ -50,26 +60,41 @@
               color="primary"
               mat-flat-button
               [disabled]="signinForm.invalid"
-              class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-white buffer--button-big-height buffer--button-big-padding buffer--box-shadow-lg buffer--box-shadow-hover-xl"
+              class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--text-color-white buffer--button-big-height buffer--button-big-padding"
             >
               Sign in
             </button>
           </div>
         </div>
 
-        <div class="clearfix">
-          <a
-            class="buffer--get-started-short-link buffer--font-size-base buffer--line-height-leading-normal buffer--font-family-regular buffer--margin-top-5"
-          >
-            <span>Forgot your password? Reset now</span>
-            <span
-              ><i class="material-icons buffer--margin-left-2 buffer--get-started-short-link-icon"
-                >arrow_forward</i
-              ></span
-            >
-          </a>
-        </div>
+        
       </form>
     </div>
   </div>
 </div>
+
+
+<section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
+  <div
+    class="buffer--padding-y-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between"
+  >
+    <div class="clearfix">
+      <button
+        class="buffer--font-family-semi-bold buffer--font-size-sm"
+        mat-button
+      >
+        Forgot password?
+      </button>
+    </div>
+    <div class="clearfix">
+      <button
+        class="buffer--font-family-semi-bold buffer--font-size-sm"
+        (click)="handleAuthNavigateBtn('sign-up')"
+        color="primary"
+        mat-flat-button
+      >
+      Create account
+      </button>
+    </div>
+  </div>
+</section>

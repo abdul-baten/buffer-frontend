@@ -18,11 +18,9 @@ import { SigninFacade } from '@app/signin/facade/signin.facade';
 // Components
 import { SigninComponent } from '@app/signin/container/signin.component';
 import { SigninFormComponent } from '@app/signin/components/signin-form/signin-form.component';
-import { SigninJumboComponent } from '@app/signin/components/signin-jumbo/signin-jumbo.component';
-import { SigninHeaderComponent } from '@app/signin/components/signin-header/signin-header.component';
 
 @NgModule({
-  declarations: [SigninComponent, SigninFormComponent, SigninHeaderComponent, SigninJumboComponent],
+  declarations: [SigninComponent, SigninFormComponent],
   imports: [
     CommonModule,
     SigninRoutingModule,

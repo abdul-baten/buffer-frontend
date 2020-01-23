@@ -32,7 +32,7 @@ export class ScheduleCalendarViewPostComponent {
     const { id, start } = this.calendarData.event;
     switch (action) {
       case 'view':
-        this.scheduleFacade.openPostDeleteDialog(id);
+        this.scheduleFacade.openPostDetailsDialog(id);
         break;
 
       case 'edit':

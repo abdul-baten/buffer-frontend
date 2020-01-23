@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 
 // Validators
 import { PasswordValidator } from '@core/validation/password.validation';
+import { SigninFacade } from '@app/signin/facade/signin.facade';
 
 @Component({
   selector: 'buffer--signin-form',
@@ -15,7 +16,7 @@ export class SigninFormComponent {
 
   hidePassword = true;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private signinFacade: SigninFacade, private formBuilder: FormBuilder) {
     this.signinForm = this.buildSigninForm();
   }
 
@@ -34,5 +35,9 @@ export class SigninFormComponent {
         ])
       ),
     });
+  }
+
+  handleAuthNavigateBtn(authURL: string): void {
+    this.signinFacade.navigateToPage(authURL);
   }
 }

@@ -1,13 +1,13 @@
-<section id="dashboard-header-sec" class="dashboard-header-sec buffer--float-left">
+<section class="dashboard-header-sec buffer--float-left" id="dashboard-header-sec">
   <div class="clearfix buffer--background-color-white">
     <buffer--dashboard-header></buffer--dashboard-header>
   </div>
 </section>
 
-<section id="dashboard-route-sec" class="dashboard-route-sec buffer--background-color-gray-100 buffer--float-right">
+<section class="dashboard-route-sec buffer--background-color-gray-100 buffer--float-right" id="dashboard-route-sec">
   <section
-    id="buffer--schedule-menu-sec"
     class="buffer--schedule-menu-sec buffer--background-color-white buffer--width-full buffer--padding-y-3"
+    id="buffer--schedule-menu-sec"
   >
     <div class="clearfix">
       <buffer--schedule-header></buffer--schedule-header>
@@ -18,10 +18,6 @@
     <mat-sidenav-container>
       <mat-sidenav-content class="buffer--border-transparent">
 
-        <div class="clearfix">
-        <h1>{{ currency$ | async | json }}</h1>
-        </div>
-
         <div class="clearfix buffer--schedule-calendar-sec">
           <div class="clearfix">
             <buffer--schedule-calendar-view [calendarView]="calendarView"></buffer--schedule-calendar-view>
@@ -30,12 +26,12 @@
       </mat-sidenav-content>
 
       <mat-sidenav
+        [fixedInViewport]="true"
+        [fixedTopGap]="65"
+        class="buffer--width-64"
         mode="side"
         opened
         position="end"
-        [fixedTopGap]="65"
-        [fixedInViewport]="true"
-        class="buffer--width-64"
       >
         <div class="clearfix buffer--width-full buffer--height-full buffer--background-color-white">
           <div class="clearfix">

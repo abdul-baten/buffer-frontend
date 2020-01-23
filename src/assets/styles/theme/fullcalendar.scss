@@ -530,20 +530,16 @@ a.fc-more:hover {
 /* Now Indicator
 --------------------------------------------------------------------------------------------------*/
 .fc-now-indicator {
-  position: $buffer--position-absolute;
   border: 0 $buffer--border-style-solid $buffer--border-color-primary-500;
+  position: $buffer--position-absolute;
 }
 
 /* Utilities
 --------------------------------------------------------------------------------------------------*/
 .fc-unselectable {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none;
   -webkit-tap-highlight-color: $buffer--background-color-transparent;
+  -webkit-touch-callout: none;
+  @include buffer--user-select(none);
 }
 
 /*
@@ -616,57 +612,36 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* theme */
 .fc-button {
-  user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  padding: 0.7rem 0.8rem;
-  -webkit-user-select: none;
-  font-size: $buffer--font-size-sm;
-  color: $buffer--text-color-black;
-  text-align: $buffer--text-align-center;
-  display: $buffer--display-inline-block;
-  border-radius: $buffer--border-radius-lg;
-  font-family: $buffer--font-family-semi-bold;
-  vertical-align: $buffer--vertical-align-middle;
-  line-height: $buffer--line-height-leading-none;
+  @include buffer--button-border-radius($buffer--border-radius-xl);
+  @include buffer--button-height($buffer--height-10);
+  @include buffer--button-padding(1.5rem);
+  @include buffer--user-select(none);
   background-color: $buffer--background-color-white;
   border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
-}
-
-.fc-button:not(:disabled):hover {
+  color: $buffer--text-color-black;
+  display: $buffer--display-inline-block;
+  font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-sm;
+  line-height: $buffer--line-height-leading-none;
   outline: $buffer--outline-none;
-  box-shadow: $buffer--box-shadow-md;
-  -webkit-box-shadow: $buffer--box-shadow-md;
+  text-align: $buffer--text-align-center;
+  vertical-align: $buffer--vertical-align-middle;
+
+  &:hover {
+    background-color: $buffer--background-color-primary-900;
+    color: $buffer--text-color-white;
+  }
+
+  &:focus {
+    @include buffer--button-box-shadow($buffer--box-shadow-outline);
+    background-color: $buffer--background-color-primary-900;
+    color: $buffer--text-color-white;
+  }
 }
 
 .fc-button:disabled {
   color: $buffer--text-color-black;
   background-color: $buffer--background-color-gray;
-}
-
-/* "primary" coloring */
-.fc-button-primary {
-  color: $buffer--text-color-black;
-  background-color: $buffer--background-color-white;
-  text-transform: $buffer--text-transform-capitalize;
-}
-
-.fc-button-primary:focus {
-  box-shadow: $buffer--box-shadow-lg;
-  -webkit-box-shadow: $buffer--box-shadow-lg;
-}
-
-.fc-button-primary:not(:disabled):active,
-.fc-button-primary:not(:disabled).fc-button-active {
-  color: $buffer--text-color-white;
-  border-color: $buffer--background-color-primary-500;
-  background-color: $buffer--background-color-primary-500;
-}
-
-.fc-button-primary:not(:disabled):active:focus,
-.fc-button-primary:not(:disabled).fc-button-active:focus {
-  box-shadow: $buffer--box-shadow-lg;
-  -webkit-box-shadow: $buffer--box-shadow-lg;
 }
 
 /* icons within buttons */
