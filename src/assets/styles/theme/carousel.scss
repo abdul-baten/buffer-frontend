@@ -1,0 +1,165 @@
+/* Slider */
+
+.slick-slider {
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-touch-action: pan-y;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  touch-action: pan-y;
+  user-select: none;
+}
+.slick-list {
+  display: block;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.dragging {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  display: block;
+  left: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 0;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+}
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  [dir='rtl'] & {
+    float: right;
+  }
+  img {
+    display: block;
+  }
+  &.slick-loading img {
+    display: none;
+  }
+
+  display: none;
+
+  &.dragging img {
+    pointer-events: none;
+  }
+
+  .slick-initialized & {
+    display: block;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+
+  .slick-vertical & {
+    border: 1px solid transparent;
+    display: block;
+    height: auto;
+  }
+}
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+.slick-disabled {
+  cursor: default;
+}
+
+/* THEME */
+// Default Variables
+
+// Slick icon entity codes outputs the following
+// "\2190" outputs ascii character "←"
+// "\2192" outputs ascii character "→"
+// "\2022" outputs ascii character "•"
+
+$slick-font-family: 'Material Icons' !default;
+$slick-loader-path: '../' !default;
+$slick-arrow-color: white !default;
+$slick-dot-color: white !default;
+$slick-dot-color-active: $slick-dot-color !default;
+$slick-prev-character: 'keyboard_arrow_left' !default;
+$slick-next-character: 'keyboard_arrow_right' !default;
+$slick-dot-character: 'fiber_manual_record' !default;
+$slick-dot-size: 1rem !default;
+$slick-opacity-default: 0.75 !default;
+$slick-opacity-on-hover: 1 !default;
+$slick-opacity-not-active: 0.25 !default;
+
+/* Slider */
+
+// .slick-list {
+//   .slick-loading {
+//     background: url('../../images/loader/ajax-loader.gif') center center no-repeat;
+//   }
+// }
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-size: 2.5rem;
+  height: 3rem;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  top: 45%;
+  width: 3rem;
+  z-index: 9;
+
+  &:hover,
+  &:focus {
+    opacity: $slick-opacity-on-hover;
+  }
+
+  &.slick-disabled {
+    opacity: $slick-opacity-not-active;
+  }
+}
+
+.slick-prev {
+  left: 2rem;
+}
+
+.slick-next {
+  right: 2rem;
+}

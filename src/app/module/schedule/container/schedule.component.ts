@@ -1,13 +1,11 @@
-// Core MOdules
-import { Component, OnInit } from '@angular/core';
+import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--schedule',
   templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.scss']
+  styleUrls: ['./schedule.component.scss'],
 })
-export class ScheduleComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class ScheduleComponent {
+  calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
 }

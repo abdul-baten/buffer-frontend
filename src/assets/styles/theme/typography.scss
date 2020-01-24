@@ -1,0 +1,442 @@
+/* ************************************* TYPOGRAPHY STARTS ************************************* */
+/* ************************************* TYPOGRAPHY STARTS ************************************* */
+
+/*
+    * FONT FAMILY
+*/
+
+.buffer--font-family-light {
+  font-family: $buffer--font-family-light !important;
+}
+
+.buffer--font-family-regular {
+  font-family: $buffer--font-family-regular !important;
+}
+
+.buffer--font-family-semi-bold {
+  font-family: $buffer--font-family-semi-bold !important;
+}
+
+.buffer--font-family-bold {
+  font-family: $buffer--font-family-bold !important;
+}
+
+.buffer--font-family-extra-bold {
+  font-family: $buffer--font-family-extra-bold !important;
+}
+
+/*
+    * FONT SIZE
+*/
+.buffer--font-size-xs {
+  font-size: $buffer--font-size-xs !important;
+}
+
+.buffer--font-size-sm {
+  font-size: $buffer--font-size-sm !important;
+}
+
+.buffer--font-size-base {
+  font-size: $buffer--font-size-base !important;
+}
+
+.buffer--font-size-lg {
+  font-size: $buffer--font-size-lg !important;
+}
+
+.buffer--font-size-xl {
+  font-size: $buffer--font-size-xl !important;
+}
+
+.buffer--font-size-2xl {
+  font-size: $buffer--font-size-2xl !important;
+}
+
+.buffer--font-size-3xl {
+  font-size: $buffer--font-size-3xl !important;
+}
+
+.buffer--font-size-4xl {
+  font-size: $buffer--font-size-4xl !important;
+}
+
+.buffer--font-size-5xl {
+  font-size: $buffer--font-size-5xl !important;
+}
+
+.buffer--font-size-6xl {
+  font-size: $buffer--font-size-6xl !important;
+}
+
+.buffer--font-size-7xl {
+  font-size: $buffer--font-size-7xl !important;
+}
+
+.buffer--font-size-8xl {
+  font-size: $buffer--font-size-8xl !important;
+}
+
+.buffer--font-size-inherit {
+  font-size: $buffer--font-size-inherit !important;
+}
+
+/*
+    * FONT WEIGHT
+*/
+.buffer--font-weight-hairline {
+  font-weight: $buffer--font-weight-hairline !important;
+}
+
+.buffer--font-weight-thin {
+  font-weight: $buffer--font-weight-thin !important;
+}
+
+.buffer--font-weight-light {
+  font-weight: $buffer--font-weight-light !important;
+}
+
+.buffer--font-weight-normal {
+  font-weight: $buffer--font-weight-normal !important;
+}
+
+.buffer--font-weight-medium {
+  font-weight: $buffer--font-weight-medium !important;
+}
+
+.buffer--font-weight-semibold {
+  font-weight: $buffer--font-weight-semibold !important;
+}
+
+.buffer--font-weight-bold {
+  font-weight: $buffer--font-weight-bold !important;
+}
+
+.buffer--font-weight-extrabold {
+  font-weight: $buffer--font-weight-extrabold !important;
+}
+
+.buffer--font-weight-black {
+  font-weight: $buffer--font-weight-black !important;
+}
+
+/*
+    * LINE HEIGHT
+*/
+.buffer--line-height-leading-zero {
+  line-height: $buffer--line-height-leading-zero !important;
+}
+
+.buffer--line-height-leading-none {
+  line-height: $buffer--line-height-leading-none !important;
+}
+
+.buffer--line-height-leading-tight {
+  line-height: $buffer--line-height-leading-tight !important;
+}
+
+.buffer--line-height-leading-snug {
+  line-height: $buffer--line-height-leading-snug !important;
+}
+
+.buffer--line-height-leading-normal {
+  line-height: $buffer--line-height-leading-normal !important;
+}
+
+.buffer--line-height-leading-relaxed {
+  line-height: $buffer--line-height-leading-relaxed !important;
+}
+
+.buffer--line-height-leading-loose {
+  line-height: $buffer--line-height-leading-loose !important;
+}
+
+/*
+    * LIST STYLE TYPE
+*/
+.buffer--list-style-type-none {
+  list-style-type: $buffer--list-style-type-none !important;
+}
+
+.buffer--list-style-type-disc {
+  list-style-type: $buffer--list-style-type-disc !important;
+}
+
+.buffer--list-style-type-decimal {
+  list-style-type: $buffer--list-style-type-decimal !important;
+}
+
+/*
+    * LIST STYLE POSITION
+*/
+.buffer--list-style-position-inside {
+  list-style-position: $buffer--list-style-position-inside !important;
+}
+
+.buffer--list-style-position-outside {
+  list-style-position: $buffer--list-style-position-outside !important;
+}
+
+/*
+    * TEXT ALIGN
+*/
+.buffer--text-align-left {
+  text-align: $buffer--text-align-left !important;
+}
+
+.buffer--text-align-center {
+  text-align: $buffer--text-align-center !important;
+  text-align: -webkit-center !important;
+  text-align: -moz-center !important;
+}
+
+.buffer--text-align-right {
+  text-align: $buffer--text-align-right !important;
+}
+
+.buffer--text-align-justify {
+  text-align: $buffer--text-align-justify !important;
+}
+
+/*
+    * TEXT COLOR
+*/
+.buffer--text-color-transparent {
+  color: $buffer--text-color-transparent !important;
+}
+
+.buffer--text-color-black {
+  color: $buffer--text-color-black !important;
+}
+
+.buffer--text-color-white {
+  color: $buffer--text-color-white !important;
+}
+
+.buffer--text-color-gray {
+  color: $buffer--text-color-gray !important;
+}
+
+.buffer--text-color-warn-100 {
+  color: $buffer--text-color-warn-100 !important;
+}
+
+.buffer--text-color-warn-200 {
+  color: $buffer--text-color-warn-200 !important;
+}
+
+.buffer--text-color-warn-300 {
+  color: $buffer--text-color-warn-300 !important;
+}
+
+.buffer--text-color-warn-400 {
+  color: $buffer--text-color-warn-400 !important;
+}
+
+.buffer--text-color-warn-500 {
+  color: $buffer--text-color-warn-500 !important;
+}
+
+.buffer--text-color-warn-600 {
+  color: $buffer--text-color-warn-600 !important;
+}
+
+.buffer--text-color-warn-700 {
+  color: $buffer--text-color-warn-700 !important;
+}
+
+.buffer--text-color-warn-800 {
+  color: $buffer--text-color-warn-800 !important;
+}
+
+.buffer--text-color-warn-900 {
+  color: $buffer--text-color-warn-900 !important;
+}
+
+.buffer--text-color-accent-100 {
+  color: $buffer--text-color-accent-100 !important;
+}
+
+.buffer--text-color-accent-200 {
+  color: $buffer--text-color-accent-200 !important;
+}
+
+.buffer--text-color-accent-300 {
+  color: $buffer--text-color-accent-300 !important;
+}
+
+.buffer--text-color-accent-400 {
+  color: $buffer--text-color-accent-400 !important;
+}
+
+.buffer--text-color-accent-500 {
+  color: $buffer--text-color-accent-500 !important;
+}
+
+.buffer--text-color-accent-600 {
+  color: $buffer--text-color-accent-600 !important;
+}
+
+.buffer--text-color-accent-700 {
+  color: $buffer--text-color-accent-700 !important;
+}
+
+.buffer--text-color-accent-800 {
+  color: $buffer--text-color-accent-800 !important;
+}
+
+.buffer--text-color-accent-900 {
+  color: $buffer--text-color-accent-900 !important;
+}
+
+.buffer--text-color-primary-100 {
+  color: $buffer--text-color-primary-100 !important;
+}
+
+.buffer--text-color-primary-200 {
+  color: $buffer--text-color-primary-200 !important;
+}
+
+.buffer--text-color-primary-300 {
+  color: $buffer--text-color-primary-300 !important;
+}
+
+.buffer--text-color-primary-400 {
+  color: $buffer--text-color-primary-400 !important;
+}
+
+.buffer--text-color-primary-500 {
+  color: $buffer--text-color-primary-500 !important;
+}
+
+.buffer--text-color-primary-600 {
+  color: $buffer--text-color-primary-600 !important;
+}
+
+.buffer--text-color-primary-700 {
+  color: $buffer--text-color-primary-700 !important;
+}
+
+.buffer--text-color-primary-800 {
+  color: $buffer--text-color-primary-800 !important;
+}
+
+.buffer--text-color-primary-900 {
+  color: $buffer--text-color-primary-900 !important;
+}
+
+/*
+    * TEXT DECORATION
+*/
+.buffer--text-decoration-underline {
+  -webkit-text-decoration: $buffer--text-decoration-underline !important;
+  text-decoration: $buffer--text-decoration-underline !important;
+}
+
+.buffer--text-decoration-line-through {
+  -webkit-text-decoration: $buffer--text-decoration-line-through !important;
+  text-decoration: $buffer--text-decoration-line-through !important;
+}
+
+.buffer--text-decoration-none {
+  -webkit-text-decoration: $buffer--text-decoration-none;
+  text-decoration: $buffer--text-decoration-none;
+}
+
+/*
+    * TEXT TRANSFORM
+*/
+.buffer--text-transform-uppercase {
+  text-transform: $buffer--text-transform-uppercase !important;
+}
+
+.buffer--text-transform-lowercase {
+  text-transform: $buffer--text-transform-lowercase !important;
+}
+
+.buffer--text-transform-capitalize {
+  text-transform: $buffer--text-transform-capitalize !important;
+}
+
+.buffer--text-transform-normal-case {
+  text-transform: $buffer--text-transform-normal-case !important;
+}
+
+/*
+    * VERTICAL ALIGN
+*/
+.buffer--vertical-align-baseline {
+  vertical-align: $buffer--vertical-align-baseline !important;
+}
+
+.buffer--vertical-align-top {
+  vertical-align: $buffer--vertical-align-top !important;
+}
+
+.buffer--vertical-align-middle {
+  vertical-align: $buffer--vertical-align-middle !important;
+}
+
+.buffer--vertical-align-bottom {
+  vertical-align: $buffer--vertical-align-bottom !important;
+}
+
+.buffer--vertical-align-text-top {
+  vertical-align: $buffer--vertical-align-text-top !important;
+}
+
+.buffer--vertical-align-text-bottom {
+  vertical-align: $buffer--vertical-align-text-bottom;
+}
+
+/*
+    * WHITESPACE
+*/
+.buffer--white-space-normal {
+  white-space: $buffer--white-space-normal !important;
+}
+
+.buffer--white-space-no-wrap {
+  white-space: $buffer--white-space-no-wrap !important;
+}
+
+.buffer--white-space-pre {
+  white-space: $buffer--white-space-pre !important;
+}
+
+.buffer--white-space-pre-line {
+  white-space: $buffer--white-space-pre-line !important;
+}
+
+.buffer--white-space-pre-wrap {
+  white-space: $buffer--white-space-pre-wrap !important;
+}
+
+/*
+    * LETTER SPACING
+*/
+.buffer--letter-spacing-tracking-tighter {
+  letter-spacing: $buffer--letter-spacing-tracking-tighter !important;
+}
+
+.buffer--letter-spacing-tracking-tight {
+  letter-spacing: $buffer--letter-spacing-tracking-tight !important;
+}
+
+.buffer--letter-spacing-tracking-normal {
+  letter-spacing: $buffer--letter-spacing-tracking-normal !important;
+}
+
+.buffer--letter-spacing-tracking-wide {
+  letter-spacing: $buffer--letter-spacing-tracking-wide !important;
+}
+
+.buffer--letter-spacing-tracking-wider {
+  letter-spacing: $buffer--letter-spacing-tracking-wider !important;
+}
+
+.buffer--letter-spacing-tracking-widest {
+  letter-spacing: $buffer--letter-spacing-tracking-widest !important;
+}
+
+/* ************************************* TYPOGRAPHY ENDS ************************************* */
+/* ************************************* TYPOGRAPHY ENDS ************************************* */

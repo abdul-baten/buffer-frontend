@@ -11,109 +11,40 @@ $buffer--background-attachment-scroll: scroll;
 /*
     * BACKGROUND COLOR
 */
-$buffer--background-color-transparent: transparent;
 $buffer--background-color-black: #333232;
 $buffer--background-color-white: #ffffff;
+$buffer--background-color-transparent: transparent;
+$buffer--background-color-gray: rgba(0, 0, 0, 0.08);
 
-$buffer--background-color-gray-100: #f5f5f5;
-$buffer--background-color-gray-200: #eeeeee;
-$buffer--background-color-gray-300: #e0e0e0;
-$buffer--background-color-gray-400: #bdbdbd;
-$buffer--background-color-gray-500: #9e9e9e;
-$buffer--background-color-gray-600: #757575;
-$buffer--background-color-gray-700: #616161;
-$buffer--background-color-gray-800: #424242;
-$buffer--background-color-gray-900: #212121;
+$buffer--background-color-warn-100: #f7b4be;
+$buffer--background-color-warn-200: #f18292;
+$buffer--background-color-warn-300: #eb4f66;
+$buffer--background-color-warn-400: #e72a46;
+$buffer--background-color-warn-500: #e30425;
+$buffer--background-color-warn-600: #e00321;
+$buffer--background-color-warn-700: #dc031b;
+$buffer--background-color-warn-800: #d80216;
+$buffer--background-color-warn-900: #d0010d;
 
-$buffer--background-color-red-100: #ffcdd2;
-$buffer--background-color-red-200: #ef9a9a;
-$buffer--background-color-red-300: #e57373;
-$buffer--background-color-red-400: #ef5350;
-$buffer--background-color-red-500: #f44336;
-$buffer--background-color-red-600: #e53935;
-$buffer--background-color-red-700: #d32f2f;
-$buffer--background-color-red-800: #c62828;
-$buffer--background-color-red-900: #b71c1c;
+$buffer--background-color-accent-100: #fed1c2;
+$buffer--background-color-accent-200: #feb29a;
+$buffer--background-color-accent-300: #fe9372;
+$buffer--background-color-accent-400: #fd7b53;
+$buffer--background-color-accent-500: #fd6435;
+$buffer--background-color-accent-600: #fd5c30;
+$buffer--background-color-accent-700: #fc5228;
+$buffer--background-color-accent-800: #fc4822;
+$buffer--background-color-accent-900: #fc3616;
 
-$buffer--background-color-orange-100: #fcdfd8;
-$buffer--background-color-orange-200: #f78b7e;
-$buffer--background-color-orange-300: #f37d61;
-$buffer--background-color-orange-400: #f16544;
-$buffer--background-color-orange-500: #ef4e28;
-$buffer--background-color-orange-600: #e73a11;
-$buffer--background-color-orange-700: #cb330f;
-$buffer--background-color-orange-800: #ae2c0d;
-$buffer--background-color-orange-900: #92250b;
-
-$buffer--background-color-yellow-100: #fffff0;
-$buffer--background-color-yellow-200: #fefcbf;
-$buffer--background-color-yellow-300: #faf089;
-$buffer--background-color-yellow-400: #f6e05e;
-$buffer--background-color-yellow-500: #ecc94b;
-$buffer--background-color-yellow-600: #d69e2e;
-$buffer--background-color-yellow-700: #b7791f;
-$buffer--background-color-yellow-800: #975a16;
-$buffer--background-color-yellow-900: #744210;
-
-$buffer--background-color-green-100: #e0f0ee;
-$buffer--background-color-green-200: #b3d9d5;
-$buffer--background-color-green-300: #80c0b9;
-$buffer--background-color-green-400: #4da69d;
-$buffer--background-color-green-500: #008073;
-$buffer--background-color-green-600: #00786b;
-$buffer--background-color-green-700: #006d60;
-$buffer--background-color-green-800: #006356;
-$buffer--background-color-green-900: #005043;
-
-$buffer--background-color-teal-100: #e6fffa;
-$buffer--background-color-teal-200: #b2f5ea;
-$buffer--background-color-teal-300: #81e6d9;
-$buffer--background-color-teal-400: #4fd1c5;
-$buffer--background-color-teal-500: #38b2ac;
-$buffer--background-color-teal-600: #319795;
-$buffer--background-color-teal-700: #2c7a7b;
-$buffer--background-color-teal-800: #285e61;
-$buffer--background-color-teal-900: #234e52;
-
-$buffer--background-color-blue-100: #c4c1f3;
-$buffer--background-color-blue-200: #9c98ec;
-$buffer--background-color-blue-300: #b4d0e7;
-$buffer--background-color-blue-400: #574fde;
-$buffer--background-color-blue-500: #3930d8;
-$buffer--background-color-blue-600: #332bd4;
-$buffer--background-color-blue-700: #2c24ce;
-$buffer--background-color-blue-800: #241ec8;
-$buffer--background-color-blue-900: #1713bf;
-
-$buffer--background-color-indigo-100: #ebf4ff;
-$buffer--background-color-indigo-200: #c3dafe;
-$buffer--background-color-indigo-300: #a3bffa;
-$buffer--background-color-indigo-400: #7f9cf5;
-$buffer--background-color-indigo-500: #667eea;
-$buffer--background-color-indigo-600: #5a67d8;
-$buffer--background-color-indigo-700: #4c51bf;
-$buffer--background-color-indigo-800: #434190;
-$buffer--background-color-indigo-900: #3c366b;
-
-$buffer--background-color-purple-100: #faf5ff;
-$buffer--background-color-purple-200: #e9d8fd;
-$buffer--background-color-purple-300: #d6bcfa;
-$buffer--background-color-purple-400: #b794f4;
-$buffer--background-color-purple-500: #9f7aea;
-$buffer--background-color-purple-600: #805ad5;
-$buffer--background-color-purple-700: #6b46c1;
-$buffer--background-color-purple-800: #553c9a;
-$buffer--background-color-purple-900: #44337a;
-
-$buffer--background-color-pink-100: #fff5f7;
-$buffer--background-color-pink-200: #fed7e2;
-$buffer--background-color-pink-300: #fbb6ce;
-$buffer--background-color-pink-400: #f687b3;
-$buffer--background-color-pink-500: #ed64a6;
-$buffer--background-color-pink-600: #d53f8c;
-$buffer--background-color-pink-700: #b83280;
-$buffer--background-color-pink-800: #97266d;
-$buffer--background-color-pink-900: #702459;
+$buffer--background-color-primary-100: #dff7e5;
+$buffer--background-color-primary-200: #9ab4ac;
+$buffer--background-color-primary-300: #72958b;
+$buffer--background-color-primary-400: #537f72;
+$buffer--background-color-primary-500: #356859;
+$buffer--background-color-primary-600: #306051;
+$buffer--background-color-primary-700: #285548;
+$buffer--background-color-primary-800: #224b3e;
+$buffer--background-color-primary-900: #163a2e;
 
 /*
     * BACKGROUND POSITION

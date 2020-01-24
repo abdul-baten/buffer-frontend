@@ -1,0 +1,33 @@
+:host {
+  position: relative;
+  width: 100%;
+
+  .buffer--intro-publish-content {
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: center;
+    align-items: center;
+    display: -webkit-box;
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    justify-content: center;
+
+    .buffer--intro-publish-content-photo {
+      -webkit-box-ordinal-group: 2;
+      background-image: url('/assets/images/background/buffer--publish-graphics.svg');
+      background-position: left center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      order: 1;
+      width: 100%;
+    }
+
+    .buffer--intro-publish-content-text {
+      -webkit-box-ordinal-group: 3;
+      order: 2;
+    }
+  }
+}

@@ -6,14 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MenuModule } from '@shared/module/menu/menu.module';
 import { MainLogoModule } from '@shared/module/logo/main-logo/main-logo.module';
 
-// Third Party Modules
-
 // Components
-import { MainHeaderComponent } from './container/main-header.component';
+import { MainHeaderComponent } from '@shared/module/header/main-header/container/main-header.component';
 
 @NgModule({
   declarations: [MainHeaderComponent],
   imports: [CommonModule, MainLogoModule, MenuModule],
-  exports: [MainHeaderComponent]
+  exports: [MainHeaderComponent],
 })
 export class MainHeaderModule {}

@@ -2,15 +2,17 @@
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
 // Services
-import { PostTypeImageService } from '../service/post-type-image.service';
-import { PostTypeVideoService } from '../service/post-type-video.service';
+import { PostTypeImageService } from '@app/schedule/service/post-type-image.service';
+import { PostTypeVideoService } from '@app/schedule/service/post-type-video.service';
 
-export interface PostTypeGenerateInterface {
+interface PostTypeGenerateInterface {
   generateConfig(): DropzoneConfigInterface;
 }
 
-export const postTypeMap = new Map([
+const postTypeMap = new Map([
   ['text', null],
   ['image', PostTypeImageService],
-  ['video', PostTypeVideoService]
+  ['video', PostTypeVideoService],
 ]);
+
+export { postTypeMap, PostTypeGenerateInterface };

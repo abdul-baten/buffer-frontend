@@ -2,7 +2,7 @@
 import { Directive, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[bufferEventPropagation]'
+  selector: '[bufferEventPropagation]',
 })
 export class EventPropagationDirective {
   constructor() {}

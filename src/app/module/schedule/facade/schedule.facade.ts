@@ -1,50 +1,60 @@
-// Core Modules
+import format from 'date-fns/format';
+import formatISO from 'date-fns/formatISO';
+import getDate from 'date-fns/getDate';
+import getHours from 'date-fns/getHours';
+import getMinutes from 'date-fns/getMinutes';
+import getMonth from 'date-fns/getMonth';
+import getYear from 'date-fns/getYear';
+import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
+import { AppScheduleState } from '@app/schedule/reducer';
+import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
+import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { fromCalendarActions, fromScheduleActions } from '@app/schedule/action';
 import { Injectable, Injector } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MetaDefinition } from '@angular/platform-browser';
-
-// Application Specific Modules
+import { Observable, Subject } from 'rxjs';
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
+import { postTypeMap } from '@app/schedule/model/post-type.model';
+import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
+import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
+import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
+import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
+import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
+import { ScheduleState } from '@app/schedule/model/schedule.model';
+import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { Store } from '@ngrx/store';
+import {
+  selectPostType,
+  selectPostDate,
+  selectCalendarFirstDay,
+  selectCalendarNonCurrentDates,
+} from '@app/schedule/selector/schedule.selector';
+import { ScheduleCalendarPostDetailsModalComponent } from '../components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
 
 // Third Party Modules
-import { Observable } from 'rxjs';
-import format from 'date-fns/format';
-import getDate from 'date-fns/getDate';
-import getYear from 'date-fns/getYear';
-import getHours from 'date-fns/getHours';
-import getMonth from 'date-fns/getMonth';
-import formatISO from 'date-fns/formatISO';
-import getMinutes from 'date-fns/getMinutes';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
-
-// Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
-
-// Models
-import { postTypeMap } from '../model/post-type.model';
-import { PostScheduleState } from '../model/schedule.model';
-import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
-
-// Services
-import { ScheduleService } from '@core/service/schedule/schedule.service';
-import { SnackbarService } from '@core/service/snackbar/snackbar.service';
-import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
-
-// Store
-import { Store } from '@ngrx/store';
-import { fromScheduleActions } from '../action';
-import { selectPostType, selectPostDate } from '../selector/schedule.selector';
 
 @Injectable()
 export class ScheduleFacade {
   constructor(
     private injector: Injector,
-    private store: Store<PostScheduleState>,
-    private scheduleService: ScheduleService,
+    private matDialog: MatDialog,
     private metaService: DocumentMetaService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private store: Store<AppScheduleState>
   ) {}
 
-  private calendarApi: any;
+  private calendarApi: Calendar;
+  private createPostModalSubject$ = new Subject();
+
+  setPostCreateModalObservable(): void {
+    this.createPostModalSubject$.next();
+  }
+
+  getPostCreateModalObservable(): Observable<any> {
+    return this.createPostModalSubject$;
+  }
 
   setCalendarApi(calendar: any): void {
     this.calendarApi = calendar;
@@ -62,22 +72,39 @@ export class ScheduleFacade {
     this.calendarApi.next();
   }
 
+  calendarDate(date: Date): void {
+    this.calendarApi.gotoDate(date);
+  }
+
   updateDocumentMetaTag(tag: MetaDefinition): void {
     this.metaService.updateDocumentMetaTag(tag);
   }
 
   changeCalendarViewOption(viewOption: string) {
-    this.scheduleService.changeCalendarViewOption(viewOption);
-  }
-
-  viewPostDetails(event: any): void {
-    this.scheduleService.viewPostDetails(event);
+    this.calendarApi.changeView(viewOption);
   }
 
   openCreatePostForm(postDate: Date): void {
     const postOriginalDate = this.getCurrentTime(postDate);
     this.setPostDate(postOriginalDate);
-    this.scheduleService.openCreatePostFormDialog();
+    this.matDialog.open(SchedulePostCreateModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      width: '700px',
+      role: 'dialog',
+      autoFocus: true,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
   }
 
   private getCurrentTime(date: Date): string {
@@ -95,7 +122,24 @@ export class ScheduleFacade {
   }
 
   onPostDragged(postInfo: CalPostInfoInterface): void {
-    this.scheduleService.openPostDragAlert(postInfo);
+    this.matDialog.open(SchedulePostRescheduleConfirmModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      data: postInfo,
+      width: '400px',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      role: 'alertdialog',
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
   }
 
   removePostData(): void {
@@ -119,7 +163,7 @@ export class ScheduleFacade {
     return this.store.select(selectPostDate);
   }
 
-  setPostData(formData: PostScheduleState): void {
+  setPostData(formData: ScheduleState): void {
     const postDate = format(new Date(formData.postDate), 'MM/dd/yyyy');
     const postTime = format(new Date(formData.postDate), 'hh:mm a');
     const postData = Object.assign(formData, { postDate, postTime });
@@ -133,11 +177,110 @@ export class ScheduleFacade {
     return service.generateConfig();
   }
 
-  openSnackbar(message: string, action: string = ''): void {
+  openSnackbar(message: string, action: string = 'Close'): void {
     this.snackbarService.openSnackBar(message, action);
   }
 
   openCalenderSettings(): void {
-    this.scheduleService.openCalendarSettingsDialog();
+    this.matDialog.open(ScheduleCalendarSettingsModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      width: '450px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
+  }
+
+  openPostDetailsDialog(postId: string): void {
+    this.matDialog.open(ScheduleCalendarPostDetailsModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      data: postId,
+      width: '750px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
+  }
+
+  openPostDeleteDialog(postId: string): void {
+    this.matDialog.open(ScheduleDeletePostModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      data: postId,
+      width: '400px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
+  }
+
+  openPostRescheduleDialog(postId: string, postDate: Date): void {
+    this.matDialog.open(SchedulePostRescheduleModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      data: { postId, postDate },
+      width: '400px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
+  }
+
+  setCalendarFirstDay(firstDay: number): void {
+    this.store.dispatch(fromCalendarActions.setCalendarFirstDay({ firstDay }));
+  }
+
+  setCalendarNonCurrentDates(showNonCurrentDates: boolean): void {
+    this.store.dispatch(fromCalendarActions.setCalendarNonCurrentDates({ showNonCurrentDates }));
+  }
+
+  getCalendarFirstDay(): Observable<number> {
+    return this.store.select(selectCalendarFirstDay);
+  }
+
+  getCalendarNonCurrentDates(): Observable<boolean> {
+    return this.store.select(selectCalendarNonCurrentDates);
   }
 }

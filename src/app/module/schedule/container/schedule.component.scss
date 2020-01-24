@@ -1,26 +1,34 @@
 :host {
-  height: 100%;
   display: block;
   overflow: hidden;
   position: relative;
 
-  .dashboard-header-sec {
-    top: 0;
-    left: 0;
-    width: 5rem;
-    display: block;
-    position: fixed;
-    height: 100vh;
-    border-right: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .dashboard-route-sec {
-    width: calc(100vw - 5rem);
-  }
-
   ::ng-deep {
     .mat-drawer-end {
       border: none;
+    }
+
+    .dashboard-header-sec {
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      display: block;
+      height: 100vh;
+      left: 0;
+      position: fixed;
+      top: 0;
+      width: 5rem;
+    }
+
+    .buffer--schedule-menu-sec {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      height: 65px;
+    }
+
+    .buffer--schedule-calendar-view-sec {
+      height: calc(100vh - 65px);
+    }
+
+    .dashboard-route-sec {
+      width: calc(100vw - 5rem);
     }
 
     .fc-widget-header {
@@ -29,8 +37,8 @@
     }
 
     .mat-calendar-body-cell {
-      font-size: 0.75rem;
       font-family: 'Averta SemiBold';
+      font-size: 0.75rem;
     }
 
     .buffer--schedule-calendar-sec {

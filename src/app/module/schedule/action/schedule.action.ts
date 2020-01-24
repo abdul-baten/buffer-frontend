@@ -2,10 +2,10 @@
 import { createAction, props } from '@ngrx/store';
 
 // Models
-import { PostScheduleState } from '../model/schedule.model';
+import { ScheduleState } from '@app/schedule/model/schedule.model';
 
 // Enums
-import { POST_TYPE } from '../enum/schedule-event-create-modal.enum';
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
 export const removePostData = createAction('[Schedule Effect] Remove Post Data');
 
@@ -18,5 +18,5 @@ export const setPostType = createAction('[Schedule Facade] Set Schedule Post Typ
 
 export const setPostData = createAction(
   '[Schedule Facade] Set Schedule Post Data',
-  props<{ postData: PostScheduleState }>()
+  props<{ postData: ScheduleState }>()
 );

@@ -1,10 +1,10 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { fromScheduleActions } from '../action';
+import { fromScheduleActions } from '@app/schedule/action';
 
 // Model
-import { PostScheduleState } from '../model/schedule.model';
+import { ScheduleState } from '@app/schedule/model/schedule.model';
 
-export const initialState: PostScheduleState = {
+export const initialState: ScheduleState = {
   postDate: null,
   postTime: null,
   postNow: false,
@@ -16,7 +16,7 @@ export const initialState: PostScheduleState = {
   postDraft: false,
   postCaption: null,
   postLocation: null,
-  postOriginalDate: null
+  postOriginalDate: null,
 };
 
 export const postDataReducer = createReducer(
@@ -24,25 +24,25 @@ export const postDataReducer = createReducer(
   on(fromScheduleActions.setPostDate, (state, action) => {
     return {
       ...state,
-      postOriginalDate: action.postOriginalDate
+      postOriginalDate: action.postOriginalDate,
     };
   }),
   on(fromScheduleActions.setPostType, (state, action) => {
     return {
       ...state,
       postType: action.postType,
-      postOriginalDate: state.postOriginalDate
+      postOriginalDate: state.postOriginalDate,
     };
   }),
   on(fromScheduleActions.setPostData, (state, action) => {
     return {
       ...state,
-      ...action.postData
+      ...action.postData,
     };
   }),
   on(fromScheduleActions.removePostData, _ => initialState)
 );
 
-export function reducer(state: PostScheduleState | undefined, action: Action) {
+export function reducer(state: ScheduleState | undefined, action: Action) {
   return postDataReducer(state, action);
 }

@@ -1,0 +1,40 @@
+:host {
+  ::ng-deep {
+    .buffer--social-account-image {
+      height: 40px;
+      width: 40px;
+    }
+
+    .buffer--social-account-logo {
+      border: 3px solid #ffffff;
+      height: 20px;
+      margin: -25px 0 0 25px;
+      width: 20px;
+    }
+
+    .buffer--social-account-logo-facebook {
+      background-size: cover;
+      background: #1877f2 url('/assets/images/icon/facebook.svg');
+    }
+
+    .buffer--social-account-logo-linkedin {
+      background-size: cover;
+      background: #007bb5 url('/assets/images/icon/linkedin.svg');
+    }
+
+    .buffer--social-account-logo-twitter {
+      background-size: cover;
+      background: #1da1f2 url('/assets/images/icon/twitter.svg');
+    }
+
+    .buffer--social-account-logo-instagram {
+      background-size: cover;
+      background: #f46f30 url('/assets/images/icon/instagram.svg');
+    }
+
+    .buffer--social-account-logo-pinterest {
+      background-size: cover;
+      background: #bd081c url('/assets/images/icon/pinterest.svg');
+    }
+  }
+}

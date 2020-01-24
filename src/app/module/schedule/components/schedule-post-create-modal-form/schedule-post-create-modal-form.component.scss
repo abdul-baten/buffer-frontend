@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  position: relative;
+
+  ::ng-deep {
+    .mat-horizontal-stepper-header-container {
+      display: none;
+    }
+
+    .mat-horizontal-content-container {
+      padding: 0;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Meta, MetaDefinition } from '@angular/platform-browser';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DocumentMetaService {
   constructor(private meta: Meta) {}

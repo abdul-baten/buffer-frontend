@@ -8,7 +8,7 @@ describe('DashboardHeaderMenuComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardHeaderMenuComponent]
+      declarations: [DashboardHeaderMenuComponent],
     }).compileComponents();
   }));
 

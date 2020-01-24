@@ -1,10 +1,13 @@
 :host {
-  display: flex;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  flex-direction: column;
-  -webkit-box-pack: justify;
   -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: justify;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
   justify-content: space-between;
 
   .buffer--header-logo-sec {
@@ -16,7 +19,7 @@
   }
 
   .buffer--header-account-sec {
-    height: 65px;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
+    height: 65px;
   }
 }

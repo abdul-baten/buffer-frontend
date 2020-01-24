@@ -77,107 +77,40 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-transparent: transparent;
 $buffer--text-color-black: #333232;
 $buffer--text-color-white: #ffffff;
+$buffer--text-color-transparent: transparent;
+$buffer--text-color-gray: rgba(0, 0, 0, 0.08);
 
-$buffer--text-color-gray-100: #f5f5f5;
-$buffer--text-color-gray-200: #eeeeee;
-$buffer--text-color-gray-300: #e0e0e0;
-$buffer--text-color-gray-400: #bdbdbd;
-$buffer--text-color-gray-500: #9e9e9e;
-$buffer--text-color-gray-600: #757575;
-$buffer--text-color-gray-700: #616161;
-$buffer--text-color-gray-800: #424242;
-$buffer--text-color-gray-900: #212121;
+$buffer--text-color-warn-100: #f7b4be;
+$buffer--text-color-warn-200: #f18292;
+$buffer--text-color-warn-300: #eb4f66;
+$buffer--text-color-warn-400: #e72a46;
+$buffer--text-color-warn-500: #e30425;
+$buffer--text-color-warn-600: #e00321;
+$buffer--text-color-warn-700: #dc031b;
+$buffer--text-color-warn-800: #d80216;
+$buffer--text-color-warn-900: #d0010d;
 
-$buffer--text-color-red-100: #ffcdd2;
-$buffer--text-color-red-200: #ef9a9a;
-$buffer--text-color-red-300: #e57373;
-$buffer--text-color-red-400: #ef5350;
-$buffer--text-color-red-500: #f44336;
-$buffer--text-color-red-600: #e53935;
-$buffer--text-color-red-700: #d32f2f;
-$buffer--text-color-red-800: #c62828;
-$buffer--text-color-red-900: #b71c1c;
+$buffer--text-color-accent-100: #fed1c2;
+$buffer--text-color-accent-200: #feb29a;
+$buffer--text-color-accent-300: #fe9372;
+$buffer--text-color-accent-400: #fd7b53;
+$buffer--text-color-accent-500: #fd6435;
+$buffer--text-color-accent-600: #fd5c30;
+$buffer--text-color-accent-700: #fc5228;
+$buffer--text-color-accent-800: #fc4822;
+$buffer--text-color-accent-900: #fc3616;
 
-$buffer--text-color-orange-100: #fcdfd8;
-$buffer--text-color-orange-200: #f8b4a3;
-$buffer--text-color-orange-300: #f37d61;
-$buffer--text-color-orange-400: #f16544;
-$buffer--text-color-orange-500: #ef4e28;
-$buffer--text-color-orange-600: #e73a11;
-$buffer--text-color-orange-700: #cb330f;
-$buffer--text-color-orange-800: #ae2c0d;
-$buffer--text-color-orange-900: #92250b;
-
-$buffer--text-color-yellow-100: #fffff0;
-$buffer--text-color-yellow-200: #fefcbf;
-$buffer--text-color-yellow-300: #faf089;
-$buffer--text-color-yellow-400: #f6e05e;
-$buffer--text-color-yellow-500: #ecc94b;
-$buffer--text-color-yellow-600: #d69e2e;
-$buffer--text-color-yellow-700: #b7791f;
-$buffer--text-color-yellow-800: #975a16;
-$buffer--text-color-yellow-900: #744210;
-
-$buffer--text-color-green-100: #e0f0ee;
-$buffer--text-color-green-200: #b3d9d5;
-$buffer--text-color-green-300: #80c0b9;
-$buffer--text-color-green-400: #4da69d;
-$buffer--text-color-green-500: #008073;
-$buffer--text-color-green-600: #00786b;
-$buffer--text-color-green-700: #006d60;
-$buffer--text-color-green-800: #006356;
-$buffer--text-color-green-900: #005043;
-
-$buffer--text-color-teal-100: #e6fffa;
-$buffer--text-color-teal-200: #b2f5ea;
-$buffer--text-color-teal-300: #81e6d9;
-$buffer--text-color-teal-400: #4fd1c5;
-$buffer--text-color-teal-500: #38b2ac;
-$buffer--text-color-teal-600: #319795;
-$buffer--text-color-teal-700: #2c7a7b;
-$buffer--text-color-teal-800: #285e61;
-$buffer--text-color-teal-900: #234e52;
-
-$buffer--text-color-blue-100: #c4c1f3;
-$buffer--text-color-blue-200: #9c98ec;
-$buffer--text-color-blue-300: #746ee4;
-$buffer--text-color-blue-400: #574fde;
-$buffer--text-color-blue-500: #3930d8;
-$buffer--text-color-blue-600: #332bd4;
-$buffer--text-color-blue-700: #2c24ce;
-$buffer--text-color-blue-800: #241ec8;
-$buffer--text-color-blue-900: #1713bf;
-
-$buffer--text-color-indigo-100: #ebf4ff;
-$buffer--text-color-indigo-200: #c3dafe;
-$buffer--text-color-indigo-300: #a3bffa;
-$buffer--text-color-indigo-400: #7f9cf5;
-$buffer--text-color-indigo-500: #667eea;
-$buffer--text-color-indigo-600: #5a67d8;
-$buffer--text-color-indigo-700: #4c51bf;
-$buffer--text-color-indigo-800: #434190;
-$buffer--text-color-indigo-900: #3c366b;
-$buffer--text-color-purple-100: #faf5ff;
-$buffer--text-color-purple-200: #e9d8fd;
-$buffer--text-color-purple-300: #d6bcfa;
-$buffer--text-color-purple-400: #b794f4;
-$buffer--text-color-purple-500: #9f7aea;
-$buffer--text-color-purple-600: #805ad5;
-$buffer--text-color-purple-700: #6b46c1;
-$buffer--text-color-purple-800: #553c9a;
-$buffer--text-color-purple-900: #44337a;
-$buffer--text-color-pink-100: #fff5f7;
-$buffer--text-color-pink-200: #fed7e2;
-$buffer--text-color-pink-300: #fbb6ce;
-$buffer--text-color-pink-400: #f687b3;
-$buffer--text-color-pink-500: #ed64a6;
-$buffer--text-color-pink-600: #d53f8c;
-$buffer--text-color-pink-700: #b83280;
-$buffer--text-color-pink-800: #97266d;
-$buffer--text-color-pink-900: #702459;
+$buffer--text-color-primary-100: #dff7e5;
+$buffer--text-color-primary-200: #9ab4ac;
+$buffer--text-color-primary-300: #72958b;
+$buffer--text-color-primary-400: #537f72;
+$buffer--text-color-primary-500: #356859;
+$buffer--text-color-primary-600: #306051;
+$buffer--text-color-primary-700: #285548;
+$buffer--text-color-primary-800: #224b3e;
+$buffer--text-color-primary-900: #163a2e;
 
 /*
     * TEXT DECORATION

@@ -1,0 +1,12 @@
+<div class="clearfix" *ngIf="eventVideos">
+  <div class="clearfix buffer--margin-top-5">
+    <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-start">
+      <div
+        *ngFor="let eventVideo of eventVideos"
+        class="buffer--schedule-post-view-video buffer--width-24 buffer--height-16 buffer--margin-right-3"
+      >
+        <img [src]="eventVideo" class="buffer--width-full buffer--height-full" />
+      </div>
+    </div>
+  </div>
+</div>
