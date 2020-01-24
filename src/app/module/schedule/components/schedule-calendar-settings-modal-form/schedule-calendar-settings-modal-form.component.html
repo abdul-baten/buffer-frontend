@@ -12,14 +12,14 @@
           <div class="clearfix buffer--margin-y-2">
             <div class="clearfix">
               <mat-radio-group
+                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
                 color="primary"
                 formControlName="firstDay"
-                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
               >
                 <mat-radio-button
+                  *ngFor="let weekDay of weekDays; let i = index"
                   [value]="i"
                   class="buffer--margin-y-2"
-                  *ngFor="let weekDay of weekDays; let i = index"
                 >
                   {{ weekDay }}
                 </mat-radio-button>
@@ -37,9 +37,9 @@
           <div class="clearfix buffer--margin-y-2">
             <div class="clearfix">
               <mat-radio-group
+                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
                 color="primary"
                 formControlName="showNonCurrentDates"
-                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
               >
                 <mat-radio-button [value]="true" class="buffer--margin-y-2">
                   Yes
@@ -61,10 +61,9 @@
   >
     <div class="clearfix buffer--margin-top-10 buffer--display-flex buffer--flex-justify-content-end">
       <button
+        class="buffer--font-family-semi-bold buffer--font-size-sm"
         mat-button
-        color="accent"
         mat-dialog-close
-        class="buffer--font-family-semi-bold buffer--font-size-sm buffer--height-10 buffer--padding-x-6 buffer--border-radius-lg"
       >
         Close
       </button>

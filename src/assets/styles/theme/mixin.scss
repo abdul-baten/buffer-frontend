@@ -1,6 +1,4 @@
 @mixin buffer--button-border-radius($arc) {
-  -moz-border-radius: $arc;
-  -webkit-border-radius: $arc;
   border-radius: $arc;
 }
 
@@ -14,12 +12,10 @@
 }
 
 @mixin buffer--button-box-shadow($shadow) {
-  -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
 }
 
 @mixin buffer--user-select($selection) {
-  -khtml-user-select: $selection;
   -moz-user-select: $selection;
   -ms-user-select: $selection;
   -webkit-user-select: $selection;

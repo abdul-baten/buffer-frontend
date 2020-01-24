@@ -1,32 +1,27 @@
 .owl-dialog-container {
-  position: $buffer--position-relative;
-  pointer-events: auto;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  display: $buffer--display-block;
-  padding: 1.5rem;
+  background: $buffer--background-color-white;
+  border-radius: $buffer--border-radius-lg;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14),
     0px 9px 46px 8px rgba(0, 0, 0, 0.12);
-  -moz-border-radius: $buffer--border-radius-lg;
-  border-radius: $buffer--border-radius-lg;
-  overflow: $buffer--overflow-auto;
-  background: $buffer--background-color-white;
+  box-sizing: border-box;
   color: rgba(0, 0, 0, 0.87);
-  width: $buffer--width-full;
+  display: $buffer--display-block;
   height: $buffer--height-full;
   outline: $buffer--outline-none;
+  overflow: $buffer--overflow-auto;
+  padding: 1.5rem;
+  pointer-events: auto;
+  position: $buffer--position-relative;
+  width: $buffer--width-full;
 }
 .owl-dt-container,
 .owl-dt-container * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .owl-dt-container {
+  background: $buffer--background-color-white;
   display: $buffer--display-block;
   font-size: $buffer--font-size-xs;
-  background: $buffer--background-color-white;
   pointer-events: auto;
   z-index: $buffer--z-index-50;
 }
@@ -37,57 +32,32 @@
   border-bottom: none;
 }
 .owl-dt-calendar {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: $buffer--display-flex-direction-column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: $buffer--display-flex-direction-column;
+  -webkit-box-orient: vertical;
+  display: $buffer--display-flex;
+  display: -webkit-box;
   flex-direction: $buffer--display-flex-direction-column;
   width: $buffer--width-full;
 }
 .owl-dt-calendar-control {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
-  font-size: $buffer--font-size-sm;
-  width: $buffer--width-full;
-  padding: 1.25rem;
   color: $buffer--text-color-black;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  font-size: $buffer--font-size-sm;
+  padding: 1.25rem;
+  width: $buffer--width-full;
 }
 .owl-dt-calendar-control .owl-dt-calendar-control-content {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  flex: 1 1 auto;
+  justify-content: $buffer--text-align-center;
 }
 .owl-dt-calendar-control .owl-dt-calendar-control-content .owl-dt-calendar-control-button {
   padding: 0 0.8em;
@@ -96,141 +66,106 @@
   background-color: rgba(0, 0, 0, 0.08);
 }
 .owl-dt-calendar-main {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  -webkit-flex-direction: $buffer--display-flex-direction-column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: $buffer--display-flex-direction-column;
-  flex-direction: $buffer--display-flex-direction-column;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  flex-direction: $buffer--display-flex-direction-column;
   flex: 1 1 auto;
-  padding: 0.5rem 1.25rem;
   outline: $buffer--outline-none;
+  padding: 0.5rem 1.25rem;
 }
 .owl-dt-calendar-view {
-  display: $buffer--display-block;
   -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 1 auto;
+  display: $buffer--display-block;
   flex: 1 1 auto;
 }
 .owl-dt-calendar-multi-year-view {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
+  display: $buffer--display-flex;
+  display: -webkit-box;
 }
 .owl-dt-calendar-multi-year-view .owl-dt-calendar-table {
-  width: -webkit-calc(100% - 3em);
-  width: -moz-calc(100% - 3em);
   width: calc(100% - 3em);
 }
 .owl-dt-calendar-multi-year-view .owl-dt-calendar-table .owl-dt-calendar-header th {
   padding-bottom: 0.25em;
 }
 .owl-dt-calendar-table {
-  width: $buffer--width-full;
   border-collapse: collapse;
   border-spacing: 0;
   font-family: $buffer--font-family-regular;
+  width: $buffer--width-full;
 }
 .owl-dt-calendar-table .owl-dt-calendar-header {
   color: rgba(0, 0, 0, 0.4);
 }
 .owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-weekdays th {
-  padding-bottom: 1rem;
-  font-size: $buffer--font-size-xs;
-  text-align: $buffer--text-align-center;
   font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-xs;
+  padding-bottom: 1rem;
+  text-align: $buffer--text-align-center;
   text-transform: $buffer--text-transform-uppercase;
 }
 .owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-calendar-table-divider {
-  position: $buffer--position-relative;
   height: 1px;
   padding-bottom: 0.5em;
+  position: $buffer--position-relative;
 }
 .owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-calendar-table-divider:after {
-  content: '';
-  position: $buffer--position-absolute;
-  top: 0;
-  left: -0.5em;
-  right: -0.5em;
-  height: 1px;
   background: rgba(0, 0, 0, 0.08);
+  content: '';
+  height: 1px;
+  left: -0.5em;
+  position: $buffer--position-absolute;
+  right: -0.5em;
+  top: 0;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell {
-  position: $buffer--position-relative;
-  height: $buffer--height-0;
-  line-height: $buffer--line-height-leading-zero;
-  text-align: $buffer--text-align-center;
-  outline: $buffer--outline-none;
-  color: rgba(0, 0, 0, 0.85);
   -webkit-appearance: none;
   -webkit-tap-highlight-color: $buffer--background-color-transparent;
   -webkit-tap-highlight-color: $buffer--background-color-transparent;
+  color: rgba(0, 0, 0, 0.85);
+  height: $buffer--height-0;
+  line-height: $buffer--line-height-leading-zero;
+  outline: $buffer--outline-none;
+  position: $buffer--position-relative;
+  text-align: $buffer--text-align-center;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-content {
-  position: $buffer--position-absolute;
-  top: 5%;
-  left: 5%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
-  align-items: $buffer--text-align-center;
   -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  font-size: $buffer--font-size-xs;
-  line-height: $buffer--line-height-leading-none;
-  border: 1px solid $buffer--background-color-transparent;
-  -moz-border-radius: $buffer--border-radius-full;
+  align-items: $buffer--text-align-center;
   border-radius: $buffer--border-radius-full;
+  border: 1px solid $buffer--background-color-transparent;
+  box-sizing: border-box;
   color: inherit;
   cursor: $buffer--cursor-pointer;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  font-size: $buffer--font-size-xs;
+  height: 100%;
+  justify-content: $buffer--text-align-center;
+  left: 5%;
+  line-height: $buffer--line-height-leading-none;
+  position: $buffer--position-absolute;
+  top: 5%;
+  width: 100%;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-out {
   opacity: $buffer--opacity-25;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
-  border-color: rgba(0, 0, 0, 0.4);
   background-color: $buffer--background-color-primary-100;
+  border-color: rgba(0, 0, 0, 0.4);
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected {
-  color: rgba(255, 255, 255, 0.85);
   background-color: $buffer--background-color-primary-500;
+  color: rgba(255, 255, 255, 0.85);
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected.owl-dt-calendar-cell-today {
-  -webkit-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
-  -moz-box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.85);
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-disabled {
@@ -261,127 +196,86 @@
   background: rgba(63, 81, 181, 0.2);
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-in-range.owl-dt-calendar-cell-range-from {
-  -moz-border-radius-topleft: $buffer--border-radius-full;
-  border-top-left-radius: $buffer--border-radius-full;
-  -moz-border-radius-bottomleft: $buffer--border-radius-full;
   border-bottom-left-radius: $buffer--border-radius-full;
+  border-top-left-radius: $buffer--border-radius-full;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-in-range.owl-dt-calendar-cell-range-to {
-  -moz-border-radius-topright: $buffer--border-radius-full;
-  border-top-right-radius: $buffer--border-radius-full;
-  -moz-border-radius-bottomright: $buffer--border-radius-full;
   border-bottom-right-radius: $buffer--border-radius-full;
+  border-top-right-radius: $buffer--border-radius-full;
 }
 .owl-dt-timer {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
   -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
+  display: $buffer--display-flex;
+  display: -webkit-box;
   justify-content: $buffer--text-align-center;
-  width: $buffer--width-full;
   outline: $buffer--outline-none;
+  width: $buffer--width-full;
 }
 .owl-dt-timer-box {
-  position: $buffer--position-relative;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -moz-inline-box;
-  display: -ms-inline-flexbox;
-  display: $buffer--display-inline-flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: $buffer--display-flex-direction-column;
-  -moz-box-orient: vertical;
-  -moz-box-direction: normal;
-  -ms-flex-direction: $buffer--display-flex-direction-column;
-  flex-direction: $buffer--display-flex-direction-column;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   align-items: $buffer--text-align-center;
-  width: $buffer--width-percent-33;
   border-right: 1px solid rgba(0, 0, 0, 0.08);
+  display: $buffer--display-inline-flex;
+  display: -webkit-inline-box;
+  flex-direction: $buffer--display-flex-direction-column;
   height: $buffer--height-full;
+  position: $buffer--position-relative;
+  width: $buffer--width-percent-33;
 }
 .owl-dt-timer-content {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 1 auto;
-  -moz-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
+  -webkit-box-flex: 1;
+  -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
-  width: $buffer--width-full;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  flex: 1 1 auto;
+  justify-content: $buffer--text-align-center;
   margin: 0.2rem 0;
+  width: $buffer--width-full;
 }
 .owl-dt-timer-content .owl-dt-timer-input {
-  padding: 0.5rem;
-  width: $buffer--width-10;
-  height: $buffer--height-8;
-  outline: $buffer--outline-none;
+  border-radius: $buffer--border-radius-lg;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   display: $buffer--display-block;
   font-size: $buffer--font-size-xs;
+  height: $buffer--height-8;
+  outline: $buffer--outline-none;
+  padding: 0.5rem;
   text-align: $buffer--text-align-center;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: $buffer--border-radius-lg;
-  -moz-border-radius: $buffer--border-radius-lg;
+  width: $buffer--width-10;
 }
 .owl-dt-control-button {
-  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
-  cursor: $buffer--cursor-pointer;
-  outline: $buffer--outline-none;
-  border: none;
   -webkit-tap-highlight-color: $buffer--background-color-transparent;
-  display: $buffer--display-inline-block;
-  white-space: nowrap;
-  text-decoration: $buffer--text-decoration-none;
-  vertical-align: baseline;
-  margin: 0;
-  padding: 0;
+  -webkit-text-decoration: $buffer--text-decoration-none;
+  -webkit-user-select: none;
   background-color: $buffer--background-color-transparent;
-  font-size: $buffer--font-size-xs;
+  border: none;
   color: inherit;
+  cursor: $buffer--cursor-pointer;
+  display: $buffer--display-inline-block;
+  font-size: $buffer--font-size-xs;
+  margin: 0;
+  outline: $buffer--outline-none;
+  padding: 0;
+  text-decoration: $buffer--text-decoration-none;
+  user-select: none;
+  vertical-align: baseline;
+  white-space: nowrap;
 }
 .owl-dt-control-button .owl-dt-control-button-content {
-  position: $buffer--position-relative;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -moz-inline-box;
-  display: -ms-inline-flexbox;
-  display: $buffer--display-inline-flex;
-  -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
+  -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
+  display: $buffer--display-inline-flex;
+  display: -webkit-inline-box;
+  justify-content: $buffer--text-align-center;
   outline: $buffer--outline-none;
+  position: $buffer--position-relative;
 }
 .owl-dt-control-period-button .owl-dt-control-button-content {
   -moz-border-radius: $buffer--border-radius-xl;
@@ -399,55 +293,43 @@
   background-color: rgba(0, 0, 0, 0.08);
 }
 .owl-dt-control-period-button .owl-dt-control-button-arrow {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
-  align-items: $buffer--text-align-center;
-  width: $buffer--width-6;
-  height: $buffer--height-4;
-  margin: 0.1rem;
+  -webkit-box-pack: $buffer--text-align-center;
   -webkit-transition: -webkit-transform 0.2s ease;
+  align-items: $buffer--text-align-center;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  height: $buffer--height-4;
+  justify-content: $buffer--text-align-center;
+  margin: 0.1rem;
   transition: -webkit-transform 0.2s ease;
-  -o-transition: transform 0.2s ease;
-  -moz-transition: transform 0.2s ease, -moz-transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
   transition: transform 0.2s ease;
-  transition: transform 0.2s ease, -webkit-transform 0.2s ease, -moz-transform 0.2s ease;
+  width: $buffer--width-6;
 }
 .owl-dt-control-arrow-button .owl-dt-control-button-content {
-  padding: 0;
-  -moz-border-radius: $buffer--border-radius-full;
   border-radius: $buffer--border-radius-full;
-  width: $buffer--width-6;
-  height: $buffer--height-6;
   color: $buffer--text-color-primary-500;
+  height: $buffer--height-6;
+  padding: 0;
+  width: $buffer--width-6;
 }
 .owl-dt-control-arrow-button[disabled] {
   cursor: $buffer--cursor-default;
   opacity: $buffer--opacity-25;
 }
 .owl-dt-control-arrow-button svg {
-  width: $buffer--width-percent-50;
-  height: $buffer--height-percent-50;
   fill: currentColor;
+  height: $buffer--height-percent-50;
+  width: $buffer--width-percent-50;
 }
 .owl-dt-inline-container,
 .owl-dt-popup-container {
-  position: $buffer--position-relative;
-  width: 20rem;
   border-radius: $buffer--border-radius-lg;
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14),
     0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  position: $buffer--position-relative;
+  width: 20rem;
 }
 .owl-dt-inline-container .owl-dt-calendar,
 .owl-dt-inline-container .owl-dt-timer,
@@ -460,23 +342,23 @@
   height: auto;
 }
 .owl-dt-dialog-container {
-  max-height: 95vh;
   margin: -1.5em;
+  max-height: 95vh;
 }
 .owl-dt-dialog-container .owl-dt-calendar {
-  min-width: 250px;
-  min-height: 330px;
-  max-width: 750px;
   max-height: 750px;
+  max-width: 750px;
+  min-height: 330px;
+  min-width: 250px;
 }
 .owl-dt-dialog-container .owl-dt-timer {
-  min-width: 250px;
   max-width: 750px;
+  min-width: 250px;
 }
 @media all and (orientation: landscape) {
   .owl-dt-dialog-container .owl-dt-calendar {
-    width: 58vh;
     height: 62vh;
+    width: 58vh;
   }
   .owl-dt-dialog-container .owl-dt-timer {
     width: 58vh;
@@ -484,39 +366,33 @@
 }
 @media all and (orientation: portrait) {
   .owl-dt-dialog-container .owl-dt-calendar {
-    width: 80vw;
     height: 80vw;
+    width: 80vw;
   }
   .owl-dt-dialog-container .owl-dt-timer {
     width: 80vw;
   }
 }
 .owl-dt-container-buttons {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  width: $buffer--width-full;
-  height: 3rem;
   color: $buffer--text-color-black;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  height: 3rem;
+  width: $buffer--width-full;
 }
 .owl-dt-container-control-button {
-  font-family: $buffer--font-family-regular;
-  font-size: $buffer--font-size-sm;
-  width: $buffer--width-percent-50;
-  height: $buffer--height-full;
-  -moz-border-radius: 0;
   border-radius: 0;
   border-right: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: $buffer--font-family-regular;
+  font-size: $buffer--font-size-sm;
+  height: $buffer--height-full;
+  width: $buffer--width-percent-50;
 
   .owl-dt-control-button-content {
-    height: $buffer--height-full;
-    width: $buffer--width-full;
     -webkit-transition: background-color 0.1s linear;
-    -o-transition: background-color 0.1s linear;
-    -moz-transition: background-color 0.1s linear;
+    height: $buffer--height-full;
     transition: background-color 0.1s linear;
+    width: $buffer--width-full;
   }
 
   &:hover {
@@ -533,26 +409,20 @@
 }
 
 .owl-dt-container-info {
-  padding: 0 0.5em;
-  cursor: $buffer--cursor-pointer;
   -webkit-tap-highlight-color: $buffer--background-color-transparent;
+  cursor: $buffer--cursor-pointer;
+  padding: 0 0.5em;
 }
 .owl-dt-container-info .owl-dt-container-range {
   outline: $buffer--outline-none;
 }
 .owl-dt-container-info .owl-dt-container-range .owl-dt-container-range-content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: $buffer--flex-justify-content-space-between;
-  -moz-box-pack: justify;
-  -ms-flex-pack: justify;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  font-size: 0.8em;
   justify-content: $buffer--flex-justify-content-space-between;
   padding: 0.5em 0;
-  font-size: 0.8em;
 }
 .owl-dt-container-info .owl-dt-container-range:last-child {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -562,62 +432,49 @@
 }
 .owl-dt-container-disabled,
 .owl-dt-trigger-disabled {
-  opacity: $buffer--opacity-25;
-  filter: Alpha(Opacity=25);
   background-image: none;
   cursor: $buffer--cursor-default !important;
+  filter: Alpha(Opacity=25);
+  opacity: $buffer--opacity-25;
 }
 .owl-dt-timer-hour12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: $buffer--display-flex;
-  -webkit-box-pack: $buffer--text-align-center;
-  -webkit-justify-content: $buffer--text-align-center;
-  -moz-box-pack: $buffer--text-align-center;
-  -ms-flex-pack: $buffer--text-align-center;
-  justify-content: $buffer--text-align-center;
   -webkit-box-align: $buffer--text-align-center;
-  -webkit-align-items: $buffer--text-align-center;
-  -moz-box-align: $buffer--text-align-center;
-  -ms-flex-align: $buffer--text-align-center;
+  -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
   color: $buffer--background-color-primary-500;
+  display: $buffer--display-flex;
+  display: -webkit-box;
+  justify-content: $buffer--text-align-center;
   width: $buffer--width-percent-33;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  -moz-border-radius: $buffer--border-radius-lg;
-  border-radius: $buffer--border-radius-lg;
   -webkit-transition: background 0.2s ease;
-  -o-transition: background 0.2s ease;
-  -moz-transition: background 0.2s ease;
+  border-radius: $buffer--border-radius-lg;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   transition: background 0.2s ease;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box .owl-dt-control-button-content {
-  width: $buffer--width-full;
+  border-radius: $buffer--border-radius-lg;
+  font-size: $buffer--font-size-xs;
   height: $buffer--height-full;
   padding: 0.5rem;
-  font-size: $buffer--font-size-xs;
-  -moz-border-radius: $buffer--border-radius-lg;
-  border-radius: $buffer--border-radius-lg;
+  width: $buffer--width-full;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:focus .owl-dt-control-button-content,
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box:hover .owl-dt-control-button-content {
-  color: $buffer--text-color-white;
   background: $buffer--background-color-primary-500;
+  color: $buffer--text-color-white;
 }
 .owl-dt-calendar-only-current-month .owl-dt-calendar-cell-out {
-  visibility: hidden;
   cursor: $buffer--cursor-default;
+  visibility: hidden;
 }
 .owl-dt-inline {
   display: $buffer--display-inline-block;
 }
 .owl-dt-control {
-  outline: $buffer--outline-none;
   cursor: $buffer--cursor-pointer;
+  outline: $buffer--outline-none;
 }
 .owl-dt-control .owl-dt-control-content {
   outline: $buffer--outline-none;
@@ -626,7 +483,6 @@
   background-color: rgba(0, 0, 0, 0.08);
 }
 .owl-dt-control:not(:-moz-focusring):focus > .owl-dt-control-content {
-  -moz-box-shadow: $buffer--box-shadow-none;
   box-shadow: $buffer--box-shadow-none;
 }
 .owl-hidden-accessible {

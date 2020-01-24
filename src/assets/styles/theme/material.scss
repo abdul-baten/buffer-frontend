@@ -230,11 +230,13 @@ button {
     * MATERIAL RANGE SLIDE
 */
 .mat-slider-thumb-label {
+  -webkit-transform: rotate(45deg) !important;
   transform: rotate(45deg) !important;
   border-radius: 50% 50% 0 !important;
 }
 
 .mat-slider-thumb {
+  -webkit-transform: scale(0) !important;
   transform: scale(0) !important;
 }
 

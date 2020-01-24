@@ -1,14 +1,19 @@
 :host {
-  display: block;
   background-image: url('/assets/images/background/buffer--auth-signin-background.svg');
   background-position: bottom center;
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
 
   .buffer--signup-form-content {
+    -webkit-box-align: start;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-box-pack: justify;
+    align-items: flex-start;
+    display: -webkit-box;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
   }
 }

@@ -30,15 +30,21 @@ body .fc {
 }
 
 .fc-popover .fc-header {
-  padding: 2px 4px;
+  -webkit-box-align: $buffer--align-items-center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: $buffer--flex-justify-content-space-between;
   /* TODO: be more consistent with fc-head/fc-body */
-  display: $buffer--display-flex;
   align-items: $buffer--align-items-center;
+  display: $buffer--display-flex;
   flex-direction: $buffer--display-flex-direction-row;
   justify-content: $buffer--flex-justify-content-space-between;
+  padding: 2px 4px;
 }
 
 .fc-rtl .fc-popover .fc-header {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
   flex-direction: row-reverse;
 }
 
@@ -48,23 +54,23 @@ body .fc {
 
 .fc-popover .fc-header .fc-close {
   cursor: pointer;
-  opacity: $buffer--opacity-75;
   font-size: $buffer--font-size-sm;
+  opacity: $buffer--opacity-75;
 }
 
 /* Misc Reusable Components
 --------------------------------------------------------------------------------------------------*/
 .fc-divider {
-  border-width: $buffer--border-width;
   border-style: $buffer--border-style-solid;
+  border-width: $buffer--border-width;
 }
 
 hr.fc-divider {
+  /* height is unreliable across browsers, so use padding */
+  border-width: 1px 0;
   height: 0;
   margin: 0;
   padding: 0 0 2px;
-  /* height is unreliable across browsers, so use padding */
-  border-width: 1px 0;
 }
 
 .fc-bg,
@@ -72,10 +78,10 @@ hr.fc-divider {
 .fc-highlight-skeleton,
 .fc-mirror-skeleton {
   /* these element should always cling to top-left/right corners */
-  position: $buffer--position-absolute;
-  top: 0;
   left: 0;
+  position: $buffer--position-absolute;
   right: 0;
+  top: 0;
 }
 
 .fc-bg {
@@ -91,16 +97,16 @@ hr.fc-divider {
 /* Tables
 --------------------------------------------------------------------------------------------------*/
 .fc table {
-  width: $buffer--width-full;
-  box-sizing: border-box;
   /* fix scrollbar issue in firefox */
-  table-layout: fixed;
-  border-collapse: collapse;
-  border-spacing: 0;
-  font-size: $buffer--font-size-xs;
   /* normalize cross-browser */
-  border-top: hidden;
+  border-collapse: collapse;
   border-left: hidden;
+  border-spacing: 0;
+  border-top: hidden;
+  box-sizing: border-box;
+  font-size: $buffer--font-size-xs;
+  table-layout: fixed;
+  width: $buffer--width-full;
 }
 
 .fc th {
@@ -109,9 +115,9 @@ hr.fc-divider {
 
 .fc th,
 .fc td {
-  padding: 0;
-  border-width: $buffer--border-width;
   border-style: $buffer--border-style-solid;
+  border-width: $buffer--border-width;
+  padding: 0;
   vertical-align: $buffer--vertical-align-top;
 }
 
@@ -135,8 +141,8 @@ a[data-goto]:hover {
 .fc .fc-row {
   /* extra precedence to overcome themes forcing a 1px border */
   /* no visible border by default. but make available if need be (scrollbar width compensation) */
-  border-width: $buffer--border-width-0;
   border-style: $buffer--border-style-solid;
+  border-width: $buffer--border-width-0;
 }
 
 .fc-row table {
@@ -194,9 +200,9 @@ row content (which contains day/week numbers and events) as well as "mirror" (wh
 temporary rendered events).
 */
 .fc-row .fc-content-skeleton {
-  z-index: 4;
   padding-bottom: 2px;
   position: $buffer--position-relative;
+  z-index: 4;
   /* matches the space above the events */
 }
 
@@ -210,10 +216,10 @@ temporary rendered events).
   /* see-through to the background below */
   /* extra precedence to prevent theme-provided backgrounds */
   /* in case <td>s are globally styled */
-  padding: 0.2rem 0.3rem;
   background: none;
-  text-align: center;
   border-color: $buffer--border-transparent;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
 }
 
 .fc-row .fc-content-skeleton td,
@@ -231,33 +237,33 @@ temporary rendered events).
 /* Scrolling Container
 --------------------------------------------------------------------------------------------------*/
 .fc-scroller {
-  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  height: calc(100vh - 12rem) !important;
   overflow-x: hidden !important;
   overflow-y: scroll !important;
-  height: calc(100vh - 12rem) !important;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 /* TODO: move to timegrid/daygrid */
 .fc-scroller > .fc-day-grid,
 .fc-scroller > .fc-time-grid {
-  position: $buffer--position-relative;
-  /* re-scope all positions */
-  width: $buffer--width-full;
   /* hack to force re-sizing this inner element when scrollbars appear/disappear */
+  /* re-scope all positions */
+  position: $buffer--position-relative;
+  width: $buffer--width-full;
 }
 
 /* Global Event Styles
 --------------------------------------------------------------------------------------------------*/
 .fc-event {
-  display: $buffer--display-block;
-  /* make the <a> tag block */
-  font-size: $buffer--font-size-sm;
-  text-align: $buffer--text-align-left;
-  position: $buffer--position-relative;
   /* for resize handle and other inner positioning */
+  /* make the <a> tag block */
   border-radius: $buffer--border-radius-lg;
+  display: $buffer--display-block;
+  font-size: $buffer--font-size-sm;
   line-height: $buffer--line-height-leading-normal;
+  position: $buffer--position-relative;
+  text-align: $buffer--text-align-left;
 }
 
 .fc-event,
@@ -268,10 +274,9 @@ temporary rendered events).
 
 .fc-event,
 .fc-event:hover {
+  -webkit-text-decoration: $buffer--text-decoration-none;
   color: $buffer--text-color-black;
-  /* default TEXT color */
   text-decoration: $buffer--text-decoration-none;
-  /* if <a> has an href */
 }
 
 .fc-event[href] {
@@ -314,40 +319,39 @@ temporary rendered events).
 
 /* hit area */
 .fc-event.fc-selected .fc-resizer:before {
-  /* 40x40 touch area */
-  content: '';
-  position: $buffer--position-absolute;
-  z-index: 9999;
   /* user of this util can scope within a lower z-index */
-  top: 50%;
-  left: 50%;
-  width: 40px;
+  content: '';
   height: 40px;
+  left: 50%;
   margin-left: -20px;
   margin-top: -20px;
+  position: $buffer--position-absolute;
+  top: 50%;
+  width: 40px;
+  z-index: 9999;
 }
 
 /* Event Selection (only for touch devices)
 --------------------------------------------------------------------------------------------------*/
 .fc-event.fc-selected {
-  z-index: 9999 !important;
   /* overcomes inline z-index */
   box-shadow: $buffer--box-shadow-lg;
+  z-index: 9999 !important;
 }
 
 .fc-event.fc-selected:after {
-  content: '';
-  position: $buffer--position-absolute;
-  z-index: 1;
-  /* same z-index as fc-bg, behind text */
-  /* overcome the borders */
-  top: -1px;
-  right: -1px;
-  bottom: -1px;
-  left: -1px;
   /* darkening effect */
-  opacity: $buffer--opacity-25;
+  /* overcome the borders */
+  /* same z-index as fc-bg, behind text */
   background: $buffer--background-color-black;
+  bottom: -1px;
+  content: '';
+  left: -1px;
+  opacity: $buffer--opacity-25;
+  position: $buffer--position-absolute;
+  right: -1px;
+  top: -1px;
+  z-index: 1;
 }
 
 /* Event Dragging
@@ -364,35 +368,35 @@ temporary rendered events).
 --------------------------------------------------------------------------------------------------*/
 /* bigger touch area when selected */
 .fc-h-event.fc-selected:before {
-  content: '';
-  position: $buffer--position-absolute;
-  z-index: 3;
   /* below resizers */
-  top: -10px;
   bottom: -10px;
+  content: '';
   left: 0;
+  position: $buffer--position-absolute;
   right: 0;
+  top: -10px;
+  z-index: 3;
 }
 
 /* events that are continuing to/from another week. kill rounded corners and butt up against edge */
 .fc-ltr .fc-h-event.fc-not-start,
 .fc-rtl .fc-h-event.fc-not-end {
-  margin-left: 0;
-  border-left-width: 0;
-  padding-left: 1px;
   /* replace the border with padding */
-  border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-left-width: 0;
+  border-top-left-radius: 0;
+  margin-left: 0;
+  padding-left: 1px;
 }
 
 .fc-ltr .fc-h-event.fc-not-end,
 .fc-rtl .fc-h-event.fc-not-start {
-  margin-right: 0;
-  border-right-width: 0;
-  padding-right: 1px;
   /* replace the border with padding */
-  border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-right-width: 0;
+  border-top-right-radius: 0;
+  margin-right: 0;
+  padding-right: 1px;
 }
 
 /* resizer (cursor AND touch devices) */
@@ -414,26 +418,26 @@ temporary rendered events).
 
 /* resizer (mouse devices) */
 .fc-h-event.fc-allow-mouse-resize .fc-resizer {
-  width: 7px;
-  top: -1px;
+  /* overcome bottom border */
   /* overcome top border */
   bottom: -1px;
-  /* overcome bottom border */
+  top: -1px;
+  width: 7px;
 }
 
 /* resizer (touch devices) */
 .fc-h-event.fc-selected .fc-resizer {
   /* 8x8 little dot */
-  border-radius: 4px;
-  border-width: 1px;
-  width: 6px;
-  height: 6px;
-  border-style: $buffer--border-style-solid;
-  border-color: inherit;
-  background: #fff;
   /* vertically center */
-  top: 50%;
+  background: #fff;
+  border-color: inherit;
+  border-radius: 4px;
+  border-style: $buffer--border-style-solid;
+  border-width: 1px;
+  height: 6px;
   margin-top: -4px;
+  top: 50%;
+  width: 6px;
 }
 
 /* left resizer  */
@@ -457,10 +461,10 @@ be a descendant of the grid when it is being dragged.
 */
 .fc-day-grid-event {
   /* spacing between events and edges */
-  padding: 0;
-  margin: 2px 0;
-  box-shadow: $buffer--box-shadow-lg;
   border-radius: $buffer--border-radius-lg;
+  box-shadow: $buffer--box-shadow-lg;
+  margin: 2px 0;
+  padding: 0;
 }
 
 .fc-mirror-skeleton tr:first-child > td > .fc-day-grid-event {
@@ -497,9 +501,9 @@ be a descendant of the grid when it is being dragged.
 --------------------------------------------------------------------------------------------------*/
 /* "more" link that represents hidden events */
 a.fc-more {
-  margin: 1px 3px;
-  font-size: 0.85em;
   cursor: pointer;
+  font-size: 0.85em;
+  margin: 1px 3px;
   text-decoration: none;
 }
 
@@ -519,8 +523,8 @@ a.fc-more:hover {
 }
 
 .fc-more-popover {
-  z-index: 2;
   width: 220px;
+  z-index: 2;
 }
 
 .fc-more-popover .fc-event-container {
@@ -587,14 +591,14 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 */
 /* reset */
 .fc-button {
+  border-radius: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   margin: 0;
   outline: none;
-  border-radius: 0;
   overflow: visible;
-  font-size: inherit;
   text-transform: none;
-  font-family: inherit;
-  line-height: inherit;
 }
 
 .fc-button {
@@ -606,8 +610,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button::-moz-focus-inner {
-  padding: 0;
   border-style: none;
+  padding: 0;
 }
 
 /* theme */
@@ -640,31 +644,29 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button:disabled {
-  color: $buffer--text-color-black;
   background-color: $buffer--background-color-gray;
+  color: $buffer--text-color-black;
 }
 
 /* icons within buttons */
 .fc-button .fc-icon {
-  vertical-align: middle;
   font-size: 1.5em;
+  vertical-align: middle;
 }
 
 /* Buttons Groups
 --------------------------------------------------------------------------------------------------*/
 .fc-button-group {
-  position: $buffer--position-relative;
   display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
+  position: $buffer--position-relative;
   vertical-align: middle;
 }
 
 .fc-button-group > .fc-button {
-  position: $buffer--position-relative;
   -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
+  position: $buffer--position-relative;
 }
 
 .fc-button-group > .fc-button:hover {
@@ -682,20 +684,20 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button-group > .fc-button:not(:last-child) {
-  border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .fc-button-group > .fc-button:not(:first-child) {
-  border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 /* Popover
 --------------------------------------------------------------------------------------------------*/
 .fc-unthemed .fc-popover {
-  border-width: $buffer--border-width;
   border-style: $buffer--border-style-solid;
+  border-width: $buffer--border-width;
 }
 
 /* List View
@@ -707,20 +709,22 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* Toolbar
 --------------------------------------------------------------------------------------------------*/
 .fc-toolbar {
-  top: 0;
-  display: $buffer--display-flex;
-  position: $buffer--position-sticky;
+  -webkit-box-align: $buffer--align-items-center;
+  -webkit-box-pack: $buffer--flex-justify-content-space-between;
   align-items: $buffer--align-items-center;
+  display: $buffer--display-flex;
   justify-content: $buffer--flex-justify-content-space-between;
+  position: $buffer--position-sticky;
+  top: 0;
 }
 
 .fc-toolbar.fc-header-toolbar {
+  background-color: $buffer--background-color-white;
+  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
+  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-color-gray;
   padding: 1rem 1.25rem;
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
-  background-color: $buffer--background-color-white;
-  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-color-gray;
-  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
 }
 
 .fc-toolbar.fc-footer-toolbar {
@@ -733,9 +737,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-toolbar h2 {
-  margin: 0;
   color: $buffer--text-color-black;
   font-size: $buffer--font-size-base;
+  margin: 0;
 }
 
 /* View Structure
@@ -749,8 +753,6 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-view-container *,
 .fc-view-container *:before,
 .fc-view-container *:after {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
@@ -786,8 +788,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   .fc thead,
   .fc tbody,
   .fc-row {
-    border-color: $buffer--border-color-gray !important;
     background: $buffer--background-color-white !important;
+    border-color: $buffer--border-color-gray !important;
   }
 
   /* kill the overlaid, absolutely-positioned components */
@@ -812,9 +814,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   }
 
   .fc tbody .fc-row .fc-content-skeleton {
-    position: $buffer--position-static;
     /* undo .fc-rigid */
     padding-bottom: 0 !important;
+    position: $buffer--position-static;
     /* use a more border-friendly method for this... */
   }
 
@@ -889,8 +891,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   --------------------------------------------------------------------------------------------------*/
   /* naturally position events, vertically stacking them */
   .fc-time-grid .fc-event {
-    position: $buffer--position-static !important;
     margin: 3px 2px !important;
+    position: $buffer--position-static !important;
   }
 
   /* for events that continue to a future day, give the bottom border back */
@@ -967,9 +969,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-dayGrid-view .fc-body .fc-row {
-  min-height: 7rem;
-  height: $buffer--height-auto !important;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
+  height: $buffer--height-auto !important;
+  min-height: 7rem;
   /* ensure that all rows are at least this tall */
 }
 
@@ -979,10 +981,10 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-row.fc-rigid .fc-content-skeleton {
-  position: $buffer--position-absolute;
-  top: 0;
   left: 0;
+  position: $buffer--position-absolute;
   right: 0;
+  top: 0;
 }
 
 /* week and day number styling */
@@ -1007,11 +1009,11 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
-  width: $buffer--width-full;
-  font-size: $buffer--font-size-xs;
   color: $buffer--text-color-black;
-  text-align: $buffer--text-align-center;
   font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-xs;
+  text-align: $buffer--text-align-center;
+  width: $buffer--width-full;
 }
 
 .fc-rtl .fc-dayGrid-view .fc-day-top .fc-day-number {
@@ -1029,10 +1031,10 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-dayGrid-view .fc-day-top .fc-week-number {
-  min-width: 1.5em;
-  text-align: center;
   background-color: #f2f2f2;
   color: #808080;
+  min-width: 1.5em;
+  text-align: center;
 }
 
 /* when week/day number have own column */
@@ -1067,13 +1069,13 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 /* TimeGrid axis running down the side (for both the all-day area and the slot area)
 --------------------------------------------------------------------------------------------------*/
 .fc .fc-axis {
-  padding: 0.5rem 1rem;
-  font-size: $buffer--font-size-xs;
-  color: $buffer--text-color-black;
-  white-space: $buffer--white-space-normal;
-  font-family: $buffer--font-family-regular;
   /* .fc to overcome default cell styles */
+  color: $buffer--text-color-black;
+  font-family: $buffer--font-family-regular;
+  font-size: $buffer--font-size-xs;
+  padding: 0.5rem 1rem;
   vertical-align: $buffer--vertical-align-middle;
+  white-space: $buffer--white-space-normal;
 }
 
 .fc-ltr .fc-axis {
@@ -1121,11 +1123,11 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-time-grid .fc-content-skeleton {
-  position: $buffer--position-absolute;
-  z-index: 3;
-  top: 0;
   left: 0;
+  position: $buffer--position-absolute;
   right: 0;
+  top: 0;
+  z-index: 3;
 }
 
 /* divs within a cell within the fc-content-skeleton */
@@ -1180,8 +1182,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-time-grid .fc-highlight {
-  position: $buffer--position-absolute;
   left: 0;
+  position: $buffer--position-absolute;
   right: 0;
   /* top and bottom will be in by JS */
 }
@@ -1190,21 +1192,21 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 --------------------------------------------------------------------------------------------------*/
 .fc-ltr .fc-time-grid .fc-event-container {
   /* space on the sides of events for LTR (default) */
-  padding: 0.2rem;
   margin: 0 2.5% 0 2px;
+  padding: 0.2rem;
 }
 
 .fc-rtl .fc-time-grid .fc-event-container {
   /* space on the sides of events for RTL */
-  padding: 0.5rem;
   margin: 0 2px 0 2.5%;
+  padding: 0.5rem;
 }
 
 .fc-time-grid .fc-event,
 .fc-time-grid .fc-bgevent {
-  z-index: 1;
   box-shadow: $buffer--box-shadow-lg;
   position: $buffer--position-absolute;
+  z-index: 1;
   /* scope inner z-index's */
 }
 
@@ -1221,39 +1223,40 @@ be a descendant of the grid when it is being dragged.
 */
 .fc-time-grid-event {
   // left: 0 !important;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
   height: fit-content;
   margin-bottom: 0.5rem;
-  width: $buffer--width-full;
   max-width: $buffer--width-40;
+  width: $buffer--width-full;
 }
 
 .fc-time-grid-event-inset {
-  -webkit-box-shadow: 0px 0px 0px 1px #fff;
   box-shadow: 0px 0px 0px 1px #fff;
 }
 
 .fc-time-grid-event.fc-not-start {
   /* events that are continuing from another day */
   /* replace space made by the top border with padding */
-  border-top-width: $buffer--border-top-width-0;
-  padding-top: 1px;
   /* remove top rounded corners */
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-top-width: $buffer--border-top-width-0;
+  padding-top: 1px;
 }
 
 .fc-time-grid-event.fc-not-end {
-  /* replace space made by the top border with padding */
-  border-bottom-width: $buffer--border-bottom-width-0;
-  padding-bottom: 1px;
   /* remove bottom rounded corners */
+  /* replace space made by the top border with padding */
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-bottom-width: $buffer--border-bottom-width-0;
+  padding-bottom: 1px;
 }
 
 .fc-time-grid-event .fc-content {
-  overflow: $buffer--overflow-hidden;
   max-height: $buffer--max-height-full;
+  overflow: $buffer--overflow-hidden;
 }
 
 .fc-time-grid-event .fc-time,
@@ -1304,60 +1307,84 @@ be a descendant of the grid when it is being dragged.
 /* Now Indicator
 --------------------------------------------------------------------------------------------------*/
 .fc-time-grid .fc-now-indicator-line {
+  border-top-style: $buffer--border-style-dashed;
+  border-top-width: $buffer--border-top-width;
   left: -100vw;
   right: -100vw;
-  border-top-width: $buffer--border-top-width;
-  border-top-style: $buffer--border-style-dashed;
 }
 
 /* arrow on axis */
 .fc-time-grid .fc-now-indicator-arrow {
+  height: $buffer--height-1;
   margin-top: -6px;
   width: $buffer--width-1;
-  height: $buffer--height-1;
   /* vertically center on top coordinate */
 }
 
 .fc-ltr .fc-time-grid .fc-now-indicator-arrow {
-  left: 6.55rem;
+  -webkit-animation: pulse-green 2s infinite;
   /* triangle pointing right... */
-  border-width: 5px;
-  border-radius: 50%;
   animation: pulse-green 2s infinite;
   background-color: $buffer--background-color-primary-500;
+  border-radius: 50%;
+  border-width: 5px;
   box-shadow: 0 0 0 0 $buffer--background-color-primary-500;
+  left: 6.55rem;
+}
+
+@-webkit-keyframes pulse-green {
+  0% {
+    -webkit-transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0.7);
+    transform: scale(0.95);
+  }
+
+  70% {
+    -webkit-transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 128, 115, 0);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0);
+    transform: scale(0.95);
+  }
 }
 
 @keyframes pulse-green {
   0% {
-    transform: scale(0.95);
+    -webkit-transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(0, 128, 115, 0.7);
+    transform: scale(0.95);
   }
 
   70% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
     box-shadow: 0 0 0 10px rgba(0, 128, 115, 0);
+    transform: scale(1);
   }
 
   100% {
-    transform: scale(0.95);
+    -webkit-transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(0, 128, 115, 0);
+    transform: scale(0.95);
   }
 }
 
 .fc-rtl .fc-time-grid .fc-now-indicator-arrow {
-  right: 0;
   /* triangle pointing left... */
-  border-width: 5px 6px 5px 0;
-  border-top-color: $buffer--border-transparent;
   border-bottom-color: $buffer--border-transparent;
+  border-top-color: $buffer--border-transparent;
+  border-width: 5px 6px 5px 0;
+  right: 0;
 }
 
 /* --------------------------------------- */
 .fc-day-header {
-  padding: 1.25rem !important;
-  font-size: $buffer--font-size-xs;
   color: $buffer--text-color-black;
+  font-size: $buffer--font-size-xs;
+  padding: 1.25rem !important;
   text-transform: $buffer--text-transform-uppercase;
 }
 
@@ -1365,19 +1392,20 @@ be a descendant of the grid when it is being dragged.
 .fc-day:not(.fc-past):active,
 .fc-bg .fc-day:not(.fc-past):hover,
 .fc-bg .fc-day:not(.fc-past):active {
-  width: $buffer--width-full;
-  height: $buffer--height-full;
+  -webkit-box-align: $buffer--align-items-center;
+  -webkit-box-pack: $buffer--align-items-center;
+  align-items: $buffer--align-items-center;
+  border: $buffer--border-width-0 $buffer--border-style-none $buffer--border-transparent;
+  color: $buffer--text-color-primary-500;
+  cursor: cell;
   display: $buffer--display-flex;
   font-size: $buffer--font-size-4xl;
-  color: $buffer--text-color-primary-500;
-  align-items: $buffer--align-items-center;
+  height: $buffer--height-full;
   justify-content: $buffer--align-items-center;
-  border: $buffer--border-width-0 $buffer--border-style-none $buffer--border-transparent;
-
-  cursor: cell;
+  width: $buffer--width-full;
 
   &:after {
-    font-family: 'Material Icons';
     content: 'add';
+    font-family: 'Material Icons';
   }
 }

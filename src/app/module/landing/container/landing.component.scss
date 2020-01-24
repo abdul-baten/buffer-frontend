@@ -76,14 +76,11 @@
       max-width: 50rem;
     }
   }
-  position: relative;
-  display: block;
-  height: auto;
 
   .buffer--intro-hero-sec {
     background-image: url('/assets/images/background/buffer--intro-social-background.svg');
     background-position: bottom center;
-    background-size: contain;
     background-repeat: no-repeat;
+    background-size: contain;
   }
 }

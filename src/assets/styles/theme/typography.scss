@@ -328,14 +328,17 @@
     * TEXT DECORATION
 */
 .buffer--text-decoration-underline {
+  -webkit-text-decoration: $buffer--text-decoration-underline !important;
   text-decoration: $buffer--text-decoration-underline !important;
 }
 
 .buffer--text-decoration-line-through {
+  -webkit-text-decoration: $buffer--text-decoration-line-through !important;
   text-decoration: $buffer--text-decoration-line-through !important;
 }
 
 .buffer--text-decoration-none {
+  -webkit-text-decoration: $buffer--text-decoration-none;
   text-decoration: $buffer--text-decoration-none;
 }
 
