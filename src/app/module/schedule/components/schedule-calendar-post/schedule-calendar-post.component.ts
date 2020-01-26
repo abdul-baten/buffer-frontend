@@ -1,17 +1,8 @@
-// Core Modules
-import { Component, Inject } from '@angular/core';
-
-// Third Party Modules
 import differenceInDays from 'date-fns/differenceInDays';
-
-// Models
-import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Data
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { Component, Inject } from '@angular/core';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule-calendar-post',
@@ -23,7 +14,7 @@ export class ScheduleCalendarViewPostComponent {
 
   constructor(
     private scheduleFacade: ScheduleFacade,
-    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInfoInterface
+    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInterface
   ) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }
@@ -32,7 +23,7 @@ export class ScheduleCalendarViewPostComponent {
     const { id, start } = this.calendarData.event;
     switch (action) {
       case 'view':
-        this.scheduleFacade.openPostDetailsDialog(id);
+        this.scheduleFacade.openPostDetailsDialog(this.calendarData.event);
         break;
 
       case 'edit':

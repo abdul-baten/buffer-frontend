@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
 
 @Component({
   selector: 'buffer--schedule-calendar-post-details-modal',
@@ -6,12 +8,8 @@ import { Component } from '@angular/core';
   templateUrl: './schedule-calendar-post-details-modal.component.html',
 })
 export class ScheduleCalendarPostDetailsModalComponent {
-  slides = [
-    { img: 'http://placehold.it/350x150/000000' },
-    { img: 'http://placehold.it/350x150/111111' },
-    { img: 'http://placehold.it/350x150/333333' },
-    { img: 'http://placehold.it/350x150/666666' },
-  ];
+  postInfo: any;
+
   slideConfig = {
     arrows: true,
     centerMode: false,
@@ -24,4 +22,8 @@ export class ScheduleCalendarPostDetailsModalComponent {
     slidesToShow: 1,
     variableWidth: false,
   };
+
+  constructor(@Inject(MAT_DIALOG_DATA) public postData: CalPostInterface) {
+    this.postInfo = this.postData.extendedProps;
+  }
 }

@@ -1,23 +1,15 @@
 <div [ngClass]="{ 'buffer--opacity-50': !upcomingPost }" class="clearfix buffer--padding-x-2 buffer--border-radius-lg">
   <div class="clearfix buffer--position-relative">
     <div
-      class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
-    >
+      class="buffer--margin-y-2 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
       <div class="clearfix">
-        <p
-          matTooltipPosition="after"
-          matTooltipClass="buffer--font-size-xs"
+        <p matTooltipPosition="after" matTooltipClass="buffer--font-size-xs"
           class="buffer--font-family-semi-bold buffer--font-size-xs"
-          [matTooltip]="upcomingPost ? 'Upcoming post' : 'Past post'"
-        >
-          <i
-            [ngClass]="{
+          [matTooltip]="upcomingPost ? 'Upcoming post' : 'Past post'">
+          <i [ngClass]="{
               'buffer--text-color-primary-500': upcomingPost,
               'buffer--text-color-warn-500': !upcomingPost
-            }"
-            class="material-icons buffer--font-size-sm buffer--vertical-align-text-top"
-            >adjust</i
-          >
+            }" class="material-icons buffer--font-size-sm buffer--vertical-align-text-top">adjust</i>
           {{ calendarData.event.start | date: 'shortTime' }}
         </p>
       </div>
@@ -31,24 +23,22 @@
       <div [ngSwitch]="calendarData.event.extendedProps.postType">
         <div *ngSwitchCase="'image'">
           <div class="clearfix">
-            <img
+            <img [defaultImage]="calendarData.event.extendedProps.postImages[0].fileURL"
+              [lazyLoad]="calendarData.event.extendedProps.postImages[0].fileURL"
               class="buffer--width-full buffer--border-radius-lg"
-              [defaultImage]="calendarData.event.extendedProps.imageUrls[0].fileURL"
-              [lazyLoad]="calendarData.event.extendedProps.imageUrls[0].fileURL"
-            />
+              [alt]="calendarData.event.extendedProps.postImages[0].fileName" />
           </div>
         </div>
         <div *ngSwitchCase="'video'">
           <div class="clearfix">
-            <video
-              controls
-              preload="none"
-              disablePictureInPicture
-              controlslist="nodownload nofullscreen noremoteplayback"
-              class="buffer--width-full buffer--border-radius-lg buffer--outline-none"
-            >
-              <source [src]="calendarData.event.extendedProps.videoUrls[0].fileURL" />
-            </video>
+            <vg-player class="buffer--width-full buffer--margin-bottom-2 buffer--border-radius-lg buffer--outline-none">
+              <vg-controls vgFor="postVideo">
+                <vg-play-pause></vg-play-pause>
+              </vg-controls>
+              <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true" [src]="calendarData.event.extendedProps.postVideos[0].fileURL"
+                type="video/mp4" class="buffer--width-full">
+              </video>
+            </vg-player>
           </div>
         </div>
 

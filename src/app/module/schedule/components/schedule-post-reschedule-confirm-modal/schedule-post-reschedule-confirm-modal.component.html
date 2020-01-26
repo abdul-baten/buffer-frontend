@@ -4,21 +4,14 @@
       Re-schedule this post?
     </h1>
   </div>
-  <div class="clearfix buffer--margin-top-10 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
-    <button
-      class="buffer--margin-right-5 buffer--font-family-semi-bold buffer--font-size-sm"
-      mat-button
-      mat-dialog-close
-    >
+  <div
+    class="clearfix buffer--margin-top-10 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
+    <button (click)="onRescheduleModalClosed()"
+      class="buffer--margin-right-5 buffer--font-family-semi-bold buffer--font-size-sm" mat-button mat-dialog-close>
       Cancel
     </button>
-    <button
-    class="buffer--font-family-semi-bold buffer--font-size-sm"
-    color="primary"
-    mat-flat-button
-    mat-dialog-close
-    >
-    Schedule
+    <button class="buffer--font-family-semi-bold buffer--font-size-sm" color="primary" mat-flat-button mat-dialog-close>
+      Schedule
     </button>
   </div>
 </div>

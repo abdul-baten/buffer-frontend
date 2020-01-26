@@ -38,6 +38,7 @@
 
 html,
 body {
+  @include buffer--user-select(none);
   height: $buffer--height-full;
 }
 body {

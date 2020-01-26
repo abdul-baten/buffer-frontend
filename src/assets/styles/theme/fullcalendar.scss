@@ -462,7 +462,7 @@ be a descendant of the grid when it is being dragged.
 .fc-day-grid-event {
   /* spacing between events and edges */
   border-radius: $buffer--border-radius-lg;
-  box-shadow: $buffer--box-shadow-lg;
+  box-shadow: $buffer--box-shadow-md;
   margin: 2px 0;
   padding: 0;
 }
@@ -622,6 +622,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   @include buffer--user-select(none);
   background-color: $buffer--background-color-white;
   border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
+  box-shadow: $buffer--box-shadow;
   color: $buffer--text-color-black;
   display: $buffer--display-inline-block;
   font-family: $buffer--font-family-semi-bold;
@@ -1071,7 +1072,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc .fc-axis {
   /* .fc to overcome default cell styles */
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-semi-bold;
   font-size: $buffer--font-size-xs;
   padding: 0.5rem 1rem;
   vertical-align: $buffer--vertical-align-middle;

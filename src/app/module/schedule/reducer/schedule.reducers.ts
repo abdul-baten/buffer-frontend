@@ -2,21 +2,38 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { fromScheduleActions } from '@app/schedule/action';
 
 // Model
-import { ScheduleState } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { POST_STATUS } from '../enum/schedule-post-create-modal.enum';
 
-export const initialState: ScheduleState = {
+export const initialState: CalPostInterface = {
+  postCreateMember: '',
   postDate: null,
+  postLastEditedDate: null,
+  postLastEditedMember: '',
+  postStatus: POST_STATUS.SCHEDULED,
   postTime: null,
-  postNow: false,
-  postLink: null,
   postType: null,
-  postAuto: false,
-  postImages: null,
-  postVideos: null,
-  postDraft: false,
+  postURL: null,
+  postPermission: {
+    postCanBeEdited: true,
+    postCanNeDeleted: true,
+  },
+  postLastEditedContent: '',
+  socialAccounts: [
+    {
+      socialId: '',
+      socialURL: '',
+      socialType: '',
+      socialName: '',
+      socialAvatar: '',
+    },
+  ],
   postCaption: null,
+  postDraft: false,
+  postImages: null,
   postLocation: null,
   postOriginalDate: null,
+  postVideos: null,
 };
 
 export const postDataReducer = createReducer(
@@ -43,6 +60,6 @@ export const postDataReducer = createReducer(
   on(fromScheduleActions.removePostData, _ => initialState)
 );
 
-export function reducer(state: ScheduleState | undefined, action: Action) {
+export function reducer(state: CalPostInterface | undefined, action: Action) {
   return postDataReducer(state, action);
 }

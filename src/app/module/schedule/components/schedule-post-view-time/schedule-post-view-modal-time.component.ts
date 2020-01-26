@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./schedule-post-view-modal-time.component.scss'],
 })
 export class SchedulePostViewModalTimeComponent {
-  @Input() eventDateAndTime: Date;
+  @Input() postDateAndTime: Date;
 }

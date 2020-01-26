@@ -1,12 +1,12 @@
 :host {
-  background-color: #ffffff;
-  display: block;
   position: relative;
+  display: block;
+  background-color: #ffffff;
 
   ::ng-deep {
     .mat-calendar-body-today:not(.mat-calendar-body-selected) {
-      background-color: #b9e4c9;
       border-color: rgba(0, 0, 0, 0.08);
+      background-color: #b9e4c9;
     }
   }
 }

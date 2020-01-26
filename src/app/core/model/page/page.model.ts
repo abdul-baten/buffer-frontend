@@ -1,8 +1,8 @@
-export interface IPageProperties {
+export interface PagePropertiesInterface {
   ROUTE: string;
   TITLE: string;
 }
 
-export interface IPage {
-  [key: string]: IPageProperties;
+export interface PageInterface {
+  [key: string]: PagePropertiesInterface;
 }

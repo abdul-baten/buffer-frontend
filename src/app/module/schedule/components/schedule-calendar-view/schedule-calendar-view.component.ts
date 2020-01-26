@@ -1,7 +1,7 @@
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
-import { Calendar, EventInput as CalPostInfoInterface } from '@fullcalendar/core';
+import { Calendar } from '@fullcalendar/core';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
@@ -23,6 +23,7 @@ import {
   ViewChild,
   OnInit,
 } from '@angular/core';
+import { POST_TYPE, POST_STATUS } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -107,31 +108,105 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
         editable: true,
         overlap: true,
         hasEnd: false,
-        imageUrls: [
+        postImages: [
           {
             fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
             fileType: 'img',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.png',
+            fileThumbnailURL: '',
+          },
+          {
+            fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
+            fileType: 'img',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.jpg',
+            fileThumbnailURL: '',
           },
         ],
-        socialAccounts: ['facebook'],
-        postType: 'image',
+        socialAccounts: [
+          {
+            socialId: '',
+            socialAvatar:
+              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
+            socialName: 'Facebook',
+            socialType: '',
+            socialURL: '',
+          },
+        ],
+        postType: POST_TYPE.IMAGE,
+        postStatus: POST_STATUS.SCHEDULED,
+        postTime: '',
+        postPermission: {
+          postCanBeEdited: true,
+          postCanNeDeleted: true,
+        },
+        postOriginalDate: '2020-01-07T20:30:00',
+        postLocation: '',
+        postLastEditedContent: '',
+        postDate: '',
+        postURL: '',
+        postCaption:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        postCreateMember: '',
+        postLastEditedDate: '',
+        postLastEditedMember: '',
       },
       {
         id: '1001',
-        title: 'Post Now 1',
-        start: '2020-01-11T20:45:00',
+        title: 'Post Video',
+        start: '2020-01-28T20:30:00',
         allDay: false,
         editable: true,
         overlap: true,
         hasEnd: false,
-        videoUrls: [
+        postVideos: [
           {
-            fileURL: 'https://www.videvo.net/videvo_files/converted/2015_03/preview/BirdNoSound.mp480023.webm',
+            fileURL: 'https://www.videvo.net/videvo_files/converted/2017_12/preview/171124_B2_UHD_001.mp471291.webm',
             fileType: 'video',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.png',
+            fileThumbnailURL: '',
+          },
+          {
+            fileURL: 'https://www.videvo.net/videvo_files/converted/2013_07/preview/GirlinWaves.mov14897.webm',
+            fileType: 'video',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.jpg',
+            fileThumbnailURL: '',
           },
         ],
-        socialAccounts: ['facebook'],
-        postType: 'video',
+        socialAccounts: [
+          {
+            socialId: '',
+            socialAvatar:
+              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
+            socialName: 'Facebook',
+            socialType: '',
+            socialURL: '',
+          },
+        ],
+        postType: POST_TYPE.VIDEO,
+        postStatus: POST_STATUS.SCHEDULED,
+        postTime: '',
+        postPermission: {
+          postCanBeEdited: true,
+          postCanNeDeleted: true,
+        },
+        postOriginalDate: '2020-01-28T20:30:00',
+        postLocation: '',
+        postLastEditedContent: '',
+        postDate: '',
+        postURL: '',
+        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+          and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum`,
+        postCreateMember: '',
+        postLastEditedDate: '',
+        postLastEditedMember: '',
       },
     ]);
   }
@@ -160,7 +235,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     return differenceInDays(new Date(), new Date(arg.start)) <= 0;
   }
 
-  handlePostDrop(postInfo: CalPostInfoInterface) {
+  handlePostDrop(postInfo: CalPostInterface) {
     switch (differenceInDays(new Date(), new Date(postInfo.event.start)) <= 0) {
       case true:
         this.scheduleFacade.onPostDragged(postInfo);
@@ -172,7 +247,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     }
   }
 
-  handlePostRender(eventInfo: CalPostInfoInterface): void {
+  handlePostRender(eventInfo: CalPostInterface): void {
     const element = eventInfo.el.querySelector('.fc-content');
     eventInfo.el.querySelector('.fc-title').remove();
 
@@ -190,7 +265,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     bodyPortalHost.attach(componentToAppend);
   }
 
-  private createPostDataInjector(eventInfo: CalPostInfoInterface): PortalInjector {
+  private createPostDataInjector(eventInfo: CalPostInterface): PortalInjector {
     const injectorToken = new WeakMap();
     injectorToken.set(CALENDAR_POST_DATA, eventInfo);
     return new PortalInjector(this.injector, injectorToken);

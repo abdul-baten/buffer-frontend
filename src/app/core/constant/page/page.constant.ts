@@ -1,6 +1,6 @@
-import { IPage } from '../../model/page/page.model';
+import { PageInterface } from '@core/model/page/page.model';
 
-const PAGES: IPage = {
+const PAGES: PageInterface = {
   LANDING_PAGE: {
     ROUTE: '',
     TITLE: 'Buffer',

@@ -34,7 +34,6 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
     EffectsModule.forRoot([AppEffects]),
     GraphQLModule,
     HttpClientModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -43,6 +42,7 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
         strictActionSerializability: true,
       },
     }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,

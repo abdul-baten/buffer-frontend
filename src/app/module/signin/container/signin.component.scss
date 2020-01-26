@@ -1,20 +1,19 @@
 :host {
-  background-color: #dff7e5;
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
+  background-color: #dff7e5;
 
   .buffer--signin-form-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
     -webkit-box-align: center;
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
     -webkit-box-pack: center;
     align-items: center;
-    display: -webkit-box;
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
     justify-content: center;
-    width: 100%;
   }
 }

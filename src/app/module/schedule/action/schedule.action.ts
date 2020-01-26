@@ -2,7 +2,7 @@
 import { createAction, props } from '@ngrx/store';
 
 // Models
-import { ScheduleState } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
 
 // Enums
 import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
@@ -18,5 +18,5 @@ export const setPostType = createAction('[Schedule Facade] Set Schedule Post Typ
 
 export const setPostData = createAction(
   '[Schedule Facade] Set Schedule Post Data',
-  props<{ postData: ScheduleState }>()
+  props<{ postData: CalPostInterface }>()
 );

@@ -5,13 +5,13 @@ import * as fromCalendarReducer from './calendar.reducers';
 
 // Models
 import { CalViewState } from '@app/schedule/model/calendar.model';
-import { ScheduleState } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '../model/schedule.model';
 
 const schedulePostFeatureKey = 'schedulePostData';
 
 interface AppScheduleState {
   calendar: CalViewState;
-  schedule: ScheduleState;
+  schedule: CalPostInterface;
 }
 
 const reducers: ActionReducerMap<AppScheduleState> = {

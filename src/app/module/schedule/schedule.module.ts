@@ -8,6 +8,10 @@ import { ScheduleRoutingModule } from '@app/schedule/schedule-routing.module';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 
 // Third Party Modules
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { VgBufferingModule } from 'videogular2/buffering';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -45,12 +49,11 @@ import { KeyboardEventService } from '@core/service/keyboard-event/keyboard-even
 import { ScheduleComponent } from '@app/schedule/container/schedule.component';
 import { ScheduleHeaderComponent } from '@app/schedule/components/schedule-header/schedule-header.component';
 import { ScheduleCalendarComponent } from '@app/schedule/components/schedule-calendar/schedule-calendar.component';
+import { ScheduleSocialAccountsComponent } from './components/schedule-social-accounts/schedule-social-accounts.component';
 import { ScheduleCalendarViewComponent } from '@app/schedule/components/schedule-calendar-view/schedule-calendar-view.component';
 import { ScheduleDateSelectionComponent } from '@app/schedule/components/schedule-date-selection/schedule-date-selection.component';
 import { ScheduleCalendarViewPostComponent } from '@app/schedule/components/schedule-calendar-post/schedule-calendar-post.component';
-import { SchedulePostViewModalComponent } from '@app/schedule/components/schedule-post-view-modal/schedule-post-view-modal.component';
 import { ScheduleAddPostButtonComponent } from '@app/schedule/components/schedule-add-post-button/schedule-add-post-button.component';
-import { ScheduleSocialAccountsComponent } from '@app/schedule/components/schedule-social-accounts/schedule-social-accounts.component';
 import { ScheduleCalendarOptionsComponent } from '@app/schedule/components/schedule-calendar-options/schedule-calendar-options.component';
 import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
 import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
@@ -58,7 +61,6 @@ import { SchedulePostViewModalTimeComponent } from '@app/schedule/components/sch
 import { SchedulePostViewModalImagesComponent } from '@app/schedule/components/schedule-post-view-images/schedule-post-view-modal-images.component';
 import { SchedulePostViewModalVideosComponent } from '@app/schedule/components/schedule-post-view-videos/schedule-post-view-modal-videos.component';
 import { SchedulePostViewModalFooterComponent } from '@app/schedule/components/schedule-post-view-footer/schedule-post-view-modal-footer.component';
-import { SchedulePostViewModalHeaderComponent } from '@app/schedule/components/schedule-post-view-header/schedule-post-view-modal-header.component';
 import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
 import { SchedulePostCreateModalFormComponent } from '@app/schedule/components/schedule-post-create-modal-form/schedule-post-create-modal-form.component';
 import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
@@ -88,7 +90,6 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     ScheduleCalendarViewComponent,
     ScheduleAddPostButtonComponent,
     ScheduleDateSelectionComponent,
-    SchedulePostViewModalComponent,
     ScheduleSocialAccountsComponent,
     ScheduleDeletePostModalComponent,
     ScheduleCalendarOptionsComponent,
@@ -97,7 +98,6 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     ScheduleCalendarViewPostComponent,
     SchedulePostViewModalTimeComponent,
     SchedulePostViewModalFooterComponent,
-    SchedulePostViewModalHeaderComponent,
     SchedulePostViewModalImagesComponent,
     SchedulePostViewModalVideosComponent,
     SchedulePostCreateModalFormComponent,
@@ -142,6 +142,11 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     MatProgressSpinnerModule,
 
     SlickCarouselModule,
+
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
 
     DropzoneModule,
     OwlDateTimeModule,

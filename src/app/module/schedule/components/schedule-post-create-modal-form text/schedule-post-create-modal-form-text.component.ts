@@ -71,7 +71,6 @@ export class SchedulePostCreateModalFormTextComponent implements OnDestroy {
 
       this.scheduleFacade.setPostData(value);
       this.onChooseTypeModalClosed();
-      this.scheduleFacade.removePostData();
     }
   }
 }

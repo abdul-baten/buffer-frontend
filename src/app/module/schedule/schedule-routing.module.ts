@@ -1,12 +1,7 @@
-// Core Module
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-// Guard
-import { ScheduleGuard } from '@app/schedule/guard/schedule.guard';
-
-// Component
+import { RouterModule, Routes } from '@angular/router';
 import { ScheduleComponent } from '@app/schedule/container/schedule.component';
+import { ScheduleGuard } from '@app/schedule/guard/schedule.guard';
 
 const routes: Routes = [
   {

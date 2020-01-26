@@ -1,14 +1,7 @@
-<div class="clearfix buffer--margin-top-5">
-  <div class="clearfix">
-    <p class="buffer--line-height-leading-loose buffer--margin-y-1 buffer--padding-0">
-      <span><i class="material-icons buffer--vertical-align-middle buffer--margin-right-2">event_note</i></span>
-      <span>{{ eventDateAndTime | date: 'fullDate' }}</span>
-    </p>
-  </div>
-  <div class="clearfix">
-    <p class="buffer--line-height-leading-loose buffer--margin-y-1 buffer--padding-0">
-      <span><i class="material-icons buffer--vertical-align-middle buffer--margin-right-2">access_time</i></span>
-      <span>{{ eventDateAndTime | date: 'shortTime' }}</span>
-    </p>
-  </div>
+<div class="clearfix">
+  <p class="buffer--font-family-regular buffer--font-size-sm">
+    <span><i class="material-icons buffer--vertical-align-middle">schedule</i></span>
+    <span
+      class="buffer--line-height-leading-loose buffer--margin-left-3">{{ postDateAndTime | date: 'EEEE, MMMM d, y, h:mm a' }}</span>
+  </p>
 </div>

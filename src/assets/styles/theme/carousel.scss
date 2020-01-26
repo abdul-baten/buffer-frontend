@@ -1,13 +1,7 @@
 /* Slider */
 
 .slick-slider {
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-touch-action: pan-y;
-  -ms-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
+  @include buffer--user-select(none);
   box-sizing: border-box;
   display: block;
   position: relative;
@@ -62,6 +56,7 @@
   float: left;
   height: 100%;
   min-height: 1px;
+  outline: none;
   [dir='rtl'] & {
     float: right;
   }
@@ -103,24 +98,6 @@
 /* THEME */
 // Default Variables
 
-// Slick icon entity codes outputs the following
-// "\2190" outputs ascii character "←"
-// "\2192" outputs ascii character "→"
-// "\2022" outputs ascii character "•"
-
-$slick-font-family: 'Material Icons' !default;
-$slick-loader-path: '../' !default;
-$slick-arrow-color: white !default;
-$slick-dot-color: white !default;
-$slick-dot-color-active: $slick-dot-color !default;
-$slick-prev-character: 'keyboard_arrow_left' !default;
-$slick-next-character: 'keyboard_arrow_right' !default;
-$slick-dot-character: 'fiber_manual_record' !default;
-$slick-dot-size: 1rem !default;
-$slick-opacity-default: 0.75 !default;
-$slick-opacity-on-hover: 1 !default;
-$slick-opacity-not-active: 0.25 !default;
-
 /* Slider */
 
 // .slick-list {
@@ -132,34 +109,30 @@ $slick-opacity-not-active: 0.25 !default;
 /* Arrows */
 .slick-prev,
 .slick-next {
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: block;
-  font-size: 2.5rem;
-  height: 3rem;
-  outline: none;
+  background: $buffer--background-color-white;
+  border-radius: $buffer--border-radius-full;
+  box-shadow: $buffer--box-shadow;
+  color: $buffer--text-color-black;
+  cursor: $buffer--cursor-pointer;
+  display: $buffer--display-block;
+  font-size: $buffer--font-size-5xl;
+  height: $buffer--height-12;
+  outline: $buffer--outline-none;
   padding: 0;
-  position: absolute;
+  position: $buffer--position-absolute;
   top: 45%;
-  width: 3rem;
-  z-index: 9;
-
-  &:hover,
-  &:focus {
-    opacity: $slick-opacity-on-hover;
-  }
+  width: $buffer--width-12;
+  z-index: $buffer--z-index-10;
 
   &.slick-disabled {
-    opacity: $slick-opacity-not-active;
+    opacity: $buffer--opacity-0;
   }
 }
 
 .slick-prev {
-  left: 2rem;
+  left: 1rem;
 }
 
 .slick-next {
-  right: 2rem;
+  right: 1rem;
 }

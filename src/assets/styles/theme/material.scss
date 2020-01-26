@@ -53,6 +53,10 @@ button {
 /*
     * MATERIAL BUTTON
 */
+.mat-stroked-button {
+  @include buffer--button-box-shadow($buffer--box-shadow);
+}
+
 .mat-button.mat-warn,
 .mat-flat-button.mat-warn,
 .mat-icon-button.mat-warn,
