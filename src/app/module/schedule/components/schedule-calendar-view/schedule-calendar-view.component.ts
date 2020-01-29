@@ -3,11 +3,15 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 import { Calendar } from '@fullcalendar/core';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
+import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
+import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { Observable, of } from 'rxjs';
+import { POST_STATUS, POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
+import { ScheduleCalendarViewHeaderButtonsComponent } from '../schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import {
@@ -18,12 +22,8 @@ import {
   ComponentFactoryResolver,
   Injector,
   Input,
-  OnChanges,
-  SimpleChanges,
   ViewChild,
-  OnInit,
 } from '@angular/core';
-import { POST_TYPE, POST_STATUS } from '@app/schedule/enum/schedule-post-create-modal.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +31,7 @@ import { POST_TYPE, POST_STATUS } from '@app/schedule/enum/schedule-post-create-
   styleUrls: ['./schedule-calendar-view.component.scss'],
   templateUrl: './schedule-calendar-view.component.html',
 })
-export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, OnInit {
+export class ScheduleCalendarViewComponent implements AfterViewInit {
   @Input() calendarView: string;
   @ViewChild('calendar', { static: true }) calendar: FullCalendarComponent;
 
@@ -39,14 +39,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
 
   private calendarApi: Calendar;
 
-  rates: any[];
-  loading = false;
-  error: any;
-
   header = {
     left: 'title',
     center: '',
-    right: 'calendarSettingsButton',
+    right: '',
   };
   slotLabelFormat = {
     hour: 'numeric',
@@ -68,14 +64,6 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     minutes: 2,
   };
   handleWindowResize = false;
-  customButtons = {
-    calendarSettingsButton: {
-      text: 'Settings',
-      click: () => {
-        this.scheduleFacade.openCalenderSettings();
-      },
-    },
-  };
 
   get firstDay(): Observable<number> {
     return this.scheduleFacade.getCalendarFirstDay();
@@ -146,8 +134,12 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
         postLastEditedContent: '',
         postDate: '',
         postURL: '',
-        postCaption:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+          It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+          and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum`,
         postCreateMember: '',
         postLastEditedDate: '',
         postLastEditedMember: '',
@@ -215,16 +207,33 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    private scheduleFacade: ScheduleFacade
+    private scheduleFacade: ScheduleFacade,
   ) {}
 
   ngAfterViewInit() {
     this.calendarApi = this.calendar.getApi();
     this.scheduleFacade.setCalendarApi(this.calendarApi);
+
+    this.scheduleFacade
+      .isWeb()
+      .pipe(delay(10))
+      .subscribe(isWeb => {
+        this.scheduleFacade.setCalendarView(isWeb ? CALENDAR_VIEW.DAY_GRID_MONTH : CALENDAR_VIEW.TIME_GRID_DAY);
+      });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.calendarView = changes.calendarView.currentValue;
+  handleDatesRender(): void {
+    const toolbarHeader = document.querySelector('.fc-header-toolbar');
+    const toolbarCenterSec = toolbarHeader.querySelector('.buffer--calendar-toolbar');
+    if (!toolbarCenterSec) {
+      const toolbarPortalHost = this.getBodyPortalHost(toolbarHeader);
+      const componentToAppend = new ComponentPortal(ScheduleCalendarViewHeaderButtonsComponent);
+      toolbarPortalHost.attach(componentToAppend);
+    }
+  }
+
+  private getBodyPortalHost(element: Element): DomPortalOutlet {
+    return new DomPortalOutlet(element, this.componentFactoryResolver, this.applicationRef, this.injector);
   }
 
   handleDateClick(dateInfo: any) {
@@ -247,27 +256,22 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     }
   }
 
-  handlePostRender(eventInfo: CalPostInterface): void {
-    const element = eventInfo.el.querySelector('.fc-content');
-    eventInfo.el.querySelector('.fc-title').remove();
+  handlePostRender(postInfo: CalPostInterface): void {
+    const element = postInfo.el.querySelector('.fc-content');
+    postInfo.el.querySelector('.fc-title').remove();
 
-    const bodyPortalHost = new DomPortalOutlet(
-      element,
-      this.componentFactoryResolver,
-      this.applicationRef,
-      this.injector
-    );
+    const postPortalHost = this.getBodyPortalHost(element);
     const componentToAppend = new ComponentPortal(
       ScheduleCalendarViewPostComponent,
       null,
-      this.createPostDataInjector(eventInfo)
+      this.createPostDataInjector(postInfo),
     );
-    bodyPortalHost.attach(componentToAppend);
+    postPortalHost.attach(componentToAppend);
   }
 
-  private createPostDataInjector(eventInfo: CalPostInterface): PortalInjector {
+  private createPostDataInjector(postInfo: CalPostInterface): PortalInjector {
     const injectorToken = new WeakMap();
-    injectorToken.set(CALENDAR_POST_DATA, eventInfo);
+    injectorToken.set(CALENDAR_POST_DATA, postInfo);
     return new PortalInjector(this.injector, injectorToken);
   }
 
@@ -283,30 +287,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnChanges, 
     this.scheduleFacade.calendarNext();
   }
 
-  ngOnInit() {
-    // this.apollo
-    //   .watchQuery({
-    //     query: gql`
-    //       {
-    //         rates(currency: "USD") {
-    //           currency
-    //           rate
-    //         }
-    //       }
-    //     `,
-    //   })
-    //   .valueChanges.subscribe((result: any) => {
-    //     this.rates = result.data && result.data.rates;
-    //     this.loading = result.loading;
-    //     this.error = result.error;
-    //   });
-  }
-
-  handleLoading(): void {
-    console.warn('============= console.warn starts =============');
-    console.warn('loading');
-    console.warn('============= console.warn ends =============');
-    alert('aaaa');
-    this.loading = true;
+  handleLoading(isLoading: boolean): void {
+    alert(isLoading);
   }
 }

@@ -7,8 +7,8 @@
 }
 
 @mixin buffer--button-padding($padding) {
-  padding-left: $padding;
-  padding-right: $padding;
+  padding-left: $padding !important;
+  padding-right: $padding !important;
 }
 
 @mixin buffer--button-box-shadow($shadow) {

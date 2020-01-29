@@ -1,30 +1,3 @@
-import { Calendar } from '@fullcalendar/core';
-import { Injectable, Injector } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { fromCalendarActions, fromScheduleActions } from '@app/schedule/action';
-import {
-  selectCalendarFirstDay,
-  selectCalendarNonCurrentDates,
-  selectPostDate,
-  selectPostType,
-} from '@app/schedule/selector/schedule.selector';
-
-import { AppScheduleState } from '@app/schedule/reducer';
-import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { MatDialog } from '@angular/material/dialog';
-import { MetaDefinition } from '@angular/platform-browser';
-import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
-import { ScheduleCalendarPostDetailsModalComponent } from '../components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
-import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
-import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
-import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
-import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
-import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
-import { SnackbarService } from '@core/service/snackbar/snackbar.service';
-import { Store } from '@ngrx/store';
 import format from 'date-fns/format';
 import formatISO from 'date-fns/formatISO';
 import getDate from 'date-fns/getDate';
@@ -32,8 +5,36 @@ import getHours from 'date-fns/getHours';
 import getMinutes from 'date-fns/getMinutes';
 import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
-import { postTypeMap } from '@app/schedule/model/post-type.model';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
+import { AppScheduleState } from '@app/schedule/reducer';
+import { Calendar } from '@fullcalendar/core';
+import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
+import { DocumentTitleService } from '@core/service/document-title/document-title.service';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { fromCalendarActions, fromScheduleActions } from '@app/schedule/action';
+import { Injectable, Injector } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MetaDefinition } from '@angular/platform-browser';
+import { Observable, Subject } from 'rxjs';
+import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
+import { postTypeMap } from '@app/schedule/model/post-type.model';
+import { ScheduleCalendarPostDetailsModalComponent } from '../components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
+import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
+import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
+import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
+import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
+import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
+import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { Store } from '@ngrx/store';
+import {
+  selectCalendarFirstDay,
+  selectCalendarNonCurrentDates,
+  selectCalendarSidebarStatus,
+  selectPostDate,
+  selectPostType,
+} from '@app/schedule/selector/schedule.selector';
+import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 
 // Third Party Modules
 
@@ -45,7 +46,8 @@ export class ScheduleFacade {
     private metaService: DocumentMetaService,
     private snackbarService: SnackbarService,
     private store: Store<AppScheduleState>,
-    private titleService: DocumentTitleService
+    private titleService: DocumentTitleService,
+    private responsiveLayoutService: ResponsiveLayoutService,
   ) {}
 
   private calendarApi: Calendar;
@@ -65,6 +67,10 @@ export class ScheduleFacade {
 
   setCalendarApi(calendar: any): void {
     this.calendarApi = calendar;
+  }
+
+  setCalendarView(view: string): void {
+    this.calendarApi.changeView(view);
   }
 
   calendarToday() {
@@ -236,7 +242,7 @@ export class ScheduleFacade {
         right: '',
       },
       data: postId,
-      width: '400px',
+      width: '450px',
       role: 'dialog',
       autoFocus: false,
       direction: 'ltr',
@@ -258,7 +264,7 @@ export class ScheduleFacade {
         right: '',
       },
       data: { postId, postDate },
-      width: '400px',
+      width: '450px',
       role: 'dialog',
       autoFocus: false,
       direction: 'ltr',
@@ -279,11 +285,31 @@ export class ScheduleFacade {
     this.store.dispatch(fromCalendarActions.setCalendarNonCurrentDates({ showNonCurrentDates }));
   }
 
+  setCalendarSidebarStatus(calendarSidebarOpened: boolean): void {
+    return this.store.dispatch(fromCalendarActions.setCalendarSidebarStatus({ calendarSidebarOpened }));
+  }
+
   getCalendarFirstDay(): Observable<number> {
     return this.store.select(selectCalendarFirstDay);
   }
 
   getCalendarNonCurrentDates(): Observable<boolean> {
     return this.store.select(selectCalendarNonCurrentDates);
+  }
+
+  getCalendarSidebarStatus(): Observable<boolean> {
+    return this.store.select(selectCalendarSidebarStatus);
+  }
+
+  isWeb(): Observable<boolean> {
+    return this.responsiveLayoutService.isWeb();
+  }
+
+  isHandset(): Observable<boolean> {
+    return this.responsiveLayoutService.isHandset();
+  }
+
+  isTablet(): Observable<boolean> {
+    return this.responsiveLayoutService.isTablet();
   }
 }

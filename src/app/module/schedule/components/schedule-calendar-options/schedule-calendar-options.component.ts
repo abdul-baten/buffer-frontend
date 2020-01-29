@@ -1,15 +1,9 @@
-// Core Module
+import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
-
-// Third Party Module
 import { format } from 'date-fns';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
-
-// Facade
+import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Enums
-import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 
 @Component({
   selector: 'buffer--schedule-calendar-options',
@@ -17,11 +11,14 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
   styleUrls: ['./schedule-calendar-options.component.scss'],
 })
 export class ScheduleCalendarOptionsComponent {
+  isWeb: Observable<boolean>;
   currentDate = format(new Date(), 'eeee, MMMM dd');
 
   selectedCalendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
 
-  constructor(private scheduleFacade: ScheduleFacade) {}
+  constructor(private scheduleFacade: ScheduleFacade) {
+    this.isWeb = this.scheduleFacade.isWeb();
+  }
 
   onCalendarViewChanged(calendarViewSelection: MatButtonToggleChange): void {
     this.scheduleFacade.changeCalendarViewOption(calendarViewSelection.value);

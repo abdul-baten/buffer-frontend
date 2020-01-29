@@ -606,7 +606,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button:not(:disabled) {
-  cursor: pointer;
+  cursor: $buffer--cursor-pointer;
 }
 
 .fc-button::-moz-focus-inner {
@@ -616,21 +616,33 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* theme */
 .fc-button {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-border-radius($buffer--border-radius-full);
+  @include buffer--button-height($buffer--height-12);
   @include buffer--user-select(none);
+  -webkit-box-align: $buffer--align-items-center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  align-items: $buffer--align-items-center;
   background-color: $buffer--background-color-white;
   border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
-  box-shadow: $buffer--box-shadow;
   color: $buffer--text-color-black;
-  display: $buffer--display-inline-block;
+  display: $buffer--display-flex;
+  flex-direction: $buffer--display-flex-direction-row;
   font-family: $buffer--font-family-semi-bold;
   font-size: $buffer--font-size-sm;
-  line-height: $buffer--line-height-leading-none;
+  line-height: $buffer--line-height-leading-normal;
   outline: $buffer--outline-none;
   text-align: $buffer--text-align-center;
   vertical-align: $buffer--vertical-align-middle;
+  width: $buffer--width-12;
+
+  &:before {
+    font-family: 'Material Icons';
+    font-size: $buffer--font-size-2xl;
+    height: $buffer--height-full;
+    vertical-align: $buffer--vertical-align-middle;
+    width: $buffer--width-full;
+  }
 
   &:hover {
     background-color: $buffer--background-color-primary-900;
@@ -642,11 +654,24 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
     background-color: $buffer--background-color-primary-900;
     color: $buffer--text-color-white;
   }
-}
 
-.fc-button:disabled {
-  background-color: $buffer--background-color-gray;
-  color: $buffer--text-color-black;
+  &:disabled {
+    background-color: $buffer--background-color-gray;
+    color: $buffer--text-color-black;
+  }
+
+  &:first-child {
+    &:before {
+      content: 'settings';
+    }
+  }
+
+  &:nth-child(2n) {
+    &:before {
+      content: 'add';
+      font-weight: $buffer--font-weight-bold;
+    }
+  }
 }
 
 /* icons within buttons */
@@ -722,7 +747,6 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-toolbar.fc-header-toolbar {
   background-color: $buffer--background-color-white;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
-  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-color-gray;
   padding: 1rem 1.25rem;
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
@@ -732,9 +756,18 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   margin-top: 1.5rem;
 }
 
+.fc-header-toolbar {
+  .fc-right {
+    display: $buffer--display-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: $buffer--display-flex-direction-row;
+  }
+}
+
 /* inner content */
 .fc-toolbar > * > :not(:first-child) {
-  margin-left: 0.75rem;
+  margin-left: 1rem;
 }
 
 .fc-toolbar h2 {
@@ -972,7 +1005,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-dayGrid-view .fc-body .fc-row {
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
   height: $buffer--height-auto !important;
-  min-height: 7rem;
+  min-height: 9rem;
   /* ensure that all rows are at least this tall */
 }
 
@@ -1409,4 +1442,9 @@ be a descendant of the grid when it is being dragged.
     content: 'add';
     font-family: 'Material Icons';
   }
+}
+
+.fc-widget-header {
+  margin-right: 0 !important;
+  border-right-width: 0 !important;
 }

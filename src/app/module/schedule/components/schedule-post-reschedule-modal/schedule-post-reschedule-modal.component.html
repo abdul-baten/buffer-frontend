@@ -8,51 +8,31 @@
       <form novalidate [formGroup]="postRescheduleForm">
         <div class="clearfix">
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
-            <input
-              [min]="currentDateTime"
-              [owlDateTimeTrigger]="postDate"
-              [owlDateTime]="postDate"
-              autocomplete="off"
-              class="buffer--cursor-pointer"
-              formControlName="postDate"
-              id="postDate"
-              matInput
-              readonly
-              type="text"
-            />
+            <input [min]="currentDateTime" [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
+              class="buffer--cursor-pointer" formControlName="postDate" id="postDate" matInput readonly type="text" />
             <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
               <mat-icon matSuffix>timer</mat-icon>
             </button>
-            <owl-date-time
-              #postDate
-              [hideOtherMonths]="false"
-              [hour12Timer]="true"
-              [startAt]="currentDateTime"
-              [stepMinute]="15"
-              panelClass="buffer--dialog-bottom-sheet-custom-panel"
-              readonly
-            ></owl-date-time>
+            <owl-date-time #postDate [hideOtherMonths]="false" [hour12Timer]="true" [startAt]="currentDateTime"
+              [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel" readonly></owl-date-time>
           </mat-form-field>
         </div>
       </form>
     </div>
   </div>
-  <div class="clearfix buffer--margin-top-10 buffer--display-flex buffer--align-items-center buffer--display-flex-direction-row buffer--flex-justify-content-end">
-    <button
-      mat-button
-      mat-dialog-close
-      class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-right-5"
-    >
-      Cancel
-    </button>
-    <button
-      (click)="onRescheduleModalClosed()"
-      [disabled]="postRescheduleForm.invalid"
-      class="buffer--font-family-semi-bold buffer--font-size-sm"
-      color="primary"
-      mat-flat-button
-    >
-      Re-schedule
-    </button>
+  <div
+    class="clearfix buffer--margin-top-10 buffer--display-flex buffer--align-items-center buffer--display-flex-direction-row buffer--flex-justify-content-end">
+    <div class="clearfix">
+      <button mat-button mat-dialog-close class="buffer--font-family-semi-bold buffer--font-size-sm">
+        Cancel
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-left-3">
+      <button (click)="onRescheduleModalClosed()" [disabled]="postRescheduleForm.invalid"
+        class="buffer--font-family-semi-bold buffer--font-size-sm" color="primary"
+        mat-flat-button>
+        Re-schedule
+      </button>
+    </div>
   </div>
 </div>

@@ -4,45 +4,47 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Application Specific Modules
+import { LoaderModule } from '@shared/module/loader/loader.module';
 import { ScheduleRoutingModule } from '@app/schedule/schedule-routing.module';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 
 // Third Party Modules
-import { VgCoreModule } from 'videogular2/core';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
-import { VgBufferingModule } from 'videogular2/buffering';
+import { LayoutModule } from '@angular/cdk/layout';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-import { MatRippleModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatStepperModule } from '@angular/material/stepper';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { VgBufferingModule } from 'videogular2/buffering';
+import { VgControlsModule } from 'videogular2/controls';
+import { VgCoreModule } from 'videogular2/core';
+import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 
 // Facade
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Services
-import { PostTypeImageService } from '@app/schedule/service/post-type-image.service';
-import { PostTypeVideoService } from '@app/schedule/service/post-type-video.service';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
 import { ScheduleService } from '@core/service/schedule/schedule.service';
+import { PostTypeImageService } from '@app/schedule/service/post-type-image.service';
+import { PostTypeVideoService } from '@app/schedule/service/post-type-video.service';
 import { KeyboardEventService } from '@core/service/keyboard-event/keyboard-event.service';
 
 // Components
@@ -63,7 +65,9 @@ import { SchedulePostViewModalVideosComponent } from '@app/schedule/components/s
 import { SchedulePostViewModalFooterComponent } from '@app/schedule/components/schedule-post-view-footer/schedule-post-view-modal-footer.component';
 import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
 import { SchedulePostCreateModalFormComponent } from '@app/schedule/components/schedule-post-create-modal-form/schedule-post-create-modal-form.component';
+import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
 import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
+import { ScheduleCalendarViewHeaderButtonsComponent } from './components/schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { SchedulePostCreateModalFormTypeComponent } from '@app/schedule/components/schedule-post-create-modal-form-type/schedule-post-create-modal-form-type.component';
 import { SchedulePostCreateModalFormTextComponent } from '@app/schedule/components/schedule-post-create-modal-form text/schedule-post-create-modal-form-text.component';
 import { SchedulePostCreateModalFormImageComponent } from '@app/schedule/components/schedule-post-create-modal-form-image/schedule-post-create-modal-form-image.component';
@@ -78,7 +82,6 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromScheduleReducer from '@app/schedule/reducer';
 import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
-import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
 
 // import { LoggerService } from '@core/service/logger/logger.service';
 
@@ -111,6 +114,7 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     SchedulePostCreateModalFormVideoComponent,
     SchedulePostCreateModalFormHeaderComponent,
     ScheduleCalendarSettingsModalFormComponent,
+    ScheduleCalendarViewHeaderButtonsComponent,
     SchedulePostRescheduleConfirmModalComponent,
     SchedulePostCreateModalFormMediaSelectionComponent,
   ],
@@ -119,10 +123,12 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     FormsModule,
     ReactiveFormsModule,
 
+    LoaderModule,
     ScheduleRoutingModule,
 
     DashboardHeaderModule,
 
+    LayoutModule,
     MatIconModule,
     MatMenuModule,
     MatInputModule,
@@ -176,6 +182,7 @@ import { ScheduleCalendarPostDetailsModalComponent } from './components/schedule
     SchedulePostRescheduleModalComponent,
     ScheduleCalendarSettingsModalComponent,
     ScheduleCalendarPostDetailsModalComponent,
+    ScheduleCalendarViewHeaderButtonsComponent,
     SchedulePostRescheduleConfirmModalComponent,
   ],
 })

@@ -1,4 +1,14 @@
 /*
+    * MATERIAL SIDENAV
+*/
+.mat-drawer-transition {
+  .mat-drawer-content {
+    transition-duration: 0s !important;
+    transition: none !important;
+  }
+}
+
+/*
     * MATERIAL LIST
 */
 .mat-list-base {
@@ -44,12 +54,6 @@ mat-card {
   }
 }
 
-button {
-  &:disabled {
-    outline: $buffer--outline-none !important;
-  }
-}
-
 /*
     * MATERIAL BUTTON
 */
@@ -57,10 +61,15 @@ button {
   @include buffer--button-box-shadow($buffer--box-shadow);
 }
 
+.mat-icon-button {
+  line-height: $buffer--line-height-leading-none !important;
+}
+
 .mat-button.mat-warn,
 .mat-flat-button.mat-warn,
 .mat-icon-button.mat-warn,
-.mat-stroked-button.mat-warn {
+.mat-stroked-button.mat-warn,
+.mat-raised-button.mat-warn {
   @include buffer--button-border-radius($buffer--border-radius-xl);
   @include buffer--button-height($buffer--height-10);
   @include buffer--button-padding(1.5rem);
@@ -80,7 +89,8 @@ button {
 .mat-button.mat-accent,
 .mat-flat-button.mat-accent,
 .mat-icon-button.mat-accent,
-.mat-stroked-button.mat-accent {
+.mat-stroked-button.mat-accent,
+.mat-raised-button.mat-accent {
   @include buffer--button-border-radius($buffer--border-radius-xl);
   @include buffer--button-height($buffer--height-10);
   @include buffer--button-padding(1.5rem);
@@ -97,13 +107,20 @@ button {
   }
 }
 
+.mat-button,
+.mat-flat-button,
+.mat-stroked-button,
+.mat-raised-button {
+  @include buffer--button-padding(1.5rem);
+}
+
 .mat-button.mat-primary,
 .mat-flat-button.mat-primary,
 .mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary {
+.mat-stroked-button.mat-primary,
+.mat-raised-button.mat-primary {
   @include buffer--button-border-radius($buffer--border-radius-xl);
   @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
 
   &:hover {
     background-color: $buffer--background-color-primary-800;
@@ -119,14 +136,16 @@ button {
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
-.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
+.mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-padding(1.5rem);
 }
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-icon-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
-.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
+.mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-border-radius($buffer--border-radius-xl);
   @include buffer--button-height($buffer--height-10);
 
@@ -138,11 +157,24 @@ button {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
     background-color: $buffer--border-color-gray;
   }
+
+  &:disabled {
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
+  }
 }
 
 /*
     * MATERIAL BUTTON GROUP
 */
+
+mat-button-toggle-group {
+  box-shadow: $buffer--box-shadow !important;
+
+  &:focus {
+    box-shadow: $buffer--box-shadow-outline !important;
+  }
+}
+
 .mat-button-toggle-button {
   outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
@@ -151,10 +183,12 @@ button {
 
 .mat-button-toggle-group-appearance-standard,
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  border-color: $buffer--border-color-gray !important;
   border-radius: $buffer--border-radius-xl !important;
 }
 
-.mat-button-toggle-label-content {
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard .mat-button-toggle-label-content {
   line-height: 40px !important;
   padding: 0 1.5rem !important;
 }
@@ -162,6 +196,10 @@ button {
 .mat-button-toggle-checked {
   color: $buffer--text-color-white !important;
   background-color: $buffer--background-color-primary-500 !important;
+
+  &:hover {
+    background-color: $buffer--background-color-primary-900 !important;
+  }
 }
 
 /*

@@ -1,27 +1,19 @@
-/* Slider */
-
 .slick-slider {
   @include buffer--user-select(none);
+  background-color: $buffer--background-color-gray;
+  box-shadow: $buffer--box-shadow-md;
   box-sizing: border-box;
-  display: block;
-  position: relative;
-  touch-action: pan-y;
-  user-select: none;
+  display: $buffer--display-block;
+  position: $buffer--position-relative;
 }
+
 .slick-list {
-  display: block;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
+  display: $buffer--display-block;
+  overflow: $buffer--overflow-hidden;
+  position: $buffer--position-relative;
 
   &:focus {
-    outline: none;
-  }
-
-  &.dragging {
-    cursor: pointer;
-    cursor: hand;
+    outline: $buffer--outline-none;
   }
 }
 .slick-slider .slick-track,
@@ -31,88 +23,50 @@
 }
 
 .slick-track {
-  display: block;
-  left: 0;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  top: 0;
-
-  &:before,
-  &:after {
-    content: '';
-    display: table;
-  }
-
-  &:after {
-    clear: both;
-  }
+  align-items: $buffer--align-items-center;
+  display: $buffer--display-flex;
+  flex-direction: $buffer--display-flex-direction-row;
+  height: $buffer--height-70;
+  justify-content: $buffer--align-items-center;
+  justify-items: $buffer--align-items-center;
+  opacity: $buffer--opacity-100;
 
   .slick-loading & {
     visibility: hidden;
   }
 }
 .slick-slide {
+  display: flex;
   float: left;
-  height: 100%;
+  height: auto;
   min-height: 1px;
   outline: none;
-  [dir='rtl'] & {
-    float: right;
-  }
+
   img {
     display: block;
   }
-  &.slick-loading img {
-    display: none;
-  }
 
-  display: none;
-
-  &.dragging img {
-    pointer-events: none;
-  }
-
-  .slick-initialized & {
-    display: block;
-  }
-
-  .slick-loading & {
-    visibility: hidden;
-  }
-
-  .slick-vertical & {
-    border: 1px solid transparent;
-    display: block;
-    height: auto;
+  &.slick-loading {
+    img {
+      display: none;
+    }
   }
 }
+
 .slick-arrow.slick-hidden {
   display: none;
 }
 
 .slick-disabled {
-  cursor: default;
+  cursor: $buffer--cursor-default;
 }
 
-/* THEME */
-// Default Variables
-
-/* Slider */
-
-// .slick-list {
-//   .slick-loading {
-//     background: url('../../images/loader/ajax-loader.gif') center center no-repeat;
-//   }
-// }
-
-/* Arrows */
 .slick-prev,
 .slick-next {
-  background: $buffer--background-color-white;
+  background: $buffer--background-color-gray;
   border-radius: $buffer--border-radius-full;
   box-shadow: $buffer--box-shadow;
-  color: $buffer--text-color-black;
+  color: $buffer--text-color-white;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-block;
   font-size: $buffer--font-size-5xl;
@@ -126,6 +80,15 @@
 
   &.slick-disabled {
     opacity: $buffer--opacity-0;
+  }
+
+  &:hover {
+    background-color: $buffer--background-color-white;
+    color: $buffer--text-color-black;
+  }
+
+  &:active {
+    box-shadow: $buffer--box-shadow-outline;
   }
 }
 

@@ -12,6 +12,10 @@
   cursor: $buffer--cursor-default;
 }
 
+.buffer--cursor-grab {
+  cursor: $buffer--cursor-grab;
+}
+
 .buffer--cursor-pointer {
   cursor: $buffer--cursor-pointer;
 }

@@ -9,6 +9,7 @@ import { CalViewState } from '@app/schedule/model/calendar.model';
 import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
 
 const initialCalendarState: CalViewState = {
+  calendarSidebarOpened: true,
   firstDay: WEEK_DAY.MONDAY,
   showNonCurrentDates: true,
 };
@@ -28,7 +29,14 @@ const calendarSettingsReducer = createReducer(
       ...state,
       showNonCurrentDates,
     };
-  })
+  }),
+  on(fromCalendarActions.setCalendarSidebarStatus, (state, action) => {
+    const { calendarSidebarOpened } = action;
+    return {
+      ...state,
+      calendarSidebarOpened,
+    };
+  }),
 );
 
 function reducer(state: CalViewState | undefined, action: Action) {

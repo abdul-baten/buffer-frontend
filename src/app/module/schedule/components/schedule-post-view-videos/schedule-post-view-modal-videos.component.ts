@@ -1,8 +1,5 @@
-// Core Modules
-import { Component, Input, SimpleChanges, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PostFileInterface } from '@app/schedule/model/schedule.model';
-
-// Third Party Modules
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,7 +12,7 @@ export class SchedulePostViewModalVideosComponent implements OnChanges {
   @Input() postVideoSlideConfig: any;
 
   ngOnChanges(changes: SimpleChanges) {
-    this.postVideos = changes.postImageUrls.currentValue;
+    this.postVideos = changes.postVideos.currentValue;
     this.postVideoSlideConfig = changes.postVideoSlideConfig.currentValue;
   }
 }

@@ -1,4 +1,4 @@
-<div class="clearfix buffer--padding-10">
+<div class="clearfix">
   <section id="schedule-calendar-settings-modal-form-sec" class="schedule-calendar-settings-modal-form-sec">
     <form [formGroup]="calendarSettingsForm" novalidate>
       <div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
@@ -11,16 +11,10 @@
 
           <div class="clearfix buffer--margin-y-2">
             <div class="clearfix">
-              <mat-radio-group
-                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
-                color="primary"
-                formControlName="firstDay"
-              >
-                <mat-radio-button
-                  *ngFor="let weekDay of weekDays; let i = index"
-                  [value]="i"
-                  class="buffer--margin-y-2"
-                >
+              <mat-radio-group class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
+                color="primary" formControlName="firstDay">
+                <mat-radio-button *ngFor="let weekDay of weekDays; let i = index" [value]="i"
+                  class="buffer--margin-y-2">
                   {{ weekDay }}
                 </mat-radio-button>
               </mat-radio-group>
@@ -36,11 +30,8 @@
 
           <div class="clearfix buffer--margin-y-2">
             <div class="clearfix">
-              <mat-radio-group
-                class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
-                color="primary"
-                formControlName="showNonCurrentDates"
-              >
+              <mat-radio-group class="buffer--display-flex buffer--display-flex-direction-column buffer--font-size-sm"
+                color="primary" formControlName="showNonCurrentDates">
                 <mat-radio-button [value]="true" class="buffer--margin-y-2">
                   Yes
                 </mat-radio-button>
@@ -53,20 +44,5 @@
         </div>
       </div>
     </form>
-  </section>
-
-  <section
-    id="schedule-calendar-settings-modal-form-footer-sec"
-    class="schedule-calendar-settings-modal-form-footer-sec"
-  >
-    <div class="clearfix buffer--margin-top-10 buffer--display-flex buffer--flex-justify-content-end">
-      <button
-        class="buffer--font-family-semi-bold buffer--font-size-sm"
-        mat-button
-        mat-dialog-close
-      >
-        Close
-      </button>
-    </div>
   </section>
 </div>

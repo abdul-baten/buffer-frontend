@@ -1,26 +1,20 @@
-<div
-  class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-color-gray buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid"
->
-  <div class="clearfix buffer--padding-5">
-    <p class="buffer--font-size-xl buffer--font-family-semi-bold">
-      <i
-        class="material-icons"
-        [ngClass]="{
-          'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-primary-500  buffer--margin-right-2': formHeaderIcon
-        }"
-        >{{ formHeaderIcon }}</i
-      >
-      {{ formHeader }}
-    </p>
-  </div>
+<div class="clearfix">
   <div
-    matTooltip="Close"
-    (click)="onChooseTypeModalClosed()"
-    matTooltipClass="buffer--font-size-xs"
-    class="clearfix buffer--padding-5 buffer--cursor-pointer"
-  >
-    <i class="material-icons">
-      close
-    </i>
+    class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+    <div class="clearfix">
+      <p class="buffer--font-size-xl buffer--font-family-semi-bold">
+        <i class="material-icons" [ngClass]="{
+          'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-primary-500  buffer--margin-right-2': formHeaderIcon
+        }">{{ formHeaderIcon }}</i>
+        {{ formHeader }}
+      </p>
+    </div>
+    <div class="clearfix">
+      <button
+        class="buffer--sidebar-menu-button buffer--width-12 buffer--height-12 buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--box-shadow"
+        mat-icon-button matTooltip="Close" matTooltipClass="buffer--font-size-xs" mat-dialog-close>
+        <mat-icon class="buffer--font-size-2xl">close</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

@@ -91,6 +91,11 @@
   justify-content: $buffer--flex-justify-content-end !important;
 }
 
+.buffer--flex-justify-content-center {
+  -webkit-box-pack: $buffer--flex-justify-content-center !important;
+  justify-content: $buffer--flex-justify-content-center !important;
+}
+
 .buffer--flex-justify-content-space-around {
   -webkit-box-pack: $buffer--flex-justify-content-space-around !important;
   justify-content: $buffer--flex-justify-content-space-around !important;
@@ -307,6 +312,13 @@
 
 .buffer--vertical-align-middle {
   vertical-align: $buffer--vertical-align-middle !important;
+}
+
+/*
+    * ABSOLUTE POSITION
+*/
+.buffer--position-absolute-bottom-0 {
+  bottom: $buffer--position-absolute-bottom-0;
 }
 
 /* ************************************* LAYOUT ENDS ************************************* */

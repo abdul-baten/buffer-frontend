@@ -14,14 +14,19 @@ const selectCalendarSettings = createSelector(selectPostDataState, calSettings =
 const selectCalendarFirstDay = createSelector(selectCalendarSettings, calSettings => calSettings.firstDay);
 const selectCalendarNonCurrentDates = createSelector(
   selectCalendarSettings,
-  calSettings => calSettings.showNonCurrentDates
+  calSettings => calSettings.showNonCurrentDates,
+);
+const selectCalendarSidebarStatus = createSelector(
+  selectCalendarSettings,
+  calSettings => calSettings.calendarSidebarOpened,
 );
 
 export {
-  selectPostDate,
-  selectPostType,
-  selectPostDataState,
-  selectCalendarSettings,
   selectCalendarFirstDay,
   selectCalendarNonCurrentDates,
+  selectCalendarSettings,
+  selectCalendarSidebarStatus,
+  selectPostDataState,
+  selectPostDate,
+  selectPostType,
 };
