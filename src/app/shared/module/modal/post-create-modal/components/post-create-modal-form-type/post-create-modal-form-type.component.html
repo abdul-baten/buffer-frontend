@@ -1,0 +1,72 @@
+<div class="clearfix buffer--padding-10">
+  <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
+    <buffer--post-create-modal-form-header [formHeader]="formHeader">
+    </buffer--post-create-modal-form-header>
+  </section>
+
+  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec">
+    <form
+      class="buffer--padding-x-2 buffer--margin-y-10 buffer--height-56 buffer--overflow-y-auto buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between"
+      [formGroup]="eventCreateChooseTypeForm" novalidate>
+      <div class="clearfix buffer--width-full">
+        <mat-radio-group formControlName="postType" (change)="onRadioButtonValueChanged()"
+          class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
+          <mat-radio-button value="text">
+            <div
+              class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-content-space-between">
+              <div class="clearfix">
+                <i
+                  class="material-icons buffer--font-size-4xl buffer--text-color-primary-500  buffer--margin-bottom-3">text_fields</i>
+              </div>
+              <div class="clearfix">
+                <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-0">Status</p>
+              </div>
+            </div>
+          </mat-radio-button>
+          <mat-radio-button value="image">
+            <div
+              class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-content-space-between">
+              <div class="clearfix">
+                <i
+                  class="material-icons buffer--font-size-4xl buffer--text-color-primary-500  buffer--margin-bottom-3">filter</i>
+              </div>
+              <div class="clearfix">
+                <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-0">Images</p>
+              </div>
+            </div>
+          </mat-radio-button>
+          <mat-radio-button value="video">
+            <div
+              class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-content-space-between">
+              <div class="clearfix">
+                <i
+                  class="material-icons buffer--font-size-4xl buffer--text-color-primary-500  buffer--margin-bottom-3">subscriptions</i>
+              </div>
+              <div class="clearfix">
+                <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-0">Video</p>
+              </div>
+            </div>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </form>
+  </section>
+
+  <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
+    <div
+      class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+      <div class="clearfix">
+        <button mat-button mat-dialog-close (click)="handleCreateModalCloseBtnClick()"
+          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--text-color-black">
+          Close
+        </button>
+      </div>
+      <div class="clearfix">
+        <button color="primary" mat-flat-button (click)="onNextButtonClicked()"
+          [disabled]="eventCreateChooseTypeForm.invalid" class="buffer--font-family-semi-bold buffer--font-size-sm">
+          Continue
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

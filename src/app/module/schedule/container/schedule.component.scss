@@ -37,8 +37,14 @@
     }
 
     .mat-calendar-body-cell {
-      font-family: 'Averta SemiBold';
+      font-family: 'Buffer SemiBold';
       font-size: 0.75rem;
+
+      .mat-calendar-body-cell-content {
+        &:not(.mat-calendar-body-selected) {
+          color: #444444 !important;
+        }
+      }
     }
 
     .buffer--schedule-calendar-sec {

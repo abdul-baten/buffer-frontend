@@ -1,11 +1,11 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
   -webkit-box-align: center;
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
   -webkit-box-pack: justify;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   flex-shrink: 0;
   justify-content: space-between;
 
@@ -14,11 +14,10 @@
   }
 
   .buffer--header-menu-sec {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 140px);
   }
 
   .buffer--header-account-sec {
     height: 70px;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
 }

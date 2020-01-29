@@ -1,0 +1,22 @@
+<div class="clearfix buffer--padding-10">
+  <div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
+    <h1 class="buffer--text-color-black buffer--font-family-semi-bold buffer--font-size-base">
+      Re-schedule this post?
+    </h1>
+  </div>
+  <div
+    class="clearfix buffer--margin-top-10 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
+    <div class="clearfix">
+      <button (click)="handleRescheduleCancelBtnClick()" class="buffer--font-family-semi-bold buffer--font-size-sm" mat-button
+        >
+        Cancel
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-left-3">
+      <button class="buffer--font-family-semi-bold buffer--font-size-sm" color="primary" mat-flat-button
+      (click)="handleRescheduleBtnClick()">
+        Schedule
+      </button>
+    </div>
+  </div>
+</div>

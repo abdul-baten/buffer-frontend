@@ -31,11 +31,11 @@
 }
 
 .mat-expansion-panel-header {
-  padding: 0 15px !important;
+  padding: 0 1rem !important;
 }
 
 .mat-expansion-panel-body {
-  padding: 16px !important;
+  padding: 1rem !important;
 }
 
 /*
@@ -148,14 +148,15 @@ mat-card {
 .mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-border-radius($buffer--border-radius-xl);
   @include buffer--button-height($buffer--height-10);
+  color: $buffer--text-color-black !important;
 
   &:hover {
-    background-color: $buffer--border-color-gray;
+    background-color: $buffer--background-color-gray;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--border-color-gray;
+    background-color: $buffer--background-color-gray;
   }
 
   &:disabled {
@@ -169,10 +170,6 @@ mat-card {
 
 mat-button-toggle-group {
   box-shadow: $buffer--box-shadow !important;
-
-  &:focus {
-    box-shadow: $buffer--box-shadow-outline !important;
-  }
 }
 
 .mat-button-toggle-button {
@@ -183,14 +180,24 @@ mat-button-toggle-group {
 
 .mat-button-toggle-group-appearance-standard,
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
+  @include buffer--button-border-radius($buffer--border-radius-xl);
   border-color: $buffer--border-color-gray !important;
-  border-radius: $buffer--border-radius-xl !important;
 }
 
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
 .mat-button-toggle-group-appearance-standard .mat-button-toggle-label-content {
   line-height: 40px !important;
   padding: 0 1.5rem !important;
+}
+
+mat-button-toggle {
+  &:not(.mat-button-toggle-checked) {
+    color: $buffer--text-color-black;
+
+    &:hover {
+      background-color: $buffer--background-color-gray;
+    }
+  }
 }
 
 .mat-button-toggle-checked {
@@ -206,9 +213,9 @@ mat-button-toggle-group {
     * MATERIAL DIALOG
 */
 .mat-dialog-container {
+  @include buffer--button-border-radius($buffer--border-radius-lg);
   padding: 0 !important;
   box-shadow: $buffer--box-shadow-2xl !important;
-  border-radius: $buffer--border-radius-lg !important;
 }
 
 /*
@@ -318,10 +325,14 @@ mat-button-toggle-group {
 
 .mat-form-field-appearance-fill {
   .mat-form-field-flex {
+    @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: $buffer--border-radius-lg !important;
     background-color: $buffer--background-color-white !important;
+
+    &:hover {
+      box-shadow: $buffer--box-shadow-outline-gray;
+    }
   }
 
   .mat-form-field-infix {
@@ -361,11 +372,30 @@ textarea.mat-input-element {
 }
 
 .mat-bottom-sheet-container-large {
+  border-top-left-radius: $buffer--border-radius-lg !important;
+  border-top-right-radius: $buffer--border-radius-lg !important;
   max-width: $buffer--width-64 !important;
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
 }
 
 .mat-bottom-sheet-container {
   padding: 1.25rem !important;
+}
+
+/*
+    * MATERIAL MENU
+*/
+.mat-menu-panel {
+  @include buffer--button-border-radius($buffer--border-radius-lg);
+  box-shadow: $buffer--box-shadow-lg !important;
+
+  .mat-menu-content {
+    padding: 1rem !important;
+
+    .mat-menu-item {
+      @include buffer--button-border-radius($buffer--border-radius-lg);
+      color: $buffer--text-color-black !important;
+      height: $buffer--height-12;
+      line-height: $buffer--line-height-leading-loose;
+    }
+  }
 }

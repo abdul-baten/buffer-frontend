@@ -19,12 +19,9 @@ import { MetaDefinition } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
 import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 import { postTypeMap } from '@app/schedule/model/post-type.model';
-import { ScheduleCalendarPostDetailsModalComponent } from '../components/schedule-calendar-post-details-modal/schedule-calendar-post-details-modal.component';
-import { ScheduleCalendarSettingsModalComponent } from '@app/schedule/components/schedule-calendar-settings-modal/schedule-calendar-settings-modal.component';
-import { ScheduleDeletePostModalComponent } from '@app/schedule/components/schedule-delete-post-modal/schedule-delete-post-modal.component';
-import { SchedulePostCreateModalComponent } from '@app/schedule/components/schedule-post-create-modal/schedule-post-create-modal.component';
-import { SchedulePostRescheduleConfirmModalComponent } from '@app/schedule/components/schedule-post-reschedule-confirm-modal/schedule-post-reschedule-confirm-modal.component';
-import { SchedulePostRescheduleModalComponent } from '@app/schedule/components/schedule-post-reschedule-modal/schedule-post-reschedule-modal.component';
+import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
+import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
+import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
 import { Store } from '@ngrx/store';
 import {
@@ -35,6 +32,9 @@ import {
   selectPostType,
 } from '@app/schedule/selector/schedule.selector';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
+import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
+import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
+import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 
 // Third Party Modules
 
@@ -100,7 +100,7 @@ export class ScheduleFacade {
   openCreatePostForm(postDate: Date): void {
     const postOriginalDate = this.getCurrentTime(postDate);
     this.setPostDate(postOriginalDate);
-    this.matDialog.open(SchedulePostCreateModalComponent, {
+    this.matDialog.open(PostCreateModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -135,7 +135,7 @@ export class ScheduleFacade {
   }
 
   onPostDragged(postInfo: CalPostInterface): void {
-    this.matDialog.open(SchedulePostRescheduleConfirmModalComponent, {
+    this.matDialog.open(PostRescheduleConfirmModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -191,7 +191,7 @@ export class ScheduleFacade {
   }
 
   openCalenderSettings(): void {
-    this.matDialog.open(ScheduleCalendarSettingsModalComponent, {
+    this.matDialog.open(CalendarSettingsModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -212,7 +212,7 @@ export class ScheduleFacade {
   }
 
   openPostDetailsDialog(postInfo: CalPostInterface): void {
-    this.matDialog.open(ScheduleCalendarPostDetailsModalComponent, {
+    this.matDialog.open(PostDetailsModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -234,7 +234,7 @@ export class ScheduleFacade {
   }
 
   openPostDeleteDialog(postId: string): void {
-    this.matDialog.open(ScheduleDeletePostModalComponent, {
+    this.matDialog.open(PostDeleteModalComponent, {
       position: {
         top: '',
         bottom: '',
@@ -256,7 +256,7 @@ export class ScheduleFacade {
   }
 
   openPostRescheduleDialog(postId: string, postDate: Date): void {
-    this.matDialog.open(SchedulePostRescheduleModalComponent, {
+    this.matDialog.open(PostRescheduleModalComponent, {
       position: {
         top: '',
         bottom: '',

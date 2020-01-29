@@ -6,11 +6,11 @@ $font-path: '~assets/fonts';
 /*
     * FONT FAMILY
 */
-$buffer--font-family-light: 'Averta Light';
-$buffer--font-family-regular: 'Averta Regular';
-$buffer--font-family-semi-bold: 'Averta SemiBold';
-$buffer--font-family-bold: 'Averta Bold';
-$buffer--font-family-extra-bold: 'Averta ExtraBold';
+$buffer--font-family-light: 'Buffer Light';
+$buffer--font-family-regular: 'Buffer Regular';
+$buffer--font-family-semi-bold: 'Buffer SemiBold';
+$buffer--font-family-bold: 'Buffer Bold';
+$buffer--font-family-extra-bold: 'Buffer ExtraBold';
 
 /*
     * FONT SIZE
@@ -77,10 +77,11 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-black: #333232;
+$buffer--text-color-black: #444444;
 $buffer--text-color-white: #ffffff;
 $buffer--text-color-transparent: transparent;
 $buffer--text-color-gray: rgba(0, 0, 0, 0.08);
+$buffer--text-color-dark-gray: #6e6d6d;
 
 $buffer--text-color-warn-100: #f7b4be;
 $buffer--text-color-warn-200: #f18292;

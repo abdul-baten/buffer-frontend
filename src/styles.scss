@@ -39,6 +39,7 @@
 html,
 body {
   @include buffer--user-select(none);
+  color: $buffer--text-color-black !important;
   height: $buffer--height-full;
 }
 
@@ -103,10 +104,12 @@ h3,
 h4,
 h5,
 h6 {
+  color: $buffer--text-color-black;
   font-family: $buffer--font-family-bold;
 }
 
 p {
+  color: $buffer--text-color-black;
   font-family: $buffer--font-family-regular;
   margin: 0;
   padding: 0;

@@ -1,16 +1,13 @@
-// Core Modules
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'buffer--main-logo',
   styleUrls: ['./main-logo.component.scss'],
   templateUrl: './main-logo.component.html',
 })
-export class MainLogoComponent implements OnInit {
+export class MainLogoComponent {
   constructor(private router: Router) {}
-
-  ngOnInit() {}
 
   navigateToPage(page: string): void {
     this.router.navigateByUrl(page);

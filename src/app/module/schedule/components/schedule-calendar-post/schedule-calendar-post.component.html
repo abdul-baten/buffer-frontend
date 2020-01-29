@@ -35,8 +35,9 @@
               <vg-controls vgFor="postVideo">
                 <vg-play-pause></vg-play-pause>
               </vg-controls>
-              <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true" [src]="calendarData.event.extendedProps.postVideos[0].fileURL"
-                type="video/mp4" class="buffer--width-full">
+              <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true"
+                [src]="calendarData.event.extendedProps.postVideos[0].fileURL" type="video/mp4"
+                class="buffer--width-full">
               </video>
             </vg-player>
           </div>
