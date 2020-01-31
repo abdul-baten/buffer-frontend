@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
 
 @Component({
@@ -23,14 +23,7 @@ export class PostDetailsModalComponent {
     variableWidth: false,
   };
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public postData: CalPostInterface,
-    private matDialogRef: MatDialogRef<PostDetailsModalComponent>,
-  ) {
+  constructor(@Inject(MAT_DIALOG_DATA) public postData: CalPostInterface) {
     this.postInfo = this.postData.extendedProps;
-  }
-
-  handlePostEditBtnClick(): void {
-    this.matDialogRef.close();
   }
 }

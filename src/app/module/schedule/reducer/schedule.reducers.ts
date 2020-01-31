@@ -1,9 +1,7 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { fromScheduleActions } from '@app/schedule/action';
-
-// Model
+import { Action, createReducer, on } from '@ngrx/store';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
-import { POST_STATUS } from '../enum/schedule-post-create-modal.enum';
+import { fromScheduleActions } from '@app/schedule/action';
+import { POST_STATUS } from '@core/enum/post/post-status.enum';
 
 export const initialState: CalPostInterface = {
   postCreateMember: '',
@@ -57,7 +55,7 @@ export const postDataReducer = createReducer(
       ...action.postData,
     };
   }),
-  on(fromScheduleActions.removePostData, _ => initialState)
+  on(fromScheduleActions.removePostData, _ => initialState),
 );
 
 export function reducer(state: CalPostInterface | undefined, action: Action) {

@@ -10,7 +10,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Enums
-import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
+import { WEEK_DAY } from '@core/enum/calendar/calendar-week-days.enum';
 
 @Component({
   selector: 'buffer--calendar-settings-modal-form',

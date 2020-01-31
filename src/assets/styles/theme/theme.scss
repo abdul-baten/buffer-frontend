@@ -127,7 +127,7 @@ $buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
 $buffer-typography: mat-typography-config(
   $font-family: $buffer--font-family-semi-bold,
   $button: mat-typography-level($buffer--font-size-sm, 14px, 400),
-  $input: mat-typography-level($buffer--font-size-sm, 1, 400),
+  $input: mat-typography-level($buffer--font-size-sm, 1, 500),
 );
 
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).

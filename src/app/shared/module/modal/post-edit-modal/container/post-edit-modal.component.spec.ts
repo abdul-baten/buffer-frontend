@@ -1,18 +1,21 @@
+// Core Modules
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { SignupHeaderComponent } from './signup-header.component';
 
-describe('SignupHeaderComponent', () => {
-  let component: SignupHeaderComponent;
-  let fixture: ComponentFixture<SignupHeaderComponent>;
+// Components
+import { PostEditModalComponent } from './post-edit-modal.component';
+
+describe('PostEditModalComponent', () => {
+  let component: PostEditModalComponent;
+  let fixture: ComponentFixture<PostEditModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SignupHeaderComponent],
+      declarations: [PostEditModalComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignupHeaderComponent);
+    fixture = TestBed.createComponent(PostEditModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,5 +1,6 @@
 // Core Modules
 import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 // Third Party Modules
 
@@ -8,4 +9,10 @@ import { Component } from '@angular/core';
   templateUrl: './post-details-modal-footer.component.html',
   styleUrls: ['./post-details-modal-footer.component.scss'],
 })
-export class PostDetailsModalFooterComponent {}
+export class PostDetailsModalFooterComponent {
+  constructor(private dialogRef: MatDialogRef<PostDetailsModalFooterComponent>) {}
+
+  handleCloseBtnClick(): void {
+    this.dialogRef.close();
+  }
+}

@@ -10,7 +10,7 @@ import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { Observable, of } from 'rxjs';
-import { POST_STATUS, POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
+
 import { ScheduleCalendarViewHeaderButtonsComponent } from '../schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -23,7 +23,12 @@ import {
   Injector,
   Input,
   ViewChild,
+  OnDestroy,
+  HostListener,
 } from '@angular/core';
+import { SubSink } from 'subsink';
+import { POST_TYPE } from '@core/enum/post/post-type.enum';
+import { POST_STATUS } from '@core/enum/post/post-status.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,9 +36,11 @@ import {
   styleUrls: ['./schedule-calendar-view.component.scss'],
   templateUrl: './schedule-calendar-view.component.html',
 })
-export class ScheduleCalendarViewComponent implements AfterViewInit {
+export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   @Input() calendarView: string;
   @ViewChild('calendar', { static: true }) calendar: FullCalendarComponent;
+
+  private subscriptions$ = new SubSink();
 
   calendarPlugins = [dayGridPlugin, timeGrigPlugin, interactionPlugin];
 
@@ -147,7 +154,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
       {
         id: '1001',
         title: 'Post Video',
-        start: '2020-01-28T20:30:00',
+        start: '2020-01-31T20:30:00',
         allDay: false,
         editable: true,
         overlap: true,
@@ -185,7 +192,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
           postCanBeEdited: true,
           postCanNeDeleted: true,
         },
-        postOriginalDate: '2020-01-28T20:30:00',
+        postOriginalDate: '2020-01-31T20:30:00',
         postLocation: '',
         postLastEditedContent: '',
         postDate: '',
@@ -214,12 +221,14 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
     this.calendarApi = this.calendar.getApi();
     this.scheduleFacade.setCalendarApi(this.calendarApi);
 
-    this.scheduleFacade
-      .isWeb()
-      .pipe(delay(10))
-      .subscribe(isWeb => {
-        this.scheduleFacade.setCalendarView(isWeb ? CALENDAR_VIEW.DAY_GRID_MONTH : CALENDAR_VIEW.TIME_GRID_DAY);
-      });
+    this.subscriptions$.add(
+      this.scheduleFacade
+        .isWeb()
+        .pipe(delay(10))
+        .subscribe(isWeb => {
+          this.scheduleFacade.setCalendarView(isWeb ? CALENDAR_VIEW.DAY_GRID_MONTH : CALENDAR_VIEW.TIME_GRID_DAY);
+        }),
+    );
   }
 
   handleDatesRender(): void {
@@ -237,7 +246,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
   }
 
   handleDateClick(dateInfo: any) {
-    this.scheduleFacade.openCreatePostForm(dateInfo.start);
+    this.scheduleFacade.handlePostCreateDialogOpen(dateInfo.start);
   }
 
   selectAllow(arg: any): boolean {
@@ -247,11 +256,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
   handlePostDrop(postInfo: CalPostInterface) {
     switch (differenceInDays(new Date(), new Date(postInfo.event.start)) <= 0) {
       case true:
-        this.scheduleFacade.onPostDragged(postInfo);
+        this.scheduleFacade.handlePostDrag(postInfo);
         break;
       default:
         postInfo.revert();
-        this.scheduleFacade.openSnackbar('Post can not be reschedule to past date');
+        this.scheduleFacade.openSnackbar('Post can not be rescheduled to past date.');
         break;
     }
   }
@@ -289,5 +298,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit {
 
   handleLoading(isLoading: boolean): void {
     alert(isLoading);
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy() {
+    this.subscriptions$.unsubscribe();
   }
 }

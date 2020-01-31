@@ -13,6 +13,6 @@ export class ScheduleAddPostButtonComponent {
   constructor(private scheduleFacade: ScheduleFacade) {}
 
   onNewPostBtnClicked(): void {
-    this.scheduleFacade.openCreatePostForm(new Date());
+    this.scheduleFacade.handlePostCreateDialogOpen(new Date());
   }
 }

@@ -14,7 +14,7 @@ export class ScheduleCalendarViewPostComponent {
 
   constructor(
     private scheduleFacade: ScheduleFacade,
-    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInterface
+    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInterface,
   ) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }
@@ -23,19 +23,19 @@ export class ScheduleCalendarViewPostComponent {
     const { id, start } = this.calendarData.event;
     switch (action) {
       case 'view':
-        this.scheduleFacade.openPostDetailsDialog(this.calendarData.event);
+        this.scheduleFacade.handlePostDetailsDialogOpen(this.calendarData.event);
         break;
 
       case 'edit':
-        this.scheduleFacade.openPostDeleteDialog(id);
+        this.scheduleFacade.handlePostEditDialogOpen(this.calendarData.event);
         break;
 
       case 'reschedule':
-        this.scheduleFacade.openPostRescheduleDialog(id, start);
+        this.scheduleFacade.handlePostRescheduleDialogOpen(id, start);
         break;
 
       case 'delete':
-        this.scheduleFacade.openPostDeleteDialog(id);
+        this.scheduleFacade.handlePostDeleteDialogOpen(id);
         break;
     }
   }

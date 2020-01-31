@@ -6,7 +6,7 @@ import { fromCalendarActions } from '@app/schedule/action';
 import { CalViewState } from '@app/schedule/model/calendar.model';
 
 // Enums
-import { WEEK_DAY } from '@app/schedule/enum/calendar-week-days.enum';
+import { WEEK_DAY } from '@core/enum/calendar/calendar-week-days.enum';
 
 const initialCalendarState: CalViewState = {
   calendarSidebarOpened: true,

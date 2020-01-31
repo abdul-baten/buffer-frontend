@@ -17,7 +17,7 @@ import { Injectable, Injector } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MetaDefinition } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
-import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
+
 import { postTypeMap } from '@app/schedule/model/post-type.model';
 import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
 import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
@@ -35,6 +35,8 @@ import { ResponsiveLayoutService } from '@core/service/responsive-layout/respons
 import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
+import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/container/post-edit-modal.component';
+import { POST_TYPE } from '@core/enum/post/post-type.enum';
 
 // Third Party Modules
 
@@ -97,7 +99,21 @@ export class ScheduleFacade {
     this.calendarApi.changeView(viewOption);
   }
 
-  openCreatePostForm(postDate: Date): void {
+  private getCurrentTime(date: Date): string {
+    if (!getHours(date) && !getMinutes(date)) {
+      const currentDate = new Date();
+      const getCurrentHours = getHours(currentDate);
+      const getCurrentMinutes = getMinutes(currentDate);
+      const getCurrentDate = getDate(date);
+      const getCurrentMonth = getMonth(date);
+      const getCurrentYear = getYear(date);
+      return formatISO(new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes));
+    } else {
+      return formatISO(new Date(date));
+    }
+  }
+
+  handlePostCreateDialogOpen(postDate: Date): void {
     const postOriginalDate = this.getCurrentTime(postDate);
     this.setPostDate(postOriginalDate);
     this.matDialog.open(PostCreateModalComponent, {
@@ -120,21 +136,7 @@ export class ScheduleFacade {
     });
   }
 
-  private getCurrentTime(date: Date): string {
-    if (!getHours(date) && !getMinutes(date)) {
-      const currentDate = new Date();
-      const getCurrentHours = getHours(currentDate);
-      const getCurrentMinutes = getMinutes(currentDate);
-      const getCurrentDate = getDate(date);
-      const getCurrentMonth = getMonth(date);
-      const getCurrentYear = getYear(date);
-      return formatISO(new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes));
-    } else {
-      return formatISO(new Date(date));
-    }
-  }
-
-  onPostDragged(postInfo: CalPostInterface): void {
+  handlePostDrag(postInfo: CalPostInterface): void {
     this.matDialog.open(PostRescheduleConfirmModalComponent, {
       position: {
         top: '',
@@ -186,11 +188,11 @@ export class ScheduleFacade {
     return service.generateConfig();
   }
 
-  openSnackbar(message: string, action: string = 'Close'): void {
-    this.snackbarService.openSnackBar(message, action);
+  openSnackbar(message: string): void {
+    this.snackbarService.openSnackBar(message);
   }
 
-  openCalenderSettings(): void {
+  handleCalendarSettingsDialogOpen(): void {
     this.matDialog.open(CalendarSettingsModalComponent, {
       position: {
         top: '',
@@ -211,7 +213,7 @@ export class ScheduleFacade {
     });
   }
 
-  openPostDetailsDialog(postInfo: CalPostInterface): void {
+  handlePostDetailsDialogOpen(postInfo: CalPostInterface): void {
     this.matDialog.open(PostDetailsModalComponent, {
       position: {
         top: '',
@@ -233,7 +235,7 @@ export class ScheduleFacade {
     });
   }
 
-  openPostDeleteDialog(postId: string): void {
+  handlePostDeleteDialogOpen(postId: string): void {
     this.matDialog.open(PostDeleteModalComponent, {
       position: {
         top: '',
@@ -255,7 +257,7 @@ export class ScheduleFacade {
     });
   }
 
-  openPostRescheduleDialog(postId: string, postDate: Date): void {
+  handlePostRescheduleDialogOpen(postId: string, postDate: Date): void {
     this.matDialog.open(PostRescheduleModalComponent, {
       position: {
         top: '',
@@ -265,6 +267,28 @@ export class ScheduleFacade {
       },
       data: { postId, postDate },
       width: '450px',
+      role: 'dialog',
+      autoFocus: false,
+      direction: 'ltr',
+      hasBackdrop: true,
+      disableClose: true,
+      restoreFocus: false,
+      closeOnNavigation: true,
+      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
+      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+    });
+  }
+
+  handlePostEditDialogOpen(postInfo: CalPostInterface): void {
+    this.matDialog.open(PostEditModalComponent, {
+      position: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+      },
+      data: postInfo,
+      width: '700px',
       role: 'dialog',
       autoFocus: false,
       direction: 'ltr',

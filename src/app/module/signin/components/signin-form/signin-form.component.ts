@@ -1,8 +1,6 @@
-// Core Modules
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
-// Validators
+import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { SigninFacade } from '@app/signin/facade/signin.facade';
 
@@ -15,6 +13,8 @@ export class SigninFormComponent {
   signinForm: FormGroup;
 
   hidePassword = true;
+
+  errorStateMatcher = new ErrorStateMatcher();
 
   constructor(private signinFacade: SigninFacade, private formBuilder: FormBuilder) {
     this.signinForm = this.buildSigninForm();
@@ -32,7 +32,7 @@ export class SigninFormComponent {
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
           PasswordValidator.allowedPasswordSpecialChars,
-        ])
+        ]),
       ),
     });
   }

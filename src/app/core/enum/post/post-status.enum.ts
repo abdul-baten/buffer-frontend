@@ -1,9 +1,3 @@
-enum POST_TYPE {
-  TEXT = 'text',
-  IMAGE = 'image',
-  VIDEO = 'video',
-}
-
 enum POST_STATUS {
   DRAFTED = 'drafted',
   DELETED = 'deleted',
@@ -11,4 +5,4 @@ enum POST_STATUS {
   PUBLISHED = 'published',
 }
 
-export { POST_TYPE, POST_STATUS };
+export { POST_STATUS };

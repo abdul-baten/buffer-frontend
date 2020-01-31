@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 // Enums
-import { POST_TYPE } from '@app/schedule/enum/schedule-post-create-modal.enum';
 import { PostCreateModalFormTypeComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-type/post-create-modal-form-type.component';
 import { PostCreateModalFormTextComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-text/post-create-modal-form-text.component';
 import { PostCreateModalFormImageComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-image/post-create-modal-form-image.component';
 import { PostCreateModalFormVideoComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-video/post-create-modal-form-video.component';
+import { POST_TYPE } from '@core/enum/post/post-type.enum';
 
 // Components
 

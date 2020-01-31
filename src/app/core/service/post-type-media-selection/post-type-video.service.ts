@@ -1,10 +1,5 @@
-// Core Modules
-import { Injectable } from '@angular/core';
-
-// Third Party Modules
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-
-// Models
+import { Injectable } from '@angular/core';
 import { PostTypeGenerateInterface } from '@app/schedule/model/post-type.model';
 
 @Injectable()

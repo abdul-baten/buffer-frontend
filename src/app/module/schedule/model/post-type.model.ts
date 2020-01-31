@@ -1,9 +1,6 @@
-// Third Party Modules
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-
-// Services
-import { PostTypeImageService } from '@app/schedule/service/post-type-image.service';
-import { PostTypeVideoService } from '@app/schedule/service/post-type-video.service';
+import { PostTypeImageService } from '@core/service/post-type-media-selection/post-type-image.service';
+import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
 
 interface PostTypeGenerateInterface {
   generateConfig(): DropzoneConfigInterface;

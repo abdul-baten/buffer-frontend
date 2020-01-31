@@ -1,7 +1,6 @@
 :host {
-  position: relative;
+  position: absolute;
+  bottom: 0;
   display: block;
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  width: 100%;
 }

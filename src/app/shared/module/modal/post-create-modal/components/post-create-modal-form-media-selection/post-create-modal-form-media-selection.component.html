@@ -1,18 +1,10 @@
 <div class="clearfix">
-  <div
-    class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--margin-bottom-5"
-    [ngClass]="{ 'buffer--display-hidden': mediaMaxFilesReached }"
-  >
+  <div class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--margin-bottom-5"
+    [ngClass]="{ 'buffer--display-hidden': mediaMaxFilesReached }">
     <div class="clearfix">
-      <dropzone
-        [config]="config"
-        (init)="onUploadInit($event)"
-        (error)="onUploadError($event)"
-        (removedFile)="onRemovedFile()"
-        (addedFile)="onAddedFile($event)"
-        (success)="onUploadSuccess($event)"
-        (maxFilesReached)="onMaxFilesReached()"
-      >
+      <dropzone [config]="config" (init)="onUploadInit($event)" (error)="onUploadError($event)"
+        (removedFile)="onRemovedFile()" (addedFile)="onAddedFile($event)" (success)="onUploadSuccess($event)"
+        (maxFilesReached)="onMaxFilesReached()">
       </dropzone>
     </div>
   </div>
@@ -25,12 +17,8 @@
         </div>
 
         <img data-dz-thumbnail class="buffer--width-full buffer--height-full buffer--border-radius-lg" />
-        <i
-          data-dz-remove
-          matTooltip="Remove"
-          class="material-icons cancel-item buffer--font-size-base buffer--text-color-white buffer--cursor-pointer"
-          >close</i
-        >
+        <i data-dz-remove matTooltip="Remove"
+          class="material-icons cancel-item buffer--font-size-base buffer--text-color-white buffer--cursor-pointer">close</i>
       </div>
     </div>
   </div>

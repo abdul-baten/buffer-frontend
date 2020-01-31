@@ -1,13 +1,8 @@
-// Core Modules
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
-// Third Party Modules
-import { MatStepper } from '@angular/material/stepper';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatStepper } from '@angular/material/stepper';
+import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--post-create-modal-form-type',

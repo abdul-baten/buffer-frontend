@@ -1,8 +1,7 @@
 // Models
 import { EventInput } from '@fullcalendar/core';
-
-// Enums
-import { POST_TYPE, POST_STATUS } from '@app/schedule/enum/schedule-post-create-modal.enum';
+import { POST_TYPE } from '@core/enum/post/post-type.enum';
+import { POST_STATUS } from '@core/enum/post/post-status.enum';
 
 interface PostFileInterface {
   fileURL: string;

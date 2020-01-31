@@ -57,7 +57,7 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
     });
   }
 
-  onPreviousButtonClicked(): void {
+  handlePreviousBtnClick(): void {
     this.stepper.reset();
   }
 
@@ -65,7 +65,7 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
     this.scheduleFacade.setPostCreateModalObservable();
   }
 
-  onTextFormSubmit(): void {
+  handleTextFormSubmit(): void {
     if (this.eventCreateTypeTextForm.valid) {
       const { value } = this.eventCreateTypeTextForm;
 
