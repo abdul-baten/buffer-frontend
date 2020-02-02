@@ -7,15 +7,19 @@ const PAGES: PageInterface = {
   },
   SIGN_IN_PAGE: {
     ROUTE: 'sign-in',
-    TITLE: 'Sign In | Buffer',
+    TITLE: 'Sign In - Buffer',
   },
   SIGN_UP_PAGE: {
     ROUTE: 'sign-up',
-    TITLE: 'Sign Up | Buffer',
+    TITLE: 'Sign Up - Buffer',
   },
   SCHEDULE_PAGE: {
     ROUTE: 'schedule',
-    TITLE: 'Schedule | Buffer',
+    TITLE: 'Schedule - Buffer',
+  },
+  ACCOUNT_PAGE: {
+    ROUTE: 'account',
+    TITLE: 'Account - Buffer',
   },
 };
 

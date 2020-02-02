@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { SigninFacade } from '@app/signin/facade/signin.facade';
@@ -10,11 +10,12 @@ import { SigninFacade } from '@app/signin/facade/signin.facade';
   styleUrls: ['./signin-form.component.scss'],
 })
 export class SigninFormComponent {
+  loading = false;
   signinForm: FormGroup;
 
   hidePassword = true;
 
-  errorStateMatcher = new ErrorStateMatcher();
+  errorStateMatcher = new CustomFormErrorStateMatcher();
 
   constructor(private signinFacade: SigninFacade, private formBuilder: FormBuilder) {
     this.signinForm = this.buildSigninForm();
@@ -35,6 +36,10 @@ export class SigninFormComponent {
         ]),
       ),
     });
+  }
+
+  handleSigninFormSubmit(): void {
+    this.loading = true;
   }
 
   handleAuthNavigateBtn(authURL: string): void {

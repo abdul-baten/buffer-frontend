@@ -1,15 +1,17 @@
 <div class="clearfix buffer--padding-10">
   <div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
     <h1 class="buffer--text-color-black buffer--font-family-semi-bold buffer--font-size-base">
-      Re-schedule
+      Reschedule
     </h1>
 
     <div class="clearfix">
       <form novalidate [formGroup]="postRescheduleForm">
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
-            <input [min]="currentDateTime" [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
-              class="buffer--cursor-pointer" formControlName="postDate" id="postDate" matInput readonly type="text" />
+          <mat-form-field class="buffer--width-full buffer--font-family-semi-bold buffer--margin-top-3"
+            appearance="fill">
+            <input [errorStateMatcher]="errorStateMatcher" [min]="currentDateTime" [owlDateTimeTrigger]="postDate"
+              [owlDateTime]="postDate" autocomplete="off" class="buffer--cursor-default" formControlName="postDate"
+              id="postDate" matInput readonly type="text" />
             <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
               <mat-icon matSuffix>timer</mat-icon>
             </button>
@@ -21,17 +23,17 @@
     </div>
   </div>
   <div
-    class="clearfix buffer--margin-top-10 buffer--display-flex buffer--align-items-center buffer--display-flex-direction-row buffer--flex-justify-content-end">
+    class="clearfix buffer--margin-top-8 buffer--display-flex buffer--align-items-center buffer--display-flex-direction-row buffer--flex-justify-content-end">
     <div class="clearfix">
-      <button class="buffer--font-family-semi-bold buffer--font-size-sm" mat-button
+      <button class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-button
         (click)="handleRescheduleCancelBtnClick()">
         Cancel
       </button>
     </div>
     <div class="clearfix buffer--margin-left-3">
       <button (click)="handleRescheduleBtnClick()" [disabled]="postRescheduleForm.invalid"
-        class="buffer--font-family-semi-bold buffer--font-size-sm" color="primary" mat-flat-button>
-        Re-schedule
+        class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" color="primary" mat-flat-button>
+        Reschedule
       </button>
     </div>
   </div>

@@ -1,16 +1,11 @@
 <div class="clearfix">
   <div
-    class="clearfix buffer--padding-5 buffer--text-align-right buffer--border-color-gray buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid"
-  >
+    class="clearfix buffer--padding-5 buffer--text-align-right buffer--border-color-gray buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid">
     <div class="clearfix">
-      <button
-        (click)="onNewPostBtnClicked()"
-        class="buffer--width-full buffer--box-shadow buffer--height-16"
-        color="primary"
-        mat-flat-button
-      >
+      <button (click)="handleAddPostBtnClick()" class="buffer--width-full buffer--box-shadow buffer--height-16"
+        color="primary" mat-flat-button>
         <i class="material-icons buffer--font-size-4xl">add</i>
-        <span class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-left-2">Schedule</span>
+        <span class="buffer--font-family-semi-bold buffer--font-size-base buffer--margin-left-2">Schedule</span>
       </button>
     </div>
   </div>

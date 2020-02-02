@@ -6,7 +6,7 @@ import { Component, Input, HostListener, OnDestroy } from '@angular/core';
 import { SubSink } from 'subsink';
 
 // Error States
-import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 
 // Facade
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -25,7 +25,7 @@ export class PostEditModalFormVideoComponent implements OnDestroy {
 
   currentDateTime: Date;
 
-  eventEditPostFormErrorMatcher = new CustomFormStateMatcher();
+  eventEditPostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
   eventEditTypeVideoForm: FormGroup;
 

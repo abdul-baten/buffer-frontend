@@ -1,0 +1,12 @@
+:host {
+  position: relative;
+  display: block;
+
+  .buffer--social-profile-list-sec {
+    .buffer--social-profile-list {
+      &:first-child {
+        border-top-color: transparent !important;
+      }
+    }
+  }
+}

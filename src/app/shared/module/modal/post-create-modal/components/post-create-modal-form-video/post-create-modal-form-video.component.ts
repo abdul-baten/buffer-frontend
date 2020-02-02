@@ -7,7 +7,7 @@ import { SubSink } from 'subsink';
 import { MatStepper } from '@angular/material/stepper';
 
 // Error States
-import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 
 // Facade
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -26,7 +26,7 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
 
   currentDateTime: Date;
 
-  eventCreatePostFormErrorMatcher = new CustomFormStateMatcher();
+  eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
   eventCreateTypeVideoForm: FormGroup;
 

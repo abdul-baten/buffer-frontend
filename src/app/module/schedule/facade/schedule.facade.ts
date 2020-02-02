@@ -145,7 +145,7 @@ export class ScheduleFacade {
         right: '',
       },
       data: postInfo,
-      width: '400px',
+      width: '450px',
       autoFocus: false,
       direction: 'ltr',
       hasBackdrop: true,

@@ -8,29 +8,6 @@
       border: none;
     }
 
-    .dashboard-header-sec {
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: block;
-      width: 5rem;
-      height: 100vh;
-      border-right: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .buffer--schedule-menu-sec {
-      height: 70px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .buffer--schedule-calendar-view-sec {
-      height: calc(100vh - 70px);
-    }
-
-    .dashboard-route-sec {
-      width: calc(100vw - 5rem);
-    }
-
     .fc-widget-header {
       margin-right: 0 !important;
       border-right-width: 0;
@@ -41,6 +18,9 @@
       font-size: 0.75rem;
 
       .mat-calendar-body-cell-content {
+        width: 95%;
+        height: 100%;
+
         &:not(.mat-calendar-body-selected) {
           color: #444444 !important;
         }

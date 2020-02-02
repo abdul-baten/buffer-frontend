@@ -238,7 +238,7 @@ temporary rendered events).
 --------------------------------------------------------------------------------------------------*/
 .fc-scroller {
   -webkit-overflow-scrolling: touch;
-  height: calc(100vh - 12rem) !important;
+  height: calc(100vh - 13rem) !important;
   overflow-x: hidden !important;
   overflow-y: scroll !important;
   width: 100%;
@@ -747,7 +747,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-toolbar.fc-header-toolbar {
   background-color: $buffer--background-color-white;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
-  padding: 1rem 1.25rem;
+  height: $buffer--height-20;
+  padding: 0 1.25rem;
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
 }

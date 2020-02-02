@@ -23,19 +23,26 @@
     * MATERIAL EXPANSION PANEL
 */
 .mat-expansion-panel {
-  margin: 10px 0 !important;
+  margin: 0 0 1rem !important;
 }
 
 .mat-expansion-panel {
-  box-shadow: $buffer--box-shadow !important;
+  border-radius: $buffer--border-radius-lg !important;
+  border: 1px solid $buffer--border-color-gray !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+  color: $buffer--text-color-black !important;
 }
 
 .mat-expansion-panel-header {
-  padding: 0 1rem !important;
+  padding: 1rem !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: $buffer--text-color-black !important;
 }
 
 .mat-expansion-panel-body {
-  padding: 1rem !important;
+  padding: 1.5rem 1rem !important;
 }
 
 /*
@@ -65,14 +72,24 @@ mat-card {
   line-height: $buffer--line-height-leading-none !important;
 }
 
+.mat-icon-button.mat-warn {
+  &:focus,
+  &:hover {
+    background-color: $buffer--background-color-warn-800;
+    color: $buffer--text-color-white;
+  }
+
+  &:focus {
+    @include buffer--button-box-shadow($buffer--box-shadow-outline);
+  }
+}
+
 .mat-button.mat-warn,
 .mat-flat-button.mat-warn,
-.mat-icon-button.mat-warn,
 .mat-stroked-button.mat-warn,
 .mat-raised-button.mat-warn {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-padding(1.75rem);
 
   &:hover {
     background-color: $buffer--background-color-warn-800;
@@ -92,8 +109,7 @@ mat-card {
 .mat-stroked-button.mat-accent,
 .mat-raised-button.mat-accent {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-padding(1.75rem);
 
   &:hover {
     background-color: $buffer--background-color-accent-800;
@@ -111,7 +127,7 @@ mat-card {
 .mat-flat-button,
 .mat-stroked-button,
 .mat-raised-button {
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-padding(1.75rem);
 }
 
 .mat-button.mat-primary,
@@ -120,7 +136,6 @@ mat-card {
 .mat-stroked-button.mat-primary,
 .mat-raised-button.mat-primary {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
 
   &:hover {
     background-color: $buffer--background-color-primary-800;
@@ -138,7 +153,7 @@ mat-card {
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-padding(1.75rem);
 }
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
@@ -147,7 +162,6 @@ mat-card {
 .mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
   color: $buffer--text-color-black !important;
 
   &:hover {
@@ -172,10 +186,15 @@ mat-button-toggle-group {
   box-shadow: $buffer--box-shadow !important;
 }
 
+.mat-button-toggle {
+  height: $buffer--height-11;
+}
+
 .mat-button-toggle-button {
   outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
   font-family: $buffer--font-family-semi-bold !important;
+  height: $buffer--height-full;
 }
 
 .mat-button-toggle-group-appearance-standard,
@@ -206,6 +225,10 @@ mat-button-toggle {
 
   &:hover {
     background-color: $buffer--background-color-primary-900 !important;
+  }
+
+  .mat-button-toggle-focus-overlay {
+    border-bottom: 0 !important;
   }
 }
 
@@ -368,6 +391,12 @@ textarea.mat-input-element {
   font-size: $buffer--font-size-xs !important;
 }
 
+.mat-form-field-appearance-fill {
+  .mat-select-arrow-wrapper {
+    transform: translateY(0) !important;
+  }
+}
+
 /*
     * MATERIAL BOTTOM SHEET
 */
@@ -410,9 +439,44 @@ textarea.mat-input-element {
   }
 }
 
+/*
+    * MATERIAL SNACKBAR
+*/
 .mat-snack-bar-container {
-  border-radius: $buffer--border-radius-lg !important;
+  border-radius: $buffer--border-radius-xl !important;
   color: $buffer--text-color-white !important;
+  font-size: $buffer--font-size-base !important;
   min-width: auto !important;
+  padding: 1.5rem !important;
+}
+
+/*
+    * MATERIAL SELECT
+*/
+.mat-select-value {
+  color: $buffer--text-color-black !important;
+  height: 1rem !important;
+  padding-top: 2px;
+}
+
+.mat-select-panel {
   padding: 1rem !important;
+  border-radius: $buffer--border-radius-lg !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+
+  .mat-option.mat-selected:not(.mat-option-multiple) {
+    background-color: $buffer--background-color-gray !important;
+    margin: 0.5rem 0 !important;
+  }
+}
+
+.mat-option {
+  border-radius: $buffer--border-radius-lg;
+  height: $buffer--height-10 !important;
+  color: $buffer--text-color-black !important;
+  font-size: $buffer--font-size-sm !important;
+}
+
+.mat-select-arrow {
+  margin: 5px 4px !important;
 }

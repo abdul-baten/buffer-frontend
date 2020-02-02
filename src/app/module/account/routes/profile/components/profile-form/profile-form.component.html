@@ -1,0 +1,78 @@
+<div class="clearfix buffer--overflow-y-auto">
+  <form novalidate [formGroup]="profileSetupForm" class="buffer--padding-x-5">
+
+    <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
+      <div class="clearfix buffer--width-percent-49">
+        <label class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm"
+          for="profileFirstName">First name</label>
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input [errorStateMatcher]="errorStateMatcher" autocomplete="off"
+            class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="profileFirstName"
+            id="profileFirstName" matInput placeholder="Enter first name" spellcheck="false" type="text" />
+          <mat-error align="end" *ngIf="profileSetupForm.controls.profileFirstName.invalid">Enter a valid
+            first name.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="clearfix buffer--width-percent-49">
+        <label for="profileLastName"
+          class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Last name</label>
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input [errorStateMatcher]="errorStateMatcher" autocomplete="off"
+            class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="profileLastName"
+            id="profileLastName" matInput placeholder="Enter last name" spellcheck="false" type="text" />
+          <mat-error align="end" *ngIf="profileSetupForm.controls.profileLastName.invalid">Enter a valid
+            last name.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <label for="profileBio"
+        class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Bio</label>
+      <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+        <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="errorStateMatcher" cdkAutosizeMaxRows="8"
+          cdkAutosizeMinRows="5" cdkTextareaAutosize
+          class="buffer--font-family-semi-bold buffer--cursor-default buffer--line-height-leading-relaxed"
+          formControlName="profileBio" id="profileBio" matInput placeholder="Write a little bit about yourself"
+          spellcheck="false"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
+      <div class="clearfix buffer--width-percent-49">
+        <label for="profileCompany"
+          class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Company</label>
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <input [errorStateMatcher]="errorStateMatcher" class="buffer--font-family-semi-bold buffer--cursor-default"
+            formControlName="profileCompany" id="profileCompany" matInput placeholder="Enter company" spellcheck="false"
+            type="text" />
+        </mat-form-field>
+      </div>
+
+      <div class="clearfix buffer--width-percent-49">
+        <label for="profileCountry"
+          class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Country</label>
+        <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+          <mat-select formControlName="profileCountry" id="profileCountry">
+            <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{country.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="clearfix">
+      <div class="clearfix buffer--width-full">
+        <button mat-flat-button [disabled]="profileSetupForm.invalid" color="primary"
+          class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--height-14 buffer--box-shadow">
+          Save changes
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+
+</div>

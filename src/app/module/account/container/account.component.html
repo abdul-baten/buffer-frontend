@@ -1,0 +1,19 @@
+<section class="dashboard-header-sec buffer--float-left" id="dashboard-header-sec">
+  <div class="clearfix buffer--background-color-white">
+    <buffer--dashboard-header></buffer--dashboard-header>
+  </div>
+</section>
+
+<section class="dashboard-route-sec buffer--float-left buffer--height-full" id="dashboard-route-sec">
+  <section
+    class="buffer--dashboard-menu-sec buffer--width-percent-95 buffer--background-color-white buffer--position-fixed buffer--padding-left-5 buffer--padding-right-6"
+    id="buffer--dashboard-menu-sec">
+    <div class="buffer--width-full buffer--height-full buffer--padding-right-1">
+      <buffer--account-header></buffer--account-header>
+    </div>
+  </section>
+
+  <section id="buffer--account-content-view-sec" class="buffer--account-content-view-sec">
+    <router-outlet></router-outlet>
+  </section>
+</section>

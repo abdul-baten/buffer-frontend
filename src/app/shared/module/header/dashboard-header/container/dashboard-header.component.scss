@@ -10,14 +10,15 @@
   justify-content: space-between;
 
   .buffer--header-logo-sec {
-    height: 70px;
+    height: 80px;
   }
 
   .buffer--header-menu-sec {
-    height: calc(100vh - 140px);
+    height: calc(100vh - 160px);
   }
 
   .buffer--header-account-sec {
-    height: 70px;
+    display: flex;
+    height: 80px;
   }
 }

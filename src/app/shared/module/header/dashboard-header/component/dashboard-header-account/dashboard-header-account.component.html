@@ -8,7 +8,7 @@
     </button>
   </div>
   <mat-menu #accountMenu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="handleAccountNavigationClick()">
       <mat-icon>perm_contact_calendar</mat-icon>
       <span class="buffer--vertical-align-middle">Account</span>
     </button>

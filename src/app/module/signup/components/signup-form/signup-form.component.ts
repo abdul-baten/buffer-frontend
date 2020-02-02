@@ -1,6 +1,6 @@
 import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
-import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
@@ -16,7 +16,7 @@ export class SignupFormComponent {
   hidePassword = true;
   hideConfirmPassword = true;
 
-  errorStateMatcher = new CustomFormStateMatcher();
+  errorStateMatcher = new CustomFormErrorStateMatcher();
 
   constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder) {
     this.signupForm = this.buildSignupForm();

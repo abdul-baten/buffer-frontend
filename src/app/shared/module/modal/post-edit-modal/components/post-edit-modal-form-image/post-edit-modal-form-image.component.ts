@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnDestroy } from '@angular/core';
-import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { SubSink } from 'subsink';
@@ -17,7 +17,7 @@ export class PostEditModalFormImageComponent implements OnDestroy {
 
   currentDateTime: Date;
 
-  eventEditPostFormErrorMatcher = new CustomFormStateMatcher();
+  eventEditPostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
   eventEditTypeImageForm: FormGroup;
 

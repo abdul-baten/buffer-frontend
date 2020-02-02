@@ -23,6 +23,11 @@ const routes: Routes = [
     data: { title: PAGES.SCHEDULE_PAGE.TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),
   },
+  {
+    path: PAGES.ACCOUNT_PAGE.ROUTE,
+    data: { title: PAGES.ACCOUNT_PAGE.TITLE },
+    loadChildren: () => import('./module/account/account.module').then(m => m.AccountModule),
+  },
 ];
 
 @NgModule({

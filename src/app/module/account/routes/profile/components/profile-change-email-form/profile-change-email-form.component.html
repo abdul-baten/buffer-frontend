@@ -1,0 +1,43 @@
+<div class="clearfix buffer--overflow-y-auto">
+  <form novalidate [formGroup]="profileChangeEmailForm" class="buffer--padding-x-2">
+
+    <div class="clearfix">
+      <label class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm"
+        for="profileEmailAddress">Current email address</label>
+      <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+        <input [errorStateMatcher]="errorStateMatcher" formControlName="profileEmailAddress" id="profileEmailAddress"
+          matInput placeholder="Current email address" spellcheck="false" type="email" autocomplete="off"
+          class="buffer--font-family-semi-bold buffer--cursor-default" />
+        <mat-error align="end" *ngIf="profileChangeEmailForm.controls.profileEmailAddress.invalid">Enter a
+          valid
+          first name.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <label for="profileNewEmailAddress"
+        class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">New email
+        address</label>
+      <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
+        <input [errorStateMatcher]="errorStateMatcher" formControlName="profileNewEmailAddress"
+          id="profileNewEmailAddress" matInput placeholder="Enter new email address" spellcheck="false" type="email"
+          autocomplete="off" class="buffer--font-family-semi-bold buffer--cursor-default" />
+        <mat-error align="end" *ngIf="profileChangeEmailForm.controls.profileNewEmailAddress.invalid">Enter a
+          valid
+          email address.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <div class="clearfix buffer--width-full">
+        <button mat-flat-button [disabled]="profileChangeEmailForm.invalid" color="primary"
+          class="buffer--width-full buffer--font-family-semi-bold buffer--font-size-base buffer--height-14 buffer--box-shadow">
+          Change email
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+
+</div>

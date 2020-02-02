@@ -20,11 +20,11 @@
           <form novalidate [formGroup]="eventCreateTypeImageForm">
             <div class="clearfix">
               <label for="postCaption"
-                class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm">Caption</label>
+                class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Caption</label>
               <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
                 <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventCreatePostFormErrorMatcher"
                   cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
-                  class="buffer--font-family-semi-bold buffer--cursor-pointer buffer--line-height-leading-relaxed"
+                  class="buffer--font-family-semi-bold buffer--cursor-default buffer--line-height-leading-relaxed"
                   formControlName="postCaption" id="postCaption" matInput placeholder="Write something" required
                   spellcheck="false"></textarea>
               </mat-form-field>
@@ -32,11 +32,11 @@
 
             <div class="clearfix">
               <label for="postDate"
-                class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
+                class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
               <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
                 <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
                   [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
-                  class="buffer--font-family-semi-bold buffer--cursor-pointer" formControlName="postDate" id="postDate"
+                  class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="postDate" id="postDate"
                   matInput readonly type="text" />
                 <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
                   <mat-icon class="buffer--text-color-dark-gray">timer</mat-icon>
@@ -57,7 +57,7 @@
       class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
       <div class="clearfix">
         <button (click)="onPreviousButtonClicked()"
-          class="buffer--font-family-semi-bold buffer--font-size-sm buffer--text-color-black" mat-button>
+          class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-button>
           <span>Back</span>
         </button>
       </div>
@@ -66,19 +66,22 @@
           class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
           <div class="clearfix buffer--margin-left-3">
             <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
-              class="buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button type="button">
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+              type="button">
               <span>Draft</span>
             </button>
           </div>
           <div class="clearfix buffer--margin-left-3">
             <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
-              class="buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button type="button">
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+              type="button">
               <span>Share now</span>
             </button>
           </div>
           <div class="clearfix buffer--margin-left-3">
             <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
-              class="buffer--font-family-semi-bold buffer--font-size-sm" color="primary" mat-flat-button type="button">
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" color="primary"
+              mat-flat-button type="button">
               <span>Schedule</span>
             </button>
           </div>

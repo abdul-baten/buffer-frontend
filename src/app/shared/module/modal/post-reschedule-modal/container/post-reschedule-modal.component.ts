@@ -1,13 +1,8 @@
-// Core Module
-import { Component, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-// Third Party Module
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-// Facade
-// import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { Component, Inject } from '@angular/core';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'buffer--post-reschedule-modal',
@@ -18,10 +13,12 @@ export class PostRescheduleModalComponent {
   postRescheduleForm: FormGroup;
   currentDateTime = roundToNearestMinutes(new Date(), { nearestTo: 15 });
 
+  errorStateMatcher = new CustomFormErrorStateMatcher();
+
   constructor(
-    private formBuilder: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { postId: string; postDate: Date },
     private dialogRef: MatDialogRef<PostRescheduleModalComponent>,
+    private formBuilder: FormBuilder,
   ) {
     this.postRescheduleForm = this.buildPostRescheduleForm();
   }

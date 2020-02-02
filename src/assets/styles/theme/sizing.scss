@@ -49,6 +49,10 @@
   width: $buffer--width-12 !important;
 }
 
+.buffer--width-14 {
+  width: $buffer--width-14 !important;
+}
+
 .buffer--width-16 {
   width: $buffer--width-16 !important;
 }
@@ -79,6 +83,10 @@
 
 .buffer--width-64 {
   width: $buffer--width-64 !important;
+}
+
+.buffer--width-66 {
+  width: $buffer--width-66 !important;
 }
 
 .buffer--width-auto {
@@ -282,8 +290,16 @@
   height: $buffer--height-12 !important;
 }
 
+.buffer--height-14 {
+  height: $buffer--height-14 !important;
+}
+
 .buffer--height-16 {
   height: $buffer--height-16 !important;
+}
+
+.buffer--height-18 {
+  height: $buffer--height-18 !important;
 }
 
 .buffer--height-20 {
@@ -349,8 +365,16 @@
   min-height: $buffer--min-height-0 !important;
 }
 
+.buffer--min-height-40 {
+  min-height: $buffer--min-height-40 !important;
+}
+
 .buffer--min-height-full {
   min-height: $buffer--min-height-full !important;
+}
+
+.buffer--min-height-inherit {
+  min-height: $buffer--min-height-inherit !important;
 }
 
 .buffer--min-height-screen {
@@ -360,6 +384,10 @@
 /*
     * MAX HEIGHT
 */
+.buffer--max-height-64 {
+  max-height: $buffer--max-height-64 !important;
+}
+
 .buffer--max-height-full {
   max-height: $buffer--max-height-full !important;
 }

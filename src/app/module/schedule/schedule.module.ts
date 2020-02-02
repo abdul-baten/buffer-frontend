@@ -42,6 +42,8 @@ import { ScheduleRoutingModule } from '@app/schedule/schedule-routing.module';
 import { ScheduleService } from '@core/service/schedule/schedule.service';
 import { ScheduleSocialAccountsComponent } from './components/schedule-social-accounts/schedule-social-accounts.component';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
+import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
 import { StoreModule } from '@ngrx/store';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { VgControlsModule } from 'videogular2/controls';
@@ -62,47 +64,40 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     ScheduleSocialAccountsComponent,
   ],
   imports: [
-    CommonModule,
-
-    LoaderModule,
-    ScheduleRoutingModule,
-
     CalendarSettingsModalModule,
+    CommonModule,
     DashboardHeaderModule,
+    FullCalendarModule,
+    LayoutModule,
+    LoaderModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatIconModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatSnackBarModule,
+    MatTooltipModule,
     PostCreateModalModule,
     PostDeleteModalModule,
     PostDetailsModalModule,
     PostEditModalModule,
     PostRescheduleConfirmModalModule,
     PostRescheduleModalModule,
-
-    LayoutModule,
-    MatIconModule,
-    MatMenuModule,
-
-    MatDialogModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatTooltipModule,
-
-    MatSnackBarModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-
-    MatButtonToggleModule,
-
-    FullCalendarModule,
-
+    ScheduleRoutingModule,
+    SocialProfileAddModule,
+    SocialProfileListModule,
+    VgBufferingModule,
+    VgControlsModule,
+    VgCoreModule,
+    VgOverlayPlayModule,
     StoreModule.forFeature(fromScheduleReducer.schedulePostFeatureKey, fromScheduleReducer.reducers),
     EffectsModule.forFeature([ScheduleEffects]),
-
     LazyLoadImageModule.forRoot({
       preset: scrollPreset,
     }),
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
-    VgBufferingModule,
   ],
   providers: [
     DatePipe,

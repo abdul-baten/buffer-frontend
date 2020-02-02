@@ -3,7 +3,7 @@ import { Component, OnDestroy, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Error States
-import { CustomFormStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 
 // Third Party Modules
 import { SubSink } from 'subsink';
@@ -30,7 +30,7 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
 
   eventCreateTypeTextForm: FormGroup;
 
-  eventCreatePostFormErrorMatcher = new CustomFormStateMatcher();
+  eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
   constructor(private formBuilder: FormBuilder, private stepper: MatStepper, private scheduleFacade: ScheduleFacade) {
     this.eventCreateTypeTextForm = this.buildPostCreateTypeTextForm();

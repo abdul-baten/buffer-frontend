@@ -317,8 +317,20 @@
 /*
     * ABSOLUTE POSITION
 */
+.buffer--position-absolute-top-0 {
+  top: $buffer--position-absolute-bottom-0;
+}
+
+.buffer--position-absolute-left-0 {
+  left: $buffer--position-absolute-bottom-0;
+}
+
 .buffer--position-absolute-bottom-0 {
   bottom: $buffer--position-absolute-bottom-0;
+}
+
+.buffer--position-absolute-right-0 {
+  right: $buffer--position-absolute-bottom-0;
 }
 
 /* ************************************* LAYOUT ENDS ************************************* */

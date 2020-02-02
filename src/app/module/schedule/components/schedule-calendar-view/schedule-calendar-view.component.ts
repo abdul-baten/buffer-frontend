@@ -7,28 +7,27 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
-import { differenceInDays, format, subMinutes } from 'date-fns';
+import { differenceInDays, format, roundToNearestMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { Observable, of } from 'rxjs';
-
+import { POST_STATUS } from '@core/enum/post/post-status.enum';
+import { POST_TYPE } from '@core/enum/post/post-type.enum';
 import { ScheduleCalendarViewHeaderButtonsComponent } from '../schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { SubSink } from 'subsink';
 import {
   AfterViewInit,
   ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
+  HostListener,
   Injector,
   Input,
-  ViewChild,
   OnDestroy,
-  HostListener,
+  ViewChild,
 } from '@angular/core';
-import { SubSink } from 'subsink';
-import { POST_TYPE } from '@core/enum/post/post-type.enum';
-import { POST_STATUS } from '@core/enum/post/post-status.enum';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -90,7 +89,8 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   slotEventOverlap = true;
 
   get scrollTime(): string {
-    return format(subMinutes(new Date(), 5), 'HH:mm:ss');
+    return format(roundToNearestMinutes(new Date(), { nearestTo: 15 }), 'HH:mm:ss');
+    // return format(subMinutes(new Date(), 5), 'HH:mm:ss')
   }
 
   get calendarPosts(): Observable<CalPostInterface[]> {

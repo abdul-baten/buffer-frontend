@@ -18,6 +18,7 @@
 
 *::-webkit-scrollbar {
   width: 9px;
+  z-index: 999;
 }
 
 *::-webkit-scrollbar-track {
@@ -145,22 +146,7 @@ p {
   margin: 0 auto;
   min-width: 1080px;
   padding: 0 60px;
-  width: 100%;
-}
-
-.buffer--button-big-height {
-  height: 56px !important;
-}
-
-.buffer--button-big-padding {
-  padding-left: 46px !important;
-  padding-right: 46px !important;
-}
-
-.buffer--box-shadow-hover-xl {
-  &:hover {
-    box-shadow: $buffer--box-shadow-xl !important;
-  }
+  width: $buffer--width-full;
 }
 
 .buffer--heading-span {
@@ -192,4 +178,34 @@ p {
       transform: translateX(4px);
     }
   }
+}
+
+.dashboard-header-sec {
+  border-right: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
+  display: $buffer--display-block;
+  height: $buffer--height-screen;
+  left: 0;
+  position: $buffer--position-fixed;
+  top: 0;
+  width: $buffer--width-20;
+}
+
+.buffer--dashboard-menu-sec {
+  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
+  height: 80px;
+  width: $buffer--width-full;
+  z-index: $buffer--z-index-10;
+}
+
+.buffer--schedule-calendar-view-sec {
+  height: calc(100vh - 80px);
+}
+
+.dashboard-route-sec {
+  margin-left: 5rem;
+  width: calc(100vw - 5rem);
+}
+
+.buffer--account-content-view-sec {
+  margin-top: 5rem;
 }

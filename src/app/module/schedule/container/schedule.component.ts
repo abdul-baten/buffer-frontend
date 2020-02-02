@@ -21,7 +21,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private subscriptions$ = new SubSink();
 
   matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 70;
+  matSideNavFixedTopGap = 80;
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 

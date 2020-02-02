@@ -1,0 +1,21 @@
+<section class="buffer--account-title-sec buffer--height-20 buffer--padding-x-5" id="buffer--account-title-sec">
+  <div
+    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-gray">
+    <p class="buffer--font-family-semi-bold buffer--font-size-lg">Profile info</p>
+  </div>
+</section>
+
+<section class="dashboard-setup-content-sec buffer--account-setup-sec buffer--overflow-y-auto"
+  id="buffer--account-setup-sec">
+  <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between"
+    [ngClass]="{ 'buffer--display-flex-direction-column': (isWeb$ | async) === false }">
+    <div class="clearfix buffer--margin-y-5 buffer--width-percent-60"
+      [ngClass]="{ 'buffer--width-full buffer--padding-right-2': (isWeb$ | async) === false }">
+      <buffer--profile-form></buffer--profile-form>
+    </div>
+    <div class="clearfix buffer--margin-y-5 buffer--width-percent-40"
+      [ngClass]="{ 'buffer--width-full buffer--padding-right-2': (isWeb$ | async) === false }">
+      <buffer--profile-change></buffer--profile-change>
+    </div>
+  </div>
+</section>
