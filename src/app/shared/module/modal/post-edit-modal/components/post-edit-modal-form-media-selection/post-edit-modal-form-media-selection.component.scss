@@ -9,7 +9,7 @@
       margin: 0.5rem;
       width: 90px;
       height: 90px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid #f2f2f2;
       border-radius: 0.5rem;
 
       &:nth-of-type(odd) {
@@ -30,7 +30,7 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background-color: rgba(0, 0, 0, 0.08);
+        background-color: #f2f2f2;
       }
 
       .progress-text-content {
@@ -54,7 +54,7 @@
       padding: 1rem !important;
       min-height: 150px;
       border-radius: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.08) !important;
+      background-color: #f2f2f2 !important;
 
       .dropzone.dz-wrapper {
         position: relative;

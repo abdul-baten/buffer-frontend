@@ -1,7 +1,7 @@
 .slick-slider {
   @include buffer--user-select(none);
   background-color: $buffer--background-color-gray;
-  box-shadow: $buffer--box-shadow-md;
+  box-shadow: $buffer--box-shadow;
   box-sizing: border-box;
   display: $buffer--display-block;
   position: $buffer--position-relative;
@@ -66,7 +66,7 @@
   background: $buffer--background-color-gray;
   border-radius: $buffer--border-radius-full;
   box-shadow: $buffer--box-shadow;
-  color: $buffer--text-color-white;
+  color: $buffer--text-color-black;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-block;
   font-size: $buffer--font-size-5xl;

@@ -103,6 +103,7 @@ $buffer--height-percent-50: 50%;
 $buffer--height-percent-70: 70%;
 $buffer--height-full: 100%;
 $buffer--height-screen: 100vh;
+$buffer--height-screen-without-header: calc(100vh - 10rem);
 
 /*
     * MIN HEIGHT

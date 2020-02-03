@@ -358,6 +358,10 @@
   height: $buffer--height-screen !important;
 }
 
+.buffer--height-screen-without-header {
+  height: $buffer--height-screen-without-header !important;
+}
+
 /*
     * MIN HEIGHT
 */

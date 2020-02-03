@@ -5,7 +5,11 @@
   .buffer--social-profile-list-sec {
     .buffer--social-profile-list {
       &:first-child {
-        border-top-color: transparent !important;
+        margin-top: 0 !important;
+      }
+
+      &:last-child {
+        margin-bottom: 0 !important;
       }
     }
   }

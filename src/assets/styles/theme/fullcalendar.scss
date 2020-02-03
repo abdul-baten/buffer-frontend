@@ -577,7 +577,7 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed td.fc-today {
-  background: $buffer--background-color-gray;
+  background: #f9f9f9;
 }
 
 .fc-unthemed .fc-disabled-day {
@@ -773,7 +773,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-toolbar h2 {
   color: $buffer--text-color-black;
-  font-size: $buffer--font-size-base;
+  font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-lg;
+  font-weight: $buffer--font-weight-normal !important;
   margin: 0;
 }
 

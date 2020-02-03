@@ -3,8 +3,16 @@
   display: block;
 
   .buffer--social-profile-list {
+    &:hover {
+      background-color: #f2f2f2;
+    }
+
     &:first-child {
-      border-top-color: transparent !important;
+      margin-top: 0 !important;
+    }
+
+    &:last-child {
+      margin-bottom: 0 !important;
     }
   }
 }

@@ -64,8 +64,9 @@ mat-card {
 /*
     * MATERIAL BUTTON
 */
-.mat-stroked-button {
-  @include buffer--button-box-shadow($buffer--box-shadow);
+
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+  border-color: $buffer--border-color-gray !important;
 }
 
 .mat-icon-button {
@@ -181,11 +182,6 @@ mat-card {
 /*
     * MATERIAL BUTTON GROUP
 */
-
-mat-button-toggle-group {
-  box-shadow: $buffer--box-shadow !important;
-}
-
 .mat-button-toggle {
   height: $buffer--height-11;
 }
@@ -247,6 +243,10 @@ mat-button-toggle {
 .mat-menu-item {
   font-size: $buffer--font-size-sm !important;
   font-weight: $buffer--font-weight-medium !important;
+
+  &:hover {
+    background-color: $buffer--background-color-gray !important;
+  }
 }
 
 /*
@@ -334,7 +334,7 @@ mat-button-toggle {
 .mat-form-field-outline-thick {
   border: none;
   opacity: 1 !important;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f2f2f2;
 }
 
 .cdk-textarea-autosize {
@@ -353,7 +353,7 @@ mat-button-toggle {
   .mat-form-field-flex {
     @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #f2f2f2 !important;
     background-color: $buffer--background-color-white !important;
 
     &:hover {
@@ -460,13 +460,12 @@ textarea.mat-input-element {
 }
 
 .mat-select-panel {
-  padding: 1rem !important;
+  padding: 0.5rem 1rem !important;
   border-radius: $buffer--border-radius-lg !important;
   box-shadow: $buffer--box-shadow-lg !important;
 
   .mat-option.mat-selected:not(.mat-option-multiple) {
     background-color: $buffer--background-color-gray !important;
-    margin: 0.5rem 0 !important;
   }
 }
 
@@ -475,8 +474,16 @@ textarea.mat-input-element {
   height: $buffer--height-10 !important;
   color: $buffer--text-color-black !important;
   font-size: $buffer--font-size-sm !important;
+  margin: 0.5rem 0;
 }
 
 .mat-select-arrow {
   margin: 5px 4px !important;
+}
+
+/*
+    * MATERIAL DIVIDER
+*/
+.mat-divider {
+  border-top-color: $buffer--border-color-gray !important;
 }

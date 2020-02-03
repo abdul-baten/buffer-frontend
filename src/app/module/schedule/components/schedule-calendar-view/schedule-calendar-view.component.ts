@@ -7,7 +7,7 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { CalPostInterface } from '@app/schedule/model/schedule.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
-import { differenceInDays, format, roundToNearestMinutes } from 'date-fns';
+import { differenceInDays, format, subMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { Observable, of } from 'rxjs';
 import { POST_STATUS } from '@core/enum/post/post-status.enum';
@@ -89,8 +89,8 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   slotEventOverlap = true;
 
   get scrollTime(): string {
-    return format(roundToNearestMinutes(new Date(), { nearestTo: 15 }), 'HH:mm:ss');
-    // return format(subMinutes(new Date(), 5), 'HH:mm:ss')
+    // return format(roundToNearestMinutes(new Date(), { nearestTo: 30 }), 'HH:mm:ss');
+    return format(subMinutes(new Date(), 5), 'HH:mm:ss');
   }
 
   get calendarPosts(): Observable<CalPostInterface[]> {

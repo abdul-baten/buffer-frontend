@@ -1,23 +1,4 @@
 :host {
   position: relative;
   display: block;
-
-  .buffer--social-profile-list-item {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-
-    .buffer--social-profile-list-item-action-buttons {
-      display: none;
-    }
-
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
-
-      .buffer--social-profile-list-item-action-buttons {
-        display: block;
-      }
-    }
-  }
 }
