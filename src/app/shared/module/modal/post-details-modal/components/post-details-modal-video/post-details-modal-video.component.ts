@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PostFileInterface } from '@app/schedule/model/schedule.model';
+import { PostFileInterface } from '@core/model/post/schedule.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

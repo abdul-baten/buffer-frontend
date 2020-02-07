@@ -1,0 +1,28 @@
+<div
+  class="buffer--width-full buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
+  <div class="clearfix buffer--margin-left-2">
+    <button mat-icon-button matTooltip="Post now" matTooltipClass="buffer--font-size-xs"
+      class="buffer--width-8 buffer--height-8 buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--box-shadow-lg">
+      <mat-icon class="buffer--font-size-xl">date_range</mat-icon>
+    </button>
+  </div>
+
+  <div class="clearfix buffer--margin-left-2">
+    <button mat-icon-button matTooltip="More" matTooltipClass="buffer--font-size-xs" [matMenuTriggerFor]="menu"
+      class="buffer--width-8 buffer--height-8 buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--box-shadow-lg">
+      <mat-icon class="buffer--font-size-xl">more_vert</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>create</mat-icon>
+    <span class="buffer--vertical-align-middle">Edit</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span class="buffer--vertical-align-middle">Delete</span>
+  </button>
+</mat-menu>

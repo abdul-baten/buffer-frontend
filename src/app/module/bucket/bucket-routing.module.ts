@@ -18,6 +18,16 @@ const routes: Routes = [
         data: { title: PAGES.BUCKET_SCHEDULED_PAGE.PAGE_TITLE },
         loadChildren: () => import('./routes/scheduled/bucket-scheduled.module').then(m => m.BucketScheduledModule),
       },
+      {
+        path: PAGES.BUCKET_PUBLISHED_PAGE.PAGE_ROUTE,
+        data: { title: PAGES.BUCKET_PUBLISHED_PAGE.PAGE_TITLE },
+        loadChildren: () => import('./routes/published/bucket-published.module').then(m => m.BucketPublishedModule),
+      },
+      {
+        path: PAGES.BUCKET_SAVED_PAGE.PAGE_ROUTE,
+        data: { title: PAGES.BUCKET_SAVED_PAGE.PAGE_TITLE },
+        loadChildren: () => import('./routes/saved/bucket-saved.module').then(m => m.BucketSavedModule),
+      },
     ],
   },
 ];

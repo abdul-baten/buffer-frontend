@@ -8,6 +8,8 @@ import { readFileSync } from 'fs';
 import * as express from 'express';
 import * as compression from 'compression';
 
+require('raf/polyfill');
+
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';

@@ -52,6 +52,7 @@ body {
   font-weight: $buffer--font-weight-medium;
   letter-spacing: $buffer--letter-spacing-tracking-normal;
   margin: 0;
+  overflow-x: hidden;
 }
 
 a.buffer--default-link {
@@ -150,7 +151,7 @@ p {
 }
 
 .buffer--heading-span {
-  color: #356859;
+  color: #307a59;
   position: relative;
   &:after {
     background-image: url('/assets/images/background/yellow-background-bottom-line.svg');

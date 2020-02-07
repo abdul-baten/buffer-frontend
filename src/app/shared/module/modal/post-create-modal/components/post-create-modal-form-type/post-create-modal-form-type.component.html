@@ -1,4 +1,4 @@
-<div class="clearfix buffer--padding-10">
+<div class="clearfix">
   <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
     <buffer--post-create-modal-form-header [formHeader]="formHeader">
     </buffer--post-create-modal-form-header>
@@ -6,7 +6,7 @@
 
   <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec">
     <form
-      class="buffer--padding-x-2 buffer--margin-y-10 buffer--height-56 buffer--overflow-y-auto buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between"
+      class="buffer--padding-10 buffer--overflow-y-auto buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between"
       [formGroup]="eventCreateChooseTypeForm" novalidate>
       <div class="clearfix buffer--width-full">
         <mat-radio-group formControlName="postType" (change)="onRadioButtonValueChanged()"
@@ -54,20 +54,24 @@
 
   <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
     <div
-      class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-      <div class="clearfix">
-        <button mat-button (click)="handleCreateModalCloseBtnClick()"
-          class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
-          Close
-        </button>
-      </div>
-      <div class="clearfix">
-        <button color="primary" mat-flat-button (click)="onNextButtonClicked()"
-          [disabled]="eventCreateChooseTypeForm.invalid"
-          class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
-          Continue
-        </button>
+      class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--border-width-0 buffer--border-top-width buffer--border-style-solid buffer--border-color-gray">
+      <div
+        class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+        <div class="clearfix">
+          <button mat-button (click)="handleCreateModalCloseBtnClick()"
+            class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+            Close
+          </button>
+        </div>
+        <div class="clearfix">
+          <button color="primary" mat-flat-button (click)="onNextButtonClicked()"
+            [disabled]="eventCreateChooseTypeForm.invalid"
+            class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+            Continue
+          </button>
+        </div>
       </div>
     </div>
+
   </section>
 </div>

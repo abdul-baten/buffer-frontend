@@ -5,7 +5,7 @@ import * as fromCalendarReducer from './calendar.reducers';
 
 // Models
 import { CalViewState } from '@app/schedule/model/calendar.model';
-import { CalPostInterface } from '../model/schedule.model';
+import { CalPostInterface } from '../../../core/model/post/schedule.model';
 
 const schedulePostFeatureKey = 'schedulePostData';
 

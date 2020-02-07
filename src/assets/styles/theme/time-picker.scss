@@ -375,12 +375,12 @@
   @include buffer--user-select(none);
   color: $buffer--text-color-black;
   display: $buffer--display-flex;
-  height: 4rem;
+  height: 4.5rem;
   width: $buffer--width-full;
   padding: 0 1rem;
 }
 .owl-dt-container-control-button {
-  @include buffer--button-height($buffer--height-10);
+  @include buffer--button-height($buffer--height-12);
   @include buffer--user-select(none);
   border-radius: $buffer--border-radius-xl;
   color: $buffer--text-color-black;
@@ -403,7 +403,7 @@
     color: $buffer--text-color-white;
 
     &:hover {
-      background-color: $buffer--background-color-primary-900;
+      background-color: $buffer--background-color-primary-300;
     }
   }
 }

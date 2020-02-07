@@ -15,6 +15,7 @@ import { reducers } from './reducers';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
+import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
@@ -22,6 +23,19 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
   showDelay: 500,
   touchendHideDelay: 500,
 };
+
+/** virtual scroller override settings */
+export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
+  return {
+    scrollThrottlingTime: 0,
+    scrollDebounceTime: 500,
+    scrollAnimationTime: 750,
+    checkResizeInterval: 1000,
+    resizeBypassRefreshThreshold: 5,
+    modifyOverflowStyleOfParentScroll: true,
+    stripedTable: false,
+  };
+}
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -56,6 +70,7 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
     },
+    { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
   ],
 })
 export class AppModule {}

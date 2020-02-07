@@ -90,7 +90,7 @@ mat-card {
 .mat-stroked-button.mat-warn,
 .mat-raised-button.mat-warn {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-padding(1.75rem);
+  @include buffer--button-padding(1.5rem);
 
   &:hover {
     background-color: $buffer--background-color-warn-800;
@@ -110,7 +110,7 @@ mat-card {
 .mat-stroked-button.mat-accent,
 .mat-raised-button.mat-accent {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-padding(1.75rem);
+  @include buffer--button-padding(1.5rem);
 
   &:hover {
     background-color: $buffer--background-color-accent-800;
@@ -128,7 +128,7 @@ mat-card {
 .mat-flat-button,
 .mat-stroked-button,
 .mat-raised-button {
-  @include buffer--button-padding(1.75rem);
+  @include buffer--button-padding(1.5rem);
 }
 
 .mat-button.mat-primary,
@@ -139,13 +139,13 @@ mat-card {
   @include buffer--button-border-radius($buffer--border-radius-xl);
 
   &:hover {
-    background-color: $buffer--background-color-primary-800;
+    background-color: $buffer--background-color-primary-300;
     color: $buffer--text-color-white;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--background-color-primary-800;
+    background-color: $buffer--background-color-primary-300;
     color: $buffer--text-color-white;
   }
 }
@@ -154,7 +154,7 @@ mat-card {
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
-  @include buffer--button-padding(1.75rem);
+  @include buffer--button-padding(1.5rem);
 }
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
@@ -220,7 +220,7 @@ mat-button-toggle {
   background-color: $buffer--background-color-primary-500 !important;
 
   &:hover {
-    background-color: $buffer--background-color-primary-900 !important;
+    background-color: $buffer--background-color-primary-300 !important;
   }
 
   .mat-button-toggle-focus-overlay {
@@ -235,18 +235,6 @@ mat-button-toggle {
   @include buffer--button-border-radius($buffer--border-radius-lg);
   padding: 0 !important;
   box-shadow: $buffer--box-shadow-2xl !important;
-}
-
-/*
-    * MATERIAL MENU ITEM
-*/
-.mat-menu-item {
-  font-size: $buffer--font-size-sm !important;
-  font-weight: $buffer--font-weight-medium !important;
-
-  &:hover {
-    background-color: $buffer--background-color-gray !important;
-  }
 }
 
 /*
@@ -433,8 +421,14 @@ textarea.mat-input-element {
     .mat-menu-item {
       @include buffer--button-border-radius($buffer--border-radius-lg);
       color: $buffer--text-color-black !important;
-      height: $buffer--height-12;
+      font-family: $buffer--font-family-semi-bold !important;
+      font-size: $buffer--font-size-xs !important;
+      height: $buffer--height-10;
       line-height: $buffer--line-height-leading-loose;
+
+      &:hover {
+        background-color: $buffer--background-color-gray !important;
+      }
     }
   }
 }

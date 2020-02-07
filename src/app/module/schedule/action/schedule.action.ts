@@ -1,4 +1,4 @@
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@core/model/post/schedule.model';
 import { createAction, props } from '@ngrx/store';
 import { POST_TYPE } from '@core/enum/post/post-type.enum';
 

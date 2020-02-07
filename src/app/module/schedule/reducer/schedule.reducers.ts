@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@core/model/post/schedule.model';
 import { fromScheduleActions } from '@app/schedule/action';
 import { POST_STATUS } from '@core/enum/post/post-status.enum';
 

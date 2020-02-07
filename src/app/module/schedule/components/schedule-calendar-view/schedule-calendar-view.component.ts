@@ -4,7 +4,7 @@ import timeGrigPlugin from '@fullcalendar/timegrid';
 import { Calendar } from '@fullcalendar/core';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@core/model/post/schedule.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
@@ -203,6 +203,42 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
           It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
           It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
           and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum`,
+        postCreateMember: '',
+        postLastEditedDate: '',
+        postLastEditedMember: '',
+      },
+      {
+        id: '1002',
+        title: 'Post Video',
+        start: '2020-02-10T20:30:00',
+        allDay: false,
+        editable: true,
+        overlap: true,
+        hasEnd: false,
+        postVideos: [],
+        socialAccounts: [
+          {
+            socialId: '',
+            socialAvatar:
+              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
+            socialName: 'Facebook',
+            socialType: '',
+            socialURL: '',
+          },
+        ],
+        postType: POST_TYPE.TEXT,
+        postStatus: POST_STATUS.SCHEDULED,
+        postTime: '',
+        postPermission: {
+          postCanBeEdited: true,
+          postCanNeDeleted: true,
+        },
+        postOriginalDate: '2020-01-31T20:30:00',
+        postLocation: '',
+        postLastEditedContent: '',
+        postDate: '',
+        postURL: '',
+        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
         postCreateMember: '',
         postLastEditedDate: '',
         postLastEditedMember: '',

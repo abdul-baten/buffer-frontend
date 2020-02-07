@@ -1,13 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
 import { BucketScheduledFacade } from '../facade/bucket-scheduled.facade';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { CountryInterface } from '@core/model/country/country.model';
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { CalPostInterface } from '@core/model/post/schedule.model';
+import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DocumentInterface } from '@core/model/document/document.model';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubSink } from 'subsink';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--bucket-scheduled',
   templateUrl: './bucket-scheduled.component.html',
   styleUrls: ['./bucket-scheduled.component.scss'],
@@ -15,19 +14,7 @@ import { SubSink } from 'subsink';
 export class BucketScheduledComponent implements OnDestroy, OnInit {
   private subscriptions$ = new SubSink();
 
-  errorStateMatcher = new CustomFormErrorStateMatcher();
-
-  profileSetupForm: FormGroup;
-
-  countries: CountryInterface[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private bucketScheduledFacade: BucketScheduledFacade,
-    private formBuilder: FormBuilder,
-  ) {
-    this.profileSetupForm = this.buildAccountProfileSetupForm();
-  }
+  constructor(private activatedRoute: ActivatedRoute, private bucketScheduledFacade: BucketScheduledFacade) {}
 
   ngOnInit() {
     this.subscriptions$.add(
@@ -37,14 +24,9 @@ export class BucketScheduledComponent implements OnDestroy, OnInit {
     );
   }
 
-  private buildAccountProfileSetupForm(): FormGroup {
-    return this.formBuilder.group({
-      profileBio: [''],
-      profileCompany: [''],
-      profileCountry: ['Bangladesh'],
-      profileFirstName: ['', Validators.required],
-      profileLastName: ['', Validators.required],
-    });
+  trackByFn(index: number, postInfo: CalPostInterface) {
+    console.warn(postInfo, index);
+    return postInfo.id;
   }
 
   @HostListener('window:beforeunload')

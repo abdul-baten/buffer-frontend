@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@core/model/post/schedule.model';
 
 @Component({
   selector: 'buffer--post-edit-modal',

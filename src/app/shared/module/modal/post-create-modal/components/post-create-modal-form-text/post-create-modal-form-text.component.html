@@ -1,13 +1,12 @@
 <div class="clearfix">
-  <section id="schedule-create-form-header-sec"
-    class="schedule-create-form-header-sec buffer--padding-top-10 buffer--padding-left-10 buffer--padding-bottom-5 buffer--padding-right-10">
+  <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
     <buffer--post-create-modal-form-header [formHeader]="formHeader" [formHeaderIcon]="formHeaderIcon">
     </buffer--post-create-modal-form-header>
   </section>
 
   <section id="schedule-create-form-content-sec"
     class="schedule-create-form-content-sec buffer--height-70  buffer--padding-x-5 buffer--overflow-y-auto">
-    <div class="buffer--padding-x-5">
+    <div class="buffer--padding-5">
       <form novalidate [formGroup]="eventCreateTypeTextForm">
         <div class="clearfix">
           <label for="postCaption"
@@ -22,9 +21,8 @@
         </div>
 
         <div class="clearfix">
-          <label
-            class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm"
-            for="postLink">Link Preview</label>
+          <label class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm" for="postLink">Link
+            Preview</label>
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
             <input class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="postLink" id="postLink"
               matInput placeholder="Insert your link here" spellcheck="false" type="url" />
@@ -59,43 +57,47 @@
     </div>
   </section>
 
-  <section id="schedule-create-form-footer-sec"
-    class="schedule-create-form-footer-sec buffer--padding-top-5 buffer--padding-left-10 buffer--padding-bottom-10 buffer--padding-right-10">
-    <div
-      class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-      <div class="clearfix">
-        <button (click)="handlePreviousBtnClick()"
-          class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-button>
-          <span>Back</span>
-        </button>
-      </div>
+  <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
 
-      <div class="clearfix">
-        <div
-          class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-          <div class="clearfix buffer--margin-left-3">
-            <button [disabled]="eventCreateTypeTextForm.invalid"
-              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
-              type="button">
-              <span>Draft</span>
-            </button>
-          </div>
-          <div class="clearfix buffer--margin-left-3">
-            <button [disabled]="eventCreateTypeTextForm.invalid"
-              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
-              type="button">
-              <span>Share now</span>
-            </button>
-          </div>
-          <div class="clearfix buffer--margin-left-3">
-            <button (click)="handleTextFormSubmit()" [disabled]="eventCreateTypeTextForm.invalid"
-              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" color="primary"
-              mat-flat-button type="button">
-              <span>Schedule</span>
-            </button>
+    <div
+      class="buffer--padding-x-10 buffer--padding-y-5 buffer--border-width-0 buffer--border-top-width buffer--border-style-solid buffer--border-color-gray">
+      <div
+        class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+        <div class="clearfix">
+          <button (click)="handlePreviousBtnClick()"
+            class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-button>
+            <span>Back</span>
+          </button>
+        </div>
+
+        <div class="clearfix">
+          <div
+            class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+            <div class="clearfix buffer--margin-left-3">
+              <button [disabled]="eventCreateTypeTextForm.invalid"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+                type="button">
+                <span>Save</span>
+              </button>
+            </div>
+            <div class="clearfix buffer--margin-left-3">
+              <button [disabled]="eventCreateTypeTextForm.invalid"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+                type="button">
+                <span>Share now</span>
+              </button>
+            </div>
+            <div class="clearfix buffer--margin-left-3">
+              <button (click)="handleTextFormSubmit()" [disabled]="eventCreateTypeTextForm.invalid"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" color="primary"
+                mat-flat-button type="button">
+                <span>Schedule</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
 </div>

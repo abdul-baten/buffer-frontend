@@ -11,6 +11,7 @@
   display: $buffer--display-block;
   overflow: $buffer--overflow-hidden;
   position: $buffer--position-relative;
+  border-radius: $buffer--border-radius-lg;
 
   &:focus {
     outline: $buffer--outline-none;
@@ -69,13 +70,13 @@
   color: $buffer--text-color-black;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-block;
-  font-size: $buffer--font-size-5xl;
-  height: $buffer--height-12;
+  font-size: $buffer--font-size-3xl;
+  height: $buffer--height-8;
   outline: $buffer--outline-none;
   padding: 0;
   position: $buffer--position-absolute;
   top: 45%;
-  width: $buffer--width-12;
+  width: $buffer--width-8;
   z-index: $buffer--z-index-10;
 
   &.slick-disabled {

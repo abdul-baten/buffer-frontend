@@ -8,7 +8,7 @@ import getYear from 'date-fns/getYear';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 import { AppScheduleState } from '@app/schedule/reducer';
 import { Calendar } from '@fullcalendar/core';
-import { CalPostInterface } from '@app/schedule/model/schedule.model';
+import { CalPostInterface } from '@core/model/post/schedule.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
 import { DocumentTitleService } from '@core/service/document-title/document-title.service';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';

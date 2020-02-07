@@ -1,54 +1,9 @@
-<section class="buffer--account-title-sec buffer--height-20" id="buffer--account-title-sec">
-  <div
-    class="buffer--padding-x-5 buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-gray">
-
-    <div class="clearfix">
-      <p class="buffer--font-family-semi-bold buffer--font-size-lg">
-        <span>Filter</span>
-      </p>
-    </div>
-
-
-    <div
-      class="buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-
-      <div class="clearfix buffer--margin-left-5">
-        <mat-form-field appearance="fill" matTooltip="Timeline" matTooltipClass="buffer--font-size-xs">
-          <mat-select id="profileCountry">
-            <mat-option *ngFor="let country of countries" [value]="country.name">
-              {{country.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-
-      <div class="clearfix buffer--margin-left-5">
-        <mat-button-toggle-group>
-          <mat-button-toggle value="dayGridMonth" matTooltip="Ascending order" matTooltipClass="buffer--font-size-xs">
-            <i class="material-icons">vertical_align_bottom</i>
-          </mat-button-toggle>
-          <mat-button-toggle value="timeGridDay" matTooltip="Descending order" matTooltipClass="buffer--font-size-xs">
-            <i class="material-icons">vertical_align_top</i>
-          </mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-    </div>
-
-
-
-
-  </div>
+<section class="buffer--bucket-filter-sec buffer--height-20" id="buffer--bucket-filter-sec">
+  <buffer--bucket-scheduled-filter></buffer--bucket-scheduled-filter>
 </section>
 
-<section class="buffer--height-screen-without-header buffer--account-setup-sec buffer--overflow-y-auto"
-  id="buffer--account-setup-sec">
-  <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
-    <div class="clearfix buffer--margin-y-5 buffer--width-percent-60">
-      <!-- <buffer--account-profile-form></buffer--account-profile-form> -->
-    </div>
-    <div class="clearfix buffer--margin-y-5 buffer--width-percent-40">
-      <!-- <buffer--account-profile-change></buffer--account-profile-change> -->
-    </div>
+<section class="buffer--bucket-posts-sec" id="buffer--account-posts-sec">
+  <div class="clearfix buffer--width-full">
+    <buffer--bucket-scheduled-post></buffer--bucket-scheduled-post>
   </div>
 </section>

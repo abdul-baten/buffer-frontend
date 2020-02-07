@@ -1,5 +1,5 @@
 enum POST_STATUS {
-  DRAFTED = 'drafted',
+  SAVED = 'saved',
   DELETED = 'deleted',
   SCHEDULED = 'scheduled',
   PUBLISHED = 'published',
