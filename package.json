@@ -153,8 +153,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s pretty-quick lint",
-      "pre-push": "run-s clean"
+      "pre-commit": "run-s pretty-quick lint"
     }
   }
 }

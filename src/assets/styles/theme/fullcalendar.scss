@@ -462,7 +462,7 @@ be a descendant of the grid when it is being dragged.
 .fc-day-grid-event {
   /* spacing between events and edges */
   border-radius: $buffer--border-radius-lg;
-  box-shadow: $buffer--box-shadow-md;
+  box-shadow: $buffer--box-shadow-sm;
   margin: 2px 0;
   padding: 0;
 }

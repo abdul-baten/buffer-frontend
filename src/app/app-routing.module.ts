@@ -20,6 +20,12 @@ const routes: Routes = [
   },
   {
     canActivate: [],
+    path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {
+    canActivate: [],
     path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SCHEDULE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),

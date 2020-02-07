@@ -481,3 +481,32 @@ textarea.mat-input-element {
 .mat-divider {
   border-top-color: $buffer--border-color-gray !important;
 }
+
+/*
+    * MATERIAL TABLE
+*/
+.mat-header-cell {
+  font-size: $buffer--font-size-sm !important;
+  font-weight: 500;
+}
+
+tr.mat-row {
+  height: $buffer--height-18 !important;
+}
+
+th.mat-header-cell {
+  // , mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell
+  border-bottom-color: $buffer--border-color-gray !important;
+}
+
+tr.mat-row {
+  td.mat-cell {
+    border-bottom-color: $buffer--border-color-gray !important;
+  }
+
+  &:last-child {
+    td.mat-cell {
+      border-style: none !important;
+    }
+  }
+}

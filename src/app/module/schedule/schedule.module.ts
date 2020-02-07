@@ -40,10 +40,10 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { ScheduleHeaderComponent } from '@app/schedule/components/schedule-header/schedule-header.component';
 import { ScheduleRoutingModule } from '@app/schedule/schedule-routing.module';
 import { ScheduleService } from '@core/service/schedule/schedule.service';
-import { ScheduleSocialAccountsComponent } from './components/schedule-social-accounts/schedule-social-accounts.component';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
+import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
 import { StoreModule } from '@ngrx/store';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { VgControlsModule } from 'videogular2/controls';
@@ -61,7 +61,6 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     ScheduleComponent,
     ScheduleDateSelectionComponent,
     ScheduleHeaderComponent,
-    ScheduleSocialAccountsComponent,
   ],
   imports: [
     CalendarSettingsModalModule,
@@ -89,6 +88,7 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     ScheduleRoutingModule,
     SocialProfileAddModule,
     SocialProfileListModule,
+    SocialProfileToolbarModule,
     VgBufferingModule,
     VgControlsModule,
     VgCoreModule,

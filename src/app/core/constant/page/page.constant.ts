@@ -13,6 +13,10 @@ const PAGES: PageInterface = {
     PAGE_ROUTE: 'join',
     PAGE_TITLE: 'Sign Up - Buffer',
   },
+  DASHBOARD_PAGE: {
+    PAGE_ROUTE: 'dashboard',
+    PAGE_TITLE: 'Dashboard - Buffer',
+  },
   SCHEDULE_PAGE: {
     PAGE_ROUTE: 'schedule',
     PAGE_TITLE: 'Schedule - Buffer',
