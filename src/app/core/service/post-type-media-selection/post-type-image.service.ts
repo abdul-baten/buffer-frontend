@@ -1,6 +1,6 @@
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Injectable } from '@angular/core';
-import { PostTypeGenerateInterface } from '@app/schedule/model/post-type.model';
+import { PostTypeGenerateInterface } from '@core/model/post/post-type.model';
 
 @Injectable()
 export class PostTypeImageService implements PostTypeGenerateInterface {

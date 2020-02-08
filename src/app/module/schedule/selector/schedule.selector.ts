@@ -1,16 +1,10 @@
-// Store
-import * as fromScheduleReducer from '@app/schedule/reducer';
+import * as fromScheduleReducer from '@app/schedule/reducer/calendar.reducer';
+import { CalViewState } from '../model/calendar.model';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-// Models
-import { AppScheduleState } from '@app/schedule/reducer';
+const selectPostDataState = createFeatureSelector<CalViewState>(fromScheduleReducer.schedulePostFeatureKey);
 
-const selectPostDataState = createFeatureSelector<AppScheduleState>(fromScheduleReducer.schedulePostFeatureKey);
-
-const selectPostDate = createSelector(selectPostDataState, postData => postData.schedule.postOriginalDate);
-const selectPostType = createSelector(selectPostDataState, postData => postData.schedule.postType);
-
-const selectCalendarSettings = createSelector(selectPostDataState, calSettings => calSettings.calendar);
+const selectCalendarSettings = createSelector(selectPostDataState, calSettings => calSettings);
 const selectCalendarFirstDay = createSelector(selectCalendarSettings, calSettings => calSettings.firstDay);
 const selectCalendarNonCurrentDates = createSelector(
   selectCalendarSettings,
@@ -27,6 +21,4 @@ export {
   selectCalendarSettings,
   selectCalendarSidebarStatus,
   selectPostDataState,
-  selectPostDate,
-  selectPostType,
 };

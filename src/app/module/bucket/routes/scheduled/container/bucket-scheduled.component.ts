@@ -1,6 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { BucketScheduledFacade } from '../facade/bucket-scheduled.facade';
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DocumentInterface } from '@core/model/document/document.model';
 import { SubSink } from 'subsink';

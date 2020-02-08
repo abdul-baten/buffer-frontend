@@ -1,18 +1,8 @@
-// Core Modules
-import { Component, OnDestroy, HostListener } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-// Error States
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Validators
 import { CommonValidator } from '@core/validation/common.validation';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-edit-modal-form-text',
@@ -31,15 +21,16 @@ export class PostEditModalFormTextComponent implements OnDestroy {
 
   eventEditPostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
+  constructor(private formBuilder: FormBuilder) {
     this.eventEditTypeTextForm = this.buildPostEditTypeTextForm();
 
-    this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
-        this.currentDateTime = new Date(postDate);
-        this.eventEditTypeTextForm.patchValue({ postDate: new Date(postDate) });
-      }),
-    );
+    this.subscriptions$
+      .add
+      // this.scheduleFacade.getPostDate().subscribe(postDate => {
+      //   this.currentDateTime = new Date(postDate);
+      //   this.eventEditTypeTextForm.patchValue({ postDate: new Date(postDate) });
+      // }),
+      ();
   }
 
   @HostListener('window:beforeunload')
@@ -58,8 +49,8 @@ export class PostEditModalFormTextComponent implements OnDestroy {
 
   handleTextFormSubmit(): void {
     if (this.eventEditTypeTextForm.valid) {
-      const { value } = this.eventEditTypeTextForm;
-      this.scheduleFacade.setPostData(value);
+      // const { value } = this.eventEditTypeTextForm;
+      // this.scheduleFacade.setPostData(value);
     }
   }
 }

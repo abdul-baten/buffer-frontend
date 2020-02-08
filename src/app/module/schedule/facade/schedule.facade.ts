@@ -1,67 +1,51 @@
-import format from 'date-fns/format';
 import formatISO from 'date-fns/formatISO';
 import getDate from 'date-fns/getDate';
 import getHours from 'date-fns/getHours';
 import getMinutes from 'date-fns/getMinutes';
 import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
-import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
-import { AppScheduleState } from '@app/schedule/reducer';
 import { Calendar } from '@fullcalendar/core';
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
+import { CalPostInterface } from '@core/model/post/post.model';
+import { CalViewState } from '../model/calendar.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
 import { DocumentTitleService } from '@core/service/document-title/document-title.service';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { fromCalendarActions, fromScheduleActions } from '@app/schedule/action';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MetaDefinition } from '@angular/platform-browser';
-import { Observable, Subject } from 'rxjs';
-
-import { postTypeMap } from '@app/schedule/model/post-type.model';
-import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
-import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
+import { Observable } from 'rxjs';
 import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
+import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
+import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
+import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/container/post-edit-modal.component';
+import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
+import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
+import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { SnackbarService } from '@core/service/snackbar/snackbar.service';
 import { Store } from '@ngrx/store';
+import {
+  setCalendarFirstDay,
+  setCalendarNonCurrentDates,
+  setCalendarSidebarStatus,
+} from '@app/schedule/action/calendar.action';
 import {
   selectCalendarFirstDay,
   selectCalendarNonCurrentDates,
   selectCalendarSidebarStatus,
-  selectPostDate,
-  selectPostType,
-} from '@app/schedule/selector/schedule.selector';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
-import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
-import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
-import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/container/post-edit-modal.component';
-import { POST_TYPE } from '@core/enum/post/post-type.enum';
-
-// Third Party Modules
+} from '../selector/schedule.selector';
 
 @Injectable()
 export class ScheduleFacade {
   constructor(
-    private injector: Injector,
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
     private snackbarService: SnackbarService,
-    private store: Store<AppScheduleState>,
+    private store: Store<CalViewState>,
     private titleService: DocumentTitleService,
     private responsiveLayoutService: ResponsiveLayoutService,
   ) {}
 
   private calendarApi: Calendar;
-  private createPostModalSubject$ = new Subject();
-
-  setPostCreateModalObservable(): void {
-    this.createPostModalSubject$.next();
-  }
-
-  getPostCreateModalObservable(): Observable<any> {
-    return this.createPostModalSubject$;
-  }
 
   setDocumentTitle(titleString: string): void {
     this.titleService.setDocumentTitle(titleString);
@@ -115,7 +99,6 @@ export class ScheduleFacade {
 
   handlePostCreateDialogOpen(postDate: Date): void {
     const postOriginalDate = this.getCurrentTime(postDate);
-    this.setPostDate(postOriginalDate);
     this.matDialog.open(PostCreateModalComponent, {
       position: {
         top: '',
@@ -123,6 +106,7 @@ export class ScheduleFacade {
         left: '',
         right: '',
       },
+      data: postOriginalDate,
       width: '700px',
       role: 'dialog',
       autoFocus: true,
@@ -155,37 +139,6 @@ export class ScheduleFacade {
       closeOnNavigation: true,
       backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
-  }
-
-  setPostType(postType: POST_TYPE): void {
-    this.store.dispatch(fromScheduleActions.setPostType({ postType }));
-  }
-
-  getPostType(): Observable<POST_TYPE> {
-    return this.store.select(selectPostType);
-  }
-
-  private setPostDate(postDateTime: string): void {
-    const postOriginalDate = formatISO(roundToNearestMinutes(new Date(postDateTime), { nearestTo: 15 }));
-    this.store.dispatch(fromScheduleActions.setPostDate({ postOriginalDate }));
-  }
-
-  getPostDate(): Observable<string> {
-    return this.store.select(selectPostDate);
-  }
-
-  setPostData(formData: CalPostInterface): void {
-    const postDate = format(new Date(formData.postDate), 'MM/dd/yyyy');
-    const postTime = format(new Date(formData.postDate), 'hh:mm a');
-    const postData = Object.assign(formData, { postDate, postTime });
-
-    this.store.dispatch(fromScheduleActions.setPostData({ postData }));
-  }
-
-  generateDropZoneConfig(type: POST_TYPE): DropzoneConfigInterface {
-    const injectableService = postTypeMap.get(type);
-    const service = this.injector.get(injectableService);
-    return service.generateConfig();
   }
 
   openSnackbar(message: string): void {
@@ -302,15 +255,15 @@ export class ScheduleFacade {
   }
 
   setCalendarFirstDay(firstDay: number): void {
-    this.store.dispatch(fromCalendarActions.setCalendarFirstDay({ firstDay }));
+    this.store.dispatch(setCalendarFirstDay({ firstDay }));
   }
 
   setCalendarNonCurrentDates(showNonCurrentDates: boolean): void {
-    this.store.dispatch(fromCalendarActions.setCalendarNonCurrentDates({ showNonCurrentDates }));
+    this.store.dispatch(setCalendarNonCurrentDates({ showNonCurrentDates }));
   }
 
   setCalendarSidebarStatus(calendarSidebarOpened: boolean): void {
-    return this.store.dispatch(fromCalendarActions.setCalendarSidebarStatus({ calendarSidebarOpened }));
+    return this.store.dispatch(setCalendarSidebarStatus({ calendarSidebarOpened }));
   }
 
   getCalendarFirstDay(): Observable<number> {

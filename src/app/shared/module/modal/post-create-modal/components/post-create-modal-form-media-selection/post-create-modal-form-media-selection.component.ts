@@ -1,18 +1,11 @@
-// Core Modules
+import { Component, EventEmitter, HostListener, Inject, OnDestroy, Output } from '@angular/core';
+import { defaultIfEmpty, delay, filter, tap } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Output, EventEmitter, OnDestroy, HostListener } from '@angular/core';
-
-// Third Party Modules
-import { of, noop } from 'rxjs';
-import { SubSink } from 'subsink';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
-import { tap, delay, filter, defaultIfEmpty } from 'rxjs/operators';
-
-// Enums
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { noop, of } from 'rxjs';
 import { POST_TYPE } from '@core/enum/post/post-type.enum';
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-create-modal-form-media-selection',
@@ -28,12 +21,12 @@ export class PostCreateModalFormMediaSelectionComponent implements OnDestroy {
 
   @Output() enableNextButton = new EventEmitter<boolean>();
 
-  constructor(private scheduleFacade: ScheduleFacade, @Inject(DOCUMENT) private document: Document) {
-    const postType = this.scheduleFacade.getPostType().pipe(
+  constructor(private postCreateModalFacade: PostCreateModalFacade, @Inject(DOCUMENT) private document: Document) {
+    const postType = this.postCreateModalFacade.getPostType().pipe(
       defaultIfEmpty(POST_TYPE.TEXT),
       filter((type: POST_TYPE) => type === POST_TYPE.IMAGE || type === POST_TYPE.VIDEO),
       tap((type: POST_TYPE) => {
-        this.config = this.scheduleFacade.generateDropZoneConfig(type);
+        this.config = this.postCreateModalFacade.generateDropZoneConfig(type);
       }),
     );
     this.subscriptions$.add(postType.subscribe(noop));

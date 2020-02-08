@@ -3,7 +3,7 @@ import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DashboardFacade } from '../facade/dashboard.facade';
 import { DocumentInterface } from '@core/model/document/document.model';
 import { SubSink } from 'subsink';
-import { SocialProfileInterface } from '@core/model/post/schedule.model';
+import { SocialProfileInterface } from '@core/model/post/post.model';
 
 export interface PeriodicElement {
   engagement: string;

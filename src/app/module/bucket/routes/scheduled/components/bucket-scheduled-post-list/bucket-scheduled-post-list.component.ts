@@ -1,4 +1,4 @@
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({

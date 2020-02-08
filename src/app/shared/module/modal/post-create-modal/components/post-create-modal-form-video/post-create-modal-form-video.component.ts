@@ -1,16 +1,9 @@
-// Core Modules
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, Input, HostListener, OnDestroy } from '@angular/core';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
-import { MatStepper } from '@angular/material/stepper';
-
-// Error States
+import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-create-modal-form-video',
@@ -30,11 +23,15 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
 
   eventCreateTypeVideoForm: FormGroup;
 
-  constructor(private stepper: MatStepper, private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
+  constructor(
+    private stepper: MatStepper,
+    private formBuilder: FormBuilder,
+    private postCreateModalFacade: PostCreateModalFacade,
+  ) {
     this.eventCreateTypeVideoForm = this.biuldPostCreateTypeImageForm();
 
     this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
+      this.postCreateModalFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeVideoForm.patchValue({ postDate: new Date(postDate) });
       }),

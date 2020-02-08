@@ -1,9 +1,11 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { CalPostInterface } from '@core/model/post/schedule.model';
-import { fromScheduleActions } from '@app/schedule/action';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { POST_STATUS } from '@core/enum/post/post-status.enum';
+import { removeNewPostData, setNewPostData, setNewPostDate, setNewPostType } from '../action/post-create.action';
 
-export const initialState: CalPostInterface = {
+const postCreateFeatureKey = 'postCreateData';
+
+const initialState: CalPostInterface = {
   postCreateMember: '',
   postDate: null,
   postLastEditedDate: null,
@@ -34,30 +36,32 @@ export const initialState: CalPostInterface = {
   postVideos: null,
 };
 
-export const postDataReducer = createReducer(
+const postCreateDataReducer = createReducer(
   initialState,
-  on(fromScheduleActions.setPostDate, (state, action) => {
+  on(setNewPostDate, (state, action) => {
     return {
       ...state,
       postOriginalDate: action.postOriginalDate,
     };
   }),
-  on(fromScheduleActions.setPostType, (state, action) => {
+  on(setNewPostType, (state, action) => {
     return {
       ...state,
       postType: action.postType,
       postOriginalDate: state.postOriginalDate,
     };
   }),
-  on(fromScheduleActions.setPostData, (state, action) => {
+  on(setNewPostData, (state, action) => {
     return {
       ...state,
       ...action.postData,
     };
   }),
-  on(fromScheduleActions.removePostData, _ => initialState),
+  on(removeNewPostData, _ => initialState),
 );
 
-export function reducer(state: CalPostInterface | undefined, action: Action) {
-  return postDataReducer(state, action);
+function reducer(state: CalPostInterface | undefined, action: Action) {
+  return postCreateDataReducer(state, action);
 }
+
+export { postCreateFeatureKey, reducer };

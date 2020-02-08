@@ -1,20 +1,19 @@
 :host {
-  position: relative;
   display: block;
+  position: relative;
 
   .buffer--upload-media-sec {
     .upload-item-content {
-      position: relative;
-      float: left;
-      margin: 0.5rem;
-      width: 90px;
-      height: 90px;
-      border: 1px solid #f2f2f2;
       border-radius: 0.5rem;
+      border: 1px solid #f2f2f2;
+      float: left;
+      height: 90px;
+      margin: 0.5rem;
+      position: relative;
+      width: 90px;
 
-      &:nth-of-type(odd) {
-        margin-right: 0.5rem;
-        margin-left: 0.5rem;
+      &:first-child {
+        display: none;
       }
 
       .uploaded-item-preview {
@@ -23,124 +22,116 @@
       }
 
       .cancel-item {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        padding: 2px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
         background-color: #f2f2f2;
+        border-radius: 50%;
+        height: 20px;
+        padding: 2px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        width: 20px;
       }
 
       .progress-text-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        text-align: center;
         -webkit-box-align: center;
         -webkit-box-pack: center;
         align-items: center;
+        display: flex;
+        height: 100%;
         justify-content: center;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
       }
     }
   }
 
   ::ng-deep {
     .dropzone {
-      padding: 1rem !important;
-      min-height: 150px;
-      border-radius: 0.5rem;
       background-color: #f2f2f2 !important;
+      border-radius: 0.5rem;
+      min-height: 150px;
+      padding: 1rem !important;
 
       .dropzone.dz-wrapper {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        min-height: 0;
-        max-height: 100%;
-        width: 100%;
-        border: none;
-        background: transparent;
-        color: #323232;
         -webkit-box-direction: normal;
         -webkit-box-orient: vertical;
+        background: transparent;
+        border: none;
+        color: #505050;
+        display: flex;
+        flex-direction: column;
+        max-height: 100%;
+        min-height: 0;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
       }
     }
 
-    .dropzone.dz-wrapper .dz-message .dz-text {
-      position: relative;
+    .dz-wrapper {
+      align-items: center;
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      text-align: center;
+      height: 170px;
+      justify-content: center;
+    }
+
+    .dropzone.dz-wrapper .dz-message .dz-text {
       -webkit-box-align: center;
       -webkit-box-direction: normal;
       -webkit-box-orient: vertical;
       -webkit-box-pack: center;
       align-items: center;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
+      position: relative;
+      text-align: center;
+      width: 100%;
     }
 
     .dropzone.dz-wrapper .dz-message {
-      position: relative;
-      overflow: hidden;
-      margin: 0;
-      max-width: 100%;
-      width: 100%;
-      height: 8rem;
-      border: 2px dashed rgba(0, 0, 0, 0.1);
-      border-radius: 0.5rem;
-      color: #323232;
       -webkit-animation: slideindown 0.5s linear;
       animation: slideInDown 0.5s linear;
+      border-radius: 0.5rem;
+      border: 1px dashed #515152;
+      color: #505050;
+      height: 8rem;
+      margin: 0;
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
     }
 
     .dropzone .dz-preview .dz-details {
-      padding: 2em 1em;
-      color: rgba(0, 0, 0, 0.9);
-      text-align: center;
+      color: #505050;
       font-size: 13px;
       opacity: 1;
+      padding: 2em 1em;
+      text-align: center;
     }
 
     .dropzone .dz-preview .dz-progress {
-      top: 50%;
-      left: 50%;
-      z-index: 1000;
-      overflow: hidden;
-      margin-top: -8px;
-      margin-left: -40px;
-      width: 80px;
-      height: 16px;
+      background: #f2f2f2;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.9);
+      height: 16px;
+      left: 50%;
+      margin-left: -40px;
+      margin-top: -8px;
       opacity: 1;
+      overflow: hidden;
       pointer-events: none;
-    }
-
-    .dz-processing {
-      .dz-upload-progress {
-        position: absolute;
-        display: flex;
-        width: 100%;
-        height: 100%;
-        -webkit-transition: display 300ms ease-in-out;
-        transition: display 300ms ease-in-out;
-        -webkit-box-align: center;
-        -webkit-box-pack: center;
-        align-items: center;
-        justify-content: center;
-      }
+      top: 50%;
+      width: 80px;
+      z-index: 1000;
     }
 
     .dz-complete {
       .dz-upload-progress {
-        display: none;
+        display: none !important;
       }
     }
   }

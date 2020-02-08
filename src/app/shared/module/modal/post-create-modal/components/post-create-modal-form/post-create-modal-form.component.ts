@@ -1,20 +1,11 @@
-// Core Modules
 import { Component, ViewChild } from '@angular/core';
-
-// Third Party Modules
 import { Observable } from 'rxjs';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Enums
-import { PostCreateModalFormTypeComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-type/post-create-modal-form-type.component';
-import { PostCreateModalFormTextComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-text/post-create-modal-form-text.component';
-import { PostCreateModalFormImageComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-image/post-create-modal-form-image.component';
-import { PostCreateModalFormVideoComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-video/post-create-modal-form-video.component';
 import { POST_TYPE } from '@core/enum/post/post-type.enum';
-
-// Components
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { PostCreateModalFormImageComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-image/post-create-modal-form-image.component';
+import { PostCreateModalFormTextComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-text/post-create-modal-form-text.component';
+import { PostCreateModalFormTypeComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-type/post-create-modal-form-type.component';
+import { PostCreateModalFormVideoComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-video/post-create-modal-form-video.component';
 
 @Component({
   selector: 'buffer--post-create-modal-form',
@@ -49,7 +40,7 @@ export class PostCreateModalFormComponent {
     return this.postTypeVideoStep ? this.postTypeVideoStep.eventCreateTypeVideoForm : null;
   }
 
-  constructor(private scheduleFacade: ScheduleFacade) {
-    this.postType$ = this.scheduleFacade.getPostType();
+  constructor(private postCreateModalFacade: PostCreateModalFacade) {
+    this.postType$ = this.postCreateModalFacade.getPostType();
   }
 }

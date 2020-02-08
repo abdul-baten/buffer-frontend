@@ -1,7 +1,6 @@
 import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -21,15 +20,15 @@ export class PostEditModalFormImageComponent implements OnDestroy {
 
   eventEditTypeImageForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
+  constructor(private formBuilder: FormBuilder) {
     this.eventEditTypeImageForm = this.biuldPostEditTypeImageForm();
 
-    this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
-        this.currentDateTime = new Date(postDate);
-        this.eventEditTypeImageForm.patchValue({ postDate: new Date(postDate) });
-      }),
-    );
+    // this.subscriptions$.add(
+    //   this.scheduleFacade.getPostDate().subscribe(postDate => {
+    //     this.currentDateTime = new Date(postDate);
+    //     this.eventEditTypeImageForm.patchValue({ postDate: new Date(postDate) });
+    //   }),
+    // );
   }
 
   private biuldPostEditTypeImageForm(): FormGroup {

@@ -14,6 +14,7 @@ import { SocialProfileListModalContentResourceComponent } from './components/soc
 import { SocialProfileListModalFacade } from './facade/social-profile-list-modal.facade';
 import { SocialProfileListModalFooterComponent } from './components/social-profile-list-modal-footer/social-profile-list-modal-footer.component';
 import { SocialProfileListModalHeaderComponent } from './components/social-profile-list-modal-header/social-profile-list-modal-header.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SocialProfileListModalHeaderComponent } from './components/social-profi
     CommonModule,
     LoaderModule,
     MatButtonModule,
+    MatGridListModule,
     MatIconModule,
     MatTooltipModule,
     NoDataFoundModule,

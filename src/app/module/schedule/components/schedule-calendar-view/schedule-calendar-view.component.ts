@@ -4,7 +4,7 @@ import timeGrigPlugin from '@fullcalendar/timegrid';
 import { Calendar } from '@fullcalendar/core';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';

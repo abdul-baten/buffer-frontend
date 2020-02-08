@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { SocialProfileInterface } from '@core/model/post/schedule.model';
+import { SocialProfileInterface } from '@core/model/post/post.model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

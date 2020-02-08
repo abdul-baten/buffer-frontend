@@ -1,15 +1,7 @@
-// Core Modules
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, Input, HostListener, OnDestroy } from '@angular/core';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
-
-// Error States
+import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-edit-modal-form-video',
@@ -29,15 +21,16 @@ export class PostEditModalFormVideoComponent implements OnDestroy {
 
   eventEditTypeVideoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
+  constructor(private formBuilder: FormBuilder) {
     this.eventEditTypeVideoForm = this.biuldPostEditTypeImageForm();
 
-    this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
-        this.currentDateTime = new Date(postDate);
-        this.eventEditTypeVideoForm.patchValue({ postDate: new Date(postDate) });
-      }),
-    );
+    this.subscriptions$
+      .add
+      // this.scheduleFacade.getPostDate().subscribe(postDate => {
+      //   this.currentDateTime = new Date(postDate);
+      //   this.eventEditTypeVideoForm.patchValue({ postDate: new Date(postDate) });
+      // }),
+      ();
   }
 
   @HostListener('window:beforeunload')

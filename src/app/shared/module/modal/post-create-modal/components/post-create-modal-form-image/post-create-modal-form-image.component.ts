@@ -1,16 +1,9 @@
-// Core Modules
-import { Component, Input, HostListener, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
-import { MatStepper } from '@angular/material/stepper';
-
-// Error States
+import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-create-modal-form-image',
@@ -30,11 +23,15 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
 
   eventCreateTypeImageForm: FormGroup;
 
-  constructor(private stepper: MatStepper, private formBuilder: FormBuilder, private scheduleFacade: ScheduleFacade) {
+  constructor(
+    private stepper: MatStepper,
+    private formBuilder: FormBuilder,
+    private postCreateModalFacade: PostCreateModalFacade,
+  ) {
     this.eventCreateTypeImageForm = this.biuldPostCreateTypeImageForm();
 
     this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
+      this.postCreateModalFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeImageForm.patchValue({ postDate: new Date(postDate) });
       }),

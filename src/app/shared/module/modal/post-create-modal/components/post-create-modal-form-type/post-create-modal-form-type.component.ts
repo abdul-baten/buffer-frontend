@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 
 @Component({
   selector: 'buffer--post-create-modal-form-type',
@@ -20,7 +20,7 @@ export class PostCreateModalFormTypeComponent {
   constructor(
     private stepper: MatStepper,
     private formBuilder: FormBuilder,
-    private scheduleFacade: ScheduleFacade,
+    private postCreateModalFacade: PostCreateModalFacade,
     private dialogRef: MatDialogRef<PostCreateModalFormTypeComponent>,
   ) {
     this.eventCreateChooseTypeForm = this.buildPostCreateChooseTypeForm();
@@ -34,7 +34,7 @@ export class PostCreateModalFormTypeComponent {
 
   onRadioButtonValueChanged() {
     const { postType } = this.eventCreateChooseTypeForm.value;
-    this.scheduleFacade.setPostType(postType);
+    this.postCreateModalFacade.setPostType(postType);
   }
 
   onNextButtonClicked(): void {
@@ -43,6 +43,5 @@ export class PostCreateModalFormTypeComponent {
 
   handleCreateModalCloseBtnClick(): void {
     this.dialogRef.close();
-    this.scheduleFacade.setPostCreateModalObservable();
   }
 }

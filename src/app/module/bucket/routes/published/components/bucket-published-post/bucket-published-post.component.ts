@@ -1,4 +1,4 @@
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { POST_STATUS } from '@core/enum/post/post-status.enum';

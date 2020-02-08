@@ -14,38 +14,42 @@
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
             <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventCreatePostFormErrorMatcher"
               bufferEventPropagation cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
-              class="buffer--font-family-semi-bold buffer--cursor-default buffer--line-height-leading-relaxed"
+              class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default buffer--line-height-leading-relaxed"
               formControlName="postCaption" id="postCaption" matInput placeholder="Write something" required
               spellcheck="false"></textarea>
           </mat-form-field>
         </div>
 
         <div class="clearfix">
-          <label class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm" for="postLink">Link
+          <label
+            class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm"
+            for="postLink">Link
             Preview</label>
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
-            <input class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="postLink" id="postLink"
-              matInput placeholder="Insert your link here" spellcheck="false" type="url" />
+            <input class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default"
+              formControlName="postLink" id="postLink" matInput placeholder="Insert your link here" spellcheck="false"
+              type="url" />
           </mat-form-field>
         </div>
 
         <div class="clearfix">
           <label for="postLocation"
-            class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Location</label>
+            class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Location</label>
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
-            <input class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="postLocation"
-              id="postLocation" matInput placeholder="Add a location" spellcheck="false" type="text" />
+            <input class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default"
+              formControlName="postLocation" id="postLocation" matInput placeholder="Add a location" spellcheck="false"
+              type="text" />
           </mat-form-field>
         </div>
 
         <div class="clearfix">
           <label for="postDate"
-            class="buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
+            class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
           <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3" appearance="fill">
             <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
               [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
-              class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="postDate" id="postDate"
-              matInput readonly type="text" />
+              class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default"
+              formControlName="postDate" id="postDate" matInput readonly type="text" />
             <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
               <mat-icon class="buffer--text-color-dark-gray">timer</mat-icon>
             </button>

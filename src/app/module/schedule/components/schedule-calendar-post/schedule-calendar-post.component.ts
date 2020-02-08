@@ -1,6 +1,6 @@
 import differenceInDays from 'date-fns/differenceInDays';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
-import { CalPostInterface } from '@core/model/post/schedule.model';
+import { CalPostInterface } from '@core/model/post/post.model';
 import { Component, Inject } from '@angular/core';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 

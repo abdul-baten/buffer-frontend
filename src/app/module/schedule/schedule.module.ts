@@ -1,4 +1,3 @@
-import * as fromScheduleReducer from '@app/schedule/reducer';
 import { CalendarSettingsModalModule } from '@shared/module/modal/calendar-settings-modal/calendar-settings-modal.module';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
@@ -25,8 +24,7 @@ import { PostDetailsModalModule } from '@shared/module/modal/post-details-modal/
 import { PostEditModalModule } from '@shared/module/modal/post-edit-modal/post-edit-modal.module';
 import { PostRescheduleConfirmModalModule } from '@shared/module/modal/post-reschedule-confirm-modal/post-reschedule-confirm-modal.module';
 import { PostRescheduleModalModule } from '@shared/module/modal/post-reschedule-modal/post-reschedule-modal.module';
-import { PostTypeImageService } from '@core/service/post-type-media-selection/post-type-image.service';
-import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
+import { reducer, schedulePostFeatureKey } from '@app/schedule/reducer/calendar.reducer';
 import { ScheduleAddPostButtonComponent } from '@app/schedule/components/schedule-add-post-button/schedule-add-post-button.component';
 import { ScheduleCalendarComponent } from '@app/schedule/components/schedule-calendar/schedule-calendar.component';
 import { ScheduleCalendarOptionsComponent } from '@app/schedule/components/schedule-calendar-options/schedule-calendar-options.component';
@@ -93,21 +91,13 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     VgControlsModule,
     VgCoreModule,
     VgOverlayPlayModule,
-    StoreModule.forFeature(fromScheduleReducer.schedulePostFeatureKey, fromScheduleReducer.reducers),
+    StoreModule.forFeature(schedulePostFeatureKey, reducer),
     EffectsModule.forFeature([ScheduleEffects]),
     LazyLoadImageModule.forRoot({
       preset: scrollPreset,
     }),
   ],
-  providers: [
-    DatePipe,
-    KeyboardEventService,
-    PostTypeImageService,
-    PostTypeVideoService,
-    ScheduleFacade,
-    ScheduleService,
-    SnackbarService,
-  ],
+  providers: [DatePipe, KeyboardEventService, ScheduleFacade, ScheduleService, SnackbarService],
   entryComponents: [ScheduleCalendarViewPostComponent, ScheduleCalendarViewHeaderButtonsComponent],
 })
 export class ScheduleModule {}

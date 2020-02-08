@@ -1,12 +1,13 @@
-// Store
-import { createReducer, on, Action } from '@ngrx/store';
-import { fromCalendarActions } from '@app/schedule/action';
-
-// Models
+import { Action, createReducer, on } from '@ngrx/store';
 import { CalViewState } from '@app/schedule/model/calendar.model';
-
-// Enums
+import {
+  setCalendarFirstDay,
+  setCalendarNonCurrentDates,
+  setCalendarSidebarStatus,
+} from '@app/schedule/action/calendar.action';
 import { WEEK_DAY } from '@core/enum/calendar/calendar-week-days.enum';
+
+const schedulePostFeatureKey = 'schedulePostData';
 
 const initialCalendarState: CalViewState = {
   calendarSidebarOpened: true,
@@ -14,23 +15,23 @@ const initialCalendarState: CalViewState = {
   showNonCurrentDates: true,
 };
 
-const calendarSettingsReducer = createReducer(
+const scheduleCalendarSettingsReducer = createReducer(
   initialCalendarState,
-  on(fromCalendarActions.setCalendarFirstDay, (state, action) => {
+  on(setCalendarFirstDay, (state, action) => {
     const { firstDay } = action;
     return {
       ...state,
       firstDay,
     };
   }),
-  on(fromCalendarActions.setCalendarNonCurrentDates, (state, action) => {
+  on(setCalendarNonCurrentDates, (state, action) => {
     const { showNonCurrentDates } = action;
     return {
       ...state,
       showNonCurrentDates,
     };
   }),
-  on(fromCalendarActions.setCalendarSidebarStatus, (state, action) => {
+  on(setCalendarSidebarStatus, (state, action) => {
     const { calendarSidebarOpened } = action;
     return {
       ...state,
@@ -40,7 +41,7 @@ const calendarSettingsReducer = createReducer(
 );
 
 function reducer(state: CalViewState | undefined, action: Action) {
-  return calendarSettingsReducer(state, action);
+  return scheduleCalendarSettingsReducer(state, action);
 }
 
-export { reducer };
+export { schedulePostFeatureKey, reducer };

@@ -1,19 +1,10 @@
-// Core Modules
-import { Component, OnDestroy, HostListener } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
-// Error States
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
-import { MatStepper } from '@angular/material/stepper';
-
-// Facade
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Validators
 import { CommonValidator } from '@core/validation/common.validation';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
+import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-create-modal-form-text',
@@ -32,11 +23,15 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
 
   eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private stepper: MatStepper, private scheduleFacade: ScheduleFacade) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private stepper: MatStepper,
+    private postCreateModalFacade: PostCreateModalFacade,
+  ) {
     this.eventCreateTypeTextForm = this.buildPostCreateTypeTextForm();
 
     this.subscriptions$.add(
-      this.scheduleFacade.getPostDate().subscribe(postDate => {
+      this.postCreateModalFacade.getPostDate().subscribe(postDate => {
         this.currentDateTime = new Date(postDate);
         this.eventCreateTypeTextForm.patchValue({ postDate: new Date(postDate) });
       }),
@@ -61,16 +56,11 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
     this.stepper.reset();
   }
 
-  onChooseTypeModalClosed(): void {
-    this.scheduleFacade.setPostCreateModalObservable();
-  }
-
   handleTextFormSubmit(): void {
     if (this.eventCreateTypeTextForm.valid) {
       const { value } = this.eventCreateTypeTextForm;
 
-      this.scheduleFacade.setPostData(value);
-      this.onChooseTypeModalClosed();
+      this.postCreateModalFacade.setPostData(value);
     }
   }
 }

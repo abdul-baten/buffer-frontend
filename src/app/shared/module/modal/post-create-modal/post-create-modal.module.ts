@@ -10,7 +10,9 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { postCreateFeatureKey, reducer } from './reducer/post-create.reducer';
 import { PostCreateModalComponent } from './container/post-create-modal.component';
+import { PostCreateModalFacade } from './facade/post-create-modal.facade';
 import { PostCreateModalFormComponent } from './components/post-create-modal-form/post-create-modal-form.component';
 import { PostCreateModalFormHeaderComponent } from './components/post-create-modal-form-header/post-create-modal-form-header.component';
 import { PostCreateModalFormImageComponent } from './components/post-create-modal-form-image/post-create-modal-form-image.component';
@@ -18,6 +20,9 @@ import { PostCreateModalFormMediaSelectionComponent } from './components/post-cr
 import { PostCreateModalFormTextComponent } from './components/post-create-modal-form-text/post-create-modal-form-text.component';
 import { PostCreateModalFormTypeComponent } from './components/post-create-modal-form-type/post-create-modal-form-type.component';
 import { PostCreateModalFormVideoComponent } from './components/post-create-modal-form-video/post-create-modal-form-video.component';
+import { PostTypeImageService } from '@core/service/post-type-media-selection/post-type-image.service';
+import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -32,23 +37,21 @@ import { PostCreateModalFormVideoComponent } from './components/post-create-moda
   ],
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-
-    MatInputModule,
-    MatRadioModule,
-
-    MatButtonModule,
-    MatProgressSpinnerModule,
-
-    MatTooltipModule,
-    MatStepperModule,
-
     DropzoneModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatStepperModule,
+    MatTooltipModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature(postCreateFeatureKey, reducer),
   ],
   entryComponents: [PostCreateModalComponent],
+  providers: [PostCreateModalFacade, PostTypeImageService, PostTypeVideoService],
 })
 export class PostCreateModalModule {}
