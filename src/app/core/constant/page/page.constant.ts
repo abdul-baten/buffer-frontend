@@ -53,6 +53,10 @@ const PAGES: PageInterface = {
     PAGE_ROUTE: 'saved',
     PAGE_TITLE: 'Saved Posts - Buffer',
   },
+  ANALYZE_PAGE: {
+    PAGE_ROUTE: 'analyze',
+    PAGE_TITLE: 'Analyze - Buffer',
+  },
 };
 
 export { PAGES };

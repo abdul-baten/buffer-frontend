@@ -42,6 +42,12 @@ const routes: Routes = [
     data: { title: PAGES.BUCKET_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/bucket/bucket.module').then(m => m.BucketModule),
   },
+  {
+    canActivate: [],
+    path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.ANALYZE_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/analyze/analyze.module').then(m => m.AnalyzeModule),
+  },
 ];
 
 @NgModule({
