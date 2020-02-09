@@ -36,6 +36,7 @@ $buffer--display-flex-direction-column: column;
     * JUSTIFY CONTENT
 */
 $buffer--flex-justify-content-end: flex-end;
+$buffer--flex-justify-content-center: center;
 $buffer--flex-justify-content-start: flex-start;
 $buffer--flex-justify-content-space-around: space-around;
 $buffer--flex-justify-content-space-evenly: space-evenly;
@@ -110,6 +111,14 @@ $buffer--outline-none: none;
 $buffer--vertical-align-top: top;
 $buffer--vertical-align-bottom: bottom;
 $buffer--vertical-align-middle: middle;
+
+/*
+    * ABSOLUTE POSITION
+*/
+$buffer--position-top-0: 0;
+$buffer--position-left-0: 0;
+$buffer--position-bottom-0: 0;
+$buffer--position-right-0: 0;
 
 /* ************************************* LAYOUT ENDS ************************************* */
 /* ************************************* LAYOUT ENDS ************************************* */

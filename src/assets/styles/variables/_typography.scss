@@ -6,11 +6,11 @@ $font-path: '~assets/fonts';
 /*
     * FONT FAMILY
 */
-$buffer--font-family-light: 'Averta Light';
-$buffer--font-family-regular: 'Averta Regular';
-$buffer--font-family-semi-bold: 'Averta SemiBold';
-$buffer--font-family-bold: 'Averta Bold';
-$buffer--font-family-extra-bold: 'Averta ExtraBold';
+$buffer--font-family-light: 'Buffer Light';
+$buffer--font-family-regular: 'Buffer Regular';
+$buffer--font-family-semi-bold: 'Buffer SemiBold';
+$buffer--font-family-bold: 'Buffer Bold';
+$buffer--font-family-extra-bold: 'Buffer ExtraBold';
 
 /*
     * FONT SIZE
@@ -77,12 +77,13 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-black: #333232;
+$buffer--text-color-black: #505050;
 $buffer--text-color-white: #ffffff;
 $buffer--text-color-transparent: transparent;
-$buffer--text-color-gray: rgba(0, 0, 0, 0.08);
+$buffer--text-color-gray: #f2f2f2;
+$buffer--text-color-dark-gray: #515152;
 
-$buffer--text-color-warn-100: #f7b4be;
+$buffer--text-color-warn-100: #fce3e6;
 $buffer--text-color-warn-200: #f18292;
 $buffer--text-color-warn-300: #eb4f66;
 $buffer--text-color-warn-400: #e72a46;
@@ -92,7 +93,7 @@ $buffer--text-color-warn-700: #dc031b;
 $buffer--text-color-warn-800: #d80216;
 $buffer--text-color-warn-900: #d0010d;
 
-$buffer--text-color-accent-100: #fed1c2;
+$buffer--text-color-accent-100: #fde8e0;
 $buffer--text-color-accent-200: #feb29a;
 $buffer--text-color-accent-300: #fe9372;
 $buffer--text-color-accent-400: #fd7b53;
@@ -102,11 +103,11 @@ $buffer--text-color-accent-700: #fc5228;
 $buffer--text-color-accent-800: #fc4822;
 $buffer--text-color-accent-900: #fc3616;
 
-$buffer--text-color-primary-100: #dff7e5;
+$buffer--text-color-primary-100: #e7f9f1;
 $buffer--text-color-primary-200: #9ab4ac;
-$buffer--text-color-primary-300: #72958b;
+$buffer--text-color-primary-300: #469373;
 $buffer--text-color-primary-400: #537f72;
-$buffer--text-color-primary-500: #356859;
+$buffer--text-color-primary-500: #307a59;
 $buffer--text-color-primary-600: #306051;
 $buffer--text-color-primary-700: #285548;
 $buffer--text-color-primary-800: #224b3e;

@@ -26,7 +26,7 @@
   z-index: $buffer--z-index-50;
 }
 .owl-dt-container-row {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #f2f2f2;
 }
 .owl-dt-container-row:last-child {
   border-bottom: none;
@@ -35,7 +35,7 @@
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   flex-direction: $buffer--display-flex-direction-column;
   width: $buffer--width-full;
 }
@@ -44,7 +44,7 @@
   align-items: $buffer--text-align-center;
   color: $buffer--text-color-black;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   font-size: $buffer--font-size-sm;
   padding: 1.25rem;
   width: $buffer--width-full;
@@ -55,7 +55,7 @@
   -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   flex: 1 1 auto;
   justify-content: $buffer--text-align-center;
 }
@@ -63,14 +63,14 @@
   padding: 0 0.8em;
 }
 .owl-dt-calendar-control .owl-dt-calendar-control-content .owl-dt-calendar-control-button:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f2f2f2;
 }
 .owl-dt-calendar-main {
   -webkit-box-direction: normal;
   -webkit-box-flex: 1;
   -webkit-box-orient: vertical;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   flex-direction: $buffer--display-flex-direction-column;
   flex: 1 1 auto;
   outline: $buffer--outline-none;
@@ -85,7 +85,6 @@
   -webkit-box-align: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
   display: $buffer--display-flex;
-  display: -webkit-box;
 }
 .owl-dt-calendar-multi-year-view .owl-dt-calendar-table {
   width: calc(100% - 3em);
@@ -115,7 +114,7 @@
   position: $buffer--position-relative;
 }
 .owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-calendar-table-divider:after {
-  background: rgba(0, 0, 0, 0.08);
+  background: #f2f2f2;
   content: '';
   height: 1px;
   left: -0.5em;
@@ -144,7 +143,7 @@
   color: inherit;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   font-size: $buffer--font-size-xs;
   height: 100%;
   justify-content: $buffer--text-align-center;
@@ -182,7 +181,7 @@
 .owl-dt-calendar-table
   .owl-dt-calendar-cell-disabled
   > .owl-dt-calendar-cell-today:not(.owl-dt-calendar-cell-selected) {
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: #f2f2f2;
 }
 .owl-dt-calendar-table
   .owl-dt-calendar-cell-active:focus
@@ -190,7 +189,7 @@
 .owl-dt-calendar-table
   :not(.owl-dt-calendar-cell-disabled):hover
   > .owl-dt-calendar-cell-content:not(.owl-dt-calendar-cell-selected) {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: #f2f2f2;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-in-range {
   background: rgba(63, 81, 181, 0.2);
@@ -206,7 +205,6 @@
 .owl-dt-timer {
   -webkit-box-pack: $buffer--text-align-center;
   display: $buffer--display-flex;
-  display: -webkit-box;
   justify-content: $buffer--text-align-center;
   outline: $buffer--outline-none;
   width: $buffer--width-full;
@@ -216,9 +214,9 @@
   -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
   align-items: $buffer--text-align-center;
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  border-right: 1px solid #f2f2f2;
   display: $buffer--display-inline-flex;
-  display: -webkit-inline-box;
+
   flex-direction: $buffer--display-flex-direction-column;
   height: $buffer--height-full;
   position: $buffer--position-relative;
@@ -230,7 +228,7 @@
   -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   flex: 1 1 auto;
   justify-content: $buffer--text-align-center;
   margin: 0.2rem 0;
@@ -238,7 +236,7 @@
 }
 .owl-dt-timer-content .owl-dt-timer-input {
   border-radius: $buffer--border-radius-lg;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid #f2f2f2;
   display: $buffer--display-block;
   font-size: $buffer--font-size-xs;
   height: $buffer--height-8;
@@ -272,7 +270,7 @@
   -webkit-box-pack: $buffer--text-align-center;
   align-items: $buffer--text-align-center;
   display: $buffer--display-inline-flex;
-  display: -webkit-inline-box;
+
   justify-content: $buffer--text-align-center;
   outline: $buffer--outline-none;
   position: $buffer--position-relative;
@@ -290,7 +288,7 @@
   transition: background-color 0.1s linear;
 }
 .owl-dt-control-period-button:hover > .owl-dt-control-button-content {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f2f2f2;
 }
 .owl-dt-control-period-button .owl-dt-control-button-arrow {
   -webkit-box-align: $buffer--text-align-center;
@@ -298,7 +296,7 @@
   -webkit-transition: -webkit-transform 0.2s ease;
   align-items: $buffer--text-align-center;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   height: $buffer--height-4;
   justify-content: $buffer--text-align-center;
   margin: 0.1rem;
@@ -374,36 +372,38 @@
   }
 }
 .owl-dt-container-buttons {
+  @include buffer--user-select(none);
   color: $buffer--text-color-black;
   display: $buffer--display-flex;
-  display: -webkit-box;
-  height: 3rem;
+  height: 4.5rem;
   width: $buffer--width-full;
+  padding: 0 1rem;
 }
 .owl-dt-container-control-button {
-  border-radius: 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  @include buffer--button-height($buffer--height-12);
+  @include buffer--user-select(none);
+  border-radius: $buffer--border-radius-xl;
+  color: $buffer--text-color-black;
   font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-semi-bold;
   font-size: $buffer--font-size-sm;
-  height: $buffer--height-full;
-  width: $buffer--width-percent-50;
-
-  .owl-dt-control-button-content {
-    -webkit-transition: background-color 0.1s linear;
-    height: $buffer--height-full;
-    transition: background-color 0.1s linear;
-    width: $buffer--width-full;
-  }
+  margin: 0.8rem 0.5rem;
+  width: $buffer--width-percent-49;
 
   &:hover {
-    .owl-dt-control-button-content {
-      background-color: rgba(0, 0, 0, 0.08);
-    }
+    background-color: $buffer--background-color-gray;
   }
 
   &:focus {
-    .owl-dt-control-button-content {
-      box-shadow: $buffer--box-shadow-outline;
+    box-shadow: $buffer--box-shadow-outline;
+  }
+
+  &:nth-of-type(even) {
+    background-color: $buffer--background-color-primary-500;
+    color: $buffer--text-color-white;
+
+    &:hover {
+      background-color: $buffer--background-color-primary-300;
     }
   }
 }
@@ -419,13 +419,13 @@
 .owl-dt-container-info .owl-dt-container-range .owl-dt-container-range-content {
   -webkit-box-pack: justify;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   font-size: 0.8em;
   justify-content: $buffer--flex-justify-content-space-between;
   padding: 0.5em 0;
 }
 .owl-dt-container-info .owl-dt-container-range:last-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #f2f2f2;
 }
 .owl-dt-container-info .owl-dt-container-info-active {
   color: $buffer--background-color-primary-500;
@@ -443,14 +443,14 @@
   align-items: $buffer--text-align-center;
   color: $buffer--background-color-primary-500;
   display: $buffer--display-flex;
-  display: -webkit-box;
+
   justify-content: $buffer--text-align-center;
   width: $buffer--width-percent-33;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box {
   -webkit-transition: background 0.2s ease;
   border-radius: $buffer--border-radius-lg;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid #f2f2f2;
   transition: background 0.2s ease;
 }
 .owl-dt-timer-hour12 .owl-dt-timer-hour12-box .owl-dt-control-button-content {
@@ -480,7 +480,7 @@
   outline: $buffer--outline-none;
 }
 .owl-dt-control:focus > .owl-dt-control-content {
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f2f2f2;
 }
 .owl-dt-control:not(:-moz-focusring):focus > .owl-dt-control-content {
   box-shadow: $buffer--box-shadow-none;

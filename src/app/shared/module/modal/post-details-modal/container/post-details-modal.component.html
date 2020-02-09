@@ -1,0 +1,55 @@
+<div class="clearfix buffer--padding-10">
+
+  <div
+    class="buffer--margin-y-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
+
+    <div class="clearfix buffer--width-percent-50">
+      <buffer--post-details-modal-image *ngIf="postInfo.postImages" [postImages]="postInfo.postImages"
+        [postImageSlideConfig]="slideConfig">
+      </buffer--post-details-modal-image>
+      <buffer--post-details-modal-video *ngIf="postInfo.postVideos" [postVideos]="postInfo.postVideos"
+        [postVideoSlideConfig]="slideConfig">
+      </buffer--post-details-modal-video>
+    </div>
+
+    <div class="clearfix buffer--width-percent-49 buffer--padding-left-5 buffer--position-relative">
+
+      <div
+        class="buffer--margin-bottom-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+        <div class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center">
+          <img [src]="postInfo.socialAccounts[0].socialAvatar"
+            class="buffer--border-radius-full buffer--width-10 buffer--height-10" />
+          <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-left-2">
+            {{postInfo.socialAccounts[0].socialName }}</p>
+        </div>
+
+
+      </div>
+
+      <div class="clearfix buffer--height-percent-70 buffer--overflow-y-auto">
+        <div class="clearfix">
+          <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--line-height-leading-normal">
+            {{ postInfo.postCaption }}</p>
+        </div>
+
+        <div class="clearfix buffer--margin-top-5">
+          <buffer--post-details-modal-time [postDateAndTime]="postInfo.postOriginalDate">
+          </buffer--post-details-modal-time>
+        </div>
+
+        <div class="clearfix buffer--margin-top-5" *ngIf="postInfo.postLocation">
+          <p class="buffer--font-family-regular buffer--font-size-sm">
+            <span><i class="material-icons buffer--vertical-align-middle">beenhere</i></span>
+            <span
+              class="buffer--font-family-semi-bold buffer--line-height-leading-loose buffer--margin-left-3">{{ postInfo.postLocation }}</span>
+          </p>
+        </div>
+      </div>
+
+      <section class="buffer--post-details-modal-footer-sec" id="buffer--post-details-modal-footer-sec">
+        <buffer--post-details-modal-footer></buffer--post-details-modal-footer>
+      </section>
+
+    </div>
+  </div>
+</div>

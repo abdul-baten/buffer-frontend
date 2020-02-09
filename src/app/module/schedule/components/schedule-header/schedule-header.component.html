@@ -1,12 +1,28 @@
 <div class="clearfix">
   <div
-    class="buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center"
-  >
+    class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
     <div class="clearfix">
       <buffer--schedule-calendar-options></buffer--schedule-calendar-options>
     </div>
+    
     <div class="clearfix">
-      <buffer--schedule-social-accounts></buffer--schedule-social-accounts>
+      <div
+        class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+        <div class="clearfix">
+          <buffer--social-profile-toolbar></buffer--social-profile-toolbar>
+        </div>
+
+        <div class="clearfix">
+          <div class="buffer--display-flex buffer--display-flex-direction-row">
+            <div class="clearfix buffer--margin-left-3">
+              <buffer--social-profile-list></buffer--social-profile-list>
+            </div>
+            <div class="clearfix buffer--margin-left-3">
+              <buffer--social-profile-add></buffer--social-profile-add>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

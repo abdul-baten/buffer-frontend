@@ -1,0 +1,28 @@
+<div class="clearfix">
+  <div class="clearfix buffer--display-flex buffer--display-flex-direction-column"
+    [ngClass]="{ 'buffer--display-hidden': mediaMaxFilesReached }">
+    <div class="clearfix">
+      <dropzone [config]="config" (init)="onUploadInit($event)" (error)="onUploadError($event)"
+        (removedFile)="onRemovedFile()" (addedFile)="onAddedFile($event)" (success)="onUploadSuccess($event)"
+        (maxFilesReached)="onMaxFilesReached()">
+      </dropzone>
+    </div>
+  </div>
+
+  <div class="clearfix buffer--upload-media-sec buffer--margin-y-5" id="previews">
+    <div id="template" class="buffer--display-hidden">
+      <div class="clearfix upload-item-content buffer--width-24 buffer--height-24 buffer--position-relative">
+        <div
+          class="clearfix dz-upload-progress buffer--width-full buffer--height-full buffer--position-absolute buffer--opacity-75 buffer--z-index-10 buffer--background-color-gray buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center">
+          <mat-spinner [diameter]="25"></mat-spinner>
+        </div>
+
+        <img data-dz-thumbnail class="buffer--width-full buffer--height-full buffer--border-radius-lg" />
+        <div class="clearfix buffer--position-absolute buffer--position-top-0 buffer--position-right-0">
+          <i data-dz-remove matTooltip="Remove"
+            class="material-icons cancel-item buffer--font-size-base buffer--text-color-black buffer--cursor-pointer">close</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

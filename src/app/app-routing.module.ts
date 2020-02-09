@@ -1,27 +1,46 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 import { PAGES } from './core/constant/page/page.constant';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: PAGES.LANDING_PAGE.ROUTE,
-    data: { title: PAGES.LANDING_PAGE.TITLE },
+    path: PAGES.LANDING_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.LANDING_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/landing/landing.module').then(m => m.LandingModule),
   },
   {
-    path: PAGES.SIGN_IN_PAGE.ROUTE,
-    data: { title: PAGES.SIGN_IN_PAGE.TITLE },
+    path: PAGES.SIGN_IN_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.SIGN_IN_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/signin/signin.module').then(m => m.SigninModule),
   },
   {
-    path: PAGES.SIGN_UP_PAGE.ROUTE,
-    data: { title: PAGES.SIGN_UP_PAGE.TITLE },
+    path: PAGES.SIGN_UP_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.SIGN_UP_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/signup/signup.module').then(m => m.SignupModule),
   },
   {
-    path: PAGES.SCHEDULE_PAGE.ROUTE,
-    data: { title: PAGES.SCHEDULE_PAGE.TITLE },
+    canActivate: [],
+    path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {
+    canActivate: [],
+    path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.SCHEDULE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),
+  },
+  {
+    canActivate: [],
+    path: PAGES.ACCOUNT_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.ACCOUNT_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/account/account.module').then(m => m.AccountModule),
+  },
+  {
+    canActivate: [],
+    path: PAGES.BUCKET_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.BUCKET_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/bucket/bucket.module').then(m => m.BucketModule),
   },
 ];
 

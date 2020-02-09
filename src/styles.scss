@@ -18,6 +18,7 @@
 
 *::-webkit-scrollbar {
   width: 9px;
+  z-index: 999;
 }
 
 *::-webkit-scrollbar-track {
@@ -38,8 +39,11 @@
 
 html,
 body {
+  @include buffer--user-select(none);
+  color: $buffer--text-color-black !important;
   height: $buffer--height-full;
 }
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +52,7 @@ body {
   font-weight: $buffer--font-weight-medium;
   letter-spacing: $buffer--letter-spacing-tracking-normal;
   margin: 0;
+  overflow-x: hidden;
 }
 
 a.buffer--default-link {
@@ -101,10 +106,12 @@ h3,
 h4,
 h5,
 h6 {
+  color: $buffer--text-color-black;
   font-family: $buffer--font-family-bold;
 }
 
 p {
+  color: $buffer--text-color-black;
   font-family: $buffer--font-family-regular;
   margin: 0;
   padding: 0;
@@ -140,26 +147,11 @@ p {
   margin: 0 auto;
   min-width: 1080px;
   padding: 0 60px;
-  width: 100%;
-}
-
-.buffer--button-big-height {
-  height: 56px !important;
-}
-
-.buffer--button-big-padding {
-  padding-left: 46px !important;
-  padding-right: 46px !important;
-}
-
-.buffer--box-shadow-hover-xl {
-  &:hover {
-    box-shadow: $buffer--box-shadow-xl !important;
-  }
+  width: $buffer--width-full;
 }
 
 .buffer--heading-span {
-  color: #356859;
+  color: #307a59;
   position: relative;
   &:after {
     background-image: url('/assets/images/background/yellow-background-bottom-line.svg');
@@ -187,4 +179,44 @@ p {
       transform: translateX(4px);
     }
   }
+}
+
+.buffer--schedule-calendar-view-sec {
+  height: calc(100vh - 5rem);
+}
+
+.dashboard-route-sec {
+  width: calc(100vw - 5rem);
+}
+
+.buffer--social-account-logo {
+  margin: -25px 0 0 25px;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+}
+
+.buffer--social-account-logo-facebook {
+  background: #1877f2 url('/assets/images/icon/facebook.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-linkedin {
+  background: #007bb5 url('/assets/images/icon/linkedin.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-twitter {
+  background: #1da1f2 url('/assets/images/icon/twitter.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-instagram {
+  background: #f46f30 url('/assets/images/icon/instagram.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-pinterest {
+  background: #bd081c url('/assets/images/icon/pinterest.svg');
+  background-size: cover;
 }

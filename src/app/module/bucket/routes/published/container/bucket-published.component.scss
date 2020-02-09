@@ -1,0 +1,57 @@
+:host {
+  ::ng-deep {
+    .slick-list,
+    .slick-track {
+      height: 100%;
+    }
+
+    .slick-prev,
+    .slick-next {
+      top: inherit;
+      bottom: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      font-size: 1.25rem;
+    }
+
+    .slick-prev {
+      right: 3rem;
+      left: inherit;
+    }
+
+    .slick-next {
+      right: 1.25rem;
+    }
+
+    .mat-form-field-wrapper {
+      padding-bottom: 0 !important;
+
+      .mat-form-field-subscript-wrapper {
+        position: absolute !important;
+      }
+    }
+
+    .mat-form-field-appearance-fill {
+      .mat-form-field-infix {
+        padding: 0.8rem 0 !important;
+      }
+    }
+
+    .mat-button-toggle-group {
+      &:hover {
+        box-shadow: 0 0 0 4px rgba(110, 109, 109, 0.1);
+      }
+    }
+
+    .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+    .mat-button-toggle-group-appearance-standard .mat-button-toggle-label-content {
+      padding: 0 1rem !important;
+    }
+
+    .scrollable-content {
+      padding: 1.25rem;
+    }
+
+    // LIST
+  }
+}

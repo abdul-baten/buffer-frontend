@@ -1,0 +1,47 @@
+<div class="clearfix buffer--bucket-post-list-item buffer--height-64">
+  <div
+    class="clearfix buffer--height-full buffer--width-full buffer--position-relative buffer--border-radius-lg buffer--box-shadow-sm">
+    <div
+      class="clearfix buffer--width-full buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg"
+      *ngIf="calendarPost.postType === 'image' || calendarPost.postType === 'video'">
+      <div [ngSwitch]="calendarPost.postType">
+        <div *ngSwitchCase="'image'">
+          <buffer--bucket-scheduled-post-image [calendarPostImages]="calendarPost.postImages"
+            [calendarPostSlideConfig]="slideConfig">
+          </buffer--bucket-scheduled-post-image>
+        </div>
+        <div *ngSwitchCase="'video'">
+          <buffer--bucket-scheduled-post-video [calendarPostVideos]="calendarPost.postVideos"
+            [calendarPostSlideConfig]="slideConfig"></buffer--bucket-scheduled-post-video>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="clearfix buffer--padding-5">
+      <buffer--bucket-scheduled-post-text [calendarPostCaption]="calendarPost.postCaption">
+      </buffer--bucket-scheduled-post-text>
+
+      <div
+        class="clearfix buffer--width-full buffer--padding-5 buffer--position-absolute buffer--position-bottom-0 buffer--position-left-0 buffer--padding-y-5">
+
+        <div class="clearfix buffer--height-10 buffer--margin-y-3">
+          <buffer--bucket-scheduled-post-time [calendarPostDateTime]="calendarPost.start">
+          </buffer--bucket-scheduled-post-time>
+        </div>
+
+        <div class="clearfix">
+          <buffer--bucket-scheduled-post-social [calendarPostSocialAccounts]="calendarPost.socialAccounts">
+          </buffer--bucket-scheduled-post-social>
+        </div>
+
+      </div>
+
+      <div
+        class="clearfix buffer--bucket-post-footer buffer--width-full buffer--position-absolute buffer--position-top-0 buffer--position-left-0 buffer--padding-5">
+        <buffer--bucket-scheduled-post-menu></buffer--bucket-scheduled-post-menu>
+      </div>
+    </div>
+
+  </div>
+</div>

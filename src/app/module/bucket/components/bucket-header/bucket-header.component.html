@@ -1,0 +1,38 @@
+<div
+  class="buffer--width-full buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+  <div
+    class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+    <div class="clearfix buffer--margin-right-3">
+      <button mat-button [routerLink]="['/bucket/scheduled']" routerLinkActive="buffer--background-color-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+        Scheduled
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-right-3">
+      <button mat-button [routerLink]="['/bucket/published']" routerLinkActive="buffer--background-color-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+        Published
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-right-3">
+      <button mat-button [routerLink]="['/bucket/saved']" routerLinkActive="buffer--background-color-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+        Saved
+      </button>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <div class="buffer--display-flex buffer--display-flex-direction-row">
+      <div class="clearfix buffer--margin-left-3">
+        <buffer--social-profile-list></buffer--social-profile-list>
+      </div>
+      <div class="clearfix buffer--margin-left-3">
+        <buffer--social-profile-add></buffer--social-profile-add>
+      </div>
+    </div>
+  </div>
+</div>

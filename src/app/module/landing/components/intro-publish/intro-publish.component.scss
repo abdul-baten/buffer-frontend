@@ -8,21 +8,20 @@
     -webkit-box-orient: horizontal;
     -webkit-box-pack: center;
     align-items: center;
-    display: -webkit-box;
     display: flex;
     flex-direction: row;
     height: 400px;
     justify-content: center;
 
     .buffer--intro-publish-content-photo {
-      -webkit-box-ordinal-group: 2;
+      width: 100%;
+      height: 100%;
       background-image: url('/assets/images/background/buffer--publish-graphics.svg');
       background-position: left center;
-      background-repeat: no-repeat;
       background-size: contain;
-      height: 100%;
+      background-repeat: no-repeat;
+      -webkit-box-ordinal-group: 2;
       order: 1;
-      width: 100%;
     }
 
     .buffer--intro-publish-content-text {

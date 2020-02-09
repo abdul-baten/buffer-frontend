@@ -1,0 +1,88 @@
+<div class="clearfix">
+  <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
+    <buffer--post-create-modal-form-header [formHeader]="formHeader" [formHeaderIcon]="formHeaderIcon">
+    </buffer--post-create-modal-form-header>
+  </section>
+
+  <section id="schedule-create-form-content-sec"
+    class="schedule-create-form-content-sec buffer--padding-x-10 buffer--padding-y-5 buffer--overflow-y-auto">
+    <div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-space-between">
+      <div class="clearfix">
+        <!-- uploader -->
+        <buffer--post-create-modal-form-media-selection (enableNextButton)="onNextButtonEnabled($event)">
+        </buffer--post-create-modal-form-media-selection>
+        <!-- uploader -->
+      </div>
+      <div class="clearfix">
+        <form novalidate [formGroup]="eventCreateTypeImageForm">
+          <div class="clearfix">
+            <label for="postCaption"
+              class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Caption</label>
+            <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
+              <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventCreatePostFormErrorMatcher"
+                cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
+                class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default buffer--line-height-leading-relaxed"
+                formControlName="postCaption" id="postCaption" matInput placeholder="Write something" required
+                spellcheck="false"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="clearfix">
+            <label for="postDate"
+              class="buffer--text-color-black buffer--cursor-default buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
+            <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
+              <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
+                [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
+                class="buffer--text-color-black buffer--font-family-semi-bold buffer--cursor-default"
+                formControlName="postDate" id="postDate" matInput readonly type="text" />
+              <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
+                <mat-icon class="buffer--text-color-dark-gray">timer</mat-icon>
+              </button>
+              <owl-date-time #postDate [hideOtherMonths]="true" [hour12Timer]="true" [startAt]="currentDateTime"
+                [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel"></owl-date-time>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule-create-form-footer-sec"
+    class="schedule-create-form-footer-sec buffer--padding-x-10 buffer--padding-y-5 buffer--border-width-0 buffer--border-top-width buffer--border-style-solid buffer--border-color-gray">
+    <div
+      class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+      <div class="clearfix">
+        <button (click)="onPreviousButtonClicked()"
+          class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-button>
+          <span>Back</span>
+        </button>
+      </div>
+      <div class="clearfix">
+        <div
+          class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+          <div class="clearfix buffer--margin-left-3">
+            <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+              type="button">
+              <span>Save</span>
+            </button>
+          </div>
+          <div class="clearfix buffer--margin-left-3">
+            <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" mat-stroked-button
+              type="button">
+              <span>Share now</span>
+            </button>
+          </div>
+          <div class="clearfix buffer--margin-left-3">
+            <button [disabled]="nextButtonDisabled || eventCreateTypeImageForm.invalid"
+              class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm" color="primary"
+              mat-flat-button type="button">
+              <span>Schedule</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

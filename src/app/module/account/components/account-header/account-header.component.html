@@ -1,0 +1,38 @@
+<div
+    class="buffer--width-full buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+    <div
+        class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+        <div class="clearfix buffer--margin-right-3">
+            <button mat-button [routerLink]="['/account/profile']" routerLinkActive="buffer--background-color-gray"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+                Profile
+            </button>
+        </div>
+        <div class="clearfix buffer--margin-right-3">
+            <button mat-button [routerLink]="['/account/invoice']" routerLinkActive="buffer--background-color-gray"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+                Invoice
+            </button>
+        </div>
+        <div class="clearfix buffer--margin-right-3">
+            <button mat-button [routerLink]="['/account/billing']" routerLinkActive="buffer--background-color-gray"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-sm">
+                Billing
+            </button>
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <div class="buffer--display-flex buffer--display-flex-direction-row">
+            <div class="clearfix buffer--margin-left-3">
+                <buffer--social-profile-list></buffer--social-profile-list>
+            </div>
+            <div class="clearfix buffer--margin-left-3">
+                <buffer--social-profile-add></buffer--social-profile-add>
+            </div>
+        </div>
+    </div>
+</div>

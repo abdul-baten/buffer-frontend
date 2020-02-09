@@ -11,6 +11,4 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 })
 export class ScheduleCalendarComponent {
   calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
-
-  constructor() {}
 }

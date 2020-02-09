@@ -1,0 +1,20 @@
+<div class="clearfix">
+  <div
+    class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+    <div class="clearfix">
+      <p class="buffer--font-size-xl buffer--font-family-semi-bold">
+        <i class="material-icons" [ngClass]="{
+          'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-primary-500  buffer--margin-right-2': formHeaderIcon
+        }">{{ formHeaderIcon }}</i>
+        {{ formHeader }}
+      </p>
+    </div>
+    <div class="clearfix">
+      <button
+        class="buffer--width-11 buffer--height-11 buffer--text-color-black buffer--border-width buffer--border-style-solid buffer--border-color-gray"
+        mat-icon-button matTooltip="Close" matTooltipClass="buffer--font-size-xs" (click)="handlePostEditModalCloseBtnClick()">
+        <mat-icon class="buffer--font-size-2xl buffer--text-color-dark-gray">close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

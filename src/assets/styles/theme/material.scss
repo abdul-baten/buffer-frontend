@@ -1,4 +1,14 @@
 /*
+    * MATERIAL SIDENAV
+*/
+.mat-drawer-transition {
+  .mat-drawer-content {
+    transition-duration: 0s !important;
+    transition: none !important;
+  }
+}
+
+/*
     * MATERIAL LIST
 */
 .mat-list-base {
@@ -13,19 +23,26 @@
     * MATERIAL EXPANSION PANEL
 */
 .mat-expansion-panel {
-  margin: 10px 0 !important;
+  margin: 0 0 1rem !important;
 }
 
 .mat-expansion-panel {
-  box-shadow: $buffer--box-shadow !important;
+  border-radius: $buffer--border-radius-lg !important;
+  border: 1px solid $buffer--border-color-gray !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+  color: $buffer--text-color-black !important;
 }
 
 .mat-expansion-panel-header {
-  padding: 0 15px !important;
+  padding: 1rem !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: $buffer--text-color-black !important;
 }
 
 .mat-expansion-panel-body {
-  padding: 16px !important;
+  padding: 1.5rem 1rem !important;
 }
 
 /*
@@ -44,21 +61,35 @@ mat-card {
   }
 }
 
-button {
-  &:disabled {
-    outline: $buffer--outline-none !important;
-  }
-}
-
 /*
     * MATERIAL BUTTON
 */
+
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+  border-color: $buffer--border-color-gray !important;
+}
+
+.mat-icon-button {
+  line-height: $buffer--line-height-leading-none !important;
+}
+
+.mat-icon-button.mat-warn {
+  &:focus,
+  &:hover {
+    background-color: $buffer--background-color-warn-800;
+    color: $buffer--text-color-white;
+  }
+
+  &:focus {
+    @include buffer--button-box-shadow($buffer--box-shadow-outline);
+  }
+}
+
 .mat-button.mat-warn,
 .mat-flat-button.mat-warn,
-.mat-icon-button.mat-warn,
-.mat-stroked-button.mat-warn {
+.mat-stroked-button.mat-warn,
+.mat-raised-button.mat-warn {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
   @include buffer--button-padding(1.5rem);
 
   &:hover {
@@ -76,9 +107,9 @@ button {
 .mat-button.mat-accent,
 .mat-flat-button.mat-accent,
 .mat-icon-button.mat-accent,
-.mat-stroked-button.mat-accent {
+.mat-stroked-button.mat-accent,
+.mat-raised-button.mat-accent {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
   @include buffer--button-padding(1.5rem);
 
   &:hover {
@@ -93,88 +124,117 @@ button {
   }
 }
 
+.mat-button,
+.mat-flat-button,
+.mat-stroked-button,
+.mat-raised-button {
+  @include buffer--button-padding(1.5rem);
+}
+
 .mat-button.mat-primary,
 .mat-flat-button.mat-primary,
 .mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary {
+.mat-stroked-button.mat-primary,
+.mat-raised-button.mat-primary {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
 
   &:hover {
-    background-color: $buffer--background-color-primary-800;
+    background-color: $buffer--background-color-primary-300;
     color: $buffer--text-color-white;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--background-color-primary-800;
+    background-color: $buffer--background-color-primary-300;
     color: $buffer--text-color-white;
   }
 }
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
-.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
+.mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-padding(1.5rem);
 }
 
 .mat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-flat-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-icon-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
-.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
+.mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
+.mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
   @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
+  color: $buffer--text-color-black !important;
 
   &:hover {
-    background-color: $buffer--border-color-gray;
+    background-color: $buffer--background-color-gray;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--border-color-gray;
+    background-color: $buffer--background-color-gray;
+  }
+
+  &:disabled {
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
   }
 }
 
 /*
     * MATERIAL BUTTON GROUP
 */
+.mat-button-toggle {
+  height: $buffer--height-11;
+}
+
 .mat-button-toggle-button {
   outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
   font-family: $buffer--font-family-semi-bold !important;
+  height: $buffer--height-full;
 }
 
 .mat-button-toggle-group-appearance-standard,
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
-  border-radius: $buffer--border-radius-xl !important;
+  @include buffer--button-border-radius($buffer--border-radius-xl);
+  border-color: $buffer--border-color-gray !important;
 }
 
-.mat-button-toggle-label-content {
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
+.mat-button-toggle-group-appearance-standard .mat-button-toggle-label-content {
   line-height: 40px !important;
   padding: 0 1.5rem !important;
+}
+
+mat-button-toggle {
+  &:not(.mat-button-toggle-checked) {
+    color: $buffer--text-color-black;
+
+    &:hover {
+      background-color: $buffer--background-color-gray;
+    }
+  }
 }
 
 .mat-button-toggle-checked {
   color: $buffer--text-color-white !important;
   background-color: $buffer--background-color-primary-500 !important;
+
+  &:hover {
+    background-color: $buffer--background-color-primary-300 !important;
+  }
+
+  .mat-button-toggle-focus-overlay {
+    border-bottom: 0 !important;
+  }
 }
 
 /*
     * MATERIAL DIALOG
 */
 .mat-dialog-container {
+  @include buffer--button-border-radius($buffer--border-radius-lg);
   padding: 0 !important;
   box-shadow: $buffer--box-shadow-2xl !important;
-  border-radius: $buffer--border-radius-lg !important;
-}
-
-/*
-    * MATERIAL MENU ITEM
-*/
-.mat-menu-item {
-  font-size: $buffer--font-size-sm !important;
-  font-weight: $buffer--font-weight-medium !important;
 }
 
 /*
@@ -249,7 +309,10 @@ button {
 */
 
 .mat-form-field-flex {
+  align-items: $buffer--align-items-center !important;
   border: 1px solid $buffer--background-color-primary-500 !important;
+  display: $buffer--display-flex !important;
+  flex-direction: $buffer--display-flex-direction-row !important;
 }
 
 .mat-form-field-infix {
@@ -259,7 +322,7 @@ button {
 .mat-form-field-outline-thick {
   border: none;
   opacity: 1 !important;
-  background-color: rgba(0, 0, 0, 0.08);
+  background-color: #f2f2f2;
 }
 
 .cdk-textarea-autosize {
@@ -276,10 +339,14 @@ button {
 
 .mat-form-field-appearance-fill {
   .mat-form-field-flex {
+    @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
-    border: 1px solid rgba(0, 0, 0, 0.08) !important;
-    border-radius: $buffer--border-radius-lg !important;
+    border: 1px solid #f2f2f2 !important;
     background-color: $buffer--background-color-white !important;
+
+    &:hover {
+      box-shadow: $buffer--box-shadow-outline-gray;
+    }
   }
 
   .mat-form-field-infix {
@@ -297,12 +364,25 @@ button {
 
 .mat-form-field-invalid {
   .mat-form-field-flex {
-    box-shadow: 0 0 0 4px $buffer--border-color-warn-300 !important;
+    box-shadow: 0 0 0 4px $buffer--border-color-warn-200 !important;
   }
 }
 
 textarea.mat-input-element {
   padding: 0 !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  padding: 0 !important;
+  position: relative !important;
+  font-family: $buffer--font-family-regular;
+  font-size: $buffer--font-size-xs !important;
+}
+
+.mat-form-field-appearance-fill {
+  .mat-select-arrow-wrapper {
+    transform: translateY(0) !important;
+  }
 }
 
 /*
@@ -319,11 +399,114 @@ textarea.mat-input-element {
 }
 
 .mat-bottom-sheet-container-large {
+  border-top-left-radius: $buffer--border-radius-lg !important;
+  border-top-right-radius: $buffer--border-radius-lg !important;
   max-width: $buffer--width-64 !important;
-  border-top-left-radius: 0.5rem !important;
-  border-top-right-radius: 0.5rem !important;
 }
 
 .mat-bottom-sheet-container {
   padding: 1.25rem !important;
+}
+
+/*
+    * MATERIAL MENU
+*/
+.mat-menu-panel {
+  @include buffer--button-border-radius($buffer--border-radius-lg);
+  box-shadow: $buffer--box-shadow-lg !important;
+
+  .mat-menu-content {
+    padding: 1rem !important;
+
+    .mat-menu-item {
+      @include buffer--button-border-radius($buffer--border-radius-lg);
+      color: $buffer--text-color-black !important;
+      font-family: $buffer--font-family-semi-bold !important;
+      font-size: $buffer--font-size-xs !important;
+      height: $buffer--height-10;
+      line-height: $buffer--line-height-leading-loose;
+
+      &:hover {
+        background-color: $buffer--background-color-gray !important;
+      }
+    }
+  }
+}
+
+/*
+    * MATERIAL SNACKBAR
+*/
+.mat-snack-bar-container {
+  border-radius: $buffer--border-radius-xl !important;
+  color: $buffer--text-color-white !important;
+  font-size: $buffer--font-size-base !important;
+  min-width: auto !important;
+  padding: 1.5rem !important;
+}
+
+/*
+    * MATERIAL SELECT
+*/
+.mat-select-value {
+  color: $buffer--text-color-black !important;
+  height: 1rem !important;
+  padding-top: 2px;
+}
+
+.mat-select-panel {
+  padding: 0.5rem 1rem !important;
+  border-radius: $buffer--border-radius-lg !important;
+  box-shadow: $buffer--box-shadow-lg !important;
+
+  .mat-option.mat-selected:not(.mat-option-multiple) {
+    background-color: $buffer--background-color-gray !important;
+  }
+}
+
+.mat-option {
+  border-radius: $buffer--border-radius-lg;
+  height: $buffer--height-10 !important;
+  color: $buffer--text-color-black !important;
+  font-size: $buffer--font-size-sm !important;
+  margin: 0.5rem 0;
+}
+
+.mat-select-arrow {
+  margin: 5px 4px !important;
+}
+
+/*
+    * MATERIAL DIVIDER
+*/
+.mat-divider {
+  border-top-color: $buffer--border-color-gray !important;
+}
+
+/*
+    * MATERIAL TABLE
+*/
+.mat-header-cell {
+  font-size: $buffer--font-size-sm !important;
+  font-weight: 500;
+}
+
+tr.mat-row {
+  height: $buffer--height-18 !important;
+}
+
+th.mat-header-cell {
+  // , mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell
+  border-bottom-color: $buffer--border-color-gray !important;
+}
+
+tr.mat-row {
+  td.mat-cell {
+    border-bottom-color: $buffer--border-color-gray !important;
+  }
+
+  &:last-child {
+    td.mat-cell {
+      border-style: none !important;
+    }
+  }
 }

@@ -1,27 +1,26 @@
-// Core Modules
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
-// Validators
 import { CommonValidator } from '@core/validation/common.validation';
+import { Component } from '@angular/core';
+import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
+import { SignupFacade } from '@app/signup/facade/signup.facade';
 
 @Component({
   selector: 'buffer--signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent {
   signupForm: FormGroup;
 
   hidePassword = true;
   hideConfirmPassword = true;
 
-  constructor(private formBuilder: FormBuilder) {
+  errorStateMatcher = new CustomFormErrorStateMatcher();
+
+  constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder) {
     this.signupForm = this.buildSignupForm();
   }
-
-  ngOnInit() {}
 
   private buildSignupForm(): FormGroup {
     return this.formBuilder.group(
@@ -38,7 +37,7 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
             PasswordValidator.allowedPasswordSpecialChars,
-          ])
+          ]),
         ),
         confirmPassword: new FormControl(
           '',
@@ -49,11 +48,14 @@ export class SignupFormComponent implements OnInit {
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
             PasswordValidator.allowedPasswordSpecialChars,
-          ])
+          ]),
         ),
-        termsAndCondition: new FormControl(false, Validators.required),
       },
-      { validator: PasswordValidator.passwordMismatch }
+      { validator: PasswordValidator.passwordMismatch },
     );
+  }
+
+  handleAuthNavigateBtn(authURL: string): void {
+    this.signupFacade.navigateToPage(authURL);
   }
 }

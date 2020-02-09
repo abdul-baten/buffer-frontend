@@ -1,0 +1,11 @@
+.buffer--bucket-post-list-item {
+  .buffer--bucket-post-footer {
+    display: none;
+  }
+
+  &:hover {
+    .buffer--bucket-post-footer {
+      display: block;
+    }
+  }
+}

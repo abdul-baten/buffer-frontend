@@ -8,9 +8,12 @@ import { readFileSync } from 'fs';
 import * as express from 'express';
 import * as compression from 'compression';
 
+require('raf/polyfill');
+
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
 
 const privateKey = readFileSync('cert/cert.key', 'utf8');
 const certificate = readFileSync('cert/cert.crt', 'utf8');
@@ -76,11 +79,12 @@ app.set('view cache', true);
 app.use('/', express.static(DIST_FOLDER, { index: false, maxAge: 30 * 86400000 }));
 
 // All regular routes use the Universal engine
-app.get('*', (req, res) => {
+app.get('*', (req: express.Request, res: express.Response) => {
   res.render('index', {
     preboot: true,
     req: req,
     res: res,
+    providers: [{ provide: REQUEST, useValue: req }],
   });
 });
 

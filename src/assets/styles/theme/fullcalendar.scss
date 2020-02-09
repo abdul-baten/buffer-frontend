@@ -238,7 +238,7 @@ temporary rendered events).
 --------------------------------------------------------------------------------------------------*/
 .fc-scroller {
   -webkit-overflow-scrolling: touch;
-  height: calc(100vh - 12rem) !important;
+  height: calc(100vh - 13rem) !important;
   overflow-x: hidden !important;
   overflow-y: scroll !important;
   width: 100%;
@@ -462,7 +462,7 @@ be a descendant of the grid when it is being dragged.
 .fc-day-grid-event {
   /* spacing between events and edges */
   border-radius: $buffer--border-radius-lg;
-  box-shadow: $buffer--box-shadow-lg;
+  box-shadow: $buffer--box-shadow-sm;
   margin: 2px 0;
   padding: 0;
 }
@@ -577,7 +577,7 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed td.fc-today {
-  background: $buffer--background-color-gray;
+  background: #f9f9f9;
 }
 
 .fc-unthemed .fc-disabled-day {
@@ -606,7 +606,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-button:not(:disabled) {
-  cursor: pointer;
+  cursor: $buffer--cursor-pointer;
 }
 
 .fc-button::-moz-focus-inner {
@@ -616,20 +616,33 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* theme */
 .fc-button {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
-  @include buffer--button-height($buffer--height-10);
-  @include buffer--button-padding(1.5rem);
+  @include buffer--button-border-radius($buffer--border-radius-full);
+  @include buffer--button-height($buffer--height-12);
   @include buffer--user-select(none);
+  -webkit-box-align: $buffer--align-items-center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  align-items: $buffer--align-items-center;
   background-color: $buffer--background-color-white;
   border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
   color: $buffer--text-color-black;
-  display: $buffer--display-inline-block;
+  display: $buffer--display-flex;
+  flex-direction: $buffer--display-flex-direction-row;
   font-family: $buffer--font-family-semi-bold;
   font-size: $buffer--font-size-sm;
-  line-height: $buffer--line-height-leading-none;
+  line-height: $buffer--line-height-leading-normal;
   outline: $buffer--outline-none;
   text-align: $buffer--text-align-center;
   vertical-align: $buffer--vertical-align-middle;
+  width: $buffer--width-12;
+
+  &:before {
+    font-family: 'Material Icons';
+    font-size: $buffer--font-size-2xl;
+    height: $buffer--height-full;
+    vertical-align: $buffer--vertical-align-middle;
+    width: $buffer--width-full;
+  }
 
   &:hover {
     background-color: $buffer--background-color-primary-900;
@@ -641,11 +654,24 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
     background-color: $buffer--background-color-primary-900;
     color: $buffer--text-color-white;
   }
-}
 
-.fc-button:disabled {
-  background-color: $buffer--background-color-gray;
-  color: $buffer--text-color-black;
+  &:disabled {
+    background-color: $buffer--background-color-gray;
+    color: $buffer--text-color-black;
+  }
+
+  &:first-child {
+    &:before {
+      content: 'settings';
+    }
+  }
+
+  &:nth-child(2n) {
+    &:before {
+      content: 'add';
+      font-weight: $buffer--font-weight-bold;
+    }
+  }
 }
 
 /* icons within buttons */
@@ -721,8 +747,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-toolbar.fc-header-toolbar {
   background-color: $buffer--background-color-white;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
-  border-right: $buffer--border-right-width $buffer--border-style-solid $buffer--border-color-gray;
-  padding: 1rem 1.25rem;
+  height: $buffer--height-20;
+  padding: 0 1.25rem;
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
 }
@@ -731,14 +757,25 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   margin-top: 1.5rem;
 }
 
+.fc-header-toolbar {
+  .fc-right {
+    display: $buffer--display-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: $buffer--display-flex-direction-row;
+  }
+}
+
 /* inner content */
 .fc-toolbar > * > :not(:first-child) {
-  margin-left: 0.75rem;
+  margin-left: 1rem;
 }
 
 .fc-toolbar h2 {
   color: $buffer--text-color-black;
-  font-size: $buffer--font-size-base;
+  font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-lg;
+  font-weight: $buffer--font-weight-normal !important;
   margin: 0;
 }
 
@@ -971,7 +1008,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-dayGrid-view .fc-body .fc-row {
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-gray;
   height: $buffer--height-auto !important;
-  min-height: 7rem;
+  min-height: 9rem;
   /* ensure that all rows are at least this tall */
 }
 
@@ -1071,7 +1108,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc .fc-axis {
   /* .fc to overcome default cell styles */
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-semi-bold;
   font-size: $buffer--font-size-xs;
   padding: 0.5rem 1rem;
   vertical-align: $buffer--vertical-align-middle;
@@ -1332,46 +1369,6 @@ be a descendant of the grid when it is being dragged.
   left: 6.55rem;
 }
 
-@-webkit-keyframes pulse-green {
-  0% {
-    -webkit-transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0.7);
-    transform: scale(0.95);
-  }
-
-  70% {
-    -webkit-transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(0, 128, 115, 0);
-    transform: scale(1);
-  }
-
-  100% {
-    -webkit-transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0);
-    transform: scale(0.95);
-  }
-}
-
-@keyframes pulse-green {
-  0% {
-    -webkit-transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0.7);
-    transform: scale(0.95);
-  }
-
-  70% {
-    -webkit-transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(0, 128, 115, 0);
-    transform: scale(1);
-  }
-
-  100% {
-    -webkit-transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(0, 128, 115, 0);
-    transform: scale(0.95);
-  }
-}
-
 .fc-rtl .fc-time-grid .fc-now-indicator-arrow {
   /* triangle pointing left... */
   border-bottom-color: $buffer--border-transparent;
@@ -1408,4 +1405,9 @@ be a descendant of the grid when it is being dragged.
     content: 'add';
     font-family: 'Material Icons';
   }
+}
+
+.fc-widget-header {
+  margin-right: 0 !important;
+  border-right-width: 0 !important;
 }

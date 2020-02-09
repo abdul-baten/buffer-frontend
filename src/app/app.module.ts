@@ -8,13 +8,14 @@ import { environment } from '../environments/environment';
 import { GraphQLModule } from './graphql.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
+import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { reducers } from './reducers';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
@@ -22,6 +23,19 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
   showDelay: 500,
   touchendHideDelay: 500,
 };
+
+/** virtual scroller override settings */
+export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
+  return {
+    scrollThrottlingTime: 0,
+    scrollDebounceTime: 500,
+    scrollAnimationTime: 750,
+    checkResizeInterval: 1000,
+    resizeBypassRefreshThreshold: 5,
+    modifyOverflowStyleOfParentScroll: true,
+    stripedTable: false,
+  };
+}
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -34,7 +48,6 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
     EffectsModule.forRoot([AppEffects]),
     GraphQLModule,
     HttpClientModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -43,6 +56,7 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
         strictActionSerializability: true,
       },
     }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
       routerState: RouterState.Minimal,
@@ -56,6 +70,7 @@ export const customTooltipConfig: MatTooltipDefaultOptions = {
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
     },
+    { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
   ],
 })
 export class AppModule {}

@@ -18,6 +18,7 @@ import { SigninFacade } from '@app/signin/facade/signin.facade';
 // Components
 import { SigninComponent } from '@app/signin/container/signin.component';
 import { SigninFormComponent } from '@app/signin/components/signin-form/signin-form.component';
+import { LoaderModule } from '@shared/module/loader/loader.module';
 
 @NgModule({
   declarations: [SigninComponent, SigninFormComponent],
@@ -26,6 +27,7 @@ import { SigninFormComponent } from '@app/signin/components/signin-form/signin-f
     SigninRoutingModule,
     ReactiveFormsModule,
 
+    LoaderModule,
     MainLogoModule,
 
     MatInputModule,
