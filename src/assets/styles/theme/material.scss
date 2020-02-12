@@ -510,3 +510,12 @@ tr.mat-row {
     }
   }
 }
+
+/*
+    * MATERIAL GRID LIST
+*/
+mat-grid-tile {
+  &:hover {
+    box-shadow: $buffer--box-shadow-lg !important;
+  }
+}

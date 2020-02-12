@@ -106,6 +106,7 @@ $buffer--height-auto: auto;
 $buffer--height-px: 1px;
 $buffer--height-percent-50: 50%;
 $buffer--height-percent-70: 70%;
+$buffer--height-percent-95: calc(100% - 10rem);
 $buffer--height-full: 100%;
 $buffer--height-screen: 100vh;
 $buffer--height-screen-without-header: calc(100vh - 10rem);

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BucketHeaderComponent } from './bucket-header.component';
+import { FacebookRoutesComponent } from './facebook-routes.component';
 
-describe('BucketHeaderComponent', () => {
-  let component: BucketHeaderComponent;
-  let fixture: ComponentFixture<BucketHeaderComponent>;
+describe('FacebookRoutesComponent', () => {
+  let component: FacebookRoutesComponent;
+  let fixture: ComponentFixture<FacebookRoutesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BucketHeaderComponent],
+      declarations: [FacebookRoutesComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BucketHeaderComponent);
+    fixture = TestBed.createComponent(FacebookRoutesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

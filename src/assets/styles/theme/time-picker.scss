@@ -143,14 +143,13 @@
   color: inherit;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-flex;
-
   font-size: $buffer--font-size-xs;
   height: 100%;
   justify-content: $buffer--text-align-center;
-  left: 5%;
+  left: 3%;
   line-height: $buffer--line-height-leading-none;
   position: $buffer--position-absolute;
-  top: 5%;
+  top: 2%;
   width: 100%;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-out {
@@ -192,7 +191,7 @@
   background-color: #f2f2f2;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-in-range {
-  background: rgba(63, 81, 181, 0.2);
+  background: $buffer--background-color-primary-100;
 }
 .owl-dt-calendar-table .owl-dt-calendar-cell-in-range.owl-dt-calendar-cell-range-from {
   border-bottom-left-radius: $buffer--border-radius-full;
@@ -419,13 +418,12 @@
 .owl-dt-container-info .owl-dt-container-range .owl-dt-container-range-content {
   -webkit-box-pack: justify;
   display: $buffer--display-flex;
-
-  font-size: 0.8em;
+  font-size: $buffer--font-size-sm;
   justify-content: $buffer--flex-justify-content-space-between;
-  padding: 0.5em 0;
+  padding: 1rem;
 }
 .owl-dt-container-info .owl-dt-container-range:last-child {
-  border-top: 1px solid #f2f2f2;
+  border-top: $buffer--border-top-width $buffer--border-style-solid $buffer--border-color-gray;
 }
 .owl-dt-container-info .owl-dt-container-info-active {
   color: $buffer--background-color-primary-500;

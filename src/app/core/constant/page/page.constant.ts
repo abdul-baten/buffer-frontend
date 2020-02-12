@@ -57,6 +57,22 @@ const PAGES: PageInterface = {
     PAGE_ROUTE: 'analyze',
     PAGE_TITLE: 'Analyze - Buffer',
   },
+  ANALYZE_FACEBOOK_PAGE: {
+    PAGE_ROUTE: 'facebook',
+    PAGE_TITLE: 'Analyze | Facebook - Buffer',
+  },
+  ANALYZE_FACEBOOK_OVERVIEW_PAGE: {
+    PAGE_ROUTE: 'overview',
+    PAGE_TITLE: 'Analyze | Facebook - Buffer',
+  },
+  ANALYZE_FACEBOOK_POSTS_PAGE: {
+    PAGE_ROUTE: 'posts',
+    PAGE_TITLE: 'Analyze | Facebook - Buffer',
+  },
+  ANALYZE_FACEBOOK_AUDIENCE_PAGE: {
+    PAGE_ROUTE: 'audience',
+    PAGE_TITLE: 'Analyze | Facebook - Buffer',
+  },
 };
 
 export { PAGES };

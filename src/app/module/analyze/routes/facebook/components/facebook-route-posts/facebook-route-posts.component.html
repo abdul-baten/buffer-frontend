@@ -1,0 +1,155 @@
+<section id="buffer--dashboard-content-view-sec" class="buffer--dashboard-content-view-sec">
+
+  <div class="clearfix">
+    <section class="buffer--height-screen-without-header buffer--overflow-y-auto">
+      <div class="clearfix buffer--padding-5">
+        <div class="clearfix">
+          <mat-grid-list cols="3" gutterSize="1.25rem" rowHeight="180">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Posts"
+                cardIcon="description" cardCounter="0" cardInfoTitle="Total Posts" cardTooltipText="Help"
+                cardIconBGColor="primary-100" cardIconColor="primary-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Reach"
+                cardIcon="visibility" cardCounter="0" cardInfoTitle="Total Reach" cardTooltipText="Help"
+                cardIconBGColor="accent-100" cardIconColor="accent-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Reactions"
+                cardIcon="thumbs_up_down" cardCounter="0" cardInfoTitle="Total Reactions" cardTooltipText="Help"
+                cardIconBGColor="warn-100" cardIconColor="warn-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+
+        </div>
+
+        <div class="clearfix buffer--height-5"></div>
+
+        <div class="clearfix">
+          <mat-grid-list cols="3" gutterSize="1.25rem" rowHeight="180">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Comments"
+                cardIcon="textsms" cardCounter="0" cardInfoTitle="Total Comments" cardTooltipText="Help"
+                cardIconBGColor="warn-100" cardIconColor="warn-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Shares" cardIcon="share"
+                cardCounter="0" cardInfoTitle="Total Shares" cardTooltipText="Help" cardIconBGColor="primary-100"
+                cardIconColor="primary-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-card class="buffer--width-full buffer--height-full" cardTitle="Engagement Rate"
+                cardIcon="sentiment_satisfied" cardCounter="0" cardInfoTitle="Total Engagement Rate"
+                cardTooltipText="Help" cardIconBGColor="accent-100" cardIconColor="accent-300">
+              </buffer--analyze-card>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+
+        <div class="clearfix buffer--height-5"></div>
+
+        <div class="clearfix">
+          <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Type Distribution"
+                chartType="pie" chartLineColor="#537f72" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="{point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Posts Density"
+                chartType="column" chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="Total fans gained: {point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+
+        <div class="clearfix buffer--height-5"></div>
+
+        <div class="clearfix">
+          <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Engagements"
+                chartType="line" chartLineColor="#537f72" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="{point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Impressions"
+                chartType="line" chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="Total fans gained: {point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+
+        <div class="clearfix buffer--height-5"></div>
+
+        <div class="clearfix">
+          <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Reach"
+                chartType="column" chartLineColor="#537f72" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="{point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Link Clicks"
+                chartType="line" chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="Total fans gained: {point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+
+        <div class="clearfix buffer--height-5"></div>
+
+        <div class="clearfix">
+          <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Shares"
+                chartType="line" chartLineColor="#537f72" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="{point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+
+            <mat-grid-tile
+              class="buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--border-radius-lg buffer--box-shadow-sm">
+              <buffer--analyze-chart class="buffer--width-full buffer--height-full" chartCaption="Comments"
+                chartType="line" chartLineColor="#616163" chartTooltipHeaderFormat="{point.x:.1f}"
+                chartTooltipPointFormat="Total fans gained: {point.y}">
+              </buffer--analyze-chart>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

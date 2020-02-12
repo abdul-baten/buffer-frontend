@@ -71,12 +71,31 @@ try {
 app.enable('etag');
 
 // Middleware
-app.use(shrinkRay({ useZopfliForGzip: false, zlib: { level: 9 }, brotli: { quality: 11 } }));
 app.use(compression());
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 app.set('view cache', true);
+
+app.get('*.js', (req, res, next) => {
+  if (req.header('Accept-Encoding').includes('br')) {
+    req.url = req.url + '.br';
+    res.set('Content-Encoding', 'br');
+    res.set('Content-Type', 'application/javascript; charset=UTF-8');
+  }
+  next();
+});
+
+app.get('*.css', (req, res, next) => {
+  if (req.header('Accept-Encoding').includes('br')) {
+    req.url = req.url + '.br';
+    res.set('Content-Encoding', 'br');
+    res.set('Content-Type', 'text/css; charset=UTF-8');
+  }
+  next();
+});
+
 app.use('/', express.static(DIST_FOLDER, { index: false, maxAge: 30 * 86400000 }));
+app.use(shrinkRay({ useZopfliForGzip: true, zlib: { level: 9 }, brotli: { quality: 11 } }));
 
 // All regular routes use the Universal engine
 app.get('*', (req: express.Request, res: express.Response) => {

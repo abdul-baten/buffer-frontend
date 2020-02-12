@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardSocialProfileOverview } from './dashboard-social-profile-overview.component';
+import { DashboardSocialProfileOverviewComponent } from './dashboard-social-profile-overview.component';
 
-describe('DashboardSocialProfileOverview', () => {
-  let component: DashboardSocialProfileOverview;
-  let fixture: ComponentFixture<DashboardSocialProfileOverview>;
+describe('DashboardSocialProfileOverviewComponent', () => {
+  let component: DashboardSocialProfileOverviewComponent;
+  let fixture: ComponentFixture<DashboardSocialProfileOverviewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardSocialProfileOverview],
+      declarations: [DashboardSocialProfileOverviewComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardSocialProfileOverview);
+    fixture = TestBed.createComponent(DashboardSocialProfileOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

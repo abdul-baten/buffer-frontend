@@ -19,7 +19,7 @@ import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
 
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
-  hideDelay: 100,
+  hideDelay: 500,
   showDelay: 500,
   touchendHideDelay: 500,
 };
