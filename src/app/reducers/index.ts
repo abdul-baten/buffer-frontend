@@ -3,6 +3,7 @@ import { memberFeatureKey, memberReducer } from './member.reducer';
 import { routerReducer } from '@ngrx/router-store';
 import { userFeatureKey, userReducer } from './user.reducer';
 
+// tslint:disable-next-line
 interface AppState {}
 
 const reducers: ActionReducerMap<any> = {

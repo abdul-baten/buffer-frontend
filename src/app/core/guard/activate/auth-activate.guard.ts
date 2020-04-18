@@ -16,7 +16,9 @@ export class AuthActivateGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.httpService.post<any>(API_URL + 'auth/verify', {}).pipe(
       tap((response: any) => {
-        if (!response.verified) this.router.navigate(['/enter']);
+        if (!response.verified) {
+          this.router.navigate(['/enter']);
+        }
       }),
       map((response: any) => response.verified),
     );
