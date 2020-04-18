@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -25,6 +26,14 @@ import { SocialProfileAddModalHeaderComponent } from './components/social-profil
   ],
   entryComponents: [SocialProfileAddModalComponent],
   exports: [SocialProfileAddModalComponent],
-  imports: [CommonModule, LoaderModule, MatButtonModule, MatDividerModule, MatIconModule, MatTooltipModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    LoaderModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatIconModule,
+    MatTooltipModule,
+  ],
 })
 export class SocialProfileAddModalModule {}

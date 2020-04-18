@@ -64,7 +64,7 @@ export class AnalyzeChartComponent implements AfterViewInit, OnChanges {
       margin: 40,
       className: 'buffer--cursor-pointer',
       style: {
-        color: '#616163',
+        color: '#616061',
         fontSize: '1rem',
       },
     },

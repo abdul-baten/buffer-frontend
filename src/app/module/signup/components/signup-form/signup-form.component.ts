@@ -1,9 +1,14 @@
+import { AppState } from 'src/app/reducers';
 import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
+import { setUserInfo } from 'src/app/actions';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
+import { Store } from '@ngrx/store';
+import { tap } from 'rxjs/operators';
+import { User } from '@core/model/user/user.model';
 
 @Component({
   selector: 'buffer--signup-form',
@@ -18,44 +23,39 @@ export class SignupFormComponent {
 
   errorStateMatcher = new CustomFormErrorStateMatcher();
 
-  constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder) {
+  constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder, private store: Store<AppState>) {
     this.signupForm = this.buildSignupForm();
   }
 
   private buildSignupForm(): FormGroup {
-    return this.formBuilder.group(
-      {
-        firstName: new FormControl('', Validators.compose([Validators.required, CommonValidator.alphaNumeric])),
-        lastName: new FormControl('', Validators.compose([Validators.required, CommonValidator.alphaNumeric])),
-        emailAddress: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-        password: new FormControl(
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(8),
-            PasswordValidator.oneNumber,
-            PasswordValidator.oneUpperCase,
-            PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars,
-          ]),
-        ),
-        confirmPassword: new FormControl(
-          '',
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(8),
-            PasswordValidator.oneNumber,
-            PasswordValidator.oneUpperCase,
-            PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars,
-          ]),
-        ),
-      },
-      { validator: PasswordValidator.passwordMismatch },
-    );
+    return this.formBuilder.group({
+      fullName: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(50), CommonValidator.alphaNumeric],
+      ],
+      email: ['', [Validators.required, CommonValidator.emailAddress]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          PasswordValidator.oneNumber,
+          PasswordValidator.oneUpperCase,
+          PasswordValidator.oneLowerCase,
+          PasswordValidator.allowedPasswordSpecialChars,
+        ],
+      ],
+    });
   }
 
-  handleAuthNavigateBtn(authURL: string): void {
-    this.signupFacade.navigateToPage(authURL);
+  handleSignup(): void {
+    if (this.signupForm.valid) {
+      this.signupFacade
+        .signupUser(this.signupForm.value)
+        .pipe(tap((user: User) => this.store.dispatch(setUserInfo({ user }))))
+        .subscribe(() => {
+          this.signupFacade.navigateToPage('/join/onboard');
+        });
+    }
   }
 }

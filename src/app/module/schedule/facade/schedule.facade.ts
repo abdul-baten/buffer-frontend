@@ -21,7 +21,7 @@ import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/con
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { NotificationService } from '@core/service/notification/notification.service';
 import { Store } from '@ngrx/store';
 import {
   setCalendarFirstDay,
@@ -39,7 +39,7 @@ export class ScheduleFacade {
   constructor(
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
-    private snackbarService: SnackbarService,
+    private snackbarService: NotificationService,
     private store: Store<CalViewState>,
     private titleService: DocumentTitleService,
     private responsiveLayoutService: ResponsiveLayoutService,

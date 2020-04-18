@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  graphQLURL: 'https://o5x5jzoo7z.sse.codesandbox.io/graphql',
+  apiURL: 'https://localhost:3000/api/v1.0.0/',
   production: false,
   version: require('../../package.json').version,
 };

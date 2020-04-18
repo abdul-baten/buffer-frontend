@@ -1,39 +1,32 @@
-// Core Modules
-import { NgModule } from '@angular/core';
+import { AuthService } from '@core/service/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-
-// Application Specific Modules
-import { SigninRoutingModule } from '@app/signin/signin-routing.module';
+import { HttpService } from '@core/service/http/http.service';
+import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MainLogoModule } from '@shared/module/logo/main-logo/main-logo.module';
-
-// Third Party Modules
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-
-// Facade
-import { SigninFacade } from '@app/signin/facade/signin.facade';
-
-// Components
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { SigninComponent } from '@app/signin/container/signin.component';
+import { SigninFacade } from '@app/signin/facade/signin.facade';
 import { SigninFormComponent } from '@app/signin/components/signin-form/signin-form.component';
-import { LoaderModule } from '@shared/module/loader/loader.module';
+import { SigninRoutingModule } from '@app/signin/signin-routing.module';
 
 @NgModule({
   declarations: [SigninComponent, SigninFormComponent],
   imports: [
     CommonModule,
-    SigninRoutingModule,
-    ReactiveFormsModule,
-
     LoaderModule,
     MainLogoModule,
-
-    MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    RouterModule,
+    SigninRoutingModule,
   ],
-  providers: [SigninFacade],
+  providers: [SigninFacade, AuthService, HttpService],
 })
 export class SigninModule {}

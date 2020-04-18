@@ -1,3 +1,4 @@
+import { AuthActivateGuard } from '@core/guard/activate/auth-activate.guard';
 import { NgModule } from '@angular/core';
 import { PAGES } from './core/constant/page/page.constant';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,34 +20,40 @@ const routes: Routes = [
     loadChildren: () => import('./module/signup/signup.module').then(m => m.SignupModule),
   },
   {
-    canActivate: [],
+    canActivate: [AuthActivateGuard],
     path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
     data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
-    canActivate: [],
+    canActivate: [AuthActivateGuard],
     path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SCHEDULE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),
   },
   {
-    canActivate: [],
+    canActivate: [AuthActivateGuard],
     path: PAGES.ACCOUNT_PAGE.PAGE_ROUTE,
     data: { title: PAGES.ACCOUNT_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/account/account.module').then(m => m.AccountModule),
   },
   {
-    canActivate: [],
+    canActivate: [AuthActivateGuard],
     path: PAGES.BUCKET_PAGE.PAGE_ROUTE,
     data: { title: PAGES.BUCKET_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/bucket/bucket.module').then(m => m.BucketModule),
   },
   {
-    canActivate: [],
+    canActivate: [AuthActivateGuard],
     path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.ANALYZE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/analyze/analyze.module').then(m => m.AnalyzeModule),
+  },
+  {
+    canActivate: [AuthActivateGuard],
+    path: PAGES.OAUTH_PAGE.PAGE_ROUTE,
+    data: { title: PAGES.OAUTH_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/oauth/oauth.module').then(m => m.OauthModule),
   },
 ];
 

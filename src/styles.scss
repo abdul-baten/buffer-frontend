@@ -56,21 +56,21 @@ body {
 }
 
 a.buffer--default-link {
+  -webkit-text-decoration: $buffer--text-decoration-none;
   color: $buffer--text-color-primary-500;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-inline-block;
   padding: 5px 0;
   position: $buffer--position-relative;
-  -webkit-text-decoration: $buffer--text-decoration-none;
   text-decoration: $buffer--text-decoration-none;
   width: auto;
 
   &:before {
+    -webkit-transition: width 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
     border-bottom: 2px solid $buffer--text-color-primary-500;
     bottom: -2px;
     content: '';
     position: absolute;
-    -webkit-transition: width 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: width 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
     width: 0;
   }
@@ -219,4 +219,33 @@ p {
 .buffer--social-account-logo-pinterest {
   background: #bd081c url('/assets/images/icon/pinterest.svg');
   background-size: cover;
+}
+
+/*
+    * NOTIFICATION
+*/
+.buffer--simple-simple-notification {
+  border-radius: $buffer--border-radius-xl !important;
+  color: $buffer--text-color-white !important;
+  font-size: $buffer--font-size-base !important;
+  min-width: $buffer--width-56 !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.buffer--advance-simple-notification {
+  border-radius: $buffer--border-radius-lg !important;
+  color: $buffer--text-color-white !important;
+  font-size: $buffer--font-size-sm !important;
+  min-width: $buffer--width-64 !important;
+  padding: 1rem 1.5rem !important;
+
+  .mat-icon-button {
+    width: $buffer--width-8;
+    height: $buffer--height-8;
+    background-color: $buffer--background-color-dark-gray !important;
+
+    .mat-icon {
+      color: $buffer--text-color-white;
+    }
+  }
 }

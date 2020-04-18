@@ -1,34 +1,32 @@
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { REG_EX_PATTERNS } from '@core/util/regex/regex.util';
 
 export class PasswordValidator {
-  static passwordMismatch(formGroup: FormGroup): { [s: string]: boolean } {
-    const { password, confirmPassword } = formGroup.value;
-    return password !== confirmPassword ? { passwordMismatch: true } : null;
+  static oneUpperCase(control: FormControl): { [key: string]: boolean } {
+    const regex = REG_EX_PATTERNS.ONE_UPPER_CASE;
+    return !regex.test(control.value) ? { oneUpperCase: true } : null;
   }
 
-  static oneUpperCase(c: FormControl): { [s: string]: boolean } {
-    const r = /[A-Z]/;
-    return !r.test(c.value) ? { oneUpperCase: true } : null;
+  static oneLowerCase(control: FormControl): { [key: string]: boolean } {
+    const regex = REG_EX_PATTERNS.ONE_LOWER_CASE;
+    return !regex.test(control.value) ? { oneLowerCase: true } : null;
   }
 
-  static oneLowerCase(c: FormControl): { [s: string]: boolean } {
-    const r = /[a-z]/;
-    return !r.test(c.value) ? { oneLowerCase: true } : null;
+  static oneNumber(control: FormControl): { [key: string]: boolean } {
+    const regex = REG_EX_PATTERNS.ONE_NUMBER;
+    return !regex.test(control.value) ? { oneNumber: true } : null;
   }
 
-  static oneNumber(c: FormControl): { [s: string]: boolean } {
-    const r = /[0-9]/;
-    return !r.test(c.value) ? { oneNumber: true } : null;
+  static oneSpecialChar(control: FormControl): { [key: string]: boolean } {
+    const regex = REG_EX_PATTERNS.ONE_SPECIAL_CHARACTER;
+    return !regex.test(control.value) ? { oneSpecialChar: true } : null;
   }
 
-  static oneSpecialChar(c: FormControl): { [s: string]: boolean } {
-    const r = /^[a-zA-Z0-9_.-]*$/;
-    return !r.test(c.value) ? { oneSpecialChar: true } : null;
-  }
-
-  static allowedPasswordSpecialChars(c: FormControl): { [s: string]: boolean } {
-    const r = /[!@#$%^&*-]/;
-    const allowedChars = /^[a-zA-Z0-9!@#$%^&*\-_.]*$/;
-    return !r.test(c.value) || !c.value.match(allowedChars) ? { allowedPasswordSpecialChars: true } : null;
+  static allowedPasswordSpecialChars(control: FormControl): { [key: string]: boolean } {
+    const regex = REG_EX_PATTERNS.PASSWORD_SPECIAL_CHARACTER;
+    const allowedChars = REG_EX_PATTERNS.PASSWORD;
+    return !regex.test(control.value) || !control.value.match(allowedChars)
+      ? { allowedPasswordSpecialChars: true }
+      : null;
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { DashboardHeaderFacade } from '@shared/module/header/dashboard-header/facade/dashboard-header.facade';
 import { PAGES } from '@core/constant/page/page.constant';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'buffer--dashboard-header-account',
@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard-header-account.component.scss'],
 })
 export class DashboardHeaderAccountComponent {
-  constructor(private router: Router) {}
+  constructor(private dashboardHeaderFacade: DashboardHeaderFacade) {}
 
   handleAccountNavigationClick(): void {
-    this.router.navigateByUrl(PAGES.ACCOUNT_PAGE.PAGE_ROUTE);
+    this.dashboardHeaderFacade.navigateToRoute(PAGES.ACCOUNT_PAGE.PAGE_ROUTE);
+  }
+
+  logoutUser(): void {
+    this.dashboardHeaderFacade.logoutUser();
   }
 }

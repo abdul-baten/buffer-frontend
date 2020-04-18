@@ -1,5 +1,5 @@
 export const environment = {
-  graphQLURL: 'https://o5x5jzoo7z.sse.codesandbox.io/graphql',
+  apiURL: 'https://localhost:3000/api/v1.0.0/',
   production: true,
   version: require('../../package.json').version,
 };

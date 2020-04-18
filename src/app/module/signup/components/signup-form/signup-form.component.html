@@ -1,7 +1,5 @@
 <div class="clearfix">
-  <div
-    class="buffer--background-color-white buffer--border-radius-lg buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--padding-16">
-
+  <div class="buffer--background-color-white buffer--border-radius-lg buffer--padding-10">
 
     <div class="clearfix">
       <buffer--main-logo></buffer--main-logo>
@@ -22,99 +20,77 @@
     <div class="clearfix">
       <form [formGroup]="signupForm" novalidate>
 
-        <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
-          <div class="clearfix buffer--width-percent-48">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input autocomplete="current-password" class="buffer--font-family-semi-bold buffer--cursor-default"
-                formControlName="firstName" matInput placeholder="First name" type="text"
-                [errorStateMatcher]="errorStateMatcher" />
-              <mat-error align="end" *ngIf="signupForm.controls.firstName.invalid">Enter a valid first name.
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="clearfix buffer--width-percent-48">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input autocomplete="current-password" class="buffer--font-family-semi-bold buffer--cursor-default"
-                formControlName="lastName" matInput placeholder='Last name' type="text"
-                [errorStateMatcher]="errorStateMatcher" />
-              <mat-error align="end" *ngIf="signupForm.controls.lastName.invalid">Enter a valid last name.
-              </mat-error>
-            </mat-form-field>
-          </div>
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full" appearance="fill">
+            <input autocomplete="current-password" class="buffer--font-family-semi-bold buffer--cursor-default"
+              formControlName="fullName" matInput placeholder="Full name" type="text"
+              [errorStateMatcher]="errorStateMatcher" />
+            <mat-error align="end" *ngIf="signupForm.controls.fullName.invalid">Please enter a valid name.
+            </mat-error>
+          </mat-form-field>
         </div>
 
         <div class="clearfix">
           <mat-form-field class="buffer--width-full" appearance="fill">
             <input type="text" matInput class="buffer--font-family-semi-bold buffer--cursor-default"
-              formControlName="emailAddress" placeholder="Email address" required
+              formControlName="email" autocomplete="current-password" placeholder="Work email" required
               [errorStateMatcher]="errorStateMatcher" />
-            <mat-error align="end" *ngIf="signupForm.controls.emailAddress.invalid">Enter a valid email address.
+            <mat-error align="end" *ngIf="signupForm.controls.email.invalid">Please enter a valid email.
             </mat-error>
           </mat-form-field>
         </div>
 
-        <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
-          <div class="clearfix buffer--width-percent-48">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input placeholder="Password" [type]="hidePassword ? 'password' : 'text'"
-                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="password" matInput
-                required [errorStateMatcher]="errorStateMatcher" />
-              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
-                <mat-icon class="buffer--text-color-dark-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
-                </mat-icon>
-              </button>
-              <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Enter a valid password.
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="clearfix buffer--width-percent-48">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input [type]="hideConfirmPassword ? 'password' : 'text'" matInput
-                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="confirmPassword"
-                placeholder="Confirm password" required [errorStateMatcher]="errorStateMatcher" />
-              <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">
-                <mat-icon class="buffer--text-color-dark-gray">
-                  {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
-              <mat-error align="end" *ngIf="signupForm.controls.confirmPassword.invalid">Enter a valid password.
-              </mat-error>
-            </mat-form-field>
-          </div>
+        <div class="clearfix">
+          <mat-form-field class="buffer--width-full" appearance="fill">
+            <input placeholder="Password" autocomplete="current-password" [type]="hidePassword ? 'password' : 'text'"
+              class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="password" matInput required
+              [errorStateMatcher]="errorStateMatcher" />
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
+              <mat-icon class="buffer--text-color-dark-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </mat-icon>
+            </button>
+            <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Please enter a strong password.
+            </mat-error>
+          </mat-form-field>
         </div>
 
 
         <div class="clearfix">
-          <button color="primary" mat-flat-button [disabled]="signupForm.invalid"
+          <button color="primary" mat-flat-button [disabled]="signupForm.invalid" (click)="handleSignup()"
             class="buffer--width-full buffer--height-14 buffer--font-family-semi-bold buffer--font-size-base">
             Try free for 14 days
           </button>
         </div>
-
       </form>
     </div>
+
+    <div
+      class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center">
+      <div class="clearfix buffer--text-align-center">
+        <p
+          class="buffer--text-color-dark-gray buffer--font-size-sm buffer--font-family-semi-bold buffer--line-height-leading-none">
+          <span>By continuing, you
+            agree to </span>
+          <span>Buffer's
+            <a href="javascript:void(0)" class="buffer--default-link">Terms of Service</a>, <a href="javascript:void(0)"
+              class="buffer--default-link">Privacy policy</a>.</span>
+        </p>
+      </div>
+    </div>
+
   </div>
 </div>
 
 
 <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
   <div
-    class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-    <div class="clearfix buffer--width-percent-50">
-      <p class="buffer--text-color-dark-gray buffer--font-size-sm buffer--font-family-semi-bold">
-        <span>By continuing, you
-          agree to </span>
-        <span>Buffer's
-          <a href="javascript:void(0)" class="buffer--default-link">Terms of Service</a>, <a href="javascript:void(0)"
-            class="buffer--default-link">Privacy policy</a>.</span>
-      </p>
+    class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center">
+    <div class="clearfix">
+
     </div>
     <div class="clearfix">
-      <button class="buffer--height-11 buffer--font-family-semi-bold buffer--font-size-sm"
-        (click)="handleAuthNavigateBtn('enter')" color="primary" mat-flat-button>
-        Have an account? Login
-      </button>
+      <a routerLink="/enter" class="buffer--font-size-sm buffer--font-family-semi-bold buffer--default-link">Have
+        an account? Login</a>
     </div>
   </div>
 </section>

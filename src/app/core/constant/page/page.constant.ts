@@ -73,6 +73,10 @@ const PAGES: PageInterface = {
     PAGE_ROUTE: 'audience',
     PAGE_TITLE: 'Analyze | Facebook - Buffer',
   },
+  OAUTH_PAGE: {
+    PAGE_ROUTE: 'oauth',
+    PAGE_TITLE: 'OAuth | Facebook - Buffer',
+  },
 };
 
 export { PAGES };

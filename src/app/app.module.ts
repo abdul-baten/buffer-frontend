@@ -5,12 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
-import { GraphQLModule } from './graphql.module';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorInterceptor } from '@core/interceptor/error/error.interceptor';
+import { GlobalErrorHandlerUtil } from '@core/util/error/error-handler.util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
-import { NgModule } from '@angular/core';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NotificationModule } from '@shared/module/notification/notification.module';
+import { NotificationService } from '@core/service/notification/notification.service';
 import { reducers } from './reducers';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -46,8 +50,8 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     BrowserModule.withServerTransition({ appId: 'buffer' }),
     BrowserTransferStateModule,
     EffectsModule.forRoot([AppEffects]),
-    GraphQLModule,
     HttpClientModule,
+    NotificationModule,
     StoreModule.forRoot(reducers, {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -63,6 +67,8 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     }),
   ],
   providers: [
+    NotificationService,
+    { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: { disabled: true } },
     {
@@ -70,7 +76,11 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
     },
-    { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerUtil,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 })
 export class AppModule {}

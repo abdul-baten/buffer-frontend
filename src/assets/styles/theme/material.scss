@@ -334,19 +334,15 @@ mat-button-toggle {
 }
 
 .mat-form-field-wrapper {
-  padding-bottom: 1rem !important;
+  padding-bottom: 0.5rem !important;
 }
 
 .mat-form-field-appearance-fill {
   .mat-form-field-flex {
     @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
-    border: 1px solid #f2f2f2 !important;
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray !important;
     background-color: $buffer--background-color-white !important;
-
-    &:hover {
-      box-shadow: $buffer--box-shadow-outline-gray;
-    }
   }
 
   .mat-form-field-infix {
@@ -355,16 +351,16 @@ mat-button-toggle {
 }
 
 .mat-form-field-appearance-fill {
-  &.mat-focused {
+  &.mat-focused:not(.mat-form-field-invalid) {
     .mat-form-field-flex {
-      box-shadow: $buffer--box-shadow-outline;
+      border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-primary-500 !important;
     }
   }
 }
 
 .mat-form-field-invalid {
   .mat-form-field-flex {
-    box-shadow: 0 0 0 4px $buffer--border-color-warn-200 !important;
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-warn-500 !important;
   }
 }
 
@@ -431,17 +427,6 @@ textarea.mat-input-element {
       }
     }
   }
-}
-
-/*
-    * MATERIAL SNACKBAR
-*/
-.mat-snack-bar-container {
-  border-radius: $buffer--border-radius-xl !important;
-  color: $buffer--text-color-white !important;
-  font-size: $buffer--font-size-base !important;
-  min-width: auto !important;
-  padding: 1.5rem !important;
 }
 
 /*
@@ -518,4 +503,14 @@ mat-grid-tile {
   &:hover {
     box-shadow: $buffer--box-shadow-lg !important;
   }
+}
+
+/*
+    * MATERIAL ERROR
+*/
+.mat-error {
+  font-family: $buffer--font-family-semi-bold;
+  font-size: $buffer--font-size-sm;
+  line-height: $buffer--line-height-leading-normal;
+  margin: 5px 0;
 }

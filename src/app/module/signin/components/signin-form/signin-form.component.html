@@ -1,7 +1,6 @@
 <div class="clearfix">
   <div class="clearfix">
-    <div
-      class="buffer--background-color-white buffer--border-radius-lg buffer--border-width buffer--border-style-solid buffer--border-color-gray buffer--padding-16">
+    <div class="buffer--background-color-white buffer--border-radius-lg buffer--padding-10">
 
       <div class="clearfix">
         <buffer--main-logo></buffer--main-logo>
@@ -23,9 +22,9 @@
           <div class="clearfix">
             <mat-form-field class="buffer--width-full" appearance="fill">
               <input autocomplete="current-password" autocomplete="off"
-                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="emailAddress" matInput
-                placeholder="Email address" required type="text" [errorStateMatcher]="errorStateMatcher" />
-              <mat-error align="end" *ngIf="signinForm.controls.emailAddress.invalid">Enter a valid email address.
+                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="email" matInput
+                placeholder="Work email" required type="text" [errorStateMatcher]="errorStateMatcher" />
+              <mat-error align="end" *ngIf="signinForm.controls.email.invalid">Please enter a valid email.
               </mat-error>
             </mat-form-field>
           </div>
@@ -35,41 +34,48 @@
               <input [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password"
                 class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="password" matInput
                 placeholder="Password" required [errorStateMatcher]="errorStateMatcher" />
-              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
                 <mat-icon class="buffer--text-color-dark-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
                 </mat-icon>
               </button>
-              <mat-error align="end" *ngIf="signinForm.controls.password.invalid">Enter a valid password.
+              <mat-error align="end" *ngIf="signinForm.controls.password.invalid">
+                Please enter a strong password.
               </mat-error>
             </mat-form-field>
           </div>
 
           <div class="clearfix">
-            <button color="primary" mat-flat-button [disabled]="signinForm.invalid" (click)="handleSigninFormSubmit()"
+            <button color="primary" mat-flat-button [disabled]="signinForm.invalid" (click)="login()"
               class="buffer--width-full buffer--height-14 buffer--font-family-semi-bold buffer--font-size-base">
               Sign in
             </button>
           </div>
-
-
         </form>
+      </div>
+
+      <div
+        class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
+        <div class="clearfix buffer--text-align-center">
+          <p
+            class="buffer--text-color-dark-gray buffer--font-size-sm buffer--font-family-semi-bold buffer--line-height-leading-none">
+            <span>Don't
+              have
+              an account? </span>
+            <span>
+              <a routerLink="/join" class="buffer--default-link">Sign up now for a 14-day free trial</a></span>
+          </p>
+        </div>
       </div>
     </div>
   </div>
 
   <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
     <div
-      class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
-      <div class="clearfix">
-        <button class="buffer--height-11 buffer--font-family-semi-bold buffer--font-size-sm" mat-button>
-          Forgot password?
-        </button>
-      </div>
-      <div class="clearfix">
-        <button class="buffer--height-11 buffer--font-family-semi-bold buffer--font-size-sm"
-          (click)="handleAuthNavigateBtn('join')" color="primary" mat-flat-button>
-          Create account
-        </button>
+      class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
+      <div class="clearfix buffer--text-align-center">
+        <a routerLink="/forgot" class="buffer--font-size-sm buffer--font-family-semi-bold buffer--default-link">Forgot
+          your
+          password?</a>
       </div>
     </div>
   </section>

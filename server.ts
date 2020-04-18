@@ -7,13 +7,14 @@ import * as domino from 'domino';
 import { readFileSync } from 'fs';
 import * as express from 'express';
 import * as compression from 'compression';
+import * as cookieParser from 'cookie-parser';
 
 require('raf/polyfill');
 
 import { enableProdMode } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { REQUEST, RESPONSE } from '@nguniversal/express-engine/tokens';
 
 const privateKey = readFileSync('cert/cert.key', 'utf8');
 const certificate = readFileSync('cert/cert.crt', 'utf8');
@@ -21,6 +22,9 @@ const credentials = { key: privateKey, cert: certificate };
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main');
+
+// const xhr2 = require('xhr2');
+// xhr2.prototype._restrictedHeaders.cookie = false;
 
 const PORT = process.env.PORT || 5000;
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
@@ -59,18 +63,23 @@ try {
   app.engine('html', (_, options: any, callback) => {
     const engine = ngExpressEngine({
       bootstrap: AppServerModuleNgFactory,
-      providers: [provideModuleMap(LAZY_MODULE_MAP), { provide: 'REQUEST', useFactory: () => options.req, deps: [] }],
+      providers: [
+        provideModuleMap(LAZY_MODULE_MAP),
+        { provide: 'REQUEST', useFactory: () => options.req, deps: [] },
+        { provide: 'RESPONSE', useFactory: () => options.res, deps: [] },
+      ],
     });
     engine(_, options, callback);
   });
 } catch (e) {
-  console.log('error', 'there is some issue defining app engine ' + e);
+  console.log('error', 'there are issues defining app engine ' + e);
 }
 
 // configs
 app.enable('etag');
 
 // Middleware
+app.use(cookieParser());
 app.use(compression());
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
@@ -99,12 +108,23 @@ app.use(shrinkRay({ useZopfliForGzip: true, zlib: { level: 9 }, brotli: { qualit
 
 // All regular routes use the Universal engine
 app.get('*', (req: express.Request, res: express.Response) => {
-  res.render('index', {
-    preboot: true,
-    req: req,
-    res: res,
-    providers: [{ provide: REQUEST, useValue: req }],
-  });
+  res.render(
+    'index',
+    {
+      preboot: true,
+      req: req,
+      res: res,
+      providers: [
+        { provide: REQUEST, useValue: req },
+        { provide: RESPONSE, useValue: res },
+      ],
+    },
+    (err, html) => {
+      console.error(err);
+      if (!!err) throw err;
+      res.send(html);
+    },
+  );
 });
 
 httpsServer.listen(PORT, () => {

@@ -1,8 +1,10 @@
+import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { SigninFacade } from '@app/signin/facade/signin.facade';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer--signin-form',
@@ -10,10 +12,9 @@ import { SigninFacade } from '@app/signin/facade/signin.facade';
   styleUrls: ['./signin-form.component.scss'],
 })
 export class SigninFormComponent {
+  hidePassword = true;
   loading = false;
   signinForm: FormGroup;
-
-  hidePassword = true;
 
   errorStateMatcher = new CustomFormErrorStateMatcher();
 
@@ -23,23 +24,28 @@ export class SigninFormComponent {
 
   private buildSigninForm(): FormGroup {
     return this.formBuilder.group({
-      emailAddress: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      password: new FormControl(
+      email: ['', [Validators.required, CommonValidator.emailAddress]],
+      password: [
         '',
-        Validators.compose([
+        [
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(6),
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
           PasswordValidator.allowedPasswordSpecialChars,
-        ]),
-      ),
+        ],
+      ],
     });
   }
 
-  handleSigninFormSubmit(): void {
+  login(): void {
     this.loading = true;
+    const { email, password } = this.signinForm.value;
+    this.signinFacade
+      .login(email, password)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe(() => this.signinFacade.navigateToPage('/dashboard'));
   }
 
   handleAuthNavigateBtn(authURL: string): void {

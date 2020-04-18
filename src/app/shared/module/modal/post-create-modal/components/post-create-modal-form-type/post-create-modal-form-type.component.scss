@@ -15,13 +15,13 @@
       box-shadow: 0 2px 4px rgba(1, 14, 40, 0.05);
 
       &:hover {
-        box-shadow: 0 0 0 4px rgba(110, 109, 109, 0.1);
+        box-shadow: 0 0 0 2px rgba(110, 109, 109, 0.1);
       }
     }
 
     .mat-radio-checked {
       &:not(:active) {
-        box-shadow: 0 0 0 4px rgba(29, 202, 233, 1);
+        box-shadow: 0 0 0 2px rgba(29, 202, 233, 1);
       }
     }
 

@@ -1,14 +1,23 @@
-// Core Modules
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-// Components
+import { OnboardComponent } from '@app/signup/components/onboard/onboard.component';
+import { RouterModule, Routes } from '@angular/router';
 import { SignupComponent } from '@app/signup/container/signup.component';
+import { SignupFormComponent } from '@app/signup/components/signup-form/signup-form.component';
 
 const routes: Routes = [
   {
     path: '',
     component: SignupComponent,
+    children: [
+      {
+        path: '',
+        component: SignupFormComponent,
+      },
+      {
+        path: 'onboard',
+        component: OnboardComponent,
+      },
+    ],
   },
 ];
 

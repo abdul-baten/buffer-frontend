@@ -38,7 +38,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { ScheduleHeaderComponent } from '@app/schedule/components/schedule-header/schedule-header.component';
 import { ScheduleRoutingModule } from '@app/schedule/schedule-routing.module';
 import { ScheduleService } from '@core/service/schedule/schedule.service';
-import { SnackbarService } from '@core/service/snackbar/snackbar.service';
+import { NotificationService } from '@core/service/notification/notification.service';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
 import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
@@ -97,7 +97,7 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
       preset: scrollPreset,
     }),
   ],
-  providers: [DatePipe, KeyboardEventService, ScheduleFacade, ScheduleService, SnackbarService],
+  providers: [DatePipe, KeyboardEventService, ScheduleFacade, ScheduleService, NotificationService],
   entryComponents: [ScheduleCalendarViewPostComponent, ScheduleCalendarViewHeaderButtonsComponent],
 })
 export class ScheduleModule {}

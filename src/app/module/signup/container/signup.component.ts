@@ -1,8 +1,5 @@
-// Core Modules
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-// Facade
+import { Component, OnInit } from '@angular/core';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 
 @Component({

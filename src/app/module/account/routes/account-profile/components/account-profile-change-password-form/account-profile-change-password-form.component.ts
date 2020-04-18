@@ -1,6 +1,7 @@
+import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 
 @Component({
@@ -48,7 +49,7 @@ export class AccountProfileChangePasswordFormComponent {
           ]),
         ],
       },
-      { validator: PasswordValidator.passwordMismatch },
+      { validator: CommonValidator.compareTwoFields('profileNewPassword', 'profileNewConfirmPassword') },
     );
   }
 }
