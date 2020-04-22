@@ -1,0 +1,89 @@
+<div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-start">
+  <section>
+    <div class="dashboard-header-sec">
+      <buffer--connection-header headerTitle="Add a Twitter Profile"></buffer--connection-header>
+    </div>
+  </section>
+
+  <section>
+    <mat-sidenav-container>
+      <mat-sidenav-content class="buffer--background-color-white buffer--connection-route-sec buffer--overflow-hidden">
+        <div class="clearfix buffer--width-full buffer--height-full">
+          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--height-full buffer--overflow-auto">
+            <div class="clearfix buffer--width-full">
+              <div
+                class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+                <div class="clearfix buffer--height-full buffer--width-percent-50">
+                  <div
+                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
+                    <div
+                      class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
+                      <img src="/assets/images/icon/facebook.svg" class="buffer--width-full buffer--height-full" />
+                    </div>
+                    <div class="clearfix buffer--margin-x-5">
+                      <p
+                        class="buffer--text-color-black buffer--font-size-base buffer--font-family-semi-bold buffer--line-height-leading-relaxed">
+                        Test Page for Iconosquare</p>
+                      <p class="buffer--text-color-gray buffer--font-family-semi-bold buffer--font-size-sm">
+                        Advertising Agency</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clearfix">
+                  <button
+                    class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-xs buffer--text-transform-uppercase"
+                    mat-stroked-button color="primary">
+                    Add to plan
+                  </button>
+                </div>
+              </div>
+
+              <div
+                class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+                <div class="clearfix buffer--height-full buffer--width-percent-50">
+                  <div
+                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
+                    <div
+                      class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
+                      <img src="/assets/images/icon/facebook.svg" class="buffer--width-full buffer--height-full" />
+                    </div>
+                    <div class="clearfix buffer--margin-x-5">
+                      <p
+                        class="buffer--text-color-black buffer--font-size-base buffer--font-family-semi-bold buffer--line-height-leading-relaxed">
+                        Test Page for Iconosquare</p>
+                      <p class="buffer--text-color-gray buffer--font-family-semi-bold buffer--font-size-sm">
+                        Advertising Agency</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="clearfix">
+                  <button
+                    class="buffer--height-12 buffer--font-family-semi-bold buffer--font-size-xs buffer--text-transform-uppercase"
+                    mat-stroked-button color="primary">
+                    Add to plan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-sidenav-content>
+      <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode" opened
+        [fixedInViewport]="matSideNavFixedInViewport" [fixedTopGap]="matSideNavFixedTopGap"
+        class="buffer--width-percent-30 buffer--background-color-white buffer--border-color-light-gray">
+        <div class="clearfix buffer--height-full buffer--padding-x-10 buffer--padding-y-6">
+          <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
+        </div>
+      </mat-sidenav>
+    </mat-sidenav-container>
+  </section>
+</div>
+
+
+<!-- <i class="material-icons" [satPopoverAnchor]='popover' (mouseenter)="popover.open()">close</i> -->
+<sat-popover #popover [autoFocus]="false" [restoreFocus]="false" hasBackdrop scrollStrategy="close"
+  horizontalAlign="start" forceAlignment lockAlignment>
+  <buffer--popover></buffer--popover>
+</sat-popover>

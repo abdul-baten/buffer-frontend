@@ -87,15 +87,27 @@ const PAGES: IPageRoute = {
       },
       CONNECTION_CHOOSE_PAGE: {
         PAGE_ROUTE: 'choose',
-        PAGE_TITLE: 'Choose Connection - Buffer',
+        PAGE_TITLE: 'Connect a New Social Account - Buffer',
       },
-      CONNECTION_FB_PAGES_PAGE: {
+      CONNECTION_FB_PAGE: {
         PAGE_ROUTE: 'facebook-page',
-        PAGE_TITLE: 'Select Facebook Page | Connection - Buffer',
+        PAGE_TITLE: 'Add a Facebook Page | Connection - Buffer',
       },
-      CONNECTION_FB_GROUP_PAGE: {
+      CONNECTION_FB_GROUP: {
         PAGE_ROUTE: 'facebook-group',
-        PAGE_TITLE: 'Select Facebook Group | Connection - Buffer',
+        PAGE_TITLE: 'Add a Facebook Group | Connection - Buffer',
+      },
+      CONNECTION_TWITTER_PROFILE: {
+        PAGE_ROUTE: 'twitter',
+        PAGE_TITLE: 'Add a Twitter Profile | Connection - Buffer',
+      },
+      CONNECTION_LINKEDIN_PAGE: {
+        PAGE_ROUTE: 'linkedin-page',
+        PAGE_TITLE: 'Add a LinkedIn Page | Connection - Buffer',
+      },
+      CONNECTION_LINKEDIN_PROFILE: {
+        PAGE_ROUTE: 'linkedin-profile',
+        PAGE_TITLE: 'Add a LinkedIn Profile | Connection - Buffer',
       },
     },
   },
