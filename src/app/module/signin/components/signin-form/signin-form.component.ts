@@ -43,7 +43,7 @@ export class SigninFormComponent {
     this.loading = true;
     const { email, password } = this.signinForm.value;
     this.signinFacade
-      .login(email, password)
+      .loginUser(email, password)
       .pipe(finalize(() => (this.loading = false)))
       .subscribe(() => this.signinFacade.navigateToPage('/dashboard'));
   }

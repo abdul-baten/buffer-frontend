@@ -1,12 +1,15 @@
+import * as CryptoJS from 'crypto-js';
 import { environment } from '@env/environment';
 import { HttpService } from '../http/http.service';
+import { IMember } from '@core/model/member/member.interface';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '@core/model/user/user.model';
-import jsSHA from 'jssha';
-import { IMember } from '@core/model/member/member.interface';
+
+const apacheEncrypt = require('apache-crypt');
 
 const API_URL = environment.apiURL;
+const { secretKey, numRounds } = environment.secret;
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +18,16 @@ export class AuthService {
   constructor(private httpService: HttpService) {}
 
   private getPasswordHash(password: string): string {
-    const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
-    shaObj.update(password);
-    return shaObj.getHash('HEX');
+    const key = CryptoJS.enc.Base64.parse(secretKey);
+    const iv = CryptoJS.enc.Base64.parse(secretKey);
+    const encrypted = CryptoJS.AES.encrypt(password, key, {
+      keySize: 32,
+      iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7,
+    });
+
+    return apacheEncrypt(encrypted, numRounds);
   }
 
   loginUser(email: string, pass: string): Observable<User> {

@@ -17,7 +17,7 @@ $buffer--font-family-extra-bold: 'Buffer ExtraBold';
 */
 $buffer--font-size-xs: 0.75rem;
 $buffer--font-size-sm: 0.875rem;
-$buffer--font-size-base: 1rem;
+$buffer--font-size-base: 0.95rem;
 $buffer--font-size-lg: 1.125rem;
 $buffer--font-size-xl: 1.25rem;
 $buffer--font-size-2xl: 1.5rem;
@@ -77,10 +77,11 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-black: #333333;
+$buffer--text-color-black: #484848;
 $buffer--text-color-white: #ffffff;
 $buffer--text-color-transparent: transparent;
-$buffer--text-color-gray: #f2f2f2;
+$buffer--text-color-gray: #979696;
+$buffer--text-color-light-gray: #eeeef0;
 $buffer--text-color-dark-gray: #616061;
 
 $buffer--text-color-warn-100: #fce3e6;
@@ -103,15 +104,15 @@ $buffer--text-color-accent-700: #fc5228;
 $buffer--text-color-accent-800: #fc4822;
 $buffer--text-color-accent-900: #fc3616;
 
-$buffer--text-color-primary-100: #e7f9f1;
-$buffer--text-color-primary-200: #9ab4ac;
-$buffer--text-color-primary-300: #469373;
-$buffer--text-color-primary-400: #537f72;
-$buffer--text-color-primary-500: #307a59;
-$buffer--text-color-primary-600: #306051;
-$buffer--text-color-primary-700: #285548;
-$buffer--text-color-primary-800: #224b3e;
-$buffer--text-color-primary-900: #163a2e;
+$buffer--text-color-primary-100: #fdedfa;
+$buffer--text-color-primary-200: #b894b1;
+$buffer--text-color-primary-300: #9b6992;
+$buffer--text-color-primary-400: #85497a;
+$buffer--text-color-primary-500: #702963;
+$buffer--text-color-primary-600: #68245b;
+$buffer--text-color-primary-700: #5d1f51;
+$buffer--text-color-primary-800: #531947;
+$buffer--text-color-primary-900: #410f35;
 
 /*
     * TEXT DECORATION

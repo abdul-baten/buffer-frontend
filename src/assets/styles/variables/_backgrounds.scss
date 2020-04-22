@@ -11,10 +11,11 @@ $buffer--background-attachment-scroll: scroll;
 /*
     * BACKGROUND COLOR
 */
-$buffer--background-color-black: #333333;
+$buffer--background-color-black: #484848;
 $buffer--background-color-white: #ffffff;
 $buffer--background-color-transparent: transparent;
-$buffer--background-color-gray: #f2f2f2;
+$buffer--background-color-gray: #979696;
+$buffer--background-color-light-gray: #eeeef0;
 $buffer--background-color-dark-gray: #616061;
 
 $buffer--background-color-warn-100: #fce3e6;
@@ -37,15 +38,15 @@ $buffer--background-color-accent-700: #fc5228;
 $buffer--background-color-accent-800: #fc4822;
 $buffer--background-color-accent-900: #fc3616;
 
-$buffer--background-color-primary-100: #e7f9f1;
-$buffer--background-color-primary-200: #9ab4ac;
-$buffer--background-color-primary-300: #469373;
-$buffer--background-color-primary-400: #537f72;
-$buffer--background-color-primary-500: #307a59;
-$buffer--background-color-primary-600: #306051;
-$buffer--background-color-primary-700: #285548;
-$buffer--background-color-primary-800: #224b3e;
-$buffer--background-color-primary-900: #163a2e;
+$buffer--background-color-primary-100: #fdedfa;
+$buffer--background-color-primary-200: #b894b1;
+$buffer--background-color-primary-300: #9b6992;
+$buffer--background-color-primary-400: #85497a;
+$buffer--background-color-primary-500: #702963;
+$buffer--background-color-primary-600: #68245b;
+$buffer--background-color-primary-700: #5d1f51;
+$buffer--background-color-primary-800: #531947;
+$buffer--background-color-primary-900: #410f35;
 
 /*
     * BACKGROUND POSITION

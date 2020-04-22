@@ -6,6 +6,10 @@ export const environment = {
   apiURL: 'https://localhost:3000/api/v1.0.0/',
   production: false,
   version: require('../../package.json').version,
+  secret: {
+    secretKey: '=3p&hvK]n2@H5cD3#!UKRW7jm7N1gs]5',
+    numRounds: 10,
+  },
 };
 
 /*

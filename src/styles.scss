@@ -151,7 +151,7 @@ p {
 }
 
 .buffer--heading-span {
-  color: #307a59;
+  color: #1da1f2;
   position: relative;
   &:after {
     background-image: url('/assets/images/background/yellow-background-bottom-line.svg');
@@ -183,6 +183,10 @@ p {
 
 .buffer--schedule-calendar-view-sec {
   height: calc(100vh - 5rem);
+}
+
+.buffer--connection-route-sec {
+  height: calc(100vh - 5rem) !important;
 }
 
 .dashboard-route-sec {

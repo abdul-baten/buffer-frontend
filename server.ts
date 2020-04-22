@@ -6,6 +6,8 @@ import * as https from 'https';
 import * as domino from 'domino';
 import { readFileSync } from 'fs';
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 
@@ -79,8 +81,12 @@ try {
 app.enable('etag');
 
 // Middleware
-app.use(cookieParser());
 app.use(compression());
+app.use(cookieParser());
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.set('view engine', 'html');
 app.set('views', DIST_FOLDER);
 app.set('view cache', true);

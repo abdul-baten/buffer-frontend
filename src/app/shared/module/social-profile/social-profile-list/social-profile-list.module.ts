@@ -6,19 +6,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { SocialProfileListComponent } from './container/social-profile-list.component';
 import { SocialProfileListFacade } from './facade/social-profile-list.facade';
-import { SocialProfileListModalModule } from '@shared/module/modal/social-profile-list-modal/social-profile-list-modal.module';
 
 @NgModule({
   declarations: [SocialProfileListComponent],
   exports: [SocialProfileListComponent],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
-    MatTooltipModule,
-    SocialProfileListModalModule,
-  ],
+  imports: [CommonModule, MatButtonModule, MatDialogModule, MatIconModule, MatTooltipModule],
   providers: [SocialProfileListFacade],
 })
 export class SocialProfileListModule {}

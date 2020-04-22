@@ -24,7 +24,7 @@ export class SigninFacade {
     this.router.navigateByUrl(authURL);
   }
 
-  login(email: string, password: string): Observable<User> {
+  loginUser(email: string, password: string): Observable<User> {
     return this.authService.loginUser(email, password);
   }
 }

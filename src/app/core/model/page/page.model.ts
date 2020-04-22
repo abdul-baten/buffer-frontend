@@ -1,10 +1,11 @@
-interface PagePropertiesInterface {
+interface IPageProperties {
   PAGE_ROUTE: string;
   PAGE_TITLE: string;
+  ROUTES?: { [key: string]: IPageProperties };
 }
 
-interface PageInterface {
-  [key: string]: PagePropertiesInterface;
+interface IPageRoute {
+  [key: string]: IPageProperties;
 }
 
-export { PageInterface };
+export { IPageRoute };

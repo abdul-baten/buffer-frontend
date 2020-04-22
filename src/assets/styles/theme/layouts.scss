@@ -112,6 +112,20 @@
 }
 
 /*
+    * FLEX GROW
+*/
+.buffer--flex-grow-1 {
+  flex-grow: $buffer--flex-grow-1 !important;
+}
+
+/*
+    * FLEX  WRAP
+*/
+.buffer--flex-wrap {
+  flex-wrap: $buffer--flex-wrap !important;
+}
+
+/*
     * OBJECT FIT
 */
 .buffer--object-contain {

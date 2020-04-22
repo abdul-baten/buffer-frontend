@@ -12,7 +12,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
-// import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NotificationModule } from '@shared/module/notification/notification.module';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { reducers } from './reducers';

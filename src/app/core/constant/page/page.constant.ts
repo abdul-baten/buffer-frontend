@@ -1,6 +1,6 @@
-import { PageInterface } from '@core/model/page/page.model';
+import { IPageRoute } from '@core/model/page/page.model';
 
-const PAGES: PageInterface = {
+const PAGES: IPageRoute = {
   LANDING_PAGE: {
     PAGE_ROUTE: '',
     PAGE_TITLE: 'Buffer',
@@ -12,6 +12,10 @@ const PAGES: PageInterface = {
   SIGN_UP_PAGE: {
     PAGE_ROUTE: 'join',
     PAGE_TITLE: 'Sign Up - Buffer',
+  },
+  FORGOT_PASSWORD_PAGE: {
+    PAGE_ROUTE: 'forgot-password',
+    PAGE_TITLE: 'Forgot Password - Buffer',
   },
   DASHBOARD_PAGE: {
     PAGE_ROUTE: 'dashboard',
@@ -73,9 +77,27 @@ const PAGES: PageInterface = {
     PAGE_ROUTE: 'audience',
     PAGE_TITLE: 'Analyze | Facebook - Buffer',
   },
-  OAUTH_PAGE: {
-    PAGE_ROUTE: 'oauth',
-    PAGE_TITLE: 'OAuth | Facebook - Buffer',
+  CONNECTION_MODULE: {
+    PAGE_ROUTE: 'connection',
+    PAGE_TITLE: 'Connection - Buffer',
+    ROUTES: {
+      CONNECTION_NEW_PAGE: {
+        PAGE_ROUTE: 'new',
+        PAGE_TITLE: 'New Connection - Buffer',
+      },
+      CONNECTION_CHOOSE_PAGE: {
+        PAGE_ROUTE: 'choose',
+        PAGE_TITLE: 'Choose Connection - Buffer',
+      },
+      CONNECTION_FB_PAGES_PAGE: {
+        PAGE_ROUTE: 'facebook-page',
+        PAGE_TITLE: 'Select Facebook Page | Connection - Buffer',
+      },
+      CONNECTION_FB_GROUP_PAGE: {
+        PAGE_ROUTE: 'facebook-group',
+        PAGE_TITLE: 'Select Facebook Group | Connection - Buffer',
+      },
+    },
   },
 };
 

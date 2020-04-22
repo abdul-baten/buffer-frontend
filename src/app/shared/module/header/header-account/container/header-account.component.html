@@ -1,0 +1,26 @@
+<div class="clearfix buffer--width-full">
+  <div class="buffer--width-full buffer--text-align-center">
+    <button [matMenuTriggerFor]="accountMenu"
+      class="buffer--width-12 buffer--height-12 buffer--background-color-light-gray buffer--border-width buffer--border-style-solid buffer--border-color-light-gray"
+      mat-icon-button matTooltip="Profile" matTooltipClass="buffer--font-size-xs" matTooltipPosition="right">
+      <mat-icon class="buffer--font-size-2xl">person</mat-icon>
+    </button>
+  </div>
+  <mat-menu #accountMenu="matMenu">
+    <button mat-menu-item (click)="handleAccountNavigationClick()">
+      <mat-icon>perm_contact_calendar</mat-icon>
+      <span class="buffer--vertical-align-middle">Account</span>
+    </button>
+    <button mat-menu-item (click)="logoutUser()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span class="buffer--vertical-align-middle">Sign out</span>
+    </button>
+
+    <mat-divider class="buffer--margin-y-2"></mat-divider>
+
+    <button mat-menu-item (click)="handleAccountNavigationClick()">
+      <mat-icon>bookmarks</mat-icon>
+      <span class="buffer--vertical-align-middle">Manage Profiles</span>
+    </button>
+  </mat-menu>
+</div>

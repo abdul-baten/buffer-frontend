@@ -16,7 +16,18 @@
 }
 
 .mat-list-item-content {
+  height: auto !important;
   padding: 0 !important;
+}
+
+.mat-subheader {
+  padding: 1rem 0 !important;
+  color: $buffer--text-color-black !important;
+  font-size: $buffer--font-size-lg !important;
+}
+
+.mat-list-item {
+  color: $buffer--text-color-dark-gray !important;
 }
 
 /*
@@ -28,7 +39,7 @@
 
 .mat-expansion-panel {
   border-radius: $buffer--border-radius-lg !important;
-  border: 1px solid $buffer--border-color-gray !important;
+  border: 1px solid $buffer--border-color-light-gray !important;
   box-shadow: $buffer--box-shadow-lg !important;
   color: $buffer--text-color-black !important;
 }
@@ -66,10 +77,14 @@ mat-card {
 */
 
 .mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
-  border-color: $buffer--border-color-gray !important;
+  border-color: $buffer--border-color-light-gray !important;
 }
 
 .mat-icon-button {
+  line-height: $buffer--line-height-leading-none !important;
+}
+
+.mat-stroked-button {
   line-height: $buffer--line-height-leading-none !important;
 }
 
@@ -89,7 +104,7 @@ mat-card {
 .mat-flat-button.mat-warn,
 .mat-stroked-button.mat-warn,
 .mat-raised-button.mat-warn {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
+  @include buffer--button-border-radius($buffer--border-radius-lg);
   @include buffer--button-padding(1.5rem);
 
   &:hover {
@@ -109,7 +124,7 @@ mat-card {
 .mat-icon-button.mat-accent,
 .mat-stroked-button.mat-accent,
 .mat-raised-button.mat-accent {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
+  @include buffer--button-border-radius($buffer--border-radius-lg);
   @include buffer--button-padding(1.5rem);
 
   &:hover {
@@ -134,19 +149,15 @@ mat-card {
 .mat-button.mat-primary,
 .mat-flat-button.mat-primary,
 .mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary,
 .mat-raised-button.mat-primary {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
+  @include buffer--button-border-radius($buffer--border-radius-lg);
 
   &:hover {
-    background-color: $buffer--background-color-primary-300;
-    color: $buffer--text-color-white;
+    background-color: $buffer--background-color-primary-700;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--background-color-primary-300;
-    color: $buffer--text-color-white;
   }
 }
 
@@ -162,20 +173,30 @@ mat-card {
 .mat-icon-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-stroked-button:not(.mat-primary):not(.mat-accent):not(.mat-warn),
 .mat-raised-button:not(.mat-primary):not(.mat-accent):not(.mat-warn) {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
+  @include buffer--button-border-radius($buffer--border-radius-lg);
   color: $buffer--text-color-black !important;
 
   &:hover {
-    background-color: $buffer--background-color-gray;
+    background-color: $buffer--background-color-light-gray;
   }
 
   &:focus {
     @include buffer--button-box-shadow($buffer--box-shadow-outline);
-    background-color: $buffer--background-color-gray;
+    background-color: $buffer--background-color-light-gray;
   }
 
   &:disabled {
-    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray;
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-light-gray;
+  }
+}
+
+.mat-stroked-button.mat-primary {
+  @include buffer--button-border-radius($buffer--border-radius-lg);
+  border-color: $buffer--border-color-primary-500 !important;
+
+  &:hover {
+    background-color: $buffer--border-color-primary-100 !important;
+    border-color: $buffer--border-color-primary-700 !important;
   }
 }
 
@@ -195,8 +216,8 @@ mat-card {
 
 .mat-button-toggle-group-appearance-standard,
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard {
-  @include buffer--button-border-radius($buffer--border-radius-xl);
-  border-color: $buffer--border-color-gray !important;
+  @include buffer--button-border-radius($buffer--border-radius-lg);
+  border-color: $buffer--border-color-light-gray !important;
 }
 
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard,
@@ -210,7 +231,7 @@ mat-button-toggle {
     color: $buffer--text-color-black;
 
     &:hover {
-      background-color: $buffer--background-color-gray;
+      background-color: $buffer--background-color-light-gray;
     }
   }
 }
@@ -220,7 +241,7 @@ mat-button-toggle {
   background-color: $buffer--background-color-primary-500 !important;
 
   &:hover {
-    background-color: $buffer--background-color-primary-300 !important;
+    background-color: $buffer--background-color-primary-600 !important;
   }
 
   .mat-button-toggle-focus-overlay {
@@ -341,7 +362,7 @@ mat-button-toggle {
   .mat-form-field-flex {
     @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
-    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-gray !important;
+    border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-light-gray !important;
     background-color: $buffer--background-color-white !important;
   }
 
@@ -418,12 +439,12 @@ textarea.mat-input-element {
       @include buffer--button-border-radius($buffer--border-radius-lg);
       color: $buffer--text-color-black !important;
       font-family: $buffer--font-family-semi-bold !important;
-      font-size: $buffer--font-size-xs !important;
-      height: $buffer--height-10;
+      font-size: $buffer--font-size-sm !important;
+      height: $buffer--height-11;
       line-height: $buffer--line-height-leading-loose;
 
       &:hover {
-        background-color: $buffer--background-color-gray !important;
+        background-color: $buffer--background-color-light-gray !important;
       }
     }
   }
@@ -444,7 +465,7 @@ textarea.mat-input-element {
   box-shadow: $buffer--box-shadow-lg !important;
 
   .mat-option.mat-selected:not(.mat-option-multiple) {
-    background-color: $buffer--background-color-gray !important;
+    background-color: $buffer--background-color-light-gray !important;
   }
 }
 
@@ -464,7 +485,7 @@ textarea.mat-input-element {
     * MATERIAL DIVIDER
 */
 .mat-divider {
-  border-top-color: $buffer--border-color-gray !important;
+  border-top-color: $buffer--border-color-light-gray !important;
 }
 
 /*
@@ -481,12 +502,12 @@ tr.mat-row {
 
 th.mat-header-cell {
   // , mat-header-row, mat-footer-row, th.mat-header-cell, td.mat-cell, td.mat-footer-cell
-  border-bottom-color: $buffer--border-color-gray !important;
+  border-bottom-color: $buffer--border-color-light-gray !important;
 }
 
 tr.mat-row {
   td.mat-cell {
-    border-bottom-color: $buffer--border-color-gray !important;
+    border-bottom-color: $buffer--border-color-light-gray !important;
   }
 
   &:last-child {

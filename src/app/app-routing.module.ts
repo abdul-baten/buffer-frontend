@@ -51,9 +51,9 @@ const routes: Routes = [
   },
   {
     canActivate: [AuthActivateGuard],
-    path: PAGES.OAUTH_PAGE.PAGE_ROUTE,
-    data: { title: PAGES.OAUTH_PAGE.PAGE_TITLE },
-    loadChildren: () => import('./module/oauth/oauth.module').then(m => m.OauthModule),
+    path: PAGES.CONNECTION_MODULE.PAGE_ROUTE,
+    data: { title: PAGES.CONNECTION_MODULE.PAGE_TITLE },
+    loadChildren: () => import('./module/connection/connection.module').then(m => m.ConnectionModule),
   },
 ];
 

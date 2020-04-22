@@ -390,7 +390,7 @@
   width: $buffer--width-percent-49;
 
   &:hover {
-    background-color: $buffer--background-color-gray;
+    background-color: $buffer--background-color-light-gray;
   }
 
   &:focus {
@@ -423,7 +423,7 @@
   padding: 1rem;
 }
 .owl-dt-container-info .owl-dt-container-range:last-child {
-  border-top: $buffer--border-top-width $buffer--border-style-solid $buffer--border-color-gray;
+  border-top: $buffer--border-top-width $buffer--border-style-solid $buffer--border-color-light-gray;
 }
 .owl-dt-container-info .owl-dt-container-info-active {
   color: $buffer--background-color-primary-500;

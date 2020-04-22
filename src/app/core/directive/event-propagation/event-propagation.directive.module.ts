@@ -1,8 +1,5 @@
-// Core Modules
-import { NgModule } from '@angular/core';
-
-// Directive
 import { EventPropagationDirective } from './event-propagation.directive';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [EventPropagationDirective],

@@ -1,0 +1,40 @@
+import { ConnectionComponent } from './container/connection.component';
+import { NgModule } from '@angular/core';
+import { PAGES } from '@core/constant/page/page.constant';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ConnectionComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_ROUTE,
+      },
+      {
+        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_ROUTE,
+        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_TITLE },
+        loadChildren: () => import('./routes/new-connection/new-connection.module').then(m => m.NewConnectionModule),
+      },
+      {
+        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE,
+        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_TITLE },
+        loadChildren: () =>
+          import('./routes/choose-connection/choose-connection.module').then(m => m.ChooseConnectionModule),
+      },
+      {
+        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_PAGES_PAGE.PAGE_ROUTE,
+        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_PAGES_PAGE.PAGE_TITLE },
+        loadChildren: () => import('./routes/facebook-page/facebook-page.module').then(m => m.FacebookPageModule),
+      },
+    ],
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class ConnectionRoutingModule {}
