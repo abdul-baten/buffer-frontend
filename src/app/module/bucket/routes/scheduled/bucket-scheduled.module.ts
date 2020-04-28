@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -52,7 +51,6 @@ import { BucketScheduledPostListComponent } from './components/bucket-scheduled-
     MatButtonToggleModule,
     MatDividerModule,
     MatGridListModule,
-    MatIconModule,
     MatInputModule,
     MatMenuModule,
     MatSelectModule,

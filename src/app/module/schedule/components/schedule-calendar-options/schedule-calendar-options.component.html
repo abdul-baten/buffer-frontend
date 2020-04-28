@@ -3,19 +3,19 @@
     class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
     <div class="clearfix">
       <button (click)="onTodayBtnClicked()" [matTooltip]="currentDate"
-        class="buffer--height-11 buffer--font-family-semi-bold buffer--font-size-sm buffer--background-color-light-gray"
-        mat-button matTooltipClass="buffer--font-size-xs">
+        class="buffer--height-11 buffer--font-family-sans-medium buffer--font-size-sm buffer--background-color-light-gray"
+        mat-button>
         Today
       </button>
     </div>
     <div class="clearfix buffer--margin-x-2">
-      <button mat-icon-button matTooltip="Previous" matTooltipClass="buffer--font-size-xs" (click)="onPrevBtnClicked()">
-        <mat-icon>keyboard_arrow_left</mat-icon>
+      <button mat-icon-button matTooltip="Previous" (click)="onPrevBtnClicked()">
+        <i class="material-icons">keyboard_arrow_left</i>
       </button>
     </div>
     <div class="clearfix buffer--margin-x-2">
-      <button mat-icon-button matTooltip="Next" matTooltipClass="buffer--font-size-xs" (click)="onNextBtnClicked()">
-        <mat-icon>keyboard_arrow_right</mat-icon>
+      <button mat-icon-button matTooltip="Next" (click)="onNextBtnClicked()">
+        <i class="material-icons">keyboard_arrow_right</i>
       </button>
     </div>
     <div class="clearfix" *ngIf="isWeb | async">

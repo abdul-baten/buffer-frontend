@@ -1,0 +1,33 @@
+<div
+  class="buffer--width-full buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+  <div
+    class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+
+    <div class="clearfix buffer--height-full buffer--margin-auto buffer--margin-right-3">
+      <a [routerLink]="[EDIT_PROFILE_ROUTE]"
+        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-dark-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--padding-5 buffer--text-color-dark-gray buffer--height-full buffer--font-family-sans-medium buffer--font-size-base">
+        Edit profile
+      </a>
+    </div>
+
+    <div class="clearfix buffer--height-full buffer--margin-auto buffer--margin-right-3">
+      <a [routerLink]="[EDIT_EMAIL_ROUTE]"
+        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-dark-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--padding-5 buffer--text-color-dark-gray buffer--height-full buffer--font-family-sans-medium buffer--font-size-base">
+        Change email address
+      </a>
+    </div>
+
+    <div class="clearfix buffer--height-full buffer--margin-auto buffer--margin-right-3">
+      <a [routerLink]="[EDIT_PASSWORD_ROUTE]"
+        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-dark-gray"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="buffer--padding-5 buffer--text-color-dark-gray buffer--height-full buffer--font-family-sans-medium buffer--font-size-base">
+        Change password
+      </a>
+    </div>
+  </div>
+</div>

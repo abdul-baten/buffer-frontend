@@ -2,19 +2,19 @@
   class="buffer--width-full buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
 
   <div class="clearfix buffer--margin-left-2">
-    <button mat-icon-button matTooltip="More" matTooltipClass="buffer--font-size-xs" [matMenuTriggerFor]="menu"
+    <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"
       class="buffer--width-8 buffer--height-8 buffer--background-color-white buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--box-shadow-lg">
-      <mat-icon class="buffer--font-size-xl">more_vert</mat-icon>
+      <i class="material-icons buffer--font-size-xl">more_vert</i>
     </button>
   </div>
 
   <mat-menu #menu="matMenu">
     <button mat-menu-item>
-      <mat-icon>query_builder</mat-icon>
+      <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">query_builder</i>
       <span class="buffer--vertical-align-middle">Reschedule</span>
     </button>
     <button mat-menu-item>
-      <mat-icon>delete</mat-icon>
+      <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">delete</i>
       <span class="buffer--vertical-align-middle">Delete</span>
     </button>
   </mat-menu>

@@ -11,7 +11,7 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$mat-buffer--green: (
+$mat-buffer--primary: (
   50: #eee5ec,
   100: #fdedfa,
   200: #b894b1,
@@ -44,7 +44,7 @@ $mat-buffer--green: (
   ),
 );
 
-$mat-buffer--orange: (
+$mat-buffer--accent: (
   50: #ffece7,
   100: #fde8e0,
   200: #feb29a,
@@ -77,27 +77,27 @@ $mat-buffer--orange: (
   ),
 );
 
-$mat-buffer--red: (
-  50: #fce1e5,
-  100: #fce3e6,
-  200: #f18292,
-  300: #eb4f66,
-  400: #e72a46,
-  500: #e30425,
-  600: #e00321,
-  700: #dc031b,
-  800: #d80216,
-  900: #d0010d,
-  A100: #fff8f8,
-  A200: #ffc5c7,
-  A400: #ff9295,
-  A700: #ff797c,
+$mat-buffer--warn: (
+  50: #fce6ed,
+  100: #f9bfd1,
+  200: #f595b2,
+  300: #f06b93,
+  400: #ed4b7c,
+  500: #ea2b65,
+  600: #e7265d,
+  700: #e42053,
+  800: #e11a49,
+  900: #db1037,
+  A100: #ffffff,
+  A200: #ffd5dc,
+  A400: #ffa2b1,
+  A700: #ff899c,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
     300: $dark-primary-text,
-    400: $light-primary-text,
+    400: $dark-primary-text,
     500: $light-primary-text,
     600: $light-primary-text,
     700: $light-primary-text,
@@ -110,9 +110,9 @@ $mat-buffer--red: (
   ),
 );
 
-$buffer-warn: mat-palette($mat-buffer--red);
-$buffer-primary: mat-palette($mat-buffer--green);
-$buffer-accent: mat-palette($mat-buffer--orange);
+$buffer-warn: mat-palette($mat-buffer--warn);
+$buffer-primary: mat-palette($mat-buffer--primary);
+$buffer-accent: mat-palette($mat-buffer--accent);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
@@ -125,9 +125,9 @@ $buffer-theme: mat-light-theme($buffer-primary, $buffer-accent, $buffer-warn);
 // Define a custom typography config that overrides the font-family as well as the
 // `headlines` and `body-1` levels.
 $buffer-typography: mat-typography-config(
-  $font-family: $buffer--font-family-semi-bold,
-  $button: mat-typography-level($buffer--font-size-sm, 14px, 400),
-  $input: mat-typography-level($buffer--font-size-sm, 1, 500),
+  $font-family: $buffer--font-family-sans-medium,
+  $button: mat-typography-level($buffer--font-size-sm, 14px, 500),
+  $input: mat-typography-level($buffer--font-size-base, 1, 500),
 );
 
 // Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).

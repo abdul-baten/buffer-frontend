@@ -1,5 +1,5 @@
-import { SocialProfileListFacade } from '@shared/module/social-profile/social-profile-list/facade/social-profile-list.facade';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'buffer--social-profile-list',
@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './social-profile-list.component.html',
 })
 export class SocialProfileListComponent {
-  constructor(private socialProfileListFacade: SocialProfileListFacade) {}
+  constructor(private router: Router) {}
 
   handleSocialProfilesBtnClick(): void {
-    this.socialProfileListFacade.handleSocialProfilesDialogOpen();
+    this.router.navigate(['/connection/profiles']);
   }
 }

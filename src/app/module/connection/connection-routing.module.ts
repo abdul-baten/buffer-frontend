@@ -50,6 +50,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./routes/linkedin-profile/linkedin-profile.module').then(m => m.LinkedInProfileModule),
       },
+      {
+        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_ROUTE,
+        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_TITLE },
+        loadChildren: () => import('./routes/profiles/profiles.module').then(m => m.ProfilesModule),
+      },
     ],
   },
 ];

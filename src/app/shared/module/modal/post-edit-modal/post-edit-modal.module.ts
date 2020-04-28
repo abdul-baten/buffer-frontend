@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
@@ -31,8 +30,6 @@ import { PostEditModalFormVideoComponent } from './components/post-edit-modal-fo
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule,
-
     MatInputModule,
     MatRadioModule,
 

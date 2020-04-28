@@ -1,15 +1,11 @@
-import * as CryptoJS from 'crypto-js';
+import jsSHA from 'jssha';
 import { environment } from '@env/environment';
 import { HttpService } from '../http/http.service';
-import { IMember } from '@core/model/member/member.interface';
 import { Injectable } from '@angular/core';
+import { IUser } from '@core/model/user/user.model';
 import { Observable } from 'rxjs';
-import { User } from '@core/model/user/user.model';
-
-const apacheEncrypt = require('apache-crypt');
 
 const API_URL = environment.apiURL;
-const { secretKey, numRounds } = environment.secret;
 
 @Injectable({
   providedIn: 'root',
@@ -18,30 +14,25 @@ export class AuthService {
   constructor(private httpService: HttpService) {}
 
   private getPasswordHash(password: string): string {
-    const key = CryptoJS.enc.Base64.parse(secretKey);
-    const iv = CryptoJS.enc.Base64.parse(secretKey);
-    const encrypted = CryptoJS.AES.encrypt(password, key, {
-      keySize: 32,
-      iv,
-      mode: CryptoJS.mode.CBC,
-      padding: CryptoJS.pad.Pkcs7,
-    });
+    const shaObj = new jsSHA('SHA-256', 'TEXT', { encoding: 'UTF8' });
+    shaObj.update(password);
+    const hash = shaObj.getHash('HEX');
 
-    return apacheEncrypt(encrypted, numRounds);
+    return hash;
   }
 
-  loginUser(email: string, pass: string): Observable<User> {
+  loginUser(email: string, pass: string): Observable<Partial<IUser>> {
     const password = this.getPasswordHash(pass);
-    return this.httpService.post<User>(API_URL + 'auth/enter', { email, password });
+    return this.httpService.post<Partial<IUser>>(API_URL + 'auth/enter', { email, password });
   }
 
-  signupUser(userInfo: User): Observable<User> {
+  signupUser(userInfo: Partial<IUser>): Observable<Partial<IUser>> {
     const { fullName, email, password: userPassword } = userInfo;
     const password = this.getPasswordHash(userPassword);
-    return this.httpService.post<User>(API_URL + 'auth/join', { fullName, email, password });
+    return this.httpService.post<Partial<IUser>>(API_URL + 'auth/join', { fullName, email, password });
   }
 
-  onboardUser(memberInfo: IMember): Observable<IMember> {
-    return this.httpService.post<IMember>(API_URL + 'member/onboard', memberInfo);
+  onboardUser(memberInfo: Partial<IUser>): Observable<Partial<IUser>> {
+    return this.httpService.patch<Partial<IUser>>(API_URL + 'auth/onboard', memberInfo);
   }
 }

@@ -2,13 +2,13 @@ import { fromError } from 'stacktrace-js';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { NotificationService } from '../notification/notification.service';
-// import * as stackTraceParser from 'stacktrace-parser';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ErrorService {
-  constructor(private snackbarService: NotificationService, private zone: NgZone) {}
+  constructor(private snackbarService: NotificationService, private zone: NgZone, private router: Router) {}
 
   private getClientErrorMessage(error: Error): string {
     return error.message ? error.message : error.toString();
@@ -20,11 +20,7 @@ export class ErrorService {
   }
 
   private getServerErrorMessage(error: HttpErrorResponse): string {
-    return !navigator.onLine
-      ? 'No internet connection!'
-      : error.error.errorMessage
-      ? error.error.errorMessage
-      : error.toString();
+    return error.error.errorMessage ? error.error.errorMessage : error.toString();
   }
 
   private openSnackbar(message: string): void {
@@ -34,6 +30,7 @@ export class ErrorService {
   }
 
   handleServerError(error: HttpErrorResponse): void {
+    this.serverError(error);
     const message = this.getServerErrorMessage(error);
     this.openSnackbar(message);
   }
@@ -45,5 +42,22 @@ export class ErrorService {
     console.warn(message, stackTrace);
 
     this.openSnackbar(message);
+  }
+
+  private serverError(error: HttpErrorResponse): void {
+    const {
+      error: { errorCode },
+    } = error;
+
+    this.zone.run(() => {
+      switch (errorCode) {
+        case '101':
+          this.router.navigate(['/enter']);
+          break;
+
+        default:
+          break;
+      }
+    });
   }
 }

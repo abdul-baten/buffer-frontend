@@ -12,7 +12,6 @@ import { SubSink } from 'subsink';
 })
 export class PostCreateModalFormImageComponent implements OnDestroy {
   nextButtonDisabled = true;
-  @Input() formHeaderIcon = 'filter';
   @Input() formHeader = 'Upload your media';
 
   private subscriptions$ = new SubSink();

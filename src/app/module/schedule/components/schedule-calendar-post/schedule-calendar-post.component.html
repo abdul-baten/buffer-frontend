@@ -14,7 +14,7 @@
             <i class="material-icons buffer--font-size-sm buffer--vertical-align-middle">adjust</i>
           </div>
           <div class="clearfix">
-            <p class="buffer--font-family-semi-bold buffer--font-size-xs">
+            <p class="buffer--font-family-sans-medium buffer--font-size-xs">
               {{ calendarData.event.start | date: 'shortTime' }}</p>
           </div>
         </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="clearfix">
         <button mat-icon-button [matMenuTriggerFor]="menu" class="buffer--width-7 buffer--height-7">
-          <mat-icon class="buffer--font-size-base">more_vert</mat-icon>
+          <i class="material-icons buffer--font-size-base">more_vert</i>
         </button>
       </div>
     </div>
@@ -53,7 +53,7 @@
 
         <div *ngSwitchDefault>
           <p
-            class="buffer--font-family-semi-bold buffer--font-size-xs buffer--text-color-black buffer--line-height-leading-snug">
+            class="buffer--font-family-sans-medium buffer--font-size-xs buffer--text-color-black buffer--line-height-leading-snug">
             {{ calendarData.event.extendedProps.postCaption }}
           </p>
         </div>
@@ -64,19 +64,19 @@
 
 <mat-menu #menu="matMenu">
   <button mat-menu-item (click)="onPostActionBtnClicked('view')">
-    <mat-icon>description</mat-icon>
+    <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">description</i>
     <span class="buffer--vertical-align-middle">Details</span>
   </button>
   <button mat-menu-item *ngIf="upcomingPost" (click)="onPostActionBtnClicked('edit')">
-    <mat-icon>create</mat-icon>
+    <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">create</i>
     <span class="buffer--vertical-align-middle">Edit</span>
   </button>
   <button mat-menu-item (click)="onPostActionBtnClicked('reschedule')">
-    <mat-icon>query_builder</mat-icon>
+    <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">query_builder</i>
     <span class="buffer--vertical-align-middle">Reschedule</span>
   </button>
   <button mat-menu-item (click)="onPostActionBtnClicked('delete')">
-    <mat-icon>delete</mat-icon>
+    <i class="material-icons buffer--vertical-align-middle buffer--margin-right-3">delete</i>
     <span class="buffer--vertical-align-middle">Delete</span>
   </button>
 </mat-menu>

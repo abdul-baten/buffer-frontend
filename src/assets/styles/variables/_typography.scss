@@ -6,18 +6,34 @@ $font-path: '~assets/fonts';
 /*
     * FONT FAMILY
 */
-$buffer--font-family-light: 'Buffer Light';
-$buffer--font-family-regular: 'Buffer Regular';
-$buffer--font-family-semi-bold: 'Buffer SemiBold';
-$buffer--font-family-bold: 'Buffer Bold';
-$buffer--font-family-extra-bold: 'Buffer ExtraBold';
+
+// Lars
+$buffer--font-family-lars-thin: 'Buffer-Lars-Thin', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
+$buffer--font-family-lars-italic: 'Buffer-Lars-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+  sans-serif;
+$buffer--font-family-lars-light-italic: 'Buffer-Lars-Light-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma,
+  Arial, sans-serif;
+$buffer--font-family-lars-regular: 'Buffer-Lars-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+  sans-serif;
+$buffer--font-family-lars-bold: 'Buffer-Lars-Bold', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
+
+// Circ
+$buffer--font-family-circ-bold: 'Buffer-Circ-Bold', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
+$buffer--font-family-circ-bold: 'Buffer-Circ-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+  sans-serif;
+
+// Sans
+$buffer--font-family-sans-regular: 'Buffer-Sans-Regular', Arial, sans-serif;
+$buffer--font-family-sans-medium: 'Buffer-Sans-Medium', Arial, sans-serif;
+$buffer--font-family-sans-mono-regular: 'Buffer-Sans-Mono-Regular', Arial, sans-serif;
 
 /*
     * FONT SIZE
 */
-$buffer--font-size-xs: 0.75rem;
+$buffer--font-size-xs: 0.8rem;
 $buffer--font-size-sm: 0.875rem;
 $buffer--font-size-base: 0.95rem;
+$buffer--font-size-regular: 1rem;
 $buffer--font-size-lg: 1.125rem;
 $buffer--font-size-xl: 1.25rem;
 $buffer--font-size-2xl: 1.5rem;
@@ -77,22 +93,22 @@ $buffer--text-align-justify: justify;
 /*
     * TEXT COLOR
 */
-$buffer--text-color-black: #484848;
+$buffer--text-color-black: #191919;
 $buffer--text-color-white: #ffffff;
 $buffer--text-color-transparent: transparent;
 $buffer--text-color-gray: #979696;
 $buffer--text-color-light-gray: #eeeef0;
 $buffer--text-color-dark-gray: #616061;
 
-$buffer--text-color-warn-100: #fce3e6;
-$buffer--text-color-warn-200: #f18292;
-$buffer--text-color-warn-300: #eb4f66;
-$buffer--text-color-warn-400: #e72a46;
-$buffer--text-color-warn-500: #e30425;
-$buffer--text-color-warn-600: #e00321;
-$buffer--text-color-warn-700: #dc031b;
-$buffer--text-color-warn-800: #d80216;
-$buffer--text-color-warn-900: #d0010d;
+$buffer--text-color-warn-100: #fce6ed;
+$buffer--text-color-warn-200: #f595b2;
+$buffer--text-color-warn-300: #f06b93;
+$buffer--text-color-warn-400: #ed4b7c;
+$buffer--text-color-warn-500: #ea2b65;
+$buffer--text-color-warn-600: #e7265d;
+$buffer--text-color-warn-700: #e42053;
+$buffer--text-color-warn-800: #e11a49;
+$buffer--text-color-warn-900: #db1037;
 
 $buffer--text-color-accent-100: #fde8e0;
 $buffer--text-color-accent-200: #feb29a;
@@ -113,6 +129,16 @@ $buffer--text-color-primary-600: #68245b;
 $buffer--text-color-primary-700: #5d1f51;
 $buffer--text-color-primary-800: #531947;
 $buffer--text-color-primary-900: #410f35;
+
+$buffer--text-color-blue-100: #bfdafd;
+$buffer--text-color-blue-200: #94c1fc;
+$buffer--text-color-blue-300: #69a8fb;
+$buffer--text-color-blue-400: #4896fa;
+$buffer--text-color-blue-500: #2883f9;
+$buffer--text-color-blue-600: #247bf8;
+$buffer--text-color-blue-700: #1e70f7;
+$buffer--text-color-blue-800: #1866f6;
+$buffer--text-color-blue-900: #0f53f5;
 
 /*
     * TEXT DECORATION

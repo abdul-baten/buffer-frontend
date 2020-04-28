@@ -3,12 +3,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'buffer--post-create-modal-form-header',
-  templateUrl: './post-create-modal-form-header.component.html',
   styleUrls: ['./post-create-modal-form-header.component.scss'],
+  templateUrl: './post-create-modal-form-header.component.html',
 })
 export class PostCreateModalFormHeaderComponent {
   @Input() formHeader = '';
-  @Input() formHeaderIcon = '';
 
   constructor(private dialogRef: MatDialogRef<PostCreateModalFormHeaderComponent>) {}
 

@@ -25,22 +25,43 @@ const PAGES: IPageRoute = {
     PAGE_ROUTE: 'schedule',
     PAGE_TITLE: 'Schedule - Buffer',
   },
-  ACCOUNT_PAGE: {
+  ACCOUNT_MODULE: {
     PAGE_ROUTE: 'account',
     PAGE_TITLE: 'Account - Buffer',
+    ROUTES: {
+      PROFILE_MODULE: {
+        PAGE_ROUTE: 'profile',
+        PAGE_TITLE: 'Profile | Account - Buffer',
+        ROUTES: {
+          EDIT_PROFILE_PAGE: {
+            PAGE_ROUTE: 'edit-profile',
+            PAGE_TITLE: 'Edit Profile | Account - Buffer',
+          },
+          EDIT_EMAIL_PAGE: {
+            PAGE_ROUTE: 'edit-email',
+            PAGE_TITLE: 'Edit Email | Account - Buffer',
+          },
+          EDIT_PASSWORD_PAGE: {
+            PAGE_ROUTE: 'change-password',
+            PAGE_TITLE: 'Edit Password | Account - Buffer',
+          },
+        },
+      },
+      INVOICE_MODULE: {
+        PAGE_ROUTE: 'invoice',
+        PAGE_TITLE: 'Invoice | Account - Buffer',
+      },
+      BILLING_MODULE: {
+        PAGE_ROUTE: 'billing',
+        PAGE_TITLE: 'Billing | Account - Buffer',
+      },
+      PLAN_MODULE: {
+        PAGE_ROUTE: 'plan',
+        PAGE_TITLE: 'Plan | Account - Buffer',
+      },
+    },
   },
-  ACCOUNT_PROFILE_PAGE: {
-    PAGE_ROUTE: 'profile',
-    PAGE_TITLE: 'Profile - Buffer',
-  },
-  ACCOUNT_INVOICE_PAGE: {
-    PAGE_ROUTE: 'invoice',
-    PAGE_TITLE: 'Invoice - Buffer',
-  },
-  ACCOUNT_BILLING_PAGE: {
-    PAGE_ROUTE: 'billing',
-    PAGE_TITLE: 'Billing - Buffer',
-  },
+
   BUCKET_PAGE: {
     PAGE_ROUTE: 'bucket',
     PAGE_TITLE: 'Bucket - Buffer',
@@ -108,6 +129,10 @@ const PAGES: IPageRoute = {
       CONNECTION_LINKEDIN_PROFILE: {
         PAGE_ROUTE: 'linkedin-profile',
         PAGE_TITLE: 'Add a LinkedIn Profile | Connection - Buffer',
+      },
+      CONNECTION_PROFILES: {
+        PAGE_ROUTE: 'profiles',
+        PAGE_TITLE: 'Connected Profile | Connection - Buffer',
       },
     },
   },

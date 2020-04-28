@@ -11,17 +11,27 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'profile',
+        redirectTo: PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE,
       },
       {
-        path: PAGES.ACCOUNT_PROFILE_PAGE.PAGE_ROUTE,
-        data: { title: PAGES.ACCOUNT_PROFILE_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/account-profile/account-profile.module').then(m => m.AccountProfileModule),
+        path: PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE,
+        data: { title: PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_TITLE },
+        loadChildren: () => import('./routes/profile/profile.module').then(m => m.ProfileModule),
       },
       {
-        path: PAGES.ACCOUNT_INVOICE_PAGE.PAGE_ROUTE,
-        data: { title: PAGES.ACCOUNT_INVOICE_PAGE.PAGE_TITLE },
+        path: PAGES.ACCOUNT_MODULE.ROUTES.INVOICE_MODULE.PAGE_ROUTE,
+        data: { title: PAGES.ACCOUNT_MODULE.ROUTES.INVOICE_MODULE.PAGE_TITLE },
         loadChildren: () => import('./routes/invoice/invoice.module').then(m => m.InvoiceModule),
+      },
+      {
+        path: PAGES.ACCOUNT_MODULE.ROUTES.BILLING_MODULE.PAGE_ROUTE,
+        data: { title: PAGES.ACCOUNT_MODULE.ROUTES.BILLING_MODULE.PAGE_TITLE },
+        loadChildren: () => import('./routes/billing/billing.module').then(m => m.BillingModule),
+      },
+      {
+        path: PAGES.ACCOUNT_MODULE.ROUTES.PLAN_MODULE.PAGE_ROUTE,
+        data: { title: PAGES.ACCOUNT_MODULE.ROUTES.PLAN_MODULE.PAGE_TITLE },
+        loadChildren: () => import('./routes/plan/plan.module').then(m => m.PlanModule),
       },
     ],
   },

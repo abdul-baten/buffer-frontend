@@ -24,6 +24,10 @@ module.exports = {
         parser: { system: true },
         test: /(\\|\/)@angular(\\|\/)core(\\|\/).+\.js$/,
       },
+      {
+        test: /\.node$/,
+        use: 'node-loader',
+      },
     ],
   },
   optimization: {

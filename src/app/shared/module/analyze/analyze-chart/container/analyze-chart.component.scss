@@ -8,19 +8,18 @@
 
       .highcharts-menu {
         padding: 1rem !important;
-        border: 1px solid #f2f2f2 !important;
+        border: 1px solid #eeeef0 !important;
         border-radius: 0.5rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
 
         .highcharts-menu-item {
           padding: 0.75rem !important;
           border-radius: 0.5rem;
-          color: #484848 !important;
-          font-family: 'Buffer SemiBold' !important;
-          font-size: 0.75rem !important;
+          color: #191919 !important;
+          font-family: 'Buffer-Sans-Medium', Arial, sans-serif !important;
+          font-size: 0.95rem !important;
 
           &:hover {
-            background-color: #f2f2f2 !important;
+            background-color: #eeeef0 !important;
           }
         }
       }

@@ -1,19 +1,11 @@
-<section class="dashboard-header-sec buffer--float-left" id="dashboard-header-sec">
-  <div
-    class="buffer--position-fixed buffer--position-top-0 buffer--position-left-0 buffer--width-20 buffer--height-screen buffer--background-color-white buffer--border-width-0 buffer--border-right-width buffer--border-style-solid buffer--border-color-light-gray">
-    <buffer--dashboard-header></buffer--dashboard-header>
-  </div>
-</section>
-
-<section class="dashboard-route-sec buffer--float-right" id="dashboard-route-sec">
-  <section class="buffer--dashboard-menu-sec" id="buffer--dashboard-menu-sec">
+<div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between">
+  <section class="dashboard-header-sec">
     <div
-      class="buffer--width-full buffer--height-20 buffer--background-color-white buffer--padding-x-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-      <buffer--account-header></buffer--account-header>
+      class="buffer--position-fixed buffer--position-top-0 buffer--position-left-0 buffer--width-20 buffer--height-screen buffer--background-color-white buffer--border-width-0 buffer--border-right-width buffer--border-style-solid buffer--border-color-light-gray">
+      <buffer--dashboard-header></buffer--dashboard-header>
     </div>
   </section>
-
-  <section id="buffer--account-content-view-sec" class="buffer--account-content-view-sec">
+  <section class="dashboard-route-sec">
     <router-outlet></router-outlet>
   </section>
-</section>
+</div>

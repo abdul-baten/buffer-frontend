@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
+import { AuthGuardService } from '@core/service/auth-guard/auth-guard.service';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DocumentInterface } from '@core/model/document/document.model';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -21,17 +22,22 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   private subscriptions$ = new SubSink();
 
   matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 80;
+  matSideNavFixedTopGap = 72;
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 
-  constructor(private activatedRoute: ActivatedRoute, private scheduleFacade: ScheduleFacade) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private scheduleFacade: ScheduleFacade,
+    private authGuardService: AuthGuardService,
+  ) {
     this.isHandset$ = this.scheduleFacade.isHandset();
     this.isTablet$ = this.scheduleFacade.isTablet();
     this.calendarSidebarOpened$ = this.scheduleFacade.getCalendarSidebarStatus();
   }
 
   ngOnInit() {
+    this.authGuardService.canActivate();
     this.subscriptions$.add(
       this.activatedRoute.data.subscribe((data: DocumentInterface) => this.scheduleFacade.setDocumentTitle(data.title)),
     );

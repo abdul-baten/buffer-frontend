@@ -4,20 +4,15 @@ import { PAGES } from '@core/constant/page/page.constant';
 
 @Component({
   selector: 'buffer--header-account',
-  templateUrl: './header-account.component.html',
   styleUrls: ['./header-account.component.scss'],
+  templateUrl: './header-account.component.html',
 })
 export class HeaderAccountComponent {
-  customStyle = {
-    fontFamily: 'Buffer SemiBold',
-  };
-
-  fullName = 'Abdul';
-
   constructor(private headerAccountFacade: HeaderAccountFacade) {}
 
   handleAccountNavigationClick(): void {
-    this.headerAccountFacade.navigateToRoute(PAGES.ACCOUNT_PAGE.PAGE_ROUTE);
+    const pageTiNavigate = `${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE}`;
+    this.headerAccountFacade.navigateToRoute(pageTiNavigate);
   }
 
   logoutUser(): void {

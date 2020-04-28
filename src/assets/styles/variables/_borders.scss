@@ -4,22 +4,22 @@
 /*
     * BORDER COLOR
 */
-$buffer--border-color-black: #484848;
+$buffer--border-color-black: #191919;
 $buffer--border-color-white: #ffffff;
 $buffer--border-transparent: transparent;
 $buffer--border-color-gray: #979696;
 $buffer--border-color-light-gray: #eeeef0;
 $buffer--border-color-dark-gray: #616061;
 
-$buffer--border-color-warn-100: #fce3e6;
-$buffer--border-color-warn-200: #f18292;
-$buffer--border-color-warn-300: #eb4f66;
-$buffer--border-color-warn-400: #e72a46;
-$buffer--border-color-warn-500: #e30425;
-$buffer--border-color-warn-600: #e00321;
-$buffer--border-color-warn-700: #dc031b;
-$buffer--border-color-warn-800: #d80216;
-$buffer--border-color-warn-900: #d0010d;
+$buffer--border-color-warn-100: #fce6ed;
+$buffer--border-color-warn-200: #f595b2;
+$buffer--border-color-warn-300: #f06b93;
+$buffer--border-color-warn-400: #ed4b7c;
+$buffer--border-color-warn-500: #ea2b65;
+$buffer--border-color-warn-600: #e7265d;
+$buffer--border-color-warn-700: #e42053;
+$buffer--border-color-warn-800: #e11a49;
+$buffer--border-color-warn-900: #db1037;
 
 $buffer--border-color-accent-100: #fde8e0;
 $buffer--border-color-accent-200: #feb29a;
@@ -41,6 +41,16 @@ $buffer--border-color-primary-700: #5d1f51;
 $buffer--border-color-primary-800: #531947;
 $buffer--border-color-primary-900: #410f35;
 
+$buffer--border-color-blue-100: #bfdafd;
+$buffer--border-color-blue-200: #94c1fc;
+$buffer--border-color-blue-300: #69a8fb;
+$buffer--border-color-blue-400: #4896fa;
+$buffer--border-color-blue-500: #2883f9;
+$buffer--border-color-blue-600: #247bf8;
+$buffer--border-color-blue-700: #1e70f7;
+$buffer--border-color-blue-800: #1866f6;
+$buffer--border-color-blue-900: #0f53f5;
+
 /*
     * BORDER STYLE
 */
@@ -55,6 +65,7 @@ $buffer--border-style-none: none;
 $buffer--border-width: 1px;
 $buffer--border-width-0: 0;
 $buffer--border-width-2: 2px;
+$buffer--border-width-3: 3px;
 $buffer--border-width-4: 4px;
 $buffer--border-width-8: 8px;
 $buffer--border-top-width: 1px;
@@ -69,9 +80,13 @@ $buffer--border-top-width-2: 2px;
 $buffer--border-right-width-2: 2px;
 $buffer--border-bottom-width-2: 2px;
 $buffer--border-left-width-2: 2px;
+$buffer--border-top-width-3: 3px;
 $buffer--border-top-width-4: 4px;
+$buffer--border-right-width-3: 3px;
 $buffer--border-right-width-4: 4px;
+$buffer--border-bottom-width-3: 3px;
 $buffer--border-bottom-width-4: 4px;
+$buffer--border-left-width-3: 3px;
 $buffer--border-left-width-4: 4px;
 $buffer--border-top-width-8: 8px;
 $buffer--border-right-width-8: 8px;

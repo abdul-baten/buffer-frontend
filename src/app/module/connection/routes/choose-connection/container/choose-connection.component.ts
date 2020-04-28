@@ -16,7 +16,7 @@ export interface Section {
 })
 export class ChooseConnectionComponent implements OnDestroy, OnInit {
   matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 80;
+  matSideNavFixedTopGap = 72;
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 

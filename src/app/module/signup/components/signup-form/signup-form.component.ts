@@ -8,7 +8,7 @@ import { setUserInfo } from 'src/app/actions';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
-import { User } from '@core/model/user/user.model';
+import { IUser } from '@core/model/user/user.model';
 
 @Component({
   selector: 'buffer--signup-form',
@@ -52,7 +52,7 @@ export class SignupFormComponent {
     if (this.signupForm.valid) {
       this.signupFacade
         .signupUser(this.signupForm.value)
-        .pipe(tap((user: User) => this.store.dispatch(setUserInfo({ user }))))
+        .pipe(tap((user: IUser) => this.store.dispatch(setUserInfo({ user }))))
         .subscribe(() => {
           this.signupFacade.navigateToPage('/join/onboard');
         });

@@ -1,20 +1,17 @@
 <div
-  class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+  class="buffer--padding-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
   <div
     class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-    <div class="clearfix">
-      <p class="buffer--font-size-xl buffer--font-family-semi-bold">
-        <i class="material-icons" [ngClass]="{
-          'buffer--font-size-inherit buffer--vertical-align-middle buffer--text-color-primary-500  buffer--margin-right-2': formHeaderIcon
-        }">{{ formHeaderIcon }}</i>
+    <section>
+      <h3>
         {{ formHeader }}
-      </p>
-    </div>
-    <div class="clearfix">
-      <button class="buffer--width-12 buffer--height-12" mat-icon-button matTooltip="Close"
-        matTooltipClass="buffer--font-size-xs" (click)="handlePostCreateModalCloseBtnClick()">
-        <mat-icon class="buffer--font-size-2xl buffer--font-weight-bold buffer--text-color-black">close</mat-icon>
+      </h3>
+    </section>
+    <section>
+      <button class="buffer--width-8 buffer--height-8 buffer--background-color-light-gray" mat-icon-button
+        matTooltip="Close" (click)="handlePostCreateModalCloseBtnClick()">
+        <i class="material-icons buffer--font-size-2xl buffer--font-weight-bold buffer--text-color-black">close</i>
       </button>
-    </div>
+    </section>
   </div>
 </div>

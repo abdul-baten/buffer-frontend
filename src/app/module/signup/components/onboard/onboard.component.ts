@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { selectUserInfo } from 'src/app/selectors/user.selector';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { Store } from '@ngrx/store';
-import { User } from '@core/model/user/user.model';
+import { IUser } from '@core/model/user/user.model';
 
 @Component({
   selector: 'buffer--onboard',
@@ -14,7 +14,7 @@ import { User } from '@core/model/user/user.model';
 })
 export class OnboardComponent implements OnInit {
   onboardForm: FormGroup;
-  userInfo: User;
+  userInfo: IUser;
 
   errorStateMatcher = new CustomFormErrorStateMatcher();
 
@@ -23,7 +23,7 @@ export class OnboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(selectUserInfo).subscribe((userInfo: User) => {
+    this.store.select(selectUserInfo).subscribe((userInfo: IUser) => {
       this.userInfo = userInfo;
     });
   }
@@ -31,7 +31,7 @@ export class OnboardComponent implements OnInit {
   private buildOnboardForm(): FormGroup {
     return this.formBuilder.group({
       attribution: ['', Validators.required],
-      bussinesType: ['', Validators.required],
+      businessType: ['', Validators.required],
       companyName: ['', Validators.required],
       companySize: ['', Validators.required],
     });
@@ -39,12 +39,10 @@ export class OnboardComponent implements OnInit {
 
   handleSignup(): void {
     if (this.onboardForm.valid) {
-      const { attribution, bussinesType, companyName, companySize } = this.onboardForm.value;
-      this.signupFacade
-        .onboardUser({ attribution, bussinesType, companyName, companySize, plan: 'trial', userId: this.userInfo.id })
-        .subscribe(() => {
-          this.signupFacade.navigateToPage('/dashboard');
-        });
+      const { attribution, businessType, companyName, companySize } = this.onboardForm.value;
+      this.signupFacade.onboardUser({ attribution, businessType, companyName, companySize }).subscribe(() => {
+        this.signupFacade.navigateToPage('/dashboard');
+      });
     }
   }
 }

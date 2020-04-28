@@ -13,7 +13,6 @@ import { SubSink } from 'subsink';
 })
 export class PostCreateModalFormTextComponent implements OnDestroy {
   formHeader = 'Write status';
-  formHeaderIcon = 'text_fields';
 
   private subscriptions$ = new SubSink();
 

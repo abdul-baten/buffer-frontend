@@ -479,7 +479,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-day-grid-event .fc-time {
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
 }
 
 /* resizer (cursor devices) */
@@ -628,7 +628,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   color: $buffer--text-color-black;
   display: $buffer--display-flex;
   flex-direction: $buffer--display-flex-direction-row;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-sm;
   line-height: $buffer--line-height-leading-normal;
   outline: $buffer--outline-none;
@@ -747,7 +747,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc-toolbar.fc-header-toolbar {
   background-color: $buffer--background-color-white;
   border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-light-gray;
-  height: $buffer--height-20;
+  height: $buffer--height-18;
   padding: 0 1.25rem;
   width: $buffer--width-full;
   z-index: $buffer--z-index-10;
@@ -773,8 +773,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-toolbar h2 {
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-bold;
-  font-size: $buffer--font-size-lg;
+  font-family: $buffer--font-family-sans-medium;
+  font-size: $buffer--font-size-xl;
   margin: 0;
 }
 
@@ -782,6 +782,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 --------------------------------------------------------------------------------------------------*/
 .fc-view-container {
   position: $buffer--position-relative;
+  overflow-x: hidden;
 }
 
 /* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
@@ -1046,7 +1047,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-xs;
   text-align: $buffer--text-align-center;
   width: $buffer--width-full;
@@ -1107,7 +1108,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 .fc .fc-axis {
   /* .fc to overcome default cell styles */
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-xs;
   padding: 0.5rem 1rem;
   vertical-align: $buffer--vertical-align-middle;

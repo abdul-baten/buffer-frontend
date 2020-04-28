@@ -22,4 +22,11 @@ export class HttpService {
       withCredentials: true,
     });
   }
+
+  patch<T>(apiURL: string, postInfo: T): Observable<T> {
+    return this.httpClient.patch<T>(apiURL, postInfo, {
+      responseType: 'json',
+      withCredentials: true,
+    });
+  }
 }

@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { AnalyzeFacade } from '@app/analyze/facade/analyze.facade';
+import { AuthGuardService } from '@core/service/auth-guard/auth-guard.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DocumentInterface } from '@core/model/document/document.model';
 import { SubSink } from 'subsink';
@@ -12,9 +13,14 @@ import { SubSink } from 'subsink';
 export class AnalyzeComponent implements OnDestroy, OnInit {
   private subscriptions$ = new SubSink();
 
-  constructor(private activatedRoute: ActivatedRoute, private analyzeFacade: AnalyzeFacade) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private analyzeFacade: AnalyzeFacade,
+    private authGuardService: AuthGuardService,
+  ) {}
 
   ngOnInit() {
+    this.authGuardService.canActivate();
     this.setTitle();
   }
 

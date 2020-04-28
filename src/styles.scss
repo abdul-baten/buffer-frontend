@@ -47,7 +47,7 @@ body {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-sans-regular;
   font-size: $buffer--font-size-base;
   font-weight: $buffer--font-weight-medium;
   letter-spacing: $buffer--letter-spacing-tracking-normal;
@@ -55,9 +55,13 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: $buffer--text-decoration-none;
+}
+
 a.buffer--default-link {
   -webkit-text-decoration: $buffer--text-decoration-none;
-  color: $buffer--text-color-primary-500;
+  color: $buffer--text-color-blue-500;
   cursor: $buffer--cursor-pointer;
   display: $buffer--display-inline-block;
   padding: 5px 0;
@@ -67,7 +71,7 @@ a.buffer--default-link {
 
   &:before {
     -webkit-transition: width 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
-    border-bottom: 2px solid $buffer--text-color-primary-500;
+    border-bottom: 2px solid inherit;
     bottom: -2px;
     content: '';
     position: absolute;
@@ -106,13 +110,24 @@ h3,
 h4,
 h5,
 h6 {
-  color: $buffer--text-color-black;
-  font-family: $buffer--font-family-bold;
+  font-family: $buffer--font-family-sans-medium;
+}
+
+h1 {
+  font-size: $buffer--font-size-3xl;
+}
+
+h2 {
+  font-size: $buffer--font-size-xl;
+}
+
+h3 {
+  font-size: $buffer--font-size-lg;
 }
 
 p {
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-sans-regular;
   margin: 0;
   padding: 0;
 }
@@ -182,11 +197,11 @@ p {
 }
 
 .buffer--schedule-calendar-view-sec {
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 4.5rem);
 }
 
 .buffer--connection-route-sec {
-  height: calc(100vh - 5rem) !important;
+  height: calc(100vh - 4.5rem) !important;
 }
 
 .dashboard-route-sec {

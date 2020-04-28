@@ -14,7 +14,7 @@
     }
 
     .mat-calendar-body-cell {
-      font-family: 'Buffer SemiBold';
+      font-family: 'Buffer-Sans-Medium', Arial, sans-serif;
       font-size: 0.75rem;
 
       .mat-calendar-body-cell-content {
@@ -22,7 +22,7 @@
         height: 100%;
 
         &:not(.mat-calendar-body-selected) {
-          color: #484848 !important;
+          color: #191919 !important;
         }
       }
     }

@@ -25,7 +25,7 @@ export class FacebookGroupComponent implements OnDestroy, OnInit {
   // }
 
   matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 80;
+  matSideNavFixedTopGap = 72;
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 

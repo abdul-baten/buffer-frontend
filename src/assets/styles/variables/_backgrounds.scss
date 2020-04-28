@@ -11,22 +11,22 @@ $buffer--background-attachment-scroll: scroll;
 /*
     * BACKGROUND COLOR
 */
-$buffer--background-color-black: #484848;
+$buffer--background-color-black: #191919;
 $buffer--background-color-white: #ffffff;
 $buffer--background-color-transparent: transparent;
 $buffer--background-color-gray: #979696;
-$buffer--background-color-light-gray: #eeeef0;
+$buffer--background-color-light-gray: #f5f7f9;
 $buffer--background-color-dark-gray: #616061;
 
-$buffer--background-color-warn-100: #fce3e6;
-$buffer--background-color-warn-200: #f18292;
-$buffer--background-color-warn-300: #eb4f66;
-$buffer--background-color-warn-400: #e72a46;
-$buffer--background-color-warn-500: #e30425;
-$buffer--background-color-warn-600: #e00321;
-$buffer--background-color-warn-700: #dc031b;
-$buffer--background-color-warn-800: #d80216;
-$buffer--background-color-warn-900: #d0010d;
+$buffer--background-color-warn-100: #fce6ed;
+$buffer--background-color-warn-200: #f595b2;
+$buffer--background-color-warn-300: #f06b93;
+$buffer--background-color-warn-400: #ed4b7c;
+$buffer--background-color-warn-500: #ea2b65;
+$buffer--background-color-warn-600: #e7265d;
+$buffer--background-color-warn-700: #e42053;
+$buffer--background-color-warn-800: #e11a49;
+$buffer--background-color-warn-900: #db1037;
 
 $buffer--background-color-accent-100: #fde8e0;
 $buffer--background-color-accent-200: #feb29a;
@@ -47,6 +47,16 @@ $buffer--background-color-primary-600: #68245b;
 $buffer--background-color-primary-700: #5d1f51;
 $buffer--background-color-primary-800: #531947;
 $buffer--background-color-primary-900: #410f35;
+
+$buffer--background-color-blue-100: #bfdafd;
+$buffer--background-color-blue-200: #94c1fc;
+$buffer--background-color-blue-300: #69a8fb;
+$buffer--background-color-blue-400: #4896fa;
+$buffer--background-color-blue-500: #2883f9;
+$buffer--background-color-blue-600: #247bf8;
+$buffer--background-color-blue-700: #1e70f7;
+$buffer--background-color-blue-800: #1866f6;
+$buffer--background-color-blue-900: #0f53f5;
 
 /*
     * BACKGROUND POSITION

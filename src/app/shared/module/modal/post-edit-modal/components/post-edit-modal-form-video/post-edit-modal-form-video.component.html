@@ -18,8 +18,8 @@
           <form novalidate [formGroup]="eventEditTypeVideoForm" class="buffer--margin-top-5 buffer--padding-y-5 ">
             <div class="clearfix">
               <label for="postCaption"
-                class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm">Caption</label>
-              <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-top-3"
+                class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Caption</label>
+              <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
                 appearance="fill">
                 <textarea matInput required id="postCaption" spellcheck="false" cdkTextareaAutosize
                   cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" formControlName="postCaption"
@@ -31,8 +31,8 @@
 
             <div class="clearfix">
               <label for="postDate"
-                class="buffer--cursor-pointer buffer--font-family-semi-bold buffer--font-size-sm">Date</label>
-              <mat-form-field class="buffer--width-full buffer--font-family-regular buffer--margin-y-3"
+                class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
+              <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-y-3"
                 appearance="fill">
                 <input matInput readonly type="text" id="postDate" autocomplete="off" [min]="currentDateTime"
                   [owlDateTime]="postDate" formControlName="postDate" class="buffer--cursor-pointer"
@@ -52,14 +52,14 @@
       class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between buffer--border-color-light-gray buffer--border-width-0 buffer--border-top-width buffer--border-style-solid">
       <div class="clearfix buffer--width-percent-80">
         <a (click)="onPreviousButtonClicked()"
-          class="buffer--default-link buffer--get-started-short-link buffer--font-size-sm buffer--line-height-leading-normal buffer--font-family-regular">
+          class="buffer--default-link buffer--get-started-short-link buffer--font-size-sm buffer--line-height-leading-normal buffer--font-family-sans-regular">
           <span>Back</span>
         </a>
       </div>
       <div class="clearfix buffer--width-percent-20">
         <button type="submit" color="primary" mat-flat-button
           [disabled]="nextButtonDisabled || eventEditTypeVideoForm.invalid"
-          class="buffer--width-full buffer--schedule-default-button buffer--font-family-semi-bold buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg">
+          class="buffer--width-full buffer--schedule-default-button buffer--font-family-sans-medium buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg">
           Next
         </button>
       </div>

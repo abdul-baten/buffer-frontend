@@ -9,8 +9,8 @@ import { PostCreateModalFormVideoComponent } from '@shared/module/modal/post-cre
 
 @Component({
   selector: 'buffer--post-create-modal-form',
-  templateUrl: './post-create-modal-form.component.html',
   styleUrls: ['./post-create-modal-form.component.scss'],
+  templateUrl: './post-create-modal-form.component.html',
 })
 export class PostCreateModalFormComponent {
   postType$: Observable<POST_TYPE>;

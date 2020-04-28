@@ -27,7 +27,7 @@ export class PostTypeImageService implements PostTypeGenerateInterface {
       buffer--width-12 buffer--height-12
       material-icons
       ">add_to_photos</i>
-      <span class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload upto 5 images</span>`,
+      <span class="buffer--font-family-sans-medium buffer--font-size-sm buffer--margin-top-2">Drag or click here to upload upto 5 images</span>`,
     };
 
     return config;

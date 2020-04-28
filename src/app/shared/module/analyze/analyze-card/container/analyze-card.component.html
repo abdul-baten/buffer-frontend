@@ -3,7 +3,7 @@
   <div
     class="buffer--margin-bottom-3 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
     <div class="clearfix">
-      <p class="buffer--text-color-dark-gray buffer--font-family-semi-bold buffer--font-size-base">
+      <p class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base">
         {{ cardTitle }}
       </p>
     </div>
@@ -20,11 +20,11 @@
     <div
       class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-content-center">
       <div class="clearfix buffer--text-align-center">
-        <p class="buffer--font-family-semi-bold buffer--font-size-4xl">{{ cardCounter }}</p>
+        <p class="buffer--text-color-blue-500 buffer--font-family-sans-medium buffer--font-size-4xl">{{ cardCounter }}</p>
         <p
-          class="buffer--text-color-dark-gray buffer--font-family-semi-bold buffer--font-size-xs buffer--line-height-leading-loose buffer--opacity-50">
+          class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-xs buffer--line-height-leading-loose buffer--opacity-75">
           {{ cardInfoTitle }}
-          <i [matTooltip]="cardTooltipText" matTooltipPosition="above" matTooltipClass="buffer--font-size-xs"
+          <i [matTooltip]="cardTooltipText" matTooltipPosition="above"
             class="material-icons buffer--text-color-dark-gray buffer--font-size-sm buffer--opacity-50 buffer--cursor-pointer">
             info</i>
         </p>

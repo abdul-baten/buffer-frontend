@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { NgModule } from '@angular/core';
 import { PostDetailsModalComponent } from './container/post-details-modal.component';
 import { PostDetailsModalFooterComponent } from './components/post-details-modal-footer/post-details-modal-footer.component';
@@ -23,15 +22,12 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
   ],
   imports: [
     CommonModule,
-    MatIconModule,
     MatButtonModule,
-
     SlickCarouselModule,
-
-    VgCoreModule,
-    VgControlsModule,
-    VgOverlayPlayModule,
     VgBufferingModule,
+    VgControlsModule,
+    VgCoreModule,
+    VgOverlayPlayModule,
   ],
   exports: [PostDetailsModalComponent],
   entryComponents: [PostDetailsModalComponent],

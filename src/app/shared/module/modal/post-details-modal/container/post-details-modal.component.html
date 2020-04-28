@@ -19,7 +19,7 @@
         <div class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center">
           <img [src]="postInfo.socialAccounts[0].socialAvatar"
             class="buffer--border-radius-full buffer--width-10 buffer--height-10" />
-          <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--margin-left-2">
+          <p class="buffer--font-family-sans-medium buffer--font-size-sm buffer--margin-left-2">
             {{postInfo.socialAccounts[0].socialName }}</p>
         </div>
 
@@ -28,7 +28,7 @@
 
       <div class="clearfix buffer--height-percent-70 buffer--overflow-y-auto">
         <div class="clearfix">
-          <p class="buffer--font-family-semi-bold buffer--font-size-sm buffer--line-height-leading-normal">
+          <p class="buffer--font-family-sans-medium buffer--font-size-sm buffer--line-height-leading-normal">
             {{ postInfo.postCaption }}</p>
         </div>
 
@@ -38,10 +38,10 @@
         </div>
 
         <div class="clearfix buffer--margin-top-5" *ngIf="postInfo.postLocation">
-          <p class="buffer--font-family-regular buffer--font-size-sm">
+          <p class="buffer--font-family-sans-regular buffer--font-size-sm">
             <span><i class="material-icons buffer--vertical-align-middle">beenhere</i></span>
             <span
-              class="buffer--font-family-semi-bold buffer--line-height-leading-loose buffer--margin-left-3">{{ postInfo.postLocation }}</span>
+              class="buffer--font-family-sans-medium buffer--line-height-leading-loose buffer--margin-left-3">{{ postInfo.postLocation }}</span>
           </p>
         </div>
       </div>

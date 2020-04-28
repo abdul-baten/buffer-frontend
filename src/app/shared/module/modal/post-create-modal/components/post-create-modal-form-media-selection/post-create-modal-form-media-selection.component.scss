@@ -65,7 +65,7 @@
         width: 100%;
         border: none;
         background: transparent;
-        color: #484848;
+        color: #191919;
         -webkit-box-direction: normal;
         -webkit-box-orient: vertical;
       }
@@ -98,17 +98,17 @@
       margin: 0;
       max-width: 100%;
       width: 100%;
-      height: 8rem;
+      height: 10rem;
       border: 1px dashed #616061;
       border-radius: 0.5rem;
-      color: #484848;
+      color: #191919;
       -webkit-animation: slideindown 0.5s linear;
       animation: slideInDown 0.5s linear;
     }
 
     .dropzone .dz-preview .dz-details {
       padding: 2em 1em;
-      color: #484848;
+      color: #191919;
       text-align: center;
       font-size: 13px;
       opacity: 1;

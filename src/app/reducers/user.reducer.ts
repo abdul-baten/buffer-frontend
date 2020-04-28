@@ -1,18 +1,27 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { IUser } from '@core/model/user/user.model';
 import { setUserInfo } from 'src/app/actions';
-import { User } from '@core/model/user/user.model';
 
 const userFeatureKey = 'user';
 
-const userInitialState: User = {
-  id: null,
-  fullName: null,
+const userInitialState: IUser = {
+  attribution: null,
+  businessType: null,
+  companyName: null,
+  companySize: null,
+  createdAt: null,
   email: null,
+  fullName: null,
+  id: null,
+  password: null,
+  subscription: null,
+  updatedAt: null,
+  userSuspended: null,
 };
 
 const reducer = createReducer(
   userInitialState,
-  on(setUserInfo, (state: User, action: { user: User }) => {
+  on(setUserInfo, (state: IUser, action: { user: Partial<IUser> }) => {
     const { user } = action;
     return {
       ...state,
@@ -21,7 +30,7 @@ const reducer = createReducer(
   }),
 );
 
-function userReducer(state: User | undefined, action: Action) {
+function userReducer(state: IUser | undefined, action: Action) {
   return reducer(state, action);
 }
 

@@ -7,11 +7,11 @@
       </div>
 
       <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
-        <p class="buffer--font-family-semi-bold buffer--font-size-2xl buffer--line-height-leading-normal">
+        <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
           Sign in
         </p>
         <p
-          class="buffer--text-color-dark-gray buffer--font-family-semi-bold buffer--font-size-base buffer--line-height-leading-normal">
+          class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base buffer--line-height-leading-normal">
           Continue to
           grow</p>
       </div>
@@ -22,7 +22,7 @@
           <div class="clearfix">
             <mat-form-field class="buffer--width-full" appearance="fill">
               <input autocomplete="current-password" autocomplete="off"
-                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="email" matInput
+                class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="email" matInput
                 placeholder="Work email" required type="text" [errorStateMatcher]="errorStateMatcher" />
               <mat-error align="end" *ngIf="signinForm.controls.email.invalid">Please enter a valid email.
               </mat-error>
@@ -32,11 +32,11 @@
           <div class="clearfix">
             <mat-form-field class="buffer--width-full" appearance="fill">
               <input [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password"
-                class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="password" matInput
+                class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput
                 placeholder="Password" required [errorStateMatcher]="errorStateMatcher" />
               <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
-                <mat-icon class="buffer--text-color-dark-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
-                </mat-icon>
+                <i class="material-icons buffer--text-color-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
+                </i>
               </button>
               <mat-error align="end" *ngIf="signinForm.controls.password.invalid">
                 Please enter a strong password.
@@ -46,7 +46,7 @@
 
           <div class="clearfix">
             <button color="primary" mat-flat-button [disabled]="signinForm.invalid" (click)="login()"
-              class="buffer--width-full buffer--height-14 buffer--font-family-semi-bold buffer--font-size-base">
+              class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
               Sign in
             </button>
           </div>
@@ -57,7 +57,7 @@
         class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
         <div class="clearfix buffer--text-align-center">
           <p
-            class="buffer--text-color-dark-gray buffer--font-size-sm buffer--font-family-semi-bold buffer--line-height-leading-none">
+            class="buffer--text-color-dark-gray buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-none">
             <span>Don't
               have
               an account? </span>
@@ -73,7 +73,8 @@
     <div
       class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
       <div class="clearfix buffer--text-align-center">
-        <a routerLink="/forgot" class="buffer--font-size-sm buffer--font-family-semi-bold buffer--default-link">Forgot
+        <a routerLink="/forgot"
+          class="buffer--font-size-base buffer--font-family-sans-medium buffer--default-link">Forgot
           your
           password?</a>
       </div>

@@ -1,7 +1,7 @@
 <div class="clearfix">
   <form [formGroup]="facebookProfileForm">
     <mat-form-field class="buffer--width-full" appearance="fill" matTooltip="Profile"
-      matTooltipClass="buffer--font-size-xs">
+     >
       <mat-select formControlName="facebookProfile" id="facebookProfile">
         <mat-option *ngFor="let country of countries" [value]="country.name" [matTooltip]="country.name">
           {{country.name}}

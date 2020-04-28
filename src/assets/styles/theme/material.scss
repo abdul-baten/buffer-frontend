@@ -210,7 +210,7 @@ mat-card {
 .mat-button-toggle-button {
   outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
-  font-family: $buffer--font-family-semi-bold !important;
+  font-family: $buffer--font-family-sans-medium !important;
   height: $buffer--height-full;
 }
 
@@ -303,9 +303,9 @@ mat-button-toggle {
 /*
     * MATERIAL TOOLTIP
 */
-// .mat-tooltip {
-//   font-size: $buffer--font-size-xs !important;
-// }
+.mat-tooltip {
+  font-size: $buffer--font-size-xs !important;
+}
 
 /*
     * MATERIAL RANGE SLIDE
@@ -374,13 +374,14 @@ mat-button-toggle {
 .mat-form-field-appearance-fill {
   &.mat-focused:not(.mat-form-field-invalid) {
     .mat-form-field-flex {
-      border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-primary-500 !important;
+      border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-blue-500 !important;
     }
   }
 }
 
 .mat-form-field-invalid {
   .mat-form-field-flex {
+    background-color: $buffer--border-color-warn-100 !important;
     border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-warn-500 !important;
   }
 }
@@ -392,7 +393,7 @@ textarea.mat-input-element {
 .mat-form-field-subscript-wrapper {
   padding: 0 !important;
   position: relative !important;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-sans-regular;
   font-size: $buffer--font-size-xs !important;
 }
 
@@ -433,12 +434,13 @@ textarea.mat-input-element {
   box-shadow: $buffer--box-shadow-lg !important;
 
   .mat-menu-content {
+    min-width: $buffer--width-56 !important;
     padding: 1rem !important;
 
     .mat-menu-item {
       @include buffer--button-border-radius($buffer--border-radius-lg);
       color: $buffer--text-color-black !important;
-      font-family: $buffer--font-family-semi-bold !important;
+      font-family: $buffer--font-family-sans-medium !important;
       font-size: $buffer--font-size-sm !important;
       height: $buffer--height-11;
       line-height: $buffer--line-height-leading-loose;
@@ -454,7 +456,7 @@ textarea.mat-input-element {
     * MATERIAL SELECT
 */
 .mat-select-value {
-  color: $buffer--text-color-black !important;
+  color: $buffer--text-color-gray !important;
   height: 1rem !important;
   padding-top: 2px;
 }
@@ -472,7 +474,7 @@ textarea.mat-input-element {
 .mat-option {
   border-radius: $buffer--border-radius-lg;
   height: $buffer--height-10 !important;
-  color: $buffer--text-color-black !important;
+  color: $buffer--text-color-gray !important;
   font-size: $buffer--font-size-sm !important;
   margin: 0.5rem 0;
 }
@@ -520,17 +522,12 @@ tr.mat-row {
 /*
     * MATERIAL GRID LIST
 */
-mat-grid-tile {
-  &:hover {
-    box-shadow: $buffer--box-shadow-lg !important;
-  }
-}
 
 /*
     * MATERIAL ERROR
 */
 .mat-error {
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-sm;
   line-height: $buffer--line-height-leading-normal;
   margin: 5px 0;

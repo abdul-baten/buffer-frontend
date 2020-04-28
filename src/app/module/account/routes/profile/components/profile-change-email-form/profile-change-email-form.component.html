@@ -1,0 +1,44 @@
+<div
+  class="buffer--background-color-white buffer--padding-5 buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
+  <form novalidate [formGroup]="profileChangeEmailForm">
+
+    <div class="clearfix">
+      <label class="buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm"
+        for="profileEmailAddress">Current email address</label>
+      <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-y-3" appearance="fill">
+        <input [errorStateMatcher]="errorStateMatcher" formControlName="profileEmailAddress" id="profileEmailAddress"
+          matInput placeholder="Current email address" spellcheck="false" type="email" autocomplete="off"
+          class="buffer--font-family-sans-medium buffer--cursor-default" />
+        <mat-error align="end" *ngIf="profileChangeEmailForm.controls.profileEmailAddress.invalid">Enter a
+          valid
+          first name.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <label for="profileNewEmailAddress"
+        class="buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">New email
+        address</label>
+      <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-y-3" appearance="fill">
+        <input [errorStateMatcher]="errorStateMatcher" formControlName="profileNewEmailAddress"
+          id="profileNewEmailAddress" matInput placeholder="Enter new email address" spellcheck="false" type="email"
+          autocomplete="off" class="buffer--font-family-sans-medium buffer--cursor-default" />
+        <mat-error align="end" *ngIf="profileChangeEmailForm.controls.profileNewEmailAddress.invalid">Enter a
+          valid
+          email address.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="clearfix">
+      <div class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-end">
+        <button mat-flat-button [disabled]="profileChangeEmailForm.invalid" color="primary"
+          class="buffer--font-family-sans-medium buffer--font-size-base buffer--height-12">
+          Change email
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+
+</div>

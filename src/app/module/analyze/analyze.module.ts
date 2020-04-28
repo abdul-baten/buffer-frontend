@@ -5,25 +5,13 @@ import { AnalyzeTopRoutesComponent } from './components/analyze-top-routes/analy
 import { AnalyzeTopToolbarComponent } from './components/analyze-top-toolbar/analyze-top-toolbar.component';
 import { CommonModule } from '@angular/common';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
-import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
-import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
 import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
 
 @NgModule({
   declarations: [AnalyzeComponent, AnalyzeTopToolbarComponent, AnalyzeTopRoutesComponent],
-  imports: [
-    AnalyzeRoutingModule,
-    CommonModule,
-    DashboardHeaderModule,
-    MatButtonModule,
-    RouterModule,
-    SocialProfileAddModule,
-    SocialProfileListModule,
-    SocialProfileToolbarModule,
-  ],
+  imports: [AnalyzeRoutingModule, CommonModule, DashboardHeaderModule, RouterModule, SocialProfileToolbarModule],
   providers: [AnalyzeFacade],
 })
 export class AnalyzeModule {}

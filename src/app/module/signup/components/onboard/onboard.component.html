@@ -7,11 +7,11 @@
 
 
     <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
-      <p class="buffer--font-family-semi-bold buffer--font-size-2xl buffer--line-height-leading-normal">
+      <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
         Almost there
       </p>
       <p
-        class="buffer--text-color-dark-gray buffer--font-family-semi-bold buffer--font-size-base buffer--line-height-leading-normal">
+        class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base buffer--line-height-leading-normal">
         Help us answering these questions</p>
     </div>
 
@@ -22,7 +22,7 @@
           <mat-form-field class="buffer--width-full" appearance="fill">
             <input [errorStateMatcher]="errorStateMatcher" formControlName="companyName" matInput
               placeholder="Company name" type="text" autocomplete="current-password"
-              class="buffer--font-family-semi-bold buffer--cursor-default" />
+              class="buffer--font-family-sans-medium buffer--cursor-default" />
             <mat-error align="end" *ngIf="onboardForm.controls.companyName.invalid">Company name is required.
             </mat-error>
           </mat-form-field>
@@ -44,7 +44,7 @@
 
         <div class="clearfix">
           <mat-form-field appearance="fill" class="buffer--width-full">
-            <mat-select formControlName="bussinesType" [errorStateMatcher]="errorStateMatcher">
+            <mat-select formControlName="businessType" [errorStateMatcher]="errorStateMatcher">
               <mat-option value=''>Which option best describes your business?</mat-option>
               <mat-option value="publisher">Publisher (e.g. newspaper, magazine, blogger, YouTube channel)
               </mat-option>
@@ -77,7 +77,7 @@
 
         <div class="clearfix">
           <button (click)="handleSignup()" [disabled]="onboardForm.invalid"
-            class="buffer--width-full buffer--height-14 buffer--font-family-semi-bold buffer--font-size-base"
+            class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base"
             color="primary" mat-flat-button>
             Continue
           </button>

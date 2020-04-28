@@ -2,26 +2,25 @@
   <div class="clearfix buffer--display-flex buffer--flex-direction-row buffer--align-items-center">
     <div class="clearfix buffer--margin-left-3">
       <button class="buffer--text-color-dark-gray buffer--width-12 buffer--height-12" (click)="handleSettingsBtnClick()"
-        mat-icon-button matTooltip="Calendar settings" matTooltipClass="buffer--font-size-xs">
-        <mat-icon class="buffer--font-weight-normal buffer--border-color-light-gray buffer--font-size-2xl">settings</mat-icon>
+        mat-icon-button matTooltip="Calendar settings">
+        <i
+          class="material-icons buffer--font-weight-normal buffer--border-color-light-gray buffer--font-size-2xl">settings</i>
       </button>
     </div>
     <div *ngIf="(calendarSidebarOpened$ | async) === false || (isWeb$ | async) === false"
       class="clearfix buffer--margin-left-3">
       <div class="clearfix">
         <button class="buffer--text-color-dark-gray buffer--width-12 buffer--height-12"
-          (click)="handleNewPostBtnClick()" mat-icon-button matTooltip="Schedule post"
-          matTooltipClass="buffer--font-size-xs">
-          <mat-icon class="buffer--border-color-light-gray buffer--font-size-2xl">add</mat-icon>
+          (click)="handleNewPostBtnClick()" mat-icon-button matTooltip="Schedule post">
+          <i class="material-icons buffer--border-color-light-gray buffer--font-size-2xl">add</i>
         </button>
       </div>
     </div>
     <div class="clearfix buffer--margin-left-3" *ngIf="isWeb$ | async">
       <button class="buffer--background-color-light-gray buffer--width-12 buffer--height-12"
         (click)="handleSidebarMenuBtnClick()" mat-icon-button
-        matTooltip="{{ (calendarSidebarOpened$ | async) ? 'Hide' : 'Show' }} sidebar"
-        matTooltipClass="buffer--font-size-xs">
-        <mat-icon class="buffer--border-color-light-gray buffer--font-size-2xl">menu</mat-icon>
+        matTooltip="{{ (calendarSidebarOpened$ | async) ? 'Hide' : 'Show' }} sidebar">
+        <i class="material-icons buffer--border-color-light-gray buffer--font-size-2xl">menu</i>
       </button>
     </div>
   </div>

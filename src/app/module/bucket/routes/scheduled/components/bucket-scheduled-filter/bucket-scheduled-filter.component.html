@@ -8,13 +8,13 @@
       <div class="clearfix buffer--margin-right-5">
         <mat-form-field class="buffer--width-full" appearance="fill">
           <input autocomplete="current-password" autocomplete="off"
-            class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="searchText" matInput
+            class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="searchText" matInput
             placeholder="Search" type="text" />
         </mat-form-field>
       </div>
 
       <div class="clearfix buffer--margin-right-5">
-        <mat-form-field appearance="fill" matTooltip="Timeline" matTooltipClass="buffer--font-size-xs">
+        <mat-form-field appearance="fill" matTooltip="Timeline">
           <mat-select formControlName="timeline" multiple>
             <mat-select-trigger>
               {{bucketFilterForm.value.timeline ? bucketFilterForm.value.timeline[0] : ''}}
@@ -31,7 +31,7 @@
       </div>
 
       <div class="clearfix buffer--margin-right-5">
-        <mat-form-field appearance="fill" matTooltip="Profile" matTooltipClass="buffer--font-size-xs">
+        <mat-form-field appearance="fill" matTooltip="Profile">
           <mat-select id="profileCountry">
             <mat-option *ngFor="let country of countries" [value]="country.name">
               {{country.name}}
@@ -41,7 +41,7 @@
       </div>
 
       <div class="clearfix buffer--margin-right-5">
-        <mat-form-field appearance="fill" matTooltip="Post Type" matTooltipClass="buffer--font-size-xs">
+        <mat-form-field appearance="fill" matTooltip="Post Type">
           <mat-select id="profileCountry">
             <mat-option *ngFor="let country of countries" [value]="country.name">
               {{country.name}}
@@ -55,10 +55,10 @@
 
   <div class="clearfix">
     <mat-button-toggle-group>
-      <mat-button-toggle value="dayGridMonth" matTooltip="Ascending order" matTooltipClass="buffer--font-size-xs">
+      <mat-button-toggle value="dayGridMonth" matTooltip="Ascending order">
         <i class="material-icons">vertical_align_bottom</i>
       </mat-button-toggle>
-      <mat-button-toggle value="timeGridDay" matTooltip="Descending order" matTooltipClass="buffer--font-size-xs">
+      <mat-button-toggle value="timeGridDay" matTooltip="Descending order">
         <i class="material-icons">vertical_align_top</i>
       </mat-button-toggle>
     </mat-button-toggle-group>

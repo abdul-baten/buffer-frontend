@@ -5,344 +5,407 @@
     * FONT FAMILY
 */
 
-.buffer--font-family-light {
-  font-family: $buffer--font-family-light !important;
+.buffer--font-family-lars-thin {
+  font-family: $buffer--font-family-lars-thin;
 }
 
-.buffer--font-family-regular {
-  font-family: $buffer--font-family-regular !important;
+.buffer--font-family-lars-italic {
+  font-family: $buffer--font-family-lars-italic;
 }
 
-.buffer--font-family-semi-bold {
-  font-family: $buffer--font-family-semi-bold !important;
+.buffer--font-family-lars-light-italic {
+  font-family: $buffer--font-family-lars-light-italic;
 }
 
-.buffer--font-family-bold {
-  font-family: $buffer--font-family-bold !important;
+.buffer--font-family-lars-regular {
+  font-family: $buffer--font-family-lars-regular;
 }
 
-.buffer--font-family-extra-bold {
-  font-family: $buffer--font-family-extra-bold !important;
+.buffer--font-family-lars-bold {
+  font-family: $buffer--font-family-lars-bold;
+}
+
+// Circ
+
+.buffer--font-family-circ-bold {
+  font-family: $buffer--font-family-circ-bold;
+}
+
+.buffer--font-family-circ-bold {
+  font-family: $buffer--font-family-circ-bold;
+}
+
+// Sans
+.buffer--font-family-sans-regular {
+  font-family: $buffer--font-family-sans-regular;
+}
+
+.buffer--font-family-sans-medium {
+  font-family: $buffer--font-family-sans-medium;
+}
+
+.buffer--font-family-sans-mono-regular {
+  font-family: $buffer--font-family-sans-mono-regular;
 }
 
 /*
     * FONT SIZE
 */
 .buffer--font-size-xs {
-  font-size: $buffer--font-size-xs !important;
+  font-size: $buffer--font-size-xs;
 }
 
 .buffer--font-size-sm {
-  font-size: $buffer--font-size-sm !important;
+  font-size: $buffer--font-size-sm;
 }
 
 .buffer--font-size-base {
-  font-size: $buffer--font-size-base !important;
+  font-size: $buffer--font-size-base;
+}
+
+.buffer--font-size-regular {
+  font-size: $buffer--font-size-regular;
 }
 
 .buffer--font-size-lg {
-  font-size: $buffer--font-size-lg !important;
+  font-size: $buffer--font-size-lg;
 }
 
 .buffer--font-size-xl {
-  font-size: $buffer--font-size-xl !important;
+  font-size: $buffer--font-size-xl;
 }
 
 .buffer--font-size-2xl {
-  font-size: $buffer--font-size-2xl !important;
+  font-size: $buffer--font-size-2xl;
 }
 
 .buffer--font-size-3xl {
-  font-size: $buffer--font-size-3xl !important;
+  font-size: $buffer--font-size-3xl;
 }
 
 .buffer--font-size-4xl {
-  font-size: $buffer--font-size-4xl !important;
+  font-size: $buffer--font-size-4xl;
 }
 
 .buffer--font-size-5xl {
-  font-size: $buffer--font-size-5xl !important;
+  font-size: $buffer--font-size-5xl;
 }
 
 .buffer--font-size-6xl {
-  font-size: $buffer--font-size-6xl !important;
+  font-size: $buffer--font-size-6xl;
 }
 
 .buffer--font-size-7xl {
-  font-size: $buffer--font-size-7xl !important;
+  font-size: $buffer--font-size-7xl;
 }
 
 .buffer--font-size-8xl {
-  font-size: $buffer--font-size-8xl !important;
+  font-size: $buffer--font-size-8xl;
 }
 
 .buffer--font-size-inherit {
-  font-size: $buffer--font-size-inherit !important;
+  font-size: $buffer--font-size-inherit;
 }
 
 /*
     * FONT WEIGHT
 */
 .buffer--font-weight-hairline {
-  font-weight: $buffer--font-weight-hairline !important;
+  font-weight: $buffer--font-weight-hairline;
 }
 
 .buffer--font-weight-thin {
-  font-weight: $buffer--font-weight-thin !important;
+  font-weight: $buffer--font-weight-thin;
 }
 
 .buffer--font-weight-light {
-  font-weight: $buffer--font-weight-light !important;
+  font-weight: $buffer--font-weight-light;
 }
 
 .buffer--font-weight-normal {
-  font-weight: $buffer--font-weight-normal !important;
+  font-weight: $buffer--font-weight-normal;
 }
 
 .buffer--font-weight-medium {
-  font-weight: $buffer--font-weight-medium !important;
+  font-weight: $buffer--font-weight-medium;
 }
 
 .buffer--font-weight-semibold {
-  font-weight: $buffer--font-weight-semibold !important;
+  font-weight: $buffer--font-weight-semibold;
 }
 
 .buffer--font-weight-bold {
-  font-weight: $buffer--font-weight-bold !important;
+  font-weight: $buffer--font-weight-bold;
 }
 
 .buffer--font-weight-extrabold {
-  font-weight: $buffer--font-weight-extrabold !important;
+  font-weight: $buffer--font-weight-extrabold;
 }
 
 .buffer--font-weight-black {
-  font-weight: $buffer--font-weight-black !important;
+  font-weight: $buffer--font-weight-black;
 }
 
 /*
     * LINE HEIGHT
 */
 .buffer--line-height-leading-zero {
-  line-height: $buffer--line-height-leading-zero !important;
+  line-height: $buffer--line-height-leading-zero;
 }
 
 .buffer--line-height-leading-none {
-  line-height: $buffer--line-height-leading-none !important;
+  line-height: $buffer--line-height-leading-none;
 }
 
 .buffer--line-height-leading-tight {
-  line-height: $buffer--line-height-leading-tight !important;
+  line-height: $buffer--line-height-leading-tight;
 }
 
 .buffer--line-height-leading-snug {
-  line-height: $buffer--line-height-leading-snug !important;
+  line-height: $buffer--line-height-leading-snug;
 }
 
 .buffer--line-height-leading-normal {
-  line-height: $buffer--line-height-leading-normal !important;
+  line-height: $buffer--line-height-leading-normal;
 }
 
 .buffer--line-height-leading-relaxed {
-  line-height: $buffer--line-height-leading-relaxed !important;
+  line-height: $buffer--line-height-leading-relaxed;
 }
 
 .buffer--line-height-leading-loose {
-  line-height: $buffer--line-height-leading-loose !important;
+  line-height: $buffer--line-height-leading-loose;
 }
 
 /*
     * LIST STYLE TYPE
 */
 .buffer--list-style-type-none {
-  list-style-type: $buffer--list-style-type-none !important;
+  list-style-type: $buffer--list-style-type-none;
 }
 
 .buffer--list-style-type-disc {
-  list-style-type: $buffer--list-style-type-disc !important;
+  list-style-type: $buffer--list-style-type-disc;
 }
 
 .buffer--list-style-type-decimal {
-  list-style-type: $buffer--list-style-type-decimal !important;
+  list-style-type: $buffer--list-style-type-decimal;
 }
 
 /*
     * LIST STYLE POSITION
 */
 .buffer--list-style-position-inside {
-  list-style-position: $buffer--list-style-position-inside !important;
+  list-style-position: $buffer--list-style-position-inside;
 }
 
 .buffer--list-style-position-outside {
-  list-style-position: $buffer--list-style-position-outside !important;
+  list-style-position: $buffer--list-style-position-outside;
 }
 
 /*
     * TEXT ALIGN
 */
 .buffer--text-align-left {
-  text-align: $buffer--text-align-left !important;
+  text-align: $buffer--text-align-left;
 }
 
 .buffer--text-align-center {
-  text-align: $buffer--text-align-center !important;
-  text-align: -webkit-center !important;
-  text-align: -moz-center !important;
+  text-align: $buffer--text-align-center;
+  text-align: -webkit-center;
+  text-align: -moz-center;
 }
 
 .buffer--text-align-right {
-  text-align: $buffer--text-align-right !important;
+  text-align: $buffer--text-align-right;
 }
 
 .buffer--text-align-justify {
-  text-align: $buffer--text-align-justify !important;
+  text-align: $buffer--text-align-justify;
 }
 
 /*
     * TEXT COLOR
 */
 .buffer--text-color-transparent {
-  color: $buffer--text-color-transparent !important;
+  color: $buffer--text-color-transparent;
 }
 
 .buffer--text-color-black {
-  color: $buffer--text-color-black !important;
+  color: $buffer--text-color-black;
 }
 
 .buffer--text-color-white {
-  color: $buffer--text-color-white !important;
+  color: $buffer--text-color-white;
 }
 
 .buffer--text-color-gray {
-  color: $buffer--text-color-gray !important;
+  color: $buffer--text-color-gray;
 }
 
 .buffer--text-color-light-gray {
-  color: $buffer--text-color-light-gray !important;
+  color: $buffer--text-color-light-gray;
 }
 
 .buffer--text-color-dark-gray {
-  color: $buffer--text-color-dark-gray !important;
+  color: $buffer--text-color-dark-gray;
 }
 
 .buffer--text-color-warn-100 {
-  color: $buffer--text-color-warn-100 !important;
+  color: $buffer--text-color-warn-100;
 }
 
 .buffer--text-color-warn-200 {
-  color: $buffer--text-color-warn-200 !important;
+  color: $buffer--text-color-warn-200;
 }
 
 .buffer--text-color-warn-300 {
-  color: $buffer--text-color-warn-300 !important;
+  color: $buffer--text-color-warn-300;
 }
 
 .buffer--text-color-warn-400 {
-  color: $buffer--text-color-warn-400 !important;
+  color: $buffer--text-color-warn-400;
 }
 
 .buffer--text-color-warn-500 {
-  color: $buffer--text-color-warn-500 !important;
+  color: $buffer--text-color-warn-500;
 }
 
 .buffer--text-color-warn-600 {
-  color: $buffer--text-color-warn-600 !important;
+  color: $buffer--text-color-warn-600;
 }
 
 .buffer--text-color-warn-700 {
-  color: $buffer--text-color-warn-700 !important;
+  color: $buffer--text-color-warn-700;
 }
 
 .buffer--text-color-warn-800 {
-  color: $buffer--text-color-warn-800 !important;
+  color: $buffer--text-color-warn-800;
 }
 
 .buffer--text-color-warn-900 {
-  color: $buffer--text-color-warn-900 !important;
+  color: $buffer--text-color-warn-900;
 }
 
 .buffer--text-color-accent-100 {
-  color: $buffer--text-color-accent-100 !important;
+  color: $buffer--text-color-accent-100;
 }
 
 .buffer--text-color-accent-200 {
-  color: $buffer--text-color-accent-200 !important;
+  color: $buffer--text-color-accent-200;
 }
 
 .buffer--text-color-accent-300 {
-  color: $buffer--text-color-accent-300 !important;
+  color: $buffer--text-color-accent-300;
 }
 
 .buffer--text-color-accent-400 {
-  color: $buffer--text-color-accent-400 !important;
+  color: $buffer--text-color-accent-400;
 }
 
 .buffer--text-color-accent-500 {
-  color: $buffer--text-color-accent-500 !important;
+  color: $buffer--text-color-accent-500;
 }
 
 .buffer--text-color-accent-600 {
-  color: $buffer--text-color-accent-600 !important;
+  color: $buffer--text-color-accent-600;
 }
 
 .buffer--text-color-accent-700 {
-  color: $buffer--text-color-accent-700 !important;
+  color: $buffer--text-color-accent-700;
 }
 
 .buffer--text-color-accent-800 {
-  color: $buffer--text-color-accent-800 !important;
+  color: $buffer--text-color-accent-800;
 }
 
 .buffer--text-color-accent-900 {
-  color: $buffer--text-color-accent-900 !important;
+  color: $buffer--text-color-accent-900;
 }
 
 .buffer--text-color-primary-100 {
-  color: $buffer--text-color-primary-100 !important;
+  color: $buffer--text-color-primary-100;
 }
 
 .buffer--text-color-primary-200 {
-  color: $buffer--text-color-primary-200 !important;
+  color: $buffer--text-color-primary-200;
 }
 
 .buffer--text-color-primary-300 {
-  color: $buffer--text-color-primary-300 !important;
+  color: $buffer--text-color-primary-300;
 }
 
 .buffer--text-color-primary-400 {
-  color: $buffer--text-color-primary-400 !important;
+  color: $buffer--text-color-primary-400;
 }
 
 .buffer--text-color-primary-500 {
-  color: $buffer--text-color-primary-500 !important;
+  color: $buffer--text-color-primary-500;
 }
 
 .buffer--text-color-primary-600 {
-  color: $buffer--text-color-primary-600 !important;
+  color: $buffer--text-color-primary-600;
 }
 
 .buffer--text-color-primary-700 {
-  color: $buffer--text-color-primary-700 !important;
+  color: $buffer--text-color-primary-700;
 }
 
 .buffer--text-color-primary-800 {
-  color: $buffer--text-color-primary-800 !important;
+  color: $buffer--text-color-primary-800;
 }
 
 .buffer--text-color-primary-900 {
-  color: $buffer--text-color-primary-900 !important;
+  color: $buffer--text-color-primary-900;
+}
+
+.buffer--text-color-blue-100 {
+  color: $buffer--text-color-blue-100;
+}
+
+.buffer--text-color-blue-200 {
+  color: $buffer--text-color-blue-200;
+}
+
+.buffer--text-color-blue-300 {
+  color: $buffer--text-color-blue-300;
+}
+
+.buffer--text-color-blue-400 {
+  color: $buffer--text-color-blue-400;
+}
+
+.buffer--text-color-blue-500 {
+  color: $buffer--text-color-blue-500;
+}
+
+.buffer--text-color-blue-600 {
+  color: $buffer--text-color-blue-600;
+}
+
+.buffer--text-color-blue-700 {
+  color: $buffer--text-color-blue-700;
+}
+
+.buffer--text-color-blue-800 {
+  color: $buffer--text-color-blue-800;
+}
+
+.buffer--text-color-blue-900 {
+  color: $buffer--text-color-blue-900;
 }
 
 /*
     * TEXT DECORATION
 */
 .buffer--text-decoration-underline {
-  -webkit-text-decoration: $buffer--text-decoration-underline !important;
-  text-decoration: $buffer--text-decoration-underline !important;
+  -webkit-text-decoration: $buffer--text-decoration-underline;
+  text-decoration: $buffer--text-decoration-underline;
 }
 
 .buffer--text-decoration-line-through {
-  -webkit-text-decoration: $buffer--text-decoration-line-through !important;
-  text-decoration: $buffer--text-decoration-line-through !important;
+  -webkit-text-decoration: $buffer--text-decoration-line-through;
+  text-decoration: $buffer--text-decoration-line-through;
 }
 
 .buffer--text-decoration-none {
@@ -354,42 +417,42 @@
     * TEXT TRANSFORM
 */
 .buffer--text-transform-uppercase {
-  text-transform: $buffer--text-transform-uppercase !important;
+  text-transform: $buffer--text-transform-uppercase;
 }
 
 .buffer--text-transform-lowercase {
-  text-transform: $buffer--text-transform-lowercase !important;
+  text-transform: $buffer--text-transform-lowercase;
 }
 
 .buffer--text-transform-capitalize {
-  text-transform: $buffer--text-transform-capitalize !important;
+  text-transform: $buffer--text-transform-capitalize;
 }
 
 .buffer--text-transform-normal-case {
-  text-transform: $buffer--text-transform-normal-case !important;
+  text-transform: $buffer--text-transform-normal-case;
 }
 
 /*
     * VERTICAL ALIGN
 */
 .buffer--vertical-align-baseline {
-  vertical-align: $buffer--vertical-align-baseline !important;
+  vertical-align: $buffer--vertical-align-baseline;
 }
 
 .buffer--vertical-align-top {
-  vertical-align: $buffer--vertical-align-top !important;
+  vertical-align: $buffer--vertical-align-top;
 }
 
 .buffer--vertical-align-middle {
-  vertical-align: $buffer--vertical-align-middle !important;
+  vertical-align: $buffer--vertical-align-middle;
 }
 
 .buffer--vertical-align-bottom {
-  vertical-align: $buffer--vertical-align-bottom !important;
+  vertical-align: $buffer--vertical-align-bottom;
 }
 
 .buffer--vertical-align-text-top {
-  vertical-align: $buffer--vertical-align-text-top !important;
+  vertical-align: $buffer--vertical-align-text-top;
 }
 
 .buffer--vertical-align-text-bottom {
@@ -400,50 +463,50 @@
     * WHITESPACE
 */
 .buffer--white-space-normal {
-  white-space: $buffer--white-space-normal !important;
+  white-space: $buffer--white-space-normal;
 }
 
 .buffer--white-space-no-wrap {
-  white-space: $buffer--white-space-no-wrap !important;
+  white-space: $buffer--white-space-no-wrap;
 }
 
 .buffer--white-space-pre {
-  white-space: $buffer--white-space-pre !important;
+  white-space: $buffer--white-space-pre;
 }
 
 .buffer--white-space-pre-line {
-  white-space: $buffer--white-space-pre-line !important;
+  white-space: $buffer--white-space-pre-line;
 }
 
 .buffer--white-space-pre-wrap {
-  white-space: $buffer--white-space-pre-wrap !important;
+  white-space: $buffer--white-space-pre-wrap;
 }
 
 /*
     * LETTER SPACING
 */
 .buffer--letter-spacing-tracking-tighter {
-  letter-spacing: $buffer--letter-spacing-tracking-tighter !important;
+  letter-spacing: $buffer--letter-spacing-tracking-tighter;
 }
 
 .buffer--letter-spacing-tracking-tight {
-  letter-spacing: $buffer--letter-spacing-tracking-tight !important;
+  letter-spacing: $buffer--letter-spacing-tracking-tight;
 }
 
 .buffer--letter-spacing-tracking-normal {
-  letter-spacing: $buffer--letter-spacing-tracking-normal !important;
+  letter-spacing: $buffer--letter-spacing-tracking-normal;
 }
 
 .buffer--letter-spacing-tracking-wide {
-  letter-spacing: $buffer--letter-spacing-tracking-wide !important;
+  letter-spacing: $buffer--letter-spacing-tracking-wide;
 }
 
 .buffer--letter-spacing-tracking-wider {
-  letter-spacing: $buffer--letter-spacing-tracking-wider !important;
+  letter-spacing: $buffer--letter-spacing-tracking-wider;
 }
 
 .buffer--letter-spacing-tracking-widest {
-  letter-spacing: $buffer--letter-spacing-tracking-widest !important;
+  letter-spacing: $buffer--letter-spacing-tracking-widest;
 }
 
 /* ************************************* TYPOGRAPHY ENDS ************************************* */

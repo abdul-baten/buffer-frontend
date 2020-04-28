@@ -9,7 +9,7 @@ import { SocialProfileAddFacade } from '../facade/social-profile-add.facade';
 export class SocialProfileAddComponent {
   constructor(private socialProfileAddFacade: SocialProfileAddFacade) {}
 
-  handleSocialProfileAddBtnClick(): void {
-    this.socialProfileAddFacade.handleSocialProfileAddDialogOpen();
+  handleAddPostBtnClick(): void {
+    this.socialProfileAddFacade.handleAddPostBtnClick(new Date());
   }
 }

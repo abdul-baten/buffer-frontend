@@ -95,14 +95,14 @@
 .owl-dt-calendar-table {
   border-collapse: collapse;
   border-spacing: 0;
-  font-family: $buffer--font-family-regular;
+  font-family: $buffer--font-family-sans-regular;
   width: $buffer--width-full;
 }
 .owl-dt-calendar-table .owl-dt-calendar-header {
   color: rgba(0, 0, 0, 0.4);
 }
 .owl-dt-calendar-table .owl-dt-calendar-header .owl-dt-weekdays th {
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-xs;
   padding-bottom: 1rem;
   text-align: $buffer--text-align-center;
@@ -280,7 +280,7 @@
   -o-transition: background-color 0.1s linear;
   -webkit-transition: background-color 0.1s linear;
   border-radius: $buffer--border-radius-xl;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-medium;
   height: $buffer--height-10;
   padding: 1rem;
   text-transform: $buffer--text-transform-uppercase;
@@ -383,8 +383,8 @@
   @include buffer--user-select(none);
   border-radius: $buffer--border-radius-xl;
   color: $buffer--text-color-black;
-  font-family: $buffer--font-family-regular;
-  font-family: $buffer--font-family-semi-bold;
+  font-family: $buffer--font-family-sans-regular;
+  font-family: $buffer--font-family-sans-medium;
   font-size: $buffer--font-size-sm;
   margin: 0.8rem 0.5rem;
   width: $buffer--width-percent-49;

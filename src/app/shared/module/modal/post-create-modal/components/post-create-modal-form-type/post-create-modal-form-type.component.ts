@@ -6,11 +6,10 @@ import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 
 @Component({
   selector: 'buffer--post-create-modal-form-type',
-  templateUrl: './post-create-modal-form-type.component.html',
   styleUrls: ['./post-create-modal-form-type.component.scss'],
+  templateUrl: './post-create-modal-form-type.component.html',
 })
 export class PostCreateModalFormTypeComponent {
-  formHeaderIcon = 'text_fields';
   formHeader = 'What do you want to share?';
 
   @Output() changedType = new EventEmitter<string>();

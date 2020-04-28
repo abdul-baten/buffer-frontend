@@ -1,5 +1,5 @@
 <virtual-scroller #scroll [items]="calendarPosts | async"
-  class="buffer--height-screen-without-header buffer--overflow-y-auto">
+  class="buffer--height-screen-with-header buffer--overflow-y-auto">
   <buffer--bucket-published-post-list *ngFor="let calendarPost of scroll.viewPortItems;" [calendarPost]="calendarPost"
     class="buffer--float-left buffer--bucket-post buffer--width-cal-post-list-item buffer--margin-bottom-5 buffer--margin-right-5">
   </buffer--bucket-published-post-list>

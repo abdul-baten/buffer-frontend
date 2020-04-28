@@ -6,11 +6,12 @@ import { DashboardHeaderService } from './service/dashboard-header.service';
 import { HeaderAccountModule } from '../header-account/header-account.module';
 import { LogoIconModule } from '@shared/module/logo/logo-icon/logo-icon.module';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
+import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
 
 @NgModule({
   declarations: [DashboardHeaderComponent, DashboardHeaderMenuComponent],
@@ -19,10 +20,11 @@ import { RouterModule } from '@angular/router';
     HeaderAccountModule,
     LogoIconModule,
     MatButtonModule,
-    MatIconModule,
     MatMenuModule,
     MatTooltipModule,
     RouterModule,
+    SocialProfileAddModule,
+    SocialProfileListModule,
   ],
   exports: [DashboardHeaderComponent],
   providers: [DashboardHeaderFacade, DashboardHeaderService],

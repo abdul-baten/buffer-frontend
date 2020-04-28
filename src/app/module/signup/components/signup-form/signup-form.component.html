@@ -7,11 +7,11 @@
 
 
     <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
-      <p class="buffer--font-family-semi-bold buffer--font-size-2xl buffer--line-height-leading-normal">
+      <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
         Try free
       </p>
       <p
-        class="buffer--text-color-dark-gray buffer--font-family-semi-bold buffer--font-size-base buffer--line-height-leading-normal">
+        class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base buffer--line-height-leading-normal">
         Continue to
         grow</p>
     </div>
@@ -22,7 +22,7 @@
 
         <div class="clearfix">
           <mat-form-field class="buffer--width-full" appearance="fill">
-            <input autocomplete="current-password" class="buffer--font-family-semi-bold buffer--cursor-default"
+            <input autocomplete="current-password" class="buffer--font-family-sans-medium buffer--cursor-default"
               formControlName="fullName" matInput placeholder="Full name" type="text"
               [errorStateMatcher]="errorStateMatcher" />
             <mat-error align="end" *ngIf="signupForm.controls.fullName.invalid">Please enter a valid name.
@@ -32,7 +32,7 @@
 
         <div class="clearfix">
           <mat-form-field class="buffer--width-full" appearance="fill">
-            <input type="text" matInput class="buffer--font-family-semi-bold buffer--cursor-default"
+            <input type="text" matInput class="buffer--font-family-sans-medium buffer--cursor-default"
               formControlName="email" autocomplete="current-password" placeholder="Work email" required
               [errorStateMatcher]="errorStateMatcher" />
             <mat-error align="end" *ngIf="signupForm.controls.email.invalid">Please enter a valid email.
@@ -43,11 +43,11 @@
         <div class="clearfix">
           <mat-form-field class="buffer--width-full" appearance="fill">
             <input placeholder="Password" autocomplete="current-password" [type]="hidePassword ? 'password' : 'text'"
-              class="buffer--font-family-semi-bold buffer--cursor-default" formControlName="password" matInput required
-              [errorStateMatcher]="errorStateMatcher" />
+              class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput
+              required [errorStateMatcher]="errorStateMatcher" />
             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
-              <mat-icon class="buffer--text-color-dark-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
-              </mat-icon>
+              <i class="material-icons buffer--text-color-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
+              </i>
             </button>
             <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Please enter a strong password.
             </mat-error>
@@ -57,7 +57,7 @@
 
         <div class="clearfix">
           <button color="primary" mat-flat-button [disabled]="signupForm.invalid" (click)="handleSignup()"
-            class="buffer--width-full buffer--height-14 buffer--font-family-semi-bold buffer--font-size-base">
+            class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
             Try free for 14 days
           </button>
         </div>
@@ -68,7 +68,7 @@
       class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center">
       <div class="clearfix buffer--text-align-center">
         <p
-          class="buffer--text-color-dark-gray buffer--font-size-sm buffer--font-family-semi-bold buffer--line-height-leading-none">
+          class="buffer--text-color-dark-gray buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-none">
           <span>By continuing, you
             agree to </span>
           <span>Buffer's
@@ -89,7 +89,7 @@
 
     </div>
     <div class="clearfix">
-      <a routerLink="/enter" class="buffer--font-size-sm buffer--font-family-semi-bold buffer--default-link">Have
+      <a routerLink="/enter" class="buffer--font-size-base buffer--font-family-sans-medium buffer--default-link">Have
         an account? Login</a>
     </div>
   </div>

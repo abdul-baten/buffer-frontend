@@ -4,7 +4,6 @@ import { HttpService } from '@core/service/http/http.service';
 import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MainLogoModule } from '@shared/module/logo/main-logo/main-logo.module';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +20,6 @@ import { SigninRoutingModule } from '@app/signin/signin-routing.module';
     LoaderModule,
     MainLogoModule,
     MatButtonModule,
-    MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
     RouterModule,
