@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { SubSink } from 'subsink';
 
@@ -8,7 +8,7 @@ import { SubSink } from 'subsink';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnDestroy, OnInit {
   private subscriptions$ = new SubSink();
 
   constructor(private activatedRoute: ActivatedRoute, private signupFacade: SignupFacade) {}

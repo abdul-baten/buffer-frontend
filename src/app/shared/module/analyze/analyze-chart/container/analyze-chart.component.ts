@@ -24,7 +24,7 @@ export class AnalyzeChartComponent implements AfterViewInit, OnChanges {
     chart: {
       type: 'line',
       style: {
-        fontFamily: "'Buffer-Sans-Medium', Arial, sans-serif",
+        fontFamily: 'Buffer-Sans-Medium, Arial, sans-serif',
       },
     },
     tooltip: {
@@ -91,7 +91,7 @@ export class AnalyzeChartComponent implements AfterViewInit, OnChanges {
       chartOptions: {
         chart: {
           style: {
-            fontFamily: "'Buffer-Sans-Medium', Arial, sans-serif",
+            fontFamily: 'Buffer-Sans-Medium, Arial, sans-serif',
           },
         },
       },
