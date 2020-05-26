@@ -1,16 +1,9 @@
-// Core Modules
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, HostListener, OnDestroy } from '@angular/core';
-
-// Third Party Modules
-import { SubSink } from 'subsink';
 import { distinctUntilChanged } from 'rxjs/operators';
-
-// Facade
+import { E_CAL_WEEK_DAY } from '@core/enum';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-
-// Enums
-import { WEEK_DAY } from '@core/enum/calendar/calendar-week-days.enum';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--calendar-settings-modal-form',
@@ -40,7 +33,7 @@ export class CalendarSettingsModalFormComponent implements OnDestroy {
 
   private buildCalendarSettingsForm(): FormGroup {
     return this.formBuilder.group({
-      firstDay: [WEEK_DAY.MONDAY],
+      firstDay: [E_CAL_WEEK_DAY.MONDAY],
       showNonCurrentDates: [true],
     });
   }

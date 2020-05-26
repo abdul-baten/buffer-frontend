@@ -24,9 +24,9 @@ export class SigninFormComponent {
 
   private buildSigninForm(): FormGroup {
     return this.formBuilder.group({
-      email: ['', [Validators.required, CommonValidator.emailAddress]],
+      email: [null, [Validators.required, CommonValidator.emailAddress]],
       password: [
-        '',
+        null,
         [
           Validators.required,
           Validators.minLength(6),

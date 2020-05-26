@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CountryInterface } from '@core/model/country/country.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { I_COUNTRY } from '@core/model';
 
 @Component({
   selector: 'buffer--facebook-profile-selection',
@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./facebook-profile-selection.component.scss'],
 })
 export class FacebookProfileSelectionComponent {
-  countries: CountryInterface[] = [
+  countries: I_COUNTRY[] = [
     { name: 'Test Page for Facebook Test Page for fb' },
     { name: 'India' },
     { name: 'Pakistan' },

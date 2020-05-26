@@ -1,5 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { PAGES } from '@core/constant/page/page.constant';
 import { ProfilesFacade } from '../facade/profiles.facade';
 import { SubSink } from 'subsink';
 
@@ -9,20 +10,7 @@ import { SubSink } from 'subsink';
   styleUrls: ['./profiles.component.scss'],
 })
 export class ProfilesComponent implements OnDestroy, OnInit {
-  // ngOnInit() {
-  //   this.router.queryParams.subscribe((params: { code: string }) => {
-  //     const { code } = params;
-  //     console.warn(code);
-
-  //     if (code) {
-  //       this.http
-  //         .get('https://localhost:3000/api/v1.0.0/social-profile/getPages', { params: { code } })
-  //         .subscribe((resp: any) => {
-  //           console.warn(resp);
-  //         });
-  //     }
-  //   });
-  // }
+  chooseConnectionPage = `${PAGES.CONNECTION_MODULE.PAGE_ROUTE}/${PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE}`;
 
   matSideNavFixedInViewport = true;
   matSideNavFixedTopGap = 72;
@@ -31,14 +19,18 @@ export class ProfilesComponent implements OnDestroy, OnInit {
 
   private subscriptions$ = new SubSink();
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: ProfilesFacade) {}
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly profilesFacade: ProfilesFacade) {}
 
   ngOnInit(): void {
     this.setDocumentTitle();
   }
 
   private setDocumentTitle(): void {
-    this.subscriptions$.add(this.facade.setDocumentTitle(this.activatedRoute));
+    this.subscriptions$.add(this.profilesFacade.setDocumentTitle(this.activatedRoute));
+  }
+
+  navigateToPage(pageToNavigate: string): void {
+    this.profilesFacade.navigateToPage(pageToNavigate);
   }
 
   @HostListener('window:beforeunload')

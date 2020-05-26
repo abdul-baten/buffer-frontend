@@ -1,5 +1,5 @@
-import { CalPostInterface } from '@core/model/post/post.model';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { I_POST } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
   styleUrls: ['./bucket-saved-post-list.component.scss'],
 })
 export class BucketSavedPostListComponent implements OnChanges {
-  @Input() calendarPost: CalPostInterface;
+  @Input() calendarPost: I_POST;
 
   slideConfig = {
     arrows: true,

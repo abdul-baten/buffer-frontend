@@ -126,7 +126,6 @@ app.get('*', (req: express.Request, res: express.Response) => {
       ],
     },
     (err, html) => {
-      console.error(err);
       if (!!err) throw err;
       res.send(html);
     },

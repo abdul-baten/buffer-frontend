@@ -1,8 +1,8 @@
 import jsSHA from 'jssha';
 import { environment } from '@env/environment';
 import { HttpService } from '../http/http.service';
+import { I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
-import { IUser } from '@core/model/user/user.model';
 import { Observable } from 'rxjs';
 
 const API_URL = environment.apiURL;
@@ -21,18 +21,18 @@ export class AuthService {
     return hash;
   }
 
-  loginUser(email: string, pass: string): Observable<Partial<IUser>> {
+  loginUser(email: string, pass: string): Observable<Partial<I_USER>> {
     const password = this.getPasswordHash(pass);
-    return this.httpService.post<Partial<IUser>>(API_URL + 'auth/enter', { email, password });
+    return this.httpService.post<Partial<I_USER>>(API_URL + 'auth/enter', { email, password });
   }
 
-  signupUser(userInfo: Partial<IUser>): Observable<Partial<IUser>> {
+  signupUser(userInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
     const { fullName, email, password: userPassword } = userInfo;
     const password = this.getPasswordHash(userPassword);
-    return this.httpService.post<Partial<IUser>>(API_URL + 'auth/join', { fullName, email, password });
+    return this.httpService.post<Partial<I_USER>>(API_URL + 'auth/join', { fullName, email, password });
   }
 
-  onboardUser(memberInfo: Partial<IUser>): Observable<Partial<IUser>> {
-    return this.httpService.patch<Partial<IUser>>(API_URL + 'auth/onboard', memberInfo);
+  onboardUser(memberInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
+    return this.httpService.patch<Partial<I_USER>>(API_URL + 'auth/onboard', memberInfo);
   }
 }

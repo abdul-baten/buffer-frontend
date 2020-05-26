@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CountryInterface } from '@core/model/country/country.model';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { I_COUNTRY } from '@core/model';
 
 @Component({
   selector: 'buffer--facebook-date-selection',
@@ -8,7 +8,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./facebook-date-selection.component.scss'],
 })
 export class FacebookDateSelectionComponent {
-  countries: CountryInterface[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
+  countries: I_COUNTRY[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
 
   profileDateSelectionForm: FormGroup;
 

@@ -1,8 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { BucketPublishedFacade } from '../facade/bucket-published.facade';
-import { CalPostInterface } from '@core/model/post/post.model';
 import { ChangeDetectionStrategy, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { DocumentInterface } from '@core/model/document/document.model';
+import { I_DOCUMENT, I_POST } from '@core/model';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -18,13 +17,11 @@ export class BucketPublishedComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.subscriptions$.add(
-      this.activatedRoute.data.subscribe((data: DocumentInterface) =>
-        this.bucketPublishedFacade.setDocumentTitle(data.title),
-      ),
+      this.activatedRoute.data.subscribe((data: I_DOCUMENT) => this.bucketPublishedFacade.setDocumentTitle(data.title)),
     );
   }
 
-  trackByFn(index: number, postInfo: CalPostInterface) {
+  trackByFn(index: number, postInfo: I_POST) {
     console.warn(postInfo, index);
     return postInfo.id;
   }

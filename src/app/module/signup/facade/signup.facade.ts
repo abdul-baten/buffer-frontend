@@ -2,13 +2,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppState } from 'src/app/reducers';
 import { AuthService } from '@core/service/auth/auth.service';
 import { DocumentTitleService } from '@core/service/document-title/document-title.service';
+import { I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
-import { IUser } from '@core/model/user/user.model';
 import { Observable, Subscription } from 'rxjs';
 import { selectUserEmail } from 'src/app/selectors/user.selector';
 import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
-import { tap, switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class SignupFacade {
@@ -27,19 +27,19 @@ export class SignupFacade {
     this.router.navigateByUrl(authURL);
   }
 
-  signupUser(formValue: Partial<IUser>): Observable<Partial<IUser>> {
+  signupUser(formValue: Partial<I_USER>): Observable<Partial<I_USER>> {
     const { fullName, email, password } = formValue;
     return this.authService
       .signupUser({ fullName, email, password })
-      .pipe(tap((user: Partial<IUser>) => this.store.dispatch(setUserInfo({ user }))));
+      .pipe(tap((user: Partial<I_USER>) => this.store.dispatch(setUserInfo({ user }))));
   }
 
-  onboardUser(memberInfo: Partial<IUser>): Observable<Partial<IUser>> {
+  onboardUser(memberInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
     return this.store.select(selectUserEmail).pipe(
       switchMap((email: string) => {
         return this.authService
           .onboardUser({ email, ...memberInfo })
-          .pipe(tap((user: Partial<IUser>) => this.store.dispatch(setUserInfo({ user }))));
+          .pipe(tap((user: Partial<I_USER>) => this.store.dispatch(setUserInfo({ user }))));
       }),
     );
   }

@@ -12,7 +12,7 @@ export class HttpService {
     return this.httpClient.get<T>(apiURL, {
       responseType: 'json',
       withCredentials: true,
-      params,
+      params: { ...params },
     });
   }
 

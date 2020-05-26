@@ -6,7 +6,7 @@ import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
 import { Calendar } from '@fullcalendar/core';
 import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
-import { CalPostInterface } from '@core/model/post/post.model';
+import { I_POST } from '@core/model';
 import { CalViewState } from '../model/calendar.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
 import { DocumentTitleService } from '@core/service/document-title/document-title.service';
@@ -120,7 +120,7 @@ export class ScheduleFacade {
     });
   }
 
-  handlePostDrag(postInfo: CalPostInterface): void {
+  handlePostDrag(postInfo: I_POST): void {
     this.matDialog.open(PostRescheduleConfirmModalComponent, {
       position: {
         top: '',
@@ -166,7 +166,7 @@ export class ScheduleFacade {
     });
   }
 
-  handlePostDetailsDialogOpen(postInfo: CalPostInterface): void {
+  handlePostDetailsDialogOpen(postInfo: I_POST): void {
     this.matDialog.open(PostDetailsModalComponent, {
       position: {
         top: '',
@@ -232,7 +232,7 @@ export class ScheduleFacade {
     });
   }
 
-  handlePostEditDialogOpen(postInfo: CalPostInterface): void {
+  handlePostEditDialogOpen(postInfo: I_POST): void {
     this.matDialog.open(PostEditModalComponent, {
       position: {
         top: '',

@@ -4,6 +4,7 @@ import { ChooseConnectionRoutingModule } from './choose-connection-routing.modul
 import { CommonModule } from '@angular/common';
 import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
@@ -13,10 +14,11 @@ import { NgModule } from '@angular/core';
   imports: [
     ChooseConnectionRoutingModule,
     CommonModule,
-    MatButtonModule,
-    MatSidenavModule,
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
+    HttpClientModule,
+    MatButtonModule,
+    MatSidenavModule,
   ],
   providers: [ChooseConnectionFacade],
 })

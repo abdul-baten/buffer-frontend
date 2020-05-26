@@ -4,14 +4,13 @@ import timeGrigPlugin from '@fullcalendar/timegrid';
 import { Calendar } from '@fullcalendar/core';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
-import { CalPostInterface } from '@core/model/post/post.model';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
+import { E_CONNECTION_STATUS, E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { I_POST } from '@core/model';
 import { Observable, of } from 'rxjs';
-import { POST_STATUS } from '@core/enum/post/post-status.enum';
-import { POST_TYPE } from '@core/enum/post/post-type.enum';
 import { ScheduleCalendarViewHeaderButtonsComponent } from '../schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -93,11 +92,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     return format(subMinutes(new Date(), 5), 'HH:mm:ss');
   }
 
-  get calendarPosts(): Observable<CalPostInterface[]> {
-    return of([
+  get calendarPosts(): Observable<I_POST[]> {
+    const calendarPosts: Observable<I_POST[]> = of([
       {
         id: '100',
-        title: 'Post Now',
+        title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         start: '2020-01-07T20:30:00',
         allDay: false,
         editable: true,
@@ -112,7 +111,31 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
             fileThumbnailURL: '',
           },
           {
+            fileURL:
+              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
+            fileType: 'img',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.jpg',
+            fileThumbnailURL: '',
+          },
+          {
             fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
+            fileType: 'img',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.png',
+            fileThumbnailURL: '',
+          },
+          {
+            fileURL:
+              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
+            fileType: 'img',
+            fileMimeType: '',
+            fileName: 'patreon-hero-illustration.jpg',
+            fileThumbnailURL: '',
+          },
+          {
+            fileURL:
+              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
             fileType: 'img',
             fileMimeType: '',
             fileName: 'patreon-hero-illustration.jpg',
@@ -121,16 +144,19 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
         ],
         socialAccounts: [
           {
-            socialId: '',
-            socialAvatar:
+            _id: '',
+            connectionID: '',
+            connectionName: 'Test Page for Iconosquare',
+            connectionPicture:
               'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
-            socialName: 'Facebook',
-            socialType: '',
-            socialURL: '',
+            connectionStatus: E_CONNECTION_STATUS.ENABLED,
+            connectionToken: '',
+            connectionType: E_CONNECTION_TYPE.FACEBOOK_PAGE,
+            connectionUserID: '',
           },
         ],
-        postType: POST_TYPE.IMAGE,
-        postStatus: POST_STATUS.SCHEDULED,
+        postType: E_POST_TYPE.IMAGE,
+        postStatus: E_POST_STATUS.SCHEDULED,
         postTime: '',
         postPermission: {
           postCanBeEdited: true,
@@ -141,109 +167,14 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
         postLastEditedContent: '',
         postDate: '',
         postURL: '',
-        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-          It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-          and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum`,
-        postCreateMember: '',
-        postLastEditedDate: '',
-        postLastEditedMember: '',
-      },
-      {
-        id: '1001',
-        title: 'Post Video',
-        start: '2020-01-31T20:30:00',
-        allDay: false,
-        editable: true,
-        overlap: true,
-        hasEnd: false,
-        postVideos: [
-          {
-            fileURL: 'https://www.videvo.net/videvo_files/converted/2017_12/preview/171124_B2_UHD_001.mp471291.webm',
-            fileType: 'video',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.png',
-            fileThumbnailURL: '',
-          },
-          {
-            fileURL: 'https://www.videvo.net/videvo_files/converted/2013_07/preview/GirlinWaves.mov14897.webm',
-            fileType: 'video',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.jpg',
-            fileThumbnailURL: '',
-          },
-        ],
-        socialAccounts: [
-          {
-            socialId: '',
-            socialAvatar:
-              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
-            socialName: 'Facebook',
-            socialType: '',
-            socialURL: '',
-          },
-        ],
-        postType: POST_TYPE.VIDEO,
-        postStatus: POST_STATUS.SCHEDULED,
-        postTime: '',
-        postPermission: {
-          postCanBeEdited: true,
-          postCanNeDeleted: true,
-        },
-        postOriginalDate: '2020-01-31T20:30:00',
-        postLocation: '',
-        postLastEditedContent: '',
-        postDate: '',
-        postURL: '',
-        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-          It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-          and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum`,
-        postCreateMember: '',
-        postLastEditedDate: '',
-        postLastEditedMember: '',
-      },
-      {
-        id: '1002',
-        title: 'Post Video',
-        start: '2020-02-10T20:30:00',
-        allDay: false,
-        editable: true,
-        overlap: true,
-        hasEnd: false,
-        postVideos: [],
-        socialAccounts: [
-          {
-            socialId: '',
-            socialAvatar:
-              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
-            socialName: 'Facebook',
-            socialType: '',
-            socialURL: '',
-          },
-        ],
-        postType: POST_TYPE.TEXT,
-        postStatus: POST_STATUS.SCHEDULED,
-        postTime: '',
-        postPermission: {
-          postCanBeEdited: true,
-          postCanNeDeleted: true,
-        },
-        postOriginalDate: '2020-01-31T20:30:00',
-        postLocation: '',
-        postLastEditedContent: '',
-        postDate: '',
-        postURL: '',
         postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
         postCreateMember: '',
         postLastEditedDate: '',
         postLastEditedMember: '',
       },
     ]);
+
+    return calendarPosts;
   }
 
   constructor(
@@ -289,7 +220,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     return differenceInDays(new Date(), new Date(arg.start)) <= 0;
   }
 
-  handlePostDrop(postInfo: CalPostInterface) {
+  handlePostDrop(postInfo: I_POST) {
     switch (differenceInDays(new Date(), new Date(postInfo.event.start)) <= 0) {
       case true:
         this.scheduleFacade.handlePostDrag(postInfo);
@@ -301,7 +232,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  handlePostRender(postInfo: CalPostInterface): void {
+  handlePostRender(postInfo: I_POST): void {
     const element = postInfo.el.querySelector('.fc-content');
     postInfo.el.querySelector('.fc-title').remove();
 
@@ -314,7 +245,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     postPortalHost.attach(componentToAppend);
   }
 
-  private createPostDataInjector(postInfo: CalPostInterface): PortalInjector {
+  private createPostDataInjector(postInfo: I_POST): PortalInjector {
     const injectorToken = new WeakMap();
     injectorToken.set(CALENDAR_POST_DATA, postInfo);
     return new PortalInjector(this.injector, injectorToken);

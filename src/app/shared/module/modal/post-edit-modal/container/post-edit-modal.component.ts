@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CalPostInterface } from '@core/model/post/post.model';
+import { I_POST } from '@core/model';
 
 @Component({
   selector: 'buffer--post-edit-modal',
@@ -8,7 +8,7 @@ import { CalPostInterface } from '@core/model/post/post.model';
   styleUrls: ['./post-edit-modal.component.scss'],
 })
 export class PostEditModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public postInfo: CalPostInterface) {
+  constructor(@Inject(MAT_DIALOG_DATA) public postInfo: I_POST) {
     console.warn(this.postInfo);
   }
 }

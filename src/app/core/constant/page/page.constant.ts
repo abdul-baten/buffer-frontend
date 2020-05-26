@@ -1,6 +1,6 @@
-import { IPageRoute } from '@core/model/page/page.model';
+import { I_PAGE } from '@core/model';
 
-const PAGES: IPageRoute = {
+const PAGES: I_PAGE = {
   LANDING_PAGE: {
     PAGE_ROUTE: '',
     PAGE_TITLE: 'Buffer',
@@ -22,7 +22,7 @@ const PAGES: IPageRoute = {
     PAGE_TITLE: 'Dashboard - Buffer',
   },
   SCHEDULE_PAGE: {
-    PAGE_ROUTE: 'schedule',
+    PAGE_ROUTE: 'schedule/:id',
     PAGE_TITLE: 'Schedule - Buffer',
   },
   ACCOUNT_MODULE: {

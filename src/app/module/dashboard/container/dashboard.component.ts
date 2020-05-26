@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthGuardService } from '@core/service/auth-guard/auth-guard.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { DashboardFacade } from '@app/dashboard/facade/dashboard.facade';
-import { DocumentInterface } from '@core/model/document/document.model';
+import { I_DOCUMENT } from '@core/model';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnDestroy, OnInit {
 
   private setTitle(): void {
     this.subscriptions$.add(
-      this.activatedRoute.data.subscribe((documentData: DocumentInterface) =>
+      this.activatedRoute.data.subscribe((documentData: I_DOCUMENT) =>
         this.dashboardFacade.setTitle(documentData.title),
       ),
     );

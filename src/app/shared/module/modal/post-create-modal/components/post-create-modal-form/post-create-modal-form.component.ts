@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
+import { E_POST_TYPE } from '@core/enum';
 import { Observable } from 'rxjs';
-import { POST_TYPE } from '@core/enum/post/post-type.enum';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 import { PostCreateModalFormImageComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-image/post-create-modal-form-image.component';
 import { PostCreateModalFormTextComponent } from '@shared/module/modal/post-create-modal/components/post-create-modal-form-text/post-create-modal-form-text.component';
@@ -13,7 +13,7 @@ import { PostCreateModalFormVideoComponent } from '@shared/module/modal/post-cre
   templateUrl: './post-create-modal-form.component.html',
 })
 export class PostCreateModalFormComponent {
-  postType$: Observable<POST_TYPE>;
+  postType$: Observable<E_POST_TYPE>;
 
   @ViewChild(PostCreateModalFormTypeComponent, { read: true, static: false })
   postTypeChooseStep: PostCreateModalFormTypeComponent;

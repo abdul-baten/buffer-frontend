@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { CountryInterface } from '@core/model/country/country.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { I_COUNTRY } from '@core/model/country.model';
 
 @Component({
   selector: 'buffer--bucket-published-filter',
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class BucketPublishedFilterComponent {
   bucketFilterForm: FormGroup;
 
-  countries: CountryInterface[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
+  countries: I_COUNTRY[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
 
   constructor(private formBuilder: FormBuilder) {
     this.bucketFilterForm = this.buildBucketFilterForm();

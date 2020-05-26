@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PAGES } from './core/constant/page/page.constant';
 import { RouterModule, Routes } from '@angular/router';
+import { UserResolver } from './resolvers/user-info.resolver';
+import { UserConnectionResolver } from './resolvers/user-connection.resolver';
 
 const routes: Routes = [
   {
@@ -22,31 +24,37 @@ const routes: Routes = [
     path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
     data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
+    resolve: { userInfo: UserResolver },
   },
   {
     path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SCHEDULE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),
+    resolve: { userConnectionsInfo: UserConnectionResolver },
   },
   {
     path: PAGES.ACCOUNT_MODULE.PAGE_ROUTE,
     data: { title: PAGES.ACCOUNT_MODULE.PAGE_TITLE },
     loadChildren: () => import('./module/account/account.module').then(m => m.AccountModule),
+    resolve: { userInfo: UserResolver },
   },
   {
     path: PAGES.BUCKET_PAGE.PAGE_ROUTE,
     data: { title: PAGES.BUCKET_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/bucket/bucket.module').then(m => m.BucketModule),
+    resolve: { userInfo: UserResolver },
   },
   {
-    path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.ANALYZE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/analyze/analyze.module').then(m => m.AnalyzeModule),
+    path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
+    resolve: { userInfo: UserResolver },
   },
   {
-    path: PAGES.CONNECTION_MODULE.PAGE_ROUTE,
     data: { title: PAGES.CONNECTION_MODULE.PAGE_TITLE },
     loadChildren: () => import('./module/connection/connection.module').then(m => m.ConnectionModule),
+    path: PAGES.CONNECTION_MODULE.PAGE_ROUTE,
+    resolve: { userConnectionsInfo: UserConnectionResolver },
   },
 ];
 
@@ -59,7 +67,7 @@ const routes: Routes = [
       relativeLinkResolution: 'corrected',
       scrollOffset: [0, 0],
       scrollPositionRestoration: 'top',
-      urlUpdateStrategy: 'deferred',
+      urlUpdateStrategy: 'eager',
       useHash: false,
     }),
   ],

@@ -19,7 +19,7 @@ import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
-
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 /** Custom options the configure the tooltip's default show/hide delays. */
 export const customTooltipConfig: MatTooltipDefaultOptions = {
   hideDelay: 500,
@@ -67,6 +67,10 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
   ],
   providers: [
     NotificationService,
+    {
+      provide: MAT_SNACK_BAR_DATA,
+      useValue: {},
+    },
     { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: { disabled: true } },

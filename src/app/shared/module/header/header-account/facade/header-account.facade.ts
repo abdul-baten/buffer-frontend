@@ -11,6 +11,6 @@ export class HeaderAccountFacade {
   }
 
   logoutUser(): void {
-    this.dashboardHeaderService.logoutUser().subscribe(() => location.reload());
+    this.dashboardHeaderService.logoutUser();
   }
 }

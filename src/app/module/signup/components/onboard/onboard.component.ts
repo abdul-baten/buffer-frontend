@@ -2,10 +2,10 @@ import { AppState } from 'src/app/reducers';
 import { Component, OnInit } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { I_USER } from '@core/model';
 import { selectUserInfo } from 'src/app/selectors/user.selector';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { Store } from '@ngrx/store';
-import { IUser } from '@core/model/user/user.model';
 
 @Component({
   selector: 'buffer--onboard',
@@ -14,7 +14,7 @@ import { IUser } from '@core/model/user/user.model';
 })
 export class OnboardComponent implements OnInit {
   onboardForm: FormGroup;
-  userInfo: IUser;
+  userInfo: I_USER;
 
   errorStateMatcher = new CustomFormErrorStateMatcher();
 
@@ -23,7 +23,7 @@ export class OnboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select(selectUserInfo).subscribe((userInfo: IUser) => {
+    this.store.select(selectUserInfo).subscribe((userInfo: I_USER) => {
       this.userInfo = userInfo;
     });
   }

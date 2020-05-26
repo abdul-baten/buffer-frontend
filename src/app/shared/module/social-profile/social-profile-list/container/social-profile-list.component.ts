@@ -10,6 +10,6 @@ export class SocialProfileListComponent {
   constructor(private router: Router) {}
 
   handleSocialProfilesBtnClick(): void {
-    this.router.navigate(['/connection/profiles']);
+    this.router.navigate(['connection/profiles']);
   }
 }

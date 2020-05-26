@@ -1,11 +1,15 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { AppState } from 'src/app/reducers';
 import { AuthGuardService } from '@core/service/auth-guard/auth-guard.service';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { DocumentInterface } from '@core/model/document/document.model';
+import { I_DOCUMENT } from '@core/model';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { selectConnectionByID } from 'src/app/selectors/connection.selector';
+import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer--schedule',
@@ -28,8 +32,9 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private scheduleFacade: ScheduleFacade,
     private authGuardService: AuthGuardService,
+    private scheduleFacade: ScheduleFacade,
+    private store: Store<AppState>,
   ) {
     this.isHandset$ = this.scheduleFacade.isHandset();
     this.isTablet$ = this.scheduleFacade.isTablet();
@@ -39,8 +44,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authGuardService.canActivate();
     this.subscriptions$.add(
-      this.activatedRoute.data.subscribe((data: DocumentInterface) => this.scheduleFacade.setDocumentTitle(data.title)),
+      this.activatedRoute.data.subscribe((data: I_DOCUMENT) => this.scheduleFacade.setDocumentTitle(data.title)),
     );
+
+    this.activatedRoute.params
+      .pipe(switchMap((params: Params) => this.store.select(selectConnectionByID(params.id))))
+      .subscribe();
   }
 
   @HostListener('window:beforeunload')

@@ -3,12 +3,12 @@ import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { I_USER } from '@core/model';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { setUserInfo } from 'src/app/actions';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
-import { IUser } from '@core/model/user/user.model';
 
 @Component({
   selector: 'buffer--signup-form',
@@ -52,7 +52,7 @@ export class SignupFormComponent {
     if (this.signupForm.valid) {
       this.signupFacade
         .signupUser(this.signupForm.value)
-        .pipe(tap((user: IUser) => this.store.dispatch(setUserInfo({ user }))))
+        .pipe(tap((user: I_USER) => this.store.dispatch(setUserInfo({ user }))))
         .subscribe(() => {
           this.signupFacade.navigateToPage('/join/onboard');
         });

@@ -1,17 +1,17 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { CalViewState } from '@app/schedule/model/calendar.model';
+import { E_CAL_WEEK_DAY } from '@core/enum';
 import {
   setCalendarFirstDay,
   setCalendarNonCurrentDates,
   setCalendarSidebarStatus,
 } from '@app/schedule/action/calendar.action';
-import { WEEK_DAY } from '@core/enum/calendar/calendar-week-days.enum';
 
 const schedulePostFeatureKey = 'schedulePostData';
 
 const initialCalendarState: CalViewState = {
   calendarSidebarOpened: true,
-  firstDay: WEEK_DAY.MONDAY,
+  firstDay: E_CAL_WEEK_DAY.MONDAY,
   showNonCurrentDates: true,
 };
 

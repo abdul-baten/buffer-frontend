@@ -215,28 +215,31 @@ p {
   border: 3px solid #ffffff;
 }
 
-.buffer--social-account-logo-facebook {
+.buffer--social-account-logo-facebook_page,
+.buffer--social-account-logo-facebook_group {
   background: #1877f2 url('/assets/images/icon/facebook.svg');
   background-size: cover;
 }
 
-.buffer--social-account-logo-linkedin {
-  background: #007bb5 url('/assets/images/icon/linkedin.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-twitter {
-  background: #1da1f2 url('/assets/images/icon/twitter.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-instagram {
+.buffer--social-account-logo-instagram_business,
+.buffer--social-account-logo-instagram_personal {
   background: #f46f30 url('/assets/images/icon/instagram.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-linkedin_page,
+.buffer--social-account-logo-linkedin_profile {
+  background: #007bb5 url('/assets/images/icon/linkedin.svg');
   background-size: cover;
 }
 
 .buffer--social-account-logo-pinterest {
   background: #bd081c url('/assets/images/icon/pinterest.svg');
+  background-size: cover;
+}
+
+.buffer--social-account-logo-twitter {
+  background: #1da1f2 url('/assets/images/icon/twitter.svg');
   background-size: cover;
 }
 

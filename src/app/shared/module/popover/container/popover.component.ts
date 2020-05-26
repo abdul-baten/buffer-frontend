@@ -1,5 +1,5 @@
 import { Component, Host, Input, OnChanges, Optional, SimpleChanges } from '@angular/core';
-import { IPopover } from '@core/model/popover/popover.interface';
+import { I_POPOVER_DATA } from '@core/model';
 import { SatPopover } from '@ncstate/sat-popover';
 
 @Component({
@@ -8,7 +8,7 @@ import { SatPopover } from '@ncstate/sat-popover';
   templateUrl: './popover.component.html',
 })
 export class PopoverComponent implements OnChanges {
-  @Input() popoverInfo: IPopover;
+  @Input() popoverInfo: I_POPOVER_DATA;
 
   constructor(@Optional() @Host() private popover: SatPopover) {}
 

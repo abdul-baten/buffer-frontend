@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { PostFileInterface } from '@core/model/post/post.model';
+import { I_POST_FILE } from '@core/model';
 
 @Component({
   selector: 'buffer--bucket-saved-post-image',
@@ -8,7 +8,7 @@ import { PostFileInterface } from '@core/model/post/post.model';
 })
 export class BucketSavedPostImageComponent implements OnChanges {
   @Input() calendarPostSlideConfig: any;
-  @Input() calendarPostImages: PostFileInterface[];
+  @Input() calendarPostImages: I_POST_FILE[];
 
   ngOnChanges(changes: SimpleChanges) {
     this.calendarPostSlideConfig = changes.calendarPostSlideConfig.currentValue;

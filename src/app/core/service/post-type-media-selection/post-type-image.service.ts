@@ -1,9 +1,9 @@
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { I_POST_TYPE_GENERATOR } from '@core/model';
 import { Injectable } from '@angular/core';
-import { PostTypeGenerateInterface } from '@core/model/post/post-type.model';
 
 @Injectable()
-export class PostTypeImageService implements PostTypeGenerateInterface {
+export class PostTypeImageService implements I_POST_TYPE_GENERATOR {
   generateConfig(): DropzoneConfigInterface {
     const config = {
       maxFiles: 5,

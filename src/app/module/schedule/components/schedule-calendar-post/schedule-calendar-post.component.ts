@@ -1,7 +1,7 @@
 import differenceInDays from 'date-fns/differenceInDays';
 import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
-import { CalPostInterface } from '@core/model/post/post.model';
 import { Component, Inject } from '@angular/core';
+import { I_POST } from '@core/model';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
@@ -12,10 +12,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 export class ScheduleCalendarViewPostComponent {
   upcomingPost: boolean;
 
-  constructor(
-    private scheduleFacade: ScheduleFacade,
-    @Inject(CALENDAR_POST_DATA) public calendarData: CalPostInterface,
-  ) {
+  constructor(private scheduleFacade: ScheduleFacade, @Inject(CALENDAR_POST_DATA) public calendarData: I_POST) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }
 

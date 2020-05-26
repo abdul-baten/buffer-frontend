@@ -1,4 +1,4 @@
-import { CalPostInterface } from '@core/model/post/post.model';
+import { I_POST } from '@core/model';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class PostRescheduleConfirmModalComponent {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public postInfo: CalPostInterface,
+    @Inject(MAT_DIALOG_DATA) public postInfo: I_POST,
     private dialogRef: MatDialogRef<PostRescheduleConfirmModalComponent>,
   ) {}
 

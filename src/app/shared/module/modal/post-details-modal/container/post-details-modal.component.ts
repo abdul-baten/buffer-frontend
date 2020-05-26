@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
+import { I_POST } from '@core/model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CalPostInterface } from '@core/model/post/post.model';
 
 @Component({
   selector: 'buffer--post-details-modal',
@@ -23,7 +23,7 @@ export class PostDetailsModalComponent {
     variableWidth: false,
   };
 
-  constructor(@Inject(MAT_DIALOG_DATA) public postData: CalPostInterface) {
+  constructor(@Inject(MAT_DIALOG_DATA) public postData: I_POST) {
     this.postInfo = this.postData.extendedProps;
   }
 }

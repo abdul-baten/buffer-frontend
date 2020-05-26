@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { environment } from '@env/environment';
 import { PAGES } from '@core/constant/page/page.constant';
 import { SubSink } from 'subsink';
 
@@ -8,6 +9,8 @@ export interface Section {
   name: string;
   updated: Date;
 }
+
+const API_URL = environment.apiURL;
 
 @Component({
   selector: 'buffer--choose-connection',
@@ -42,6 +45,10 @@ export class ChooseConnectionComponent implements OnDestroy, OnInit {
   navigateToPage(): void {
     const pageToNavigate = PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE;
     this.facade.navigateToPage(pageToNavigate);
+  }
+
+  chooseNewConnection(): void {
+    window.location.replace(API_URL + 'connection/oauth/facebook');
   }
 
   @HostListener('window:beforeunload')

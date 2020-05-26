@@ -1,6 +1,6 @@
-import { Injectable, ErrorHandler } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorHandler, Injectable } from '@angular/core';
 import { ErrorService } from '@core/service/error/error.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class GlobalErrorHandlerUtil implements ErrorHandler {
@@ -9,8 +9,6 @@ export class GlobalErrorHandlerUtil implements ErrorHandler {
   handleError(error: Error | HttpErrorResponse) {
     if (error instanceof HttpErrorResponse) {
       this.errorService.handleServerError(error);
-    } else {
-      this.errorService.handleClientError(error);
     }
   }
 }

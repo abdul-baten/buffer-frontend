@@ -1,19 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ProfileToolbarComponent } from './profile-toolbar.component';
 
-import { AccountProfileToolbarComponent } from './profile-toolbar.component';
-
-describe('AccountProfileToolbarComponent', () => {
-  let component: AccountProfileToolbarComponent;
-  let fixture: ComponentFixture<AccountProfileToolbarComponent>;
+describe('ProfileToolbarComponent', () => {
+  let component: ProfileToolbarComponent;
+  let fixture: ComponentFixture<ProfileToolbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AccountProfileToolbarComponent],
+      declarations: [ProfileToolbarComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountProfileToolbarComponent);
+    fixture = TestBed.createComponent(ProfileToolbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

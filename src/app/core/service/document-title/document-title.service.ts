@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { DocumentInterface } from '@core/model/document/document.model';
+import { I_DOCUMENT } from '@core/model';
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title } from '@angular/platform-browser';
@@ -15,8 +15,6 @@ export class DocumentTitleService {
   }
 
   setDocumentTitleFromRouteData(activatedRoute: ActivatedRoute): Subscription {
-    return activatedRoute.data.subscribe((documentInfo: DocumentInterface) =>
-      this.setDocumentTitle(documentInfo.title),
-    );
+    return activatedRoute.data.subscribe((documentInfo: I_DOCUMENT) => this.setDocumentTitle(documentInfo.title));
   }
 }

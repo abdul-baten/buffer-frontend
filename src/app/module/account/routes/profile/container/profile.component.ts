@@ -1,8 +1,8 @@
-import { ProfileFacade } from '../facade/profile.facade';
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { DocumentInterface } from '@core/model/document/document.model';
+import { I_DOCUMENT } from '@core/model';
 import { Observable } from 'rxjs';
+import { ProfileFacade } from '../facade/profile.facade';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { SubSink } from 'subsink';
 
@@ -26,9 +26,7 @@ export class ProfileComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
     this.subscriptions$.add(
-      this.activatedRoute.data.subscribe((data: DocumentInterface) =>
-        this.bucketScheduledFacade.setDocumentTitle(data.title),
-      ),
+      this.activatedRoute.data.subscribe((data: I_DOCUMENT) => this.bucketScheduledFacade.setDocumentTitle(data.title)),
     );
   }
 

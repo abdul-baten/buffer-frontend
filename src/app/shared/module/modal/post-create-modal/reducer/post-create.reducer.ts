@@ -1,16 +1,16 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { CalPostInterface } from '@core/model/post/post.model';
-import { POST_STATUS } from '@core/enum/post/post-status.enum';
+import { E_POST_STATUS } from '@core/enum';
+import { I_POST } from '@core/model';
 import { removeNewPostData, setNewPostData, setNewPostDate, setNewPostType } from '../action/post-create.action';
 
 const postCreateFeatureKey = 'postCreateData';
 
-const initialState: CalPostInterface = {
+const initialState: I_POST = {
   postCreateMember: '',
   postDate: null,
   postLastEditedDate: null,
   postLastEditedMember: '',
-  postStatus: POST_STATUS.SCHEDULED,
+  postStatus: E_POST_STATUS.SCHEDULED,
   postTime: null,
   postType: null,
   postURL: null,
@@ -21,11 +21,14 @@ const initialState: CalPostInterface = {
   postLastEditedContent: '',
   socialAccounts: [
     {
-      socialId: '',
-      socialURL: '',
-      socialType: '',
-      socialName: '',
-      socialAvatar: '',
+      _id: null,
+      connectionID: null,
+      connectionName: null,
+      connectionPicture: null,
+      connectionStatus: null,
+      connectionToken: null,
+      connectionType: null,
+      connectionUserID: null,
     },
   ],
   postCaption: null,
@@ -60,7 +63,7 @@ const postCreateDataReducer = createReducer(
   on(removeNewPostData, _ => initialState),
 );
 
-function reducer(state: CalPostInterface | undefined, action: Action) {
+function reducer(state: I_POST | undefined, action: Action) {
   return postCreateDataReducer(state, action);
 }
 
