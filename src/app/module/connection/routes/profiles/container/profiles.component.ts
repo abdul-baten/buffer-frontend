@@ -1,15 +1,15 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { I_CONNECTION } from '@core/model';
+import { Observable, of } from 'rxjs';
 import { PAGES } from '@core/constant/page/page.constant';
 import { ProfilesFacade } from '../facade/profiles.facade';
-import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--profiles',
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss'],
 })
-export class ProfilesComponent implements OnDestroy, OnInit {
+export class ProfilesComponent implements OnInit {
   chooseConnectionPage = `${PAGES.CONNECTION_MODULE.PAGE_ROUTE}/${PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE}`;
 
   matSideNavFixedInViewport = true;
@@ -17,24 +17,33 @@ export class ProfilesComponent implements OnDestroy, OnInit {
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 
-  private subscriptions$ = new SubSink();
+  isTablet$: Observable<boolean>;
+  isWeb$: Observable<boolean>;
 
-  constructor(private readonly activatedRoute: ActivatedRoute, private readonly profilesFacade: ProfilesFacade) {}
+  connections$: Observable<I_CONNECTION[]> = of([]);
 
-  ngOnInit(): void {
-    this.setDocumentTitle();
+  constructor(private readonly profilesFacade: ProfilesFacade) {
+    this.isTablet$ = this.profilesFacade.isTablet();
+    this.isWeb$ = this.profilesFacade.isWeb();
   }
 
-  private setDocumentTitle(): void {
-    this.subscriptions$.add(this.profilesFacade.setDocumentTitle(this.activatedRoute));
+  ngOnInit(): void {
+    this.getConnections();
+  }
+
+  private getConnections(): void {
+    this.connections$ = this.profilesFacade.getConnectionsFromState();
+  }
+
+  trackByConnectionID(connection: I_CONNECTION): string {
+    return connection._id;
+  }
+
+  deleteConnection(connection: I_CONNECTION): void {
+    this.profilesFacade.deleteConnection(connection);
   }
 
   navigateToPage(pageToNavigate: string): void {
     this.profilesFacade.navigateToPage(pageToNavigate);
-  }
-
-  @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
   }
 }

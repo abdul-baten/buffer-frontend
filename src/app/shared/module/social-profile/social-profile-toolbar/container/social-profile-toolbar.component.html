@@ -5,10 +5,12 @@
       class="buffer--social-accounts-list buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
       <div class="clearfix buffer--height-10 buffer--width-10 buffer--margin-left-3"
         *ngFor="let connection of connections$ | async; trackBy:trackByConnectionID">
-        <div [routerLink]="['/schedule', connection._id]" class="buffer--cursor-pointer buffer--outline-none">
-          <img class="buffer--width-full buffer--border-radius-full buffer--padding-1"
+        <div [routerLink]="['/schedule', connection._id]" class="buffer--cursor-pointer buffer--outline-none"
+          [tooltip]="connection.connectionName" placement="bottom">
+          <img [lazyLoad]="connection.connectionPicture"
             [ngClass]="{'buffer--box-shadow-outline': connection._id === (activeConnection$ | async)}"
-            [src]="connection.connectionPicture" />
+            class="buffer--width-full buffer--height-full buffer--border-radius-full"
+            defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
           <div
             [attr.class]="'clearfix buffer--social-account-logo buffer--position-absolute buffer--border-radius-full buffer--social-account-logo-' + connection.connectionType">
           </div>

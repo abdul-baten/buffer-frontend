@@ -1,28 +1,25 @@
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { EventInput } from '@fullcalendar/core';
-import { E_POST_TYPE, E_POST_STATUS } from '@core/enum';
 import { I_CONNECTION } from './social-profile.model';
 
 // tslint:disable-next-line
 export interface I_POST_FILE {
-  fileURL: string;
-  fileType: string;
-  fileName: string;
+  _id: string;
   fileMimeType: string;
-  fileThumbnailURL: string;
+  fileName: string;
+  fileType: string;
+  fileURL: string;
 }
 
 // tslint:disable-next-line
 export interface I_POST extends EventInput {
-  postURL: string;
-  postDate: string;
-  postTime: string;
-  postLink?: string;
-  postType: E_POST_TYPE;
+  _id: string;
   postCaption: string;
-  postLocation?: string;
+  postConnection: I_CONNECTION[];
+  postMedia?: I_POST_FILE[];
+  postScheduleDate: Date;
+  postScheduleTime: string;
   postStatus: E_POST_STATUS;
-  postOriginalDate: string;
-  postImages?: I_POST_FILE[];
-  postVideos?: I_POST_FILE[];
-  socialAccounts: I_CONNECTION[];
+  postType: E_POST_TYPE;
+  userID: string;
 }

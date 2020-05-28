@@ -1,15 +1,9 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 @Injectable()
 export class NewConnectionFacade {
-  constructor(private documentTitleService: DocumentTitleService, private router: Router) {}
-
-  setDocumentTitle(activatedRoute: ActivatedRoute): Subscription {
-    return this.documentTitleService.setDocumentTitleFromRouteData(activatedRoute);
-  }
+  constructor(private router: Router) {}
 
   navigateToPage(pageToNavigate: string): void {
     this.router.navigate([pageToNavigate]);

@@ -95,54 +95,23 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   get calendarPosts(): Observable<I_POST[]> {
     const calendarPosts: Observable<I_POST[]> = of([
       {
-        id: '100',
+        _id: '100',
         title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         start: '2020-01-07T20:30:00',
         allDay: false,
         editable: true,
         overlap: true,
         hasEnd: false,
-        postImages: [
+        postMedia: [
           {
-            fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
-            fileType: 'img',
+            _id: '',
             fileMimeType: '',
             fileName: 'patreon-hero-illustration.png',
-            fileThumbnailURL: '',
-          },
-          {
-            fileURL:
-              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
             fileType: 'img',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.jpg',
-            fileThumbnailURL: '',
-          },
-          {
-            fileURL: 'https://c5.patreon.com/external/marketing/index_page/patreon-hero-illustration.png',
-            fileType: 'img',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.png',
-            fileThumbnailURL: '',
-          },
-          {
-            fileURL:
-              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
-            fileType: 'img',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.jpg',
-            fileThumbnailURL: '',
-          },
-          {
-            fileURL:
-              'https://scontent.fdac7-1.fna.fbcdn.net/v/t1.0-9/84598866_3016061325091088_6248128808004616192_o.jpg?_nc_cat=111&_nc_ohc=tg2eA2wifwkAX9JsASz&_nc_ht=scontent.fdac7-1.fna&oh=903ae4000c7e6ba676a3615facff133c&oe=5EC93F8C',
-            fileType: 'img',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.jpg',
-            fileThumbnailURL: '',
+            fileURL: '',
           },
         ],
-        socialAccounts: [
+        postConnection: [
           {
             _id: '',
             connectionID: '',
@@ -157,20 +126,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
         ],
         postType: E_POST_TYPE.IMAGE,
         postStatus: E_POST_STATUS.SCHEDULED,
-        postTime: '',
-        postPermission: {
-          postCanBeEdited: true,
-          postCanNeDeleted: true,
-        },
-        postOriginalDate: '2020-01-07T20:30:00',
-        postLocation: '',
-        postLastEditedContent: '',
-        postDate: '',
-        postURL: '',
+        postScheduleTime: '',
+        postScheduleDate: new Date(),
         postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
-        postCreateMember: '',
-        postLastEditedDate: '',
-        postLastEditedMember: '',
+        userID: '',
       },
     ]);
 

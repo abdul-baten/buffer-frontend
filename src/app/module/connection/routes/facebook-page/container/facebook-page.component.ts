@@ -29,13 +29,8 @@ export class FacebookPageComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.setDocumentTitle();
     this.getFacebookPages();
     this.facade.setLoadingStatus(true);
-  }
-
-  private setDocumentTitle(): void {
-    this.subscriptions$.add(this.facade.setDocumentTitle(this.activatedRoute));
   }
 
   private getFacebookPages(): void {
@@ -43,9 +38,9 @@ export class FacebookPageComponent implements OnDestroy, OnInit {
   }
 
   addFacebookPage(pageInfo: I_CONNECTION): void {
-    this.facade
-      .addFacebookPage(pageInfo)
-      .subscribe((connection: I_CONNECTION) => this.facade.navigateToPage(`/schedule/${connection._id}`, connection));
+    this.subscriptions$.add(
+      this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')),
+    );
   }
 
   @HostListener('window:beforeunload')

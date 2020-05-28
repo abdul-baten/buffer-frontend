@@ -9,6 +9,8 @@ export class GlobalErrorHandlerUtil implements ErrorHandler {
   handleError(error: Error | HttpErrorResponse) {
     if (error instanceof HttpErrorResponse) {
       this.errorService.handleServerError(error);
+    } else {
+      console.warn(error);
     }
   }
 }

@@ -1,0 +1,40 @@
+<div
+  class="buffer--padding-4 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+  <div
+    class="buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
+    <section>
+      <h3>
+        Delete connection?
+      </h3>
+    </section>
+    <section>
+      <button class="buffer--width-8 buffer--height-8 buffer--background-color-light-gray" mat-icon-button
+        (click)="closeModal()">
+        <i class="material-icons buffer--font-size-2xl buffer--font-weight-bold buffer--text-color-black">close</i>
+      </button>
+    </section>
+  </div>
+</div>
+
+<div class="clearfix buffer--padding-4">
+  <div class="clearfix buffer--display-flex buffer--display-flex-direction-column">
+    <h4 class="buffer--text-color-black buffer--line-height-leading-relaxed">
+      Are you sure you want to delete {{ connection.connectionName }}?
+    </h4>
+  </div>
+  <div
+    class="clearfix buffer--margin-top-10 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-end">
+    <div class="clearfix">
+      <button class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" mat-button
+        (click)="closeModal()">
+        Cancel
+      </button>
+    </div>
+    <div class="clearfix buffer--margin-left-3">
+      <button (click)="onDeletePostModalClosed()"
+        class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" color="warn" mat-flat-button>
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

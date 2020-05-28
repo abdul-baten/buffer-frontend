@@ -1,6 +1,5 @@
 import { AppState } from '../reducers';
 import { catchError, first, map, shareReplay, switchMap, tap } from 'rxjs/operators';
-import { environment } from '@env/environment';
 import { ErrorService } from '@core/service/error/error.service';
 import { HttpParams } from '@angular/common/http';
 import { HttpService } from '@core/service/http/http.service';
@@ -12,8 +11,6 @@ import { selectAllConnection } from '../selectors/connection.selector';
 import { selectUserId } from '../selectors/user.selector';
 import { setConnection } from '../actions';
 import { Store } from '@ngrx/store';
-
-const API_URL = environment.apiURL;
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +28,7 @@ export class ConnectionResolver implements Resolve<I_CONNECTION[]> {
     const userInfofromRequest$ = userIDFromState$.pipe(
       switchMap((userID: string) => {
         return this.httpService
-          .get<I_CONNECTION[]>(API_URL + 'connection/getConnections', ({ userID } as unknown) as HttpParams)
+          .get<I_CONNECTION[]>('connection/getConnections', ({ userID } as unknown) as HttpParams)
           .pipe(
             tap((connections: I_CONNECTION[]) => {
               connections.forEach((connection: I_CONNECTION) => this.store.dispatch(setConnection({ connection })));

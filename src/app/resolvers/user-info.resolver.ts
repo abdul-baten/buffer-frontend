@@ -1,6 +1,5 @@
 import { AppState } from '../reducers';
 import { catchError, map, shareReplay, switchMap, take, tap } from 'rxjs/operators';
-import { environment } from '@env/environment';
 import { ErrorService } from '@core/service/error/error.service';
 import { HttpService } from '@core/service/http/http.service';
 import { I_USER } from '@core/model';
@@ -10,8 +9,6 @@ import { Resolve } from '@angular/router';
 import { selectUserInfo } from '../selectors/user.selector';
 import { setUserInfo } from '../actions';
 import { Store } from '@ngrx/store';
-
-const API_URL = environment.apiURL;
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +22,7 @@ export class UserResolver implements Resolve<I_USER> {
 
   resolve(): Observable<I_USER> {
     const userInfoFromState$ = this.store.select(selectUserInfo);
-    const userInfofromRequest$ = this.httpService.get<I_USER>(API_URL + 'auth/getUserInfo').pipe(
+    const userInfofromRequest$ = this.httpService.get<I_USER>('auth/getUserInfo').pipe(
       tap((user: I_USER) => this.store.dispatch(setUserInfo({ user }))),
       map((userInfo: I_USER) => userInfo),
       shareReplay(1),

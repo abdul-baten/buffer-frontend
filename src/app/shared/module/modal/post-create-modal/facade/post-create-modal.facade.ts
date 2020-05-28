@@ -1,7 +1,8 @@
 import * as fromPostCreateActions from '../action/post-create.action';
-import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { AppState } from 'src/app/reducers';
 import { E_POST_TYPE } from '@core/enum';
 import { format, formatISO, roundToNearestMinutes } from 'date-fns';
+import { HttpService } from '@core/service/http/http.service';
 import { I_POST, I_POST_TYPE_MAP } from '@core/model';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -10,7 +11,11 @@ import { Store } from '@ngrx/store';
 
 @Injectable()
 export class PostCreateModalFacade {
-  constructor(private store: Store<I_POST>, private injector: Injector) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly injector: Injector,
+    private readonly store: Store<AppState>,
+  ) {}
 
   setPostType(postType: E_POST_TYPE): void {
     this.store.dispatch(fromPostCreateActions.setNewPostType({ postType }));
@@ -29,15 +34,17 @@ export class PostCreateModalFacade {
     return this.store.select(selectNewPostDate);
   }
 
-  setPostData(formData: I_POST): void {
-    const postDate = format(new Date(formData.postDate), 'MM/dd/yyyy');
-    const postTime = format(new Date(formData.postDate), 'hh:mm a');
-    const postData = Object.assign(formData, { postDate, postTime });
+  setPostData(postInfo: I_POST): void {
+    const postDate = format(new Date(postInfo.postDate), 'MM/dd/yyyy');
+    const postTime = format(new Date(postInfo.postDate), 'hh:mm a');
+    const postData = Object.assign(postInfo, { postDate, postTime });
 
     this.store.dispatch(fromPostCreateActions.setNewPostData({ postData }));
+
+    this.httpService.post<I_POST>('post/add', postInfo).subscribe();
   }
 
-  generateDropZoneConfig(type: E_POST_TYPE): DropzoneConfigInterface {
+  generateDropZoneConfig(type: E_POST_TYPE): any {
     const injectableService = I_POST_TYPE_MAP.get(type);
     const service = this.injector.get(injectableService);
     return service.generateConfig();

@@ -15,7 +15,7 @@ export class SocialProfileAddFacade {
         right: '',
       },
       data: postDate,
-      width: '700px',
+      width: '650px',
       role: 'dialog',
       autoFocus: true,
       direction: 'ltr',

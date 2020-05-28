@@ -1,8 +1,9 @@
+import { DocumentResolver } from './resolvers/document.resolver';
 import { NgModule } from '@angular/core';
 import { PAGES } from './core/constant/page/page.constant';
 import { RouterModule, Routes } from '@angular/router';
-import { UserResolver } from './resolvers/user-info.resolver';
 import { UserConnectionResolver } from './resolvers/user-connection.resolver';
+import { UserResolver } from './resolvers/user-info.resolver';
 
 const routes: Routes = [
   {
@@ -14,47 +15,57 @@ const routes: Routes = [
     path: PAGES.SIGN_IN_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SIGN_IN_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/signin/signin.module').then(m => m.SigninModule),
+    resolve: { documentResolver: DocumentResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
     path: PAGES.SIGN_UP_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SIGN_UP_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/signup/signup.module').then(m => m.SignupModule),
+    resolve: { documentResolver: DocumentResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
-    path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
     data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/dashboard/dashboard.module').then(m => m.DashboardModule),
-    resolve: { userInfo: UserResolver },
+    path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
+    resolve: { documentResolver: DocumentResolver, userInfo: UserResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
-    path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SCHEDULE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/schedule/schedule.module').then(m => m.ScheduleModule),
-    resolve: { userConnectionsInfo: UserConnectionResolver },
+    path: PAGES.SCHEDULE_PAGE.PAGE_ROUTE,
+    resolve: { documentResolver: DocumentResolver, userConnectionsInfo: UserConnectionResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
-    path: PAGES.ACCOUNT_MODULE.PAGE_ROUTE,
     data: { title: PAGES.ACCOUNT_MODULE.PAGE_TITLE },
     loadChildren: () => import('./module/account/account.module').then(m => m.AccountModule),
+    path: PAGES.ACCOUNT_MODULE.PAGE_ROUTE,
     resolve: { userInfo: UserResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
-    path: PAGES.BUCKET_PAGE.PAGE_ROUTE,
     data: { title: PAGES.BUCKET_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/bucket/bucket.module').then(m => m.BucketModule),
+    path: PAGES.BUCKET_PAGE.PAGE_ROUTE,
     resolve: { userInfo: UserResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
     data: { title: PAGES.ANALYZE_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/analyze/analyze.module').then(m => m.AnalyzeModule),
     path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
     resolve: { userInfo: UserResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
     data: { title: PAGES.CONNECTION_MODULE.PAGE_TITLE },
     loadChildren: () => import('./module/connection/connection.module').then(m => m.ConnectionModule),
     path: PAGES.CONNECTION_MODULE.PAGE_ROUTE,
     resolve: { userConnectionsInfo: UserConnectionResolver },
+    runGuardsAndResolvers: 'always',
   },
 ];
 

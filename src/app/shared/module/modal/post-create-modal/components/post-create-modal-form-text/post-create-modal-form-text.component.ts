@@ -1,4 +1,3 @@
-import { CommonValidator } from '@core/validation/common.validation';
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -44,10 +43,8 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
 
   private buildPostCreateTypeTextForm(): FormGroup {
     return this.formBuilder.group({
-      postLocation: null,
-      postDate: [null, Validators.required],
       postCaption: [null, Validators.required],
-      postLink: [null, CommonValidator.validURL],
+      postDate: [null, Validators.required],
     });
   }
 

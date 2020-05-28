@@ -1,10 +1,9 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { AppState } from 'src/app/reducers';
 import { AuthService } from '@core/service/auth/auth.service';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
 import { I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { selectUserEmail } from 'src/app/selectors/user.selector';
 import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
@@ -12,16 +11,7 @@ import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class SignupFacade {
-  constructor(
-    private authService: AuthService,
-    private documentTitleService: DocumentTitleService,
-    private router: Router,
-    private store: Store<AppState>,
-  ) {}
-
-  setDocumentTitle(activatedRoute: ActivatedRoute): Subscription {
-    return this.documentTitleService.setDocumentTitleFromRouteData(activatedRoute);
-  }
+  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {}
 
   navigateToPage(authURL: string): void {
     this.router.navigateByUrl(authURL);

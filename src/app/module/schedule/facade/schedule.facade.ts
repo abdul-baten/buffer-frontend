@@ -6,13 +6,13 @@ import getMonth from 'date-fns/getMonth';
 import getYear from 'date-fns/getYear';
 import { Calendar } from '@fullcalendar/core';
 import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
-import { I_POST } from '@core/model';
 import { CalViewState } from '../model/calendar.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
+import { I_POST } from '@core/model';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MetaDefinition } from '@angular/platform-browser';
+import { NotificationService } from '@core/service/notification/notification.service';
 import { Observable } from 'rxjs';
 import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
 import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
@@ -21,8 +21,8 @@ import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/con
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { NotificationService } from '@core/service/notification/notification.service';
 import { Store } from '@ngrx/store';
+
 import {
   setCalendarFirstDay,
   setCalendarNonCurrentDates,
@@ -39,17 +39,12 @@ export class ScheduleFacade {
   constructor(
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
+    private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
-    private titleService: DocumentTitleService,
-    private responsiveLayoutService: ResponsiveLayoutService,
   ) {}
 
   private calendarApi: Calendar;
-
-  setDocumentTitle(titleString: string): void {
-    this.titleService.setDocumentTitle(titleString);
-  }
 
   setCalendarApi(calendar: any): void {
     this.calendarApi = calendar;

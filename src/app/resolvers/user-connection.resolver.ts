@@ -11,10 +11,14 @@ export class UserConnectionResolver implements Resolve<Promise<{ userInfo: I_USE
   constructor(private userInfoResolver: UserResolver, private connectionsResolver: ConnectionResolver) {}
 
   async resolve(): Promise<{ userInfo: I_USER; connections: I_CONNECTION[] }> {
-    const userInfo = await this.userInfoResolver.resolve().toPromise();
-    const connections = await this.connectionsResolver.resolve().toPromise();
+    try {
+      const userInfo = await this.userInfoResolver.resolve().toPromise();
+      const connections = await this.connectionsResolver.resolve().toPromise();
 
-    return { userInfo, connections };
+      return { userInfo, connections };
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 

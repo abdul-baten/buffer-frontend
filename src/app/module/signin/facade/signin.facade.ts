@@ -1,6 +1,5 @@
 import { AppState } from 'src/app/reducers';
 import { AuthService } from '@core/service/auth/auth.service';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
 import { I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,15 +11,10 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class SigninFacade {
   constructor(
-    private authService: AuthService,
-    private documentTitleService: DocumentTitleService,
-    private router: Router,
-    private store: Store<AppState>,
+    private readonly authService: AuthService,
+    private readonly router: Router,
+    private readonly store: Store<AppState>,
   ) {}
-
-  setTitle(titleString: string): void {
-    this.documentTitleService.setDocumentTitle(titleString);
-  }
 
   navigateToPage(authURL: string): void {
     this.router.navigateByUrl(authURL);

@@ -1,9 +1,7 @@
-import { ActivatedRoute } from '@angular/router';
 import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { environment } from '@env/environment';
 import { PAGES } from '@core/constant/page/page.constant';
-import { SubSink } from 'subsink';
 
 export interface Section {
   name: string;
@@ -17,7 +15,7 @@ const API_URL = environment.apiURL;
   styleUrls: ['./choose-connection.component.scss'],
   templateUrl: './choose-connection.component.html',
 })
-export class ChooseConnectionComponent implements OnDestroy, OnInit {
+export class ChooseConnectionComponent {
   matSideNavFixedInViewport = true;
   matSideNavFixedTopGap = 72;
   matSideNavMode = 'side';
@@ -30,17 +28,7 @@ export class ChooseConnectionComponent implements OnDestroy, OnInit {
     },
   ];
 
-  private subscriptions$ = new SubSink();
-
-  constructor(private activatedRoute: ActivatedRoute, private facade: ChooseConnectionFacade) {}
-
-  ngOnInit(): void {
-    this.setDocumentTitle();
-  }
-
-  private setDocumentTitle(): void {
-    this.subscriptions$.add(this.facade.setDocumentTitle(this.activatedRoute));
-  }
+  constructor(private readonly facade: ChooseConnectionFacade) {}
 
   navigateToPage(): void {
     const pageToNavigate = PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE;
@@ -49,10 +37,5 @@ export class ChooseConnectionComponent implements OnDestroy, OnInit {
 
   chooseNewConnection(): void {
     window.location.replace(API_URL + 'connection/oauth/facebook');
-  }
-
-  @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
   }
 }

@@ -1,12 +1,11 @@
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppState } from 'src/app/reducers';
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
 import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
 import { FacebookPageService } from '../service/facebook-page.service';
 import { finalize, switchMap, tap } from 'rxjs/operators';
 import { I_CONNECTION, I_FB_PAGE_RESPONSE } from '@core/model';
 import { Injectable } from '@angular/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Params, Router } from '@angular/router';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { selectUserId } from 'src/app/selectors/user.selector';
 import { setUserInfo } from 'src/app/actions';
@@ -18,7 +17,6 @@ export class FacebookPageFacade {
   private facebookPages: Observable<I_CONNECTION[]>;
 
   constructor(
-    private documentTitleService: DocumentTitleService,
     private facebookPageService: FacebookPageService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private router: Router,
@@ -37,10 +35,6 @@ export class FacebookPageFacade {
     return this.responsiveLayoutService.isTablet();
   }
 
-  setDocumentTitle(activatedRoute: ActivatedRoute): Subscription {
-    return this.documentTitleService.setDocumentTitleFromRouteData(activatedRoute);
-  }
-
   setLoadingStatus(loadingStatus: boolean = true): void {
     this.loading = of(loadingStatus);
   }
@@ -57,8 +51,8 @@ export class FacebookPageFacade {
     return this.facebookPages;
   }
 
-  navigateToPage(pageToNavigate: string, routeData?: any): void {
-    this.router.navigate([pageToNavigate], { state: { pageData: routeData } });
+  navigateToPage(pageToNavigate: string): void {
+    this.router.navigate([pageToNavigate]);
   }
 
   fetchFBPages(queryParams: Observable<Params>): void {

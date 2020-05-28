@@ -1,11 +1,9 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/reducers';
 import { I_CONNECTION } from '@core/model';
 import { map } from 'rxjs/operators';
-import { NgxTippyProps } from 'ngx-tippy-wrapper';
 import { Observable, of } from 'rxjs';
-import { Placement } from 'tippy.js';
 import { selectAllConnection } from 'src/app/selectors/connection.selector';
 import { SocialProfileToolbarFacade } from '../facade/social-profile-toolbar.facade';
 import { Store } from '@ngrx/store';
@@ -15,7 +13,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './social-profile-toolbar.component.html',
   styleUrls: ['./social-profile-toolbar.component.scss'],
 })
-export class SocialProfileToolbarComponent implements AfterViewInit {
+export class SocialProfileToolbarComponent implements OnInit {
   isWeb: Observable<boolean>;
 
   connections$: Observable<I_CONNECTION[]> = of([]);
@@ -29,21 +27,12 @@ export class SocialProfileToolbarComponent implements AfterViewInit {
     this.isWeb = this.socialProfileToolbarFacade.isWeb();
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.connections$ = this.store.select(selectAllConnection);
     this.activeConnection$ = this.activatedRoute.params.pipe(map((params: Params) => params.id));
   }
 
   trackByConnectionID(connection: I_CONNECTION): string {
     return connection._id;
-  }
-
-  tooltipProps(tooltipContent: string, tooltipPlacement: Placement): NgxTippyProps {
-    return {
-      arrow: true,
-      placement: tooltipPlacement,
-      content: tooltipContent,
-      animation: 'shift-toward-subtle',
-    };
   }
 }

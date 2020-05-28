@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -29,18 +28,14 @@ import { PostEditModalFormVideoComponent } from './components/post-edit-modal-fo
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatRadioModule,
-
     MatButtonModule,
+    MatInputModule,
     MatProgressSpinnerModule,
-
+    MatRadioModule,
     MatTooltipModule,
-
-    DropzoneModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [PostEditModalComponent],
 })

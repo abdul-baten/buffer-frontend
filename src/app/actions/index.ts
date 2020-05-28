@@ -1,4 +1,4 @@
-import { setConnection } from './connection.actions';
+import { deleteConnection, setConnection } from './connection.actions';
 import { setUserInfo } from './user.actions';
 
-export { setUserInfo, setConnection };
+export { setUserInfo, setConnection, deleteConnection };

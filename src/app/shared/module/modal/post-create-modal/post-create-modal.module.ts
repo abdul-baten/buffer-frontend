@@ -1,9 +1,12 @@
+import * as FilePond from 'filepond';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
+import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import { CommonModule } from '@angular/common';
-import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import { FilePondModule } from 'ngx-filepond';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -23,6 +26,17 @@ import { PostTypeImageService } from '@core/service/post-type-media-selection/po
 import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
 import { StoreModule } from '@ngrx/store';
 
+const FilePondPluginFileEncode = require('filepond-plugin-file-encode');
+const FilePondPluginMediaPreview = require('filepond-plugin-media-preview');
+
+FilePond.registerPlugin(
+  FilePondPluginFileEncode,
+  FilePondPluginFileValidateType,
+  FilePondPluginImageExifOrientation,
+  FilePondPluginImagePreview,
+  FilePondPluginMediaPreview,
+);
+
 @NgModule({
   declarations: [
     PostCreateModalComponent,
@@ -36,11 +50,10 @@ import { StoreModule } from '@ngrx/store';
   ],
   imports: [
     CommonModule,
-    DropzoneModule,
+    FilePondModule,
     FormsModule,
     MatButtonModule,
     MatInputModule,
-    MatProgressSpinnerModule,
     MatRadioModule,
     MatStepperModule,
     MatTooltipModule,

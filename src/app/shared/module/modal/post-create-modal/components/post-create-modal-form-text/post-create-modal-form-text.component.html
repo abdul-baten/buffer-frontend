@@ -4,8 +4,7 @@
     </buffer--post-create-modal-form-header>
   </section>
 
-  <section id="schedule-create-form-content-sec"
-    class="schedule-create-form-content-sec buffer--height-70 buffer--overflow-y-auto">
+  <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec buffer--overflow-y-auto">
     <div class="buffer--padding-5">
       <form novalidate [formGroup]="eventCreateTypeTextForm">
         <div class="clearfix">
@@ -18,30 +17,6 @@
               class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default buffer--line-height-leading-relaxed"
               formControlName="postCaption" id="postCaption" matInput placeholder="Write something" required
               spellcheck="false"></textarea>
-          </mat-form-field>
-        </div>
-
-        <div class="clearfix">
-          <label
-            class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm"
-            for="postLink">Link
-            Preview</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
-            appearance="fill">
-            <input class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="postLink" id="postLink" matInput placeholder="Insert your link here" spellcheck="false"
-              type="url" />
-          </mat-form-field>
-        </div>
-
-        <div class="clearfix">
-          <label for="postLocation"
-            class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">Location</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
-            appearance="fill">
-            <input class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="postLocation" id="postLocation" matInput placeholder="Add a location" spellcheck="false"
-              type="text" />
           </mat-form-field>
         </div>
 
@@ -64,6 +39,8 @@
       </form>
     </div>
   </section>
+
+
 
   <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
 

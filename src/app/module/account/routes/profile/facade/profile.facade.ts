@@ -1,11 +1,12 @@
-import { DocumentTitleService } from '@core/service/document-title/document-title.service';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 
 @Injectable()
 export class ProfileFacade {
-  constructor(private documentTitleService: DocumentTitleService) {}
+  constructor(private readonly responsiveLayoutService: ResponsiveLayoutService) {}
 
-  setDocumentTitle(titleString: string): void {
-    this.documentTitleService.setDocumentTitle(titleString);
+  isWeb(): Observable<boolean> {
+    return this.responsiveLayoutService.isWeb();
   }
 }
