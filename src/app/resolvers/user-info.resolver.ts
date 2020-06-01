@@ -30,7 +30,7 @@ export class UserResolver implements Resolve<I_USER> {
 
     return userInfoFromState$.pipe(
       switchMap((userInfo: I_USER) => {
-        return !!userInfo._id ? of(userInfo) : userInfofromRequest$;
+        return !!userInfo.id ? of(userInfo) : userInfofromRequest$;
       }),
       take(1),
       map((userInfo: I_USER) => userInfo),

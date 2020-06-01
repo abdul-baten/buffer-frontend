@@ -6,13 +6,16 @@ import { ResponsiveLayoutService } from '@core/service/responsive-layout/respons
 
 @Injectable()
 export class SocialProfileToolbarFacade {
-  constructor(private connectionService: ConnectionService, private responsiveLayoutService: ResponsiveLayoutService) {}
+  constructor(
+    private readonly connectionService: ConnectionService,
+    private readonly responsiveLayoutService: ResponsiveLayoutService,
+  ) {}
 
   isWeb(): Observable<boolean> {
     return this.responsiveLayoutService.isWeb();
   }
 
-  getConnections(userID: string): Observable<I_CONNECTION[]> {
-    return this.connectionService.getConnections(userID);
+  getConnections(): Observable<I_CONNECTION[]> {
+    return this.connectionService.entities$;
   }
 }

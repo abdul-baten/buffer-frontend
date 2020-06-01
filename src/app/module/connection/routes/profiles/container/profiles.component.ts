@@ -21,6 +21,8 @@ export class ProfilesComponent implements OnInit {
   isWeb$: Observable<boolean>;
 
   connections$: Observable<I_CONNECTION[]> = of([]);
+  loading$: Observable<boolean>;
+  totalConnections$: Observable<number>;
 
   constructor(private readonly profilesFacade: ProfilesFacade) {
     this.isTablet$ = this.profilesFacade.isTablet();
@@ -33,10 +35,12 @@ export class ProfilesComponent implements OnInit {
 
   private getConnections(): void {
     this.connections$ = this.profilesFacade.getConnectionsFromState();
+    this.loading$ = this.profilesFacade.getLoadingState();
+    this.totalConnections$ = this.profilesFacade.getTotalConnections();
   }
 
   trackByConnectionID(connection: I_CONNECTION): string {
-    return connection._id;
+    return connection.id;
   }
 
   deleteConnection(connection: I_CONNECTION): void {

@@ -3,6 +3,7 @@ import { ConnectionDeleteModalModule } from '@shared/module/modal/connection-del
 import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
@@ -18,10 +19,11 @@ import { TooltipModule } from 'ng2-tooltip-directive';
   declarations: [ProfilesComponent],
   imports: [
     CommonModule,
+    ConnectionDeleteModalModule,
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
-    ConnectionDeleteModalModule,
     LazyLoadImageModule,
+    LoaderModule,
     MatButtonModule,
     MatDialogModule,
     MatInputModule,

@@ -12,7 +12,6 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import { postCreateFeatureKey, reducer } from './reducer/post-create.reducer';
 import { PostCreateModalComponent } from './container/post-create-modal.component';
 import { PostCreateModalFacade } from './facade/post-create-modal.facade';
 import { PostCreateModalFormComponent } from './components/post-create-modal-form/post-create-modal-form.component';
@@ -24,7 +23,8 @@ import { PostCreateModalFormTypeComponent } from './components/post-create-modal
 import { PostCreateModalFormVideoComponent } from './components/post-create-modal-form-video/post-create-modal-form-video.component';
 import { PostTypeImageService } from '@core/service/post-type-media-selection/post-type-image.service';
 import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
-import { StoreModule } from '@ngrx/store';
+import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 const FilePondPluginFileEncode = require('filepond-plugin-file-encode');
 const FilePondPluginMediaPreview = require('filepond-plugin-media-preview');
@@ -60,7 +60,8 @@ FilePond.registerPlugin(
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(postCreateFeatureKey, reducer),
+    RouterModule,
+    TooltipModule,
   ],
   entryComponents: [PostCreateModalComponent],
   providers: [PostCreateModalFacade, PostTypeImageService, PostTypeVideoService],

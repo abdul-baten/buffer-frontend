@@ -1,24 +1,19 @@
 import { AppComponent } from './app.component';
-import { AppEffects } from './app.effects';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
-import { EffectsModule } from '@ngrx/effects';
-import { environment } from '../environments/environment';
+import { EntityStoreModule } from './entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { ErrorInterceptor } from '@core/interceptor/error/error.interceptor';
 import { GlobalErrorHandlerUtil } from '@core/util/error/error-handler.util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-request.interceptor';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { NotificationModule } from '@shared/module/notification/notification.module';
 import { NotificationService } from '@core/service/notification/notification.service';
-import { reducers } from './reducers';
-import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreModule } from '@ngrx/store';
 import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
 import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
 
@@ -58,22 +53,9 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'buffer' }),
     BrowserTransferStateModule,
-    EffectsModule.forRoot([AppEffects]),
     HttpClientModule,
     NotificationModule,
-    StoreModule.forRoot(reducers, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true,
-        strictStateSerializability: true,
-        strictActionSerializability: true,
-      },
-    }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({
-      stateKey: 'router',
-      routerState: RouterState.Minimal,
-    }),
+    EntityStoreModule,
     TooltipModule.forRoot(DefaultTooltipOptions),
   ],
   providers: [
@@ -85,6 +67,11 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
     { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: { disabled: true } },
+    {
+      multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: HTTPRequestInterceptor,
+    },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

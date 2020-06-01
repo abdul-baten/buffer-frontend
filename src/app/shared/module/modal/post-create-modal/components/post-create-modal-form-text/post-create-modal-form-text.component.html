@@ -5,7 +5,24 @@
   </section>
 
   <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec buffer--overflow-y-auto">
+
     <div class="buffer--padding-5">
+
+      <div class="clearfix buffer--margin-bottom-5">
+        <div class="buffer--display-flex buffer--align-items-center buffer--flex-justify-content-flex-start">
+          <div *ngFor="let connection of connections$ | async;" [tooltip]="connection.connectionName" placement="top"
+            (click)="connectionSelected(connection.id)" [attr.area-selected]="isConnectionSelected(connection.id)"
+            class="buffer--position-relative buffer--width-10 buffer--height-10 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
+            [ngClass]="{'buffer--opacity-100': (activeConnectionID$ | async) === connection.id, 'buffer--opacity-50': (activeConnectionID$ | async) !== connection.id}">
+            <img [src]="connection.connectionPicture"
+              class="buffer--width-full buffer--height-full buffer--border-radius-full" />
+            <div
+              [attr.class]="'buffer--position-bottom-0 buffer--social-account-logo buffer--position-absolute buffer--border-radius-full buffer--social-account-logo-' + connection.connectionType">
+            </div>
+          </div>
+        </div>
+      </div>
+
       <form novalidate [formGroup]="eventCreateTypeTextForm">
         <div class="clearfix">
           <label for="postCaption"
@@ -21,18 +38,18 @@
         </div>
 
         <div class="clearfix">
-          <label for="postDate"
+          <label for="postScheduleDate"
             class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
           <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
             appearance="fill">
             <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
-              [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
+              [owlDateTimeTrigger]="postScheduleDate" [owlDateTime]="postScheduleDate" autocomplete="off"
               class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="postDate" id="postDate" matInput readonly type="text" />
-            <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
+              formControlName="postScheduleDate" id="postScheduleDate" matInput readonly type="text" />
+            <button matSuffix mat-icon-button [owlDateTimeTrigger]="postScheduleDate">
               <i class="material-icons buffer--text-color-gray">timer</i>
             </button>
-            <owl-date-time #postDate [hideOtherMonths]="false" [hour12Timer]="true" [startAt]="currentDateTime"
+            <owl-date-time #postScheduleDate [hideOtherMonths]="false" [hour12Timer]="true" [startAt]="currentDateTime"
               [stepMinute]="15" readonly panelClass="buffer--dialog-bottom-sheet-custom-panel"></owl-date-time>
           </mat-form-field>
         </div>
@@ -59,21 +76,21 @@
           <div
             class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
             <div class="clearfix buffer--margin-left-3">
-              <button [disabled]="eventCreateTypeTextForm.invalid"
+              <button (click)="savePost(postStatus.SAVED)" [disabled]="eventCreateTypeTextForm.invalid"
                 class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" mat-stroked-button
                 type="button">
                 <span>Save</span>
               </button>
             </div>
             <div class="clearfix buffer--margin-left-3">
-              <button [disabled]="eventCreateTypeTextForm.invalid"
+              <button (click)="savePost(postStatus.PUBLISHED)" [disabled]="eventCreateTypeTextForm.invalid"
                 class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" mat-stroked-button
                 type="button">
                 <span>Share now</span>
               </button>
             </div>
             <div class="clearfix buffer--margin-left-3">
-              <button (click)="handleTextFormSubmit()" [disabled]="eventCreateTypeTextForm.invalid"
+              <button (click)="savePost(postStatus.SCHEDULED)" [disabled]="eventCreateTypeTextForm.invalid"
                 class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" color="primary"
                 mat-flat-button type="button">
                 <span>Schedule</span>

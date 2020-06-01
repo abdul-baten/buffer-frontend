@@ -7,7 +7,7 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { I_POST } from '@core/model';
 import { Observable, of } from 'rxjs';
@@ -95,7 +95,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   get calendarPosts(): Observable<I_POST[]> {
     const calendarPosts: Observable<I_POST[]> = of([
       {
-        _id: '100',
+        id: '100',
         title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
         start: '2020-01-07T20:30:00',
         allDay: false,
@@ -104,30 +104,18 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
         hasEnd: false,
         postMedia: [
           {
-            _id: '',
+            id: '',
             fileMimeType: '',
             fileName: 'patreon-hero-illustration.png',
             fileType: 'img',
             fileURL: '',
           },
         ],
-        postConnection: [
-          {
-            _id: '',
-            connectionID: '',
-            connectionName: 'Test Page for Iconosquare',
-            connectionPicture:
-              'https://s3.amazonaws.com/assets.materialup.com/users/pictures/000/401/352/preview/avatar.jpg?1551195863',
-            connectionStatus: E_CONNECTION_STATUS.ENABLED,
-            connectionToken: '',
-            connectionType: E_CONNECTION_TYPE.FACEBOOK_PAGE,
-            connectionUserID: '',
-          },
-        ],
+        postConnection: [],
         postType: E_POST_TYPE.IMAGE,
         postStatus: E_POST_STATUS.SCHEDULED,
         postScheduleTime: '',
-        postScheduleDate: new Date(),
+        postScheduleDate: new Date().toDateString(),
         postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
         userID: '',
       },

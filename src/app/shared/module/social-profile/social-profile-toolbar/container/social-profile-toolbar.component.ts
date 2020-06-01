@@ -1,12 +1,9 @@
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AppState } from 'src/app/reducers';
 import { I_CONNECTION } from '@core/model';
 import { map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-import { selectAllConnection } from 'src/app/selectors/connection.selector';
+import { Observable } from 'rxjs';
 import { SocialProfileToolbarFacade } from '../facade/social-profile-toolbar.facade';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'buffer--social-profile-toolbar',
@@ -16,23 +13,22 @@ import { Store } from '@ngrx/store';
 export class SocialProfileToolbarComponent implements OnInit {
   isWeb: Observable<boolean>;
 
-  connections$: Observable<I_CONNECTION[]> = of([]);
+  connections$: Observable<I_CONNECTION[]>;
   activeConnection$: Observable<string>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private socialProfileToolbarFacade: SocialProfileToolbarFacade,
-    private store: Store<AppState>,
+    private readonly socialProfileToolbarFacade: SocialProfileToolbarFacade,
   ) {
     this.isWeb = this.socialProfileToolbarFacade.isWeb();
   }
 
   ngOnInit(): void {
-    this.connections$ = this.store.select(selectAllConnection);
-    this.activeConnection$ = this.activatedRoute.params.pipe(map((params: Params) => params.id));
+    this.connections$ = this.socialProfileToolbarFacade.getConnections();
+    this.activeConnection$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id')));
   }
 
   trackByConnectionID(connection: I_CONNECTION): string {
-    return connection._id;
+    return connection.id;
   }
 }

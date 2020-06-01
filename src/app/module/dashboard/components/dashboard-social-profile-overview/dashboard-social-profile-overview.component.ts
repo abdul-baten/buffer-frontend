@@ -12,7 +12,7 @@ export interface PeriodicElement {
 const ELEMENT_DATA: PeriodicElement[] = [
   {
     profiles: {
-      _id: '',
+      id: '',
       connectionID: '',
       connectionName: 'Test Page for Iconosquare',
       connectionPicture:

@@ -1,24 +1,43 @@
-import * as fromPostCreateActions from '../action/post-create.action';
 import { AppState } from 'src/app/reducers';
-import { E_POST_TYPE } from '@core/enum';
+import { ConnectionService } from '@core/service/connection/connection.service';
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { format, formatISO, roundToNearestMinutes } from 'date-fns';
-import { HttpService } from '@core/service/http/http.service';
-import { I_POST, I_POST_TYPE_MAP } from '@core/model';
+import { I_CONNECTION, I_POST, I_POST_TYPE_MAP } from '@core/model';
 import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
-import { selectNewPostDate, selectNewPostType } from '../selector/post-create.selector';
+import { PostService } from '@core/service/post/post.service';
+import { selectUserId } from 'src/app/selectors/user.selector';
 import { Store } from '@ngrx/store';
+import { switchMap } from 'rxjs/operators';
+import {
+  selectNewPostActiveConnectionID,
+  selectNewPostAllData,
+  selectNewPostDate,
+  selectNewPostType,
+} from 'src/app/selectors';
+import {
+  setNewPostData,
+  setNewPostDate,
+  setNewPostType,
+  setNewPostConnections,
+  setNewPostConnectionID,
+} from 'src/app/actions';
 
 @Injectable()
 export class PostCreateModalFacade {
   constructor(
-    private readonly httpService: HttpService,
+    private readonly connectionService: ConnectionService,
     private readonly injector: Injector,
+    private readonly postService: PostService,
     private readonly store: Store<AppState>,
   ) {}
 
+  getConnections(): Observable<I_CONNECTION[]> {
+    return this.connectionService.entities$;
+  }
+
   setPostType(postType: E_POST_TYPE): void {
-    this.store.dispatch(fromPostCreateActions.setNewPostType({ postType }));
+    this.store.dispatch(setNewPostType({ postType }));
   }
 
   getPostType(): Observable<E_POST_TYPE> {
@@ -27,21 +46,43 @@ export class PostCreateModalFacade {
 
   setNewPostDate(postDateTime: string): void {
     const postOriginalDate = formatISO(roundToNearestMinutes(new Date(postDateTime), { nearestTo: 15 }));
-    this.store.dispatch(fromPostCreateActions.setNewPostDate({ postOriginalDate }));
+    this.store.dispatch(setNewPostDate({ postOriginalDate }));
+  }
+
+  setNewPostActiveConnectionID(activeConnectionID: string): void {
+    this.store.dispatch(setNewPostConnectionID({ activeConnectionID }));
   }
 
   getPostDate(): Observable<string> {
     return this.store.select(selectNewPostDate);
   }
 
-  setPostData(postInfo: I_POST): void {
-    const postDate = format(new Date(postInfo.postDate), 'MM/dd/yyyy');
-    const postTime = format(new Date(postInfo.postDate), 'hh:mm a');
-    const postData = Object.assign(postInfo, { postDate, postTime });
+  setPostData(postData: I_POST, postStatus: E_POST_STATUS): Observable<I_POST> {
+    const { postScheduleDate } = postData;
+    postData.postScheduleDate = format(new Date(postScheduleDate), 'MM/dd/yyyy');
+    postData.postScheduleTime = format(new Date(postScheduleDate), 'hh:mm a');
+    postData.postStatus = postStatus;
 
-    this.store.dispatch(fromPostCreateActions.setNewPostData({ postData }));
+    const userID$ = this.store.select(selectUserId);
 
-    this.httpService.post<I_POST>('post/add', postInfo).subscribe();
+    return userID$.pipe(
+      switchMap((userID: string) => {
+        postData.userID = userID;
+        this.store.dispatch(setNewPostData({ postData }));
+        return this.store.select(selectNewPostAllData);
+      }),
+      switchMap((postInfo: I_POST) => {
+        return this.postService.addPost(postInfo);
+      }),
+    );
+  }
+
+  setPostConnections(connections: string[]): void {
+    this.store.dispatch(setNewPostConnections({ connections }));
+  }
+
+  getActiveConnectionID(): Observable<string> {
+    return this.store.select(selectNewPostActiveConnectionID);
   }
 
   generateDropZoneConfig(type: E_POST_TYPE): any {

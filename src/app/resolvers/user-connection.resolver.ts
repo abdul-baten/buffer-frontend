@@ -1,14 +1,18 @@
 import { ConnectionResolver } from './connection.resolver';
 import { I_CONNECTION, I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
+import { Resolve, Router } from '@angular/router';
 import { UserResolver } from './user-info.resolver';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserConnectionResolver implements Resolve<Promise<{ userInfo: I_USER; connections: I_CONNECTION[] }>> {
-  constructor(private userInfoResolver: UserResolver, private connectionsResolver: ConnectionResolver) {}
+  constructor(
+    private readonly userInfoResolver: UserResolver,
+    private readonly connectionsResolver: ConnectionResolver,
+    private readonly router: Router,
+  ) {}
 
   async resolve(): Promise<{ userInfo: I_USER; connections: I_CONNECTION[] }> {
     try {
@@ -17,36 +21,8 @@ export class UserConnectionResolver implements Resolve<Promise<{ userInfo: I_USE
 
       return { userInfo, connections };
     } catch (error) {
+      this.router.navigate(['/enter']);
       throw new Error(error);
     }
   }
 }
-
-// import { concatMap, map } from 'rxjs/operators';
-// import { ConnectionResolver } from './connection.resolver';
-// import { I_CONNECTION, I_USER } from '@core/model';
-// import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs';
-// import { Resolve } from '@angular/router';
-// import { UserResolver } from './user-info.resolver';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class UserConnectionResolver implements Resolve<Observable<{ userInfo: I_USER; connections: I_CONNECTION[] }>> {
-//   constructor(private userInfoResolver: UserResolver, private connectionsResolver: ConnectionResolver) {}
-
-//   resolve(): Observable<{ userInfo: I_USER; connections: I_CONNECTION[] }> {
-//     return this.userInfoResolver.resolve().pipe(
-//       concatMap((userInfo: I_USER) => {
-//         return this.connectionsResolver.resolve().pipe(
-//           map((connections: I_CONNECTION[]) => {
-//             console.warn(connections);
-
-//             return { userInfo, connections };
-//           }),
-//         );
-//       }),
-//     );
-//   }
-// }

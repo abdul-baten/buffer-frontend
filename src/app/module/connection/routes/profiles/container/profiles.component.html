@@ -10,12 +10,10 @@
       <mat-sidenav-content class="buffer--background-color-white buffer--connection-route-sec buffer--overflow-hidden">
         <div class="clearfix buffer--width-full buffer--height-full">
           <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--height-full buffer--overflow-auto">
-            <div class="clearfix buffer--width-full">
-
-              <div *ngIf="(connections$ | async).length; else noConnectionsFound">
+            <div class="clearfix buffer--width-full" *ngIf="(loading$ | async) === false; else contentLoading">
+              <div *ngIf="(totalConnections$ | async); else noConnectionsFound">
                 <section
                   class="buffer--width-full buffer--height-18 buffer--margin-bottom-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-
                   <div
                     class="buffer--width-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
                     <div class="clearfix">
@@ -42,7 +40,7 @@
                   <div *ngFor="let connection of connections$ | async; trackBy: trackByConnectionID"
                     class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
                     <div class="clearfix buffer--height-full">
-                      <div [routerLink]="['/schedule', connection._id]"
+                      <div [routerLink]="['/schedule', connection.id]"
                         class="clearfix buffer--height-full buffer--cursor-pointer buffer--outline-none buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
                         <div
                           class="buffer--position-relative buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
@@ -78,7 +76,7 @@
                         <div class="clearfix buffer--padding-left-5">
                           <button
                             class="buffer--height-8 buffer--width-8 buffer--background-color-warn-100 buffer--font-size-xs buffer--text-transform-uppercase"
-                            mat-icon-button placement="top" tooltip="Delete from Buffer"
+                            mat-icon-button placement="top" [tooltip]="'Delete ' + connection.connectionName"
                             (click)="deleteConnection(connection)">
                             <i class="material-icons buffer--text-color-warn-500 buffer--font-size-xl">delete
                             </i>
@@ -89,8 +87,6 @@
                   </div>
                 </section>
               </div>
-
-
               <ng-template #noConnectionsFound>
                 <div class="buffer--padding-20 buffer--overflow-y-auto">
                   <div
@@ -112,9 +108,10 @@
                   </div>
                 </div>
               </ng-template>
-
-
             </div>
+            <ng-template #contentLoading>
+              <buffer--loader></buffer--loader>
+            </ng-template>
           </div>
         </div>
       </mat-sidenav-content>

@@ -2,6 +2,7 @@ import { environment } from '@env/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
 const API_URL = environment.apiURL;
 @Injectable({
@@ -11,32 +12,40 @@ export class HttpService {
   constructor(private httpClient: HttpClient) {}
 
   get<T>(apiURL: string, params?: HttpParams): Observable<T> {
-    return this.httpClient.get<T>(API_URL + apiURL, {
-      responseType: 'json',
-      withCredentials: true,
-      params: { ...params },
-    });
+    return this.httpClient
+      .get<T>(API_URL + apiURL, {
+        responseType: 'json',
+        withCredentials: true,
+        params: { ...params },
+      })
+      .pipe(shareReplay(1));
   }
 
   post<T>(apiURL: string, postInfo: T): Observable<T> {
-    return this.httpClient.post<T>(API_URL + apiURL, postInfo, {
-      responseType: 'json',
-      withCredentials: true,
-    });
+    return this.httpClient
+      .post<T>(API_URL + apiURL, postInfo, {
+        responseType: 'json',
+        withCredentials: true,
+      })
+      .pipe(shareReplay(1));
   }
 
   patch<T>(apiURL: string, postInfo: T): Observable<T> {
-    return this.httpClient.patch<T>(API_URL + apiURL, postInfo, {
-      responseType: 'json',
-      withCredentials: true,
-    });
+    return this.httpClient
+      .patch<T>(API_URL + apiURL, postInfo, {
+        responseType: 'json',
+        withCredentials: true,
+      })
+      .pipe(shareReplay(1));
   }
 
   delete<T>(apiURL: string, deletedID: string): Observable<T> {
-    return this.httpClient.delete<T>(API_URL + apiURL, {
-      params: { deletedID },
-      responseType: 'json',
-      withCredentials: true,
-    });
+    return this.httpClient
+      .delete<T>(API_URL + apiURL, {
+        params: { deletedID },
+        responseType: 'json',
+        withCredentials: true,
+      })
+      .pipe(shareReplay(1));
   }
 }

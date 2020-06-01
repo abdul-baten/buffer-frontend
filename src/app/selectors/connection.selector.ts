@@ -13,7 +13,7 @@ export const selectConnectionLength = createSelector(
 
 export const selectConnectionByID = (connectionID: string) => {
   return createSelector(selectAllConnection, (entities: I_CONNECTION[]) => {
-    const connections = entities.filter((item: I_CONNECTION) => item._id === connectionID);
+    const connections = entities.filter((item: I_CONNECTION) => item.id === connectionID);
     return connections[0];
   });
 };

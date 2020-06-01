@@ -1,25 +1,37 @@
-import { AppState } from 'src/app/reducers';
 import { ConnectionDeleteModalComponent } from '@shared/module/modal/connection-delete-modal/container/connection-delete-modal.component';
+import { ConnectionService } from '@core/service/connection/connection.service';
 import { I_CONNECTION } from '@core/model';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { Router } from '@angular/router';
-import { selectAllConnection } from 'src/app/selectors/connection.selector';
-import { Store } from '@ngrx/store';
 
 @Injectable()
 export class ProfilesFacade {
+  loading$: Observable<boolean>;
+  connections$: Observable<I_CONNECTION[]>;
+
   constructor(
+    private readonly connectionService: ConnectionService,
     private readonly matDialog: MatDialog,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router,
-    private readonly store: Store<AppState>,
-  ) {}
+  ) {
+    this.loading$ = this.connectionService.loading$;
+    this.connections$ = this.connectionService.entities$;
+  }
+
+  getLoadingState(): Observable<boolean> {
+    return this.loading$;
+  }
 
   getConnectionsFromState(): Observable<I_CONNECTION[]> {
-    return this.store.select(selectAllConnection);
+    return this.connections$;
+  }
+
+  getTotalConnections(): Observable<number> {
+    return this.connectionService.count$;
   }
 
   deleteConnection(connection: I_CONNECTION): void {

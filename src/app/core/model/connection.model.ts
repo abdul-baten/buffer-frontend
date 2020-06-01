@@ -3,7 +3,7 @@ import { I_USER } from './user.model';
 
 // tslint:disable-next-line
 export interface I_CONNECTION {
-  _id: string;
+  id: string;
   connectionAdded?: Date;
   connectionCategory?: string;
   connectionID: string;

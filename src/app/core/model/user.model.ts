@@ -11,7 +11,7 @@ export interface I_SUBSCRIPTION {
 
 // tslint:disable-next-line
 export interface I_USER {
-  _id: string;
+  id: string;
   attribution: E_ATTRIBUTION;
   businessType: E_BUSINESS_TYPE;
   companyName: string;

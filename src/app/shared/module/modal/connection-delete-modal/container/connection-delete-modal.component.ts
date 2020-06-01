@@ -1,11 +1,8 @@
-import { AppState } from 'src/app/reducers';
 import { Component, Inject } from '@angular/core';
-import { deleteConnection } from 'src/app/actions';
+import { ConnectionService } from '@core/service/connection/connection.service';
 import { finalize } from 'rxjs/operators';
-import { HttpService } from '@core/service/http/http.service';
 import { I_CONNECTION } from '@core/model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'buffer--connection-delete-modal',
@@ -15,9 +12,8 @@ import { Store } from '@ngrx/store';
 export class ConnectionDeleteModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public connection: I_CONNECTION,
+    private readonly connectionService: ConnectionService,
     private readonly dialogRef: MatDialogRef<ConnectionDeleteModalComponent>,
-    private readonly httpService: HttpService,
-    private readonly store: Store<AppState>,
   ) {}
 
   closeModal(): void {
@@ -25,9 +21,9 @@ export class ConnectionDeleteModalComponent {
   }
 
   onDeletePostModalClosed(): void {
-    this.httpService
-      .delete<I_CONNECTION>('connection/deleteConnection', this.connection._id)
+    this.connectionService
+      .deleteConnection(this.connection)
       .pipe(finalize(() => this.closeModal()))
-      .subscribe((connection: I_CONNECTION) => this.store.dispatch(deleteConnection({ connection })));
+      .subscribe();
   }
 }

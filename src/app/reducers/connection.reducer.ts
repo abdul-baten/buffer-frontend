@@ -14,7 +14,7 @@ const reducer = createReducer(
   }),
   on(deleteConnection, (state: I_CONNECTION[], action: { connection: I_CONNECTION }) => {
     const { connection } = action;
-    const removedConnections = state.filter((entry: I_CONNECTION) => entry._id !== connection._id);
+    const removedConnections = state.filter((entry: I_CONNECTION) => entry.id !== connection.id);
     return [...removedConnections];
   }),
 );

@@ -12,7 +12,7 @@ const userInitialState: I_USER = {
   createdAt: null,
   email: null,
   fullName: null,
-  _id: null,
+  id: null,
   password: null,
   subscription: null,
   updatedAt: null,

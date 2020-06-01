@@ -1,10 +1,9 @@
 import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { EventInput } from '@fullcalendar/core';
-import { I_CONNECTION } from './social-profile.model';
 
 // tslint:disable-next-line
 export interface I_POST_FILE {
-  _id: string;
+  id: string;
   fileMimeType: string;
   fileName: string;
   fileType: string;
@@ -13,13 +12,19 @@ export interface I_POST_FILE {
 
 // tslint:disable-next-line
 export interface I_POST extends EventInput {
-  _id: string;
+  id: string;
   postCaption: string;
-  postConnection: I_CONNECTION[];
+  postConnection: string[];
   postMedia?: I_POST_FILE[];
-  postScheduleDate: Date;
+  postScheduleDate: string;
   postScheduleTime: string;
   postStatus: E_POST_STATUS;
   postType: E_POST_TYPE;
   userID: string;
+}
+
+// tslint:disable-next-line
+export interface I_NEW_POST_MODAL_DATA {
+  activeConnectionID: string;
+  postScheduledDate: string;
 }
