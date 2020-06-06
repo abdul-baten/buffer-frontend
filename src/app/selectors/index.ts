@@ -3,13 +3,8 @@ import {
   selectNewPostAllData,
   selectNewPostDataState,
   selectNewPostDate,
+  selectNewPostMedias,
   selectNewPostType,
 } from './post-create.selector';
 
-export {
-  selectNewPostActiveConnectionID,
-  selectNewPostAllData,
-  selectNewPostDataState,
-  selectNewPostDate,
-  selectNewPostType,
-};
+export { selectNewPostActiveConnectionID, selectNewPostAllData, selectNewPostDataState, selectNewPostDate, selectNewPostType, selectNewPostMedias };

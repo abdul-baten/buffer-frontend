@@ -18,6 +18,12 @@
   white-space: nowrap;
 }
 
+.filepond--wrapper {
+  border: $buffer--border-width $buffer--border-style-dashed $buffer--border-color-light-gray;
+  border-radius: $buffer--border-radius-lg;
+  padding: 0.5rem;
+}
+
 /* Hard to override styles */
 .filepond--browser.filepond--browser {
   position: absolute;
@@ -90,26 +96,23 @@
 
 /* Hard to override styles on purpose */
 .filepond--drop-label.filepond--drop-label label {
-  display: block;
+  display: $buffer--display-block;
   margin: 0;
   padding: 0.5em;
 }
 
 .filepond--drop-label label {
-  cursor: default;
-  font-size: 0.875em;
-  font-weight: normal;
-  text-align: center;
-  line-height: 1.5;
+  color: $buffer--text-color-gray;
+  cursor: $buffer--cursor-default;
+  font-size: $buffer--font-size-sm !important;
+  font-family: $buffer--font-family-lars-regular;
+  text-align: $buffer--text-align-center;
 }
 
 .filepond--label-action {
-  text-decoration: underline;
-  -webkit-text-decoration-skip: ink;
-  text-decoration-skip-ink: auto;
-  -webkit-text-decoration-color: #a7a4a4;
-  text-decoration-color: #a7a4a4;
+  color: $buffer--text-color-blue-500;
   cursor: pointer;
+  text-decoration: dashed;
 }
 
 .filepond--root[data-disabled] .filepond--drop-label label {
@@ -338,10 +341,7 @@
   opacity: 0;
 }
 
-[data-filepond-item-state='processing-complete']
-  .filepond--action-revert-item-processing
-  ~ .filepond--file-info
-  .filepond--file-info-sub {
+[data-filepond-item-state='processing-complete'] .filepond--action-revert-item-processing ~ .filepond--file-info .filepond--file-info-sub {
   opacity: 0.5;
 }
 
@@ -720,7 +720,7 @@
 }
 
 .filepond--panel-root {
-  border-radius: 2em;
+  border-radius: $buffer--border-radius-lg;
   background-color: $buffer--background-color-light-gray;
   height: 1em;
 }
@@ -863,14 +863,12 @@
   /* layout*/
   box-sizing: border-box;
   position: relative;
-  margin-bottom: 1em;
   /* base font size for whole component */
-  font-size: 1rem;
+  font-size: $buffer--font-size-sm;
   /* base line height */
   line-height: normal;
   /* up uses default system font family */
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: $buffer--font-family-lars-regular;
   /* will increase font weight a bit on Safari */
   font-weight: 450;
   text-align: left;
@@ -1018,9 +1016,7 @@
   top: auto;
   bottom: 0;
 }
-.filepond--root[data-style-panel-layout~='circle']
-  .filepond--file
-  .filepond--file-action-button[data-align*='bottom']:not([data-align*='center']) {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--file .filepond--file-action-button[data-align*='bottom']:not([data-align*='center']) {
   margin-bottom: 0.325em;
 }
 .filepond--root[data-style-panel-layout~='circle'] .filepond--file [data-align*='left'] {
@@ -1029,14 +1025,11 @@
 .filepond--root[data-style-panel-layout~='circle'] .filepond--file [data-align*='right'] {
   right: calc(50% - 3em);
 }
-.filepond--root[data-style-panel-layout~='circle']
-  .filepond--progress-indicator[data-align*='bottom'][data-align*='left'],
-.filepond--root[data-style-panel-layout~='circle']
-  .filepond--progress-indicator[data-align*='bottom'][data-align*='right'] {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--progress-indicator[data-align*='bottom'][data-align*='left'],
+.filepond--root[data-style-panel-layout~='circle'] .filepond--progress-indicator[data-align*='bottom'][data-align*='right'] {
   margin-bottom: 0.5125em;
 }
-.filepond--root[data-style-panel-layout~='circle']
-  .filepond--progress-indicator[data-align*='bottom'][data-align*='center'] {
+.filepond--root[data-style-panel-layout~='circle'] .filepond--progress-indicator[data-align*='bottom'][data-align*='center'] {
   margin-top: 0;
   margin-bottom: 0.1875em;
   margin-left: 0.1875em;

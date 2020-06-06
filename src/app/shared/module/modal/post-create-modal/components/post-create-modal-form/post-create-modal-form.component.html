@@ -5,7 +5,6 @@
     </mat-step>
 
     <mat-step [stepControl]="eventCreateTypeTextForm">
-      <ng-template matStepLabel>Content</ng-template>
       <buffer--post-create-modal-form-text #postTypeTextStep *ngIf="(postType$ | async) === 'text'">
       </buffer--post-create-modal-form-text>
       <buffer--post-create-modal-form-image #postTypeImageStep *ngIf="(postType$ | async) === 'image'">

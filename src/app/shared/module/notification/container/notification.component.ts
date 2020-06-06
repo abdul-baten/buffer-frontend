@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'buffer--notification',
@@ -7,12 +7,5 @@ import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar'
   styleUrls: ['./notification.component.scss'],
 })
 export class NotificationComponent {
-  constructor(
-    @Inject(MAT_SNACK_BAR_DATA) public notificationInfo: string,
-    private snackbar: MatSnackBarRef<NotificationComponent>,
-  ) {}
-
-  closeNotification(): void {
-    this.snackbar.dismiss();
-  }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public notificationInfo: string) {}
 }

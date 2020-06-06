@@ -10,10 +10,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION> {
-  constructor(
-    private readonly httpService: HttpService,
-    serviceElementsFactory: EntityCollectionServiceElementsFactory,
-  ) {
+  constructor(private readonly httpService: HttpService, serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Connection', serviceElementsFactory);
   }
 
@@ -22,7 +19,9 @@ export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION>
       .get<I_CONNECTION[]>('connection/connections', ({ userID } as unknown) as HttpParams)
       .pipe(
         tap((connections: I_CONNECTION[]) => {
-          this.addManyToCache(connections);
+          if (!!connections.length) {
+            this.upsertManyInCache(connections);
+          }
         }),
       );
   }
@@ -33,5 +32,9 @@ export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION>
         this.removeOneFromCache(conn);
       }),
     );
+  }
+
+  addConnectionToState(connection: I_CONNECTION): void {
+    this.upsertOneInCache(connection);
   }
 }

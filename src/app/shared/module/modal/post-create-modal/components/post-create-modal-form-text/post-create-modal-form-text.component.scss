@@ -1,9 +1,5 @@
 :host {
   position: relative;
   display: block;
-
-  .buffer--connection-list[area-selected='true'] {
-    box-shadow: 0 0 0 3px #69a8fb;
-    opacity: 1 !important;
-  }
+  min-height: 350px;
 }

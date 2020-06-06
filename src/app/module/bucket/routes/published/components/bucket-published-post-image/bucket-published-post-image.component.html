@@ -2,7 +2,7 @@
   <ngx-slick-carousel class="carousel buffer--height-full buffer--border-radius-lg" #slickModal="slick-carousel"
     [config]="calendarPostSlideConfig">
     <div ngxSlickItem *ngFor="let calendarPostImage of calendarPostImages" class="buffer--border-radius-lg">
-      <img [alt]="calendarPostImage.fileName" [src]="calendarPostImage.fileURL"
+      <img [alt]="calendarPostImage.mediaName" [src]="calendarPostImage.mediaURL"
         class="buffer--width-full buffer--height-auto buffer--border-radius-lg">
     </div>
   </ngx-slick-carousel>

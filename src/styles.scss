@@ -16,27 +16,6 @@
   }
 }
 
-*::-webkit-scrollbar {
-  width: 9px;
-  z-index: 999;
-}
-
-*::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-*::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-*::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
-}
-
-*::-webkit-scrollbar-thumb:window-inactive {
-  background: rgba(0, 0, 0, 0.05);
-}
-
 html,
 body {
   @include buffer--user-select(none);
@@ -209,36 +188,36 @@ p {
 }
 
 .buffer--social-account-logo {
-  margin: -25px 0 0 25px;
-  width: 20px;
-  height: 20px;
-  border: 3px solid #ffffff;
+  width: 1rem;
+  height: 1rem;
+  border: $buffer--border-right-width-2 $buffer--border-style-solid $buffer--border-color-white;
+  right: -0.2rem;
 }
 
-.buffer--social-account-logo-facebook_page,
-.buffer--social-account-logo-facebook_group {
+.buffer--social-account-logo-Facebook_Page,
+.buffer--social-account-logo-Facebook_Group {
   background: #1877f2 url('/assets/images/icon/facebook.svg');
   background-size: cover;
 }
 
-.buffer--social-account-logo-instagram_business,
-.buffer--social-account-logo-instagram_personal {
+.buffer--social-account-logo-Instagram_Business,
+.buffer--social-account-logo-Instagram_Personal {
   background: #f46f30 url('/assets/images/icon/instagram.svg');
   background-size: cover;
 }
 
-.buffer--social-account-logo-linkedin_page,
-.buffer--social-account-logo-linkedin_profile {
+.buffer--social-account-logo-Linkedin_Page,
+.buffer--social-account-logo-Linkedin_Profile {
   background: #007bb5 url('/assets/images/icon/linkedin.svg');
   background-size: cover;
 }
 
-.buffer--social-account-logo-pinterest {
+.buffer--social-account-logo-Pinterest {
   background: #bd081c url('/assets/images/icon/pinterest.svg');
   background-size: cover;
 }
 
-.buffer--social-account-logo-twitter {
+.buffer--social-account-logo-Twitter {
   background: #1da1f2 url('/assets/images/icon/twitter.svg');
   background-size: cover;
 }
@@ -246,28 +225,20 @@ p {
 /*
     * NOTIFICATION
 */
-.buffer--simple-simple-notification {
-  border-radius: $buffer--border-radius-xl !important;
-  color: $buffer--text-color-white !important;
-  font-size: $buffer--font-size-base !important;
-  min-width: $buffer--width-56 !important;
-  padding: 1rem 1.5rem !important;
-}
 
-.buffer--advance-simple-notification {
-  border-radius: $buffer--border-radius-lg !important;
+.buffer--simple-notification,
+.buffer--advance-notification {
   color: $buffer--text-color-white !important;
   font-size: $buffer--font-size-sm !important;
+  padding: 1.5rem !important;
+}
+
+.buffer--simple-notification {
+  border-radius: $buffer--border-radius-xl !important;
+  min-width: $buffer--width-56 !important;
+}
+
+.buffer--advance-notification {
+  border-radius: $buffer--border-radius-lg !important;
   min-width: $buffer--width-64 !important;
-  padding: 1rem 1.5rem !important;
-
-  .mat-icon-button {
-    width: $buffer--width-8;
-    height: $buffer--height-8;
-    background-color: $buffer--background-color-dark-gray !important;
-
-    .mat-icon {
-      color: $buffer--text-color-white;
-    }
-  }
 }

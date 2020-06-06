@@ -109,6 +109,7 @@
     "ng-pick-datetime": "^7.0.0",
     "ng2-tooltip-directive": "^2.9.20",
     "ngx-filepond": "^5.0.1",
+    "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-slick-carousel": "^0.4.7",
     "ngx-virtual-scroller": "^3.0.3",
     "node-fetch": "^2.6.0",

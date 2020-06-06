@@ -1,0 +1,15 @@
+<div class="clearfix">
+  <div
+    class="buffer--padding-bottom-5 buffer--display-webkit-box buffer--align-items-center buffer--flex-justify-content-flex-start buffer--overflow-y-hidden buffer--overflow-x-auto">
+    <div *ngFor="let connection of connections$ | async;" [tooltip]="generateTooltip(connection)" placement="top"
+      (click)="connectionSelected(connection.id)" [attr.area-selected]="isConnectionSelected(connection.id)"
+      class="buffer--position-relative buffer--width-10 buffer--height-10 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
+      [ngClass]="{'buffer--opacity-100': (activeConnectionID$ | async) === connection.id, 'buffer--opacity-50': (activeConnectionID$ | async) !== connection.id}">
+      <img [src]="connection.connectionPicture"
+        class="buffer--width-full buffer--height-full buffer--border-radius-full" />
+      <div
+        [attr.class]="'buffer--position-bottom-0 buffer--social-account-logo buffer--position-absolute buffer--border-radius-full buffer--social-account-logo-' + connection.connectionType">
+      </div>
+    </div>
+  </div>
+</div>

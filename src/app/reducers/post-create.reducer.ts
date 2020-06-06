@@ -1,19 +1,23 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { I_POST } from '@core/model';
 import {
+  setNewPostConnectionID,
   setNewPostConnections,
   setNewPostData,
   setNewPostDate,
+  setNewPostMedia,
   setNewPostType,
-  setNewPostConnectionID,
+  removeNewPostMedia,
+  removeNewPostData,
+  removeNewPostAllMedia,
 } from '../actions';
 
 const newPostFeatureKey = 'newPost';
 
-const initialState: I_POST = {
+const initialState: Partial<I_POST> = {
   id: null,
   postCaption: null,
-  postConnection: [],
+  postConnection: null,
   postMedia: [],
   postScheduleDate: null,
   postScheduleTime: null,
@@ -48,7 +52,30 @@ const reducer = createReducer(
   on(setNewPostConnections, (state: I_POST, action) => {
     return {
       ...state,
-      postConnection: action.connections,
+      postConnection: action.connection,
+    };
+  }),
+  on(setNewPostMedia, (state: any, action) => {
+    return {
+      ...state,
+      postMedia: [...state.postMedia, action.media],
+    };
+  }),
+  on(removeNewPostMedia, (state: any, action) => {
+    const { media } = action;
+    const mediaIndex = state.postMedia.findIndex((entry: string) => entry === media);
+    return {
+      ...state,
+      postMedia: [...state.postMedia.slice(0, mediaIndex), ...state.postMedia.slice(mediaIndex + 1)],
+    };
+  }),
+  on(removeNewPostData, _ => {
+    return initialState;
+  }),
+  on(removeNewPostAllMedia, (state: any) => {
+    return {
+      ...state,
+      postMedia: [],
     };
   }),
 );

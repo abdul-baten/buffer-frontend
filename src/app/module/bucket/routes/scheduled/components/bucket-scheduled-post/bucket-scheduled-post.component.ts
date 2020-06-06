@@ -21,13 +21,13 @@ export class BucketScheduledPostComponent {
       postMedia: [
         {
           id: '',
-          fileMimeType: '',
-          fileName: 'patreon-hero-illustration.png',
-          fileType: 'img',
-          fileURL: '',
+          mediaMimeType: '',
+          mediaName: 'patreon-hero-illustration.png',
+          mediaType: 'img',
+          mediaURL: '',
         },
       ],
-      postConnection: [],
+      postConnection: '',
       postType: E_POST_TYPE.IMAGE,
       postStatus: E_POST_STATUS.SCHEDULED,
       postScheduleTime: '',

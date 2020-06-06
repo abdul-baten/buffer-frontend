@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_POST_FILE } from '@core/model';
+import { I_MEDIA } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,7 +9,7 @@ import { I_POST_FILE } from '@core/model';
 })
 export class BucketScheduledPostVideoComponent implements OnChanges {
   @Input() calendarPostSlideConfig: any;
-  @Input() calendarPostVideos: I_POST_FILE[];
+  @Input() calendarPostVideos: I_MEDIA[];
 
   ngOnChanges(changes: SimpleChanges) {
     this.calendarPostVideos = changes.calendarPostVideos.currentValue;

@@ -1,26 +1,28 @@
-<div class="clearfix">
+<div class="clearfix" *ngIf="(loadingState$ | async) === false; else loadingContainer">
   <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
     <buffer--post-create-modal-form-header [formHeader]="formHeader">
     </buffer--post-create-modal-form-header>
   </section>
 
   <section id="schedule-create-form-content-sec"
-    class="schedule-create-form-content-sec buffer--padding-5 buffer--overflow-y-auto">
+    class="schedule-create-form-content-sec buffer--padding-5 buffer--padding-bottom-0 buffer--overflow-y-auto">
     <div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-space-between">
-      <div class="clearfix buffer--margin-bottom-5">
-        <!-- uploader -->
-        <buffer--post-create-modal-form-media-selection (enableNextButton)="onNextButtonEnabled($event)">
-        </buffer--post-create-modal-form-media-selection>
-        <!-- uploader -->
+      <div class="clearfix">
+        <buffer--post-create-modal-form-connection-selection (connectionChange)="changeConnectionSelection($event)">
+        </buffer--post-create-modal-form-connection-selection>
       </div>
       <div class="clearfix">
-        <form novalidate [formGroup]="eventCreateTypeVideoForm">
+        <!-- uploader -->
+        <buffer--post-create-modal-form-media-selection>
+        </buffer--post-create-modal-form-media-selection>
+        <!-- uploader -->
+        <form novalidate [formGroup]="eventCreateTypeVideoForm" class="buffer--margin-top-5">
           <div class="clearfix">
             <label for="postCaption"
               class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">Caption</label>
             <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
               <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventCreatePostFormErrorMatcher"
-                cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
+                cdkAutosizeMaxRows="5" cdkAutosizeMinRows="5" cdkTextareaAutosize
                 class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default buffer--line-height-leading-relaxed"
                 formControlName="postCaption" id="postCaption" matInput placeholder="Write something" required
                 spellcheck="false"></textarea>
@@ -28,17 +30,17 @@
           </div>
 
           <div class="clearfix">
-            <label for="postDate"
+            <label for="postScheduleDate"
               class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
             <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
               <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
-                [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
+                [owlDateTimeTrigger]="postScheduleDate" [owlDateTime]="postScheduleDate" autocomplete="off"
                 class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default"
-                formControlName="postDate" id="postDate" matInput readonly type="text" />
-              <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
+                formControlName="postScheduleDate" id="postScheduleDate" matInput readonly type="text" />
+              <button matSuffix mat-icon-button [owlDateTimeTrigger]="postScheduleDate">
                 <i class="material-icons buffer--text-color-gray">timer</i>
               </button>
-              <owl-date-time #postDate [hideOtherMonths]="true" [hour12Timer]="true" [startAt]="currentDateTime"
+              <owl-date-time #postScheduleDate [hideOtherMonths]="true" [hour12Timer]="true" [startAt]="currentDateTime"
                 [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel"></owl-date-time>
             </mat-form-field>
           </div>
@@ -61,21 +63,21 @@
         <div
           class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
           <div class="clearfix buffer--margin-left-3">
-            <button [disabled]="nextButtonDisabled || eventCreateTypeVideoForm.invalid"
+            <button (click)="savePost(postStatus.SAVED)" [disabled]="isButtonDisabled() | async"
               class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" mat-stroked-button
               type="button">
               <span>Save</span>
             </button>
           </div>
           <div class="clearfix buffer--margin-left-3">
-            <button [disabled]="nextButtonDisabled || eventCreateTypeVideoForm.invalid"
+            <button (click)="savePost(postStatus.PUBLISHED)" [disabled]="isButtonDisabled() | async"
               class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" mat-stroked-button
               type="button">
               <span>Share now</span>
             </button>
           </div>
           <div class="clearfix buffer--margin-left-3">
-            <button [disabled]="nextButtonDisabled || eventCreateTypeVideoForm.invalid"
+            <button (click)="savePost(postStatus.SCHEDULED)" [disabled]="isButtonDisabled() | async"
               class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" color="primary"
               mat-flat-button type="button">
               <span>Schedule</span>
@@ -86,3 +88,7 @@
     </div>
   </section>
 </div>
+
+<ng-template #loadingContainer class="buffer--height-full">
+  <buffer--loader></buffer--loader>
+</ng-template>

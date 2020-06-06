@@ -9,6 +9,7 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
   openSnackBar(message: string): void {
+    this.snackBar.dismiss();
     this.snackBar.open(message, '', {
       data: '',
       direction: 'ltr',
@@ -16,11 +17,12 @@ export class NotificationService {
       horizontalPosition: 'center',
       politeness: 'polite',
       verticalPosition: 'bottom',
-      panelClass: ['buffer--simple-simple-notification'],
+      panelClass: ['buffer--simple-notification'],
     });
   }
 
   openNotificationWithComponent(notificationInfo: string): void {
+    this.snackBar.dismiss();
     this.snackBar.openFromComponent(NotificationComponent, {
       data: notificationInfo,
       direction: 'ltr',
@@ -28,7 +30,7 @@ export class NotificationService {
       horizontalPosition: 'start',
       politeness: 'polite',
       verticalPosition: 'bottom',
-      panelClass: ['buffer--advance-simple-notification'],
+      panelClass: ['buffer--advance-notification'],
     });
   }
 }

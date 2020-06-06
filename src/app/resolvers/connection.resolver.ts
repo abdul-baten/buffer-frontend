@@ -1,13 +1,11 @@
-import { AppState } from '../reducers';
 import { catchError, first, map, switchMap } from 'rxjs/operators';
 import { ConnectionService } from '@core/service/connection/connection.service';
 import { ErrorService } from '@core/service/error/error.service';
-import { I_CONNECTION } from '@core/model';
+import { I_CONNECTION, I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Resolve } from '@angular/router';
-import { selectUserId } from '../selectors/user.selector';
-import { Store } from '@ngrx/store';
+import { UserService } from '@core/service/user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,16 +14,14 @@ export class ConnectionResolver implements Resolve<I_CONNECTION[]> {
   constructor(
     private readonly connectionService: ConnectionService,
     private readonly errorService: ErrorService,
-    private readonly store: Store<AppState>,
+    private readonly userService: UserService,
   ) {}
 
   resolve(): Observable<I_CONNECTION[]> {
-    const userIDFromState$ = this.store.select(selectUserId);
+    const userIDFromState$ = this.userService.getUserFromState();
     const connectionsFromState$ = this.connectionService.entities$;
     const userInfofromRequest$ = userIDFromState$.pipe(
-      switchMap((userID: string) => {
-        return this.connectionService.getConnections(userID).pipe(map((connections: I_CONNECTION[]) => connections));
-      }),
+      switchMap((user: I_USER) => this.connectionService.getConnections(user.id).pipe(map((connections: I_CONNECTION[]) => connections))),
     );
 
     return connectionsFromState$.pipe(

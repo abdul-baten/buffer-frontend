@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnDestroy, Output } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { defaultIfEmpty, filter, tap } from 'rxjs/operators';
 import { E_POST_TYPE } from '@core/enum';
 import { noop } from 'rxjs';
@@ -7,17 +7,12 @@ import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--post-create-modal-form-media-selection',
-  templateUrl: './post-create-modal-form-media-selection.component.html',
   styleUrls: ['./post-create-modal-form-media-selection.component.scss'],
+  templateUrl: './post-create-modal-form-media-selection.component.html',
 })
 export class PostCreateModalFormMediaSelectionComponent implements OnDestroy {
-  filesAdded = 0;
-  mediaMaxFilesReached = false;
   filePondOptions: any;
-
   private subscriptions$ = new SubSink();
-
-  @Output() enableNextButton = new EventEmitter<boolean>();
 
   constructor(private postCreateModalFacade: PostCreateModalFacade) {
     const postType = this.postCreateModalFacade.getPostType().pipe(

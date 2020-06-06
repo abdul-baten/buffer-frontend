@@ -1,33 +1,30 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { E_POST_STATUS } from '@core/enum';
+import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_CONNECTION } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 import { SubSink } from 'subsink';
-import { E_POST_STATUS } from '@core/enum';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'buffer--post-create-modal-form-text',
-  templateUrl: './post-create-modal-form-text.component.html',
   styleUrls: ['./post-create-modal-form-text.component.scss'],
+  templateUrl: './post-create-modal-form-text.component.html',
 })
-export class PostCreateModalFormTextComponent implements OnDestroy, OnInit {
-  activeConnectionID$: Observable<string>;
-  connections$: Observable<I_CONNECTION[]>;
+export class PostCreateModalFormTextComponent implements OnDestroy {
   currentDateTime: Date;
   eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
   eventCreateTypeTextForm: FormGroup;
   formHeader = 'Write status';
+  loadingState$: Observable<boolean>;
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
   selectedConnections: string[] = [];
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly matDialog: MatDialog,
     private readonly postCreateModalFacade: PostCreateModalFacade,
     private readonly stepper: MatStepper,
   ) {
@@ -40,11 +37,7 @@ export class PostCreateModalFormTextComponent implements OnDestroy, OnInit {
       }),
     );
 
-    this.connections$ = this.postCreateModalFacade.getConnections();
-  }
-
-  ngOnInit(): void {
-    this.activeConnectionID$ = this.postCreateModalFacade.getActiveConnectionID();
+    this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
   @HostListener('window:beforeunload')
@@ -59,34 +52,25 @@ export class PostCreateModalFormTextComponent implements OnDestroy, OnInit {
     });
   }
 
-  connectionSelected(connectionID: string) {
-    const findConnection = this.selectedConnections.find((entry: string) => entry === connectionID);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: string) => entry === connectionID);
-    if (!findConnection) {
-      this.selectedConnections.push(connectionID);
-    } else {
-      this.selectedConnections.splice(findConnectionIndex, 1);
-    }
-  }
-
-  isConnectionSelected(connectionID: string): boolean {
-    const findConnection = this.selectedConnections.find((entry: string) => entry === connectionID);
-    return !!findConnection;
-  }
-
   handlePreviousBtnClick(): void {
     this.stepper.reset();
+  }
+
+  changeConnectionSelection(connections: string[]): void {
+    this.selectedConnections = connections;
+  }
+
+  isButtonDisabled(): boolean {
+    return this.eventCreateTypeTextForm.invalid || !!!this.selectedConnections.length;
   }
 
   savePost(postStatus: E_POST_STATUS): void {
     if (this.eventCreateTypeTextForm.valid) {
       const { value } = this.eventCreateTypeTextForm;
-      this.postCreateModalFacade.setPostConnections(this.selectedConnections);
-      this.subscriptions$.add(
-        this.postCreateModalFacade.setPostData(value, postStatus).subscribe(() => {
-          this.matDialog.closeAll();
-        }),
-      );
+      this.postCreateModalFacade
+        .sendPost(value, postStatus, this.selectedConnections)
+        .pipe(finalize(() => this.eventCreateTypeTextForm.controls.postCaption.reset()))
+        .subscribe();
     }
   }
 }

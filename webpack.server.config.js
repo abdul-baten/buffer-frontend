@@ -34,7 +34,7 @@ module.exports = {
     minimize: false,
   },
   output: {
-    filename: '[name].js',
+    mediaName: '[name].js',
     path: path.join(__dirname, 'dist'),
   },
   plugins: [
@@ -60,7 +60,7 @@ module.exports = {
     }),
     new CompressionPlugin({
       algorithm: 'gzip',
-      filename: '[path].gz[query]',
+      mediaName: '[path].gz[query]',
       minRatio: 0.8,
       test: /\.js$|\.css$|\.html$/,
       threshold: 10240,
@@ -68,7 +68,7 @@ module.exports = {
     new CompressionPlugin({
       algorithm: 'brotliCompress',
       compressionOptions: { level: 11 },
-      filename: '[path].br[query]',
+      mediaName: '[path].br[query]',
       minRatio: 0.8,
       test: /\.(js|css|html|svg)$/,
       threshold: 10240,

@@ -8,19 +8,18 @@ $font-path: '~assets/fonts';
 */
 
 // Lars
-$buffer--font-family-lars-thin: 'Buffer-Lars-Thin', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
-$buffer--font-family-lars-italic: 'Buffer-Lars-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+$buffer--font-family-lars-thin: -apple-system, BlinkMacSystemFont, 'Buffer-Lars-Thin', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
   sans-serif;
-$buffer--font-family-lars-light-italic: 'Buffer-Lars-Light-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma,
-  Arial, sans-serif;
-$buffer--font-family-lars-regular: 'Buffer-Lars-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+$buffer--font-family-lars-italic: -apple-system, BlinkMacSystemFont, 'Buffer-Lars-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
+  sans-serif;
+$buffer--font-family-lars-light-italic: 'Buffer-Lars-Light-Italic', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
+$buffer--font-family-lars-regular: -apple-system, BlinkMacSystemFont, 'Buffer-Lars-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
   sans-serif;
 $buffer--font-family-lars-bold: 'Buffer-Lars-Bold', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
 
 // Circ
 $buffer--font-family-circ-bold: 'Buffer-Circ-Bold', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
-$buffer--font-family-circ-bold: 'Buffer-Circ-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial,
-  sans-serif;
+$buffer--font-family-circ-regular: 'Buffer-Circ-Regular', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
 
 // Sans
 $buffer--font-family-sans-regular: 'Buffer-Sans-Regular', Arial, sans-serif;

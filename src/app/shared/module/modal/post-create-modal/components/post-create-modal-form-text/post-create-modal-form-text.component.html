@@ -1,26 +1,14 @@
-<div class="clearfix">
+<div class="clearfix" *ngIf="(loadingState$ | async) === false; else loadingContainer">
   <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
     <buffer--post-create-modal-form-header [formHeader]="formHeader">
     </buffer--post-create-modal-form-header>
   </section>
 
   <section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec buffer--overflow-y-auto">
-
-    <div class="buffer--padding-5">
-
+    <div class="buffer--padding-5 buffer--padding-bottom-0">
       <div class="clearfix buffer--margin-bottom-5">
-        <div class="buffer--display-flex buffer--align-items-center buffer--flex-justify-content-flex-start">
-          <div *ngFor="let connection of connections$ | async;" [tooltip]="connection.connectionName" placement="top"
-            (click)="connectionSelected(connection.id)" [attr.area-selected]="isConnectionSelected(connection.id)"
-            class="buffer--position-relative buffer--width-10 buffer--height-10 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
-            [ngClass]="{'buffer--opacity-100': (activeConnectionID$ | async) === connection.id, 'buffer--opacity-50': (activeConnectionID$ | async) !== connection.id}">
-            <img [src]="connection.connectionPicture"
-              class="buffer--width-full buffer--height-full buffer--border-radius-full" />
-            <div
-              [attr.class]="'buffer--position-bottom-0 buffer--social-account-logo buffer--position-absolute buffer--border-radius-full buffer--social-account-logo-' + connection.connectionType">
-            </div>
-          </div>
-        </div>
+        <buffer--post-create-modal-form-connection-selection (connectionChange)="changeConnectionSelection($event)">
+        </buffer--post-create-modal-form-connection-selection>
       </div>
 
       <form novalidate [formGroup]="eventCreateTypeTextForm">
@@ -57,8 +45,6 @@
     </div>
   </section>
 
-
-
   <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
 
     <div
@@ -90,7 +76,7 @@
               </button>
             </div>
             <div class="clearfix buffer--margin-left-3">
-              <button (click)="savePost(postStatus.SCHEDULED)" [disabled]="eventCreateTypeTextForm.invalid"
+              <button (click)="savePost(postStatus.SCHEDULED)" [disabled]="isButtonDisabled()"
                 class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-sm" color="primary"
                 mat-flat-button type="button">
                 <span>Schedule</span>
@@ -103,3 +89,7 @@
 
   </section>
 </div>
+
+<ng-template #loadingContainer class="buffer--height-full">
+  <buffer--loader></buffer--loader>
+</ng-template>

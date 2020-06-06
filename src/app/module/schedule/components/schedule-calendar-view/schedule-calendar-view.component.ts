@@ -105,13 +105,13 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
         postMedia: [
           {
             id: '',
-            fileMimeType: '',
-            fileName: 'patreon-hero-illustration.png',
-            fileType: 'img',
-            fileURL: '',
+            mediaMimeType: '',
+            mediaName: 'patreon-hero-illustration.png',
+            mediaType: 'img',
+            mediaURL: '',
           },
         ],
-        postConnection: [],
+        postConnection: '',
         postType: E_POST_TYPE.IMAGE,
         postStatus: E_POST_STATUS.SCHEDULED,
         postScheduleTime: '',
@@ -184,11 +184,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     postInfo.el.querySelector('.fc-title').remove();
 
     const postPortalHost = this.getBodyPortalHost(element);
-    const componentToAppend = new ComponentPortal(
-      ScheduleCalendarViewPostComponent,
-      null,
-      this.createPostDataInjector(postInfo),
-    );
+    const componentToAppend = new ComponentPortal(ScheduleCalendarViewPostComponent, null, this.createPostDataInjector(postInfo));
     postPortalHost.attach(componentToAppend);
   }
 

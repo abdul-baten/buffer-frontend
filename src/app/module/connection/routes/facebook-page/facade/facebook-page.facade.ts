@@ -1,15 +1,16 @@
 import { AppState } from 'src/app/reducers';
+import { ConnectionService } from '@core/service/connection/connection.service';
 import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
 import { FacebookPageService } from '../service/facebook-page.service';
 import { finalize, switchMap, tap } from 'rxjs/operators';
-import { I_CONNECTION, I_FB_PAGE_RESPONSE } from '@core/model';
+import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Params, Router } from '@angular/router';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { selectUserId } from 'src/app/selectors/user.selector';
 import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
+import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class FacebookPageFacade {
@@ -18,6 +19,8 @@ export class FacebookPageFacade {
 
   constructor(
     private facebookPageService: FacebookPageService,
+    private readonly connectionService: ConnectionService,
+    private readonly userService: UserService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private router: Router,
     private store: Store<AppState>,
@@ -69,13 +72,18 @@ export class FacebookPageFacade {
   }
 
   addFacebookPage(connectionInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.store.select(selectUserId).pipe(
+    const userFromState$ = this.userService.getUserFromState();
+    return userFromState$.pipe(
       tap(() => this.setLoadingStatus(true)),
-      switchMap((connectionUserID: string) => {
-        connectionInfo.connectionUserID = connectionUserID;
+      switchMap((user: I_USER) => {
+        connectionInfo.connectionUserID = user.id;
         connectionInfo.connectionStatus = E_CONNECTION_STATUS.ENABLED;
         connectionInfo.connectionType = E_CONNECTION_TYPE.FACEBOOK_PAGE;
-        return this.facebookPageService.addFacebookPage(connectionInfo);
+        return this.facebookPageService.addFacebookPage(connectionInfo).pipe(
+          tap((connection: I_CONNECTION) => {
+            this.connectionService.addConnectionToState(connection);
+          }),
+        );
       }),
     );
   }

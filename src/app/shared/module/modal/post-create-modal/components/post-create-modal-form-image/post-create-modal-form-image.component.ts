@@ -1,8 +1,15 @@
+import { AppState } from 'src/app/reducers';
 import { Component, HostListener, Input, OnDestroy } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { E_POST_STATUS } from '@core/enum';
+import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { I_MEDIA } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
+import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
+import { selectNewPostMedias } from 'src/app/selectors';
+import { Store } from '@ngrx/store';
 import { SubSink } from 'subsink';
 
 @Component({
@@ -11,35 +18,36 @@ import { SubSink } from 'subsink';
   styleUrls: ['./post-create-modal-form-image.component.scss'],
 })
 export class PostCreateModalFormImageComponent implements OnDestroy {
-  nextButtonDisabled = true;
   @Input() formHeader = 'Upload your media';
-
-  private subscriptions$ = new SubSink();
-
   currentDateTime: Date;
-
   eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
-
   eventCreateTypeImageForm: FormGroup;
+  loadingState$: Observable<boolean>;
+  postStatus = E_POST_STATUS;
+  private subscriptions$ = new SubSink();
+  selectedConnections: string[] = [];
 
   constructor(
     private stepper: MatStepper,
     private formBuilder: FormBuilder,
     private postCreateModalFacade: PostCreateModalFacade,
+    private store: Store<AppState>,
   ) {
     this.eventCreateTypeImageForm = this.biuldPostCreateTypeImageForm();
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostDate().subscribe(postDate => {
-        this.currentDateTime = new Date(postDate);
-        this.eventCreateTypeImageForm.patchValue({ postDate: new Date(postDate) });
+      this.postCreateModalFacade.getPostDate().subscribe(postScheduleDate => {
+        this.currentDateTime = new Date(postScheduleDate);
+        this.eventCreateTypeImageForm.patchValue({ postScheduleDate: new Date(postScheduleDate) });
       }),
     );
+
+    this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
   private biuldPostCreateTypeImageForm(): FormGroup {
     return this.formBuilder.group({
-      postDate: new FormControl(null, Validators.required),
+      postScheduleDate: new FormControl(null, Validators.required),
       postCaption: new FormControl(null, Validators.required),
     });
   }
@@ -53,7 +61,27 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
     this.stepper.previous();
   }
 
-  onNextButtonEnabled(nextButtonDisabled: boolean): void {
-    this.nextButtonDisabled = nextButtonDisabled;
+  changeConnectionSelection(connections: string[]): void {
+    this.selectedConnections = connections;
+  }
+
+  isButtonDisabled(): Observable<boolean> {
+    return this.store.select(selectNewPostMedias).pipe(
+      map((medias: I_MEDIA[]) => {
+        return !!!medias.length || !!!this.selectedConnections.length || this.eventCreateTypeImageForm.invalid;
+      }),
+    );
+  }
+
+  savePost(postStatus: E_POST_STATUS): void {
+    if (this.eventCreateTypeImageForm.valid) {
+      const { value } = this.eventCreateTypeImageForm;
+      this.subscriptions$.add(
+        this.postCreateModalFacade
+          .sendPost(value, postStatus, this.selectedConnections)
+          .pipe(finalize(() => this.eventCreateTypeImageForm.controls.postCaption.reset()))
+          .subscribe(),
+      );
+    }
   }
 }

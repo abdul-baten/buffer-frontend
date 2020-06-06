@@ -1,39 +1,35 @@
 import { AppState } from 'src/app/reducers';
 import { ConnectionService } from '@core/service/connection/connection.service';
 import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
+import { finalize, map, tap } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
 import { format, formatISO, roundToNearestMinutes } from 'date-fns';
-import { I_CONNECTION, I_POST, I_POST_TYPE_MAP } from '@core/model';
+import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from '@core/model';
 import { Injectable, Injector } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { PostService } from '@core/service/post/post.service';
-import { selectUserId } from 'src/app/selectors/user.selector';
+import { removeNewPostData, setNewPostDate, setNewPostType, removeNewPostAllMedia } from 'src/app/actions';
+import { selectNewPostActiveConnectionID, selectNewPostDate, selectNewPostMedias, selectNewPostType } from 'src/app/selectors';
 import { Store } from '@ngrx/store';
-import { switchMap } from 'rxjs/operators';
-import {
-  selectNewPostActiveConnectionID,
-  selectNewPostAllData,
-  selectNewPostDate,
-  selectNewPostType,
-} from 'src/app/selectors';
-import {
-  setNewPostData,
-  setNewPostDate,
-  setNewPostType,
-  setNewPostConnections,
-  setNewPostConnectionID,
-} from 'src/app/actions';
+import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class PostCreateModalFacade {
   constructor(
     private readonly connectionService: ConnectionService,
     private readonly injector: Injector,
+    private readonly matDialog: MatDialog,
     private readonly postService: PostService,
-    private readonly store: Store<AppState>,
+    private store: Store<AppState>,
+    private readonly userService: UserService,
   ) {}
 
   getConnections(): Observable<I_CONNECTION[]> {
     return this.connectionService.entities$;
+  }
+
+  getLoadingState(): Observable<boolean> {
+    return this.postService.loading$;
   }
 
   setPostType(postType: E_POST_TYPE): void {
@@ -49,43 +45,55 @@ export class PostCreateModalFacade {
     this.store.dispatch(setNewPostDate({ postOriginalDate }));
   }
 
-  setNewPostActiveConnectionID(activeConnectionID: string): void {
-    this.store.dispatch(setNewPostConnectionID({ activeConnectionID }));
-  }
-
   getPostDate(): Observable<string> {
     return this.store.select(selectNewPostDate);
   }
 
-  setPostData(postData: I_POST, postStatus: E_POST_STATUS): Observable<I_POST> {
+  sendPost(postData: I_POST, postStatus: E_POST_STATUS, connections: string[]): Observable<I_POST> {
+    this.postService.setLoading(true);
+    const requests: any[] = [];
     const { postScheduleDate } = postData;
+    postData.postCaption = postData.postCaption.trim();
+    postData.postStatus = postStatus;
     postData.postScheduleDate = format(new Date(postScheduleDate), 'MM/dd/yyyy');
     postData.postScheduleTime = format(new Date(postScheduleDate), 'hh:mm a');
-    postData.postStatus = postStatus;
+    this.store.select(selectNewPostType).subscribe((postType: E_POST_TYPE) => (postData.postType = postType));
+    this.store.select(selectNewPostMedias).subscribe((postMedias: I_MEDIA[]) => {
+      if (postMedias.length > 0) {
+        postData.postMedia = postMedias;
+      }
+    });
+    this.userService.getUserFromState().subscribe((user: I_USER) => (postData.userID = user.id));
 
-    const userID$ = this.store.select(selectUserId);
+    connections.forEach((connection: string) => {
+      postData.postConnection = connection;
+      const clonedPostData = JSON.parse(JSON.stringify(postData));
+      requests.push(this.postService.addPost(clonedPostData));
+    });
 
-    return userID$.pipe(
-      switchMap((userID: string) => {
-        postData.userID = userID;
-        this.store.dispatch(setNewPostData({ postData }));
-        return this.store.select(selectNewPostAllData);
+    // tslint:disable-next-line
+    return forkJoin(...requests).pipe(
+      map(([...response]) => response),
+      tap(() => {
+        this.store.dispatch(removeNewPostData());
+        this.closeAllDialog();
       }),
-      switchMap((postInfo: I_POST) => {
-        return this.postService.addPost(postInfo);
+      finalize(() => {
+        this.store.dispatch(removeNewPostAllMedia());
+        this.postService.setLoading(false);
       }),
     );
-  }
-
-  setPostConnections(connections: string[]): void {
-    this.store.dispatch(setNewPostConnections({ connections }));
   }
 
   getActiveConnectionID(): Observable<string> {
     return this.store.select(selectNewPostActiveConnectionID);
   }
 
-  generateDropZoneConfig(type: E_POST_TYPE): any {
+  closeAllDialog(): void {
+    this.matDialog.closeAll();
+  }
+
+  generateDropZoneConfig(type: E_POST_TYPE): Record<string, any> {
     const injectableService = I_POST_TYPE_MAP.get(type);
     const service = this.injector.get(injectableService);
     return service.generateConfig();

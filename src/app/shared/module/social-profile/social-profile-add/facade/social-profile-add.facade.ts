@@ -19,6 +19,7 @@ export class SocialProfileAddFacade {
         activeConnectionID,
       },
       width: '650px',
+      minHeight: '350px',
       role: 'dialog',
       autoFocus: true,
       direction: 'ltr',

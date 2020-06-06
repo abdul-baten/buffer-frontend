@@ -31,10 +31,10 @@
       <div [ngSwitch]="calendarData.event.extendedProps.postType">
         <div *ngSwitchCase="'image'">
           <div class="clearfix">
-            <img [defaultImage]="calendarData.event.extendedProps.postImages[0].fileURL"
-              [lazyLoad]="calendarData.event.extendedProps.postImages[0].fileURL"
+            <img [defaultImage]="calendarData.event.extendedProps.postImages[0].mediaURL"
+              [lazyLoad]="calendarData.event.extendedProps.postImages[0].mediaURL"
               class="buffer--width-full buffer--border-radius-lg"
-              [alt]="calendarData.event.extendedProps.postImages[0].fileName" />
+              [alt]="calendarData.event.extendedProps.postImages[0].mediaName" />
           </div>
         </div>
         <div *ngSwitchCase="'video'">
@@ -44,7 +44,7 @@
                 <vg-play-pause></vg-play-pause>
               </vg-controls>
               <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true"
-                [src]="calendarData.event.extendedProps.postVideos[0].fileURL" type="video/mp4"
+                [src]="calendarData.event.extendedProps.postVideos[0].mediaURL" type="video/mp4"
                 class="buffer--width-full">
               </video>
             </vg-player>

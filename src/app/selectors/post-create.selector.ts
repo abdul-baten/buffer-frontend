@@ -8,11 +8,6 @@ const selectNewPostAllData = createSelector(selectNewPostDataState, postData => 
 const selectNewPostDate = createSelector(selectNewPostDataState, postData => postData.postOriginalDate);
 const selectNewPostType = createSelector(selectNewPostDataState, postData => postData.postType);
 const selectNewPostActiveConnectionID = createSelector(selectNewPostDataState, postData => postData.id);
+const selectNewPostMedias = createSelector(selectNewPostDataState, postData => postData.postMedia);
 
-export {
-  selectNewPostActiveConnectionID,
-  selectNewPostAllData,
-  selectNewPostDataState,
-  selectNewPostDate,
-  selectNewPostType,
-};
+export { selectNewPostActiveConnectionID, selectNewPostAllData, selectNewPostDataState, selectNewPostDate, selectNewPostMedias, selectNewPostType };

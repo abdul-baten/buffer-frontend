@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_POST_FILE } from '@core/model';
+import { I_MEDIA } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,7 +8,7 @@ import { I_POST_FILE } from '@core/model';
   styleUrls: ['./post-details-modal-image.component.scss'],
 })
 export class PostDetailsModalImageComponent implements OnChanges {
-  @Input() postImages: I_POST_FILE[] = [];
+  @Input() postImages: I_MEDIA[] = [];
   @Input() postImageSlideConfig: any;
 
   ngOnChanges(changes: SimpleChanges) {
