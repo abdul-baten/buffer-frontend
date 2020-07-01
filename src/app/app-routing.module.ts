@@ -68,6 +68,11 @@ const routes: Routes = [
     resolve: { userData: UserConnectionResolver, documentData: DocumentResolver },
     runGuardsAndResolvers: 'always',
   },
+  {
+    data: { title: PAGES.VIDEO_MODULE.PAGE_TITLE },
+    loadChildren: () => import('./module/video/video.module').then(m => m.VideoModule),
+    path: PAGES.VIDEO_MODULE.PAGE_ROUTE,
+  },
 ];
 
 @NgModule({

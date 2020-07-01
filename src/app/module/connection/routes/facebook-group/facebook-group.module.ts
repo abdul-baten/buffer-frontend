@@ -4,12 +4,12 @@ import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-side
 import { FacebookGroupComponent } from './container/facebook-group.component';
 import { FacebookGroupFacade } from './facade/facebook-group.facade';
 import { FacebookGroupRoutingModule } from './facebook-group-routing.module';
+import { FacebookGroupService } from './service/facebook-group.service';
+import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
-import { PopoverModule } from '@shared/module/popover/popover.module';
-import { SatPopoverModule } from '@ncstate/sat-popover';
 
 @NgModule({
   declarations: [FacebookGroupComponent],
@@ -18,12 +18,11 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
     FacebookGroupRoutingModule,
+    LoaderModule,
     MatButtonModule,
     MatListModule,
     MatSidenavModule,
-    PopoverModule,
-    SatPopoverModule,
   ],
-  providers: [FacebookGroupFacade],
+  providers: [FacebookGroupFacade, FacebookGroupService],
 })
 export class FacebookGroupModule {}

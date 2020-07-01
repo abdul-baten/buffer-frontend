@@ -6,7 +6,7 @@ import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal
 export class SocialProfileAddFacade {
   constructor(private matDialog: MatDialog) {}
 
-  handleAddPostBtnClick(postScheduledDate: Date, activeConnectionID: string): void {
+  handleAddPostBtnClick(postScheduledDateTime: Date, activeConnectionID: string): void {
     this.matDialog.open(PostCreateModalComponent, {
       position: {
         top: '',
@@ -15,10 +15,10 @@ export class SocialProfileAddFacade {
         right: '',
       },
       data: {
-        postScheduledDate,
+        postScheduledDateTime,
         activeConnectionID,
       },
-      width: '650px',
+      width: '600px',
       minHeight: '350px',
       role: 'dialog',
       autoFocus: true,

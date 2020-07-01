@@ -1,4 +1,5 @@
 import * as FilePond from 'filepond';
+import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
@@ -32,6 +33,7 @@ const FilePondPluginMediaPreview = require('filepond-plugin-media-preview');
 
 FilePond.registerPlugin(
   FilePondPluginFileEncode,
+  FilePondPluginFileValidateSize,
   FilePondPluginFileValidateType,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,

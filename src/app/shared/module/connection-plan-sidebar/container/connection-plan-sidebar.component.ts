@@ -1,8 +1,6 @@
-import { AppState } from 'src/app/reducers';
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from '@core/service/connection/connection.service';
 import { Observable } from 'rxjs';
-import { selectConnectionLength } from 'src/app/selectors/connection.selector';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'buffer--connection-plan-sidebar',
@@ -12,9 +10,9 @@ import { Store } from '@ngrx/store';
 export class ConnectionPlanSidebarComponent implements OnInit {
   addedConnections$: Observable<number>;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private connectionService: ConnectionService) {}
 
   ngOnInit(): void {
-    this.addedConnections$ = this.store.select(selectConnectionLength);
+    this.addedConnections$ = this.connectionService.count$;
   }
 }

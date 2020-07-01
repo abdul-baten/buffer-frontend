@@ -1,21 +1,16 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
+import { HttpParams } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
 import { I_POST } from '@core/model';
 import { Injectable } from '@angular/core';
-import { NotificationService } from '../notification/notification.service';
+import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService extends EntityCollectionServiceBase<I_POST> {
-  constructor(
-    private readonly httpService: HttpService,
-    private readonly notificationService: NotificationService,
-    serviceElementsFactory: EntityCollectionServiceElementsFactory,
-  ) {
+  constructor(private readonly httpService: HttpService, serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Post', serviceElementsFactory);
   }
 
@@ -24,7 +19,6 @@ export class PostService extends EntityCollectionServiceBase<I_POST> {
       tap((post: I_POST) => {
         if (post.id) {
           this.upsertOneInCache(post);
-          this.notificationService.openSnackBar(`Your post has been ${post.postStatus}.`);
         }
       }),
     );
@@ -40,5 +34,13 @@ export class PostService extends EntityCollectionServiceBase<I_POST> {
           }
         }),
       );
+  }
+
+  filterPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
+    return this.entities$.pipe(
+      tap(console.warn),
+      map((posts: I_POST[]) => posts.filter((post: I_POST) => post.postConnection === connectionID)),
+      tap(console.warn),
+    );
   }
 }

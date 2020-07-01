@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { addMinutes, formatISO } from 'date-fns';
 import { I_POST } from '@core/model';
 import {
   setNewPostConnectionID,
@@ -17,10 +18,9 @@ const newPostFeatureKey = 'newPost';
 const initialState: Partial<I_POST> = {
   id: null,
   postCaption: null,
-  postConnection: null,
+  postConnection: {},
   postMedia: [],
-  postScheduleDate: null,
-  postScheduleTime: null,
+  postScheduleDateTime: null,
   postStatus: null,
   postType: null,
   userID: null,
@@ -31,7 +31,7 @@ const reducer = createReducer(
   on(setNewPostDate, (state: I_POST, action) => {
     return {
       ...state,
-      postOriginalDate: action.postOriginalDate,
+      postOriginalDate: formatISO(addMinutes(new Date(action.postOriginalDate), 15)),
     };
   }),
   on(setNewPostType, (state: I_POST, action) => {

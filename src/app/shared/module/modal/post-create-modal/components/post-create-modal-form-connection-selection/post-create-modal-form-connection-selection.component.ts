@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { I_CONNECTION } from '@core/model';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
@@ -11,8 +11,8 @@ import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 export class PostCreateModalFormConnectionSelectionComponent implements OnInit {
   activeConnectionID$: Observable<string>;
   connections$: Observable<I_CONNECTION[]>;
-  selectedConnections: string[] = [];
-  @Output() connectionChange = new EventEmitter<string[]>();
+  selectedConnections: Partial<I_CONNECTION>[] = [];
+  @Output() connectionChange = new EventEmitter<Partial<I_CONNECTION>[]>();
 
   constructor(private readonly postCreateModalFacade: PostCreateModalFacade) {
     this.connections$ = this.postCreateModalFacade.getConnections();
@@ -31,11 +31,12 @@ export class PostCreateModalFormConnectionSelectionComponent implements OnInit {
     return `${connection.connectionName} | ${connectionType}`;
   }
 
-  connectionSelected(connectionID: string) {
-    const findConnection = this.selectedConnections.find((entry: string) => entry === connectionID);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: string) => entry === connectionID);
+  connectionSelected(connection: I_CONNECTION) {
+    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
+    const findConnectionIndex = this.selectedConnections.findIndex((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
     if (!findConnection) {
-      this.selectedConnections.push(connectionID);
+      const { connectionID, connectionToken, connectionType } = connection;
+      this.selectedConnections.push({ connectionID, connectionToken, connectionType });
     } else {
       this.selectedConnections.splice(findConnectionIndex, 1);
     }
@@ -43,8 +44,8 @@ export class PostCreateModalFormConnectionSelectionComponent implements OnInit {
     this.connectionChange.emit(this.selectedConnections);
   }
 
-  isConnectionSelected(connectionID: string): boolean {
-    const findConnection = this.selectedConnections.find((entry: string) => entry === connectionID);
+  isConnectionSelected(connection: I_CONNECTION): boolean {
+    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
     return !!findConnection;
   }
 }

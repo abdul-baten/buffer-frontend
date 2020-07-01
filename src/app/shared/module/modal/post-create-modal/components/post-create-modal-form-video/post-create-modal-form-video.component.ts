@@ -4,7 +4,7 @@ import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-match
 import { E_POST_STATUS } from '@core/enum';
 import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_MEDIA } from '@core/model';
+import { I_CONNECTION, I_MEDIA } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
@@ -25,7 +25,7 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
   loadingState$: Observable<boolean>;
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
-  selectedConnections: string[] = [];
+  selectedConnections: Partial<I_CONNECTION>[] = [];
 
   constructor(
     private readonly stepper: MatStepper,
@@ -36,9 +36,9 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
     this.eventCreateTypeVideoForm = this.biuldPostCreateTypeImageForm();
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostDate().subscribe(postScheduleDate => {
-        this.currentDateTime = new Date(postScheduleDate);
-        this.eventCreateTypeVideoForm.patchValue({ postScheduleDate: new Date(postScheduleDate) });
+      this.postCreateModalFacade.getPostDate().subscribe(postScheduleDateTime => {
+        this.currentDateTime = new Date(postScheduleDateTime);
+        this.eventCreateTypeVideoForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
       }),
     );
 
@@ -52,12 +52,12 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
 
   private biuldPostCreateTypeImageForm(): FormGroup {
     return this.formBuilder.group({
-      postScheduleDate: [null, Validators.required],
+      postScheduleDateTime: [null, Validators.required],
       postCaption: [null, Validators.required],
     });
   }
 
-  changeConnectionSelection(connections: string[]): void {
+  changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
     this.selectedConnections = connections;
   }
 

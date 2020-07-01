@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { E_POST_TYPE } from '@core/enum';
-import { I_POST } from '@core/model';
+import { I_POST, I_CONNECTION } from '@core/model';
 
 const removeNewPostData = createAction('[Post Create Modal Facade] Remove Post Data');
 
@@ -12,7 +12,7 @@ const setNewPostConnectionID = createAction('[Post Create Modal Facade] Set New 
 
 const setNewPostData = createAction('[Post Create Modal Facade] Set New Post Data', props<{ postData: I_POST }>());
 
-const setNewPostConnections = createAction('[Post Create Modal Facade] Set New Post Connections', props<{ connection: string }>());
+const setNewPostConnections = createAction('[Post Create Modal Facade] Set New Post Connections', props<{ connection: Partial<I_CONNECTION> }>());
 
 const setNewPostMedia = createAction('[Post Create Modal Facade] Set New Post Media', props<{ media: string }>());
 

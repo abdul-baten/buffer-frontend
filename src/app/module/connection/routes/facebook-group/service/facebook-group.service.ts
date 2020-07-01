@@ -5,17 +5,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class FacebookPageService {
+export class FacebookGroupService {
   constructor(private readonly httpService: HttpService) {}
 
-  fetchFacebookPages(code: string, connectionType: string): Observable<I_FB_PAGE_RESPONSE> {
+  fetchFacebookGroups(code: string, connectionType: string): Observable<I_FB_PAGE_RESPONSE> {
     return this.httpService.get<I_FB_PAGE_RESPONSE>(`facebook/${connectionType}s`, ({
       code,
       connectionType,
     } as unknown) as HttpParams);
   }
 
-  addFacebookPage(pageInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('facebook/facebook-page', pageInfo);
+  addFacebookGroup(pageInfo: I_CONNECTION): Observable<I_CONNECTION> {
+    return this.httpService.post<I_CONNECTION>('facebook/facebook-group', pageInfo);
   }
 }

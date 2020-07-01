@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="clearfix">
-                  <button (click)="chooseNewConnection()"
+                  <button (click)="chooseNewConnection(connectionType.FACEBOOK_PAGE)"
                     class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
                     mat-stroked-button color="primary">
                     Connect
@@ -55,7 +55,7 @@
 
                 </div>
                 <div class="clearfix">
-                  <button
+                  <button (click)="chooseNewConnection(connectionType.FACEBOOK_GROUP)"
                     class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
                     mat-stroked-button color="primary">
                     Connect
@@ -185,7 +185,7 @@
 
                 </div>
                 <div class="clearfix">
-                  <button
+                  <button (click)="chooseNewConnection(connectionType.LINKEDIN_PROFILE)"
                     class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
                     mat-stroked-button color="primary">
                     Connect

@@ -34,13 +34,11 @@ export class FacebookPageComponent implements OnDestroy, OnInit {
   }
 
   private getFacebookPages(): void {
-    this.facade.fetchFBPages(this.activatedRoute.queryParams);
+    this.facade.fetchFBPages(this.activatedRoute.queryParams, 'facebook-page');
   }
 
   addFacebookPage(pageInfo: I_CONNECTION): void {
-    this.subscriptions$.add(
-      this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')),
-    );
+    this.subscriptions$.add(this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
   }
 
   @HostListener('window:beforeunload')

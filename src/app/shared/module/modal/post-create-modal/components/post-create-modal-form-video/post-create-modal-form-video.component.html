@@ -1,4 +1,4 @@
-<div class="clearfix" *ngIf="(loadingState$ | async) === false; else loadingContainer">
+<div class="clearfix">
   <section id="schedule-create-form-header-sec" class="schedule-create-form-header-sec">
     <buffer--post-create-modal-form-header [formHeader]="formHeader">
     </buffer--post-create-modal-form-header>
@@ -30,17 +30,17 @@
           </div>
 
           <div class="clearfix">
-            <label for="postScheduleDate"
+            <label for="postScheduleDateTime"
               class="buffer--text-color-black buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
             <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
               <input [errorStateMatcher]="eventCreatePostFormErrorMatcher" [min]="currentDateTime"
-                [owlDateTimeTrigger]="postScheduleDate" [owlDateTime]="postScheduleDate" autocomplete="off"
+                [owlDateTimeTrigger]="postScheduleDateTime" [owlDateTime]="postScheduleDateTime" autocomplete="off"
                 class="buffer--text-color-black buffer--font-family-sans-medium buffer--cursor-default"
-                formControlName="postScheduleDate" id="postScheduleDate" matInput readonly type="text" />
-              <button matSuffix mat-icon-button [owlDateTimeTrigger]="postScheduleDate">
-                <i class="material-icons buffer--text-color-gray">timer</i>
+                formControlName="postScheduleDateTime" id="postScheduleDateTime" matInput readonly type="text" />
+              <button matSuffix mat-icon-button [owlDateTimeTrigger]="postScheduleDateTime">
+                <i class="material-icons buffer--text-color-gray">date_range</i>
               </button>
-              <owl-date-time #postScheduleDate [hideOtherMonths]="true" [hour12Timer]="true" [startAt]="currentDateTime"
+              <owl-date-time #postScheduleDateTime [hideOtherMonths]="true" [hour12Timer]="true" [startAt]="currentDateTime"
                 [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel"></owl-date-time>
             </mat-form-field>
           </div>
@@ -89,6 +89,6 @@
   </section>
 </div>
 
-<ng-template #loadingContainer class="buffer--height-full">
+<ng-container *ngIf="loadingState$ | async" class="buffer--height-full">
   <buffer--loader></buffer--loader>
-</ng-template>
+</ng-container>

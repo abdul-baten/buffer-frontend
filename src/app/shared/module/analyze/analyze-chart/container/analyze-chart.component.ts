@@ -1,7 +1,7 @@
 import * as Highcharts from 'highcharts';
 import HC_Exporting from 'highcharts/modules/exporting';
 import HC_Exporting_D from 'highcharts/modules/export-data';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 HC_Exporting(Highcharts);
 HC_Exporting_D(Highcharts);
@@ -9,15 +9,15 @@ HC_Exporting_D(Highcharts);
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--analyze-chart',
-  templateUrl: './analyze-chart.component.html',
   styleUrls: ['./analyze-chart.component.scss'],
+  templateUrl: './analyze-chart.component.html',
 })
-export class AnalyzeChartComponent implements AfterViewInit, OnChanges {
-  @Input() chartType: string;
-  @Input() chartCaption: string;
-  @Input() chartTooltipHeaderFormat: string;
-  @Input() chartTooltipPointFormat: string;
-  @Input() chartLineColor: string;
+export class AnalyzeChartComponent implements OnChanges {
+  @Input() chartType: string = '';
+  @Input() chartCaption: string = '';
+  @Input() chartTooltipHeaderFormat: string = '';
+  @Input() chartTooltipPointFormat: string = '';
+  @Input() chartLineColor: string = '';
 
   Highcharts = Highcharts; // required
   chartOptions = {
@@ -146,10 +146,6 @@ export class AnalyzeChartComponent implements AfterViewInit, OnChanges {
     },
   }; // required
   runOutsideAngular = true; // optional boolean, defaults to false
-
-  ngAfterViewInit() {
-    // console.warn(HC_exporting(Highcharts));
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.chartOptions.title.text = this.chartCaption = changes.chartCaption.currentValue;

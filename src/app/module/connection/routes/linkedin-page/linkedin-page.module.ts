@@ -8,8 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
-import { PopoverModule } from '@shared/module/popover/popover.module';
-import { SatPopoverModule } from '@ncstate/sat-popover';
 
 @NgModule({
   declarations: [LinkedInPageComponent],
@@ -21,8 +19,6 @@ import { SatPopoverModule } from '@ncstate/sat-popover';
     MatButtonModule,
     MatListModule,
     MatSidenavModule,
-    PopoverModule,
-    SatPopoverModule,
   ],
   providers: [LinkedInPageFacade],
 })

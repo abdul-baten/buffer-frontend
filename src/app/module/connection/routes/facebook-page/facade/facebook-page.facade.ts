@@ -58,11 +58,11 @@ export class FacebookPageFacade {
     this.router.navigate([pageToNavigate]);
   }
 
-  fetchFBPages(queryParams: Observable<Params>): void {
+  fetchFBPages(queryParams: Observable<Params>, connectionType: string): void {
     queryParams.subscribe((params: { code: string }) => {
       const { code } = params;
       this.facebookPageService
-        .fetchFacebookPages(code)
+        .fetchFacebookPages(code, connectionType)
         .pipe(finalize(() => this.setLoadingStatus(false)))
         .subscribe((resp: I_FB_PAGE_RESPONSE) => {
           this.store.dispatch(setUserInfo({ user: resp.user }));

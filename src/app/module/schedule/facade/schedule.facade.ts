@@ -1,4 +1,3 @@
-import formatISO from 'date-fns/formatISO';
 import getDate from 'date-fns/getDate';
 import getHours from 'date-fns/getHours';
 import getMinutes from 'date-fns/getMinutes';
@@ -20,25 +19,18 @@ import { PostDetailsModalComponent } from '../../../shared/module/modal/post-det
 import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/container/post-edit-modal.component';
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
+import { PostService } from '@core/service/post/post.service';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
+import { selectCalendarFirstDay, selectCalendarNonCurrentDates, selectCalendarSidebarStatus } from '../selector/schedule.selector';
+import { setCalendarFirstDay, setCalendarNonCurrentDates, setCalendarSidebarStatus } from '@app/schedule/action/calendar.action';
 import { Store } from '@ngrx/store';
-
-import {
-  setCalendarFirstDay,
-  setCalendarNonCurrentDates,
-  setCalendarSidebarStatus,
-} from '@app/schedule/action/calendar.action';
-import {
-  selectCalendarFirstDay,
-  selectCalendarNonCurrentDates,
-  selectCalendarSidebarStatus,
-} from '../selector/schedule.selector';
 
 @Injectable()
 export class ScheduleFacade {
   constructor(
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
+    private postService: PostService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
@@ -78,7 +70,7 @@ export class ScheduleFacade {
     this.calendarApi.changeView(viewOption);
   }
 
-  private getCurrentTime(date: Date): string {
+  private getCurrentTime(date: Date): Date {
     if (!getHours(date) && !getMinutes(date)) {
       const currentDate = new Date();
       const getCurrentHours = getHours(currentDate);
@@ -86,14 +78,14 @@ export class ScheduleFacade {
       const getCurrentDate = getDate(date);
       const getCurrentMonth = getMonth(date);
       const getCurrentYear = getYear(date);
-      return formatISO(new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes));
+      return new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes);
     } else {
-      return formatISO(new Date(date));
+      return new Date(date);
     }
   }
 
-  handlePostCreateDialogOpen(postDate: Date): void {
-    const postOriginalDate = this.getCurrentTime(postDate);
+  handlePostCreateDialogOpen(postScheduleDateTime: Date, activeConnectionID: string = ''): void {
+    const postScheduledDateTime = this.getCurrentTime(postScheduleDateTime);
     this.matDialog.open(PostCreateModalComponent, {
       position: {
         top: '',
@@ -101,8 +93,12 @@ export class ScheduleFacade {
         left: '',
         right: '',
       },
-      data: postOriginalDate,
-      width: '700px',
+      data: {
+        postScheduledDateTime,
+        activeConnectionID,
+      },
+      width: '600px',
+      minHeight: '350px',
       role: 'dialog',
       autoFocus: true,
       direction: 'ltr',
@@ -283,5 +279,9 @@ export class ScheduleFacade {
 
   isTablet(): Observable<boolean> {
     return this.responsiveLayoutService.isTablet();
+  }
+
+  getPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
+    return this.postService.filterPostsByConnectionID(connectionID);
   }
 }

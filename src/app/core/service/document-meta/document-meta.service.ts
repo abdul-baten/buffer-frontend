@@ -24,8 +24,8 @@ export class DocumentMetaService {
     return this.meta.getTags(attrSelector);
   }
 
-  updateDocumentMetaTag(tag: MetaDefinition, selector?: string): void {
-    this.meta.updateTag(tag, selector);
+  updateDocumentMetaTag(tag: MetaDefinition): void {
+    this.meta.updateTag(tag);
   }
 
   removeDocumentMetaTag(attrSelector: string): void {

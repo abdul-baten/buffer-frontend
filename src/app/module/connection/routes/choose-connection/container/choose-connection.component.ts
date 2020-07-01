@@ -2,11 +2,7 @@ import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component } from '@angular/core';
 import { environment } from '@env/environment';
 import { PAGES } from '@core/constant/page/page.constant';
-
-export interface Section {
-  name: string;
-  updated: Date;
-}
+import { E_CONNECTION_TYPE } from '@core/enum';
 
 const API_URL = environment.apiURL;
 
@@ -16,26 +12,24 @@ const API_URL = environment.apiURL;
   templateUrl: './choose-connection.component.html',
 })
 export class ChooseConnectionComponent {
+  connectionType = E_CONNECTION_TYPE;
   matSideNavFixedInViewport = true;
   matSideNavFixedTopGap = 72;
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 
-  folders: Section[] = [
-    {
-      name: 'Trial',
-      updated: new Date('1/1/16'),
-    },
-  ];
-
   constructor(private readonly facade: ChooseConnectionFacade) {}
 
   navigateToPage(): void {
-    const pageToNavigate = PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE;
-    this.facade.navigateToPage(pageToNavigate);
+    const routeToNavigate = PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE;
+    this.facade.navigateToRoute(routeToNavigate);
   }
 
-  chooseNewConnection(): void {
-    window.location.replace(API_URL + 'connection/oauth/facebook');
+  chooseNewConnection(oauthType: E_CONNECTION_TYPE): void {
+    const oAuthTypeArray = oauthType.toLowerCase().split('_');
+    const connectionType = oAuthTypeArray.join('-');
+
+    const authType = oAuthTypeArray[0];
+    window.location.replace(API_URL + `${authType}/authorize?connectionType=${connectionType}`);
   }
 }

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 export class ChooseConnectionFacade {
   constructor(private readonly router: Router) {}
 
-  navigateToPage(pageToNavigate: string): void {
-    this.router.navigate([pageToNavigate]);
+  navigateToRoute(routeToNavigate: string): void {
+    this.router.navigate([routeToNavigate]);
   }
 }

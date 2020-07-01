@@ -12,10 +12,7 @@ export class SocialProfileAddComponent implements OnDestroy, OnInit {
   activeConnectionID: string;
   private subscriptions$ = new SubSink();
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private readonly socialProfileAddFacade: SocialProfileAddFacade,
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute, private readonly socialProfileAddFacade: SocialProfileAddFacade) {}
 
   ngOnInit(): void {
     this.subscriptions$.add(

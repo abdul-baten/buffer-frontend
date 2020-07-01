@@ -4,7 +4,7 @@ import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-match
 import { E_POST_STATUS } from '@core/enum';
 import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { I_MEDIA } from '@core/model';
+import { I_CONNECTION, I_MEDIA } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
@@ -25,7 +25,7 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
   loadingState$: Observable<boolean>;
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
-  selectedConnections: string[] = [];
+  selectedConnections: Partial<I_CONNECTION>[] = [];
 
   constructor(
     private stepper: MatStepper,
@@ -36,9 +36,9 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
     this.eventCreateTypeImageForm = this.biuldPostCreateTypeImageForm();
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostDate().subscribe(postScheduleDate => {
-        this.currentDateTime = new Date(postScheduleDate);
-        this.eventCreateTypeImageForm.patchValue({ postScheduleDate: new Date(postScheduleDate) });
+      this.postCreateModalFacade.getPostDate().subscribe(postScheduleDateTime => {
+        this.currentDateTime = new Date(postScheduleDateTime);
+        this.eventCreateTypeImageForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
       }),
     );
 
@@ -47,7 +47,7 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
 
   private biuldPostCreateTypeImageForm(): FormGroup {
     return this.formBuilder.group({
-      postScheduleDate: new FormControl(null, Validators.required),
+      postScheduleDateTime: new FormControl(null, Validators.required),
       postCaption: new FormControl(null, Validators.required),
     });
   }
@@ -61,7 +61,7 @@ export class PostCreateModalFormImageComponent implements OnDestroy {
     this.stepper.previous();
   }
 
-  changeConnectionSelection(connections: string[]): void {
+  changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
     this.selectedConnections = connections;
   }
 

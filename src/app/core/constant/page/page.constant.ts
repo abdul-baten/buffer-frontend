@@ -61,7 +61,6 @@ const PAGES: I_PAGE = {
       },
     },
   },
-
   BUCKET_PAGE: {
     PAGE_ROUTE: 'bucket',
     PAGE_TITLE: 'Bucket - Buffer',
@@ -135,6 +134,10 @@ const PAGES: I_PAGE = {
         PAGE_TITLE: 'Connected Profile | Connection - Buffer',
       },
     },
+  },
+  VIDEO_MODULE: {
+    PAGE_ROUTE: 'video/:id',
+    PAGE_TITLE: 'Video - Buffer',
   },
 };
 

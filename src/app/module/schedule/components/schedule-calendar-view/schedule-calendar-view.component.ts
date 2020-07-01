@@ -7,10 +7,9 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
-import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { I_POST } from '@core/model';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ScheduleCalendarViewHeaderButtonsComponent } from '../schedule-calendar-view-header-buttons/schedule-calendar-view-header-buttons.component';
 import { ScheduleCalendarViewPostComponent } from '../schedule-calendar-post/schedule-calendar-post.component';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -93,33 +92,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   }
 
   get calendarPosts(): Observable<I_POST[]> {
-    const calendarPosts: Observable<I_POST[]> = of([
-      {
-        id: '100',
-        title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        start: '2020-01-07T20:30:00',
-        allDay: false,
-        editable: true,
-        overlap: true,
-        hasEnd: false,
-        postMedia: [
-          {
-            id: '',
-            mediaMimeType: '',
-            mediaName: 'patreon-hero-illustration.png',
-            mediaType: 'img',
-            mediaURL: '',
-          },
-        ],
-        postConnection: '',
-        postType: E_POST_TYPE.IMAGE,
-        postStatus: E_POST_STATUS.SCHEDULED,
-        postScheduleTime: '',
-        postScheduleDate: new Date().toDateString(),
-        postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry.`,
-        userID: '',
-      },
-    ]);
+    const calendarPosts: Observable<I_POST[]> = this.scheduleFacade.getPostsByConnectionID('5edacc7d95333ab27948ee36');
 
     return calendarPosts;
   }
@@ -145,6 +118,10 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     );
   }
 
+  private getBodyPortalHost(element: Element): DomPortalOutlet {
+    return new DomPortalOutlet(element, this.componentFactoryResolver, this.applicationRef, this.injector);
+  }
+
   handleDatesRender(): void {
     const toolbarHeader = document.querySelector('.fc-header-toolbar');
     const toolbarCenterSec = toolbarHeader.querySelector('.buffer--calendar-toolbar');
@@ -155,11 +132,7 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private getBodyPortalHost(element: Element): DomPortalOutlet {
-    return new DomPortalOutlet(element, this.componentFactoryResolver, this.applicationRef, this.injector);
-  }
-
-  handleDateClick(dateInfo: any) {
+  handleDateClick(dateInfo: any): void {
     this.scheduleFacade.handlePostCreateDialogOpen(dateInfo.start);
   }
 

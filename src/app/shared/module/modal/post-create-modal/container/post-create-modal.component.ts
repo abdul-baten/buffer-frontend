@@ -10,7 +10,7 @@ import { PostCreateModalFacade } from '../facade/post-create-modal.facade';
 })
 export class PostCreateModalComponent implements OnDestroy {
   constructor(@Inject(MAT_DIALOG_DATA) private newPostData: I_NEW_POST_MODAL_DATA, private postCreateModalFacade: PostCreateModalFacade) {
-    this.postCreateModalFacade.setNewPostDate(this.newPostData.postScheduledDate);
+    this.postCreateModalFacade.setNewPostDate(this.newPostData.postScheduledDateTime);
     // this.postCreateModalFacade.setNewPostActiveConnectionID(this.newPostData.activeConnectionID);
   }
 

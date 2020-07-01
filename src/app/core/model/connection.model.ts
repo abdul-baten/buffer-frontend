@@ -20,3 +20,9 @@ export interface I_FB_PAGE_RESPONSE {
   user: I_USER;
   pages: I_CONNECTION[];
 }
+
+// tslint:disable-next-line
+export interface I_LN_ACCESS_TOKEN_RESPONSE {
+  access_token: string;
+  expires_in: number;
+}

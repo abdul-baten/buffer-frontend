@@ -9,7 +9,6 @@ export class NotificationService {
   constructor(private snackBar: MatSnackBar) {}
 
   openSnackBar(message: string): void {
-    this.snackBar.dismiss();
     this.snackBar.open(message, '', {
       data: '',
       direction: 'ltr',
@@ -22,7 +21,6 @@ export class NotificationService {
   }
 
   openNotificationWithComponent(notificationInfo: string): void {
-    this.snackBar.dismiss();
     this.snackBar.openFromComponent(NotificationComponent, {
       data: notificationInfo,
       direction: 'ltr',
