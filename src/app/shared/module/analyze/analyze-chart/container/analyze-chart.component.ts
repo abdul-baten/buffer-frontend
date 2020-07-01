@@ -13,11 +13,11 @@ HC_Exporting_D(Highcharts);
   templateUrl: './analyze-chart.component.html',
 })
 export class AnalyzeChartComponent implements OnChanges {
-  @Input() chartType: string = '';
-  @Input() chartCaption: string = '';
-  @Input() chartTooltipHeaderFormat: string = '';
-  @Input() chartTooltipPointFormat: string = '';
-  @Input() chartLineColor: string = '';
+  @Input() chartType = '';
+  @Input() chartCaption = '';
+  @Input() chartTooltipHeaderFormat = '';
+  @Input() chartTooltipPointFormat = '';
+  @Input() chartLineColor = '';
 
   Highcharts = Highcharts; // required
   chartOptions = {
