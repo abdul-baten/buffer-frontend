@@ -16,6 +16,6 @@ export class FacebookPageService {
   }
 
   addFacebookPage(pageInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('facebook/facebook-page', pageInfo);
+    return this.httpService.post<I_CONNECTION>('connection/add', pageInfo);
   }
 }

@@ -16,6 +16,6 @@ export class FacebookGroupService {
   }
 
   addFacebookGroup(pageInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('facebook/facebook-group', pageInfo);
+    return this.httpService.post<I_CONNECTION>('connection/add', pageInfo);
   }
 }

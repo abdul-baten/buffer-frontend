@@ -21,6 +21,6 @@ export class LinkedInProfileService {
   }
 
   addLinkedInProfile(connectionInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('linkedin/profile', connectionInfo);
+    return this.httpService.post<I_CONNECTION>('connection/add', connectionInfo);
   }
 }
