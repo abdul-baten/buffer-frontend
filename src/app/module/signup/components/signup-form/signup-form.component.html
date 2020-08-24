@@ -1,5 +1,5 @@
 <div class="clearfix">
-  <div class="buffer--background-color-white buffer--border-radius-lg buffer--padding-10">
+  <div class="b-bg-white buffer--border-radius-lg buffer--padding-10">
 
     <div class="clearfix">
       <buffer--main-logo></buffer--main-logo>
@@ -21,7 +21,7 @@
       <form [formGroup]="signupForm" novalidate>
 
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full" appearance="fill">
+          <mat-form-field class="b-w-full" appearance="fill">
             <input autocomplete="current-password" class="buffer--font-family-sans-medium buffer--cursor-default"
               formControlName="fullName" matInput placeholder="Full name" type="text"
               [errorStateMatcher]="errorStateMatcher" />
@@ -31,7 +31,7 @@
         </div>
 
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full" appearance="fill">
+          <mat-form-field class="b-w-full" appearance="fill">
             <input type="text" matInput class="buffer--font-family-sans-medium buffer--cursor-default"
               formControlName="email" autocomplete="current-password" placeholder="Work email" required
               [errorStateMatcher]="errorStateMatcher" />
@@ -41,7 +41,7 @@
         </div>
 
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full" appearance="fill">
+          <mat-form-field class="b-w-full" appearance="fill">
             <input placeholder="Password" autocomplete="current-password" [type]="hidePassword ? 'password' : 'text'"
               class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput
               required [errorStateMatcher]="errorStateMatcher" />
@@ -57,7 +57,7 @@
 
         <div class="clearfix">
           <button color="primary" mat-flat-button [disabled]="signupForm.invalid" (click)="handleSignup()"
-            class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
+            class="b-w-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
             Try free for 14 days
           </button>
         </div>

@@ -9,9 +9,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+import { SplitButtonModule } from 'primeng/splitbutton';
+
 @NgModule({
   declarations: [HeaderAccountComponent],
-  imports: [CommonModule, MatButtonModule, MatDividerModule, MatMenuModule, MatTooltipModule, RouterModule],
+  imports: [CommonModule, MatButtonModule, MatDividerModule, MatMenuModule, MatTooltipModule, RouterModule, SplitButtonModule],
   exports: [HeaderAccountComponent],
   providers: [HeaderAccountFacade, HeaderAccountService],
 })

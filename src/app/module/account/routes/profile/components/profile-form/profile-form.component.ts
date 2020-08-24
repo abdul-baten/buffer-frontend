@@ -22,7 +22,6 @@ export class ProfileFormComponent {
   private buildProfileSetupForm(): FormGroup {
     return this.formBuilder.group({
       profileBio: [''],
-      profileCompany: [''],
       profileCountry: ['Bangladesh'],
       profileFirstName: ['', Validators.required],
       profileLastName: ['', Validators.required],

@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--dashboard-posts-overview',
-  templateUrl: './dashboard-posts-overview.component.html',
   styleUrls: ['./dashboard-posts-overview.component.scss'],
+  templateUrl: './dashboard-posts-overview.component.html',
 })
-export class DashboardPostsOverviewComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class DashboardPostsOverviewComponent {}

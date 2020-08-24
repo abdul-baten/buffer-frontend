@@ -1,45 +1,13 @@
-<section class="dashboard-header-sec buffer--float-left" id="dashboard-header-sec">
-  <div
-    class="buffer--position-fixed buffer--position-top-0 buffer--position-left-0 buffer--width-20 buffer--height-screen buffer--background-color-white buffer--border-width-0 buffer--border-right-width buffer--border-style-solid buffer--border-color-light-gray">
-    <buffer--dashboard-header></buffer--dashboard-header>
-  </div>
+<section class="b-main-header">
+  <buffer--dashboard-header class="b-h-full"></buffer--dashboard-header>
 </section>
 
-<section class="dashboard-route-sec buffer--float-right" id="dashboard-route-sec">
-  <section class="buffer--dashboard-menu-sec" id="buffer--dashboard-menu-sec">
-    <div
-      class="buffer--width-full buffer--height-18 buffer--background-color-white buffer--padding-x-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
-      <buffer--schedule-header class="buffer--width-full"></buffer--schedule-header>
-    </div>
-  </section>
+<section class="b-main-content buffer--float-right">
+  <div class="b-w-full b-h-18 p-px-4 b-br-b p-d-flex p-jc-between p-ai-center">
+    <buffer--schedule-header class="b-w-full"></buffer--schedule-header>
+  </div>
 
-  <section id="buffer--schedule-calendar-view-sec" class="buffer--schedule-calendar-view-sec">
-    <mat-sidenav-container>
-      <mat-sidenav-content class="buffer--border-transparent">
-
-        <div class="clearfix buffer--schedule-calendar-sec">
-          <div class="clearfix">
-            <buffer--schedule-calendar-view [calendarView]="calendarView"></buffer--schedule-calendar-view>
-          </div>
-        </div>
-      </mat-sidenav-content>
-
-      <mat-sidenav [fixedInViewport]="matSideNavFixedInViewport" [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-66 buffer--border-width-0 buffer--border-left-width buffer--border-style-solid buffer--border-color-light-gray"
-        [mode]="matSideNavMode"
-        [opened]="(calendarSidebarOpened$ | async) && (isHandset$ | async) === false && (isTablet$ | async) === false"
-        [position]="matSideNavPosition">
-        <div class="clearfix buffer--width-full buffer--height-full buffer--background-color-white">
-          <div
-            class="buffer--padding-x-5 buffer--display-flex buffer--flex-justify-content-end buffer--align-items-center buffer--height-18 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-            <buffer--social-profile-add></buffer--social-profile-add>
-          </div>
-
-          <div class="clearfix">
-            <buffer--schedule-date-selection></buffer--schedule-date-selection>
-          </div>
-        </div>
-      </mat-sidenav>
-    </mat-sidenav-container>
-  </section>
+  <div class="b-hs-wt-h b-of-h">
+    <buffer--schedule-calendar-view [calendarView]="calendarView"></buffer--schedule-calendar-view>
+  </div>
 </section>

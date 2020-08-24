@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { E_POST_STATUS } from '@core/enum';
 import { finalize } from 'rxjs/operators';
@@ -8,13 +8,14 @@ import { MatStepper } from '@angular/material/stepper';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 import { SubSink } from 'subsink';
+import { MenuItem } from 'primeng/api/menuitem';
 
 @Component({
   selector: 'buffer--post-create-modal-form-text',
   styleUrls: ['./post-create-modal-form-text.component.scss'],
   templateUrl: './post-create-modal-form-text.component.html',
 })
-export class PostCreateModalFormTextComponent implements OnDestroy {
+export class PostCreateModalFormTextComponent implements OnInit, OnDestroy {
   currentDateTime: Date;
   eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
   eventCreateTypeTextForm: FormGroup;
@@ -23,6 +24,8 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
+
+  menuItems: MenuItem[];
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -41,6 +44,26 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
     this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
+  ngOnInit() {
+    this.menuItems = [
+      {
+        label: 'Schedule',
+        icon: 'pi pi-calendar-plus',
+        command: () => {
+          this.savePost(this.postStatus.SCHEDULED);
+        },
+      },
+      { separator: true },
+      {
+        label: 'Save post',
+        icon: 'pi pi-save',
+        command: () => {
+          this.savePost(this.postStatus.SAVED);
+        },
+      },
+    ];
+  }
+
   @HostListener('window:beforeunload')
   ngOnDestroy() {
     this.subscriptions$.unsubscribe();
@@ -53,7 +76,7 @@ export class PostCreateModalFormTextComponent implements OnDestroy {
     });
   }
 
-  handlePreviousBtnClick(): void {
+  onPreviousButtonClicked(): void {
     this.stepper.reset();
   }
 

@@ -36,11 +36,11 @@
 <div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-start">
   <section>
     <div class="dashboard-header-sec">
-      <div class="buffer--height-18">
+      <div class="b-h-18">
         <div
-          class="buffer--width-full buffer--height-full buffer--background-color-white buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+          class="b-w-full b-h-full b-bg-white buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
           <div
-            class="buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center buffer--align-items-center">
+            class="b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center buffer--align-items-center">
             <buffer--main-logo></buffer--main-logo>
           </div>
         </div>
@@ -51,12 +51,12 @@
   <section>
     <div class="buffer--connection-route-sec buffer--overflow-auto">
       <div
-        class="buffer--height-full buffer--padding-5 buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center">
+        class="b-h-full buffer--padding-5 buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center">
         <vg-player class="buffer--max-width-2xl buffer--height-auto buffer--border-radius-lg">
           <vg-overlay-play></vg-overlay-play>
-          <vg-controls class="buffer--width-full" vgFor="calendarPostVideo">
+          <vg-controls class="b-w-full" vgFor="calendarPostVideo">
             <div
-              class="buffer--width-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
+              class="b-w-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
               <div
                 class="buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
                 <vg-play-pause></vg-play-pause>
@@ -72,7 +72,7 @@
           </vg-controls>
           <video #media [vgMedia]="media" id="calendarPostVideo" preload="auto" [vgMaster]="true"
             src="https://buffer-media-uploads.s3.amazonaws.com/5a799f9f8d1d49ed764416fc/5a82df1902d772333049f679/output/ddf16be78106c19476e37da05c8dfe6f.original.mp4"
-            type="video/mp4" class="buffer--width-full buffer--height-auto buffer--border-radius-lg">
+            type="video/mp4" class="b-w-full buffer--height-auto buffer--border-radius-lg">
           </video>
         </vg-player>
       </div>

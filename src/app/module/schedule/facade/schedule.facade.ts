@@ -21,9 +21,10 @@ import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-r
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { PostService } from '@core/service/post/post.service';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { selectCalendarFirstDay, selectCalendarNonCurrentDates, selectCalendarSidebarStatus } from '../selector/schedule.selector';
-import { setCalendarFirstDay, setCalendarNonCurrentDates, setCalendarSidebarStatus } from '@app/schedule/action/calendar.action';
+import { selectCalendarFirstDay, selectCalendarNonCurrentDates } from '../selector/schedule.selector';
+import { setCalendarFirstDay, setCalendarNonCurrentDates } from '@app/schedule/action/calendar.action';
 import { Store } from '@ngrx/store';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @Injectable()
 export class ScheduleFacade {
@@ -34,6 +35,7 @@ export class ScheduleFacade {
     private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
+    private dialogService: DialogService,
   ) {}
 
   private calendarApi: Calendar;
@@ -86,28 +88,14 @@ export class ScheduleFacade {
 
   handlePostCreateDialogOpen(postScheduleDateTime: Date, activeConnectionID: string = ''): void {
     const postScheduledDateTime = this.getCurrentTime(postScheduleDateTime);
-    this.matDialog.open(PostCreateModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
+    this.dialogService.open(PostCreateModalComponent, {
+      header: 'Create Post',
+      width: '550px',
+      contentStyle: { 'max-height': '600px', overflow: 'auto' },
       data: {
         postScheduledDateTime,
         activeConnectionID,
       },
-      width: '600px',
-      minHeight: '350px',
-      role: 'dialog',
-      autoFocus: true,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 
@@ -253,20 +241,12 @@ export class ScheduleFacade {
     this.store.dispatch(setCalendarNonCurrentDates({ showNonCurrentDates }));
   }
 
-  setCalendarSidebarStatus(calendarSidebarOpened: boolean): void {
-    return this.store.dispatch(setCalendarSidebarStatus({ calendarSidebarOpened }));
-  }
-
   getCalendarFirstDay(): Observable<number> {
     return this.store.select(selectCalendarFirstDay);
   }
 
   getCalendarNonCurrentDates(): Observable<boolean> {
     return this.store.select(selectCalendarNonCurrentDates);
-  }
-
-  getCalendarSidebarStatus(): Observable<boolean> {
-    return this.store.select(selectCalendarSidebarStatus);
   }
 
   isWeb(): Observable<boolean> {

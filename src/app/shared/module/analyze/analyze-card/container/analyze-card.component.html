@@ -1,34 +1,14 @@
-<div
-  class="buffer--width-full buffer--height-full buffer--padding-5 buffer--display-flex buffer--display-flex-direction-column">
-  <div
-    class="buffer--margin-bottom-3 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-space-between">
-    <div class="clearfix">
-      <p class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base">
-        {{ cardTitle }}
-      </p>
+<p-fieldset>
+  <p-header>
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <i [attr.class]="'p-mr-2 b-ci pi ' + cardIcon + ' buffer--text-color-' + cardIconColor"></i>
+      <h5>{{ cardTitle }}</h5>
     </div>
-    <div class="clearfix">
-      <div
-        [attr.class]="'buffer--width-10 buffer--height-10 buffer--border-radius-full buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center buffer--background-color-' + cardIconBGColor">
-        <i [attr.class]="'material-icons buffer--font-size-2xl buffer--text-color-' + cardIconColor">
-          {{ cardIcon }}
-        </i>
-      </div>
+  </p-header>
+  <div class="p-d-flex p-flex-column p-ai-center p-jc-between p-m-3">
+    <div class="p-text-center">
+      <h1 class="buffer--text-color-blue-500 p-text-bold">{{ cardCounter }}</h1>
+      <p class="p-text-bold">{{ cardInfoTitle }}</p>
     </div>
   </div>
-  <div class="clearfix">
-    <div
-      class="clearfix buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-content-center">
-      <div class="clearfix buffer--text-align-center">
-        <p class="buffer--text-color-blue-500 buffer--font-family-sans-medium buffer--font-size-4xl">{{ cardCounter }}</p>
-        <p
-          class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-xs buffer--line-height-leading-loose buffer--opacity-75">
-          {{ cardInfoTitle }}
-          <i [matTooltip]="cardTooltipText" matTooltipPosition="above"
-            class="material-icons buffer--text-color-dark-gray buffer--font-size-sm buffer--opacity-50 buffer--cursor-pointer">
-            info</i>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+</p-fieldset>

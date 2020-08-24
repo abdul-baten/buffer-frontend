@@ -1,8 +1,8 @@
-import { ConnectionDeleteModalComponent } from '@shared/module/modal/connection-delete-modal/container/connection-delete-modal.component';
+import { ConfirmationService } from 'primeng/api';
 import { ConnectionService } from '@core/service/connection/connection.service';
+import { finalize } from 'rxjs/operators';
 import { I_CONNECTION } from '@core/model';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { Router } from '@angular/router';
@@ -13,8 +13,8 @@ export class ProfilesFacade {
   connections$: Observable<I_CONNECTION[]>;
 
   constructor(
+    private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,
-    private readonly matDialog: MatDialog,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router,
   ) {
@@ -35,10 +35,15 @@ export class ProfilesFacade {
   }
 
   deleteConnection(connection: I_CONNECTION): void {
-    this.matDialog.open(ConnectionDeleteModalComponent, {
-      data: connection,
-      autoFocus: false,
-      width: '500px',
+    this.confirmationService.confirm({
+      key: 'connectionDelete',
+      message: 'Are you sure you want to delete this connection?',
+      accept: () => {
+        this.connectionService
+          .deleteConnection(connection)
+          .pipe(finalize(() => this.confirmationService.close()))
+          .subscribe();
+      },
     });
   }
 

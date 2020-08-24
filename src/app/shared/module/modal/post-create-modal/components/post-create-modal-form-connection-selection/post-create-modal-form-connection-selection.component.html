@@ -1,15 +1,32 @@
 <div class="clearfix">
-  <div
-    class="buffer--padding-bottom-5 buffer--display-webkit-box buffer--align-items-center buffer--flex-justify-content-flex-start buffer--overflow-y-hidden buffer--overflow-x-auto">
-    <div *ngFor="let connection of connections$ | async;" [tooltip]="generateTooltip(connection)" placement="top"
+
+  <div *ngIf="(connections$ | async).length <= 8; else connectionsCarousel" class="p-d-flex">
+    <div *ngFor="let connection of connections$ | async;" [pTooltip]="generateTooltip(connection)" placement="top"
       (click)="connectionSelected(connection)" [attr.area-selected]="isConnectionSelected(connection)"
-      class="buffer--position-relative buffer--width-10 buffer--height-10 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
+      class="buffer--position-relative buffer--width-11 buffer--height-11 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
       [ngClass]="{'buffer--opacity-100': (activeConnectionID$ | async) === connection.id, 'buffer--opacity-50': (activeConnectionID$ | async) !== connection.id}">
       <img [src]="connection.connectionPicture"
-        class="buffer--width-full buffer--height-full buffer--background-color-gray buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-full" />
+        class="b-w-full b-h-full buffer--background-color-gray buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-full" />
       <div
-        [attr.class]="'buffer--position-bottom-0 buffer--social-account-logo buffer--position-absolute buffer--border-radius-full buffer--social-account-logo-' + connection.connectionType">
+        [attr.class]="'buffer--position-bottom-0 b-ca-sl buffer--position-absolute buffer--border-radius-full b-ca-sl-' + connection.connectionType">
       </div>
     </div>
   </div>
+
+  <ng-template #connectionsCarousel>
+    <p-carousel [value]="connections$ | async" [numVisible]="8" [numScroll]="8">
+      <ng-template let-connection pTemplate="item">
+        <div [pTooltip]="generateTooltip(connection)" (click)="connectionSelected(connection)"
+          [attr.area-selected]="isConnectionSelected(connection)"
+          class="buffer--position-relative buffer--width-11 buffer--height-11 buffer--border-radius-full buffer--margin-right-3 buffer--cursor-pointer buffer--connection-list"
+          [ngClass]="{'buffer--opacity-100': (activeConnectionID$ | async) === connection.id, 'buffer--opacity-50': (activeConnectionID$ | async) !== connection.id}">
+          <img [src]="connection.connectionPicture"
+            class="b-w-full b-h-full buffer--background-color-gray buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-full" />
+          <div
+            [attr.class]="'buffer--position-bottom-0 b-ca-sl buffer--position-absolute buffer--border-radius-full b-ca-sl-' + connection.connectionType">
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </ng-template>
 </div>

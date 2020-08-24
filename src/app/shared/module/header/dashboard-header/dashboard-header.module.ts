@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
 
+import { MenuModule } from 'primeng/menu';
+
 @NgModule({
   declarations: [DashboardHeaderComponent, DashboardHeaderMenuComponent],
   imports: [
@@ -25,6 +27,7 @@ import { SocialProfileListModule } from '@shared/module/social-profile/social-pr
     RouterModule,
     SocialProfileAddModule,
     SocialProfileListModule,
+    MenuModule,
   ],
   exports: [DashboardHeaderComponent],
   providers: [DashboardHeaderFacade, DashboardHeaderService],

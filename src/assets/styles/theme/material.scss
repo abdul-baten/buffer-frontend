@@ -211,7 +211,7 @@ mat-card {
   outline: $buffer--outline-none !important;
   font-size: $buffer--font-size-sm !important;
   font-family: $buffer--font-family-sans-medium !important;
-  height: $buffer--height-full;
+  height: $b-h-full;
 }
 
 .mat-button-toggle-group-appearance-standard,
@@ -347,7 +347,7 @@ mat-button-toggle {
 }
 
 .cdk-textarea-autosize {
-  overflow: $buffer--overflow-hidden !important;
+  overflow: $b-of-h !important;
 }
 
 .mat-form-field-underline {
@@ -363,7 +363,7 @@ mat-button-toggle {
     @include buffer--button-border-radius($buffer--border-radius-lg);
     padding: 0.1rem 1rem !important;
     border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-light-gray !important;
-    background-color: $buffer--background-color-white !important;
+    background-color: $b-bg-white !important;
   }
 
   .mat-form-field-infix {
@@ -408,12 +408,12 @@ textarea.mat-input-element {
 */
 .buffer--dialog-bottom-sheet-custom-backdrop {
   opacity: $buffer--opacity-75 !important;
-  background-color: $buffer--background-color-white;
+  background-color: $b-bg-white;
 }
 
 .buffer--dialog-bottom-sheet-custom-panel {
   color: $buffer--text-color-black !important;
-  background-color: $buffer--background-color-white !important;
+  background-color: $b-bg-white !important;
 }
 
 .mat-bottom-sheet-container-large {
@@ -499,7 +499,7 @@ textarea.mat-input-element {
 }
 
 tr.mat-row {
-  height: $buffer--height-18 !important;
+  height: $b-h-18 !important;
 }
 
 th.mat-header-cell {

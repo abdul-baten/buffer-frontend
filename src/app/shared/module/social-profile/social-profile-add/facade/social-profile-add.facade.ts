@@ -1,34 +1,20 @@
+import { DialogService } from 'primeng/dynamicdialog';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
 
 @Injectable()
 export class SocialProfileAddFacade {
-  constructor(private matDialog: MatDialog) {}
+  constructor(private dialogService: DialogService) {}
 
   handleAddPostBtnClick(postScheduledDateTime: Date, activeConnectionID: string): void {
-    this.matDialog.open(PostCreateModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
+    this.dialogService.open(PostCreateModalComponent, {
+      header: 'Create Post',
+      width: '550px',
+      contentStyle: { 'max-height': '600px', overflow: 'auto' },
       data: {
         postScheduledDateTime,
         activeConnectionID,
       },
-      width: '600px',
-      minHeight: '350px',
-      role: 'dialog',
-      autoFocus: true,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 }

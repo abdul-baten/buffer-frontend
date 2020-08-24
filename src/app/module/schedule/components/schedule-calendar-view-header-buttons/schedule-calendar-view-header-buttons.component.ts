@@ -25,13 +25,6 @@ export class ScheduleCalendarViewHeaderButtonsComponent implements OnDestroy {
 
   constructor(private scheduleFacade: ScheduleFacade) {
     this.isWeb$ = this.scheduleFacade.isWeb();
-    this.calendarSidebarOpened$ = this.scheduleFacade.getCalendarSidebarStatus();
-
-    this.subscriptions$.add(
-      this.scheduleFacade.getCalendarSidebarStatus().subscribe(result => {
-        this.calendarSidebarOpened = result;
-      }),
-    );
   }
 
   handleSettingsBtnClick(): void {
@@ -40,10 +33,6 @@ export class ScheduleCalendarViewHeaderButtonsComponent implements OnDestroy {
 
   handleNewPostBtnClick(): void {
     this.scheduleFacade.handlePostCreateDialogOpen(new Date());
-  }
-
-  handleSidebarMenuBtnClick(): void {
-    this.scheduleFacade.setCalendarSidebarStatus(!this.calendarStatus);
   }
 
   @HostListener('window:beforeunload')

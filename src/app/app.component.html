@@ -1,3 +1,21 @@
 <div class="clearfix">
   <router-outlet></router-outlet>
 </div>
+
+<p-toast [preventDuplicates]="true" [preventOpenDuplicates]="true" [hideTransformOptions]="'translateY(100%)'"
+  [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'0ms'"></p-toast>
+
+<p-confirmDialog key="connectionDelete" [closable]="true" #connectionDelete header="Delete Connection?">
+  <p-footer class="buffer--margin-top-5">
+    <div class="p-grid">
+      <div class="p-col-6 buffer--padding-x-2">
+        <button type="button" pButton label="Cancel" (click)="connectionDelete.reject()"
+          class="b-w-full p-button-sm p-button-text p-button-plain"></button>
+      </div>
+      <div class="p-col-6 buffer--padding-x-2">
+        <button type="button" pButton label="Delete" class="b-w-full p-button-sm p-button-danger"
+          (click)="connectionDelete.accept()"></button>
+      </div>
+    </div>
+  </p-footer>
+</p-confirmDialog>

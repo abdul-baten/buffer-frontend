@@ -15,7 +15,7 @@ export class ErrorService {
 
   openSnackbar(message: string): void {
     this.zone.run(() => {
-      this.snackbarService.openNotificationWithComponent(message);
+      this.snackbarService.showError(message);
     });
   }
 

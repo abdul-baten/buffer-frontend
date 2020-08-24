@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--dashboard-social-performance',
-  templateUrl: './dashboard-social-performance.component.html',
   styleUrls: ['./dashboard-social-performance.component.scss'],
+  templateUrl: './dashboard-social-performance.component.html',
 })
-export class DashboardSocialPerformanceComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class DashboardSocialPerformanceComponent {}

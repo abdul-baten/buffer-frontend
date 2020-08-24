@@ -7,20 +7,20 @@
 
   <section>
     <mat-sidenav-container>
-      <mat-sidenav-content class="buffer--background-color-white buffer--connection-route-sec buffer--overflow-hidden">
-        <div class="clearfix buffer--width-full buffer--height-full"
+      <mat-sidenav-content class="b-bg-white buffer--connection-route-sec b-of-h">
+        <div class="clearfix b-w-full b-h-full"
           *ngIf="(facade.getLoadingStatus() | async) === false">
-          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--height-full buffer--overflow-auto">
-            <div class="clearfix buffer--width-full">
+          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 b-h-full buffer--overflow-auto">
+            <div class="clearfix b-w-full">
               <div *ngFor="let connection of facade.getFacebookGroups() | async"
                 class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
+                <div class="clearfix b-h-full buffer--width-percent-50">
                   <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
+                    class="clearfix b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
                     <div
                       class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
                       <img [src]="connection.connectionPicture"
-                        class="buffer--width-full buffer--height-full buffer--border-radius-full" />
+                        class="b-w-full b-h-full buffer--border-radius-full" />
                     </div>
                     <div class="clearfix buffer--margin-x-5">
                       <p
@@ -50,8 +50,8 @@
       <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode"
         [opened]="(isWeb$ | async) || (isTablet$ | async)" [fixedInViewport]="matSideNavFixedInViewport"
         [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-percent-30 buffer--background-color-white buffer--border-color-light-gray">
-        <div class="clearfix buffer--height-full buffer--padding-x-10 buffer--padding-y-6">
+        class="buffer--width-percent-30 b-bg-white buffer--border-color-light-gray">
+        <div class="clearfix b-h-full buffer--padding-x-10 buffer--padding-y-6">
           <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
         </div>
       </mat-sidenav>

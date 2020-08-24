@@ -12,7 +12,7 @@
         <div class="clearfix">
           <label for="postCaption"
             class="buffer--text-color-black buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Caption</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
+          <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-top-3"
             appearance="fill">
             <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventEditPostFormErrorMatcher"
               bufferEventPropagation cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
@@ -25,7 +25,7 @@
         <div class="clearfix">
           <label class="buffer--cursor-default buffer--font-family-sans-medium buffer--font-size-sm" for="postLink">Link
             Preview</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
+          <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-top-3"
             appearance="fill">
             <input class="buffer--font-family-sans-medium buffer--cursor-pointer" formControlName="postLink"
               id="postLink" matInput placeholder="Insert your link here" spellcheck="false" type="url" />
@@ -35,7 +35,7 @@
         <div class="clearfix">
           <label for="postLocation"
             class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Location</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
+          <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-top-3"
             appearance="fill">
             <input class="buffer--font-family-sans-medium buffer--cursor-pointer" formControlName="postLocation"
               id="postLocation" matInput placeholder="Add a location" spellcheck="false" type="text" />
@@ -45,7 +45,7 @@
         <div class="clearfix">
           <label for="postDate"
             class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
-          <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
+          <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-top-3"
             appearance="fill">
             <input [errorStateMatcher]="eventEditPostFormErrorMatcher" [min]="currentDateTime"
               [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"

@@ -90,7 +90,7 @@ hr.fc-divider {
 }
 
 .fc-bg table {
-  height: $buffer--height-full;
+  height: $b-h-full;
   /* strech bg to bottom edge */
 }
 
@@ -106,7 +106,7 @@ hr.fc-divider {
   box-sizing: border-box;
   font-size: $buffer--font-size-xs;
   table-layout: fixed;
-  width: $buffer--width-full;
+  width: $b-w-full;
 }
 
 .fc th {
@@ -178,7 +178,7 @@ a[data-goto]:hover {
 
 .fc-row .fc-bgevent-skeleton table,
 .fc-row .fc-highlight-skeleton table {
-  height: $buffer--height-full;
+  height: $b-h-full;
   /* stretch skeleton to bottom of row */
 }
 
@@ -250,7 +250,7 @@ temporary rendered events).
   /* hack to force re-sizing this inner element when scrollbars appear/disappear */
   /* re-scope all positions */
   position: $buffer--position-relative;
-  width: $buffer--width-full;
+  width: $b-w-full;
 }
 
 /* Global Event Styles
@@ -268,7 +268,7 @@ temporary rendered events).
 
 .fc-event,
 .fc-event-dot {
-  background-color: $buffer--background-color-white;
+  background-color: $b-bg-white;
   /* default BACKGROUND color */
 }
 
@@ -474,12 +474,12 @@ be a descendant of the grid when it is being dragged.
 
 .fc-day-grid-event .fc-content {
   /* force events to be one-line tall */
-  overflow: $buffer--overflow-hidden;
+  overflow: $b-of-h;
   white-space: $buffer--white-space-normal;
 }
 
 .fc-day-grid-event .fc-time {
-  font-family: $buffer--font-family-sans-medium;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
 }
 
 /* resizer (cursor devices) */
@@ -534,8 +534,8 @@ a.fc-more:hover {
 /* Now Indicator
 --------------------------------------------------------------------------------------------------*/
 .fc-now-indicator {
-  border: 0 $buffer--border-style-solid $buffer--border-color-primary-500;
-  position: $buffer--position-absolute;
+  border: 0 solid rgba(104, 159, 56, 1);
+  position: absolute;
 }
 
 /* Utilities
@@ -559,7 +559,7 @@ TODO: more distinction between this file and common.css
 .fc-unthemed .fc-popover,
 .fc-unthemed .fc-list-view,
 .fc-unthemed .fc-list-heading td {
-  border-color: $buffer--border-color-light-gray;
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 .fc-unthemed th {
@@ -567,22 +567,18 @@ TODO: more distinction between this file and common.css
 }
 
 .fc-unthemed .fc-popover {
-  background-color: $buffer--background-color-white;
+  background-color: $b-bg-white;
 }
 
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-popover .fc-header,
 .fc-unthemed .fc-list-heading td {
-  background: $buffer--background-color-light-gray;
-}
-
-.fc-unthemed td.fc-today {
-  background: #f9f9f9;
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .fc-unthemed .fc-disabled-day {
   opacity: $buffer--opacity-25;
-  background: $buffer--background-color-light-gray;
+  background: rgba(0, 0, 0, 0.08);
 }
 
 /* Buttons
@@ -623,12 +619,12 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   -webkit-box-direction: normal;
   -webkit-box-orient: horizontal;
   align-items: $buffer--align-items-center;
-  background-color: $buffer--background-color-white;
-  border: $buffer--border-width $buffer--border-style-solid $buffer--border-color-light-gray;
+  background-color: $b-bg-white;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: $buffer--text-color-black;
   display: $buffer--display-flex;
   flex-direction: $buffer--display-flex-direction-row;
-  font-family: $buffer--font-family-sans-medium;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: $buffer--font-size-sm;
   line-height: $buffer--line-height-leading-normal;
   outline: $buffer--outline-none;
@@ -639,9 +635,9 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   &:before {
     font-family: 'Material Icons';
     font-size: $buffer--font-size-2xl;
-    height: $buffer--height-full;
+    height: $b-h-full;
     vertical-align: $buffer--vertical-align-middle;
-    width: $buffer--width-full;
+    width: $b-w-full;
   }
 
   &:hover {
@@ -745,11 +741,11 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-toolbar.fc-header-toolbar {
-  background-color: $buffer--background-color-white;
-  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-light-gray;
-  height: $buffer--height-18;
+  background-color: $b-bg-white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  height: $b-h-18;
   padding: 0 1.25rem;
-  width: $buffer--width-full;
+  width: $b-w-full;
   z-index: $buffer--z-index-10;
 }
 
@@ -772,9 +768,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-toolbar h2 {
-  color: $buffer--text-color-black;
-  font-family: $buffer--font-family-sans-medium;
-  font-size: $buffer--font-size-xl;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1.125rem;
   margin: 0;
 }
 
@@ -808,7 +803,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   /* Global Event Restyling
   --------------------------------------------------------------------------------------------------*/
   .fc-event {
-    background: $buffer--background-color-white !important;
+    background: $b-bg-white !important;
     color: $buffer--text-color-black !important;
     page-break-inside: avoid;
   }
@@ -825,8 +820,8 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
   .fc thead,
   .fc tbody,
   .fc-row {
-    background: $buffer--background-color-white !important;
-    border-color: $buffer--border-color-light-gray !important;
+    background: $b-bg-white !important;
+    border-color: rgba(0, 0, 0, 0.08);
   }
 
   /* kill the overlaid, absolutely-positioned components */
@@ -1006,7 +1001,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-dayGrid-view .fc-body .fc-row {
-  border-bottom: $buffer--border-bottom-width $buffer--border-style-solid $buffer--border-color-light-gray;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   height: $buffer--height-auto !important;
   min-height: 9rem;
   /* ensure that all rows are at least this tall */
@@ -1014,7 +1009,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 
 /* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
 .fc-row.fc-rigid {
-  overflow: $buffer--overflow-hidden;
+  overflow: $b-of-h;
 }
 
 .fc-row.fc-rigid .fc-content-skeleton {
@@ -1046,11 +1041,10 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 }
 
 .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
-  color: $buffer--text-color-black;
-  font-family: $buffer--font-family-sans-medium;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: $buffer--font-size-xs;
   text-align: $buffer--text-align-center;
-  width: $buffer--width-full;
+  width: $b-w-full;
 }
 
 .fc-rtl .fc-dayGrid-view .fc-day-top .fc-day-number {
@@ -1107,8 +1101,7 @@ Lots taken from Flatly (MIT): https://bootswatch.com/4/flatly/bootstrap.css
 --------------------------------------------------------------------------------------------------*/
 .fc .fc-axis {
   /* .fc to overcome default cell styles */
-  color: $buffer--text-color-black;
-  font-family: $buffer--font-family-sans-medium;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: $buffer--font-size-xs;
   padding: 0.5rem 1rem;
   vertical-align: $buffer--vertical-align-middle;
@@ -1265,7 +1258,7 @@ be a descendant of the grid when it is being dragged.
   height: fit-content;
   margin-bottom: 0.5rem;
   max-width: $buffer--width-40;
-  width: $buffer--width-full;
+  width: $b-w-full;
 }
 
 .fc-time-grid-event-inset {
@@ -1293,7 +1286,7 @@ be a descendant of the grid when it is being dragged.
 
 .fc-time-grid-event .fc-content {
   max-height: $buffer--max-height-full;
-  overflow: $buffer--overflow-hidden;
+  overflow: $b-of-h;
 }
 
 .fc-time-grid-event .fc-time,
@@ -1362,10 +1355,10 @@ be a descendant of the grid when it is being dragged.
   -webkit-animation: pulse-green 2s infinite;
   /* triangle pointing right... */
   animation: pulse-green 2s infinite;
-  background-color: $buffer--background-color-primary-500;
+  background-color: #689f38;
   border-radius: 50%;
   border-width: 5px;
-  box-shadow: 0 0 0 0 $buffer--background-color-primary-500;
+  box-shadow: 0 0 0 0 #689f38;
   left: 6.55rem;
 }
 
@@ -1389,25 +1382,26 @@ be a descendant of the grid when it is being dragged.
 .fc-day:not(.fc-past):active,
 .fc-bg .fc-day:not(.fc-past):hover,
 .fc-bg .fc-day:not(.fc-past):active {
-  -webkit-box-align: $buffer--align-items-center;
-  -webkit-box-pack: $buffer--align-items-center;
-  align-items: $buffer--align-items-center;
-  border: $buffer--border-width-0 $buffer--border-style-none $buffer--border-transparent;
-  color: $buffer--text-color-primary-500;
-  cursor: cell;
-  display: $buffer--display-flex;
-  font-size: $buffer--font-size-4xl;
-  height: $buffer--height-full;
-  justify-content: $buffer--align-items-center;
-  width: $buffer--width-full;
-
-  &:after {
-    content: 'add';
-    font-family: 'Material Icons';
-  }
+  background: rgba(104, 159, 56, 0.06);
+  // background: rgba(44, 75, 255, 0.06);
 }
 
 .fc-widget-header {
   margin-right: 0 !important;
   border-right-width: 0 !important;
+}
+
+td.fc-past {
+  background: rgba(0, 0, 0, 0.02);
+  cursor: not-allowed;
+}
+
+td.fc-today {
+  background: rgba(44, 75, 255, 0.03);
+}
+
+td.fc-today:hover,
+td.fc-future:hover {
+  background: rgba(104, 159, 56, 0.03);
+  cursor: cell;
 }

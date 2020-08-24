@@ -1,11 +1,12 @@
 import { AppState } from 'src/app/reducers';
-import { Component, HostListener, Input, OnDestroy } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { E_POST_STATUS } from '@core/enum';
 import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_MEDIA } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
+import { MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 import { selectNewPostMedias } from 'src/app/selectors';
@@ -17,7 +18,7 @@ import { SubSink } from 'subsink';
   templateUrl: './post-create-modal-form-video.component.html',
   styleUrls: ['./post-create-modal-form-video.component.scss'],
 })
-export class PostCreateModalFormVideoComponent implements OnDestroy {
+export class PostCreateModalFormVideoComponent implements OnInit, OnDestroy {
   @Input() formHeader = 'Upload your media';
   currentDateTime: Date;
   eventCreatePostFormErrorMatcher = new CustomFormErrorStateMatcher();
@@ -26,6 +27,8 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
+
+  menuItems: MenuItem[];
 
   constructor(
     private readonly stepper: MatStepper,
@@ -43,6 +46,26 @@ export class PostCreateModalFormVideoComponent implements OnDestroy {
     );
 
     this.loadingState$ = this.postCreateModalFacade.getLoadingState();
+  }
+
+  ngOnInit(): void {
+    this.menuItems = [
+      {
+        label: 'Schedule',
+        icon: 'pi pi-calendar-plus',
+        command: () => {
+          this.savePost(this.postStatus.SCHEDULED);
+        },
+      },
+      { separator: true },
+      {
+        label: 'Save post',
+        icon: 'pi pi-save',
+        command: () => {
+          this.savePost(this.postStatus.SAVED);
+        },
+      },
+    ];
   }
 
   @HostListener('window:beforeunload')

@@ -2,7 +2,7 @@
   <ngx-slick-carousel class="carousel buffer--border-radius-lg" #slickModal="slick-carousel"
     [config]="postVideoSlideConfig">
     <div ngxSlickItem *ngFor="let postSlide of postVideos" class="slide">
-      <vg-player class="buffer--width-full buffer--border-radius-lg buffer--outline-none">
+      <vg-player class="b-w-full buffer--border-radius-lg buffer--outline-none">
         <vg-controls vgFor="postVideo">
           <vg-play-pause></vg-play-pause>
           <vg-scrub-bar>
@@ -13,7 +13,7 @@
           <vg-fullscreen></vg-fullscreen>
         </vg-controls>
         <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true" [src]="postSlide.mediaURL"
-          type="video/mp4" class="buffer--width-full">
+          type="video/mp4" class="b-w-full">
         </video>
       </vg-player>
     </div>

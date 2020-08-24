@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
 
@@ -10,18 +9,11 @@ import { PostCreateModalFacade } from '../../facade/post-create-modal.facade';
   templateUrl: './post-create-modal-form-type.component.html',
 })
 export class PostCreateModalFormTypeComponent {
-  formHeader = 'What do you want to share?';
-
   @Output() changedType = new EventEmitter<string>();
 
   eventCreateChooseTypeForm: FormGroup;
 
-  constructor(
-    private stepper: MatStepper,
-    private formBuilder: FormBuilder,
-    private postCreateModalFacade: PostCreateModalFacade,
-    private dialogRef: MatDialogRef<PostCreateModalFormTypeComponent>,
-  ) {
+  constructor(private stepper: MatStepper, private formBuilder: FormBuilder, private postCreateModalFacade: PostCreateModalFacade) {
     this.eventCreateChooseTypeForm = this.buildPostCreateChooseTypeForm();
   }
 
@@ -38,9 +30,6 @@ export class PostCreateModalFormTypeComponent {
 
   onNextButtonClicked(): void {
     this.stepper.next();
-  }
-
-  handleCreateModalCloseBtnClick(): void {
-    this.dialogRef.close();
+    this.eventCreateChooseTypeForm.reset();
   }
 }

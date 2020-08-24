@@ -20,13 +20,13 @@ html,
 body {
   @include buffer--user-select(none);
   color: $buffer--text-color-black !important;
-  height: $buffer--height-full;
+  height: $b-h-full;
 }
 
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: $buffer--font-family-sans-regular;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
   font-size: $buffer--font-size-base;
   font-weight: $buffer--font-weight-medium;
   letter-spacing: $buffer--letter-spacing-tracking-normal;
@@ -89,24 +89,40 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: $buffer--font-family-sans-medium;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 h1 {
-  font-size: $buffer--font-size-3xl;
+  font-size: 1.75rem;
 }
 
 h2 {
-  font-size: $buffer--font-size-xl;
+  font-size: 1.5rem;
 }
 
 h3 {
-  font-size: $buffer--font-size-lg;
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 0.995rem;
+}
+
+h6 {
+  font-size: 0.925rem;
 }
 
 p {
-  color: $buffer--text-color-black;
-  font-family: $buffer--font-family-sans-regular;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
 }
@@ -141,7 +157,7 @@ p {
   margin: 0 auto;
   min-width: 1080px;
   padding: 0 60px;
-  width: $buffer--width-full;
+  width: $b-w-full;
 }
 
 .buffer--heading-span {
@@ -175,51 +191,9 @@ p {
   }
 }
 
-.buffer--schedule-calendar-view-sec {
-  height: calc(100vh - 4.5rem);
-}
-
-.buffer--connection-route-sec {
-  height: calc(100vh - 4.5rem) !important;
-}
-
-.dashboard-route-sec {
-  width: calc(100vw - 14rem);
-}
-
-.buffer--social-account-logo {
-  width: 1rem;
-  height: 1rem;
-  border: $buffer--border-right-width-2 $buffer--border-style-solid $buffer--border-color-white;
-  right: -0.2rem;
-}
-
-.buffer--social-account-logo-Facebook_Page,
-.buffer--social-account-logo-Facebook_Group {
-  background: #1877f2 url('/assets/images/icon/facebook.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-Instagram_Business,
-.buffer--social-account-logo-Instagram_Personal {
-  background: #f46f30 url('/assets/images/icon/instagram.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-Linkedin_Page,
-.buffer--social-account-logo-Linkedin_Profile {
-  background: #007bb5 url('/assets/images/icon/linkedin.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-Pinterest {
-  background: #bd081c url('/assets/images/icon/pinterest.svg');
-  background-size: cover;
-}
-
-.buffer--social-account-logo-Twitter {
-  background: #1da1f2 url('/assets/images/icon/twitter.svg');
-  background-size: cover;
+.b-main-content {
+  float: right;
+  width: calc(100vw - 15rem);
 }
 
 /*
@@ -241,4 +215,87 @@ p {
 .buffer--advance-notification {
   border-radius: $buffer--border-radius-lg !important;
   min-width: $buffer--width-64 !important;
+}
+
+.b-bg-white {
+  background-color: #ffffff;
+}
+
+.b-br {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.b-br-full {
+  border-radius: 100%;
+}
+
+.b-br-b {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.b-ci {
+  font-size: 1.25rem;
+}
+
+.b-main-header {
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 15rem;
+}
+
+.b-ca {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 100%;
+  position: relative;
+}
+
+.b-ca-md {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.b-ca-lg {
+  height: 3.125rem;
+  width: 3.125rem;
+}
+
+.b-ca-sl {
+  border: 3px solid #ffffff;
+  border-radius: 100%;
+  bottom: 0;
+  height: 1.25rem;
+  position: absolute;
+  right: -0.2rem;
+  width: 1.25rem;
+}
+
+.b-ca-sl-Facebook_Page,
+.b-ca-sl-Facebook_Group {
+  background: #1877f2 url('/assets/images/icon/facebook.svg');
+  background-size: cover;
+}
+
+.b-ca-sl-Instagram_Business,
+.b-ca-sl-Instagram_Personal {
+  background: #f46f30 url('/assets/images/icon/instagram.svg');
+  background-size: cover;
+}
+
+.b-ca-sl-Linkedin_Page,
+.b-ca-sl-Linkedin_Profile {
+  background: #007bb5 url('/assets/images/icon/linkedin.svg');
+  background-size: cover;
+}
+
+.b-ca-sl-Pinterest {
+  background: #bd081c url('/assets/images/icon/pinterest.svg');
+  background-size: cover;
+}
+
+.b-ca-sl-Twitter {
+  background: #1da1f2 url('/assets/images/icon/twitter.svg');
+  background-size: cover;
 }

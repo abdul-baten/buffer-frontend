@@ -1,8 +1,8 @@
 <div class="clearfix buffer--bucket-post-list-item buffer--height-64">
   <div
-    class="clearfix buffer--height-full buffer--width-full buffer--position-relative buffer--border-radius-lg buffer--box-shadow-sm">
+    class="clearfix b-h-full b-w-full buffer--position-relative buffer--border-radius-lg buffer--box-shadow-sm">
     <div
-      class="clearfix buffer--width-full buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg"
+      class="clearfix b-w-full buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg"
       *ngIf="calendarPost.postType === 'image' || calendarPost.postType === 'video'">
       <div [ngSwitch]="calendarPost.postType">
         <div *ngSwitchCase="'image'">
@@ -23,7 +23,7 @@
       </buffer--bucket-saved-post-text>
 
       <div
-        class="clearfix buffer--width-full buffer--padding-5 buffer--position-absolute buffer--position-bottom-0 buffer--position-left-0 buffer--padding-y-5">
+        class="clearfix b-w-full buffer--padding-5 buffer--position-absolute buffer--position-bottom-0 buffer--position-left-0 buffer--padding-y-5">
 
         <div class="clearfix buffer--height-10 buffer--margin-y-3">
           <buffer--bucket-saved-post-time [calendarPostDateTime]="calendarPost.start">
@@ -38,7 +38,7 @@
       </div>
 
       <div
-        class="clearfix buffer--bucket-post-footer buffer--width-full buffer--position-absolute buffer--position-top-0 buffer--position-left-0 buffer--padding-5">
+        class="clearfix buffer--bucket-post-footer b-w-full buffer--position-absolute buffer--position-top-0 buffer--position-left-0 buffer--padding-5">
         <buffer--bucket-saved-post-menu></buffer--bucket-saved-post-menu>
       </div>
     </div>

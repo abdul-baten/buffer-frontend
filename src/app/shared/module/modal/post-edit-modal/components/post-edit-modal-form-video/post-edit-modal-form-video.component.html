@@ -19,7 +19,7 @@
             <div class="clearfix">
               <label for="postCaption"
                 class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Caption</label>
-              <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-top-3"
+              <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-top-3"
                 appearance="fill">
                 <textarea matInput required id="postCaption" spellcheck="false" cdkTextareaAutosize
                   cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5" formControlName="postCaption"
@@ -32,7 +32,7 @@
             <div class="clearfix">
               <label for="postDate"
                 class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
-              <mat-form-field class="buffer--width-full buffer--font-family-sans-regular buffer--margin-y-3"
+              <mat-form-field class="b-w-full buffer--font-family-sans-regular buffer--margin-y-3"
                 appearance="fill">
                 <input matInput readonly type="text" id="postDate" autocomplete="off" [min]="currentDateTime"
                   [owlDateTime]="postDate" formControlName="postDate" class="buffer--cursor-pointer"
@@ -59,7 +59,7 @@
       <div class="clearfix buffer--width-percent-20">
         <button type="submit" color="primary" mat-flat-button
           [disabled]="nextButtonDisabled || eventEditTypeVideoForm.invalid"
-          class="buffer--width-full buffer--schedule-default-button buffer--font-family-sans-medium buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg">
+          class="b-w-full buffer--schedule-default-button buffer--font-family-sans-medium buffer--font-size-sm buffer--box-shadow buffer--border-radius-lg">
           Next
         </button>
       </div>

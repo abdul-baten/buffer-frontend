@@ -2,6 +2,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EntityStoreModule } from './entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { ErrorInterceptor } from '@core/interceptor/error/error.interceptor';
@@ -9,20 +12,12 @@ import { GlobalErrorHandlerUtil } from '@core/util/error/error-handler.util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-request.interceptor';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
-import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { MAT_TOOLTIP_DEFAULT_OPTIONS, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { NotificationModule } from '@shared/module/notification/notification.module';
-import { NotificationService } from '@core/service/notification/notification.service';
+import { PostCreateModalModule } from '@shared/module/modal/post-create-modal/post-create-modal.module';
+import { ToastModule } from 'primeng/toast';
 import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
 import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
-
-/** Custom options the configure the tooltip's default show/hide delays. */
-export const customTooltipConfig: MatTooltipDefaultOptions = {
-  hideDelay: 500,
-  showDelay: 500,
-  touchendHideDelay: 500,
-};
 
 export const DefaultTooltipOptions: TooltipOptions = {
   autoPlacement: true,
@@ -53,20 +48,24 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'buffer' }),
     BrowserTransferStateModule,
+    ConfirmDialogModule,
+    DynamicDialogModule,
+    EntityStoreModule,
     HttpClientModule,
     NotificationModule,
-    EntityStoreModule,
+    PostCreateModalModule,
+    ToastModule,
     TooltipModule.forRoot(DefaultTooltipOptions),
   ],
   providers: [
-    NotificationService,
+    ConfirmationService,
+    DialogService,
+    MessageService,
     {
       provide: MAT_SNACK_BAR_DATA,
       useValue: {},
     },
     { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
-    { provide: MAT_TOOLTIP_DEFAULT_OPTIONS, useValue: customTooltipConfig },
-    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: { disabled: true } },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

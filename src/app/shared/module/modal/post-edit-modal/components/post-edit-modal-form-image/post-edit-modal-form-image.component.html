@@ -21,7 +21,7 @@
             <div class="clearfix">
               <label for="postCaption"
                 class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Caption</label>
-              <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
+              <mat-form-field class="b-w-full buffer--margin-top-3" appearance="fill">
                 <textarea #autosize="cdkTextareaAutosize" [errorStateMatcher]="eventEditPostFormErrorMatcher"
                   cdkAutosizeMaxRows="5" cdkAutosizeMinRows="3" cdkTextareaAutosize
                   class="buffer--font-family-sans-medium buffer--cursor-pointer buffer--line-height-leading-relaxed"
@@ -33,7 +33,7 @@
             <div class="clearfix">
               <label for="postDate"
                 class="buffer--cursor-pointer buffer--font-family-sans-medium buffer--font-size-sm">Date</label>
-              <mat-form-field class="buffer--width-full buffer--margin-top-3" appearance="fill">
+              <mat-form-field class="b-w-full buffer--margin-top-3" appearance="fill">
                 <input [errorStateMatcher]="eventEditPostFormErrorMatcher" [min]="currentDateTime"
                   [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
                   class="buffer--font-family-sans-medium buffer--cursor-pointer" formControlName="postDate"

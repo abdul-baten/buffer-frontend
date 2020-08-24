@@ -1,6 +1,6 @@
 <div class="clearfix">
   <div class="clearfix">
-    <div class="buffer--background-color-white buffer--border-radius-lg buffer--padding-10">
+    <div class="b-bg-white buffer--border-radius-lg buffer--padding-10">
 
       <div class="clearfix">
         <buffer--main-logo></buffer--main-logo>
@@ -10,45 +10,24 @@
         <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
           Sign in
         </p>
-        <p
-          class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base buffer--line-height-leading-normal">
-          Continue to
-          grow</p>
       </div>
 
 
       <div class="clearfix">
         <form [formGroup]="signinForm" novalidate>
-          <div class="clearfix">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input autocomplete="current-password" autocomplete="off"
-                class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="email" matInput
-                placeholder="Work email" required type="text" [errorStateMatcher]="errorStateMatcher" />
-              <mat-error align="end" *ngIf="signinForm.controls.email.invalid">Please enter a valid email.
-              </mat-error>
-            </mat-form-field>
+          <div class="p-field buffer--margin-y-4">
+            <input class="b-w-full p-inputtext-lg" placeholder="Email address" type="email"
+              formControlName="email" pInputText />
           </div>
 
-          <div class="clearfix">
-            <mat-form-field class="buffer--width-full" appearance="fill">
-              <input [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password"
-                class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput
-                placeholder="Password" required [errorStateMatcher]="errorStateMatcher" />
-              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
-                <i class="material-icons buffer--text-color-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
-                </i>
-              </button>
-              <mat-error align="end" *ngIf="signinForm.controls.password.invalid">
-                Please enter a strong password.
-              </mat-error>
-            </mat-form-field>
+          <div class="p-field buffer--margin-y-4">
+            <input class="b-w-full p-inputtext-lg" placeholder="Password" type="password"
+              formControlName="password" pInputText />
           </div>
 
-          <div class="clearfix">
-            <button color="primary" mat-flat-button [disabled]="signinForm.invalid" (click)="login()"
-              class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
-              Sign in
-            </button>
+          <div class="clearfix buffer--margin-y-4">
+            <button class="b-w-full p-button-lg" pButton type="button" label="Sign in" (click)="login()"
+              [disabled]="signinForm.invalid"></button>
           </div>
         </form>
       </div>

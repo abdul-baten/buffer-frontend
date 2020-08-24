@@ -1,21 +1,26 @@
-<section class="buffer--height-18">
+<section class="b-h-18">
   <div
-    class="buffer--height-full buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
+    class="b-h-full buffer--padding-x-5 p-d-flex p-flex-column p-jc-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
     <buffer--account-header accountHeader="Profile"></buffer--account-header>
   </div>
 </section>
 
-<section class="buffer--height-18">
-  <div
-    class="buffer--height-full buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-    <buffer--profile-toolbar></buffer--profile-toolbar>
-  </div>
-</section>
-
-<section
-  class="buffer--padding-10 buffer--height-screen-with-header buffer--background-color-light-gray buffer--overflow-y-auto">
-  <div
-    class="buffer--height-full buffer--display-flex buffer--display-flex-direction-column buffer--align-items-center buffer--flex-justify-flex-start">
-    <router-outlet></router-outlet>
-  </div>
+<section class="b-hs-wt-h buffer--overflow-y-auto">
+  <p-tabView>
+    <p-tabPanel class="p-d-flex p-jc-center" header="Edit profile" [cache]="false">
+      <ng-template pTemplate="content">
+        <buffer--profile-form></buffer--profile-form>
+      </ng-template>
+    </p-tabPanel>
+    <p-tabPanel class="p-d-flex p-jc-center" header="Change email address" [cache]="false">
+      <ng-template pTemplate="content">
+        <buffer--profile-change-email-form></buffer--profile-change-email-form>
+      </ng-template>
+    </p-tabPanel>
+    <p-tabPanel class="p-d-flex p-jc-center" header="Change password" [cache]="false">
+      <ng-template pTemplate="content">
+        <buffer--profile-change-password-form></buffer--profile-change-password-form>
+      </ng-template>
+    </p-tabPanel>
+  </p-tabView>
 </section>

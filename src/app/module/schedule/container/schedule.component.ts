@@ -9,7 +9,6 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
   styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent {
-  calendarSidebarOpened$: Observable<boolean>;
   calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
 
   isHandset$: Observable<boolean>;
@@ -23,6 +22,5 @@ export class ScheduleComponent {
   constructor(private readonly scheduleFacade: ScheduleFacade) {
     this.isHandset$ = this.scheduleFacade.isHandset();
     this.isTablet$ = this.scheduleFacade.isTablet();
-    this.calendarSidebarOpened$ = this.scheduleFacade.getCalendarSidebarStatus();
   }
 }

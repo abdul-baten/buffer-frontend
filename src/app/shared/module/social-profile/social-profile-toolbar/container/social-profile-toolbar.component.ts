@@ -7,8 +7,8 @@ import { SocialProfileToolbarFacade } from '../facade/social-profile-toolbar.fac
 
 @Component({
   selector: 'buffer--social-profile-toolbar',
-  templateUrl: './social-profile-toolbar.component.html',
   styleUrls: ['./social-profile-toolbar.component.scss'],
+  templateUrl: './social-profile-toolbar.component.html',
 })
 export class SocialProfileToolbarComponent implements OnInit {
   isWeb: Observable<boolean>;
@@ -16,10 +16,7 @@ export class SocialProfileToolbarComponent implements OnInit {
   connections$: Observable<I_CONNECTION[]>;
   activeConnection$: Observable<string>;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private readonly socialProfileToolbarFacade: SocialProfileToolbarFacade,
-  ) {
+  constructor(private activatedRoute: ActivatedRoute, private readonly socialProfileToolbarFacade: SocialProfileToolbarFacade) {
     this.isWeb = this.socialProfileToolbarFacade.isWeb();
   }
 

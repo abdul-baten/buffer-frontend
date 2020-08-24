@@ -6,19 +6,6 @@ const selectPostDataState = createFeatureSelector<CalViewState>(fromScheduleRedu
 
 const selectCalendarSettings = createSelector(selectPostDataState, calSettings => calSettings);
 const selectCalendarFirstDay = createSelector(selectCalendarSettings, calSettings => calSettings.firstDay);
-const selectCalendarNonCurrentDates = createSelector(
-  selectCalendarSettings,
-  calSettings => calSettings.showNonCurrentDates,
-);
-const selectCalendarSidebarStatus = createSelector(
-  selectCalendarSettings,
-  calSettings => calSettings.calendarSidebarOpened,
-);
+const selectCalendarNonCurrentDates = createSelector(selectCalendarSettings, calSettings => calSettings.showNonCurrentDates);
 
-export {
-  selectCalendarFirstDay,
-  selectCalendarNonCurrentDates,
-  selectCalendarSettings,
-  selectCalendarSidebarStatus,
-  selectPostDataState,
-};
+export { selectCalendarFirstDay, selectCalendarNonCurrentDates, selectCalendarSettings, selectPostDataState };

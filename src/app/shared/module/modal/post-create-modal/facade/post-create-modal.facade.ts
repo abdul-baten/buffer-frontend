@@ -1,15 +1,15 @@
 import { AppState } from 'src/app/reducers';
 import { ConnectionService } from '@core/service/connection/connection.service';
+import { DialogService } from 'primeng/dynamicdialog';
 import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { finalize, map, tap } from 'rxjs/operators';
 import { forkJoin, Observable } from 'rxjs';
+import { formatISO, roundToNearestMinutes } from 'date-fns';
 import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from '@core/model';
 import { Injectable, Injector } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { PostService } from '@core/service/post/post.service';
 import { removeNewPostAllMedia, removeNewPostData, setNewPostDate, setNewPostType } from 'src/app/actions';
-import { roundToNearestMinutes, formatISO } from 'date-fns';
 import { selectNewPostActiveConnectionID, selectNewPostDate, selectNewPostMedias, selectNewPostType } from 'src/app/selectors';
 import { Store } from '@ngrx/store';
 import { UserService } from '@core/service/user/user.service';
@@ -18,8 +18,8 @@ import { UserService } from '@core/service/user/user.service';
 export class PostCreateModalFacade {
   constructor(
     private readonly connectionService: ConnectionService,
+    private readonly dialogRef: DialogService,
     private readonly injector: Injector,
-    private readonly matDialog: MatDialog,
     private readonly notificationService: NotificationService,
     private readonly postService: PostService,
     private readonly userService: UserService,
@@ -76,8 +76,8 @@ export class PostCreateModalFacade {
       map(([...response]) => response),
       tap(() => {
         this.store.dispatch(removeNewPostData());
-        this.notificationService.openSnackBar(`Your post has been ${postData.postStatus}.`);
-        this.closeAllDialog();
+        this.dialogRef.dialogComponentRef.destroy();
+        this.notificationService.showSuccess(`Your post has been ${postData.postStatus} successfully.`);
       }),
       finalize(() => {
         this.store.dispatch(removeNewPostAllMedia());
@@ -88,10 +88,6 @@ export class PostCreateModalFacade {
 
   getActiveConnectionID(): Observable<string> {
     return this.store.select(selectNewPostActiveConnectionID);
-  }
-
-  closeAllDialog(): void {
-    this.matDialog.closeAll();
   }
 
   generateDropZoneConfig(type: E_POST_TYPE): Record<string, any> {

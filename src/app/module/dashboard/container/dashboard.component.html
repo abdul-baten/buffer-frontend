@@ -1,36 +1,24 @@
-<section class="dashboard-header-sec buffer--float-left" id="dashboard-header-sec">
-  <div
-    class="buffer--position-fixed buffer--position-top-0 buffer--position-left-0 buffer--width-20 buffer--height-screen buffer--background-color-white buffer--border-width-0 buffer--border-right-width buffer--border-style-solid buffer--border-color-light-gray">
-    <buffer--dashboard-header></buffer--dashboard-header>
-  </div>
+<section class="b-main-header">
+  <buffer--dashboard-header class="b-h-full"></buffer--dashboard-header>
 </section>
 
-<section class="dashboard-route-sec buffer--float-right" id="dashboard-route-sec">
-  <section class="buffer--dashboard-menu-sec" id="buffer--dashboard-menu-sec">
-    <div
-      class="buffer--width-full buffer--height-18 buffer--background-color-white buffer--padding-x-5 buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-      <buffer--dashboard-top-toolbar></buffer--dashboard-top-toolbar>
-    </div>
-  </section>
-
-  <section id="buffer--dashboard-content-view-sec" class="buffer--dashboard-content-view-sec">
-
-    <div class="clearfix">
-      <section class="buffer--height-screen-without-header buffer--overflow-y-auto">
-        <div class="clearfix buffer--padding-5">
-          <div class="clearfix">
-            <buffer--dashboard-social-performance></buffer--dashboard-social-performance>
-          </div>
-          <div class="clearfix buffer--height-5"></div>
-          <div class="clearfix">
-            <buffer--dashboard-social-profile-overview></buffer--dashboard-social-profile-overview>
-          </div>
-          <div class="clearfix buffer--height-5"></div>
-          <div class="clearfix">
-            <buffer--dashboard-posts-overview></buffer--dashboard-posts-overview>
-          </div>
+<section class="b-main-content">
+  <div class="b-w-full b-h-18 p-px-4 b-br-b">
+    <buffer--dashboard-top-toolbar></buffer--dashboard-top-toolbar>
+  </div>
+  <div class="b-hs-wt-h b-of-h">
+    <p-scrollPanel styleClass="b-h-full">
+      <div class="p-p-4">
+        <div class="p-mb-4">
+          <buffer--dashboard-social-performance></buffer--dashboard-social-performance>
         </div>
-      </section>
-    </div>
-  </section>
+        <div class="p-mb-4">
+          <buffer--dashboard-social-profile-overview></buffer--dashboard-social-profile-overview>
+        </div>
+        <div class="p-mb-4">
+          <buffer--dashboard-posts-overview></buffer--dashboard-posts-overview>
+        </div>
+      </div>
+    </p-scrollPanel>
+  </div>
 </section>

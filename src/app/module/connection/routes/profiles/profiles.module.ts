@@ -1,36 +1,36 @@
+import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConnectionDeleteModalModule } from '@shared/module/modal/connection-delete-modal/connection-delete-modal.module';
 import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
+import { InputTextModule } from 'primeng/inputtext';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LoaderModule } from '@shared/module/loader/loader.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 import { ProfilesComponent } from './container/profiles.component';
 import { ProfilesFacade } from './facade/profiles.facade';
 import { ProfilesRoutingModule } from './profiles-routing.module';
-import { TooltipModule } from 'ng2-tooltip-directive';
+import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [ProfilesComponent],
   imports: [
+    ButtonModule,
     CommonModule,
+    ConfirmDialogModule,
     ConnectionDeleteModalModule,
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
+    InputTextModule,
     LazyLoadImageModule,
     LoaderModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatListModule,
     MatSidenavModule,
     ProfilesRoutingModule,
-    TooltipModule,
+    SocialProfileAddModule,
+    TableModule,
   ],
   providers: [ProfilesFacade],
 })

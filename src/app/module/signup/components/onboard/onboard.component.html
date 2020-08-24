@@ -1,5 +1,5 @@
 <div class="clearfix">
-  <div class="buffer--background-color-white buffer--border-radius-lg buffer--padding-10">
+  <div class="b-bg-white buffer--border-radius-lg buffer--padding-10">
 
     <div class="clearfix">
       <buffer--main-logo></buffer--main-logo>
@@ -19,7 +19,7 @@
     <div class="clearfix">
       <form [formGroup]="onboardForm" novalidate>
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full" appearance="fill">
+          <mat-form-field class="b-w-full" appearance="fill">
             <input [errorStateMatcher]="errorStateMatcher" formControlName="companyName" matInput
               placeholder="Company name" type="text" autocomplete="current-password"
               class="buffer--font-family-sans-medium buffer--cursor-default" />
@@ -29,7 +29,7 @@
         </div>
 
         <div class="clearfix">
-          <mat-form-field class="buffer--width-full" appearance="fill">
+          <mat-form-field class="b-w-full" appearance="fill">
             <mat-select formControlName="attribution" [errorStateMatcher]="errorStateMatcher">
               <mat-option value=''>How did you first hear about us?</mat-option>
               <mat-option value="acquiantance">Friend, family or work colleague</mat-option>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="clearfix">
-          <mat-form-field appearance="fill" class="buffer--width-full">
+          <mat-form-field appearance="fill" class="b-w-full">
             <mat-select formControlName="businessType" [errorStateMatcher]="errorStateMatcher">
               <mat-option value=''>Which option best describes your business?</mat-option>
               <mat-option value="publisher">Publisher (e.g. newspaper, magazine, blogger, YouTube channel)
@@ -63,7 +63,7 @@
         </div>
 
         <div class="clearfix">
-          <mat-form-field appearance="fill" class="buffer--width-full">
+          <mat-form-field appearance="fill" class="b-w-full">
             <mat-select formControlName="companySize" [errorStateMatcher]="errorStateMatcher">
               <mat-option value=''>How many people work in your company?</mat-option>
               <mat-option value="lessThan5">Fewer than 5 employees (including you)</mat-option>
@@ -77,7 +77,7 @@
 
         <div class="clearfix">
           <button (click)="handleSignup()" [disabled]="onboardForm.invalid"
-            class="buffer--width-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base"
+            class="b-w-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base"
             color="primary" mat-flat-button>
             Continue
           </button>

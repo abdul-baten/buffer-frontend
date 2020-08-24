@@ -1,231 +1,115 @@
-<div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-start">
-  <section>
-    <div class="dashboard-header-sec">
-      <buffer--connection-header headerTitle="Connect a New Social Account"></buffer--connection-header>
-    </div>
-  </section>
+<div class="p-d-flex p-jc-start p-flex-column">
+  <buffer--connection-header headerTitle="Connect"></buffer--connection-header>
 
-  <section>
+  <section class="b-hs-wt-h b-of-h">
     <mat-sidenav-container>
-      <mat-sidenav-content class="buffer--background-color-white buffer--connection-route-sec buffer--overflow-hidden">
-        <div class="clearfix buffer--width-full buffer--height-full">
-          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 buffer--height-full buffer--overflow-auto">
-            <div class="clearfix buffer--width-full">
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/facebook.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Facebook Page</p>
-                    </div>
+      <mat-sidenav-content class="b-bg-white">
+        <div class="b-w-full b-h-full">
+          <div class="clearfix buffer--padding-5 b-h-full buffer--overflow-auto">
+            <div class="p-grid">
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>Facebook Page</h6>
+                <button (click)="chooseNewConnection(connectionType.FACEBOOK_PAGE)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button (click)="chooseNewConnection(connectionType.FACEBOOK_PAGE)"
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/facebook.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Facebook Group</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>Facebook Group</h6>
+                <button (click)="chooseNewConnection(connectionType.FACEBOOK_GROUP)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button (click)="chooseNewConnection(connectionType.FACEBOOK_GROUP)"
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/instagram.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Instagram Business</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/instagram.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>Instagram Business</h6>
+                <button (click)="chooseNewConnection(connectionType.INSTAGRAM_BUSINESS)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/instagram.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Instagram Personal</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/instagram.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>Instagram Personal</h6>
+                <button (click)="chooseNewConnection(connectionType.INSTAGRAM_PERSONAL)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/twitter.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Twitter</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/twitter.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>Twitter</h6>
+                <button (click)="chooseNewConnection(connectionType.TWITTER)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button (click)="chooseNewConnection(connectionType.TWITTER)"
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/linkedin.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        LinkedIn Page</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/linkedin.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>LinkedIn Page</h6>
+                <button (click)="chooseNewConnection(connectionType.LINKEDIN_PAGE)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/linkedin.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        LinkedIn Profile</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/linkedin.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
+                </p-header>
+                <h6>LinkedIn Profile</h6>
+                <button (click)="chooseNewConnection(connectionType.LINKEDIN_PROFILE)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
 
-                </div>
-                <div class="clearfix">
-                  <button (click)="chooseNewConnection(connectionType.LINKEDIN_PROFILE)"
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-3 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix buffer--height-full buffer--width-percent-50">
-                  <div
-                    class="clearfix buffer--height-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-8 buffer--height-8 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/pinterest.svg" class="buffer--width-full buffer--height-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-family-sans-medium buffer--line-height-leading-zero">
-                        Pinterest</p>
-                    </div>
+              <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
+                <p-header>
+                  <div class="b-ca b-ca-md">
+                    <img src="/assets/images/icon/pinterest.svg" class="b-w-full b-h-full b-br-full" />
                   </div>
-
-                </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Connect
-                  </button>
-                </div>
-              </div>
+                </p-header>
+                <h6>Pinterest</h6>
+                <button (click)="chooseNewConnection(connectionType.PINTEREST)"
+                  class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
+                </button>
+              </p-fieldset>
             </div>
           </div>
         </div>
       </mat-sidenav-content>
       <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode" opened
         [fixedInViewport]="matSideNavFixedInViewport" [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-percent-30 buffer--background-color-white buffer--border-color-light-gray">
-        <div class="clearfix buffer--height-full buffer--padding-x-10 buffer--padding-y-6">
+        class="buffer--width-percent-20 buffer--border-color-light-gray">
+        <div class="b-h-full p-p-4">
           <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
         </div>
       </mat-sidenav>

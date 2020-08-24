@@ -1,29 +1,21 @@
-<div class="clearfix">
-  <div
-    class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
-    <div class="clearfix">
-      <button (click)="onTodayBtnClicked()" [matTooltip]="currentDate"
-        class="buffer--height-11 buffer--font-family-sans-medium buffer--font-size-sm buffer--background-color-light-gray"
-        mat-button>
-        Today
-      </button>
+<div class="p-d-flex p-jc-between p-ai-center">
+  <button (click)="onTodayBtnClicked()" [pTooltip]="currentDate" tooltipPosition="bottom" pButton label="Today"
+    class="p-button-text p-button-plain p-button-sm"></button>
+
+  <div class="p-mx-2 p-d-flex p-jc-between p-ai-center">
+    <div class="p-mx-2">
+      <button pButton pRipple type="button" icon="pi pi-chevron-left"
+        class="p-button-sm p-button-rounded p-button-text p-button-plain" pTooltip="Previous" tooltipPosition="bottom"
+        (click)="onPrevBtnClicked()"></button>
     </div>
-    <div class="clearfix buffer--margin-x-2">
-      <button mat-icon-button matTooltip="Previous" (click)="onPrevBtnClicked()">
-        <i class="material-icons">keyboard_arrow_left</i>
-      </button>
-    </div>
-    <div class="clearfix buffer--margin-x-2">
-      <button mat-icon-button matTooltip="Next" (click)="onNextBtnClicked()">
-        <i class="material-icons">keyboard_arrow_right</i>
-      </button>
-    </div>
-    <div class="clearfix" *ngIf="isWeb | async">
-      <mat-button-toggle-group [value]="selectedCalendarView" (change)="onCalendarViewChanged($event)">
-        <mat-button-toggle value="dayGridMonth">Month</mat-button-toggle>
-        <mat-button-toggle value="timeGridWeek">Week</mat-button-toggle>
-        <mat-button-toggle value="timeGridDay">Day</mat-button-toggle>
-      </mat-button-toggle-group>
+    <div class="p-mx-2">
+      <button pButton type="button" icon="pi pi-chevron-right"
+        class="p-button-sm p-button-rounded p-button-text p-button-plain" pTooltip="Next" tooltipPosition="bottom"
+        (click)="onNextBtnClicked()"></button>
     </div>
   </div>
+  
+  <p-selectButton [options]="calendarViewSelectionItems" [(ngModel)]="selectedCalendarView"
+    (onChange)="onCalendarViewChanged($event)" styleClass="p-button-sm" *ngIf="isWeb | async">
+  </p-selectButton>
 </div>

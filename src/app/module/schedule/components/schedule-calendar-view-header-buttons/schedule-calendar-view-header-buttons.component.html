@@ -1,27 +1,7 @@
-<div class="clearfix buffer--calendar-toolbar">
-  <div class="clearfix buffer--display-flex buffer--flex-direction-row buffer--align-items-center">
-    <div class="clearfix buffer--margin-left-3">
-      <button class="buffer--text-color-dark-gray buffer--width-12 buffer--height-12" (click)="handleSettingsBtnClick()"
-        mat-icon-button matTooltip="Calendar settings">
-        <i
-          class="material-icons buffer--font-weight-normal buffer--border-color-light-gray buffer--font-size-2xl">settings</i>
-      </button>
-    </div>
-    <div *ngIf="(calendarSidebarOpened$ | async) === false || (isWeb$ | async) === false"
-      class="clearfix buffer--margin-left-3">
-      <div class="clearfix">
-        <button class="buffer--text-color-dark-gray buffer--width-12 buffer--height-12"
-          (click)="handleNewPostBtnClick()" mat-icon-button matTooltip="Schedule post">
-          <i class="material-icons buffer--border-color-light-gray buffer--font-size-2xl">add</i>
-        </button>
-      </div>
-    </div>
-    <div class="clearfix buffer--margin-left-3" *ngIf="isWeb$ | async">
-      <button class="buffer--background-color-light-gray buffer--width-12 buffer--height-12"
-        (click)="handleSidebarMenuBtnClick()" mat-icon-button
-        matTooltip="{{ (calendarSidebarOpened$ | async) ? 'Hide' : 'Show' }} sidebar">
-        <i class="material-icons buffer--border-color-light-gray buffer--font-size-2xl">menu</i>
-      </button>
-    </div>
+<div class="buffer--calendar-toolbar">
+  <div class="p-d-flex p-ai-center">
+    <button (click)="handleSettingsBtnClick()" pButton icon="pi pi-cog" label="Settings"
+      class="p-button-text p-button-plain p-mx-3"></button>
+    <button (click)="handleNewPostBtnClick()" pButton icon="pi pi-plus" label="Schedule"></button>
   </div>
 </div>

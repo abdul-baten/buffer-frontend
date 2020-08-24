@@ -9,7 +9,7 @@
 
 .slick-list {
   display: $buffer--display-block;
-  overflow: $buffer--overflow-hidden;
+  overflow: $b-of-h;
   position: $buffer--position-relative;
   border-radius: $buffer--border-radius-lg;
 
@@ -84,7 +84,7 @@
   }
 
   &:hover {
-    background-color: $buffer--background-color-white;
+    background-color: $b-bg-white;
     color: $buffer--text-color-black;
   }
 

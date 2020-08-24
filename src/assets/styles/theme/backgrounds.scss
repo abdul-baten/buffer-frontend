@@ -27,16 +27,12 @@
   background-color: $buffer--background-color-black !important;
 }
 
-.buffer--background-color-white {
-  background-color: $buffer--background-color-white !important;
-}
-
 .buffer--background-color-gray {
   background-color: $buffer--background-color-gray !important;
 }
 
 .buffer--background-color-light-gray {
-  background-color: $buffer--background-color-light-gray !important;
+  background-color: $buffer--background-color-light-gray;
 }
 
 .buffer--background-color-dark-gray {
