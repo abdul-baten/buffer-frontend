@@ -966,7 +966,7 @@ p-listbox.ng-dirty.ng-invalid > .p-listbox {
 
 .p-multiselect {
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(0, 0, 0, 0.18);
   transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
   border-radius: 4px;
 }
@@ -1973,11 +1973,14 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-header {
   background: #ffffff;
-  color: #000001;
-  border: 1px solid #e4e4e4;
   border-width: 0 0 1px 0;
-  padding: 0.75rem 0.75rem;
+  border: 1px solid #e4e4e4;
+  color: #000001;
   font-weight: 500;
+  padding: 0.75rem 0.75rem;
+  // position: sticky;
+  // top: 0;
+  // z-index: 1001;
 }
 .p-datatable .p-datatable-footer {
   background: #ffffff;
@@ -1989,8 +1992,8 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-datatable .p-datatable-thead > tr > th {
   text-align: left;
-  padding: 0.75rem 0.75rem;
-  border: 1px solid #e4e4e4;
+  padding: 0.75rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-width: 0 0 1px 0;
   font-weight: 500;
   color: #000001;
@@ -2000,7 +2003,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-datatable .p-datatable-tfoot > tr > td {
   text-align: left;
   padding: 0.75rem 0.75rem;
-  border: 1px solid #e4e4e4;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-width: 0 0 1px 0;
   font-weight: 500;
   color: #000001;
@@ -2378,17 +2381,18 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   background-color: transparent;
   border: 0 none;
   color: rgba(0, 0, 0, 0.6);
-  min-width: 3rem;
-  height: 3rem;
+  min-width: 2rem;
+  height: 2rem;
   margin: 0.143rem;
   padding: 0 0.5rem;
+  font-size: 0.875rem;
 }
 .p-paginator .p-paginator-pages .p-paginator-page {
   background-color: transparent;
   border: 0 none;
   color: rgba(0, 0, 0, 0.6);
-  min-width: 3rem;
-  height: 3rem;
+  min-width: 2rem;
+  height: 2rem;
   margin: 0.143rem;
   transition: none;
   border-radius: 50%;
@@ -3538,8 +3542,9 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-menu {
   background: #ffffff;
   color: #000001;
+  min-width: 13rem;
   padding: 0.5rem 0;
-  width: 14rem;
+  width: auto;
 }
 .p-menu .p-menuitem-link {
   border-radius: 4px;
@@ -10345,4 +10350,16 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 
 .p-datatable .p-datatable-tbody > tr:last-child > td {
   border-color: transparent;
+}
+
+// .p-multiselect .p-multiselect-label {}
+
+.p-multiselect-sm .p-multiselect-label {
+  font-size: 0.875rem;
+  padding: 0.675rem 0.75rem;
+}
+
+.p-splitbutton-sm > .p-button {
+  font-size: 0.875rem;
+  padding: 0.699625rem 0.65625rem;
 }

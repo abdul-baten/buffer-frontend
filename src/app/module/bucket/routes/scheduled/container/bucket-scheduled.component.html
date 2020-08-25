@@ -1,9 +1,100 @@
-<section class="buffer--bucket-filter-sec b-h-18" id="buffer--bucket-filter-sec">
-  <buffer--bucket-scheduled-filter></buffer--bucket-scheduled-filter>
-</section>
-
-<section class="buffer--bucket-posts-sec" id="buffer--account-posts-sec">
-  <div class="clearfix b-w-full">
-    <buffer--bucket-scheduled-post></buffer--bucket-scheduled-post>
-  </div>
-</section>
+<p-table [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']" [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts" #postTable [rows]="5"
+  [showCurrentPageReport]="true" [value]="calendarPosts | async" dataKey="id" [scrollable]="true" scrollHeight="540px">
+  <ng-template pTemplate="caption">
+    <div class="p-px-2 p-grid p-pt-2">
+      <div class="p-px-2 p-col-3">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="postTable.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search post" class="p-inputtext-sm" />
+        </span>
+      </div>
+      <div class="p-px-2 p-col-3"></div>
+      <div class="p-px-2 p-col-3">
+        <p-dropdown [options]="connectionItems"
+          (onChange)="postTable.filter($event.value, 'postConnection.connectionType', 'equals')"
+          styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Connection" [showClear]="true"
+          [filter]="true">
+          <ng-template let-option pTemplate="item">
+            <small class="p-text-capitalize">{{option.label}}</small>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      <div class="p-px-2 p-col-3">
+        <p-dropdown [options]="postTypes" (onChange)="postTable.filter($event.value, 'postType', 'equals')"
+          styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Post type" [showClear]="true"
+          [filter]="true">
+          <ng-template let-option pTemplate="item">
+            <small class="p-text-capitalize">{{option.label}}</small>
+          </ng-template>
+        </p-dropdown>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="body" let-post>
+    <tr>
+      <td class="p-pr-3">
+        <div class="b-w-full" *ngIf="post.postType === 'image' || post.postType === 'video'">
+          <div [ngSwitch]="post.postType">
+            <div *ngSwitchCase="'image'">
+              <p-carousel [value]="post.postMedia" [numVisible]="1" [numScroll]="2" styleClass="buffer--height-20">
+                <ng-template let-postMedia pTemplate="item">
+                  <img [alt]="postMedia.mediaName" [src]="postMedia.mediaURL" class="b-w-full b-br-sm" />
+                </ng-template>
+              </p-carousel>
+            </div>
+            <div *ngSwitchCase="'video'" class="p-px-4">
+              <vg-player class="b-w-full b-br-sm">
+                <vg-controls vgFor="postVideo">
+                  <vg-play-pause></vg-play-pause>
+                </vg-controls>
+                <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true"
+                  [src]="post.postMedia[0].mediaURL" type="video/mp4" class="b-w-full b-br-sm">
+                </video>
+              </vg-player>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td colspan="3" class="p-pr-5">
+        <div class="module fade">
+          <p class="p-text-bold">{{ post.postCaption }}</p>
+        </div>
+      </td>
+      <!-- <td class="p-pr-3">
+        <p class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i> {{ post.start | date: 'EEE, MMM d, y' }}</p>
+      </td>
+      <td class="p-pr-3">
+        <p><i class="pi pi-clock b-va-m p-mr-1"></i> {{ post.start | date: 'h:mm a' }}</p>
+      </td> -->
+      <td>
+        <div class="b-ca b-ca-md"
+          [title]="splitConnectionType(post.postConnection.connectionType ? post.postConnection.connectionType: '')">
+          <img [lazyLoad]="post.postConnection.connectionPicture" class="b-w-full b-h-full b-br-full"
+            defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+          <div [attr.class]="'b-ca-sl b-ca-sl-' + post.postConnection.connectionType">
+          </div>
+        </div>
+      </td>
+      <td class="p-pr-3 p-text-right">
+        <p-splitButton label="Post now" styleClass="p-splitbutton-sm b-w-full" [model]="menuItems" appendTo="body"
+          menuStyleClass="p-p-2">
+        </p-splitButton>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="4">
+        <div class="p-m-5">
+          <div class="b-h-full p-d-flex p-flex-column p-ai-center">
+            <div class="p-my-5 p-text-center">
+              <h3>No post found</h3>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

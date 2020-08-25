@@ -157,7 +157,7 @@ p {
   margin: 0 auto;
   min-width: 1080px;
   padding: 0 60px;
-  width: $b-w-full;
+  width: 100%;
 }
 
 .buffer--heading-span {
@@ -223,6 +223,10 @@ p {
 
 .b-br {
   border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.b-br-sm {
+  border-radius: 4px;
 }
 
 .b-br-full {
@@ -298,4 +302,41 @@ p {
 .b-ca-sl-Twitter {
   background: #1da1f2 url('/assets/images/icon/twitter.svg');
   background-size: cover;
+}
+
+.b-va-top {
+  vertical-align: top;
+}
+
+.b-va-m {
+  vertical-align: middle;
+}
+
+.b-w-auto {
+  width: auto;
+}
+
+.b-w-full {
+  width: 100%;
+}
+
+.module {
+  margin: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fade {
+  position: relative;
+  height: 4rem; /* exactly three lines */
+}
+.fade:after {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+  bottom: 0;
+  content: '';
+  height: 1.2em;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  width: 50%;
 }

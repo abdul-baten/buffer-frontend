@@ -1,7 +1,6 @@
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConnectionDeleteModalModule } from '@shared/module/modal/connection-delete-modal/connection-delete-modal.module';
 import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,7 +20,6 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     CommonModule,
     ConfirmDialogModule,
-    ConnectionDeleteModalModule,
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
     InputTextModule,
