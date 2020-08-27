@@ -1,27 +1,26 @@
-<div
-  class="b-bg-white buffer--padding-8 buffer--padding-bottom-0 buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
+<div class="p-px-6 p-pt-5 b-br b-br-sm">
   <form novalidate [formGroup]="profileSetupForm">
     <div class="p-fluid p-grid">
       <div class="p-field p-col-12">
-        <label for="profileFirstName" class="buffer--font-size-sm p-text-bold">First name</label>
+        <label for="profileFirstName">First name</label>
         <input id="profileFirstName" type="text" pInputText formControlName="profileFirstName" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileLastName" class="buffer--font-size-sm p-text-bold">Last name</label>
+        <label for="profileLastName">Last name</label>
         <input id="profileLastName" type="text" pInputText formControlName="profileLastName" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileBio" class="buffer--font-size-sm p-text-bold">Bio</label>
+        <label for="profileBio">Bio</label>
         <textarea id="profileBio" type="text" rows="4" [autoResize]="true" pInputTextarea
           formControlName="profileBio"></textarea>
       </div>
       <div class="p-field p-col-12">
-        <label for="profileCountry" class="buffer--font-size-sm p-text-bold">Country</label>
+        <label for="profileCountry">Country</label>
         <p-dropdown inputId="profileCountry" [options]="countries" formControlName="profileCountry"
           placeholder="Select country" optionLabel="name"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <button pButton type="button" label="Save" class="b-w-full"
+        <button pButton type="button" label="Update profile" class="b-w-full"
           [disabled]="profileSetupForm.invalid"></button>
       </div>
     </div>

@@ -12,18 +12,11 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_ROUTE,
-      },
-      {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/new-connection/new-connection.module').then(m => m.NewConnectionModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_NEW_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        redirectTo: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_ROUTE,
       },
       {
         data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_TITLE },
-        loadChildren: () =>
-          import('./routes/choose-connection/choose-connection.module').then(m => m.ChooseConnectionModule),
+        loadChildren: () => import('./routes/choose-connection/choose-connection.module').then(m => m.ChooseConnectionModule),
         path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE,
         resolve: { documentResolver: DocumentResolver },
       },
@@ -53,8 +46,7 @@ const routes: Routes = [
       },
       {
         data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PROFILE.PAGE_TITLE },
-        loadChildren: () =>
-          import('./routes/linkedin-profile/linkedin-profile.module').then(m => m.LinkedInProfileModule),
+        loadChildren: () => import('./routes/linkedin-profile/linkedin-profile.module').then(m => m.LinkedInProfileModule),
         path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PROFILE.PAGE_ROUTE,
         resolve: { documentResolver: DocumentResolver },
       },

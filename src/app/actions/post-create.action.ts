@@ -6,7 +6,7 @@ const removeNewPostData = createAction('[Post Create Modal Facade] Remove Post D
 
 const setNewPostDate = createAction('[Post Create Modal Facade] Set New Post Date', props<{ postOriginalDate: string }>());
 
-const setNewPostType = createAction('[Post Create Modal Facade] Set New Post Type', props<{ postType: E_POST_TYPE }>());
+const setPostType = createAction('[Post Create Modal Facade] Set New Post Type', props<{ postType: E_POST_TYPE }>());
 
 const setNewPostConnectionID = createAction('[Post Create Modal Facade] Set New Post Connection ID', props<{ activeConnectionID: string }>());
 
@@ -29,5 +29,5 @@ export {
   setNewPostData,
   setNewPostDate,
   setNewPostMedia,
-  setNewPostType,
+  setPostType,
 };

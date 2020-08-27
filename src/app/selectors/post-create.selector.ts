@@ -4,10 +4,10 @@ import { newPostFeatureKey } from '../reducers';
 
 const selectNewPostDataState = createFeatureSelector<I_POST>(newPostFeatureKey);
 
-const selectNewPostAllData = createSelector(selectNewPostDataState, postData => postData);
+const selectPostInfo = createSelector(selectNewPostDataState, postData => postData);
 const selectNewPostDate = createSelector(selectNewPostDataState, postData => postData.postOriginalDate);
 const selectNewPostType = createSelector(selectNewPostDataState, postData => postData.postType);
 const selectNewPostActiveConnectionID = createSelector(selectNewPostDataState, postData => postData.id);
 const selectNewPostMedias = createSelector(selectNewPostDataState, postData => postData.postMedia);
 
-export { selectNewPostActiveConnectionID, selectNewPostAllData, selectNewPostDataState, selectNewPostDate, selectNewPostMedias, selectNewPostType };
+export { selectNewPostActiveConnectionID, selectPostInfo, selectNewPostDataState, selectNewPostDate, selectNewPostMedias, selectNewPostType };

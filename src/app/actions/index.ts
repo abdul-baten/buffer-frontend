@@ -9,7 +9,7 @@ import {
   setNewPostData,
   setNewPostDate,
   setNewPostMedia,
-  setNewPostType,
+  setPostType,
 } from './post-create.action';
 
 export {
@@ -23,6 +23,6 @@ export {
   setNewPostData,
   setNewPostDate,
   setNewPostMedia,
-  setNewPostType,
+  setPostType,
   setUserInfo,
 };

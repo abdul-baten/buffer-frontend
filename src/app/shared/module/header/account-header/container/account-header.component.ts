@@ -1,20 +1,22 @@
-import { Component, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { PAGES } from '@core/constant/page/page.constant';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--account-header',
   styleUrls: ['./account-header.component.scss'],
   templateUrl: './account-header.component.html',
 })
 export class AccountHeaderComponent implements OnChanges {
-  ACCOUNT_PROFILE_ROUTE = `/${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE}`;
-  ACCOUNT_INVOICE_ROUTE = `/${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.INVOICE_MODULE.PAGE_ROUTE}`;
-  ACCOUNT_BILLING_ROUTE = `/${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.BILLING_MODULE.PAGE_ROUTE}`;
-  ACCOUNT_PLAN_ROUTE = `/${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.PLAN_MODULE.PAGE_ROUTE}`;
-
   @Input() accountHeader: string;
+
+  constructor(private location: Location) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.accountHeader = changes.accountHeader.currentValue;
+  }
+
+  backClicked(): void {
+    this.location.back();
   }
 }

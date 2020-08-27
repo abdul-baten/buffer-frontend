@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,7 +10,13 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 export class ConnectionHeaderComponent implements OnChanges {
   @Input() headerTitle?: string;
 
-  ngOnChanges(changes: SimpleChanges) {
+  constructor(private readonly location: Location) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.headerTitle = changes.headerTitle.currentValue;
+  }
+
+  backClicked(): void {
+    this.location.back();
   }
 }

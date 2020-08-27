@@ -13,32 +13,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-request.interceptor';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { ModalService } from '@core/service/modal/modal.service';
 import { NotificationModule } from '@shared/module/notification/notification.module';
-import { PostCreateModalModule } from '@shared/module/modal/post-create-modal/post-create-modal.module';
+import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
 import { ToastModule } from 'primeng/toast';
-import { TooltipModule, TooltipOptions } from 'ng2-tooltip-directive';
-import { VirtualScrollerDefaultOptions } from 'ngx-virtual-scroller';
-
-export const DefaultTooltipOptions: TooltipOptions = {
-  autoPlacement: true,
-  'hide-delay': 0,
-  'max-width': 500,
-  placement: 'left',
-  'tooltip-class': 'buffer--padding-x-4 buffer--padding-y-3 buffer--font-size-xs buffer--font-family-sans-regular',
-};
-
-/** virtual scroller override settings */
-export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
-  return {
-    scrollThrottlingTime: 0,
-    scrollDebounceTime: 500,
-    scrollAnimationTime: 750,
-    checkResizeInterval: 1000,
-    resizeBypassRefreshThreshold: 5,
-    modifyOverflowStyleOfParentScroll: true,
-    stripedTable: false,
-  };
-}
 
 @NgModule({
   bootstrap: [AppComponent],
@@ -53,19 +31,18 @@ export function vsDefaultOptionsFactory(): VirtualScrollerDefaultOptions {
     EntityStoreModule,
     HttpClientModule,
     NotificationModule,
-    PostCreateModalModule,
+    PostModalModule,
     ToastModule,
-    TooltipModule.forRoot(DefaultTooltipOptions),
   ],
   providers: [
     ConfirmationService,
     DialogService,
     MessageService,
+    ModalService,
     {
       provide: MAT_SNACK_BAR_DATA,
       useValue: {},
     },
-    { provide: 'virtual-scroller-default-options', useFactory: vsDefaultOptionsFactory },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

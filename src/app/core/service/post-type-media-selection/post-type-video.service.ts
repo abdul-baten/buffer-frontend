@@ -55,10 +55,23 @@ export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
           },
         },
 
+        load: (uniqueFileId: string, load: any, error: any) => {
+          fetch(uniqueFileId)
+            .then(res => res.blob())
+            .then(load)
+            .catch(error);
+        },
+
         revert: (uniqueFileId: string) => {
           this.mediaService.deleteMedia(uniqueFileId).subscribe((media: I_MEDIA) => {
             this.store.dispatch(removeNewPostMedia({ media: media.mediaURL }));
           });
+        },
+
+        remove: (media: string, load: any, error: any) => {
+          this.store.dispatch(removeNewPostMedia({ media }));
+          error('Something went wrong.');
+          load();
         },
       },
     };

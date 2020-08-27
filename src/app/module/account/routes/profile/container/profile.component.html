@@ -1,18 +1,15 @@
 <section class="b-h-18">
-  <div
-    class="b-h-full buffer--padding-x-5 p-d-flex p-flex-column p-jc-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-    <buffer--account-header accountHeader="Profile"></buffer--account-header>
-  </div>
+  <buffer--account-header accountHeader="Profile"></buffer--account-header>
 </section>
 
 <section class="b-hs-wt-h buffer--overflow-y-auto">
   <p-tabView>
-    <p-tabPanel class="p-d-flex p-jc-center" header="Edit profile" [cache]="false">
+    <p-tabPanel class="p-d-flex p-jc-center" header="Update profile" [cache]="false">
       <ng-template pTemplate="content">
         <buffer--profile-form></buffer--profile-form>
       </ng-template>
     </p-tabPanel>
-    <p-tabPanel class="p-d-flex p-jc-center" header="Change email address" [cache]="false">
+    <p-tabPanel class="p-d-flex p-jc-center" header="Update email" [cache]="false">
       <ng-template pTemplate="content">
         <buffer--profile-change-email-form></buffer--profile-change-email-form>
       </ng-template>

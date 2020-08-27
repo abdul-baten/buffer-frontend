@@ -16,12 +16,18 @@ export class HeaderAccountComponent implements OnInit {
   ngOnInit(): void {
     this.menuItems = [
       {
-        label: 'Account',
-        icon: 'pi pi-user',
-        command: () => {
-          this.handleAccountNavigationClick();
-        },
+        label: 'Profile settings',
+        icon: 'pi pi-cog',
+        routerLink: ['/account/profile'],
+        routerLinkActiveOptions: { exact: true },
       },
+      {
+        label: 'Upgrade',
+        icon: 'pi pi-sort-amount-up',
+        routerLink: ['/account/plan'],
+        routerLinkActiveOptions: { exact: true },
+      },
+      { separator: true },
       {
         label: 'Sign out',
         icon: 'pi pi-sign-out',
@@ -29,8 +35,6 @@ export class HeaderAccountComponent implements OnInit {
           this.logoutUser();
         },
       },
-      { separator: true },
-      { label: 'Manage Profiles', icon: 'pi pi-users', routerLink: ['/setup'] },
     ];
   }
 

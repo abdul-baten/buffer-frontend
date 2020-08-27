@@ -31,10 +31,6 @@ export class ScheduleCalendarViewHeaderButtonsComponent implements OnDestroy {
     this.scheduleFacade.handleCalendarSettingsDialogOpen();
   }
 
-  handleNewPostBtnClick(): void {
-    this.scheduleFacade.handlePostCreateDialogOpen(new Date());
-  }
-
   @HostListener('window:beforeunload')
   ngOnDestroy() {
     this.subscriptions$.unsubscribe();

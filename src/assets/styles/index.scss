@@ -164,7 +164,7 @@ p-calendar.ng-dirty.ng-invalid > .p-calendar > .p-inputtext {
 }
 
 .p-datepicker {
-  padding: 0.5rem;
+  padding: 1rem;
   background: #ffffff;
   color: #000001;
   border: 1px solid #e5e5e5;
@@ -256,20 +256,22 @@ p-calendar.ng-dirty.ng-invalid > .p-calendar > .p-inputtext {
   box-shadow: none;
 }
 .p-datepicker table td.p-datepicker-today > span {
-  background: #ffffff;
-  color: #000001;
-  border-color: black;
+  background: rgba(44, 75, 255, 0.08);
+  color: #2c4bff;
+  border-color: rgba(44, 75, 255, 0.1);
 }
 .p-datepicker table td.p-datepicker-today > span.p-highlight {
+  background: rgba(44, 75, 255, 0.1);
   color: #2c4bff;
-  background: rgba(63, 81, 181, 0.12);
 }
 .p-datepicker .p-datepicker-buttonbar {
-  padding: 0.75rem 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.75rem 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 .p-datepicker .p-datepicker-buttonbar .p-button {
-  width: auto;
+  font-size: 0.875rem;
+  padding: 0.699625rem 0.65625rem;
+  width: calc(50% - 0.575rem);
 }
 .p-datepicker .p-timepicker {
   border-top: 1px solid rgba(0, 0, 0, 0.12);
@@ -358,16 +360,14 @@ p-calendar.ng-dirty.ng-invalid > .p-calendar > .p-inputtext {
   height: 18px;
 }
 .p-checkbox .p-checkbox-box {
-  border: 2px solid #757575;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
   width: 18px;
   height: 18px;
   color: #000001;
   border-radius: 4px;
-  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, background-size 0.2s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
 .p-checkbox .p-checkbox-box .p-checkbox-icon {
-  transition-duration: 0.2s;
   color: #ffffff;
   font-size: 14px;
 }
@@ -483,6 +483,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
 .p-dropdown:not(.p-disabled):hover {
   border-color: #000001;
 }
+
 .p-dropdown:not(.p-disabled).p-focus {
   outline: 0 none;
   outline-offset: 0;
@@ -1212,18 +1213,18 @@ p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
   color: rgba(0, 0, 0, 0.6);
 }
 .p-selectbutton .p-button.p-highlight {
-  background: #e0e0e1;
-  border-color: #e0e0e1;
-  color: #000001;
+  background: rgba(44, 75, 255, 0.08);
+  border-color: rgba(44, 75, 255, 0.08);
+  color: #2c4bff;
 }
 .p-selectbutton .p-button.p-highlight .p-button-icon-left,
 .p-selectbutton .p-button.p-highlight .p-button-icon-right {
   color: rgba(0, 0, 0, 0.6);
 }
 .p-selectbutton .p-button.p-highlight:hover {
-  background: #d9d8d9;
-  border-color: #d9d8d9;
-  color: #000001;
+  background: rgba(44, 75, 255, 0.08);
+  border-color: rgba(44, 75, 255, 0.08);
+  color: #2c4bff;
 }
 .p-selectbutton .p-button.p-highlight:hover .p-button-icon-left,
 .p-selectbutton .p-button.p-highlight:hover .p-button-icon-right {
@@ -1974,13 +1975,10 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-datatable .p-datatable-header {
   background: #ffffff;
   border-width: 0 0 1px 0;
-  border: 1px solid #e4e4e4;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   color: #000001;
   font-weight: 500;
   padding: 0.75rem 0.75rem;
-  // position: sticky;
-  // top: 0;
-  // z-index: 1001;
 }
 .p-datatable .p-datatable-footer {
   background: #ffffff;
@@ -2389,13 +2387,14 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-paginator .p-paginator-pages .p-paginator-page {
   background-color: transparent;
+  border-radius: 50%;
   border: 0 none;
   color: rgba(0, 0, 0, 0.6);
-  min-width: 2rem;
+  font-size: 0.875rem;
   height: 2rem;
   margin: 0.143rem;
+  min-width: 2rem;
   transition: none;
-  border-radius: 50%;
 }
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
   background: rgba(63, 81, 181, 0.12);
@@ -3165,7 +3164,6 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 .p-dialog .p-dialog-footer button {
   margin: 0 0.5rem 0 0;
-  width: auto;
 }
 
 .p-dialog-mask.p-component-overlay {
@@ -3579,6 +3577,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-menu .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
   color: rgba(0, 0, 0, 0.6);
 }
+
 .p-menu .p-menuitem-link:focus {
   outline: 0 none;
   outline-offset: 0;
@@ -3843,13 +3842,15 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   }
 }
 .p-panelmenu .p-panelmenu-header > a {
-  padding: 1.25rem;
   border: 0 none;
-  color: #000001;
-  background: #ffffff;
-  font-weight: 400;
   border-radius: 4px;
+  color: #000001;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.25rem 0;
+  padding: 0.875rem 1rem;
   transition: none;
+  user-select: none;
 }
 .p-panelmenu .p-panelmenu-header > a .p-panelmenu-icon {
   margin-right: 0.5rem;
@@ -3863,41 +3864,36 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   box-shadow: none;
 }
 .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled) > a:hover {
-  background: #f6f6f6;
+  background: rgba(44, 75, 255, 0.08);
   border-color: transparent;
-  color: #000001;
+  color: #2c4bff;
 }
 .p-panelmenu .p-panelmenu-header.p-highlight {
   margin-bottom: 0;
 }
 .p-panelmenu .p-panelmenu-header.p-highlight > a {
-  background: #ffffff;
+  background: rgba(44, 75, 255, 0.08);
   border-color: transparent;
-  color: #000001;
+  color: #2c4bff;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-.p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover {
-  border-color: transparent;
-  background: #ffffff;
-  color: #000001;
-}
 .p-panelmenu .p-panelmenu-content {
   padding: 0.5rem 0;
-  border: 0 none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background: #ffffff;
   color: #000001;
   margin-bottom: 0;
-  border-top: 0;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
-  padding: 0.75rem 0.75rem;
+  border: 0 none;
+  border-radius: 4px;
   color: #000001;
-  border-radius: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0.25rem 0;
+  padding: 0.875rem 1rem;
   transition: none;
   user-select: none;
 }
@@ -3912,16 +3908,19 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   color: rgba(0, 0, 0, 0.6);
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(44, 75, 255, 0.08);
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
-  color: #000001;
+  color: #2c4bff;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
-  color: rgba(0, 0, 0, 0.6);
+  color: #2c4bff;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
-  color: rgba(0, 0, 0, 0.6);
+  color: #2c4bff;
+}
+.p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link > a.p-menuitem-link-active {
+  color: #2c4bff;
 }
 .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:focus {
   outline: 0 none;
@@ -3938,7 +3937,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   margin-bottom: 0;
 }
 .p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a {
-  border-radius: 0;
+  border-radius: 4px;
 }
 .p-panelmenu .p-panelmenu-panel .p-panelmenu-content {
   border-radius: 0;
@@ -3949,18 +3948,6 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-panelmenu .p-panelmenu-panel:not(:first-child) .p-panelmenu-header:not(.p-highlight):not(.p-disabled):hover > a,
 .p-panelmenu .p-panelmenu-panel:not(:first-child) .p-panelmenu-header:not(.p-disabled).p-highlight:hover > a {
   border-top: 0 none;
-}
-.p-panelmenu .p-panelmenu-panel:first-child .p-panelmenu-header > a {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-}
-.p-panelmenu .p-panelmenu-panel:last-child .p-panelmenu-header:not(.p-highlight) > a {
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.p-panelmenu .p-panelmenu-panel:last-child .p-panelmenu-content {
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
 }
 
 .p-slidemenu {
@@ -5069,18 +5056,17 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 
 .p-checkbox {
   border-radius: 50%;
-  transition: box-shadow 0.2s;
 }
 .p-checkbox .p-checkbox-box {
-  border-color: #757575;
+  border-color: rgba(0, 0, 0, 0.28);
   border-radius: 2px;
   position: relative;
 }
 .p-checkbox .p-checkbox-box:not(.p-disabled):hover {
-  border-color: #757575;
+  border-color: #000001;
 }
 .p-checkbox .p-checkbox-box:not(.p-disabled).p-focus {
-  border-color: #757575;
+  border-color: #000001;
 }
 .p-checkbox .p-checkbox-box.p-highlight:not(.p-disabled).p-focus {
   border-color: #2c4bff;
@@ -5095,18 +5081,6 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   transform: rotate(45deg);
   transform-origin: 0% 100%;
   animation: checkbox-check 125ms 50ms linear forwards;
-}
-.p-checkbox:not(.p-checkbox-disabled):hover {
-  box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.04);
-}
-.p-checkbox:not(.p-checkbox-disabled).p-checkbox-focused {
-  box-shadow: 0 0 1px 10px rgba(0, 0, 0, 0.12);
-}
-.p-checkbox.p-checkbox-checked:not(.p-checkbox-disabled):hover {
-  box-shadow: 0 0 1px 10px rgba(63, 81, 181, 0.04);
-}
-.p-checkbox.p-checkbox-checked:not(.p-checkbox-disabled).p-checkbox-focused {
-  box-shadow: 0 0 1px 10px rgba(63, 81, 181, 0.12);
 }
 
 .p-input-filled .p-checkbox .p-checkbox-box {
@@ -5459,19 +5433,10 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 
 .p-panelmenu .p-panelmenu-panel {
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   margin-bottom: 0;
   border-radius: 0;
   position: relative;
   transition: margin-bottom 225ms;
-}
-.p-panelmenu .p-panelmenu-panel:first-child {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
-.p-panelmenu .p-panelmenu-panel:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
 }
 .p-panelmenu .p-panelmenu-panel .p-panelmenu-header .p-panelmenu-icon {
   order: 1;
@@ -10323,15 +10288,15 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   min-width: 400px;
 }
 
-.p-menu .p-menuitem-link-active {
+.p-menuitem-link-active {
   background: rgba(44, 75, 255, 0.08);
 }
 
-.p-menu .p-menuitem-link-active:not(.p-disabled) .p-menuitem-text {
+.p-menuitem-link-active:not(.p-disabled) .p-menuitem-text {
   color: #2c4bff;
 }
 
-.p-menu .p-menuitem-link-active:not(.p-disabled) .p-menuitem-icon {
+.p-menuitem-link-active:not(.p-disabled) .p-menuitem-icon {
   color: #2c4bff;
 }
 
@@ -10362,4 +10327,17 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-splitbutton-sm > .p-button {
   font-size: 0.875rem;
   padding: 0.699625rem 0.65625rem;
+}
+
+.p-dropdown-filter.p-inputtext {
+  font-size: 0.875rem;
+  padding: 0.65625rem 0.65625rem;
+}
+
+.p-carousel-items-content {
+  border-radius: 4px;
+}
+
+.p-inputtextarea {
+  line-height: 1.5;
 }

@@ -15,13 +15,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgModule } from '@angular/core';
 import { NotificationService } from '@core/service/notification/notification.service';
-import { PostCreateModalModule } from '@shared/module/modal/post-create-modal/post-create-modal.module';
+import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
 import { PostDeleteModalModule } from '@shared/module/modal/post-delete-modal/post-delete-modal.module';
 import { PostDetailsModalModule } from '@shared/module/modal/post-details-modal/post-details-modal.module';
-import { PostEditModalModule } from '@shared/module/modal/post-edit-modal/post-edit-modal.module';
 import { PostRescheduleConfirmModalModule } from '@shared/module/modal/post-reschedule-confirm-modal/post-reschedule-confirm-modal.module';
 import { PostRescheduleModalModule } from '@shared/module/modal/post-reschedule-modal/post-reschedule-modal.module';
 import { reducer, schedulePostFeatureKey } from '@app/schedule/reducer/calendar.reducer';
@@ -39,7 +37,6 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
 import { StoreModule } from '@ngrx/store';
-import { TooltipModule } from 'primeng/tooltip';
 import { VgBufferingModule } from 'videogular2/buffering';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgCoreModule } from 'videogular2/core';
@@ -67,11 +64,9 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     MatNativeDateModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatTooltipModule,
-    PostCreateModalModule,
+    PostModalModule,
     PostDeleteModalModule,
     PostDetailsModalModule,
-    PostEditModalModule,
     PostRescheduleConfirmModalModule,
     PostRescheduleModalModule,
     ScheduleRoutingModule,
@@ -88,7 +83,6 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     }),
 
     ButtonModule,
-    TooltipModule,
     SelectButtonModule,
     FormsModule,
   ],

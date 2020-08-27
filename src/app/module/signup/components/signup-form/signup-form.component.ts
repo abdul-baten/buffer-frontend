@@ -1,7 +1,6 @@
 import { AppState } from 'src/app/reducers';
 import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_USER } from '@core/model';
 import { PasswordValidator } from '@core/validation/password.validation';
@@ -12,16 +11,12 @@ import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer--signup-form',
-  templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss'],
+  templateUrl: './signup-form.component.html',
 })
 export class SignupFormComponent {
-  signupForm: FormGroup;
-
-  hidePassword = true;
   hideConfirmPassword = true;
-
-  errorStateMatcher = new CustomFormErrorStateMatcher();
+  signupForm: FormGroup;
 
   constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder, private store: Store<AppState>) {
     this.signupForm = this.buildSignupForm();
@@ -29,10 +24,7 @@ export class SignupFormComponent {
 
   private buildSignupForm(): FormGroup {
     return this.formBuilder.group({
-      fullName: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(50), CommonValidator.alphaNumeric],
-      ],
+      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), CommonValidator.alphaNumeric]],
       email: ['', [Validators.required, CommonValidator.emailAddress]],
       password: [
         '',

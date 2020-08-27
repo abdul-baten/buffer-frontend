@@ -1,6 +1,5 @@
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 import { Component, Inject } from '@angular/core';
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
@@ -12,8 +11,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class PostRescheduleModalComponent {
   postRescheduleForm: FormGroup;
   currentDateTime = roundToNearestMinutes(new Date(), { nearestTo: 15 });
-
-  errorStateMatcher = new CustomFormErrorStateMatcher();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { postId: string; postDate: Date },

@@ -1,22 +1,18 @@
 import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
-import { CustomFormErrorStateMatcher } from '@core/error-state/error-state-matcher.state';
+import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { SigninFacade } from '@app/signin/facade/signin.facade';
-import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer--signin-form',
-  templateUrl: './signin-form.component.html',
   styleUrls: ['./signin-form.component.scss'],
+  templateUrl: './signin-form.component.html',
 })
 export class SigninFormComponent {
-  hidePassword = true;
   loading = false;
   signinForm: FormGroup;
-
-  errorStateMatcher = new CustomFormErrorStateMatcher();
 
   constructor(private signinFacade: SigninFacade, private formBuilder: FormBuilder) {
     this.signinForm = this.buildSigninForm();

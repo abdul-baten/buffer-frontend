@@ -1,0 +1,22 @@
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Location } from '@angular/common';
+
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'buffer--bucket-header',
+  styleUrls: ['./bucket-header.component.scss'],
+  templateUrl: './bucket-header.component.html',
+})
+export class BucketHeaderComponent implements OnChanges {
+  @Input() headerTitle?: string;
+
+  constructor(private readonly location: Location) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.headerTitle = changes.headerTitle.currentValue;
+  }
+
+  backClicked(): void {
+    this.location.back();
+  }
+}

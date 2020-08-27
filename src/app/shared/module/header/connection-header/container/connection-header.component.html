@@ -1,9 +1,15 @@
 <div class="b-h-18">
   <div class="b-h-full p-px-4 b-br-b">
     <div class="b-h-full p-d-flex p-jc-between p-ai-center">
-      <h3>{{ headerTitle }}</h3>
       <div class="p-d-flex p-ai-center">
-        <button pButton type="button" icon="pi pi-sort-amount-up" label="Upgrade" class="p-button-text p-mx-3"></button>
+        <div class="b-br-r p-mr-3">
+          <button class="p-button-sm p-button-rounded p-button-text p-button-plain p-mr-3" (click)="backClicked()"
+            icon="pi pi-arrow-left" pButton title="Back" type="button"></button>
+        </div>
+        <h3>{{ headerTitle }}</h3>
+      </div>
+      <div class="p-d-flex p-ai-center">
+        <button pButton type="button" icon="pi pi-sort-amount-up" label="Upgrade" class="p-button-text p-mx-2"></button>
         <buffer--social-profile-add></buffer--social-profile-add>
       </div>
     </div>

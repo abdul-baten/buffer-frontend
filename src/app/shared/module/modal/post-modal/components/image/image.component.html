@@ -1,0 +1,38 @@
+<section>
+  <form novalidate [formGroup]="imageForm">
+    <div class="p-fluid p-formgrid">
+      <div class="p-field p-col-12">
+        <buffer--connections (connectionChange)="changeConnectionSelection($event)"></buffer--connections>
+      </div>
+      <div class="p-field p-col-12">
+        <buffer--media></buffer--media>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="postCaption">Caption</label>
+        <textarea class="b-w-full" formControlName="postCaption" placeholder="Write something" [autoResize]="true"
+          cols="30" id="postCaption" pInputTextarea rows="4" type="text"></textarea>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="postScheduleDateTime">Date</label>
+        <p-calendar [hourFormat]="12" [minDate]="currentDateTime" [readonlyInput]="true" [showButtonBar]="true"
+          [showIcon]="true" [stepMinute]="15" appendTo="body" dateFormat="D, M dd, yy" inputId="postScheduleDateTime"
+          [showTime]="true" formControlName="postScheduleDateTime" placeholder="Select a Date">
+        </p-calendar>
+      </div>
+    </div>
+  </form>
+</section>
+<section>
+  <div class="p-pt-4 b-br-t">
+    <div class="p-d-flex p-jc-between p-ai-center">
+      <button (click)="onPreviousButtonClicked()" class="p-button-plain p-button-rounded p-button-text"
+        icon="pi pi-arrow-left" pButton type="button"></button>
+      <p-splitButton [disabled]="isButtonDisabled() | async" appendTo="body" menuStyleClass="p-p-2"
+        (onClick)="savePost(postStatus.PUBLISHED)" [model]="menuItems" label="Share now"></p-splitButton>
+    </div>
+  </div>
+</section>
+
+<ng-container *ngIf="loadingState$ | async" class="b-h-full">
+  <buffer--loader></buffer--loader>
+</ng-container>

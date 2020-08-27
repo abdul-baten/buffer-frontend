@@ -1,42 +1,14 @@
-<div
-  class="b-w-full b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
-  <h3>{{ accountHeader }}</h3>
-  <div
-    class="clearfix buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
-
-    <div class="clearfix b-h-full buffer--margin-auto buffer--margin-right-3">
-      <a [routerLink]="[ACCOUNT_PROFILE_ROUTE]"
-        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-blue-500 buffer--text-color-blue-500"
-        [routerLinkActiveOptions]="{exact: false}"
-        class="buffer--padding-5 buffer--text-color-black b-h-full buffer--font-family-sans-medium buffer--font-size-base">
-        Profile
-      </a>
-    </div>
-
-    <div class="clearfix b-h-full buffer--margin-auto buffer--margin-right-3">
-      <a [routerLink]="[ACCOUNT_INVOICE_ROUTE]"
-        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-blue-500 buffer--text-color-blue-500"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="buffer--padding-5 buffer--text-color-black b-h-full buffer--font-family-sans-medium buffer--font-size-base">
-        Invoice
-      </a>
-    </div>
-
-    <div class="clearfix b-h-full buffer--margin-auto buffer--margin-right-3">
-      <a [routerLink]="[ACCOUNT_BILLING_ROUTE]"
-        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-blue-500 buffer--text-color-blue-500"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="buffer--padding-5 buffer--text-color-black b-h-full buffer--font-family-sans-medium buffer--font-size-base">
-        Billing
-      </a>
-    </div>
-    <div class="clearfix b-h-full buffer--margin-auto buffer--margin-right-3">
-      <a [routerLink]="[ACCOUNT_PLAN_ROUTE]"
-        routerLinkActive="buffer--padding-x-5 buffer--padding-y-6 buffer--border-width-0 buffer--border-bottom-width-4 buffer--border-style-solid buffer--border-color-blue-500 buffer--text-color-blue-500"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="buffer--padding-5 buffer--text-color-black b-h-full buffer--font-family-sans-medium buffer--font-size-base">
-        Plan
-      </a>
+<div class="b-h-18">
+  <div class="b-h-full p-px-4 b-br-b">
+    <div class="b-h-full p-d-flex p-jc-between p-ai-center">
+      <div class="p-d-flex p-ai-center">
+        <div class="b-br-r p-mr-3">
+          <button class="p-button-sm p-button-rounded p-button-text p-button-plain p-mr-3" (click)="backClicked()"
+            icon="pi pi-arrow-left" pButton title="Back" type="button"></button>
+        </div>
+        <h3>{{ accountHeader }}</h3>
+      </div>
+      <buffer--account-routes></buffer--account-routes>
     </div>
   </div>
 </div>

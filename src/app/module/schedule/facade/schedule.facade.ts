@@ -1,41 +1,37 @@
-import getDate from 'date-fns/getDate';
-import getHours from 'date-fns/getHours';
-import getMinutes from 'date-fns/getMinutes';
-import getMonth from 'date-fns/getMonth';
-import getYear from 'date-fns/getYear';
 import { Calendar } from '@fullcalendar/core';
 import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
 import { CalViewState } from '../model/calendar.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
+import { format } from 'date-fns';
 import { I_POST } from '@core/model';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MetaDefinition } from '@angular/platform-browser';
+import { ModalService } from '@core/service/modal/modal.service';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { Observable } from 'rxjs';
-import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
 import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
 import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
-import { PostEditModalComponent } from '@shared/module/modal/post-edit-modal/container/post-edit-modal.component';
+import { PostModalComponent } from '@shared/module/modal/post-modal/container/post-modal.component';
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { PostService } from '@core/service/post/post.service';
+import { removeNewPostData } from 'src/app/actions';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { selectCalendarFirstDay, selectCalendarNonCurrentDates } from '../selector/schedule.selector';
 import { setCalendarFirstDay, setCalendarNonCurrentDates } from '@app/schedule/action/calendar.action';
 import { Store } from '@ngrx/store';
-import { DialogService } from 'primeng/dynamicdialog';
 
 @Injectable()
 export class ScheduleFacade {
   constructor(
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
+    private modalService: ModalService,
     private postService: PostService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
-    private dialogService: DialogService,
   ) {}
 
   private calendarApi: Calendar;
@@ -72,30 +68,12 @@ export class ScheduleFacade {
     this.calendarApi.changeView(viewOption);
   }
 
-  private getCurrentTime(date: Date): Date {
-    if (!getHours(date) && !getMinutes(date)) {
-      const currentDate = new Date();
-      const getCurrentHours = getHours(currentDate);
-      const getCurrentMinutes = getMinutes(currentDate);
-      const getCurrentDate = getDate(date);
-      const getCurrentMonth = getMonth(date);
-      const getCurrentYear = getYear(date);
-      return new Date(getCurrentYear, getCurrentMonth, getCurrentDate, getCurrentHours, getCurrentMinutes);
-    } else {
-      return new Date(date);
-    }
-  }
-
-  handlePostCreateDialogOpen(postScheduleDateTime: Date, activeConnectionID: string = ''): void {
-    const postScheduledDateTime = this.getCurrentTime(postScheduleDateTime);
-    this.dialogService.open(PostCreateModalComponent, {
-      header: 'Create Post',
-      width: '550px',
-      contentStyle: { 'max-height': '600px', overflow: 'auto' },
-      data: {
-        postScheduledDateTime,
-        activeConnectionID,
-      },
+  handlePostCreateDialogOpen(postScheduleDateTime: Date): void {
+    const dialogRef = this.modalService.openPostModal('Create Post', {
+      postScheduleDateTime: format(postScheduleDateTime, `yyyy-MM-dd'T'HH:mm:ssxxx`),
+    });
+    dialogRef.onDestroy.subscribe(() => {
+      this.store.dispatch(removeNewPostData());
     });
   }
 
@@ -212,7 +190,7 @@ export class ScheduleFacade {
   }
 
   handlePostEditDialogOpen(postInfo: I_POST): void {
-    this.matDialog.open(PostEditModalComponent, {
+    this.matDialog.open(PostModalComponent, {
       position: {
         top: '',
         bottom: '',

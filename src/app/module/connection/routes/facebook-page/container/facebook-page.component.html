@@ -1,60 +1,36 @@
-<div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-start">
-  <section>
-    <div class="dashboard-header-sec">
-      <buffer--connection-header headerTitle="Add a Facebook Page"></buffer--connection-header>
-    </div>
-  </section>
+<div class="p-d-flex p-jc-start p-flex-column">
+  <buffer--connection-header headerTitle="Facebook Page"></buffer--connection-header>
 
-  <section>
-    <mat-sidenav-container>
-      <mat-sidenav-content class="b-bg-white buffer--connection-route-sec b-of-h">
-        <div class="clearfix b-w-full b-h-full"
-          *ngIf="(facade.getLoadingStatus() | async) === false">
-          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 b-h-full buffer--overflow-auto">
-            <div class="clearfix b-w-full">
-              <div *ngFor="let connection of facade.getFacebookPages() | async"
-                class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix b-h-full buffer--width-percent-50">
-                  <div
-                    class="clearfix b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img [src]="connection.connectionPicture"
-                        class="b-w-full b-h-full buffer--border-radius-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-relaxed">
-                        {{ connection.connectionName }}</p>
-                      <p class="buffer--text-color-gray buffer--font-family-sans-medium buffer--font-size-sm">
-                        {{ connection.connectionCategory }}</p>
-                    </div>
-                  </div>
-
+  <section class="b-hs-wt-h b-of-h">
+    <div class="b-h-full b-sidenav-content b-of-a">
+      <div class="p-p-4 b-h-full b-of-a" *ngIf="(facade.getLoadingStatus() | async) === false">
+        <section class="p-grid">
+          <div *ngFor="let connection of facade.getFacebookPages() | async"
+            class="p-col-12 p-md-6 p-lg-6 p-sm-12 p-xs-12 buffer--padding-2">
+            <p-fieldset>
+              <p-header>
+                <div class="b-ca b-ca-lg">
+                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                    defaultImage="/assets/images/svg/default-media.svg"
+                    errorImage="/assets/images/svg/default-media.svg" />
                 </div>
-                <div class="clearfix">
-                  <button (click)="addFacebookPage(connection)"
-                    class="buffer--height-10 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Add to plan
-                  </button>
-                </div>
-              </div>
-            </div>
+              </p-header>
+              <h6>{{ connection.connectionName }}</h6>
+              <p>{{ connection.connectionCategory }}</p>
+              <button (click)="addFacebookPage(connection)"
+                class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
+                type="button">
+              </button>
+            </p-fieldset>
           </div>
-        </div>
-        <div *ngIf="(facade.getLoadingStatus() | async) === true">
-          <buffer--loader></buffer--loader>
-        </div>
-      </mat-sidenav-content>
-      <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode"
-        [opened]="(isWeb$ | async) || (isTablet$ | async)" [fixedInViewport]="matSideNavFixedInViewport"
-        [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-percent-30 b-bg-white buffer--border-color-light-gray">
-        <div class="clearfix b-h-full buffer--padding-x-10 buffer--padding-y-6">
-          <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
-        </div>
-      </mat-sidenav>
-    </mat-sidenav-container>
+        </section>
+      </div>
+      <div class="b-h-full b-pos-relative b-bg-lg" *ngIf="(facade.getLoadingStatus() | async) === true">
+        <buffer--loader></buffer--loader>
+      </div>
+    </div>
+    <div class="b-h-full p-p-4 b-sidenav">
+      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
+    </div>
   </section>
 </div>

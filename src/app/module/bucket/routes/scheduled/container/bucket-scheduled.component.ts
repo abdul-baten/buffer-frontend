@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
-import { E_POST_STATUS, E_POST_TYPE, E_CONNECTION_TYPE } from '@core/enum';
-import { I_POST } from '@core/model';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
+import { I_DROPDOWN, I_POST } from '@core/model';
 import { MenuItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
-import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,10 +11,9 @@ import { Table } from 'primeng/table';
   styleUrls: ['./bucket-scheduled.component.scss'],
 })
 export class BucketScheduledComponent implements OnInit {
-  @ViewChild('postTable', { static: true }) table: Table;
-  connectionItems: any[] = [];
-  postTypes: any[] = [];
-  menuItems: MenuItem[];
+  connectionItems: I_DROPDOWN[] = [];
+  postType = E_POST_TYPE;
+  postTypes: I_DROPDOWN[] = [];
 
   calendarPosts: Observable<I_POST[]> = of([
     {
@@ -50,7 +48,7 @@ export class BucketScheduledComponent implements OnInit {
       },
       postType: E_POST_TYPE.IMAGE,
       postStatus: E_POST_STATUS.SCHEDULED,
-      postScheduleDateTime: new Date().toDateString(),
+      postScheduleDateTime: new Date('2020-01-05').toDateString(),
       postCaption: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
       userID: '',
     },
@@ -363,18 +361,26 @@ export class BucketScheduledComponent implements OnInit {
       { label: this.splitConnectionType(E_POST_TYPE.IMAGE), value: 'image' },
       { label: this.splitConnectionType(E_POST_TYPE.VIDEO), value: 'video' },
     ];
+  }
 
-    this.menuItems = [
-      { label: 'Edit', icon: 'pi pi-pencil', command: () => {} },
-      { label: 'Reschedule', icon: 'pi pi-replay', command: () => {} },
+  splitConnectionType(typeName: E_CONNECTION_TYPE | E_POST_TYPE): string {
+    return typeName.split('_').join(' ');
+  }
+
+  getMenuItems(post: I_POST): MenuItem[] {
+    return [
+      {
+        label: 'Edit',
+        icon: 'pi pi-pencil',
+        command: () => {
+          console.clear();
+          console.warn(post);
+        },
+      },
       {
         separator: true,
       },
       { label: 'Delete', icon: 'pi pi-trash', command: () => {} },
     ];
-  }
-
-  splitConnectionType(typeName: E_CONNECTION_TYPE | E_POST_TYPE): string {
-    return typeName.split('_').join(' ');
   }
 }

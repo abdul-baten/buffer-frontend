@@ -1,6 +1,7 @@
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
 import { format } from 'date-fns';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { SelectItem } from 'primeng/api';
@@ -14,7 +15,7 @@ export class ScheduleCalendarOptionsComponent {
   isWeb: Observable<boolean>;
   currentDate = format(new Date(), 'eeee, MMMM dd');
 
-  selectedCalendarView = 'dayGridMonth';
+  selectedCalendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
 
   calendarViewSelectionItems: SelectItem[] = [
     { label: 'Month', value: CALENDAR_VIEW.DAY_GRID_MONTH },
@@ -22,8 +23,12 @@ export class ScheduleCalendarOptionsComponent {
     { label: 'Day', value: CALENDAR_VIEW.TIME_GRID_DAY },
   ];
 
-  constructor(private scheduleFacade: ScheduleFacade) {
+  constructor(private readonly location: Location, private scheduleFacade: ScheduleFacade) {
     this.isWeb = this.scheduleFacade.isWeb();
+  }
+
+  backClicked(): void {
+    this.location.back();
   }
 
   onCalendarViewChanged(calendarViewSelection: any): void {

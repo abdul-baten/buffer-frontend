@@ -2,76 +2,72 @@
   <buffer--connection-header headerTitle="Connections"></buffer--connection-header>
 
   <section class="b-hs-wt-h b-of-h">
-    <mat-sidenav-container>
-      <mat-sidenav-content class="b-bg-white">
-        <div class="b-h-full">
-          <p-table #profilesTable [value]="connections$ | async" [filterDelay]="0" [loading]="loading$ | async"
-            [globalFilterFields]="['connectionName']" [showCurrentPageReport]="true">
-            <ng-template pTemplate="caption">
-              <div class="b-h-full p-d-flex p-ai-center p-jc-between p-p-2">
-                <span class="p-input-icon-left">
-                  <i class="pi pi-search"></i>
-                  <input type="text" pInputText placeholder="Search connection" autocomplete="off"
-                    (input)="profilesTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm">
-                </span>
-                <button pButton type="button" label="Add connection" class="p-button-plain p-button-text p-button-sm"
-                  (click)="navigateToPage(chooseConnectionPage)"></button>
+    <div class="b-h-full b-sidenav-content b-of-a">
+      <p-table #profilesTable [value]="connections$ | async" [filterDelay]="0" [loading]="loading$ | async"
+        [globalFilterFields]="['connectionName']" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+          <div class="p-grid p-justify-between p-align-center p-px-3 p-pt-2">
+            <div class="p-col-4">
+              <span class="p-input-icon-left b-w-full">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText placeholder="Search connection" autocomplete="off"
+                  (input)="profilesTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
+              </span>
+            </div>
+            <div class="p-col-3">
+              <button pButton type="button" label="Add connection" class="p-button-sm b-w-full"
+                (click)="navigateToPage(chooseConnectionPage)"></button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="body" let-connection>
+          <tr>
+            <td colspan="2">
+              <div class="b-h-full p-d-flex p-ai-center p-jc-start">
+                <div class="b-ca b-ca-lg p-mr-3">
+                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                    defaultImage="/assets/images/svg/default-media.svg"
+                    errorImage="/assets/images/svg/default-media.svg" />
+                  <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+                  </div>
+                </div>
+                <h6>{{ connection.connectionName }}</h6>
               </div>
-            </ng-template>
-            <ng-template pTemplate="body" let-connection>
-              <tr>
-                <td colspan="2">
-                  <div class="b-h-full p-d-flex p-ai-center p-jc-start">
-                    <div class="b-ca b-ca-lg p-mr-3">
-                      <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
-                        defaultImage="/assets/images/svg/default-media.svg"
-                        errorImage="/assets/images/svg/default-media.svg" />
-                      <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
-                      </div>
-                    </div>
-                    <h6>{{ connection.connectionName }}</h6>
+            </td>
+            <td></td>
+            <td>
+              <p>{{ connection.connectionCategory }}</p>
+            </td>
+            <td>
+              <button (click)="deleteConnection(connection)" class="p-button-sm p-button-text p-button-danger b-w-full"
+                label="Delete" pButton type="button">
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">
+              <div class="p-m-5">
+                <div class="b-h-full p-d-flex p-flex-column p-ai-center">
+                  <div class="buffer--height-32 buffer--width-32 p-text-center">
+                    <img src="/assets/images/svg/no-connection.svg" class="b-w-auto b-h-full" />
                   </div>
-                </td>
-                <td></td>
-                <td>
-                  <p>{{ connection.connectionCategory }}</p>
-                </td>
-                <td>
-                  <button (click)="deleteConnection(connection)"
-                    class="p-button-sm p-button-text p-button-danger b-w-full" label="Delete" pButton type="button">
-                  </button>
-                </td>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-              <tr>
-                <td colspan="4">
-                  <div class="p-m-5">
-                    <div class="b-h-full p-d-flex p-flex-column p-ai-center">
-                      <div class="buffer--height-32 buffer--width-32 p-text-center">
-                        <img src="/assets/images/svg/no-connection.svg" class="b-w-auto b-h-full" />
-                      </div>
-                      <div class="p-my-5 p-text-center">
-                        <h3>No connections found</h3>
-                        <p>When you connect, it'll show up here.</p>
-                      </div>
-                      <button pButton (click)="navigateToPage(chooseConnectionPage)"
-                        label="Connect Social Accounts"></button>
-                    </div>
+                  <div class="p-my-5 p-text-center">
+                    <h3>No connection found</h3>
+                    <p>When you connect, it'll show up here.</p>
                   </div>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </mat-sidenav-content>
-      <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode" [opened]="(isWeb$ | async)"
-        [fixedInViewport]="matSideNavFixedInViewport" [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-percent-20 buffer--border-color-light-gray">
-        <div class="b-h-full p-p-4">
-          <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
-        </div>
-      </mat-sidenav>
-    </mat-sidenav-container>
+                  <button pButton (click)="navigateToPage(chooseConnectionPage)"
+                    label="Connect Social Accounts"></button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="b-h-full p-p-4 b-sidenav">
+      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
+    </div>
   </section>
 </div>

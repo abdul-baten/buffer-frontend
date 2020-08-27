@@ -1,0 +1,24 @@
+<div *ngIf="(connections$ | async).length <= 8; else connectionsCarousel" class="p-d-flex">
+  <div [attr.area-selected]="isConnectionSelected(connection)" [title]="generateTooltip(connection)"
+    class="b-ca b-ca-md p-mr-2 b-post-cl" (click)="connectionSelected(connection)"
+    *ngFor="let connection of connections$ | async;">
+    <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+      defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+    <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+    </div>
+  </div>
+</div>
+
+<ng-template #connectionsCarousel>
+  <p-carousel [value]="connections$ | async" [numVisible]="8" [numScroll]="8">
+    <ng-template let-connection pTemplate="item">
+      <div [attr.area-selected]="isConnectionSelected(connection)" [title]="generateTooltip(connection)"
+        class="b-ca b-ca-md p-mr-2 b-post-cl" (click)="connectionSelected(connection)">
+        <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+          defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+        <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+</ng-template>

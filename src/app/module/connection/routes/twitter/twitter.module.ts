@@ -5,9 +5,6 @@ import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-side
 import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LoaderModule } from '@shared/module/loader/loader.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { NgModule } from '@angular/core';
 import { TwitterComponent } from './container/twitter.component';
 import { TwitterFacade } from './facade/twitter.facade';
@@ -16,18 +13,14 @@ import { TwitterService } from './service/twitter.service';
 @NgModule({
   declarations: [TwitterComponent],
   imports: [
+    ButtonModule,
     CommonModule,
     ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
-    LoaderModule,
-    MatButtonModule,
-    MatListModule,
-    MatSidenavModule,
-    TwitterRoutingModule,
-
     FieldsetModule,
-    ButtonModule,
     LazyLoadImageModule,
+    LoaderModule,
+    TwitterRoutingModule,
   ],
   providers: [TwitterFacade, TwitterService],
 })

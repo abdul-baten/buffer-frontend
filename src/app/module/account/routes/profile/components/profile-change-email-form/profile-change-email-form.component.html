@@ -1,17 +1,22 @@
-<div
-  class="b-bg-white buffer--padding-8 buffer--padding-bottom-0 buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
+<div class="p-px-6 p-pt-5 b-br b-br-sm">
   <form novalidate [formGroup]="profileChangeEmailForm">
     <div class="p-fluid p-grid">
       <div class="p-field p-col-12">
-        <label for="profileEmailAddress" class="buffer--font-size-sm p-text-bold">Current email address</label>
-        <input id="profileEmailAddress" type="text" pInputText formControlName="profileEmailAddress" />
+        <label for="profileEmailAddress">Current email</label>
+        <input id="profileEmailAddress" type="email" pInputText formControlName="profileEmailAddress" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileNewEmailAddress" class="buffer--font-size-sm p-text-bold">New email address</label>
-        <input id="profileNewEmailAddress" type="text" pInputText formControlName="profileNewEmailAddress" />
+        <label for="profileNewEmailAddress">New email</label>
+        <input id="profileNewEmailAddress" type="email" pInputText formControlName="profileNewEmailAddress" />
       </div>
       <div class="p-field p-col-12">
-        <button pButton type="button" label="Save" class="b-w-full"
+        <p-checkbox inputId="profileSentEmail" formControlName="profileSentEmail"></p-checkbox>
+        <label for="profileSentEmail" class="p-ml-2 p-mb-0">
+          Send email after posting to connections.
+        </label>
+      </div>
+      <div class="p-field p-col-12">
+        <button pButton type="button" label="Update email" class="b-w-full"
           [disabled]="profileChangeEmailForm.invalid"></button>
       </div>
     </div>

@@ -23,8 +23,7 @@
         <div class="clearfix">
           <mat-form-field class="b-w-full" appearance="fill">
             <input autocomplete="current-password" class="buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="fullName" matInput placeholder="Full name" type="text"
-              [errorStateMatcher]="errorStateMatcher" />
+              formControlName="fullName" matInput placeholder="Full name" type="text" />
             <mat-error align="end" *ngIf="signupForm.controls.fullName.invalid">Please enter a valid name.
             </mat-error>
           </mat-form-field>
@@ -33,8 +32,7 @@
         <div class="clearfix">
           <mat-form-field class="b-w-full" appearance="fill">
             <input type="text" matInput class="buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="email" autocomplete="current-password" placeholder="Work email" required
-              [errorStateMatcher]="errorStateMatcher" />
+              formControlName="email" autocomplete="current-password" placeholder="Work email" required />
             <mat-error align="end" *ngIf="signupForm.controls.email.invalid">Please enter a valid email.
             </mat-error>
           </mat-form-field>
@@ -42,11 +40,10 @@
 
         <div class="clearfix">
           <mat-form-field class="b-w-full" appearance="fill">
-            <input placeholder="Password" autocomplete="current-password" [type]="hidePassword ? 'password' : 'text'"
-              class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput
-              required [errorStateMatcher]="errorStateMatcher" />
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" tabindex="-1">
-              <i class="material-icons buffer--text-color-gray">{{ hidePassword ? 'visibility_off' : 'visibility' }}
+            <input placeholder="Password" autocomplete="current-password" type="password"
+              class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput />
+            <button mat-icon-button matSuffix tabindex="-1">
+              <i class="material-icons buffer--text-color-gray">
               </i>
             </button>
             <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Please enter a strong password.

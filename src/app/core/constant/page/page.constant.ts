@@ -101,13 +101,9 @@ const PAGES: I_PAGE = {
     PAGE_ROUTE: 'connection',
     PAGE_TITLE: 'Connection - Buffer',
     ROUTES: {
-      CONNECTION_NEW_PAGE: {
-        PAGE_ROUTE: 'new',
-        PAGE_TITLE: 'New Connection - Buffer',
-      },
       CONNECTION_CHOOSE_PAGE: {
         PAGE_ROUTE: 'choose',
-        PAGE_TITLE: 'Connect a New Social Account - Buffer',
+        PAGE_TITLE: 'Connect - Buffer',
       },
       CONNECTION_FB_PAGE: {
         PAGE_ROUTE: 'facebook-page',

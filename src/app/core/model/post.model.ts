@@ -14,9 +14,3 @@ export interface I_POST extends EventInput {
   postType: E_POST_TYPE;
   userID: string;
 }
-
-// tslint:disable-next-line
-export interface I_NEW_POST_MODAL_DATA {
-  activeConnectionID?: string;
-  postScheduledDateTime: Date;
-}

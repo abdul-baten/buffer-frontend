@@ -5,30 +5,15 @@ import { DashboardHeaderMenuComponent } from '@shared/module/header/dashboard-he
 import { DashboardHeaderService } from './service/dashboard-header.service';
 import { HeaderAccountModule } from '../header-account/header-account.module';
 import { LogoIconModule } from '@shared/module/logo/logo-icon/logo-icon.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MenuModule } from 'primeng/menu';
 import { NgModule } from '@angular/core';
+import { PanelMenuModule } from 'primeng/panelmenu';
 import { RouterModule } from '@angular/router';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
-import { SocialProfileListModule } from '@shared/module/social-profile/social-profile-list/social-profile-list.module';
-
-import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [DashboardHeaderComponent, DashboardHeaderMenuComponent],
-  imports: [
-    CommonModule,
-    HeaderAccountModule,
-    LogoIconModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatTooltipModule,
-    RouterModule,
-    SocialProfileAddModule,
-    SocialProfileListModule,
-    MenuModule,
-  ],
+  imports: [CommonModule, HeaderAccountModule, LogoIconModule, MenuModule, PanelMenuModule, RouterModule, SocialProfileAddModule],
   exports: [DashboardHeaderComponent],
   providers: [DashboardHeaderFacade, DashboardHeaderService],
 })

@@ -11,11 +11,21 @@ export class DashboardHeaderMenuComponent implements OnInit {
 
   ngOnInit() {
     this.menuItems = [
-      { label: 'Dashboard', icon: 'pi pi-fw pi-microsoft', routerLink: ['/dashboard'], routerLinkActiveOptions: { exact: true } },
-      { label: 'Schedule', icon: 'pi pi-fw pi-clock', routerLink: ['/schedule'] },
-      { label: 'Bucket', icon: 'pi pi-fw pi-refresh', routerLink: ['/bucket'] },
-      { label: 'Conversation', icon: 'pi pi-fw pi-comments', routerLink: ['/message'] },
-      { label: 'Analytics', icon: 'pi pi-fw pi-chart-line', routerLink: ['/analyze'] },
+      {
+        label: 'Dashboard',
+        icon: 'pi pi-fw pi-microsoft',
+        routerLink: ['/dashboard'],
+        routerLinkActiveOptions: { exact: true },
+      },
+      { label: 'Schedule', icon: 'pi pi-fw pi-clock', routerLink: ['/schedule/a'] },
+      { label: 'Connections', icon: 'pi pi-fw pi-sitemap', routerLink: ['/connection'] },
+      { label: 'Bucket', icon: 'pi pi-fw pi-inbox', routerLink: ['/bucket'] },
+      { label: 'Conversation', icon: 'pi pi-fw pi-comments', routerLink: ['/message'], routerLinkActiveOptions: { exact: true } },
+      {
+        label: 'Analytics',
+        icon: 'pi pi-fw pi-chart-line',
+        routerLink: ['/analyze'],
+      },
     ];
   }
 }

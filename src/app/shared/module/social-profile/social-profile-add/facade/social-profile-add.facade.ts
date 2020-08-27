@@ -1,20 +1,21 @@
-import { DialogService } from 'primeng/dynamicdialog';
+import { AppState } from 'src/app/reducers';
+import { format } from 'date-fns';
 import { Injectable } from '@angular/core';
-import { PostCreateModalComponent } from '@shared/module/modal/post-create-modal/container/post-create-modal.component';
+import { ModalService } from '@core/service/modal/modal.service';
+import { removeNewPostData } from 'src/app/actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class SocialProfileAddFacade {
-  constructor(private dialogService: DialogService) {}
+  constructor(private readonly modalService: ModalService, private store: Store<AppState>) {}
 
-  handleAddPostBtnClick(postScheduledDateTime: Date, activeConnectionID: string): void {
-    this.dialogService.open(PostCreateModalComponent, {
-      header: 'Create Post',
-      width: '550px',
-      contentStyle: { 'max-height': '600px', overflow: 'auto' },
-      data: {
-        postScheduledDateTime,
-        activeConnectionID,
-      },
+  handleAddPostBtnClick(postScheduleDateTime: Date): void {
+    const dialogRef = this.modalService.openPostModal('Create Post', {
+      postScheduleDateTime: format(new Date(postScheduleDateTime), `yyyy-MM-dd'T'HH:mm:ssxxx`),
+    });
+
+    dialogRef.onDestroy.subscribe(() => {
+      this.store.dispatch(removeNewPostData());
     });
   }
 }

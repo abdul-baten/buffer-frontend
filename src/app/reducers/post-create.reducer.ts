@@ -7,7 +7,7 @@ import {
   setNewPostData,
   setNewPostDate,
   setNewPostMedia,
-  setNewPostType,
+  setPostType,
   removeNewPostMedia,
   removeNewPostData,
   removeNewPostAllMedia,
@@ -34,7 +34,7 @@ const reducer = createReducer(
       postOriginalDate: formatISO(addMinutes(new Date(action.postOriginalDate), 15)),
     };
   }),
-  on(setNewPostType, (state: I_POST, action) => {
+  on(setPostType, (state: I_POST, action) => {
     return {
       ...state,
       postType: action.postType,

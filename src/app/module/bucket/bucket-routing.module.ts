@@ -12,7 +12,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: PAGES.BUCKET_SCHEDULED_PAGE.PAGE_ROUTE,
+        redirectTo: PAGES.BUCKET_SAVED_PAGE.PAGE_ROUTE,
       },
       {
         data: { title: PAGES.BUCKET_SCHEDULED_PAGE.PAGE_TITLE },
