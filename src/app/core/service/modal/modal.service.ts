@@ -15,7 +15,7 @@ export class ModalService {
     this.dialogRef = this.dialogService.open(PostModalComponent, {
       header,
       width: '550px',
-      contentStyle: { 'max-height': '600px', overflow: 'auto' },
+      contentStyle: { 'max-height': '650px', overflow: 'auto' },
       data: {
         postData,
       },

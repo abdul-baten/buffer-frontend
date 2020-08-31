@@ -1,17 +1,28 @@
-<div class="buffer--social-accounts-list p-d-flex p-jc-between p-ai-center">
-  <div *ngIf="isWeb | async" class="buffer--social-accounts-list p-d-flex p-jc-between p-ai-center">
-    <div class="clearfix buffer--height-10 buffer--width-10 p-ml-3"
+<div *ngIf="isWeb | async">
+  <div *ngIf="(connections$ | async).length <= 5; else connectionsCarousel" class="p-d-flex">
+    <div [ngClass]="{'b-tb-con-active': connection.id === (activeConnection$ | async)}" class="b-tb-con p-ml-2"
       *ngFor="let connection of connections$ | async; trackBy:trackByConnectionID">
-      <div [routerLink]="['/schedule', connection.id]" class="buffer--cursor-pointer buffer--outline-none"
-        [tooltip]="connection.connectionName" placement="bottom">
-        <img [lazyLoad]="connection.connectionPicture"
-          [ngClass]="{'buffer--box-shadow-outline': connection.id === (activeConnection$ | async)}"
-          class="b-w-full b-h-full buffer--border-radius-full" defaultImage="/assets/images/svg/default-media.svg"
-          errorImage="/assets/images/svg/default-media.svg" />
-        <div
-          [attr.class]="'clearfix b-ca-sl buffer--position-absolute buffer--border-radius-full b-ca-sl-' + connection.connectionType">
+      <div [title]="connection.connectionName" class="b-ca b-ca-md b-post-cl b-outline-none"
+        [routerLink]="['/schedule', connection.id]">
+        <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+          defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+        <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
         </div>
       </div>
     </div>
   </div>
+
+  <ng-template #connectionsCarousel>
+    <p-carousel [value]="connections$ | async" [numVisible]="5" [numScroll]="1">
+      <ng-template let-connection pTemplate="item">
+        <div [title]="connection.connectionName" class="b-ca b-ca-md b-post-cl"
+          [routerLink]="['/schedule', connection.id]">
+          <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+            defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+          <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </ng-template>
 </div>

@@ -1,66 +1,32 @@
-<div class="clearfix">
-  <div class="clearfix">
-    <div class="b-bg-white buffer--border-radius-lg buffer--padding-10">
-
-      <div class="clearfix">
-        <buffer--main-logo></buffer--main-logo>
+<div class="b-bg-white p-p-6 b-br-sm">
+  <form [formGroup]="signinForm" novalidate>
+    <div class="p-fluid p-formgrid">
+      <div class="p-field p-col-12">
+        <h1>Sign in</h1>
+        <h6 class="p-my-2 p-text-secondary">Sign in now to access the latest insights for your social media performance.
+        </h6>
       </div>
-
-      <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
-        <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
-          Sign in
-        </p>
+      <div class="p-field p-col-12">
+        <label for="email">Email Address</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="email" id="email" pInputText
+          type="email" />
       </div>
-
-
-      <div class="clearfix">
-        <form [formGroup]="signinForm" novalidate>
-          <div class="p-field buffer--margin-y-4">
-            <input class="b-w-full p-inputtext-lg" placeholder="Email address" type="email"
-              formControlName="email" pInputText />
-          </div>
-
-          <div class="p-field buffer--margin-y-4">
-            <input class="b-w-full p-inputtext-lg" placeholder="Password" type="password"
-              formControlName="password" pInputText />
-          </div>
-
-          <div class="clearfix buffer--margin-y-4">
-            <button class="b-w-full p-button-lg" pButton type="button" label="Sign in" (click)="login()"
-              [disabled]="signinForm.invalid"></button>
-          </div>
-        </form>
+      <div class="p-field p-col-12">
+        <label for="password">Password</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="password" id="password"
+          pInputText type="password" />
       </div>
-
-      <div
-        class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
-        <div class="clearfix buffer--text-align-center">
-          <p
-            class="buffer--text-color-dark-gray buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-none">
-            <span>Don't
-              have
-              an account? </span>
-            <span>
-              <a routerLink="/join" class="buffer--default-link">Sign up now for a 14-day free trial</a></span>
-          </p>
+      <div class="p-field p-col-12">
+        <button [disabled]="signinForm.invalid || formClicked" (click)="login()" class="b-w-full p-button-lg"
+          label="Sign in" pButton type="button"></button>
+      </div>
+      <div class="p-col-12 p-mt-6">
+        <div class="p-grid p-justify-center p-align-center">
+          <a routerLink="/join" class="p-text-bold">Forgotten password?</a>
+          <small class="b-text-sm pi pi-circle-on p-mx-2 p-text-secondary" style="font-size: 0.275rem"></small>
+          <a routerLink="/join" class="p-text-bold">Don't have an account?</a>
         </div>
       </div>
     </div>
-  </div>
-
-  <section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
-    <div
-      class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-center">
-      <div class="clearfix buffer--text-align-center">
-        <a routerLink="/forgot"
-          class="buffer--font-size-base buffer--font-family-sans-medium buffer--default-link">Forgot
-          your
-          password?</a>
-      </div>
-    </div>
-  </section>
-
-  <div class="clearfix" *ngIf="loading">
-    <buffer--loader></buffer--loader>
-  </div>
+  </form>
 </div>

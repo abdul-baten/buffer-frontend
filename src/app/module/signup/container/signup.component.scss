@@ -1,21 +1,6 @@
 :host {
+  background: rgb(240, 248, 255, 0.2);
   display: block;
-  overflow-x: hidden;
-  overflow-y: auto;
-  background: #f2f2f2
-    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAACvIAAAbkAQMAAAAZVobfAAAABlBMVEXCwsIAAAC21ptGAAAAAnRSTlP/AOW3MEoAAAozSURBVHgB7dixacBAFARRdabW3ZmM88WZEDe8uQ7ewQ/2up/30s/LvnwZ8OUrvv/Fl6/48uUrvnz5ii9f++TfU9PXfRBfvnzFl6/48uUrvnz5ii9f+6SNkq/7IL58+YovX77iy5ev+PIVX77dfdJGydd9EF++fMWXL1/x5ctXfPmKL9/uPmmj5Os+iC9fvuLLl6/48uUrvnzFl293n7RR8nUfxJcvX/Hly1d8+fIVX77iy7e7T9oo+boP4suXr/jy5Su+fPmKL1/x5dvcJ22UfN0H8eXLV3z58hVfvnzFl6/48m3vkzZKvu4DX/HlK758+YovX77iy5ev+Hb3SRslX/eBr/jyFV++fMWXL1/x5ctXfLv7pI2Sr/vAV3z5ii9fvuLLl6/48uUrvo190kbJ130QX758xZdvIb58+YovX77iy9c+aaPk6z6IL1++4suXr/jy5Su+fMWXr30ysFHydR/Ely9f8eXLV3z5ii9fvuLL1z4Z2Cj5ug/iy5ev+PIVX758xZcvX/Hla5+0UfJ1H8SXL1/x5ctXfPnyFV++4svXPhnYKPm6D+LLl6/48uUrvnzFly9f8eVrnwxslHzdB/Hly1d8+YovX77iy5ev+PK1T9oo+boP4suXr/jy5Su+fPmKL1/x5WufDGyUfN0H8eXLV3z58hVfvuLLl6/48rVPRjdKvu6D+PLlK758+YovX/Hly1d8+donbZR83Qe+4stXfPnyFV++fMWXL1/xtU/aKPm6D3zFly9f8eXLV3z5ii9fvt/Hl+/9VDdKvu6D+PLlK758xZcvX/Hly1d8+fK1UfLt3gfx5ctXfPmKL1++4suXr/jy5Wuj5Nu9D+LLl6/48hVfvnzFly9f8eXL10bJt3cfxJcvX/HlK758+YovX77iy5evjZKv+yC+fPmKL1++/fjyFV++fMWXL18bJd/ufRBfvnzFly9f8eUrvnz5ii9fvjZKvsH7IL58+YovX77iy1d8+fIVX758bZR8A77iy5ev+PIVX758xZcvX/Hly9dGybfrK758+YovX/Hly1d8+fIVX758bZR8u77iy5ev+PIVX758xZcvX/Hly9dGybfrK758+YovX/Hly1d8+fIVX758bZR8u77iy5ev+PIVX758xZcvX/Hly9dGybfrK758+YovX77iy1d8+fIVX758bZR8M77iy5ev+PIVX758xZcvX/Hly9dGydd9EF++fMWXL1/x5ctXfPmKL1++Nkq+AV/x5ctXfPnyFV++4suXr/jy5Wuj5JvxFV++fMWXL1/x5Su+fPmKL1++Nkq+AV/x5ctXfPmKL1++4suXr/jy5Wuj5MtXfPnyFV++fMWXL1/x5Su+fPnaKPnGfMWXL1/x5ctXfPmKL1++4suXr42Sr/vgPogvX/Hly1d8+fIVX758xZevhZLvyn0Ywnz5Hhhf8eXLV3z58hVfvnzFl699ku/IPjmU+fI9Mb58xZev+PLlK758+YovX/sk35F9ckjz5XtifPmKL1/x5ctXfPnyFV++9km+7sP+Lb58E/HlK758xZcvX/Hly1d8+don+boP+6f48hVfvuLLl6/48uUrvnz5quBrn+TrPmx1vnzFl6/48uUrvnz5ii9fvir42if52if348tXfPmKL1++4suXr/jy5auCr32Sr31yP758xZev+PLlK758+YovX74q+Non+don9+PLV3z5ii9fvuLLl6/48uWrgq99kq99cj++fMWXL1/x5Su+fPmKL1++KvjaJ/naJ/fjy1d8+fIVX77iy5ev+PLlq4KvfZKvfXI/vnzFly9f8eUrvnz5ii9fvir42if52if348tXfPnyFV++4suXr/jy5auCr32Sr31yP758xZcvX/HlK758+YovX74q+Non+don9+PLV3z58hVfvuLLl6/48uWrgq99kq99cj++fMWXL1/x5ctXfPmKL1++KvjaJ/naJ/fjy1d8+fIVX758xZev+PLlq4KvfZKvfXI/vnzFly9f8eXLV3z5ii9fvir42if52if348tXfPnyFV++fMWXr/jy5auCr32Sr31yP758xZcvX/Hly1d8+YovX74q+Non+don9+PLV3z58hVfvnzFl6/48uWrgq99kq99cj++fMWXL1/x5ctXfPnyFV++KvjaJ/naJ+fjy1d8+fIVX758xZcvX/HlK758+WYXypsvX/Hly1d8+fIVX758xZev+PLla6Pky/fA+PLlK758xZcvX/Hly1d8+fK1UfLlK758+YovX77iy5ev+PIVX758bZR8+Vbjy5ev+PLlK758+YovX/Hly9dGyZdvM758+YovX77iy5ev+PIVX758bZR8+dbiy5ev+PLlK758+YovX/Hly9dGyZdvIL58+YovX77iy1d8+fIVX758bZR8+boP4stXfPnyFV++fMWXL1/x5Wuj5Ms3EF++fMWXL1/x5ctXfPmKL1++Nkq+fJvx5ctXfPnyFV++fMWXr/jy5Wuj5Mu3GV++fMWXL1/x5ctXfPmKL1++Nkq+fJvx5ctXfPnyFV++fMWXr/jy5Wuj5Ms3GF++fMWXL1/x5ctXfPmKL1++Nkq+fN0H8eXLV3z5ii9fvuLLl6/48u1ulHz5ug/iy5ev+PIVX758xZcvX/HlW94o+fJ1H8SXL1/x5ctXfPmKL1++4su3ulHy5es+iC9fvuLLl6/48hVfvnzFl293o+TL130QX758xZcvX/HlK758+Yov3+5GyZev+yC+fPmKL1++4stXfPnyFV++3Y2SL1/3QXz58hVfvnzFl6/48uUrvny7GyVfvu6D+PLlK758+YovX/Hly1d8+UY3yosvX/dBfPnyFV++fMWXr/jy5Su+fL+uu0/ylfvAl6/48hVfvnzFly9f8eXLV919kq/cB758xZev+PLlK758+YovX77q7pN85T7w5Su+fMWXL1/x5ctXfPnyVXef5Cv3gS9f8eXLV3z5ii9fvuLLl6+6+yRfuQ98+YovX77iy1d8+fIVX7581d0n+cp94MtXfPnyFV++4suXr/jy5avuPslX7gNfvuLLl6/48hVfvnzFly9fdfdJvnIf+PIVX758xZev+PLlK758+co+2fWV+8CXr/jy5Su+fMWXL1/x5ctX9smur9wHvnzFly9f8eXLV3z5ii9fvrJPdn3lPvDlK758+YovX77iy1d8+fKVfbLrK/eBL1/x5ctXfPnyFV++4suXr+yTXV+5D3z5ii9fvuLLl6/48hVfvnxln+z6yn3gy1d8+fIVX758xZev+PLlK/skX/chHF++4suXr/jy5Su+fMWXL1/ZJ/l274P48hVfvnzFly9f8eXLV3z5yj7Jt3sfxJev+PLlK758+YovX77iy1f2Sb7d+yC+fMWXL1/x5ctXfPnyFV++sk/y7d4H8eUrvnz5ii9fvuLLl6/48pV9km/2PogvX/Hly1d8+fIVX758xZev7JN83Qfx5cs3HF++4suXr/jy5Su+fGWffNn3F3cHSvlvkXtUAAAAAElFTkSuQmCC)
-    0 0 no-repeat;
-
-  .buffer--signup-form-content {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100vh;
-    -webkit-box-align: center;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -webkit-box-pack: center;
-    align-items: center;
-    justify-content: center;
-  }
+  overflow: hidden;
+  position: relative;
 }

@@ -1,9 +1,10 @@
 :host {
+  display: block;
+  position: relative;
+
   ::ng-deep {
-    .buffer--header-menu-list-item {
-      &:hover {
-        background-color: #f2f2f2;
-      }
+    .p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a {
+      border-radius: 0 30px 30px 0;
     }
   }
 }

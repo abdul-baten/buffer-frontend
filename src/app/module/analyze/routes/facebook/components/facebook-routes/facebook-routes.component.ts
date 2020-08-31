@@ -1,12 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--facebook-routes',
-  templateUrl: './facebook-routes.component.html',
   styleUrls: ['./facebook-routes.component.scss'],
+  templateUrl: './facebook-routes.component.html',
 })
-export class FacebookRoutesComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class FacebookRoutesComponent {}

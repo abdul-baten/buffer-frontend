@@ -14,7 +14,7 @@ export class TypeComponent implements OnDestroy {
   typeForm: FormGroup;
   private subscriptions$ = new SubSink();
 
-  constructor(private stepper: MatStepper, private formBuilder: FormBuilder, private postCreateModalFacade: PostModalFacade) {
+  constructor(private formBuilder: FormBuilder, private postCreateModalFacade: PostModalFacade, private stepper: MatStepper) {
     this.typeForm = this.buildTypeForm();
 
     this.subscriptions$.add(

@@ -1,10 +1,9 @@
-import * as Highcharts from 'highcharts';
-import HC_Exporting from 'highcharts/modules/exporting';
-import HC_Exporting_D from 'highcharts/modules/export-data';
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { saveAs } from 'file-saver';
+import { utils, WorkBook, WorkSheet, write } from 'xlsx';
 
-HC_Exporting(Highcharts);
-HC_Exporting_D(Highcharts);
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,148 +12,99 @@ HC_Exporting_D(Highcharts);
   templateUrl: './analyze-chart.component.html',
 })
 export class AnalyzeChartComponent implements OnChanges {
-  @Input() chartType = '';
-  @Input() chartCaption = '';
-  @Input() chartTooltipHeaderFormat = '';
-  @Input() chartTooltipPointFormat = '';
-  @Input() chartLineColor = '';
+  @Input() chartBorderColor: string;
+  @Input() chartLineColor: string;
+  @Input() chartTitle: string;
+  @Input() chartType: string;
+  @Input() steppedLine: boolean;
 
-  Highcharts = Highcharts; // required
-  chartOptions = {
-    chart: {
-      type: 'line',
-      style: {
-        fontFamily: 'Buffer-Sans-Medium, Arial, sans-serif',
-      },
-    },
-    tooltip: {
-      backgroundColor: '#717171',
-      borderColor: '#717171',
-      borderRadius: 8,
-      borderWidth: 0,
-      shadow: false,
-      style: {
-        color: '#ffffff',
-        cursor: 'default',
-        fontSize: '0.875rem',
-        pointerEvents: 'none',
-        whiteSpace: 'nowrap',
-        padding: 16,
-      },
-      headerFormat: '',
-      pointFormat: '',
-      shared: true,
+  chartData: Record<string, any>;
+  chartOptions: Record<string, any> = {
+    title: {
+      display: false,
     },
     legend: {
-      enabled: false,
+      display: false,
     },
-    plotOptions: {
-      series: {
-        showInLegend: true,
-      },
+  };
+
+  excelData: any = [
+    {
+      eid: 'e101',
+      ename: 'ravi',
+      esal: 1000,
     },
-    series: [
-      {
-        data: [1, 2, 3, 1, 5],
-      },
-    ],
-    title: {
-      text: '',
-      align: 'left',
-      margin: 40,
-      className: 'buffer--cursor-pointer',
-      style: {
-        color: '#616061',
-        fontSize: '1rem',
-      },
+    {
+      eid: 'e102',
+      ename: 'ram',
+      esal: 2000,
     },
-    xAxis: {
-      gridLineColor: '#f2f2f2',
-      title: {
-        enabled: false,
-      },
+    {
+      eid: 'e103',
+      ename: 'rajesh',
+      esal: 3000,
     },
-    yAxis: {
-      gridLineColor: '#f2f2f2',
-      title: {
-        enabled: false,
-      },
-    },
-    colors: [''],
-    credits: {
-      enabled: false,
-    },
-    exporting: {
-      csv: {
-        dateFormat: '%Y-%m-%d',
-      },
-      chartOptions: {
-        chart: {
-          style: {
-            fontFamily: 'Buffer-Sans-Medium, Arial, sans-serif',
-          },
+  ];
+
+  constructor() {
+    this.chartData = {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
+      datasets: [
+        {
+          label: this.chartTitle,
+          data: [65, 59, 80, 81, 56, 55, 40],
+          backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+          borderWidth: 2,
+          fill: false,
+          orderCapStyle: 'round',
+          borderColor: '',
+          pointBorderColor: '',
+          pointBackgroundColor: '',
+          showLine: true,
+          spanGaps: false,
+          steppedLine: true,
+          // label: '2017',
+          // fill: true,
+          // lineTension: 0.3,
+          // backgroundColor: 'rgba(77, 193, 75, 0.4)',
+          // borderColor: 'rgba(44, 75, 255, 0.5)',
+          // borderCapStyle: 'butt',
+          // borderDash: [],
+          // borderDashOffset: 0.0,
+          // borderJoinStyle: 'miter',
+          // borderWidth: 1,
+          // pointBorderColor: 'rgba(44, 75, 255, 1)',
+          // pointBackgroundColor: '#fff',
+          // pointBorderWidth: 1,
+          // pointHoverRadius: 5,
+          // pointHoverBackgroundColor: 'rgba(44, 75, 255, 1)',
+          // pointHoverBorderColor: 'rgba(220,220,220,1)',
+          // pointHoverBorderWidth: 2,
+          // pointRadius: 1,
+          // pointHitRadius: 0,
         },
-      },
-      enabled: true,
-      buttons: {
-        contextButton: {
-          symbol: 'url(/assets/images/icon/save_alt.svg)',
-          className: 'buffer--cursor-pointer',
-          symbolSize: 36,
-          height: 40,
-          width: 40,
-          symbolX: 12.5, // The x position of the center of the symbol inside the button.
-          symbolY: 10.5,
-          theme: {
-            fill: '#ffffff',
-            stroke: '#ffffff',
-            states: {
-              hover: {
-                fill: '#ffffff',
-                stroke: '#ffffff',
-              },
-              select: {
-                fill: '#ffffff',
-                stroke: '#ffffff',
-              },
-            },
-          },
-          menuItems: [
-            {
-              text: 'Export chart (PDF)',
-              onclick() {
-                this.exportChart({
-                  type: 'application/pdf',
-                });
-              },
-            },
-            {
-              text: 'Export chart (PNG)',
-              onclick() {
-                this.exportChart();
-              },
-            },
-            {
-              text: 'Export chart (CSV)',
-              onclick() {
-                this.downloadCSV();
-              },
-            },
-          ],
-        },
-      },
-    },
-  }; // required
-  runOutsideAngular = true; // optional boolean, defaults to false
+      ],
+    };
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.chartOptions.title.text = this.chartCaption = changes.chartCaption.currentValue;
-    this.chartTooltipHeaderFormat = changes.chartTooltipHeaderFormat.currentValue;
-    this.chartTooltipPointFormat = changes.chartTooltipPointFormat.currentValue;
-    this.chartOptions.chart.type = this.chartType = changes.chartType.currentValue;
+    this.chartTitle = changes.chartTitle.currentValue;
+    this.chartType = changes.chartType.currentValue;
+    this.chartData.datasets[0].borderColor = changes.chartLineColor.currentValue;
+    this.chartData.datasets[0].pointBorderColor = changes.chartBorderColor.currentValue;
+    this.chartData.datasets[0].pointBackgroundColor = changes.chartBorderColor.currentValue;
+    this.chartData.datasets[0].steppedLine = changes.steppedLine.currentValue;
+  }
 
-    this.chartOptions.tooltip.headerFormat = `${this.chartTooltipHeaderFormat}<br>`;
-    this.chartOptions.tooltip.pointFormat = this.chartTooltipPointFormat;
-    this.chartOptions.colors = [changes.chartLineColor.currentValue];
+  private saveAsExcelFile(buffer: BlobPart, fileName: string): void {
+    const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
+    saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION, { autoBom: true });
+  }
+
+  exportToExcel(): void {
+    const worksheet: WorkSheet = utils.json_to_sheet(this.excelData);
+    const workbook: WorkBook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+    const excelBuffer = write(workbook, { bookType: 'xlsx', type: 'array' });
+    this.saveAsExcelFile(excelBuffer, this.chartTitle);
   }
 }

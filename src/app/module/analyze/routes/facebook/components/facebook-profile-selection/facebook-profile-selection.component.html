@@ -1,12 +1,6 @@
-<div class="clearfix">
-  <form [formGroup]="facebookProfileForm">
-    <mat-form-field class="b-w-full" appearance="fill" matTooltip="Profile"
-     >
-      <mat-select formControlName="facebookProfile" id="facebookProfile">
-        <mat-option *ngFor="let country of countries" [value]="country.name" [matTooltip]="country.name">
-          {{country.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
-</div>
+<p-dropdown [options]="countries" appendTo="body" styleClass="b-w-full p-inputtext-sm" placeholder="Connection"
+  [showClear]="true" [filter]="true">
+  <ng-template let-option pTemplate="item">
+    <small class="p-text-capitalize">{{option.label}}</small>
+  </ng-template>
+</p-dropdown>

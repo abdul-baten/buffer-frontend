@@ -10,6 +10,5 @@ import { PostModalFacade } from '../facade/post-modal.facade';
 export class PostModalComponent {
   constructor(public postInfo: DynamicDialogConfig, private postCreateModalFacade: PostModalFacade) {
     this.postCreateModalFacade.setNewPostData(postInfo.data.postData);
-    // this.postCreateModalFacade.setNewPostActiveConnectionID(this.newPostData.activeConnectionID);
   }
 }

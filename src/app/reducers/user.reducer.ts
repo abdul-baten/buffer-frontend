@@ -5,10 +5,6 @@ import { setUserInfo } from 'src/app/actions';
 const userFeatureKey = 'user';
 
 const userInitialState: I_USER = {
-  attribution: null,
-  businessType: null,
-  companyName: null,
-  companySize: null,
   createdAt: null,
   email: null,
   fullName: null,

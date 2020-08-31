@@ -8,13 +8,13 @@
       <form novalidate [formGroup]="postRescheduleForm">
         <div class="clearfix">
           <mat-form-field class="b-w-full buffer--font-family-sans-medium buffer--margin-top-3" appearance="fill">
-            <input [min]="currentDateTime" [owlDateTimeTrigger]="postDate" [owlDateTime]="postDate" autocomplete="off"
-              class="buffer--cursor-default" formControlName="postDate" id="postDate" matInput readonly type="text" />
-            <button matSuffix mat-icon-button [owlDateTimeTrigger]="postDate">
+            <input [min]="currentDateTime" autocomplete="off" class="buffer--cursor-default" formControlName="postDate"
+              id="postDate" matInput readonly type="text" />
+            <button matSuffix mat-icon-button>
               <i class="material-icons" matSuffix>timer</i>
             </button>
-            <owl-date-time #postDate [hideOtherMonths]="false" [hour12Timer]="true" [startAt]="currentDateTime"
-              [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel" readonly></owl-date-time>
+            <!-- <owl-date-time #postDate [hideOtherMonths]="false" [hour12Timer]="true" [startAt]="currentDateTime"
+              [stepMinute]="15" panelClass="buffer--dialog-bottom-sheet-custom-panel" readonly></owl-date-time> -->
           </mat-form-field>
         </div>
       </form>

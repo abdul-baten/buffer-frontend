@@ -69,14 +69,6 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   };
   handleWindowResize = false;
 
-  get firstDay(): Observable<number> {
-    return this.scheduleFacade.getCalendarFirstDay();
-  }
-
-  get showNonCurrentDates(): Observable<boolean> {
-    return this.scheduleFacade.getCalendarNonCurrentDates();
-  }
-
   businessHours = false;
   calendarWeekends = true;
   displayPostTime = false;
@@ -87,13 +79,11 @@ export class ScheduleCalendarViewComponent implements AfterViewInit, OnDestroy {
   slotEventOverlap = true;
 
   get scrollTime(): string {
-    // return format(roundToNearestMinutes(new Date(), { nearestTo: 30 }), 'HH:mm:ss');
     return format(subMinutes(new Date(), 5), 'HH:mm:ss');
   }
 
   get calendarPosts(): Observable<I_POST[]> {
     const calendarPosts: Observable<I_POST[]> = this.scheduleFacade.getPostsByConnectionID('5edacc7d95333ab27948ee36');
-
     return calendarPosts;
   }
 

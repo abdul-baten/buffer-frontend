@@ -3,141 +3,87 @@
     <div class="p-grid">
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Engaged Users" cardIcon="pi-users" cardCounter="0"
-          cardInfoTitle="Total Engaged Users" cardIconColor="primary-300">
+          cardInfoTitle="Total Engaged Users" cardIconColor="primary">
         </buffer--analyze-card>
       </div>
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Post Impressions" cardIcon="pi-eye" cardCounter="0"
-          cardInfoTitle="Total Post Impressions" cardIconColor="accent-300">
+          cardInfoTitle="Total Post Impressions" cardIconColor="secondary">
         </buffer--analyze-card>
       </div>
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Reactions" cardIcon="pi-thumbs-up" cardCounter="0"
-          cardInfoTitle="Total Reactions" cardIconColor="warn-300">
+          cardInfoTitle="Total Reactions" cardIconColor="success">
         </buffer--analyze-card>
       </div>
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Link Clicks" cardIcon="pi-paperclip" cardCounter="0"
-          cardInfoTitle="Total Link Clicks" cardIconColor="warn-300">
+          cardInfoTitle="Total Link Clicks" cardIconColor="help">
         </buffer--analyze-card>
       </div>
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="New Fans" cardIcon="pi-user-plus" cardCounter="0"
-          cardInfoTitle="Total New Fans" cardIconColor="primary-300">
+          cardInfoTitle="Total New Fans" cardIconColor="info">
         </buffer--analyze-card>
       </div>
       <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
         <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Posts" cardIcon="pi-copy" cardCounter="0"
-          cardInfoTitle="Total Posts" cardIconColor="accent-300">
+          cardInfoTitle="Total Posts" cardIconColor="warning">
         </buffer--analyze-card>
       </div>
     </div>
 
-
-    <div class="clearfix buffer--height-5"></div>
-
-
-    <div class="clearfix">
-      <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Total Fans" chartType="line"
-            chartLineColor="#657ceb" chartTooltipHeaderFormat="{point.x:.1f}" chartTooltipPointFormat="{point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Posts" chartType="column"
-            chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
-            chartTooltipPointFormat="Total fans gained: {point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-
-    <div class="clearfix buffer--height-5"></div>
-
-    <div class="clearfix">
-      <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Engagements" chartType="line"
-            chartLineColor="#657ceb" chartTooltipHeaderFormat="{point.x:.1f}" chartTooltipPointFormat="{point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Post Impressions" chartType="line"
-            chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
-            chartTooltipPointFormat="Total fans gained: {point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-
-    <div class="clearfix buffer--height-5"></div>
-
-    <div class="clearfix">
-      <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Post Reach" chartType="column"
-            chartLineColor="#657ceb" chartTooltipHeaderFormat="{point.x:.1f}" chartTooltipPointFormat="{point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Link Clicks" chartType="line"
-            chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
-            chartTooltipPointFormat="Total fans gained: {point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-
-    <div class="clearfix buffer--height-5"></div>
-
-    <div class="clearfix">
-      <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Fan Growth" chartType="line"
-            chartLineColor="#657ceb" chartTooltipHeaderFormat="{point.x:.1f}" chartTooltipPointFormat="{point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Reactions" chartType="line"
-            chartLineColor="#fd7b53" chartTooltipHeaderFormat="{point.x:.1f}"
-            chartTooltipPointFormat="Total fans gained: {point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-
-    <div class="clearfix buffer--height-5"></div>
-
-    <div class="clearfix">
-      <mat-grid-list cols="2" gutterSize="1.25rem" rowHeight="430">
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Shares" chartType="line"
-            chartLineColor="#657ceb" chartTooltipHeaderFormat="{point.x:.1f}" chartTooltipPointFormat="{point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-
-        <mat-grid-tile
-          class="buffer--border-width buffer--border-style-solid buffer--border-color-light-gray buffer--border-radius-lg">
-          <buffer--analyze-chart class="b-w-full b-h-full" chartCaption="Comments" chartType="line"
-            chartLineColor="#616061" chartTooltipHeaderFormat="{point.x:.1f}"
-            chartTooltipPointFormat="Total fans gained: {point.y}">
-          </buffer--analyze-chart>
-        </mat-grid-tile>
-      </mat-grid-list>
+    <div class="p-grid">
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Total Fans" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="false">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Posts" chartType="bar"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Engagements" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Post Impressions" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Post Reach" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Link Clicks" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Fan Growth" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Reactions" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Shares" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
+      <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+        <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Comments" chartType="line"
+          chartLineColor="rgba(44, 75, 255, 0.4)" chartBorderColor="rgba(44, 75, 255, 1)" [steppedLine]="true">
+        </buffer--analyze-chart>
+      </div>
     </div>
   </div>
 </section>

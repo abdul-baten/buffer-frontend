@@ -1,5 +1,4 @@
 import { ButtonModule } from 'primeng/button';
-import { CalendarSettingsModalModule } from '@shared/module/modal/calendar-settings-modal/calendar-settings-modal.module';
 import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 import { EffectsModule } from '@ngrx/effects';
@@ -52,7 +51,6 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     ScheduleHeaderComponent,
   ],
   imports: [
-    CalendarSettingsModalModule,
     CommonModule,
     DashboardHeaderModule,
     FullCalendarModule,

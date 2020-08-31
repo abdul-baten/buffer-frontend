@@ -3,6 +3,7 @@ import { CommonValidator } from '@core/validation/common.validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_USER } from '@core/model';
+import { noop } from 'rxjs';
 import { PasswordValidator } from '@core/validation/password.validation';
 import { setUserInfo } from 'src/app/actions';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
@@ -15,10 +16,10 @@ import { tap } from 'rxjs/operators';
   templateUrl: './signup-form.component.html',
 })
 export class SignupFormComponent {
-  hideConfirmPassword = true;
+  formClicked = false;
   signupForm: FormGroup;
 
-  constructor(private signupFacade: SignupFacade, private formBuilder: FormBuilder, private store: Store<AppState>) {
+  constructor(private formBuilder: FormBuilder, private signupFacade: SignupFacade, private store: Store<AppState>) {
     this.signupForm = this.buildSignupForm();
   }
 
@@ -40,14 +41,19 @@ export class SignupFormComponent {
     });
   }
 
-  handleSignup(): void {
+  signUp(): void {
     if (this.signupForm.valid) {
+      this.formClicked = true;
       this.signupFacade
         .signupUser(this.signupForm.value)
-        .pipe(tap((user: I_USER) => this.store.dispatch(setUserInfo({ user }))))
-        .subscribe(() => {
-          this.signupFacade.navigateToPage('/join/onboard');
-        });
+        .pipe(
+          tap((user: I_USER) => {
+            this.store.dispatch(setUserInfo({ user }));
+            this.signupFacade.navigate('/dashboard');
+            this.signupForm.reset();
+          }),
+        )
+        .subscribe(noop);
     }
   }
 }

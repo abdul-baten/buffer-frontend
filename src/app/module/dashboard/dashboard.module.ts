@@ -12,11 +12,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
-import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
 import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
-
-import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 @NgModule({
   declarations: [
@@ -34,10 +31,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     FieldsetModule,
     LazyLoadImageModule,
     MatTableModule,
-    PostModalModule,
     SocialProfileAddModule,
     SocialProfileToolbarModule,
-    ScrollPanelModule,
   ],
   providers: [DashboardFacade],
 })

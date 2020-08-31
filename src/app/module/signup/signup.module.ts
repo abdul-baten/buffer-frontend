@@ -1,32 +1,18 @@
 import { AuthService } from '@core/service/auth/auth.service';
+import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
 import { MainLogoModule } from '@shared/module/logo/main-logo/main-logo.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
-import { OnboardComponent } from './components/onboard/onboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SignupComponent } from '@app/signup/container/signup.component';
 import { SignupFacade } from '@app/signup/facade/signup.facade';
 import { SignupFormComponent } from '@app/signup/components/signup-form/signup-form.component';
 import { SignupRoutingModule } from '@app/signup/signup-routing.module';
-
 @NgModule({
-  declarations: [SignupComponent, SignupFormComponent, OnboardComponent],
-  imports: [
-    CommonModule,
-    MainLogoModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    RouterModule,
-    SignupRoutingModule,
-  ],
+  declarations: [SignupComponent, SignupFormComponent],
+  imports: [ButtonModule, CommonModule, InputTextModule, FormsModule, MainLogoModule, ReactiveFormsModule, RouterModule, SignupRoutingModule],
   providers: [SignupFacade, AuthService],
 })
 export class SignupModule {}

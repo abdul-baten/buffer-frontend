@@ -1,4 +1,4 @@
-import { E_ATTRIBUTION, E_BUSINESS_TYPE, E_COMPANY_SIZE, E_SUBSCRIPTION_PLAN } from '@core/enum';
+import { E_SUBSCRIPTION_PLAN } from '@core/enum';
 
 // tslint:disable-next-line
 export interface I_SUBSCRIPTION {
@@ -12,10 +12,6 @@ export interface I_SUBSCRIPTION {
 // tslint:disable-next-line
 export interface I_USER {
   id: string;
-  attribution: E_ATTRIBUTION;
-  businessType: E_BUSINESS_TYPE;
-  companyName: string;
-  companySize: E_COMPANY_SIZE;
   createdAt: Date;
   email: string;
   fullName: string;

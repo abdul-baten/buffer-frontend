@@ -1,5 +1,4 @@
 import { Calendar } from '@fullcalendar/core';
-import { CalendarSettingsModalComponent } from '@shared/module/modal/calendar-settings-modal/container/calendar-settings-modal.component';
 import { CalViewState } from '../model/calendar.model';
 import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
 import { format } from 'date-fns';
@@ -18,8 +17,6 @@ import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedu
 import { PostService } from '@core/service/post/post.service';
 import { removeNewPostData } from 'src/app/actions';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { selectCalendarFirstDay, selectCalendarNonCurrentDates } from '../selector/schedule.selector';
-import { setCalendarFirstDay, setCalendarNonCurrentDates } from '@app/schedule/action/calendar.action';
 import { Store } from '@ngrx/store';
 
 @Injectable()
@@ -102,26 +99,7 @@ export class ScheduleFacade {
     this.snackbarService.openSnackBar(message);
   }
 
-  handleCalendarSettingsDialogOpen(): void {
-    this.matDialog.open(CalendarSettingsModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-      width: '450px',
-      role: 'dialog',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
-    });
-  }
+  handleCalendarSettingsDialogOpen(): void {}
 
   handlePostDetailsDialogOpen(postInfo: I_POST): void {
     this.matDialog.open(PostDetailsModalComponent, {
@@ -209,22 +187,6 @@ export class ScheduleFacade {
       panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
       backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
-  }
-
-  setCalendarFirstDay(firstDay: number): void {
-    this.store.dispatch(setCalendarFirstDay({ firstDay }));
-  }
-
-  setCalendarNonCurrentDates(showNonCurrentDates: boolean): void {
-    this.store.dispatch(setCalendarNonCurrentDates({ showNonCurrentDates }));
-  }
-
-  getCalendarFirstDay(): Observable<number> {
-    return this.store.select(selectCalendarFirstDay);
-  }
-
-  getCalendarNonCurrentDates(): Observable<boolean> {
-    return this.store.select(selectCalendarNonCurrentDates);
   }
 
   isWeb(): Observable<boolean> {

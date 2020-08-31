@@ -11,10 +11,10 @@ import { SigninFacade } from '@app/signin/facade/signin.facade';
   templateUrl: './signin-form.component.html',
 })
 export class SigninFormComponent {
-  loading = false;
+  formClicked = false;
   signinForm: FormGroup;
 
-  constructor(private signinFacade: SigninFacade, private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private signinFacade: SigninFacade) {
     this.signinForm = this.buildSigninForm();
   }
 
@@ -36,15 +36,20 @@ export class SigninFormComponent {
   }
 
   login(): void {
-    this.loading = true;
+    this.formClicked = true;
     const { email, password } = this.signinForm.value;
     this.signinFacade
       .loginUser(email, password)
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe(() => this.signinFacade.navigateToPage('/dashboard'));
+      .pipe(
+        finalize(() => {
+          this.signinForm.reset();
+          this.formClicked = false;
+        }),
+      )
+      .subscribe(() => this.signinFacade.navigate('/dashboard'));
   }
 
   handleAuthNavigateBtn(authURL: string): void {
-    this.signinFacade.navigateToPage(authURL);
+    this.signinFacade.navigate(authURL);
   }
 }

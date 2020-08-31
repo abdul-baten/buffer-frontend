@@ -1,5 +1,18 @@
-<div class="clearfix b-w-full b-h-full buffer--padding-5">
-  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [runOutsideAngular]="runOutsideAngular"
-    class="b-h-full">
-  </highcharts-chart>
-</div>
+<p-fieldset class="b-w-full b-h-full">
+  <p-header>
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <i class="p-mr-2 b-ci pi pi-chart-line b-text-primary"></i>
+      <h5>{{ chartTitle }}</h5>
+    </div>
+  </p-header>
+
+  <div class="p-d-flex p-flex-column">
+    <div class="p-d-flex p-jc-end">
+      <button (click)="exportToExcel()" pButton title="Export as PNG" type="button" icon="pi pi-image"
+        class="p-button-plain p-button-rounded p-button-text p-ml-2"></button>
+      <button (click)="exportToExcel()" pButton title="Export as Excel" type="button" icon="pi pi-table"
+        class="p-button-plain p-button-rounded p-button-text p-ml-2"></button>
+    </div>
+    <p-chart [data]="chartData" [type]="chartType" [options]="chartOptions" class="p-mt-5"></p-chart>
+  </div>
+</p-fieldset>

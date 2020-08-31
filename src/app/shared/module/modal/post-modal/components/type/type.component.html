@@ -1,45 +1,46 @@
-<section id="schedule-create-form-content-sec" class="schedule-create-form-content-sec">
-  <form class="buffer--padding-y-3 buffer--padding-x-1" [formGroup]="typeForm" novalidate>
-    <div class="clearfix b-w-full">
-      <mat-radio-group formControlName="postType" (change)="typeSelected()">
-        <div class="p-grid">
-          <div class="p-col-12 p-md-4 p-lg-4">
-            <mat-radio-button value="text">
-              <div class="p-grid p-dir-col">
-                <div class="p-col p-text-center">
-                  <i class="pi pi-align-center icon-font-size buffer--text-color-blue-500"></i>
-                  <p class="p-text-bold buffer--margin-top-2">Status</p>
+<section>
+  <form [formGroup]="typeForm" novalidate>
+    <div class="p-fluid p-formgrid">
+      <div class="p-col-12">
+        <mat-radio-group formControlName="postType" (change)="typeSelected()">
+          <div class="p-grid">
+            <div class="p-col-12 p-md-4 p-lg-4">
+              <mat-radio-button value="text">
+                <div class="p-grid p-dir-col">
+                  <div class="p-col p-text-center">
+                    <i class="pi pi-align-center icon-font-size b-text-primary"></i>
+                    <p class="p-text-bold p-mt-2">Status</p>
+                  </div>
                 </div>
-              </div>
-            </mat-radio-button>
-          </div>
-          <div class="p-col-12 p-md-4 p-lg-4">
-            <mat-radio-button value="image">
-              <div class="p-grid p-dir-col">
-                <div class="p-col p-text-center">
-                  <i class="pi pi-images icon-font-size buffer--text-color-primary-500"></i>
-                  <p class="p-text-bold buffer--margin-top-2">Image</p>
+              </mat-radio-button>
+            </div>
+            <div class="p-col-12 p-md-4 p-lg-4">
+              <mat-radio-button value="image">
+                <div class="p-grid p-dir-col">
+                  <div class="p-col p-text-center">
+                    <i class="pi pi-images icon-font-size b-text-help"></i>
+                    <p class="p-text-bold p-mt-2">Image</p>
+                  </div>
                 </div>
-              </div>
-            </mat-radio-button>
-          </div>
-          <div class="p-col-12 p-md-4 p-lg-4">
-            <mat-radio-button value="video">
-              <div class="p-grid p-dir-col">
-                <div class="p-col p-text-center">
-                  <i class="pi pi-video icon-font-size buffer--text-color-accent-500"></i>
-                  <p class="p-text-bold buffer--margin-top-2">Video</p>
+              </mat-radio-button>
+            </div>
+            <div class="p-col-12 p-md-4 p-lg-4">
+              <mat-radio-button value="video">
+                <div class="p-grid p-dir-col">
+                  <div class="p-col p-text-center">
+                    <i class="pi pi-video icon-font-size b-text-info"></i>
+                    <p class="p-text-bold p-mt-2">Video</p>
+                  </div>
                 </div>
-              </div>
-            </mat-radio-button>
+              </mat-radio-button>
+            </div>
           </div>
-        </div>
-      </mat-radio-group>
+        </mat-radio-group>
+      </div>
+      <div class="p-col-12">
+        <button pButton type="button" label="Continue" class="b-w-full" (click)="continue()"
+          [disabled]="typeForm.invalid"></button>
+      </div>
     </div>
   </form>
-</section>
-
-<section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
-  <button pButton type="button" label="Continue" class="b-w-full" (click)="continue()"
-    [disabled]="typeForm.invalid"></button>
 </section>

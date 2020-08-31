@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'buffer--analyze-top-toolbar',
-  templateUrl: './analyze-top-toolbar.component.html',
   styleUrls: ['./analyze-top-toolbar.component.scss'],
+  templateUrl: './analyze-top-toolbar.component.html',
 })
-export class AnalyzeTopToolbarComponent implements OnInit {
-  constructor() {}
+export class AnalyzeTopToolbarComponent {
+  constructor(private location: Location) {}
 
-  ngOnInit() {}
+  backClicked(): void {
+    this.location.back();
+  }
 }

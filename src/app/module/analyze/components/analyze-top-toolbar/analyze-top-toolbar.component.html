@@ -1,5 +1,11 @@
-<div
-  class="b-w-full b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center">
-  <h2>Analyze</h2>
+<div class="b-w-full b-h-full p-d-flex p-jc-between p-ai-center">
+  <div class="p-d-flex p-ai-center">
+    <div class="b-br-r p-mr-3">
+      <button class="p-button-sm p-button-rounded p-button-text p-button-plain p-mr-3" (click)="backClicked()"
+        icon="pi pi-arrow-left" pButton title="Back" type="button"></button>
+    </div>
+    <h3>Analyze</h3>
+  </div>
+
   <buffer--analyze-top-routes></buffer--analyze-top-routes>
 </div>

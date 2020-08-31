@@ -1,4 +1,10 @@
 :host {
   position: relative;
   display: block;
+
+  ::ng-deep {
+    .p-carousel-indicators {
+      display: none;
+    }
+  }
 }

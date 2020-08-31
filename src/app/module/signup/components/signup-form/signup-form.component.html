@@ -1,93 +1,38 @@
-<div class="clearfix">
-  <div class="b-bg-white buffer--border-radius-lg buffer--padding-10">
-
-    <div class="clearfix">
-      <buffer--main-logo></buffer--main-logo>
-    </div>
-
-
-    <div class="clearfix buffer--margin-top-10 buffer--margin-bottom-5">
-      <p class="buffer--font-family-sans-medium buffer--font-size-2xl buffer--line-height-leading-normal">
-        Try free
-      </p>
-      <p
-        class="buffer--text-color-dark-gray buffer--font-family-sans-medium buffer--font-size-base buffer--line-height-leading-normal">
-        Continue to
-        grow</p>
-    </div>
-
-
-    <div class="clearfix">
-      <form [formGroup]="signupForm" novalidate>
-
-        <div class="clearfix">
-          <mat-form-field class="b-w-full" appearance="fill">
-            <input autocomplete="current-password" class="buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="fullName" matInput placeholder="Full name" type="text" />
-            <mat-error align="end" *ngIf="signupForm.controls.fullName.invalid">Please enter a valid name.
-            </mat-error>
-          </mat-form-field>
+<div class="b-bg-white p-p-6 b-br-sm">
+  <form [formGroup]="signupForm" novalidate>
+    <div class="p-fluid p-formgrid">
+      <div class="p-field p-col-12">
+        <h1>Join Buffer</h1>
+        <h6 class="p-my-2 p-text-secondary">Start your 14 day free trial. No credit card required.
+        </h6>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="fullName">Full Name</label>
+        <input pInputText type="text" autocomplete="new-password" class="b-w-full p-inputtext-lg"
+          formControlName="fullName" id="fullName" />
+        <small>Letters, numbers and space only</small>
+      </div>
+      <div class="p-field p-col-12">
+        <label for="email">Work Email</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="email" id="email" pInputText
+          type="email" />
+      </div>
+      <div class="p-field p-col-12">
+        <label for="password">Password</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="password" id="password"
+          pInputText type="password" />
+        <small>8 characters minimum with a mix of letters, numbers &
+          symbols</small>
+      </div>
+      <div class="p-field p-col-12">
+        <button [disabled]="signupForm.invalid || formClicked" (click)="signUp()" class="b-w-full p-button-lg"
+          label="Sign up" pButton type="button"></button>
+      </div>
+      <div class="p-col-12 p-mt-6">
+        <div class="p-grid p-justify-center p-align-center">
+          <a routerLink="/enter" class="p-text-bold">Already have an account?</a>
         </div>
-
-        <div class="clearfix">
-          <mat-form-field class="b-w-full" appearance="fill">
-            <input type="text" matInput class="buffer--font-family-sans-medium buffer--cursor-default"
-              formControlName="email" autocomplete="current-password" placeholder="Work email" required />
-            <mat-error align="end" *ngIf="signupForm.controls.email.invalid">Please enter a valid email.
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="clearfix">
-          <mat-form-field class="b-w-full" appearance="fill">
-            <input placeholder="Password" autocomplete="current-password" type="password"
-              class="buffer--font-family-sans-medium buffer--cursor-default" formControlName="password" matInput />
-            <button mat-icon-button matSuffix tabindex="-1">
-              <i class="material-icons buffer--text-color-gray">
-              </i>
-            </button>
-            <mat-error align="end" *ngIf="signupForm.controls.password.invalid">Please enter a strong password.
-            </mat-error>
-          </mat-form-field>
-        </div>
-
-
-        <div class="clearfix">
-          <button color="primary" mat-flat-button [disabled]="signupForm.invalid" (click)="handleSignup()"
-            class="b-w-full buffer--height-14 buffer--font-family-sans-medium buffer--font-size-base">
-            Try free for 14 days
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <div
-      class="buffer--padding-top-5 buffer--padding-x-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center">
-      <div class="clearfix buffer--text-align-center">
-        <p
-          class="buffer--text-color-dark-gray buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-none">
-          <span>By continuing, you
-            agree to </span>
-          <span>Buffer's
-            <a href="javascript:void(0)" class="buffer--default-link">Terms of Service</a>, <a href="javascript:void(0)"
-              class="buffer--default-link">Privacy policy</a>.</span>
-        </p>
       </div>
     </div>
-
-  </div>
+  </form>
 </div>
-
-
-<section id="schedule-create-form-footer-sec" class="schedule-create-form-footer-sec">
-  <div
-    class="buffer--padding-top-5 buffer--display-flex buffer--display-flex-direction-row buffer--align-items-center buffer--flex-justify-content-center">
-    <div class="clearfix">
-
-    </div>
-    <div class="clearfix">
-      <a routerLink="/enter" class="buffer--font-size-base buffer--font-family-sans-medium buffer--default-link">Have
-        an account? Login</a>
-    </div>
-  </div>
-</section>

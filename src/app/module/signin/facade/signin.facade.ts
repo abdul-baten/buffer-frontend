@@ -10,7 +10,7 @@ import { UserService } from '@core/service/user/user.service';
 export class SigninFacade {
   constructor(private readonly authService: AuthService, private readonly router: Router, private readonly userService: UserService) {}
 
-  navigateToPage(authURL: string): void {
+  navigate(authURL: string): void {
     this.router.navigateByUrl(authURL);
   }
 

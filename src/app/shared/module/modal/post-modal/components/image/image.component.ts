@@ -14,8 +14,8 @@ import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--image',
-  templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
+  templateUrl: './image.component.html',
 })
 export class ImageComponent implements OnInit, OnDestroy {
   currentDateTime: Date;

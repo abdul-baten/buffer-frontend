@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--facebook-top-toolbar',
-  templateUrl: './facebook-top-toolbar.component.html',
   styleUrls: ['./facebook-top-toolbar.component.scss'],
+  templateUrl: './facebook-top-toolbar.component.html',
 })
 export class FacebookTopToolbarComponent {}

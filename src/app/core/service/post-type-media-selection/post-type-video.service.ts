@@ -26,7 +26,7 @@ export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
       itemInsertLocation: 'after',
       labelFileProcessingAborted: 'Cancelled',
       labelFileProcessingComplete: 'Uploaded',
-      labelIdle: '<p class="buffer--font-family-lars-regular">Drag & drop or <span class="filepond--label-action">Browse</span> a video</p>',
+      labelIdle: '<p><span class="filepond--label-action">Upload a video</span> or drag and drop here</p>',
       labelMaxFileSize: 'Maximum upload file size is {filesize}',
       labelMaxFileSizeExceeded: 'Media is too large.',
       labelTapToCancel: 'Click to Cancel upload.',

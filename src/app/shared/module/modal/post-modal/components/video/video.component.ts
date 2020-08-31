@@ -14,8 +14,8 @@ import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--video',
-  templateUrl: './video.component.html',
   styleUrls: ['./video.component.scss'],
+  templateUrl: './video.component.html',
 })
 export class VideoComponent implements OnInit, OnDestroy {
   currentDateTime: Date;

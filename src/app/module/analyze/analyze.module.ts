@@ -3,6 +3,7 @@ import { AnalyzeFacade } from './facade/analyze.facade';
 import { AnalyzeRoutingModule } from './analyze-routing.module';
 import { AnalyzeTopRoutesComponent } from './components/analyze-top-routes/analyze-top-routes.component';
 import { AnalyzeTopToolbarComponent } from './components/analyze-top-toolbar/analyze-top-toolbar.component';
+import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,7 @@ import { SocialProfileToolbarModule } from '@shared/module/social-profile/social
 
 @NgModule({
   declarations: [AnalyzeComponent, AnalyzeTopToolbarComponent, AnalyzeTopRoutesComponent],
-  imports: [AnalyzeRoutingModule, CommonModule, DashboardHeaderModule, RouterModule, SocialProfileToolbarModule],
+  imports: [AnalyzeRoutingModule, ButtonModule, CommonModule, DashboardHeaderModule, RouterModule, SocialProfileToolbarModule],
   providers: [AnalyzeFacade],
 })
 export class AnalyzeModule {}
