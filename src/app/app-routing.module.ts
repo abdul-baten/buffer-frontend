@@ -13,6 +13,13 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
   },
   {
+    path: 'auction',
+    data: { title: PAGES.LANDING_PAGE.PAGE_TITLE },
+    loadChildren: () => import('./module/auction/auction.module').then(m => m.AuctionModule),
+    resolve: { documentData: DocumentResolver },
+    runGuardsAndResolvers: 'always',
+  },
+  {
     path: PAGES.SIGN_IN_PAGE.PAGE_ROUTE,
     data: { title: PAGES.SIGN_IN_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/signin/signin.module').then(m => m.SigninModule),

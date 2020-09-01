@@ -1,16 +1,13 @@
-<div class="clearfix">
-  <div class="b-bg-white buffer--padding-y-5">
-    <div class="buffer--container buffer--display-flex buffer--align-items-center">
-      <div class="buffer--width-percent-33 buffer--float-left">
-        <div class="buffer--padding-y-1">
-          <buffer--main-logo></buffer--main-logo>
-        </div>
-      </div>
-      <div class="buffer--width-percent-66 buffer--float-right">
-        <div class="buffer--padding-y-1">
-          <buffer--menu></buffer--menu>
-        </div>
-      </div>
-    </div>
+<div class="p-d-flex p-jc-between p-ai-center">
+  <div class="p-d-flex p-jc-start p-ai-center">
+    <buffer--main-logo class="p-mr-6"></buffer--main-logo>
+    <h5 (click)="navigateToSignupPage('auction')" class="b-h-full p-mx-3 b-cursor-pointer">Features</h5>
+    <h5 (click)="navigateToSignupPage('auction')" class="b-h-full p-mx-3 b-cursor-pointer">Pricing</h5>
+    <h5 (click)="navigateToSignupPage('auction')" class="b-h-full p-mx-3 b-cursor-pointer">Support</h5>
+  </div>
+  <div class="p-d-flex p-jc-end p-ai-center">
+    <button pButton (click)="navigateToSignupPage('enter')" class="p-mx-2 p-button-text p-px-6"
+      label="Sign in"></button>
+    <button pButton (click)="navigateToSignupPage('join')" class="p-ml-2 p-px-6" label="Try for 14 days"></button>
   </div>
 </div>

@@ -5,6 +5,10 @@ const PAGES: I_PAGE = {
     PAGE_ROUTE: '',
     PAGE_TITLE: 'Buffer',
   },
+  PRICING_PAGE: {
+    PAGE_ROUTE: 'price',
+    PAGE_TITLE: 'Pricing - Buffer',
+  },
   SIGN_IN_PAGE: {
     PAGE_ROUTE: 'enter',
     PAGE_TITLE: 'Sign In - Buffer',

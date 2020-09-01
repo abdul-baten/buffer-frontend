@@ -1,11 +1,11 @@
-import { LandingComponent } from '@app/landing/container/landing.component';
+import { AuctionComponent } from '@app/auction/container/auction.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: AuctionComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LandingRoutingModule {}
+export class AuctionRoutingModule {}

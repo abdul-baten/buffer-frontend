@@ -130,6 +130,11 @@ h1 {
   font-size: 1.75rem;
 }
 
+h1.b-intro-header {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
 h2 {
   font-size: 1.5rem;
 }
@@ -178,11 +183,18 @@ small {
   cursor: pointer;
 }
 
+.b-cursor-help {
+  cursor: help;
+}
+
 /*
   * TEXT
 */
 .b-text {
   color: #000001;
+}
+.b-text-white {
+  color: #ffffff;
 }
 .b-text-primary {
   color: #2c4bff;
@@ -245,7 +257,7 @@ small {
 }
 
 /*
-  * WIDTH
+  * OVERFLOW
 */
 .b-of-h {
   overflow: hidden;
@@ -253,6 +265,17 @@ small {
 
 .b-of-auto {
   overflow: auto;
+}
+
+.b-ofx-h {
+  overflow-x: hidden;
+}
+
+.b-menu-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
 }
 
 /*
@@ -280,12 +303,13 @@ small {
 /*
     * CONTAINER
 */
-.buffer--container {
+.b-main-container {
   height: auto;
   margin: 0 auto;
-  min-width: 1080px;
-  padding: 0 60px;
-  width: 100%;
+  max-width: 1140px;
+  min-width: 327px;
+  padding: 0;
+  width: 95%;
 }
 
 .buffer--heading-span {
@@ -366,6 +390,10 @@ small {
 .b-br-x {
   border-left: 1px solid rgba(0, 0, 0, 0.12);
   border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.b-br-b-dashed {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.18);
 }
 
 .b-ci {
@@ -481,6 +509,10 @@ small {
 
 .b-w-full {
   width: 100%;
+}
+
+.b-w-max-content {
+  width: max-content;
 }
 
 .b-text-fade {
@@ -1858,6 +1890,12 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
   background: rgba(44, 75, 255, 0.68);
   color: #ffffff;
   border-color: transparent;
+}
+.p-button-label {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow: inherit;
 }
 .p-button.p-button-outlined {
   background-color: transparent;
@@ -3675,11 +3713,12 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 
 .p-overlaypanel {
-  background: #ffffff;
-  color: #000001;
+  background: #2b2d31;
+  color: #ffffff;
   border: 0 none;
   border-radius: 4px;
   box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2), 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  width: auto;
 }
 .p-overlaypanel .p-overlaypanel-content {
   padding: 0.75rem;
@@ -3702,18 +3741,18 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 .p-overlaypanel:after {
   border: solid transparent;
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #ffffff;
+  border-bottom-color: #2b2d31;
 }
 .p-overlaypanel:before {
   border: solid transparent;
   border-color: rgba(255, 255, 255, 0);
-  border-bottom-color: #ffffff;
+  border-bottom-color: #2b2d31;
 }
 .p-overlaypanel.p-overlaypanel-flipped:after {
-  border-top-color: #ffffff;
+  border-top-color: #2b2d31;
 }
 .p-overlaypanel.p-overlaypanel-flipped:before {
-  border-top-color: #ffffff;
+  border-top-color: #2b2d31;
 }
 
 .p-sidebar {
@@ -5888,7 +5927,7 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 }
 
 .p-overlaypanel .p-overlaypanel-content {
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 .p-paginator {
