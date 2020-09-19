@@ -18,8 +18,8 @@ export class PostComponent {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
   }
 
-  onPostActionBtnClicked(action: string): void {
-    const { id, start } = this.calendarData.event;
+  actionClicked(action: string): void {
+    const { id } = this.calendarData.event;
     switch (action) {
       case 'view':
         this.scheduleFacade.handlePostDetailsDialogOpen(this.calendarData.event);
@@ -29,12 +29,8 @@ export class PostComponent {
         this.scheduleFacade.handlePostEditDialogOpen(this.calendarData.event);
         break;
 
-      case 'reschedule':
-        this.scheduleFacade.handlePostRescheduleDialogOpen(id, start);
-        break;
-
       case 'delete':
-        this.scheduleFacade.handlePostDeleteDialogOpen(id);
+        this.scheduleFacade.deletePost(id);
         break;
     }
   }

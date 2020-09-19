@@ -1,19 +1,16 @@
 import { Calendar } from '@fullcalendar/core';
 import { CalViewState } from '../model/calendar.model';
-import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
+import { ConfirmationService } from 'primeng/api';
 import { format } from 'date-fns';
 import { I_POST } from '@core/model';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MetaDefinition } from '@angular/platform-browser';
 import { ModalService } from '@core/service/modal/modal.service';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { Observable } from 'rxjs';
-import { PostDeleteModalComponent } from '@shared/module/modal/post-delete-modal/container/post-delete-modal.component';
 import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
 import { PostModalComponent } from '@shared/module/modal/post-modal/container/post-modal.component';
 import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
-import { PostRescheduleModalComponent } from '@shared/module/modal/post-reschedule-modal/container/post-reschedule-modal.component';
 import { PostService } from '@core/service/post/post.service';
 import { removeNewPostData } from 'src/app/actions';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
@@ -23,8 +20,8 @@ import { Store } from '@ngrx/store';
 export class ScheduleFacade {
   constructor(
     private matDialog: MatDialog,
-    private metaService: DocumentMetaService,
     private modalService: ModalService,
+    private readonly confirmationService: ConfirmationService,
     private readonly postService: PostService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
@@ -55,10 +52,6 @@ export class ScheduleFacade {
 
   calendarDate(date: Date): void {
     this.calendarApi.gotoDate(date);
-  }
-
-  updateDocumentMetaTag(tag: MetaDefinition): void {
-    this.metaService.updateDocumentMetaTag(tag);
   }
 
   changeCalendarViewOption(viewOption: string) {
@@ -121,47 +114,13 @@ export class ScheduleFacade {
     });
   }
 
-  handlePostDeleteDialogOpen(postId: string): void {
-    this.matDialog.open(PostDeleteModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
+  deletePost(postId: string): void {
+    this.confirmationService.confirm({
+      key: 'postDelete',
+      message: 'Are you sure you want to delete this post?',
+      accept: () => {
+        console.warn('asasasas accepted', postId);
       },
-      data: postId,
-      width: '450px',
-      role: 'dialog',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
-    });
-  }
-
-  handlePostRescheduleDialogOpen(postId: string, postDate: Date): void {
-    this.matDialog.open(PostRescheduleModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-      data: { postId, postDate },
-      width: '450px',
-      role: 'dialog',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
     });
   }
 

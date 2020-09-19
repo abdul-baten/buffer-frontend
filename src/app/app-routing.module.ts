@@ -85,15 +85,16 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      anchorScrolling: 'enabled',
-      enableTracing: false,
-      onSameUrlNavigation: 'ignore',
-      relativeLinkResolution: 'corrected',
-      scrollOffset: [0, 0],
-      scrollPositionRestoration: 'top',
-      urlUpdateStrategy: 'eager',
-      useHash: false,
-    }),
+    anchorScrolling: 'enabled',
+    enableTracing: false,
+    onSameUrlNavigation: 'ignore',
+    relativeLinkResolution: 'corrected',
+    scrollOffset: [0, 0],
+    scrollPositionRestoration: 'top',
+    urlUpdateStrategy: 'eager',
+    useHash: false,
+    initialNavigation: 'enabled'
+}),
   ],
   exports: [RouterModule],
 })

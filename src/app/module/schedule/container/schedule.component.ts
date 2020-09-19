@@ -1,28 +1,28 @@
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
+import { I_POST } from '@core/model';
+import { mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'buffer--schedule',
-  templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss'],
+  templateUrl: './schedule.component.html',
 })
 export class ScheduleComponent {
+  posts$: Observable<I_POST[]>;
   calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
 
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
 
-  matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 72;
-  matSideNavMode = 'side';
-  matSideNavPosition = 'end';
+  constructor(private router: Router, private readonly facade: ScheduleFacade, private activatedRoute: ActivatedRoute) {
+    this.isHandset$ = this.facade.isHandset();
+    this.isTablet$ = this.facade.isTablet();
 
-  constructor(private router: Router, private readonly scheduleFacade: ScheduleFacade) {
-    this.isHandset$ = this.scheduleFacade.isHandset();
-    this.isTablet$ = this.scheduleFacade.isTablet();
+    this.posts$ = this.activatedRoute.paramMap.pipe(mergeMap((params: ParamMap) => this.facade.getPostsByConnectionID(params.get('id'))));
   }
 
   onConnectionSelect(connectionID: string) {

@@ -11,15 +11,30 @@
   [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'0ms'"></p-toast>
 
 <p-confirmDialog key="connectionDelete" [closable]="true" #connectionDelete header="Delete Connection?">
-  <p-footer class="buffer--margin-top-5">
+  <p-footer class="p-mt-4">
     <div class="p-grid">
-      <div class="p-col-6 buffer--padding-x-2">
+      <div class="p-col-6 p-px-2">
         <button type="button" pButton label="Cancel" (click)="connectionDelete.reject()"
           class="b-w-full p-button-sm p-button-text p-button-plain"></button>
       </div>
-      <div class="p-col-6 buffer--padding-x-2">
+      <div class="p-col-6 p-px-2">
         <button type="button" pButton label="Delete" class="b-w-full p-button-sm p-button-danger"
           (click)="connectionDelete.accept()"></button>
+      </div>
+    </div>
+  </p-footer>
+</p-confirmDialog>
+
+<p-confirmDialog key="postDelete" [closable]="true" #postDelete header="Delete Post?">
+  <p-footer class="p-mt-4">
+    <div class="p-grid">
+      <div class="p-col-6 p-px-2">
+        <button type="button" pButton label="Cancel" (click)="postDelete.reject()"
+          class="b-w-full p-button-sm p-button-text p-button-plain"></button>
+      </div>
+      <div class="p-col-6 p-px-2">
+        <button type="button" pButton label="Delete" class="b-w-full p-button-sm p-button-danger"
+          (click)="postDelete.accept()"></button>
       </div>
     </div>
   </p-footer>

@@ -1,60 +1,60 @@
-<div [attr.class]="'p-p-3 p-shadow-20 b-post-br-t-' + calendarData.event.extendedProps.postType"
+<div [attr.class]="'b-bg-white p-p-2 p-shadow-2 b-post-br b-post-br-t-' + calendarData.event.extendedProps.postType"
   [ngClass]="{ 'b-op-5': !upcomingPost }">
   <div class="p-d-flex p-jc-between p-ai-center">
-
-
     <div [ngClass]="{
-          'b-text-primary': upcomingPost,
-          'b-text-danger': !upcomingPost
-        }" class="p-d-flex p-jc-between p-ai-center">
+      'b-text-primary': upcomingPost,
+      'b-text-danger': !upcomingPost
+    }" class="p-d-flex p-jc-between p-ai-center">
       <small class=" p-mr-2">
         <i class="pi pi-clock b-va-m"></i> {{ calendarData.event.start | date: 'shortTime' }}
       </small>
     </div>
 
-    <!-- <div class="">
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="buffer--width-7 buffer--height-7">
-          <i class="material-icons buffer--font-size-base">more_vert</i>
-        </button>
-      </div> -->
+    <div [ngSwitch]="calendarData.event.extendedProps.postType">
+      <div *ngSwitchCase="postType.IMAGE">
+        <i class="pi pi-images icon-font-size b-text-help"></i>
+      </div>
+      <div *ngSwitchCase="postType.VIDEO">
+        <i class="pi pi-video icon-font-size b-text-info"></i>
+      </div>
+
+      <div *ngSwitchDefault>
+        <i class="pi pi-align-center icon-font-size b-text-primary"></i>
+
+      </div>
+    </div>
   </div>
   <div class="p-my-2">
     <div [ngSwitch]="calendarData.event.extendedProps.postType">
       <div *ngSwitchCase="postType.IMAGE">
-        <div class="">
-          <img [defaultImage]="calendarData.event.extendedProps.postMedia[0].mediaURL"
-            [lazyLoad]="calendarData.event.extendedProps.postMedia[0].mediaURL"
-            class="b-w-full buffer--border-radius-lg" [alt]="calendarData.event.extendedProps.postMedia[0].mediaName" />
+        <div class="p-d-flex p-jc-between p-ai-center">
+          <img *ngFor="let image of calendarData.event.extendedProps.postMedia" [defaultImage]="image"
+            [lazyLoad]="image" class="b-w-full" />
         </div>
       </div>
-      <div *ngSwitchCase="'video'">
-        <div class="">
-          <video #media id="postVideo" preload="auto" [src]="calendarData.event.extendedProps.postMedia[0].mediaURL"
-            type="video/mp4" class="b-w-full">
-          </video>
-        </div>
+      <div *ngSwitchCase="postType.VIDEO">
+        <video #media id="postVideo" preload="auto" [src]="calendarData.event.extendedProps.postMedia[0]"
+          type="video/mp4" class="b-w-full">
+        </video>
       </div>
 
       <div *ngSwitchDefault>
-        <p
-          class="buffer--font-family-sans-medium buffer--font-size-xs buffer--text-color-black buffer--line-height-leading-snug">
+        <p>
           {{ calendarData.event.extendedProps.postCaption }}
         </p>
       </div>
     </div>
   </div>
   <div class="p-d-flex p-jc-between">
-    <button pButton (click)="onPostActionBtnClicked('view')"
-      class="p-button-rounded p-button-text p-button-plain p-button-sm" icon="pi pi-eye" pTooltip="Details"
-      tooltipPosition="bottom">
+    <button pButton (click)="actionClicked('view')" class="p-button-rounded p-button-text p-button-plain p-button-sm"
+      icon="pi pi-eye" pTooltip="Details" tooltipPosition="bottom">
     </button>
-    <button pButton *ngIf="upcomingPost" (click)="onPostActionBtnClicked('edit')"
+    <button pButton *ngIf="upcomingPost" (click)="actionClicked('edit')"
       class="p-button-rounded p-button-text p-button-plain p-button-sm" icon="pi pi-pencil" pTooltip="Edit"
       tooltipPosition="bottom">
     </button>
-    <button pButton (click)="onPostActionBtnClicked('delete')"
-      class="p-button-rounded p-button-text p-button-plain p-button-sm" icon="pi pi-trash" pTooltip="Delete"
-      tooltipPosition="bottom">
+    <button pButton (click)="actionClicked('delete')" class="p-button-rounded p-button-text p-button-plain p-button-sm"
+      icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom">
     </button>
   </div>
 </div>

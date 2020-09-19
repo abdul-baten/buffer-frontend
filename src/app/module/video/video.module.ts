@@ -7,10 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { VgBufferingModule } from 'videogular2/buffering';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgCoreModule } from 'videogular2/core';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VideoComponent } from '@app/video/container/video.component';
 import { VideoFacade } from '@app/video/facade/video.facade';
 import { VideoRoutingModule } from '@app/video/video-routing.module';
@@ -24,10 +20,6 @@ import { VideoRoutingModule } from '@app/video/video-routing.module';
     MatInputModule,
     ReactiveFormsModule,
     RouterModule,
-    VgBufferingModule,
-    VgControlsModule,
-    VgCoreModule,
-    VgOverlayPlayModule,
     VideoRoutingModule,
   ],
   providers: [VideoFacade, AuthService, HttpService],

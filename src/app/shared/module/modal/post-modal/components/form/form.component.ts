@@ -15,13 +15,13 @@ import { VideoComponent } from '@shared/module/modal/post-modal/components/video
 export class FormComponent {
   postType$: Observable<E_POST_TYPE>;
 
-  @ViewChild(TypeComponent, { read: true, static: false })
+  @ViewChild(TypeComponent, { read: true })
   postTypeChooseStep: TypeComponent;
-  @ViewChild(TextComponent, { read: true, static: false })
+  @ViewChild(TextComponent, { read: true })
   postTypeTextStep: TextComponent;
-  @ViewChild(ImageComponent, { read: true, static: false })
+  @ViewChild(ImageComponent, { read: true })
   postTypeImageStep: ImageComponent;
-  @ViewChild(VideoComponent, { read: true, static: false })
+  @ViewChild(VideoComponent, { read: true })
   postTypeVideoStep: VideoComponent;
 
   get eventCreateChooseTypeForm() {

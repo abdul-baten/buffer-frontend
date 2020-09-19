@@ -37,10 +37,6 @@ export class PostService extends EntityCollectionServiceBase<I_POST> {
   }
 
   filterPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
-    return this.entities$.pipe(
-      tap(console.warn),
-      map((posts: I_POST[]) => posts.filter((post: I_POST) => post.postConnection.id === connectionID)),
-      tap(console.warn),
-    );
+    return this.entities$.pipe(map((posts: I_POST[]) => posts.filter((post: I_POST) => post.postConnection.id === connectionID)));
   }
 }

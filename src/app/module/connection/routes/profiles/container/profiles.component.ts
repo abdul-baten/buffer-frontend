@@ -6,8 +6,8 @@ import { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
   selector: 'buffer--profiles',
-  templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.scss'],
+  templateUrl: './profiles.component.html',
 })
 export class ProfilesComponent implements OnInit {
   chooseConnectionPage = `${PAGES.CONNECTION_MODULE.PAGE_ROUTE}/${PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE}`;
