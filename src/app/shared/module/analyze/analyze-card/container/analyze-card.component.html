@@ -1,14 +1,15 @@
 <p-fieldset>
   <p-header>
     <div class="p-d-flex p-ai-center p-jc-between">
-      <i [attr.class]="'p-mr-2 b-ci pi ' + cardIcon + ' b-text-' + cardIconColor"></i>
+      <i style="font-size: 1.25rem" [attr.class]="'p-mr-2 b-ci pi ' + cardIcon + ' b-text-' + cardIconColor"></i>
       <h5>{{ cardTitle }}</h5>
     </div>
   </p-header>
-  <div class="p-d-flex p-flex-column p-ai-center p-jc-between p-m-3">
+  <div class="p-d-flex p-flex-column p-ai-center p-jc-between p-m-5">
     <div class="p-text-center">
       <h1 class="b-text-primary p-text-bold">{{ cardCounter }}</h1>
-      <p class="p-text-bold">{{ cardInfoTitle }}</p>
+      <p>{{ cardInfoTitle }} <span [pTooltip]="cardHelpInfo" class="pi pi-info-circle b-text-secondary"
+          style="vertical-align: super; font-size: 0.75rem;"></span></p>
     </div>
   </div>
 </p-fieldset>

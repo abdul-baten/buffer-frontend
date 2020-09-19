@@ -25,7 +25,7 @@ export class ScheduleFacade {
     private matDialog: MatDialog,
     private metaService: DocumentMetaService,
     private modalService: ModalService,
-    private postService: PostService,
+    private readonly postService: PostService,
     private responsiveLayoutService: ResponsiveLayoutService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
@@ -98,8 +98,6 @@ export class ScheduleFacade {
   openSnackbar(message: string): void {
     this.snackbarService.openSnackBar(message);
   }
-
-  handleCalendarSettingsDialogOpen(): void {}
 
   handlePostDetailsDialogOpen(postInfo: I_POST): void {
     this.matDialog.open(PostDetailsModalComponent, {

@@ -1,0 +1,10 @@
+<full-calendar #calendar (eventDrop)="handlePostDrop($event)" (eventRender)="handlePostRender($event)"
+  (datesRender)="handleDatesRender()" (select)="handleDateClick($event)" [allDayDefault]="false"
+  [allDaySlot]="allDaySlot" [businessHours]="businessHours" [columnHeader]="columnHeader" [defaultView]="calendarView"
+  [displayEventTime]="displayPostTime" [eventLimitClick]="eventLimitClick" [eventLimit]="eventLimit"
+  [eventOverlap]="eventOverlap" [events]="calendarPosts | async" [fixedWeekCount]="fixedWeekCount"
+  [handleWindowResize]="handleWindowResize" [header]="header" [maxTime]="maxTime" [nowIndicator]="nowIndicator"
+  [plugins]="calendarPlugins" [progressiveEventRendering]="progressivePostRendering" [scrollTime]="scrollTime"
+  [selectAllow]="selectAllow" [selectable]="selectable" [slotDuration]="slotDuration"
+  [slotEventOverlap]="slotEventOverlap" [slotLabelFormat]="slotLabelFormat" [slotLabelInterval]="slotLabelInterval"
+  [weekends]="calendarWeekends"></full-calendar>

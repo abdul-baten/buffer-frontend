@@ -27,7 +27,6 @@ export class HeaderAccountComponent implements OnInit {
         routerLink: ['/account/plan'],
         routerLinkActiveOptions: { exact: true },
       },
-      { separator: true },
       {
         label: 'Sign out',
         icon: 'pi pi-sign-out',

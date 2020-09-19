@@ -1,3 +1,8 @@
-<p-splitButton icon="pi pi-user" label="Account info" styleClass="b-w-full p-button-secondary" [model]="menuItems" appendTo="body"
-  menuStyleClass="p-p-2">
-</p-splitButton>
+<div class="p-d-flex p-flex-column p-jc-center p-ai-center">
+  <button type="button" pButton icon="pi pi-cog"
+    class="p-button-text p-button-plain p-button-lg p-p-4 p-mb-3 p-button-rounded"></button>
+  <button type="button" pButton icon="pi pi-user"
+    class="p-button-text p-button-plain p-button-lg p-p-5 p-button-rounded" (click)="menu.toggle($event)"></button>
+</div>
+
+<p-slideMenu #menu [model]="menuItems" [popup]="true" appendTo="body"></p-slideMenu>

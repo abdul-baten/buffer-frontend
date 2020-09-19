@@ -10,10 +10,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
-import { VgBufferingModule } from 'videogular2/buffering';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgCoreModule } from 'videogular2/core';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [BucketSavedComponent],
@@ -27,10 +24,7 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     LazyLoadImageModule,
     SplitButtonModule,
     TableModule,
-    VgBufferingModule,
-    VgControlsModule,
-    VgCoreModule,
-    VgOverlayPlayModule,
+    ToolbarModule,
   ],
   providers: [BucketSavedFacade],
 })

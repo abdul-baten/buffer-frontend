@@ -1,0 +1,23 @@
+<div class="b-calendar-toolbar">
+  <div class="p-d-flex p-jc-between p-ai-center">
+    <button (click)="onTodayBtnClicked()" [pTooltip]="currentDate" tooltipPosition="bottom" pButton label="Today"
+      class="p-button-text p-button-plain p-button-sm"></button>
+
+    <div class="p-mx-2 p-d-flex p-jc-between p-ai-center">
+      <div class="p-mx-2">
+        <button pButton type="button" icon="pi pi-chevron-left"
+          class="p-button-sm p-button-rounded p-button-text p-button-plain" pTooltip="Previous" tooltipPosition="bottom"
+          (click)="onPrevBtnClicked()"></button>
+      </div>
+      <div class="p-mx-2">
+        <button pButton type="button" icon="pi pi-chevron-right"
+          class="p-button-sm p-button-rounded p-button-text p-button-plain" pTooltip="Next" tooltipPosition="bottom"
+          (click)="onNextBtnClicked()"></button>
+      </div>
+    </div>
+
+    <p-selectButton [options]="calendarViewSelectionItems" [(ngModel)]="selectedCalendarView"
+      (onChange)="onCalendarViewChanged($event)" styleClass="p-button-sm" *ngIf="isWeb$ | async">
+    </p-selectButton>
+  </div>
+</div>

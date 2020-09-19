@@ -3,14 +3,14 @@ import { ChooseConnectionComponent } from './container/choose-connection.compone
 import { ChooseConnectionFacade } from './facade/choose-connection.facade';
 import { ChooseConnectionRoutingModule } from './choose-connection-routing.module';
 import { CommonModule } from '@angular/common';
-import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
 import { FieldsetModule } from 'primeng/fieldset';
 import { NgModule } from '@angular/core';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [ChooseConnectionComponent],
-  imports: [ButtonModule, ChooseConnectionRoutingModule, CommonModule, ConnectionHeaderModule, ConnectionPlanSidebarModule, FieldsetModule],
+  imports: [ButtonModule, ChooseConnectionRoutingModule, CommonModule, ConnectionPlanSidebarModule, FieldsetModule, ToolbarModule],
   providers: [ChooseConnectionFacade],
 })
 export class ChooseConnectionModule {}

@@ -8,7 +8,7 @@ import { PostModalFacade } from '../facade/post-modal.facade';
   templateUrl: './post-modal.component.html',
 })
 export class PostModalComponent {
-  constructor(public postInfo: DynamicDialogConfig, private postCreateModalFacade: PostModalFacade) {
-    this.postCreateModalFacade.setNewPostData(postInfo.data.postData);
+  constructor(public postInfo: DynamicDialogConfig, private facade: PostModalFacade) {
+    this.facade.setNewPostData(postInfo.data.postData);
   }
 }

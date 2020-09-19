@@ -1,46 +1,17 @@
-<div class="p-d-flex p-jc-start p-flex-column">
-  <buffer--bucket-header headerTitle="Published"></buffer--bucket-header>
+<section class="b-main-content b-of-h">
+  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
+    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Published"></buffer--toolbar>
+  </div>
 
   <section class="b-hs-wt-h b-of-h">
-    <p-table [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']" [paginator]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts" #postTable [rows]="5"
-      [showCurrentPageReport]="true" [value]="calendarPosts | async" dataKey="id" [scrollable]="true"
-      scrollHeight="540px">
+    <p-table #postTable [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
+      [value]="calendarPosts | async" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+      dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']"
+      [paginator]="true">
       <ng-template pTemplate="caption">
-        <div class="p-px-2 p-grid p-pt-2">
-          <div class="p-px-2 p-col-3">
-            <span class="p-input-icon-left b-w-full">
-              <i class="pi pi-search"></i>
-              <input pInputText type="text" (input)="postTable.filterGlobal($event.target.value, 'contains')"
-                placeholder="Search post" class="p-inputtext-sm b-w-full" />
-            </span>
-          </div>
-          <div class="p-px-2 p-col-2">
-            <p-calendar [readonlyInput]="true" [showButtonBar]="true" [showIcon]="true" appendTo="body"
-              dateFormat="D, M dd, yy" placeholder="Published Date" styleClass="p-column-filter p-inputtext-sm b-w-full"
-              (onClearClick)="postTable.filter('', 'postScheduleDateTime', 'equals')"
-              (onSelect)="postTable.filter($event.toDateString(), 'postScheduleDateTime', 'equals')">
-            </p-calendar>
-          </div>
-          <div class="p-px-2 p-col-2">
-            <p-dropdown [options]="connectionItems"
-              (onChange)="postTable.filter($event.value, 'postConnection.connectionType', 'equals')" appendTo="body"
-              styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Connection" [showClear]="true"
-              [filter]="true">
-              <ng-template let-option pTemplate="item">
-                <small class="p-text-capitalize">{{option.label}}</small>
-              </ng-template>
-            </p-dropdown>
-          </div>
-          <div class="p-px-2 p-col-2">
-            <p-dropdown [options]="postTypes" (onChange)="postTable.filter($event.value, 'postType', 'equals')"
-              appendTo="body" styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Post type"
-              [showClear]="true" [filter]="true">
-              <ng-template let-option pTemplate="item">
-                <small class="p-text-capitalize">{{option.label}}</small>
-              </ng-template>
-            </p-dropdown>
-          </div>
+        <div class="p-px-4 b-h-toolbar">
+          <buffer--bucket-header (inputChange)="inputChanged($event)" (dropdownChange)="dropdownChanged($event)">
+          </buffer--bucket-header>
         </div>
       </ng-template>
       <ng-template pTemplate="body" let-post>
@@ -59,14 +30,9 @@
                   </p-carousel>
                 </div>
                 <div *ngSwitchCase="postType.VIDEO" class="p-px-4">
-                  <vg-player class="b-w-full b-br-sm">
-                    <vg-controls vgFor="postVideo">
-                      <vg-play-pause></vg-play-pause>
-                    </vg-controls>
-                    <video #media [vgMedia]="media" id="postVideo" preload="auto" [vgMaster]="true"
-                      [src]="post.postMedia[0].mediaURL" type="video/mp4" class="b-w-full b-br-sm">
-                    </video>
-                  </vg-player>
+                  <video id="postVideo" preload controls [src]="post.postMedia[0].mediaURL" type="video/mp4"
+                    class="b-w-full b-br-sm">
+                  </video>
                 </div>
               </div>
             </div>
@@ -118,4 +84,4 @@
       </ng-template>
     </p-table>
   </section>
-</div>
+</section>

@@ -11,10 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
 import { TableModule } from 'primeng/table';
-import { VgBufferingModule } from 'videogular2/buffering';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgCoreModule } from 'videogular2/core';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [BucketPublishedComponent],
@@ -29,10 +26,7 @@ import { VgOverlayPlayModule } from 'videogular2/overlay-play';
     InputTextModule,
     LazyLoadImageModule,
     TableModule,
-    VgBufferingModule,
-    VgControlsModule,
-    VgCoreModule,
-    VgOverlayPlayModule,
+    ToolbarModule,
   ],
   providers: [BucketPublishedFacade],
 })

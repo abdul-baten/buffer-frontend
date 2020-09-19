@@ -1,6 +1,5 @@
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
 import { FacebookPageComponent } from './container/facebook-page.component';
 import { FacebookPageFacade } from './facade/facebook-page.facade';
@@ -10,13 +9,14 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { LoaderModule } from '@shared/module/loader/loader.module';
 import { NgModule } from '@angular/core';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [FacebookPageComponent],
   imports: [
     ButtonModule,
     CommonModule,
-    ConnectionHeaderModule,
+    ToolbarModule,
     ConnectionPlanSidebarModule,
     FacebookPageRoutingModule,
     FieldsetModule,

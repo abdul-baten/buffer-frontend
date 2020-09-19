@@ -1,7 +1,7 @@
-import { BucketHeaderModule } from '@shared/module/header/bucket-header/bucket-header.module';
 import { BucketScheduledComponent } from './container/bucket-scheduled.component';
 import { BucketScheduledFacade } from './facade/bucket-scheduled.facade';
 import { BucketScheduledRoutingModule } from './bucket-scheduled-routing.module';
+import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
@@ -10,16 +10,12 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
-import { VgBufferingModule } from 'videogular2/buffering';
-import { VgControlsModule } from 'videogular2/controls';
-import { VgCoreModule } from 'videogular2/core';
-import { VgOverlayPlayModule } from 'videogular2/overlay-play';
-import { CalendarModule } from 'primeng/calendar';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { BucketHeaderModule } from '@shared/module/header/bucket-header/bucket-header.module';
 
 @NgModule({
   declarations: [BucketScheduledComponent],
   imports: [
-    BucketHeaderModule,
     BucketScheduledRoutingModule,
     CalendarModule,
     CarouselModule,
@@ -29,10 +25,8 @@ import { CalendarModule } from 'primeng/calendar';
     LazyLoadImageModule,
     SplitButtonModule,
     TableModule,
-    VgBufferingModule,
-    VgControlsModule,
-    VgCoreModule,
-    VgOverlayPlayModule,
+    ToolbarModule,
+    BucketHeaderModule,
   ],
   providers: [BucketScheduledFacade],
 })

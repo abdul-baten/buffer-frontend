@@ -1,12 +1,14 @@
 import { BucketHeaderComponent } from './container/bucket-header.component';
-import { BucketRoutesComponent } from './components/bucket-routes/bucket-routes.component';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [BucketHeaderComponent, BucketRoutesComponent],
+  declarations: [BucketHeaderComponent],
   exports: [BucketHeaderComponent],
-  imports: [ButtonModule, RouterModule],
+  imports: [ButtonModule, CalendarModule, DropdownModule, InputTextModule, RouterModule],
 })
 export class BucketHeaderModule {}

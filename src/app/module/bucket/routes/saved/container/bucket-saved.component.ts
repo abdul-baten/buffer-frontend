@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { BucketSavedFacade } from '../facade/bucket-saved.facade';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
-import { I_DROPDOWN, I_POST } from '@core/model';
+import { I_POST } from '@core/model';
 import { MenuItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
-import { BucketSavedFacade } from '../facade/bucket-saved.facade';
+import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,10 +12,10 @@ import { BucketSavedFacade } from '../facade/bucket-saved.facade';
   styleUrls: ['./bucket-saved.component.scss'],
   templateUrl: './bucket-saved.component.html',
 })
-export class BucketSavedComponent implements OnInit {
-  connectionItems: I_DROPDOWN[] = [];
+export class BucketSavedComponent {
+  @ViewChild('postTable', { static: true }) postTable: Table;
+
   postType = E_POST_TYPE;
-  postTypes: I_DROPDOWN[] = [];
 
   calendarPosts: Observable<any[]> = of([
     {
@@ -79,25 +80,6 @@ export class BucketSavedComponent implements OnInit {
 
   constructor(private bucketSavedFacade: BucketSavedFacade) {}
 
-  ngOnInit(): void {
-    this.connectionItems = [
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.FACEBOOK_PAGE), value: 'Facebook_Page' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.FACEBOOK_GROUP), value: 'Facebook_Group' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.INSTAGRAM_BUSINESS), value: 'Instagram_Business' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.INSTAGRAM_PERSONAL), value: 'Instagram_Personal' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.TWITTER), value: 'Twitter' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.LINKEDIN_PAGE), value: 'Linkedin_Page' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.LINKEDIN_PROFILE), value: 'Linkedin_Profile' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.PINTEREST), value: 'Pinterest' },
-    ];
-
-    this.postTypes = [
-      { label: this.splitConnectionType(E_POST_TYPE.TEXT), value: 'status' },
-      { label: this.splitConnectionType(E_POST_TYPE.IMAGE), value: 'image' },
-      { label: this.splitConnectionType(E_POST_TYPE.VIDEO), value: 'video' },
-    ];
-  }
-
   splitConnectionType(typeName: E_CONNECTION_TYPE | E_POST_TYPE): string {
     return typeName.split('_').join(' ');
   }
@@ -116,5 +98,14 @@ export class BucketSavedComponent implements OnInit {
       },
       { label: 'Delete', icon: 'pi pi-trash', command: () => {} },
     ];
+  }
+
+  inputChanged(inputString: string): void {
+    this.postTable.filterGlobal(inputString, 'contains');
+  }
+
+  dropdownChanged(data: { dataText: string; propertyName: string; comparison: string }): void {
+    const { dataText, propertyName, comparison } = data;
+    this.postTable.filter(dataText, propertyName, comparison);
   }
 }

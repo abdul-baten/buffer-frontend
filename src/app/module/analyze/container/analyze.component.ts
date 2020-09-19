@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--analyze',
-  templateUrl: './analyze.component.html',
   styleUrls: ['./analyze.component.scss'],
+  templateUrl: './analyze.component.html',
 })
 export class AnalyzeComponent {}

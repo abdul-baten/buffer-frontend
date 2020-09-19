@@ -15,7 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageComponent } from './components/image/image.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { LoaderModule } from '@shared/module/loader/loader.module';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MediaComponent } from './components/media/media.component';
@@ -63,7 +62,6 @@ FilePond.registerPlugin(
     FormsModule,
     InputTextareaModule,
     LazyLoadImageModule,
-    LoaderModule,
     MatRadioModule,
     MatStepperModule,
     ReactiveFormsModule,

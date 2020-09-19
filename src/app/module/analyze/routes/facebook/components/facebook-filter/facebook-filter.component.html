@@ -1,0 +1,6 @@
+<form [formGroup]="filterForm">
+  <p-calendar (onClose)="onSelect()" appendTo="body" dateFormat="M dd, yy" formControlName="dateRange"
+    [readonlyInput]="true" [showIcon]="true" placeholder="Date range" selectionMode="range"
+    styleClass="b-w-full p-inputtext-sm">
+  </p-calendar>
+</form>

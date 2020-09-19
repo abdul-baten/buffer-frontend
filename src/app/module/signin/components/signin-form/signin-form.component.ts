@@ -46,7 +46,7 @@ export class SigninFormComponent {
           this.formClicked = false;
         }),
       )
-      .subscribe(() => this.signinFacade.navigate('/dashboard'));
+      .subscribe(() => location.replace('/dashboard'));
   }
 
   handleAuthNavigateBtn(authURL: string): void {

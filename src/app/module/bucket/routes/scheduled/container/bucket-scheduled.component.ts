@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { I_DROPDOWN, I_POST } from '@core/model';
 import { MenuItem } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -10,7 +11,9 @@ import { Observable, of } from 'rxjs';
   templateUrl: './bucket-scheduled.component.html',
   styleUrls: ['./bucket-scheduled.component.scss'],
 })
-export class BucketScheduledComponent implements OnInit {
+export class BucketScheduledComponent {
+  @ViewChild('postTable', { static: true }) postTable: Table;
+
   connectionItems: I_DROPDOWN[] = [];
   postType = E_POST_TYPE;
   postTypes: I_DROPDOWN[] = [];
@@ -344,29 +347,6 @@ export class BucketScheduledComponent implements OnInit {
     },
   ]);
 
-  ngOnInit(): void {
-    this.connectionItems = [
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.FACEBOOK_PAGE), value: 'Facebook_Page' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.FACEBOOK_GROUP), value: 'Facebook_Group' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.INSTAGRAM_BUSINESS), value: 'Instagram_Business' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.INSTAGRAM_PERSONAL), value: 'Instagram_Personal' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.TWITTER), value: 'Twitter' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.LINKEDIN_PAGE), value: 'Linkedin_Page' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.LINKEDIN_PROFILE), value: 'Linkedin_Profile' },
-      { label: this.splitConnectionType(E_CONNECTION_TYPE.PINTEREST), value: 'Pinterest' },
-    ];
-
-    this.postTypes = [
-      { label: this.splitConnectionType(E_POST_TYPE.TEXT), value: 'status' },
-      { label: this.splitConnectionType(E_POST_TYPE.IMAGE), value: 'image' },
-      { label: this.splitConnectionType(E_POST_TYPE.VIDEO), value: 'video' },
-    ];
-  }
-
-  splitConnectionType(typeName: E_CONNECTION_TYPE | E_POST_TYPE): string {
-    return typeName.split('_').join(' ');
-  }
-
   getMenuItems(post: I_POST): MenuItem[] {
     return [
       {
@@ -382,5 +362,18 @@ export class BucketScheduledComponent implements OnInit {
       },
       { label: 'Delete', icon: 'pi pi-trash', command: () => {} },
     ];
+  }
+
+  splitConnectionType(typeName: E_CONNECTION_TYPE | E_POST_TYPE): string {
+    return typeName.split('_').join(' ');
+  }
+
+  inputChanged(inputString: string): void {
+    this.postTable.filterGlobal(inputString, 'contains');
+  }
+
+  dropdownChanged(data: { dataText: string; propertyName: string; comparison: string }): void {
+    const { dataText, propertyName, comparison } = data;
+    this.postTable.filter(dataText, propertyName, comparison);
   }
 }

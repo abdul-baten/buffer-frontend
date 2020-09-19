@@ -2,6 +2,7 @@ import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'buffer--schedule',
@@ -19,8 +20,12 @@ export class ScheduleComponent {
   matSideNavMode = 'side';
   matSideNavPosition = 'end';
 
-  constructor(private readonly scheduleFacade: ScheduleFacade) {
+  constructor(private router: Router, private readonly scheduleFacade: ScheduleFacade) {
     this.isHandset$ = this.scheduleFacade.isHandset();
     this.isTablet$ = this.scheduleFacade.isTablet();
+  }
+
+  onConnectionSelect(connectionID: string) {
+    this.router.navigate(['/schedule', connectionID]);
   }
 }

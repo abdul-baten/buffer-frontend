@@ -9,9 +9,10 @@
 
     .p-datatable .p-paginator-bottom {
       border-top: 1px solid rgba(0, 0, 0, 0.08);
-      position: fixed;
+      position: absolute;
       bottom: 0;
-      width: calc(100vw - 15rem);
+      width: 100%;
+      right: 0;
     }
 
     .p-carousel-container {

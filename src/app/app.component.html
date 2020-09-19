@@ -1,4 +1,11 @@
-<router-outlet></router-outlet>
+<div class="b-w-full b-h-full p-d-flex">
+  <div class="b-main-header">
+    <buffer--dashboard-header class="b-h-full"></buffer--dashboard-header>
+  </div>
+  <div class="b-main-cont">
+    <router-outlet></router-outlet>
+  </div>
+</div>
 
 <p-toast [preventDuplicates]="true" [preventOpenDuplicates]="true" [hideTransformOptions]="'translateY(100%)'"
   [showTransitionOptions]="'100ms'" [hideTransitionOptions]="'0ms'"></p-toast>

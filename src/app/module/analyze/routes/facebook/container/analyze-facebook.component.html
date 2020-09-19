@@ -1,9 +1,27 @@
-<section class="b-h-toolbar">
-  <buffer--facebook-top-toolbar></buffer--facebook-top-toolbar>
-</section>
+<div class="b-w-full b-h-toolbar p-px-4 b-br-b">
+  <buffer--toolbar [backButton]="true" [showConnections]="true" headerTitle="Facebook Page Insight"
+    (onConnectionSelect)="connectionSelected($event)">
+  </buffer--toolbar>
+</div>
 
-<section class="b-hs-w-h b-of-auto">
-  <div class="b-w-full">
-    <router-outlet></router-outlet>
-  </div>
+<section class="b-main-content b-of-h">
+  <buffer--facebook-filter></buffer--facebook-filter>
+
+  <section class="b-hs-wt-h b-of-auto">
+    <div class="b-w-full">
+      <p-tabView>
+        <p-tabPanel header="Overview">
+          <ng-template pTemplate="content">
+            <buffer--facebook-route-overview [insight$]="insight$"></buffer--facebook-route-overview>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel header="Posts">
+          <buffer--facebook-route-posts></buffer--facebook-route-posts>
+        </p-tabPanel>
+        <p-tabPanel header="Audience">
+          <buffer--facebook-route-audience></buffer--facebook-route-audience>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </section>
 </section>

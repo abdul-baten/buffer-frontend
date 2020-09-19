@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_POST } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
 import { MenuItem } from 'primeng/api/menuitem';
-import { Observable } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { SubSink } from 'subsink';
 
@@ -16,7 +15,6 @@ import { SubSink } from 'subsink';
 })
 export class TextComponent implements OnInit, OnDestroy {
   currentDateTime: Date;
-  loadingState$: Observable<boolean>;
   menuItems: MenuItem[] = [];
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
@@ -29,7 +27,6 @@ export class TextComponent implements OnInit, OnDestroy {
     private readonly stepper: MatStepper,
   ) {
     this.textForm = this.buildTextForm();
-    this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
   ngOnInit() {

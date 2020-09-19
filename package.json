@@ -104,6 +104,7 @@
     "jssha": "^3.1.0",
     "loglevel": "^1.6.6",
     "ng-lazyload-image": "^7.1.0",
+    "ng-sidebar": "^9.4.2",
     "ngx-filepond": "^5.0.1",
     "node-fetch": "^2.6.0",
     "node-zopfli-es": "^1.0.4",

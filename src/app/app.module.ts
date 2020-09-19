@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EntityStoreModule } from './entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -11,13 +12,14 @@ import { ErrorInterceptor } from '@core/interceptor/error/error.interceptor';
 import { GlobalErrorHandlerUtil } from '@core/util/error/error-handler.util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-request.interceptor';
+import { LoaderInterceptor } from '@core/interceptor/loader/loader.interceptor';
+import { LoaderModule } from '@shared/module/loader/loader.module';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { ModalService } from '@core/service/modal/modal.service';
 import { NotificationModule } from '@shared/module/notification/notification.module';
 import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
 import { ToastModule } from 'primeng/toast';
-
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
@@ -27,9 +29,11 @@ import { ToastModule } from 'primeng/toast';
     BrowserModule.withServerTransition({ appId: 'buffer' }),
     BrowserTransferStateModule,
     ConfirmDialogModule,
+    DashboardHeaderModule,
     DynamicDialogModule,
     EntityStoreModule,
     HttpClientModule,
+    LoaderModule,
     NotificationModule,
     PostModalModule,
     ToastModule,
@@ -53,6 +57,7 @@ import { ToastModule } from 'primeng/toast';
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerUtil,

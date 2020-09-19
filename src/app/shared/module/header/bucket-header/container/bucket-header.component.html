@@ -1,14 +1,53 @@
-<div class="b-h-toolbar">
-  <div class="b-h-full p-px-4 b-br-b">
-    <div class="b-h-full p-d-flex p-jc-between p-ai-center">
-      <div class="p-d-flex p-ai-center">
-        <div class="b-br-r p-mr-3">
-          <button class="p-button-sm p-button-rounded p-button-text p-button-plain p-mr-3" (click)="backClicked()"
-            icon="pi pi-arrow-left" pButton title="Back" type="button"></button>
-        </div>
-        <h3>{{ headerTitle }}</h3>
+<div class="p-d-flex p-jc-between p-ai-center">
+  <div class="b-h-full p-d-flex p-jc-start p-ai-center">
+    <h6 [routerLink]="['/bucket/saved']" routerLinkActive="b-tr-menu-active" [routerLinkActiveOptions]="{exact: true}"
+      class="b-tr-menu">
+      Saved
+    </h6>
+    <h6 [routerLink]="['/bucket/scheduled']" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: true}" class="b-tr-menu">
+      Scheduled
+    </h6>
+    <h6 [routerLink]="['/bucket/published']" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: true}" class="b-tr-menu">
+      Published
+    </h6>
+  </div>
+  <div class="b-h-full p-d-flex p-jc-start p-ai-center">
+    <div class="p-grid p-m-0">
+      <div class="p-col">
+        <span class="p-input-icon-left b-w-full">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="inputChanged($event.target.value)" placeholder="Search post"
+            class="p-inputtext-sm b-w-full" />
+        </span>
       </div>
-      <buffer--bucket-routes></buffer--bucket-routes>
+      <div class="p-col">
+        <p-calendar [readonlyInput]="true" [showButtonBar]="true" [showIcon]="true" appendTo="body"
+          dateFormat="D, M dd, yy" placeholder="Date" styleClass="p-column-filter p-inputtext-sm b-w-full"
+          (onClearClick)="dataChanged('', 'postScheduleDateTime', 'equals')"
+          (onSelect)="dataChanged($event.toDateString(), 'postScheduleDateTime', 'equals')">
+        </p-calendar>
+      </div>
+      <div class="p-col">
+        <p-dropdown [options]="connectionItems"
+          (onChange)="dataChanged($event.value, 'postConnection.connectionType', 'equals')" appendTo="body"
+          styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Connection" [showClear]="true"
+          [filter]="true">
+          <ng-template let-option pTemplate="item">
+            <small class="p-text-capitalize">{{option.label}}</small>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      <div class="p-col">
+        <p-dropdown [options]="postTypes" (onChange)="dataChanged($event.value, 'postType', 'equals')" appendTo="body"
+          styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Post type" [showClear]="true"
+          [filter]="true">
+          <ng-template let-option pTemplate="item">
+            <small class="p-text-capitalize">{{option.label}}</small>
+          </ng-template>
+        </p-dropdown>
+      </div>
     </div>
   </div>
 </div>

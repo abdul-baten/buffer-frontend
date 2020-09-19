@@ -1,7 +1,6 @@
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConnectionHeaderModule } from '@shared/module/header/connection-header/connection-header.module';
 import { ConnectionPlanSidebarModule } from '@shared/module/connection-plan-sidebar/connection-plan-sidebar.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
@@ -10,8 +9,8 @@ import { NgModule } from '@angular/core';
 import { ProfilesComponent } from './container/profiles.component';
 import { ProfilesFacade } from './facade/profiles.facade';
 import { ProfilesRoutingModule } from './profiles-routing.module';
-import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
 import { TableModule } from 'primeng/table';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [ProfilesComponent],
@@ -19,14 +18,13 @@ import { TableModule } from 'primeng/table';
     ButtonModule,
     CommonModule,
     ConfirmDialogModule,
-    ConnectionHeaderModule,
     ConnectionPlanSidebarModule,
     InputTextModule,
     LazyLoadImageModule,
     LoaderModule,
     ProfilesRoutingModule,
-    SocialProfileAddModule,
     TableModule,
+    ToolbarModule,
   ],
   providers: [ProfilesFacade],
 })

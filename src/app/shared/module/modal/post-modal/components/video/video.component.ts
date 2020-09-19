@@ -19,7 +19,6 @@ import { SubSink } from 'subsink';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   currentDateTime: Date;
-  loadingState$: Observable<boolean>;
   menuItems: MenuItem[];
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
@@ -33,7 +32,6 @@ export class VideoComponent implements OnInit, OnDestroy {
     private readonly store: Store<AppState>,
   ) {
     this.videoForm = this.buildVideoForm();
-    this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
   ngOnInit(): void {

@@ -7,33 +7,14 @@ import { DashboardPostsOverviewComponent } from './components/dashboard-posts-ov
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardSocialPerformanceComponent } from './components/dashboard-social-performance/dashboard-social-performance.component';
 import { DashboardSocialProfileOverviewComponent } from './components/dashboard-social-profile-overview/dashboard-social-profile-overview.component';
-import { DashboardTopToolbarComponent } from './components/dashboard-top-toolbar/dashboard-top-toolbar.component';
 import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
-import { SocialProfileAddModule } from '@shared/module/social-profile/social-profile-add/social-profile-add.module';
-import { SocialProfileToolbarModule } from '@shared/module/social-profile/social-profile-toolbar/social-profile-toolbar.module';
+import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    DashboardPostsOverviewComponent,
-    DashboardSocialPerformanceComponent,
-    DashboardSocialProfileOverviewComponent,
-    DashboardTopToolbarComponent,
-  ],
-  imports: [
-    AnalyzeCardModule,
-    CommonModule,
-    DashboardHeaderModule,
-    DashboardRoutingModule,
-    FieldsetModule,
-    LazyLoadImageModule,
-    MatTableModule,
-    SocialProfileAddModule,
-    SocialProfileToolbarModule,
-  ],
+  declarations: [DashboardComponent, DashboardPostsOverviewComponent, DashboardSocialPerformanceComponent, DashboardSocialProfileOverviewComponent],
+  imports: [AnalyzeCardModule, CommonModule, DashboardHeaderModule, DashboardRoutingModule, FieldsetModule, LazyLoadImageModule, ToolbarModule],
   providers: [DashboardFacade],
 })
 export class DashboardModule {}

@@ -20,7 +20,6 @@ import { SubSink } from 'subsink';
 export class ImageComponent implements OnInit, OnDestroy {
   currentDateTime: Date;
   imageForm: FormGroup;
-  loadingState$: Observable<boolean>;
   menuItems: MenuItem[];
   postStatus = E_POST_STATUS;
   private subscriptions$ = new SubSink();
@@ -33,7 +32,6 @@ export class ImageComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
   ) {
     this.imageForm = this.biuldImageForm();
-    this.loadingState$ = this.postCreateModalFacade.getLoadingState();
   }
 
   private biuldImageForm(): FormGroup {

@@ -30,10 +30,6 @@ export class PostModalFacade {
     return this.connectionService.entities$;
   }
 
-  getLoadingState(): Observable<boolean> {
-    return this.postService.loading$;
-  }
-
   setPostType(postType: E_POST_TYPE): void {
     this.store.dispatch(setPostType({ postType }));
   }

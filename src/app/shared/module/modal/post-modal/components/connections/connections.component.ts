@@ -6,8 +6,8 @@ import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--connections',
-  templateUrl: './connections.component.html',
   styleUrls: ['./connections.component.scss'],
+  templateUrl: './connections.component.html',
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
   @Output() connectionChange = new EventEmitter<Partial<I_CONNECTION>[]>();
@@ -47,8 +47,8 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
     const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
     const findConnectionIndex = this.selectedConnections.findIndex((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
     if (!findConnection) {
-      const { connectionID, connectionToken, connectionType } = connection;
-      this.selectedConnections.push({ connectionID, connectionToken, connectionType });
+      const { connectionType, id } = connection;
+      this.selectedConnections.push({ connectionType, id });
     } else {
       this.selectedConnections.splice(findConnectionIndex, 1);
     }
