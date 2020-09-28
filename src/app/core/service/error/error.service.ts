@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
+import { I_ERROR } from '@core/model';
+import { Injectable } from '@angular/core';
 import { NotificationService } from '../notification/notification.service';
 import { Router } from '@angular/router';
 
@@ -7,40 +8,29 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class ErrorService {
-  constructor(private snackbarService: NotificationService, private zone: NgZone, private router: Router) {}
-
-  private getServerErrorMessage(error: HttpErrorResponse): string {
-    return error.error.errorMessage ? error.error.errorMessage : error.toString();
-  }
-
-  openSnackbar(message: string): void {
-    this.zone.run(() => {
-      this.snackbarService.showError(message);
-    });
-  }
+  constructor(private readonly notificationService: NotificationService, private router: Router) {}
 
   handleServerError(error: HttpErrorResponse): void {
-    this.serverError(error);
-    const message = this.getServerErrorMessage(error);
-    this.openSnackbar(message);
+    this.serverError(error.error);
   }
 
-  private serverError(error: HttpErrorResponse): void {
-    const {
-      error: { errorCode },
-    } = error;
+  private serverError(error: I_ERROR): void {
+    console.clear();
+    console.warn(error);
 
-    this.zone.run(() => {
-      switch (errorCode) {
-        case '100':
-        case '101':
-          this.router.navigate(['/enter']);
-          break;
+    const { errorCode, message } = error;
 
-        case '1000':
-          this.router.navigate(['/connection/choose']);
-          break;
-      }
-    });
+    this.notificationService.showError(message);
+
+    switch (errorCode) {
+      case '100':
+      case '101':
+        this.router.navigate(['/enter']);
+        break;
+
+      case '1000':
+        this.router.navigate(['/connection/choose']);
+        break;
+    }
   }
 }

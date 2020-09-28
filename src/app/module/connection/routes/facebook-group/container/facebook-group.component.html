@@ -1,14 +1,14 @@
 <div class="p-d-flex p-jc-start p-flex-column">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
+  <div class="b-w-full b-h-toolbar b-br-b">
     <buffer--toolbar headerTitle="Facebook Group"></buffer--toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
-    <div class="b-h-full b-sidenav-content b-of-a">
-      <div class="p-p-4 b-h-full b-of-a" *ngIf="(facade.getLoadingStatus() | async) === false">
+    <div class="b-h-full b-of-auto">
+      <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngFor="let connection of facade.getFacebookGroups() | async"
-            class="p-col-12 p-md-6 p-lg-6 p-sm-12 p-xs-12 buffer--padding-2">
+          <div *ngFor="let connection of connections$ | async"
+            class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 buffer--padding-2">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
@@ -27,12 +27,6 @@
           </div>
         </section>
       </div>
-      <div class="b-h-full b-pos-relative b-bg-lg" *ngIf="(facade.getLoadingStatus() | async) === true">
-        <buffer--loader></buffer--loader>
-      </div>
-    </div>
-    <div class="b-h-full p-p-4 b-sidenav">
-      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
     </div>
   </section>
 </div>

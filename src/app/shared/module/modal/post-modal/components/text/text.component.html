@@ -2,7 +2,8 @@
   <form novalidate [formGroup]="textForm">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
-        <buffer--connections (connectionChange)="changeConnectionSelection($event)"></buffer--connections>
+        <buffer--connections (connectionChange)="changeConnectionSelection($event)">
+        </buffer--connections>
       </div>
       <div class="p-field p-col-12">
         <label for="postCaption">Caption</label>
@@ -12,7 +13,7 @@
       <div class="p-field p-col-12">
         <label for="postScheduleDateTime">Date</label>
         <p-calendar [hourFormat]="12" [minDate]="currentDateTime" [readonlyInput]="true" [showButtonBar]="true"
-          [showIcon]="true" [stepMinute]="15" appendTo="body" dateFormat="D, M dd, yy" inputId="postScheduleDateTime"
+          [showIcon]="true" [stepHour]="1" [stepMinute]="60" appendTo="body" dateFormat="D, M dd, yy" inputId="postScheduleDateTime"
           [showTime]="true" formControlName="postScheduleDateTime" placeholder="Select a Date">
         </p-calendar>
       </div>

@@ -1,0 +1,139 @@
+<p-table #postTable [rowsPerPageOptions]="[5,10,25,50]" [rows]="5" [showCurrentPageReport]="true" [value]="posts"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts" dataKey="id"
+  [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['status']" [paginator]="true">
+  <ng-template pTemplate="caption">
+    <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
+      <div class="p-col-4 p-p-0">
+        <h5>Post insights</h5>
+      </div>
+      <div class="p-col-4 p-p-0">
+        <span class="p-input-icon-left b-w-full">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Filter by status" autocomplete="off"
+            (input)="postTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
+        </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>Attachment</th>
+      <th colspan="3">Message</th>
+      <th colspan="2">Created</th>
+      <th>Likes</th>
+      <th>Comments</th>
+      <th>Shares</th>
+      <th>Reactions</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-post let-expanded="expanded">
+    <tr>
+      <td>
+        <button type="button" pButton [pRowToggler]="post"
+          class="p-button-sm p-button-text p-button-rounded p-button-plain"
+          [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+      </td>
+      <td>
+        <img *ngIf="post?.attachment" [src]="post?.attachment" class="b-w-full b-br b-br-sm p-p-1" />
+      </td>
+      <td colspan="3">
+        <div class="b-text-fade">
+          <p class="b-c-black">{{ post.status }}</p>
+        </div>
+        <div class="p-mt-3">
+          <div class="badges">
+            <span *ngFor="let hashTag of post.hashTags" class="p-tag p-tag-secondary">{{ hashTag }}</span>
+          </div>
+        </div>
+      </td>
+      <td colspan="2">
+        <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
+          {{ post.createdTime | date: 'medium' }}</small>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ post.totalLikes || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ post.totalComments || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ post.totalShares || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ post.totalReactions || '-' }}</h6>
+      </td>
+      <td>
+        <button pTooltip="View post" tooltipPosition="top" pButton icon="pi pi-external-link"
+          class="p-button-sm p-button-rounded p-button-text p-button-plain" (click)="viewPost(post.url)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-post>
+    <tr>
+      <td colspan="12">
+        <div class="p-p-3">
+          <p-table [value]="post.insights" dataKey="id">
+            <ng-template pTemplate="header">
+    <tr>
+      <th>Engagement</th>
+      <th>Engaged Fans</th>
+      <th>Post Clicks</th>
+      <th>Impressions</th>
+      <th>Reach</th>
+      <th>Eng. Rate</th>
+      <th>Organic Imp.</th>
+      <th>Paid Imp.</th>
+      <th>Negativity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-insight>
+    <tr>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.engagedUsers || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.engagedFan || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.postClicks || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressions || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.postReach || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ ((insight.engagedUsers/ insight.postImpressions) | percent) || '-' }}
+        </h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressionsOrganic || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressionsPaid || '-' }}</h6>
+      </td>
+      <td>
+        <h6 class="b-text-primary p-text-bold">{{ insight.negativeFeedback || '-' }}</h6>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+</div>
+</td>
+</tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="12">
+      <div class="p-my-6">
+        <buffer--no-data-found class="b-h-full">
+          <h5>No post found</h5>
+        </buffer--no-data-found>
+      </div>
+    </td>
+  </tr>
+</ng-template>
+</p-table>

@@ -99,12 +99,12 @@
         label="See complete feature list"></button>
     </div>
 
-    <div class="">
-      <p-table id="comparisonTable" [value]="products" dataKey="name" styleClass="p-m-0">
+    <div id="comparisonTable">
+      <p-table [value]="products" dataKey="name" styleClass="p-m-0">
         <ng-template pTemplate="header">
           <tr>
             <th colspan="2">
-              <h1 class="p-text-bold">Choose your plan</h1>
+              <h4 class="p-text-bold p-text-black">Choose your plan</h4>
             </th>
             <th class="p-pl-5">
               <h4>Pro</h4>
@@ -121,19 +121,18 @@
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-product>
-          <tr *ngIf="product?.groupName && product?.groupHeader" class=" b-table-group">
+          <tr *ngIf="product?.groupName && product?.groupHeader" class="b-table-group">
             <td colspan="5" class="p-p-5">
               <h4 class="p-text-capitalize b-text-primary">{{ product?.groupName }}</h4>
             </td>
           </tr>
           <tr>
             <td colspan="2" class="p-p-5">
-              <h5 (mouseleave)="op.toggle($event)" (mouseover)="op.toggle($event)"
-                class="p-text-capitalize b-br-b-dashed b-w-max-content b-cursor-help">
+              <h6 [pTooltip]="product.name" tooltipPosition="top" class="p-text-capitalize b-br-b-dashed b-w-max-content b-cursor-help">
                 {{product.name}}
-              </h5>
+              </h6>
             </td>
-            <td class="p-text-center p-pl-5 p-py-5">
+            <td class="p-text-center ">
               <p [ngSwitch]="product.pro">
                 <span *ngSwitchCase="true">
                   <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
@@ -146,7 +145,7 @@
                 </span>
               </p>
             </td>
-            <td class="p-text-center p-pl-5 p-py-5">
+            <td class="p-text-center ">
               <p [ngSwitch]="product.premium">
                 <span *ngSwitchCase="true">
                   <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
@@ -159,7 +158,7 @@
                 </span>
               </p>
             </td>
-            <td class="p-text-center p-pl-5 p-py-5">
+            <td class="p-text-center">
               <p [ngSwitch]="product.advanced">
                 <span *ngSwitchCase="true">
                   <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
@@ -173,20 +172,13 @@
               </p>
             </td>
           </tr>
-          <p-overlayPanel #op appendTo="body">
-            <ng-template pTemplate>
-              <div style="max-width: 20rem;">
-                <p class="b-text-white">{{product.name}}</p>
-              </div>
-            </ng-template>
-          </p-overlayPanel>
         </ng-template>
         <ng-template pTemplate="footer">
           <tr>
             <th colspan="2" class="p-text-left">
               <h4 class="p-text-bold">Ready to buy? Choose your plan</h4>
             </th>
-            <th class="p-pl-5 p-py-5 p-text-left">
+            <th class=" p-text-left">
               <h4>Pro</h4>
               <button pButton disabled label="Current Plan" class="b-w-full p-button-sm p-my-3"></button>
             </th>

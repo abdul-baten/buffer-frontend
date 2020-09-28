@@ -1,0 +1,16 @@
+<div [ngSwitch]="postData.postType" class="p-mb-4">
+  <div *ngSwitchCase="postType.IMAGE">
+    <div class="p-d-flex p-jc-between p-ai-center">
+      <img *ngFor="let image of postData.postMedia" [defaultImage]="image" [lazyLoad]="image" class="b-w-full" />
+    </div>
+  </div>
+  <div *ngSwitchCase="postType.VIDEO">
+    <video #media id="postVideo" preload="auto" [src]="postData.postMedia[0]" type="video/mp4" class="b-w-full">
+    </video>
+  </div>
+</div>
+
+<p>{{ postData.postCaption }}</p>
+<small class=" p-mr-2">
+  <i class="pi pi-clock b-va-m"></i> {{ postData.postScheduleDateTime | date: 'shortTime' }}
+</small>

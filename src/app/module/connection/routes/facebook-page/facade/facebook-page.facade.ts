@@ -2,10 +2,10 @@ import { AppState } from 'src/app/reducers';
 import { ConnectionService } from '@core/service/connection/connection.service';
 import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
 import { FacebookPageService } from '../service/facebook-page.service';
-import { finalize, switchMap, tap } from 'rxjs/operators';
 import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Params, Router } from '@angular/router';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { setUserInfo } from 'src/app/actions';
@@ -14,14 +14,11 @@ import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class FacebookPageFacade {
-  private loading: Observable<boolean> = of(true);
-  private facebookPages: Observable<I_CONNECTION[]>;
-
   constructor(
-    private facebookPageService: FacebookPageService,
     private readonly connectionService: ConnectionService,
+    private readonly facebookPageService: FacebookPageService,
+    private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly userService: UserService,
-    private responsiveLayoutService: ResponsiveLayoutService,
     private router: Router,
     private store: Store<AppState>,
   ) {}
@@ -38,43 +35,27 @@ export class FacebookPageFacade {
     return this.responsiveLayoutService.isTablet();
   }
 
-  setLoadingStatus(loadingStatus: boolean = true): void {
-    this.loading = of(loadingStatus);
-  }
-
-  getLoadingStatus(): Observable<boolean> {
-    return this.loading;
-  }
-
-  setFacebookPages(facebookPages: any): void {
-    this.facebookPages = of(facebookPages);
-  }
-
-  getFacebookPages(): Observable<I_CONNECTION[]> {
-    return this.facebookPages;
-  }
-
   navigateToPage(pageToNavigate: string): void {
     this.router.navigate([pageToNavigate]);
   }
 
-  fetchFBPages(queryParams: Observable<Params>, connectionType: string): void {
-    queryParams.subscribe((params: { code: string }) => {
-      const { code } = params;
-      this.facebookPageService
-        .fetchFacebookPages(code, connectionType)
-        .pipe(finalize(() => this.setLoadingStatus(false)))
-        .subscribe((resp: I_FB_PAGE_RESPONSE) => {
-          this.store.dispatch(setUserInfo({ user: resp.user }));
-          this.setFacebookPages(resp.pages);
-        });
-    });
+  fetchFBPages(queryParams: Observable<Params>, connectionType: string): Observable<I_CONNECTION[]> {
+    return queryParams.pipe(
+      switchMap((params: { code: string }) => {
+        const { code } = params;
+        return this.facebookPageService.fetchFacebookPages(code, connectionType).pipe(
+          map((resp: I_FB_PAGE_RESPONSE) => {
+            this.store.dispatch(setUserInfo({ user: resp.user }));
+            return resp.pages;
+          }),
+        );
+      }),
+    );
   }
 
   addFacebookPage(connectionInfo: I_CONNECTION): Observable<I_CONNECTION> {
     const userFromState$ = this.userService.getUserFromState();
     return userFromState$.pipe(
-      tap(() => this.setLoadingStatus(true)),
       switchMap((user: I_USER) => {
         connectionInfo.connectionUserID = user.id;
         connectionInfo.connectionStatus = E_CONNECTION_STATUS.ENABLED;

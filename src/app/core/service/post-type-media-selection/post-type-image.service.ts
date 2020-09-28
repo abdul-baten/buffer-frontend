@@ -51,7 +51,7 @@ export class PostTypeImageService implements I_POST_TYPE_GENERATOR {
             return media.id;
           },
           onerror: (error: any) => {
-            this.notificationService.openNotificationWithComponent(error.errorMsg);
+            this.notificationService.showError(error.errorMsg);
           },
         },
 
@@ -59,7 +59,7 @@ export class PostTypeImageService implements I_POST_TYPE_GENERATOR {
           console.warn(uniqueFileId);
 
           fetch(uniqueFileId)
-            .then(res => res.blob())
+            .then((res) => res.blob())
             .then(load)
             .catch(error);
         },

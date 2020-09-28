@@ -1,0 +1,88 @@
+<p-table #postTable [rowsPerPageOptions]="[5,10,25,50]" [rows]="5" [showCurrentPageReport]="true" [value]="posts"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts" dataKey="id"
+  [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['status']" [paginator]="true">
+  <ng-template pTemplate="caption">
+    <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
+      <div class="p-col-4 p-p-0">
+        <h5>Media insights</h5>
+      </div>
+      <div class="p-col-4 p-p-0">
+        <span class="p-input-icon-left b-w-full">
+          <i class="pi pi-search"></i>
+          <input type="text" pInputText placeholder="Filter by status" autocomplete="off"
+            (input)="postTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
+        </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th colspan="2">Attachment</th>
+      <th colspan="2">Caption</th>
+      <th colspan="2">Created</th>
+      <th>Likes</th>
+      <th>Comments</th>
+      <th>Impressions</th>
+      <th>Reach</th>
+      <th>Save</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-post let-expanded="expanded">
+    <tr>
+      <td colspan="2">
+        <div *ngIf="post?.media_url">
+          <div [ngSwitch]="post.media_type">
+            <div *ngSwitchCase="'IMAGE'">
+              <img [alt]="post.media_url" [src]="post.media_url" class="b-w-full b-br b-br-sm p-p-1" />
+            </div>
+            <div *ngSwitchCase="'VIDEO'">
+              <video preload="auto" [src]="post.media_url" controls controlsList="nodownload" playsinline preload
+                class="b-w-full b-br b-br-sm p-p-1">
+              </video>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="b-text-fade">
+          <p class="b-c-black">{{ post?.caption }}</p>
+        </div>
+      </td>
+      <td colspan="2">
+        <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
+          {{ post?.createdTime | date: 'medium' }}</small>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ post?.like_count || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ post?.comments_count || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ post?.impressions?.total || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ post?.reach?.total || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ post?.saved?.total || 0 }}</h6>
+      </td>
+      <td>
+        <button pTooltip="View post" tooltipPosition="top" pButton icon="pi pi-external-link"
+          class="p-button-sm p-button-rounded p-button-text p-button-plain" (click)="viewPost(post.permalink)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="12">
+        <div class="p-my-6">
+          <buffer--no-data-found class="b-h-full">
+            <h5>No post found</h5>
+          </buffer--no-data-found>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

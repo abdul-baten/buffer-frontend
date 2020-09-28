@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+import { E_POST_TYPE } from '@core/enum';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+
+@Component({
+  selector: 'buffer--view-modal',
+  styleUrls: ['./view-modal.component.scss'],
+  templateUrl: './view-modal.component.html',
+})
+export class ViewModalComponent {
+  postType = E_POST_TYPE;
+  postData: any;
+  constructor(public postInfo: DynamicDialogConfig) {
+    this.postData = this.postInfo.data.postData;
+  }
+}

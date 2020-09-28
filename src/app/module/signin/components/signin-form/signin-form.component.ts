@@ -20,9 +20,9 @@ export class SigninFormComponent {
 
   private buildSigninForm(): FormGroup {
     return this.formBuilder.group({
-      email: [null, [Validators.required, CommonValidator.emailAddress]],
+      email: ['alamin@technoflame.com', [Validators.required, CommonValidator.emailAddress]],
       password: [
-        null,
+        'baten@CAT2019',
         [
           Validators.required,
           Validators.minLength(6),

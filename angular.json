@@ -17,6 +17,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "highcharts",
+              "highcharts/highcharts-more",
+              "highcharts/modules/exporting",
+              "highcharts/modules/export-data",
+              "highcharts/modules/offline-exporting",
+              "highcharts/modules/no-data-to-display"
+            ],
             "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,7 +43,8 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/default-passive-events/dist/index.js"
             ]
           },
           "configurations": {

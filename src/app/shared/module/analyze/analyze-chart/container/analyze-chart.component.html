@@ -8,11 +8,15 @@
 
   <div class="p-d-flex p-flex-column">
     <div class="p-d-flex p-jc-end">
-      <button (click)="exportToExcel()" pButton pTooltip="Export as PNG" tooltipPosition="bottom" type="button"
+      <button (click)="exportToJPEG()" pButton pTooltip="Export as JPEG" tooltipPosition="top" type="button"
         icon="pi pi-image" class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
-      <button (click)="exportToExcel()" pButton pTooltip="Export as Excel" tooltipPosition="bottom" type="button"
-        icon="pi pi-table" class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
+      <button (click)="exportToExcel()" pButton pTooltip="Export as Excel" tooltipPosition="top" type="button"
+        icon="pi pi-file-excel" class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
     </div>
-    <p-chart [data]="data" [type]="chartType" [options]="chartOptions" class="p-mt-5"></p-chart>
+
+    <highcharts-chart class="b-w-full" [Highcharts]="Highcharts" [constructorType]="'chart'" [options]="optFromInput"
+      [(update)]="updateFromInput" [oneToOne]="true">
+    </highcharts-chart>
+
   </div>
 </p-fieldset>

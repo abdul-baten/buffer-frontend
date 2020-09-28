@@ -25,12 +25,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
 
-  constructor(
-    private stepper: MatStepper,
-    private formBuilder: FormBuilder,
-    private postCreateModalFacade: PostModalFacade,
-    private store: Store<AppState>,
-  ) {
+  constructor(private facade: PostModalFacade, private formBuilder: FormBuilder, private stepper: MatStepper, private store: Store<AppState>) {
     this.imageForm = this.biuldImageForm();
   }
 
@@ -61,7 +56,7 @@ export class ImageComponent implements OnInit, OnDestroy {
     ];
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.facade.getPostInfo().subscribe((postInfo: I_POST) => {
         const { postCaption, postScheduleDateTime } = postInfo;
         if (!!postCaption) {
           this.imageForm.patchValue({ postCaption });
@@ -69,6 +64,8 @@ export class ImageComponent implements OnInit, OnDestroy {
         this.imageForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
       }),
     );
+
+    
   }
 
   onPreviousButtonClicked(): void {
@@ -90,7 +87,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   savePost(postStatus: E_POST_STATUS): void {
     if (this.imageForm.valid) {
       const { value } = this.imageForm;
-      this.subscriptions$.add(this.postCreateModalFacade.sendPost(value, postStatus, this.selectedConnections).subscribe(noop));
+      this.subscriptions$.add(this.facade.sendPost(value, postStatus, this.selectedConnections).subscribe(noop));
     }
   }
 

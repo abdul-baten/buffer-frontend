@@ -39,3 +39,18 @@
     </div>
   </p-footer>
 </p-confirmDialog>
+
+<p-confirmDialog key="postReschedule" [closable]="true" #postReschedule header="Reschedule Post?">
+  <p-footer class="p-mt-4">
+    <div class="p-grid">
+      <div class="p-col-6 p-px-2">
+        <button type="button" pButton label="Cancel" (click)="postReschedule.reject()"
+          class="b-w-full p-button-sm p-button-text p-button-plain"></button>
+      </div>
+      <div class="p-col-6 p-px-2">
+        <button type="button" pButton label="Reschedule" class="b-w-full p-button-sm p-button-success"
+          (click)="postReschedule.accept()"></button>
+      </div>
+    </div>
+  </p-footer>
+</p-confirmDialog>

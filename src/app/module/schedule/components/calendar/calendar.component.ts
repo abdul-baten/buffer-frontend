@@ -12,7 +12,7 @@ import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 import { SubSink } from 'subsink';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
 
 import {
@@ -105,6 +105,9 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
     weekends: true,
     monthMode: false,
     lazyFetching: true,
+    eventDrop: (postInfo: EventDropArg) => {
+      this.postDropped(postInfo);
+    },
   };
 
   constructor(
@@ -115,7 +118,6 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   ) {
     console.warn(name);
     console.clear();
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -158,14 +160,13 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
     return differenceInDays(new Date(), new Date(arg.start)) <= 0;
   }
 
-  postDropped(postInfo: I_POST): void {
-    switch (differenceInDays(new Date(), new Date(postInfo.event.start)) <= 0) {
+  postDropped(postInfo: EventDropArg): void {
+    switch (differenceInDays(new Date(), new Date(postInfo.event.start.toString())) <= 0) {
       case true:
         this.facade.handlePostDrag(postInfo);
         break;
       default:
-        postInfo.revert();
-        this.facade.openSnackbar('Post can not be rescheduled to past date.');
+        this.facade.revertPost(postInfo);
         break;
     }
   }

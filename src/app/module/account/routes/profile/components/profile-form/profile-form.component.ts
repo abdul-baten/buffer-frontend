@@ -8,9 +8,8 @@ import { I_COUNTRY } from '@core/model';
   templateUrl: './profile-form.component.html',
 })
 export class ProfileFormComponent {
-  countries: I_COUNTRY[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
   profileSetupForm: FormGroup;
-
+  countries: I_COUNTRY[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
   constructor(private formBuilder: FormBuilder) {
     this.profileSetupForm = this.buildProfileSetupForm();
   }
@@ -18,7 +17,9 @@ export class ProfileFormComponent {
   private buildProfileSetupForm(): FormGroup {
     return this.formBuilder.group({
       profileBio: [''],
-      profileCountry: ['Bangladesh'],
+      profileCountry: [''],
+      profileTimezone: [''],
+      profileEmailAddress: ['', Validators.compose([Validators.required, Validators.email])],
       profileFirstName: ['', Validators.required],
       profileLastName: ['', Validators.required],
     });

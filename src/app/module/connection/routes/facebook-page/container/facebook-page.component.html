@@ -1,14 +1,13 @@
 <div class="p-d-flex p-jc-start p-flex-column">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
-    <buffer--toolbar headerTitle="Facebook Page"></buffer--toolbar>
+  <div class="b-w-full b-h-toolbar b-br-b">
+    <buffer--toolbar [backButton]="true" [showConnections]="true" headerTitle="Facebook Page"></buffer--toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
-    <div class="b-h-full b-sidenav-content b-of-a">
-      <div class="p-p-4 b-h-full b-of-a" *ngIf="(facade.getLoadingStatus() | async) === false">
+    <div class="b-h-full b-of-auto">
+      <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngFor="let connection of facade.getFacebookPages() | async"
-            class="p-col-12 p-md-6 p-lg-6 p-sm-12 p-xs-12 buffer--padding-2">
+          <div *ngFor="let connection of connections$ | async" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
@@ -17,8 +16,8 @@
                     errorImage="/assets/images/svg/default-media.svg" />
                 </div>
               </p-header>
-              <h6>{{ connection.connectionName }}</h6>
-              <p>{{ connection.connectionCategory }}</p>
+              <h6 class="p-text-capitalize">{{ connection.connectionName }}</h6>
+              <small>{{ connection.connectionCategory }}</small>
               <button (click)="addFacebookPage(connection)"
                 class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
                 type="button">
@@ -27,12 +26,6 @@
           </div>
         </section>
       </div>
-      <div class="b-h-full b-pos-relative b-bg-lg" *ngIf="(facade.getLoadingStatus() | async) === true">
-        <buffer--loader></buffer--loader>
-      </div>
-    </div>
-    <div class="b-h-full p-p-4 b-sidenav">
-      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
     </div>
   </section>
 </div>

@@ -3,35 +3,47 @@ import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
 import { Component, Inject } from '@angular/core';
 import { E_POST_TYPE } from '@core/enum';
 import { I_POST } from '@core/model';
+import { MenuItem } from 'primeng/api';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
 
 @Component({
   selector: 'buffer--post',
-  templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+  templateUrl: './post.component.html',
 })
 export class PostComponent {
-  upcomingPost: boolean;
+  menuItems: MenuItem[];
   postType = E_POST_TYPE;
+  upcomingPost: boolean;
 
   constructor(private scheduleFacade: ScheduleFacade, @Inject(CALENDAR_POST_DATA) public calendarData: I_POST) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
-  }
 
-  actionClicked(action: string): void {
-    const { id } = this.calendarData.event;
-    switch (action) {
-      case 'view':
-        this.scheduleFacade.handlePostDetailsDialogOpen(this.calendarData.event);
-        break;
-
-      case 'edit':
-        this.scheduleFacade.handlePostEditDialogOpen(this.calendarData.event);
-        break;
-
-      case 'delete':
-        this.scheduleFacade.deletePost(id);
-        break;
-    }
+    this.menuItems = [
+      {
+        label: 'Details',
+        icon: 'pi pi-eye',
+        command: () => {
+          const { extendedProps } = this.calendarData.event;
+          this.scheduleFacade.viewPost(extendedProps);
+        },
+      },
+      {
+        label: 'Edit',
+        icon: 'pi pi-pencil',
+        command: () => {
+          const { extendedProps } = this.calendarData.event;
+          this.scheduleFacade.editPost(extendedProps);
+        },
+      },
+      { separator: true },
+      {
+        label: 'Delete',
+        icon: 'pi pi-trash',
+        command: () => {
+          this.scheduleFacade.deletePost(this.calendarData.event.id);
+        },
+      },
+    ];
   }
 }

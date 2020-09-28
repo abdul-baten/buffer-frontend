@@ -32,6 +32,6 @@ export class DashboardHeaderMenuComponent implements OnInit {
   }
 
   clicked(route: [string]): void {
-    this.facade.navigate(route);
+    location.href = route.join('/');
   }
 }

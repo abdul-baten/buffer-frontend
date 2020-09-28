@@ -1,8 +1,8 @@
 import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component } from '@angular/core';
+import { E_CONNECTION_TYPE } from '@core/enum';
 import { environment } from '@env/environment';
 import { PAGES } from '@core/constant/page/page.constant';
-import { E_CONNECTION_TYPE } from '@core/enum';
 
 const API_URL = environment.apiURL;
 
@@ -12,11 +12,48 @@ const API_URL = environment.apiURL;
   templateUrl: './choose-connection.component.html',
 })
 export class ChooseConnectionComponent {
-  connectionType = E_CONNECTION_TYPE;
-  matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 72;
-  matSideNavMode = 'side';
-  matSideNavPosition = 'end';
+  connections: any[] = [
+    {
+      image: 'facebook',
+      name: 'Facebook Page',
+      type: E_CONNECTION_TYPE.FACEBOOK_PAGE,
+    },
+    {
+      image: 'facebook',
+      name: 'Facebook Group',
+      type: E_CONNECTION_TYPE.FACEBOOK_GROUP,
+    },
+    {
+      image: 'instagram',
+      name: 'Instagram Business',
+      type: E_CONNECTION_TYPE.INSTAGRAM_BUSINESS,
+    },
+    {
+      image: 'instagram',
+      name: 'Instagram Personal',
+      type: E_CONNECTION_TYPE.INSTAGRAM_PERSONAL,
+    },
+    {
+      image: 'twitter',
+      name: 'Twitter',
+      type: E_CONNECTION_TYPE.TWITTER,
+    },
+    {
+      image: 'linkedin',
+      name: 'Linkedin Page',
+      type: E_CONNECTION_TYPE.LINKEDIN_PAGE,
+    },
+    {
+      image: 'linkedin',
+      name: 'Linkedin Profile',
+      type: E_CONNECTION_TYPE.LINKEDIN_PROFILE,
+    },
+    {
+      image: 'pinterest',
+      name: 'Pinterest',
+      type: E_CONNECTION_TYPE.PINTEREST,
+    },
+  ];
 
   constructor(private readonly facade: ChooseConnectionFacade) {}
 

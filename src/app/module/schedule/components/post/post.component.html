@@ -4,26 +4,15 @@
     <div [ngClass]="{
       'b-text-primary': upcomingPost,
       'b-text-danger': !upcomingPost
-    }" class="p-d-flex p-jc-between p-ai-center">
-      <small class=" p-mr-2">
+    }" class="p-my-2">
+      <small class="p-mr-2">
         <i class="pi pi-clock b-va-m"></i> {{ calendarData.event.start | date: 'shortTime' }}
       </small>
     </div>
-
-    <div [ngSwitch]="calendarData.event.extendedProps.postType">
-      <div *ngSwitchCase="postType.IMAGE">
-        <i class="pi pi-images icon-font-size b-text-help"></i>
-      </div>
-      <div *ngSwitchCase="postType.VIDEO">
-        <i class="pi pi-video icon-font-size b-text-info"></i>
-      </div>
-
-      <div *ngSwitchDefault>
-        <i class="pi pi-align-center icon-font-size b-text-primary"></i>
-
-      </div>
-    </div>
+    <button type="button" pButton icon="pi pi-ellipsis-v"
+      class="p-button-text p-button-plain p-button-rounded p-button-sm" (click)="menu.toggle($event)"></button>
   </div>
+
   <div class="p-my-2">
     <div [ngSwitch]="calendarData.event.extendedProps.postType">
       <div *ngSwitchCase="postType.IMAGE">
@@ -37,7 +26,6 @@
           type="video/mp4" class="b-w-full">
         </video>
       </div>
-
       <div *ngSwitchDefault>
         <p>
           {{ calendarData.event.extendedProps.postCaption }}
@@ -45,16 +33,6 @@
       </div>
     </div>
   </div>
-  <div class="p-d-flex p-jc-between">
-    <button pButton (click)="actionClicked('view')" class="p-button-rounded p-button-text p-button-plain p-button-sm"
-      icon="pi pi-eye" pTooltip="Details" tooltipPosition="bottom">
-    </button>
-    <button pButton *ngIf="upcomingPost" (click)="actionClicked('edit')"
-      class="p-button-rounded p-button-text p-button-plain p-button-sm" icon="pi pi-pencil" pTooltip="Edit"
-      tooltipPosition="bottom">
-    </button>
-    <button pButton (click)="actionClicked('delete')" class="p-button-rounded p-button-text p-button-plain p-button-sm"
-      icon="pi pi-trash" pTooltip="Delete" tooltipPosition="bottom">
-    </button>
-  </div>
 </div>
+
+<p-menu #menu [model]="menuItems" [popup]="true" appendTo="body" styleClass="p-px-2"></p-menu>

@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
+import { NoDataFoundModule } from '@shared/module/no-data-found/no-data-found.module';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
@@ -22,6 +23,7 @@ import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
     DropdownModule,
     InputTextModule,
     LazyLoadImageModule,
+    NoDataFoundModule,
     SplitButtonModule,
     TableModule,
     ToolbarModule,

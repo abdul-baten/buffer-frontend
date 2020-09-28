@@ -4,18 +4,18 @@ import { I_POST } from '@core/model';
 import { LoaderComponent } from '@shared/module/loader/container/loader.component';
 import { Observable, of } from 'rxjs';
 import { PostModalComponent } from '@shared/module/modal/post-modal/container/post-modal.component';
+import { ViewModalComponent } from '@shared/module/modal/view-modal/container/view-modal.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   private loaderCounter = 0;
-  private dialogRef: DynamicDialogRef;
 
   constructor(private dialogService: DialogService) {}
 
   openPostModal(header: string, postData: Partial<I_POST>): DynamicDialogRef {
-    this.dialogRef = this.dialogService.open(PostModalComponent, {
+    const dialogRef = this.dialogService.open(PostModalComponent, {
       header,
       width: '550px',
       contentStyle: { 'max-height': '650px', overflow: 'auto' },
@@ -24,7 +24,20 @@ export class ModalService {
       },
     });
 
-    return this.dialogRef;
+    return dialogRef;
+  }
+
+  openViewModal(header: string, postData: Partial<I_POST>): DynamicDialogRef {
+    const dialogRef = this.dialogService.open(ViewModalComponent, {
+      header,
+      width: '550px',
+      contentStyle: { 'max-height': '650px', overflow: 'auto' },
+      data: {
+        postData,
+      },
+    });
+
+    return dialogRef;
   }
 
   openLoader(): Observable<ComponentRef<DynamicDialogComponent>> {
@@ -33,16 +46,19 @@ export class ModalService {
     if (this.loaderCounter === 1) {
       this.dialogService.open(LoaderComponent, {
         autoZIndex: true,
-        baseZIndex: 10001,
+        baseZIndex: 10000,
         closable: false,
         contentStyle: { background: 'transparent' },
         dismissableMask: false,
-        modal: true,
         style: { 'box-shadow': 'none' },
       });
     }
 
     return of(this.dialogService.dialogComponentRef);
+  }
+
+  closeModal(dialogRef: DynamicDialogRef): void {
+    dialogRef.close();
   }
 
   closeLoader(dialogRef: ComponentRef<DynamicDialogComponent>) {

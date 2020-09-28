@@ -21,7 +21,7 @@ export class BucketSavedComponent {
     {
       id: '1001',
       title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      start: '2020-08-07T20:30:00',
+      // start: '2020-08-07T20:30:00',
       allDay: false,
       editable: true,
       overlap: true,

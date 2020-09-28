@@ -1,20 +1,35 @@
 <section class="b-main-content b-of-h">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
+  <div class="b-w-full b-h-toolbar b-br-b">
     <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Saved"></buffer--toolbar>
   </div>
   <div class="b-hs-wt-h b-of-auto">
     <p-table #postTable [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
       [value]="calendarPosts | async" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
-      dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']">
+      dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']"
+      [paginator]="true" styleClass="p-datatable-striped">
       <ng-template pTemplate="caption">
         <div class="p-px-4 b-h-toolbar">
           <buffer--bucket-header (inputChange)="inputChanged($event)" (dropdownChange)="dropdownChanged($event)">
           </buffer--bucket-header>
         </div>
       </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th colspan="2">Media</th>
+          <th colspan="4" pSortableColumn="postCaption">Status <p-sortIcon field="postCaption"></p-sortIcon>
+          </th>
+          <th colspan="2" pSortableColumn="postScheduleDateTime">Saved on <p-sortIcon field="postScheduleDateTime">
+            </p-sortIcon>
+          </th>
+          <th pSortableColumn="postType">Type <p-sortIcon field="postType"></p-sortIcon>
+          </th>
+          <th>Connection</th>
+          <th colspan="2"></th>
+        </tr>
+      </ng-template>
       <ng-template pTemplate="body" let-post>
         <tr>
-          <td class="p-pr-3">
+          <td colspan="2">
             <div class="b-w-full" *ngIf="post.postType === postType.IMAGE || post.postType === postType.VIDEO">
               <div [ngSwitch]="post.postType">
                 <div *ngSwitchCase="postType.IMAGE">
@@ -27,7 +42,7 @@
                     </ng-template>
                   </p-carousel>
                 </div>
-                <div *ngSwitchCase="postType.VIDEO" class="p-px-4">
+                <div *ngSwitchCase="postType.VIDEO">
                   <video id="postVideo" preload="auto" [src]="post.postMedia[0]" type="video/mp4" controls
                     controlsList="nodownload" playsinline preload class="b-w-full b-br-sm">
                   </video>
@@ -35,12 +50,12 @@
               </div>
             </div>
           </td>
-          <td colspan="3" class="p-pr-5">
+          <td colspan="4">
             <div class="b-text-fade">
               <p class="b-c-black">{{ post.postCaption }}</p>
             </div>
           </td>
-          <td class="p-mx-auto">
+          <td colspan="2">
             <div class="p-d-flex p-flex-column">
               <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
                 {{ post.postScheduleDateTime | date: 'EEE, MMM dd, y' }}</small>
@@ -48,21 +63,20 @@
             </div>
           </td>
           <td>
-            <div class="p-d-flex p-jc-between p-ai-center">
-              <span
-                [ngClass]="{ 'p-tag-warning': post.postType === postType.TEXT, 'p-tag-success': post.postType === postType.IMAGE, 'p-tag-info': post.postType === postType.VIDEO}"
-                class="p-text-capitalize p-tag">{{ post.postType }}</span>
-              <div class="b-ca b-ca-md p-mx-auto"
-                [title]="splitConnectionType(post.postConnection.connectionType ? post.postConnection.connectionType: '')">
-                <img [lazyLoad]="post.postConnection.connectionPicture" class="b-w-full b-h-full b-br-full"
-                  defaultImage="/assets/images/svg/default-media.svg"
-                  errorImage="/assets/images/svg/default-media.svg" />
-                <div [attr.class]="'b-ca-sl b-ca-sl-' + post.postConnection.connectionType">
-                </div>
+            <span
+              [ngClass]="{ 'p-tag-warning': post.postType === postType.TEXT, 'p-tag-success': post.postType === postType.IMAGE, 'p-tag-info': post.postType === postType.VIDEO}"
+              class="p-text-capitalize p-tag">{{ post.postType }}</span>
+          </td>
+          <td>
+            <div class="b-ca b-ca-md"
+              [title]="splitConnectionType(post.postConnection.connectionType ? post.postConnection.connectionType: '')">
+              <img [lazyLoad]="post.postConnection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
+              <div [attr.class]="'b-ca-sl b-ca-sl-' + post.postConnection.connectionType">
               </div>
             </div>
           </td>
-          <td class="p-pr-3">
+          <td colspan="2">
             <p-splitButton label="Publish" styleClass="p-splitbutton-sm b-w-full" [model]="getMenuItems(post)"
               appendTo="body" menuStyleClass="p-p-2">
             </p-splitButton>
@@ -71,13 +85,11 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="4">
-            <div class="p-m-5">
-              <div class="b-h-full p-d-flex p-flex-column p-ai-center">
-                <div class="p-my-5 p-text-center">
-                  <h3>No post found</h3>
-                </div>
-              </div>
+          <td colspan="5">
+            <div class="b-hs-w-h">
+              <buffer--no-data-found class="b-h-full">
+                <h3>No post found</h3>
+              </buffer--no-data-found>
             </div>
           </td>
         </tr>

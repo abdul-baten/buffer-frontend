@@ -1,6 +1,6 @@
 import { AppState } from 'src/app/reducers';
 import { ConnectionService } from '@core/service/connection/connection.service';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { finalize, map, tap } from 'rxjs/operators';
 import { forkJoin, Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from '@core/mo
 import { Injectable, Injector } from '@angular/core';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { PostService } from '@core/service/post/post.service';
-import { removeNewPostAllMedia, removeNewPostData, setPostType, setNewPostData } from 'src/app/actions';
+import { removeNewPostAllMedia, removeNewPostData, setNewPostData, setPostType } from 'src/app/actions';
 import { selectNewPostActiveConnectionID, selectNewPostDate, selectNewPostMedias, selectNewPostType, selectPostInfo } from 'src/app/selectors';
 import { Store } from '@ngrx/store';
 import { UserService } from '@core/service/user/user.service';
@@ -18,7 +18,7 @@ import { UserService } from '@core/service/user/user.service';
 export class PostModalFacade {
   constructor(
     private readonly connectionService: ConnectionService,
-    private readonly dialogRef: DialogService,
+    private readonly dialogRef: DynamicDialogRef,
     private readonly injector: Injector,
     private readonly notificationService: NotificationService,
     private readonly postService: PostService,
@@ -40,6 +40,7 @@ export class PostModalFacade {
 
   setNewPostData(postInfo: I_POST): void {
     const postData = JSON.parse(JSON.stringify(postInfo));
+
     postData.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(postData.postScheduleDateTime), { nearestTo: 15 }));
     this.store.dispatch(setNewPostData({ postData }));
   }
@@ -52,8 +53,7 @@ export class PostModalFacade {
     return this.store.select(selectNewPostDate);
   }
 
-  sendPost(postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST> {
-    this.postService.setLoading(true);
+  sendPost(postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST[]> {
     const requests: any[] = [];
     postData.postCaption = postData.postCaption.trim();
     postData.postStatus = postStatus;
@@ -72,17 +72,15 @@ export class PostModalFacade {
       requests.push(this.postService.addPost(clonedPostData));
     });
 
-    // tslint:disable-next-line
-    return forkJoin(...requests).pipe(
-      map(([...response]) => response),
+    return forkJoin([...requests]).pipe(
+      map(([...responses]: I_POST[]) => responses),
       tap(() => {
-        this.store.dispatch(removeNewPostData());
-        this.dialogRef.dialogComponentRef.destroy();
+        this.dialogRef.destroy();
         this.notificationService.showSuccess(`Your post has been ${postData.postStatus} successfully.`);
       }),
       finalize(() => {
+        this.store.dispatch(removeNewPostData());
         this.store.dispatch(removeNewPostAllMedia());
-        this.postService.setLoading(false);
       }),
     );
   }

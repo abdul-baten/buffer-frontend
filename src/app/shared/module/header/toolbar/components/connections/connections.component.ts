@@ -1,6 +1,6 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { I_CONNECTION } from '@core/model';
+import { I_CONNECTION, I_CONNECTION_SELECTED } from '@core/model';
 import { Location } from '@angular/common';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { ToolbarFacade } from '../../facade/toolbar.facade';
   templateUrl: './connections.component.html',
 })
 export class ConnectionsComponent implements OnInit {
-  @Output() connectionSelected = new EventEmitter<{ id: string; type: string }>();
+  @Output() connectionSelected = new EventEmitter<I_CONNECTION_SELECTED>();
   isWeb: Observable<boolean>;
 
   connections$: Observable<I_CONNECTION[]>;

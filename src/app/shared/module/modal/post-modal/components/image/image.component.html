@@ -2,7 +2,8 @@
   <form novalidate [formGroup]="imageForm">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
-        <buffer--connections (connectionChange)="changeConnectionSelection($event)"></buffer--connections>
+        <buffer--connections (connectionChange)="changeConnectionSelection($event)">
+        </buffer--connections>
       </div>
       <div class="p-field p-col-12">
         <buffer--media></buffer--media>

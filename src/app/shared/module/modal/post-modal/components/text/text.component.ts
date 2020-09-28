@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_POST } from '@core/model';
 import { MatStepper } from '@angular/material/stepper';
 import { MenuItem } from 'primeng/api/menuitem';
+import { noop } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { SubSink } from 'subsink';
 
@@ -21,11 +22,7 @@ export class TextComponent implements OnInit, OnDestroy {
   selectedConnections: Partial<I_CONNECTION>[] = [];
   textForm: FormGroup;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-    private readonly postCreateModalFacade: PostModalFacade,
-    private readonly stepper: MatStepper,
-  ) {
+  constructor(private readonly formBuilder: FormBuilder, private readonly facade: PostModalFacade, private readonly stepper: MatStepper) {
     this.textForm = this.buildTextForm();
   }
 
@@ -49,7 +46,7 @@ export class TextComponent implements OnInit, OnDestroy {
     ];
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.facade.getPostInfo().subscribe((postInfo: I_POST) => {
         const { postCaption, postScheduleDateTime } = postInfo;
         if (!!postCaption) {
           this.textForm.patchValue({ postCaption });
@@ -81,10 +78,12 @@ export class TextComponent implements OnInit, OnDestroy {
   savePost(postStatus: E_POST_STATUS): void {
     if (this.textForm.valid) {
       const { value } = this.textForm;
-      this.postCreateModalFacade
-        .sendPost(value, postStatus, this.selectedConnections)
-        .pipe(finalize(() => this.textForm.reset()))
-        .subscribe();
+      this.subscriptions$.add(
+        this.facade
+          .sendPost(value, postStatus, this.selectedConnections)
+          .pipe(finalize(() => this.textForm.reset()))
+          .subscribe(noop),
+      );
     }
   }
 

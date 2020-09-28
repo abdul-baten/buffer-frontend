@@ -8,13 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HeaderComponent } from './components/header/header.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MenuModule } from 'primeng/menu';
 import { NgModule } from '@angular/core';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { PostComponent } from './components/post/post.component';
-import { PostDetailsModalModule } from '@shared/module/modal/post-details-modal/post-details-modal.module';
 import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
-import { PostRescheduleConfirmModalModule } from '@shared/module/modal/post-reschedule-confirm-modal/post-reschedule-confirm-modal.module';
 import { reducer, schedulePostFeatureKey } from '@app/schedule/reducer/calendar.reducer';
 import { ScheduleComponent } from '@app/schedule/container/schedule.component';
 import { ScheduleEffects } from '@app/schedule/effect/schedule.effects';
@@ -37,15 +35,13 @@ import { TooltipModule } from 'primeng/tooltip';
     FormsModule,
     FullCalendarModule,
     LazyLoadImageModule,
-    MatDialogModule,
-    PostDetailsModalModule,
     PostModalModule,
-    PostRescheduleConfirmModalModule,
     ScheduleRoutingModule,
     SelectButtonModule,
     StoreModule.forFeature(schedulePostFeatureKey, reducer),
     ToolbarModule,
     TooltipModule,
+    MenuModule,
   ],
   providers: [DatePipe, ScheduleFacade, ScheduleService, NotificationService],
   entryComponents: [PostComponent, HeaderComponent],

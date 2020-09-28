@@ -47,8 +47,8 @@ export class ProfilesFacade {
     });
   }
 
-  navigateToPage(pageToNavigate: string): void {
-    this.router.navigate([pageToNavigate]);
+  navigate(pageToNavigate: string[]): void {
+    this.router.navigate(pageToNavigate);
   }
 
   isWeb(): Observable<boolean> {

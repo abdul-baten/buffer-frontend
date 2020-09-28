@@ -51,13 +51,13 @@ export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
             return media.id;
           },
           onerror: (error: any) => {
-            this.notificationService.openNotificationWithComponent(error.errorMsg);
+            this.notificationService.showError(error.errorMsg);
           },
         },
 
         load: (uniqueFileId: string, load: any, error: any) => {
           fetch(uniqueFileId)
-            .then(res => res.blob())
+            .then((res) => res.blob())
             .then(load)
             .catch(error);
         },

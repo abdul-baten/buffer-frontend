@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { I_CONNECTION, I_CONNECTION_SELECTED } from '@core/model';
 import { Location } from '@angular/common';
-import { I_CONNECTION } from '@core/model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,11 +14,12 @@ export class ToolbarComponent implements OnChanges {
   @Input() backButton = true;
   @Input() headerTitle: string;
   @Input() showConnections = true;
+  @Output() connectionSelected = new EventEmitter<I_CONNECTION_SELECTED>();
 
   connections$: Observable<I_CONNECTION[]>;
   activeConnection$: Observable<string>;
 
-  constructor(private readonly location: Location) {}
+  constructor(private readonly location: Location, private router: Router) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.backButton = changes.backButton.currentValue;
@@ -27,5 +29,13 @@ export class ToolbarComponent implements OnChanges {
 
   backClicked(): void {
     this.location.back();
+  }
+
+  isConnectionSelected(event: any) {
+    this.connectionSelected.emit(event);
+  }
+
+  navigate(): void {
+    this.router.navigate(['connection/profiles']);
   }
 }

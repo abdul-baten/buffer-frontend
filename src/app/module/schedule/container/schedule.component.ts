@@ -1,7 +1,7 @@
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
-import { I_POST } from '@core/model';
+import { I_CONNECTION_SELECTED, I_POST } from '@core/model';
 import { mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
@@ -25,7 +25,8 @@ export class ScheduleComponent {
     this.posts$ = this.activatedRoute.paramMap.pipe(mergeMap((params: ParamMap) => this.facade.getPostsByConnectionID(params.get('id'))));
   }
 
-  onConnectionSelect(connectionID: string) {
-    this.router.navigate(['/schedule', connectionID]);
+  connectionSelected(connection: I_CONNECTION_SELECTED): void {
+    const { id } = connection;
+    this.router.navigate(['/schedule', id]);
   }
 }

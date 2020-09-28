@@ -1,44 +1,42 @@
-import subMonths from 'date-fns/subMonths';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FacebookFacade } from '../facade/analyze-facebook.facade';
-import { I_INSIGHT } from '@core/model';
-import { map, tap } from 'rxjs/operators';
-import { noop, Observable } from 'rxjs';
-import { SubSink } from 'subsink';
+import { I_CONNECTION_SELECTED, I_INS_FB } from '@core/model';
+import { finalize, map, switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { ModalService } from '@core/service/modal/modal.service';
 
 @Component({
   selector: 'buffer--analyze-facebook',
   styleUrls: ['./analyze-facebook.component.scss'],
   templateUrl: './analyze-facebook.component.html',
 })
-export class AnalyzeFacebookComponent implements OnDestroy {
-  dateRange: Date[] = [subMonths(new Date(), 1), new Date()];
-  insight$: Observable<I_INSIGHT>;
+export class AnalyzeFacebookComponent {
+  insight$: Observable<I_INS_FB>;
 
-  private subscriptions$ = new SubSink();
-
-  constructor(private activatedRoute: ActivatedRoute, private facade: FacebookFacade, private router: Router) {
-    this.subscriptions$.add(
-      this.activatedRoute.paramMap
-        .pipe(
-          tap((params: ParamMap) => {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private facade: FacebookFacade,
+    private router: Router,
+    private notificationService: ModalService,
+  ) {
+    const a = this.notificationService.openLoader();
+    this.insight$ = a.pipe(
+      switchMap((ref: any) => {
+        return this.activatedRoute.paramMap.pipe(
+          switchMap((params: ParamMap) => {
             const id = params.get('id');
-            this.facade.getInsights({ id, dateRange: this.dateRange }).subscribe(noop);
-            this.insight$ = this.facade.getInsightFromState(id).pipe(map((response: any) => response));
+            return this.facade.getInsightFromState(id).pipe(map((response: any) => response));
           }),
-        )
-        .subscribe(noop),
+          finalize(() => this.notificationService.closeLoader(ref)),
+        );
+      }),
     );
   }
 
-  @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
-  }
-
-  connectionSelected(connection: { id: string; type: string }): void {
+  connectionSelected(connection: I_CONNECTION_SELECTED): void {
     const { id, type } = connection;
-    this.router.navigate(['analyze', type, id], { replaceUrl: true });
+    this.router.navigate(['analyze', type, id]);
   }
 }

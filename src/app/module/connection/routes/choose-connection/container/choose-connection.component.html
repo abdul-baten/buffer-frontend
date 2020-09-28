@@ -1,112 +1,23 @@
 <div class="p-d-flex p-jc-start p-flex-column">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
-    <buffer--toolbar [showConnections]="false" headerTitle="Connect"></buffer--toolbar>
+  <div class="b-w-full b-h-toolbar b-br-b">
+    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Connect"></buffer--toolbar>
   </div>
 
-  <section class="b-hs-wt-h b-of-h">
-    <div class="b-h-full b-sidenav-content b-of-a">
-      <div class="p-p-4 b-h-full b-of-a">
-        <div class="p-grid">
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Facebook Page</h6>
-            <button (click)="chooseNewConnection(connectionType.FACEBOOK_PAGE)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Facebook Group</h6>
-            <button (click)="chooseNewConnection(connectionType.FACEBOOK_GROUP)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/instagram.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Instagram Business</h6>
-            <button (click)="chooseNewConnection(connectionType.INSTAGRAM_BUSINESS)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/instagram.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Instagram Personal</h6>
-            <button (click)="chooseNewConnection(connectionType.INSTAGRAM_PERSONAL)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/twitter.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Twitter</h6>
-            <button (click)="chooseNewConnection(connectionType.TWITTER)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/linkedin.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>LinkedIn Page</h6>
-            <button (click)="chooseNewConnection(connectionType.LINKEDIN_PAGE)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/linkedin.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>LinkedIn Profile</h6>
-            <button (click)="chooseNewConnection(connectionType.LINKEDIN_PROFILE)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-
-          <p-fieldset class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 p-p-2">
-            <p-header>
-              <div class="b-ca b-ca-md">
-                <img src="/assets/images/icon/pinterest.svg" class="b-w-full b-h-full b-br-full" />
-              </div>
-            </p-header>
-            <h6>Pinterest</h6>
-            <button (click)="chooseNewConnection(connectionType.PINTEREST)"
-              class="p-button-sm p-button-text b-w-full p-mt-4" label="Connect" pButton type="button">
-            </button>
-          </p-fieldset>
-        </div>
+  <section class="b-hs-wt-h b-of-auto">
+    <div class="p-p-4 b-h-full">
+      <div class="p-grid">
+        <p-fieldset *ngFor="let connection of connections" class="p-col-12 p-md-6 p-lg-3 p-sm-12 p-xs-12 p-p-2">
+          <p-header>
+            <div class="b-ca b-ca-md">
+              <img [src]="'/assets/images/icon/'+connection.image+'.svg'" class="b-w-full b-h-full b-br-full" />
+            </div>
+          </p-header>
+          <h6 class="p-text-capitalize">{{ connection.name }}</h6>
+          <button (click)="chooseNewConnection(connection.type)" class="p-button-sm p-button-text b-w-full p-mt-4"
+            label="Connect" pButton type="button">
+          </button>
+        </p-fieldset>
       </div>
-    </div>
-    <div class="b-h-full p-p-4 b-sidenav">
-      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
     </div>
   </section>
 </div>

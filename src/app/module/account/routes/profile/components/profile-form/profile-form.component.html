@@ -1,26 +1,36 @@
-<div class="p-px-6 p-pt-5 b-br b-br-sm">
+<div class="p-px-6 p-pt-5 p-pb-2 b-bg-white b-br-sm">
   <form novalidate [formGroup]="profileSetupForm">
-    <div class="p-fluid p-formgrid">
+    <div class="p-fluid p-formgrid p-grid p-p-2">
       <div class="p-field p-col-12">
-        <label for="profileFirstName">First name</label>
-        <input id="profileFirstName" type="text" pInputText formControlName="profileFirstName" />
+        <label for="profileFirstName">First name<span class="b-input-label-required">*</span></label>
+        <input id="profileFirstName" type="text" pInputText formControlName="profileFirstName" class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileLastName">Last name</label>
-        <input id="profileLastName" type="text" pInputText formControlName="profileLastName" />
+        <label for="profileLastName">Last name<span class="b-input-label-required">*</span></label>
+        <input id="profileLastName" type="text" pInputText formControlName="profileLastName" class="p-inputtext-lg" />
+      </div>
+      <div class="p-field p-col-12">
+        <label for="profileEmailAddress">Email address<span class="b-input-label-required">*</span></label>
+        <input id="profileEmailAddress" type="email" pInputText formControlName="profileEmailAddress"
+          class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
         <label for="profileBio">Bio</label>
-        <textarea id="profileBio" type="text" rows="4" [autoResize]="true" pInputTextarea
-          formControlName="profileBio"></textarea>
+        <textarea id="profileBio" type="text" rows="4" [autoResize]="true" pInputTextarea formControlName="profileBio"
+          class="p-inputtext-lg"></textarea>
       </div>
-      <div class="p-field p-col-12">
+      <div class="p-field p-col-6 p-pr-2">
         <label for="profileCountry">Country</label>
         <p-dropdown inputId="profileCountry" [options]="countries" formControlName="profileCountry"
-          placeholder="Select country" optionLabel="name"></p-dropdown>
+          class="p-inputtext-lg" placeholder="Select country" optionLabel="name"></p-dropdown>
+      </div>
+      <div class="p-field p-col-6 p-pl-2">
+        <label for="profileTimezone">Timezone</label>
+        <p-dropdown inputId="profileTimezone" [options]="countries" formControlName="profileTimezone"
+          class="p-inputtext-lg" placeholder="Select timezone" optionLabel="name"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <button pButton type="button" label="Update profile" class="b-w-full"
+        <button pButton type="button" label="Save changes" class="b-w-full p-button-lg"
           [disabled]="profileSetupForm.invalid"></button>
       </div>
     </div>

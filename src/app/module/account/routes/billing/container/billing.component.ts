@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'buffer--billing',
-  templateUrl: './billing.component.html',
   styleUrls: ['./billing.component.scss'],
+  templateUrl: './billing.component.html',
 })
 export class BillingComponent {}

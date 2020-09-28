@@ -15,7 +15,15 @@ export class PostService extends EntityCollectionServiceBase<I_POST> {
   }
 
   addPost(postInfo: I_POST): Observable<I_POST> {
-    return this.httpService.post<I_POST>('post/add', postInfo).pipe(
+    const {
+      postType,
+      postStatus,
+      postConnection: { connectionType },
+    } = postInfo;
+    const connType = connectionType.split('_')[0].toLowerCase();
+    const status = postStatus.toLowerCase();
+
+    return this.httpService.post<I_POST>(`post/${postType}-${connType}-${status}`, postInfo).pipe(
       tap((post: I_POST) => {
         if (post.id) {
           this.upsertOneInCache(post);

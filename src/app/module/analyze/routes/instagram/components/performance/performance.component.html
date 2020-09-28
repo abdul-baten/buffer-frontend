@@ -1,0 +1,27 @@
+<section class="b-h-full">
+  <div class="p-grid">
+    <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
+      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page CTA click history" chartType="column"
+        [chartLabels]="insight?.categories" [chartSeries]="[
+        {name: 'Call now', data: insight?.page_call_phone_clicks_logged_in_unique?.response, type: 'column', color: '#04D98B'},
+        {name: 'Get directions', data: insight?.page_get_directions_clicks_logged_in_unique?.response, type: 'column', color: '#e0245e'},
+        {name: 'Website clicks', data: insight?.page_website_clicks_logged_in_unique?.response, type: 'column', color: '#88929e'}
+        ]">
+      </buffer--analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page views history" chartType="column"
+        [chartLabels]="insight?.categories"
+        [chartSeries]="[{name: 'Logged in', data: insight?.page_views_logged_in_total?.response, type: 'column'}, {name: 'Logged out', data: insight?.page_views_logout?.response, type: 'column'}]">
+      </buffer--analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page likes/unlikes history" chartType="column"
+        [chartLabels]="insight?.categories" [chartSeries]="[
+        {name: 'Likes', data: insight?.page_fan_adds?.response, type: 'column', color: '#04D98B'},
+        {name: 'Unlikes', data: insight?.page_fan_removes?.response, type: 'column', color: '#e0245e'}
+        ]">
+      </buffer--analyze-chart>
+    </div>
+  </div>
+</section>

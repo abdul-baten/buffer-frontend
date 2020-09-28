@@ -1,0 +1,12 @@
+:host {
+  ::ng-deep {
+    .p-datatable-wrapper {
+      height: auto;
+      padding: 0;
+    }
+
+    .b-d-h {
+      display: none;
+    }
+  }
+}

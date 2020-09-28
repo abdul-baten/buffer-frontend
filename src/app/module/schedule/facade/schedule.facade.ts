@@ -1,34 +1,43 @@
 import { Calendar } from '@fullcalendar/core';
 import { CalViewState } from '../model/calendar.model';
 import { ConfirmationService } from 'primeng/api';
+import { ConnectionService } from '@core/service/connection/connection.service';
+import { EventDropArg } from '@fullcalendar/interaction';
 import { format } from 'date-fns';
-import { I_POST } from '@core/model';
+import { I_CONNECTION, I_POST } from '@core/model';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '@core/service/modal/modal.service';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { Observable } from 'rxjs';
-import { PostDetailsModalComponent } from '../../../shared/module/modal/post-details-modal/container/post-details-modal.component';
-import { PostModalComponent } from '@shared/module/modal/post-modal/container/post-modal.component';
-import { PostRescheduleConfirmModalComponent } from '@shared/module/modal/post-reschedule-confirm-modal/container/post-reschedule-confirm-modal.component';
 import { PostService } from '@core/service/post/post.service';
-import { removeNewPostData } from 'src/app/actions';
+import { removeNewPostData, setPostType } from 'src/app/actions';
 import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ScheduleFacade {
+  private calendarApi: Calendar;
   constructor(
-    private matDialog: MatDialog,
     private modalService: ModalService,
     private readonly confirmationService: ConfirmationService,
     private readonly postService: PostService,
     private responsiveLayoutService: ResponsiveLayoutService,
+    private connectionService: ConnectionService,
     private snackbarService: NotificationService,
     private store: Store<CalViewState>,
   ) {}
 
-  private calendarApi: Calendar;
+  getFirstConnection(): Observable<{ id: string; type: string }> {
+    return this.connectionService.getFirstConnection().pipe(
+      map((connection: I_CONNECTION) => {
+        const { id, connectionType } = connection;
+        const type = connectionType.split('_')[0].toLowerCase();
+
+        return { id, type };
+      }),
+    );
+  }
 
   setCalendarApi(calendar: any): void {
     this.calendarApi = calendar;
@@ -62,56 +71,43 @@ export class ScheduleFacade {
     const dialogRef = this.modalService.openPostModal('Create Post', {
       postScheduleDateTime: format(postScheduleDateTime, `yyyy-MM-dd'T'HH:mm:ssxxx`),
     });
-    dialogRef.onDestroy.subscribe(() => {
+
+    dialogRef.onClose.subscribe(() => {
       this.store.dispatch(removeNewPostData());
     });
   }
 
-  handlePostDrag(postInfo: I_POST): void {
-    this.matDialog.open(PostRescheduleConfirmModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
+  revertPost(postInfo: EventDropArg): void {
+    postInfo.revert();
+    this.openSnackbar('Post can not be rescheduled to past date.');
+  }
+
+  handlePostDrag(postInfo: EventDropArg): void {
+    this.confirmationService.confirm({
+      key: 'postReschedule',
+      message: 'Are you sure you want to reschedule this post?',
+      accept: () => {
+        console.warn('asasasas accepted', postInfo);
       },
-      data: postInfo,
-      width: '450px',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      role: 'alertdialog',
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
+      reject: () => {
+        this.revertPost(postInfo);
+      },
     });
   }
 
   openSnackbar(message: string): void {
-    this.snackbarService.openSnackBar(message);
+    this.snackbarService.showSuccess(message);
   }
 
-  handlePostDetailsDialogOpen(postInfo: I_POST): void {
-    this.matDialog.open(PostDetailsModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-      data: postInfo,
-      width: '950px',
-      role: 'dialog',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
-    });
+  viewPost(postInfo: I_POST): void {
+    this.store.dispatch(setPostType({ postType: postInfo.postType }));
+    setTimeout(() => {
+      const dialogRef = this.modalService.openViewModal('Edit Post', postInfo);
+
+      dialogRef.onDestroy.subscribe(() => {
+        this.store.dispatch(removeNewPostData());
+      });
+    }, 200);
   }
 
   deletePost(postId: string): void {
@@ -124,26 +120,15 @@ export class ScheduleFacade {
     });
   }
 
-  handlePostEditDialogOpen(postInfo: I_POST): void {
-    this.matDialog.open(PostModalComponent, {
-      position: {
-        top: '',
-        bottom: '',
-        left: '',
-        right: '',
-      },
-      data: postInfo,
-      width: '700px',
-      role: 'dialog',
-      autoFocus: false,
-      direction: 'ltr',
-      hasBackdrop: true,
-      disableClose: true,
-      restoreFocus: false,
-      closeOnNavigation: true,
-      panelClass: 'buffer--dialog-bottom-sheet-custom-panel',
-      backdropClass: 'buffer--dialog-bottom-sheet-custom-backdrop',
-    });
+  editPost(postInfo: I_POST): void {
+    this.store.dispatch(setPostType({ postType: postInfo.postType }));
+    setTimeout(() => {
+      const dialogRef = this.modalService.openPostModal('Edit Post', postInfo);
+
+      dialogRef.onDestroy.subscribe(() => {
+        this.store.dispatch(removeNewPostData());
+      });
+    }, 200);
   }
 
   isWeb(): Observable<boolean> {

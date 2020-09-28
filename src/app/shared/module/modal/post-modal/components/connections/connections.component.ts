@@ -1,10 +1,11 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { I_CONNECTION, I_POST } from '@core/model';
 import { Observable } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { SubSink } from 'subsink';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--connections',
   styleUrls: ['./connections.component.scss'],
   templateUrl: './connections.component.html',
@@ -35,17 +36,14 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
 
   generateTooltip(connection: I_CONNECTION): string {
-    const connectionType = connection.connectionType
-      .split('_')
-      .join(' ')
-      .trim();
+    const connectionType = connection.connectionType.split('_').join(' ').trim();
 
     return `${connection.connectionName} | ${connectionType}`;
   }
 
   connectionSelected(connection: I_CONNECTION) {
-    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
+    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.id === connection.id);
+    const findConnectionIndex = this.selectedConnections.findIndex((entry: I_CONNECTION) => entry.id === connection.id);
     if (!findConnection) {
       const { connectionType, id } = connection;
       this.selectedConnections.push({ connectionType, id });
@@ -57,7 +55,7 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
 
   isConnectionSelected(connection: I_CONNECTION): boolean {
-    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.connectionID === connection.connectionID);
+    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.id === connection.id);
     return !!findConnection;
   }
 

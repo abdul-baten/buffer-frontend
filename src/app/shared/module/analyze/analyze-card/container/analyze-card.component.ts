@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -6,11 +6,15 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   styleUrls: ['./analyze-card.component.scss'],
   templateUrl: './analyze-card.component.html',
 })
-export class AnalyzeCardComponent {
-  @Input() cardCounter = 0;
-  @Input() cardIcon = '';
+export class AnalyzeCardComponent implements OnChanges {
+  @Input() cardCounter: number;
+  @Input() cardHelpInfo = '';
+  @Input() cardIcon: string;
   @Input() cardIconColor = '';
   @Input() cardInfoTitle = '';
   @Input() cardTitle = '';
-  @Input() cardHelpInfo = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.cardCounter = changes?.cardCounter?.currentValue;
+  }
 }

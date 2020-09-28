@@ -26,3 +26,9 @@ export interface I_LN_ACCESS_TOKEN_RESPONSE {
   access_token: string;
   expires_in: number;
 }
+
+// tslint:disable-next-line
+export interface I_CONNECTION_SELECTED {
+  id: string;
+  type?: string;
+}

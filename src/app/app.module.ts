@@ -1,4 +1,5 @@
 import { AppComponent } from './app.component';
+import { AppFacade } from './facade/app.facade';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
@@ -15,11 +16,10 @@ import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-requ
 import { LoaderInterceptor } from '@core/interceptor/loader/loader.interceptor';
 import { LoaderModule } from '@shared/module/loader/loader.module';
 import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
-import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 import { ModalService } from '@core/service/modal/modal.service';
-import { NotificationModule } from '@shared/module/notification/notification.module';
 import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
 import { ToastModule } from 'primeng/toast';
+import { ViewModalModule } from '@shared/module/modal/view-modal/view-modal.module';
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
@@ -34,19 +34,16 @@ import { ToastModule } from 'primeng/toast';
     EntityStoreModule,
     HttpClientModule,
     LoaderModule,
-    NotificationModule,
     PostModalModule,
     ToastModule,
+    ViewModalModule,
   ],
   providers: [
     ConfirmationService,
     DialogService,
     MessageService,
     ModalService,
-    {
-      provide: MAT_SNACK_BAR_DATA,
-      useValue: {},
-    },
+    AppFacade,
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
@@ -57,12 +54,20 @@ import { ToastModule } from 'primeng/toast';
       provide: HTTP_INTERCEPTORS,
       useClass: LoggerInterceptor,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    {
+      multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+    },
     {
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerUtil,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      multi: true,
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+    },
   ],
 })
 export class AppModule {}

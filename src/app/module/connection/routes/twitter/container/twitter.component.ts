@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { I_CONNECTION } from '@core/model';
 import { Observable } from 'rxjs';
 import { SubSink } from 'subsink';
@@ -7,33 +7,26 @@ import { TwitterFacade } from '../facade/twitter.facade';
 
 @Component({
   selector: 'buffer--twitter',
-  templateUrl: './twitter.component.html',
   styleUrls: ['./twitter.component.scss'],
+  templateUrl: './twitter.component.html',
 })
-export class TwitterComponent implements OnInit, OnDestroy {
-  matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 72;
-  matSideNavMode = 'side';
-  matSideNavPosition = 'end';
-
+export class TwitterComponent implements OnDestroy {
+  connection$: Observable<I_CONNECTION>;
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
-
   private subscriptions$ = new SubSink();
 
-  constructor(private activatedRoute: ActivatedRoute, public facade: TwitterFacade) {
+  constructor(private activatedRoute: ActivatedRoute, private facade: TwitterFacade) {
     this.isHandset$ = this.facade.isHandset();
     this.isTablet$ = this.facade.isTablet();
     this.isWeb$ = this.facade.isWeb();
+
+    this.getTwitterProfile();
   }
 
-  ngOnInit(): void {
-    this.getFacebookPages();
-  }
-
-  private getFacebookPages(): void {
-    this.facade.fetchTwitterProfile(this.activatedRoute.queryParams);
+  private getTwitterProfile(): void {
+    this.connection$ = this.facade.fetchTwitterProfile(this.activatedRoute.queryParams);
   }
 
   addTwitterProfile(connection: I_CONNECTION): void {

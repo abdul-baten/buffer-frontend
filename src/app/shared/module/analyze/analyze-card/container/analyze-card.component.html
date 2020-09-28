@@ -7,9 +7,9 @@
   </p-header>
   <div class="p-d-flex p-flex-column p-ai-center p-jc-between p-m-5">
     <div class="p-text-center">
-      <h1 class="b-text-primary p-text-bold">{{ cardCounter }}</h1>
-      <p>{{ cardInfoTitle }} <span [pTooltip]="cardHelpInfo" class="pi pi-info-circle b-text-secondary"
-          style="vertical-align: super; font-size: 0.75rem;"></span></p>
+      <h1 class="b-text-black p-text-bold">{{ cardCounter || 0 }}</h1>
+      <p>{{ cardInfoTitle }} <span [pTooltip]="cardHelpInfo" tooltipPosition="top"
+          class="pi pi-info-circle b-text-secondary" style="vertical-align: super; font-size: 0.75rem;"></span></p>
     </div>
   </div>
 </p-fieldset>

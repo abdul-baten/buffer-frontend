@@ -1,26 +1,37 @@
 <div class="p-d-flex p-jc-start p-flex-column">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
-    <buffer--toolbar [showConnections]="false" headerTitle="Connections"></buffer--toolbar>
+  <div class="b-w-full b-h-toolbar b-br-b">
+    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Social Profiles"></buffer--toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
-    <div class="b-h-full b-sidenav-content b-of-a">
-      <p-table #profilesTable [value]="connections$ | async" [filterDelay]="0" [loading]="loading$ | async"
-        [globalFilterFields]="['connectionName']" [showCurrentPageReport]="true">
+    <div class="b-h-full b-of-auto">
+      <p-table #profilesTable [showCurrentPageReport]="true" [value]="connections$ | async" dataKey="id"
+        [filterDelay]="0" [globalFilterFields]="['connectionName']" sortMode="multiple">
         <ng-template pTemplate="caption">
-          <div class="p-grid p-justify-between p-align-center p-px-3 p-pt-2">
-            <div class="p-col-4">
+          <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
+            <div class="p-col-4 p-p-0">
               <span class="p-input-icon-left b-w-full">
                 <i class="pi pi-search"></i>
-                <input type="text" pInputText placeholder="Search connection" autocomplete="off"
+                <input type="text" pInputText placeholder="Search profile" autocomplete="off"
                   (input)="profilesTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
               </span>
             </div>
-            <div class="p-col-3">
-              <button pButton type="button" label="Add connection" class="p-button-sm b-w-full"
-                (click)="navigateToPage(chooseConnectionPage)"></button>
+            <div class="p-col-2">
+              <button pButton type="button" label="Add Social Profile(s)" class="p-button-sm b-w-full"
+                (click)="navigate([chooseConnectionPage])"></button>
             </div>
           </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th colspan="2" pSortableColumn="connectionName">Profile <p-sortIcon field="connectionName"></p-sortIcon>
+            </th>
+            <th pSortableColumn="connectionCategory">Type <p-sortIcon field="connectionCategory"></p-sortIcon>
+            </th>
+            <th pSortableColumn="connectionAdded">Added on <p-sortIcon field="connectionAdded"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
         </ng-template>
         <ng-template pTemplate="body" let-connection>
           <tr>
@@ -33,43 +44,52 @@
                   <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
                   </div>
                 </div>
-                <h6>{{ connection.connectionName }}</h6>
+                <div>
+                  <h6>{{ connection.connectionName }}</h6>
+                </div>
               </div>
             </td>
-            <td></td>
             <td>
-              <p>{{ connection.connectionCategory }}</p>
+              <p>{{ getConnectionType(connection.connectionType) }}</p>
             </td>
             <td>
-              <button (click)="deleteConnection(connection)" class="p-button-sm p-button-text p-button-danger b-w-full"
-                label="Delete" pButton type="button">
-              </button>
+              <small>
+                <i class="pi pi-calendar b-va-m p-mr-1"></i>
+                {{ connection.connectionAdded | date: 'EEE, MMM dd, y' }}</small>
+            </td>
+            <td>
+              <div class="p-d-flex p-jc-start p-ai-center">
+                <p-inputSwitch pTooltip="Status" tooltipPosition="top"></p-inputSwitch>
+                <button (click)="connectionSelect(connection)"
+                  class="p-button-rounded p-button-text p-button-plain p-mx-3" icon="pi pi-plus" pButton type="button"
+                  pTooltip="Schedule" tooltipPosition="top">
+                </button>
+                <button (click)="deleteConnection(connection)" class="p-button-rounded p-button-text p-button-danger"
+                  icon="pi pi-trash" pButton type="button" pTooltip="Delete" tooltipPosition="top">
+                </button>
+              </div>
             </td>
           </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
           <tr>
-            <td colspan="4">
+            <td colspan="5">
               <div class="p-m-5">
                 <div class="b-h-full p-d-flex p-flex-column p-ai-center">
-                  <div class="buffer--height-32 buffer--width-32 p-text-center">
-                    <img src="/assets/images/svg/no-connection.svg" class="b-w-auto b-h-full" />
+                  <div class="p-text-center">
+                    <img src="/assets/images/svg/no-connection.svg" class="b-empty-msg-img" />
                   </div>
                   <div class="p-my-5 p-text-center">
                     <h3>No connection found</h3>
                     <p>When you connect, it'll show up here.</p>
                   </div>
-                  <button pButton (click)="navigateToPage(chooseConnectionPage)"
-                    label="Connect Social Accounts"></button>
+                  <button pButton (click)="navigate([chooseConnectionPage])" label="Connect Social Accounts"></button>
                 </div>
               </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
-    </div>
-    <div class="b-h-full p-p-4 b-sidenav">
-      <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
     </div>
   </section>
 </div>

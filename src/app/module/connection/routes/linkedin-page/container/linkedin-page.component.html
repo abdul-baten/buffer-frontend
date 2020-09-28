@@ -1,80 +1,31 @@
-<div class="buffer--display-flex buffer--display-flex-direction-column buffer--flex-justify-content-start">
-  <div class="b-w-full b-h-toolbar p-px-4 b-br-b">
-    <buffer--toolbar headerTitle="LinkedIn Page"></buffer--toolbar>
+<div class="p-d-flex p-jc-start p-flex-column">
+  <div class="b-w-full b-h-toolbar b-br-b">
+    <buffer--toolbar [backButton]="true" [showConnections]="true" headerTitle="LinkedIn Page"></buffer--toolbar>
   </div>
 
-  <section>
-    <mat-sidenav-container>
-      <mat-sidenav-content class="b-bg-white buffer--connection-route-sec b-of-h">
-        <div class="clearfix b-w-full b-h-full">
-          <div class="clearfix buffer--padding-x-10 buffer--padding-y-5 b-h-full b-of-a">
-            <div class="clearfix b-w-full">
-              <div
-                class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix b-h-full buffer--width-percent-50">
-                  <div
-                    class="clearfix b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-relaxed">
-                        Test Page for Iconosquare</p>
-                      <p class="buffer--text-color-gray buffer--font-family-sans-medium buffer--font-size-sm">
-                        Advertising Agency</p>
-                    </div>
-                  </div>
-
+  <section class="b-hs-wt-h b-of-h">
+    <div class="b-h-full b-of-auto">
+      <div class="p-p-4 b-h-full b-of-auto">
+        <section class="p-grid">
+          <div *ngFor="let connection of connection$ | async" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
+            <p-fieldset>
+              <p-header>
+                <div class="b-ca b-ca-lg">
+                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                    defaultImage="/assets/images/svg/default-media.svg"
+                    errorImage="/assets/images/svg/default-media.svg" />
                 </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Add to plan
-                  </button>
-                </div>
-              </div>
-
-              <div
-                class="buffer--padding-y-4 buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-space-between buffer--align-items-center buffer--border-width-0 buffer--border-bottom-width buffer--border-style-solid buffer--border-color-light-gray">
-                <div class="clearfix b-h-full buffer--width-percent-50">
-                  <div
-                    class="clearfix b-h-full buffer--display-flex buffer--display-flex-direction-row buffer--flex-justify-content-flex-start buffer--align-items-center">
-                    <div
-                      class="clearfix buffer--width-12 buffer--height-12 buffer--display-flex buffer--align-items-center buffer--flex-justify-content-center buffer--border-radius-full">
-                      <img src="/assets/images/icon/facebook.svg" class="b-w-full b-h-full" />
-                    </div>
-                    <div class="clearfix buffer--margin-x-5">
-                      <p
-                        class="buffer--text-color-black buffer--font-size-base buffer--font-family-sans-medium buffer--line-height-leading-relaxed">
-                        Test Page for Iconosquare</p>
-                      <p class="buffer--text-color-gray buffer--font-family-sans-medium buffer--font-size-sm">
-                        Advertising Agency</p>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="clearfix">
-                  <button
-                    class="buffer--height-12 buffer--font-family-sans-medium buffer--font-size-xs buffer--text-transform-uppercase"
-                    mat-stroked-button color="primary">
-                    Add to plan
-                  </button>
-                </div>
-              </div>
-            </div>
+              </p-header>
+              <h6 class="p-text-capitalize">{{ connection.connectionName }}</h6>
+              <small>{{ connection.connectionCategory }}</small>
+              <button (click)="addConnection(connection)"
+                class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
+                type="button">
+              </button>
+            </p-fieldset>
           </div>
-        </div>
-      </mat-sidenav-content>
-      <mat-sidenav [position]="matSideNavPosition" [mode]="matSideNavMode" opened
-        [fixedInViewport]="matSideNavFixedInViewport" [fixedTopGap]="matSideNavFixedTopGap"
-        class="buffer--width-percent-30 b-bg-white buffer--border-color-light-gray">
-        <div class="clearfix b-h-full buffer--padding-x-10 buffer--padding-y-6">
-          <buffer--connection-plan-sidebar></buffer--connection-plan-sidebar>
-        </div>
-      </mat-sidenav>
-    </mat-sidenav-container>
+        </section>
+      </div>
+    </div>
   </section>
 </div>

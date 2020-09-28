@@ -1,6 +1,6 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpService } from '../http/http.service';
-import { I_FB_INSIGHT_PAYLOAD, I_INSIGHT } from '@core/model';
+import { I_FB_INS_PAYLOAD, I_INSIGHT } from '@core/model';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -13,23 +13,26 @@ export class InsightService extends EntityCollectionServiceBase<I_INSIGHT> {
     super('Insight', serviceElementsFactory);
   }
 
-  getInsights(payload: I_FB_INSIGHT_PAYLOAD): Observable<I_INSIGHT> {
-    const insightFromServer$ = this.getInsightFromServer(payload);
-    return insightFromServer$;
-  }
-
-  getInsightFromState(id: string): Observable<I_INSIGHT> {
-    return this.entities$.pipe(
-      map((connections: I_INSIGHT[]) => {
-        return connections.find((insight: any) => insight.id === id);
+  getFBInsights(payload: I_FB_INS_PAYLOAD): Observable<I_INSIGHT> {
+    return this.httpService.post<I_INSIGHT>('insight/facebook', (payload as unknown) as I_INSIGHT).pipe(
+      tap((insightData: I_INSIGHT) => {
+        this.upsertOneInCache(insightData);
       }),
     );
   }
 
-  getInsightFromServer(payload: I_FB_INSIGHT_PAYLOAD): Observable<I_INSIGHT> {
-    return this.httpService.post<I_INSIGHT>('insight/facebook', (payload as unknown) as I_INSIGHT).pipe(
+  getIGInsights(payload: I_FB_INS_PAYLOAD): Observable<I_INSIGHT> {
+    return this.httpService.post<I_INSIGHT>('insight/instagram', (payload as unknown) as I_INSIGHT).pipe(
       tap((insightData: I_INSIGHT) => {
         this.upsertOneInCache(insightData);
+      }),
+    );
+  }
+
+  fbInsightFromState(id: string): Observable<I_INSIGHT> {
+    return this.entities$.pipe(
+      map((connections: I_INSIGHT[]) => {
+        return connections.find((insight: any) => insight.id === id);
       }),
     );
   }

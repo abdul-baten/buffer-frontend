@@ -41,7 +41,7 @@ export class DashboardHeaderFacade {
       postScheduleDateTime: format(new Date(postScheduleDateTime), `yyyy-MM-dd'T'HH:mm:ssxxx`),
     });
 
-    dialogRef.onDestroy.subscribe(() => {
+    dialogRef.onClose.subscribe(() => {
       this.store.dispatch(removeNewPostData());
     });
   }

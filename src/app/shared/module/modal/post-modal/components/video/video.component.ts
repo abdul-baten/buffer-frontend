@@ -26,9 +26,9 @@ export class VideoComponent implements OnInit, OnDestroy {
   videoForm: FormGroup;
 
   constructor(
-    private readonly stepper: MatStepper,
+    private readonly facade: PostModalFacade,
     private readonly formBuilder: FormBuilder,
-    private readonly postCreateModalFacade: PostModalFacade,
+    private readonly stepper: MatStepper,
     private readonly store: Store<AppState>,
   ) {
     this.videoForm = this.buildVideoForm();
@@ -54,7 +54,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     ];
 
     this.subscriptions$.add(
-      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.facade.getPostInfo().subscribe((postInfo: I_POST) => {
         const { postCaption, postScheduleDateTime } = postInfo;
         if (!!postCaption) {
           this.videoForm.patchValue({ postCaption });
@@ -90,10 +90,12 @@ export class VideoComponent implements OnInit, OnDestroy {
   savePost(postStatus: E_POST_STATUS): void {
     if (this.videoForm.valid) {
       const { value } = this.videoForm;
-      this.postCreateModalFacade
-        .sendPost(value, postStatus, this.selectedConnections)
-        .pipe(finalize(() => this.videoForm.controls.postCaption.reset()))
-        .subscribe();
+      this.subscriptions$.add(
+        this.facade
+          .sendPost(value, postStatus, this.selectedConnections)
+          .pipe(finalize(() => this.videoForm.controls.postCaption.reset()))
+          .subscribe(),
+      );
     }
   }
 

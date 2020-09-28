@@ -86,8 +86,12 @@ const PAGES: I_PAGE = {
     PAGE_TITLE: 'Analyze - Buffer',
   },
   ANALYZE_FACEBOOK_PAGE: {
-    PAGE_ROUTE: 'facebook/:id',
+    PAGE_ROUTE: 'analyze/facebook/:id',
     PAGE_TITLE: 'Analyze | Facebook - Buffer',
+  },
+  ANALYZE_INSTAGRAM_PAGE: {
+    PAGE_ROUTE: 'instagram/:id',
+    PAGE_TITLE: 'Analyze | Instagram - Buffer',
   },
   CONNECTION_MODULE: {
     PAGE_ROUTE: 'connection',
@@ -104,6 +108,10 @@ const PAGES: I_PAGE = {
       CONNECTION_FB_GROUP: {
         PAGE_ROUTE: 'facebook-group',
         PAGE_TITLE: 'Add a Facebook Group | Connection - Buffer',
+      },
+      CONNECTION_IG_BUSINESS: {
+        PAGE_ROUTE: 'instagram-business',
+        PAGE_TITLE: 'Add a Instagram Business Account | Connection - Buffer',
       },
       CONNECTION_TWITTER_PROFILE: {
         PAGE_ROUTE: 'twitter',

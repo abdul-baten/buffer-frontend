@@ -12,11 +12,6 @@ import { ProfilesFacade } from '../facade/profiles.facade';
 export class ProfilesComponent implements OnInit {
   chooseConnectionPage = `${PAGES.CONNECTION_MODULE.PAGE_ROUTE}/${PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE}`;
 
-  matSideNavFixedInViewport = true;
-  matSideNavFixedTopGap = 72;
-  matSideNavMode = 'side';
-  matSideNavPosition = 'end';
-
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
 
@@ -24,9 +19,9 @@ export class ProfilesComponent implements OnInit {
   loading$: Observable<boolean>;
   totalConnections$: Observable<number>;
 
-  constructor(private readonly profilesFacade: ProfilesFacade) {
-    this.isTablet$ = this.profilesFacade.isTablet();
-    this.isWeb$ = this.profilesFacade.isWeb();
+  constructor(private readonly facade: ProfilesFacade) {
+    this.isTablet$ = this.facade.isTablet();
+    this.isWeb$ = this.facade.isWeb();
   }
 
   ngOnInit(): void {
@@ -34,20 +29,28 @@ export class ProfilesComponent implements OnInit {
   }
 
   private getConnections(): void {
-    this.connections$ = this.profilesFacade.getConnectionsFromState();
-    this.loading$ = this.profilesFacade.getLoadingState();
-    this.totalConnections$ = this.profilesFacade.getTotalConnections();
+    this.connections$ = this.facade.getConnectionsFromState();
+    this.loading$ = this.facade.getLoadingState();
+    this.totalConnections$ = this.facade.getTotalConnections();
   }
 
   trackByConnectionID(connection: I_CONNECTION): string {
     return connection.id;
   }
 
-  deleteConnection(connection: I_CONNECTION): void {
-    this.profilesFacade.deleteConnection(connection);
+  connectionSelect(connection: I_CONNECTION): void {
+    this.facade.navigate(['/schedule', connection.id]);
   }
 
-  navigateToPage(pageToNavigate: string): void {
-    this.profilesFacade.navigateToPage(pageToNavigate);
+  deleteConnection(connection: I_CONNECTION): void {
+    this.facade.deleteConnection(connection);
+  }
+
+  navigate(pageToNavigate: string[]): void {
+    this.facade.navigate(pageToNavigate);
+  }
+
+  getConnectionType(connectionType: string): string {
+    return connectionType.split('_').join(' ');
   }
 }

@@ -3,30 +3,8 @@
   display: block;
 
   ::ng-deep {
-    .highcharts-contextmenu {
-      padding: 5rem;
-
-      .highcharts-menu {
-        padding: 1rem !important;
-        border: 1px solid #eeeef0 !important;
-        border-radius: 0.5rem;
-
-        .highcharts-menu-item {
-          padding: 0.75rem !important;
-          border-radius: 0.5rem;
-          color: #191919 !important;
-          font-family: 'Buffer-Sans-Medium', Arial, sans-serif !important;
-          font-size: 0.95rem !important;
-
-          &:hover {
-            background-color: #eeeef0 !important;
-          }
-        }
-      }
-    }
-
-    .highcharts-button-symbol {
-      transform: translate(8px, 10px) !important;
+    svg {
+      width: 100% !important;
     }
   }
 }

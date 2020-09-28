@@ -3,15 +3,8 @@
   overflow: hidden;
 
   ::ng-deep {
-    .p-datatable .p-datatable-thead > tr > th {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      box-shadow: 0 2px 0 #2c4bff;
-    }
-
     .p-datatable-wrapper {
-      padding: 0;
+      height: 100%;
     }
 
     .p-datatable .p-datatable-tbody > tr:not(.b-table-group):hover {

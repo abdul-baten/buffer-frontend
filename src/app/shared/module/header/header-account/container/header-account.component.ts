@@ -11,22 +11,35 @@ import { PAGES } from '@core/constant/page/page.constant';
 export class HeaderAccountComponent implements OnInit {
   menuItems: MenuItem[];
 
-  constructor(private headerAccountFacade: HeaderAccountFacade) {}
+  constructor(private facade: HeaderAccountFacade) {}
 
   ngOnInit(): void {
     this.menuItems = [
       {
-        label: 'Profile settings',
+        label: 'Account settings',
         icon: 'pi pi-cog',
         routerLink: ['/account/profile'],
         routerLinkActiveOptions: { exact: true },
       },
       {
-        label: 'Upgrade',
+        label: 'Plan & Pricing',
         icon: 'pi pi-sort-amount-up',
         routerLink: ['/account/plan'],
         routerLinkActiveOptions: { exact: true },
       },
+      {
+        label: 'Invoice',
+        icon: 'pi pi-bars',
+        routerLink: ['/account/invoice'],
+        routerLinkActiveOptions: { exact: true },
+      },
+      {
+        label: 'Billing',
+        icon: 'pi pi-dollar',
+        routerLink: ['/account/billing'],
+        routerLinkActiveOptions: { exact: true },
+      },
+      { separator: true },
       {
         label: 'Sign out',
         icon: 'pi pi-sign-out',
@@ -39,10 +52,10 @@ export class HeaderAccountComponent implements OnInit {
 
   handleAccountNavigationClick(): void {
     const pageTiNavigate = `${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE}`;
-    this.headerAccountFacade.navigateToRoute(pageTiNavigate);
+    this.facade.navigateToRoute(pageTiNavigate);
   }
 
   logoutUser(): void {
-    this.headerAccountFacade.logoutUser();
+    this.facade.logoutUser();
   }
 }
