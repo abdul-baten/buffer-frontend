@@ -1,23 +1,24 @@
 :host {
-  display: block;
-  overflow: hidden;
+	display: block;
+	overflow: hidden;
 
-  ::ng-deep {
-    .p-datatable-wrapper {
-      height: 100%;
-    }
+	::ng-deep {
 
-    .p-datatable .p-datatable-tbody > tr:not(.b-table-group):hover {
-      background: rgba(0, 0, 0, 0.02);
-    }
+		.p-datatable-wrapper {
+			height: 100%;
+		}
 
-    .p-overlaypanel .p-overlaypanel-content {
-      padding: 0;
-    }
+		.p-datatable .p-datatable-tbody > tr:not(.b-table-group):hover {
+			background: rgba(0, 0, 0, 0.02);
+		}
 
-    .b-table-group {
-      background: #ffffff;
-      border-bottom: 2px solid #88929e;
-    }
-  }
+		.p-overlaypanel .p-overlaypanel-content {
+			padding: 0;
+		}
+
+		.b-table-group {
+			border-bottom: 2px solid #88929e;
+			background: #ffffff;
+		}
+	}
 }

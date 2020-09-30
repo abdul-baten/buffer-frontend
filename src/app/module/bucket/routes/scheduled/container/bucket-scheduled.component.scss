@@ -1,26 +1,27 @@
 :host {
-  position: relative;
-  display: block;
+	position: relative;
+	display: block;
 
-  ::ng-deep {
-    .p-datatable .p-datatable-header {
-      border-width: 0 0 1px 0;
-    }
+	::ng-deep {
 
-    .p-datatable .p-paginator-bottom {
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      right: 0;
-    }
+		.p-datatable .p-datatable-header {
+			border-width: 0 0 1px 0;
+		}
 
-    .p-carousel-container {
-      height: 100%;
-    }
+		.p-datatable .p-paginator-bottom {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 100%;
+			border-top: 1px solid rgba(0, 0, 0, 0.08);
+		}
 
-    .b-d-h {
-      display: none;
-    }
-  }
+		.p-carousel-container {
+			height: 100%;
+		}
+
+		.b-d-h {
+			display: none;
+		}
+	}
 }

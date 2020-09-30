@@ -1,10 +1,11 @@
 :host {
-  position: relative;
-  display: block;
+	position: relative;
+	display: block;
 
-  ::ng-deep {
-    svg {
-      width: 100% !important;
-    }
-  }
+	::ng-deep {
+
+		svg {
+			width: 100% !important;
+		}
+	}
 }

@@ -1,34 +1,35 @@
 :host {
-  position: relative;
-  display: block;
-  overflow: hidden;
+	position: relative;
+	display: block;
+	overflow: hidden;
 
-  ::ng-deep {
-    .mat-drawer-end {
-      border: none;
-    }
+	::ng-deep {
 
-    .fc-widget-header {
-      margin-right: 0 !important;
-      border-right-width: 0;
-    }
+		.mat-drawer-end {
+			border: none;
+		}
 
-    .mat-calendar-body-cell {
-      font-family: 'Buffer-Sans-Medium', Arial, sans-serif;
-      font-size: 0.75rem;
+		.fc-widget-header {
+			margin-right: 0 !important;
+			border-right-width: 0;
+		}
 
-      .mat-calendar-body-cell-content {
-        width: 100%;
-        height: 100%;
+		.mat-calendar-body-cell {
+			font-family: 'Buffer-Sans-Medium', Arial, sans-serif;
+			font-size: 0.75rem;
 
-        &:not(.mat-calendar-body-selected) {
-          color: #191919 !important;
-        }
-      }
-    }
+			.mat-calendar-body-cell-content {
+				width: 100%;
+				height: 100%;
 
-    .buffer--schedule-calendar-sec {
-      width: 100%;
-    }
-  }
+				&:not(.mat-calendar-body-selected) {
+					color: #191919 !important;
+				}
+			}
+		}
+
+		.buffer--schedule-calendar-sec {
+			width: 100%;
+		}
+	}
 }
