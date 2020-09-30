@@ -1,114 +1,100 @@
 <section class="b-h-full">
   <div class="p-grid">
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Engaged Users" cardIcon="pi-users"
-        [cardCounter]="insight?.page_engaged_users?.total" cardInfoTitle="Total Engaged Users"
+        [cardCounter]="overview?.page_engaged_users?.total" cardInfoTitle="Total Engaged Users"
         cardHelpInfo="The number of people who engaged with your Page." cardIconColor="primary">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Page Impressions" cardIcon="pi-eye"
-        [cardCounter]="insight?.page_impressions?.total" cardInfoTitle="Total Page Impressions"
+        [cardCounter]="overview?.page_impressions?.total" cardInfoTitle="Total Page Impressions"
         cardHelpInfo="The number of times any content from your Page or about your Page entered a person's screen. This includes posts, stories, check-ins, ads, social information from people who interact with your Page and more."
         cardIconColor="secondary">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Reactions" cardIcon="pi-thumbs-up"
-        [cardCounter]="insight?.page_actions_post_reactions_like_total?.total" cardInfoTitle="Total Reactions"
+        [cardCounter]="overview?.page_actions_post_reactions_like_total?.total" cardInfoTitle="Total Reactions"
         cardIconColor="success">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="New Fans" cardIcon="pi-user-plus"
-        [cardCounter]="insight?.page_fan_adds?.total" cardInfoTitle="Total New Fans" cardIconColor="info"
+        [cardCounter]="overview?.page_fan_adds?.total" cardInfoTitle="Total New Fans" cardIconColor="info"
         cardHelpInfo="The number of new people who have liked your Page.">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Lost Fans" cardIcon="pi-thumbs-down"
-        [cardCounter]="insight?.page_fan_removes?.total" cardInfoTitle="Total Lost Fans"
+        [cardCounter]="overview?.page_fan_removes?.total" cardInfoTitle="Total Lost Fans"
         cardHelpInfo="The number of people who have unliked your Page." cardIconColor="danger">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
-      <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Posts" cardIcon="pi-copy"
-        [cardCounter]="insight?.postData?.posts.total" cardInfoTitle="Total Posts" cardIconColor="help"
-        cardHelpInfo="Total post 'Like' reactions for your page.">
-      </buffer--analyze-card>
-    </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+
+    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Page Views" cardIcon="pi-eye"
-        [cardCounter]="insight?.page_views_total?.total" cardInfoTitle="Total Page Views" cardIconColor="primary"
+        [cardCounter]="overview?.page_views_total?.total" cardInfoTitle="Total Page Views" cardIconColor="primary"
         cardHelpInfo="The total number of times a Page has been viewed.">
       </buffer--analyze-card>
     </div>
-    <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
-      <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Video Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views?.total" cardInfoTitle="Total Video Views" cardIconColor="secondary"
-        cardHelpInfo="The number of people who viewed your Page's videos for at least 3 seconds, or for nearly their total length if they're shorter than 3 seconds. During a single instance of a video playing, we'll exclude any time spent replaying the video.">
-      </buffer--analyze-card>
-    </div>
+
   </div>
 
   <div class="p-grid p-mt-2">
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Engagements" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Engagements', data: insight?.page_engaged_users?.response, type: 'area'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Engagements', data: overview?.page_engaged_users?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page Impressions" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Page Impressions', data: insight?.page_impressions?.response, type: 'area'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Page Impressions', data: overview?.page_impressions?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Reactions" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Reactions', data: insight?.page_actions_post_reactions_like_total?.response, type: 'area'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Reactions', data: overview?.page_actions_post_reactions_like_total?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Fan Growth" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Fan Growth', data: insight?.page_fan_adds?.response, type: 'area'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Fan Growth', data: overview?.page_fan_adds?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Fans Lost" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Fans Lost', data: insight?.page_fan_removes?.response, type: 'area'}]">
-      </buffer--analyze-chart>
-    </div>
-    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Post History" chartType="column"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Posts', data: insight?.postData?.posts?.response, type: 'column'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Fans Lost', data: overview?.page_fan_removes?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page Views" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Page Views', data: insight?.page_views_total?.response, type: 'area'}]">
+        [chartLabels]="overview?.categories"
+        [chartSeries]="[{name: 'Page Views', data: overview?.page_views_total?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
-    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Video Views" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Video Views', data: insight?.page_video_views?.response, type: 'area'}]">
+    <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
+      <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Page likes/unlikes history" chartType="column"
+        [chartLabels]="overview?.categories" [chartSeries]="[
+        {name: 'Likes', data: overview?.page_fan_adds?.response, type: 'column', color: '#04D98B'},
+        {name: 'Unlikes', data: overview?.page_fan_removes?.response, type: 'column', color: '#e0245e'}
+        ]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Reactions Type" chartType="column"
-        [chartLabels]="insight?.categories" [chartSeries]="[
-        {name: 'Like', data: insight?.page_actions_post_reactions_like_total?.response, type: 'column'},
-        {name: 'Love', data: insight?.page_actions_post_reactions_love_total?.response, type: 'column'},
-        {name: 'Wow', data: insight?.page_actions_post_reactions_wow_total?.response, type: 'column'},
-        {name: 'Haha', data: insight?.page_actions_post_reactions_haha_total?.response, type: 'column'},
-        {name: 'Sorry', data: insight?.page_actions_post_reactions_sorry_total?.response, type: 'column'},
-        {name: 'Anger', data: insight?.page_actions_post_reactions_anger_total?.response, type: 'column'}
+        [chartLabels]="overview?.categories" [chartSeries]="[
+        {name: 'Like', data: overview?.page_actions_post_reactions_like_total?.response, type: 'column'},
+        {name: 'Love', data: overview?.page_actions_post_reactions_love_total?.response, type: 'column'},
+        {name: 'Wow', data: overview?.page_actions_post_reactions_wow_total?.response, type: 'column'},
+        {name: 'Haha', data: overview?.page_actions_post_reactions_haha_total?.response, type: 'column'},
+        {name: 'Sorry', data: overview?.page_actions_post_reactions_sorry_total?.response, type: 'column'},
+        {name: 'Anger', data: overview?.page_actions_post_reactions_anger_total?.response, type: 'column'}
         ]">
       </buffer--analyze-chart>
     </div>

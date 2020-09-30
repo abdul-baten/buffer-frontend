@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_FB } from '@core/model';
+import { I_FB_VIDEOS } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,9 +8,9 @@ import { I_INS_FB } from '@core/model';
   templateUrl: './video.component.html',
 })
 export class VideoComponent implements OnChanges {
-  @Input() insight: I_INS_FB;
+  @Input() videos: I_FB_VIDEOS;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.insight = changes?.insight?.currentValue;
+    this.videos = changes?.videos?.currentValue;
   }
 }

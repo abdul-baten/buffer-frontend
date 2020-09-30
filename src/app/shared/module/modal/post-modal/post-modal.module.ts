@@ -8,15 +8,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
 import { CommonModule } from '@angular/common';
 import { ConnectionsComponent } from './components/connections/connections.component';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { FilePondModule } from 'ngx-filepond';
-import { FormComponent } from './components/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageComponent } from './components/image/image.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatStepperModule } from '@angular/material/stepper';
 import { MediaComponent } from './components/media/media.component';
 import { NgModule } from '@angular/core';
 import { PostModalComponent } from './container/post-modal.component';
@@ -25,9 +22,12 @@ import { PostTypeImageService } from '@core/service/post-type-media-selection/po
 import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
 import { RouterModule } from '@angular/router';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { TabViewModule } from 'primeng/tabview';
 import { TextComponent } from './components/text/text.component';
 import { TypeComponent } from './components/type/type.component';
 import { VideoComponent } from './components/video/video.component';
+
+import { StepsModule } from "primeng/steps";
 
 const FilePondPluginFileEncode = require('filepond-plugin-file-encode');
 const FilePondPluginMediaPreview = require('filepond-plugin-media-preview');
@@ -44,7 +44,6 @@ FilePond.registerPlugin(
 @NgModule({
   declarations: [
     ConnectionsComponent,
-    FormComponent,
     ImageComponent,
     MediaComponent,
     PostModalComponent,
@@ -62,12 +61,12 @@ FilePond.registerPlugin(
     FormsModule,
     InputTextareaModule,
     LazyLoadImageModule,
-    MatRadioModule,
-    MatStepperModule,
     ReactiveFormsModule,
     RouterModule,
     SplitButtonModule,
+    TabViewModule,
+    StepsModule
   ],
-  providers: [PostModalFacade, PostTypeImageService, PostTypeVideoService, DynamicDialogRef],
+  providers: [PostModalFacade, PostTypeImageService, PostTypeVideoService, DialogService],
 })
 export class PostModalModule {}

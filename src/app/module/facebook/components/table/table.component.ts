@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_POSTS } from '@core/model';
+import { I_FB_POSTS } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,7 +8,7 @@ import { I_INS_POSTS } from '@core/model';
   templateUrl: './table.component.html',
 })
 export class PostTableComponent implements OnChanges {
-  @Input() posts: I_INS_POSTS;
+  @Input() posts: I_FB_POSTS;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.posts = changes?.posts?.currentValue;

@@ -87,6 +87,10 @@ const routes: Routes = [
     resolve: { documentResolver: DocumentResolver },
     runGuardsAndResolvers: 'always',
   },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+  },
 ];
 
 @NgModule({

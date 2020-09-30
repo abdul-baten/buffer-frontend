@@ -42,7 +42,7 @@ export class SigninFormComponent {
       .loginUser(email, password)
       .pipe(
         finalize(() => {
-          this.signinForm.reset();
+          // this.signinForm.reset();
           this.formClicked = false;
         }),
       )

@@ -1,7 +1,6 @@
-import { Component, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnDestroy, HostListener, Output, EventEmitter } from '@angular/core';
 import { E_POST_TYPE } from '@core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { SubSink } from 'subsink';
 
@@ -14,16 +13,15 @@ export class TypeComponent implements OnDestroy {
   typeForm: FormGroup;
   private subscriptions$ = new SubSink();
 
-  constructor(private formBuilder: FormBuilder, private postCreateModalFacade: PostModalFacade, private stepper: MatStepper) {
+  @Output() tabSelected = new EventEmitter<number>();
+
+  constructor(private formBuilder: FormBuilder, private postCreateModalFacade: PostModalFacade) {
     this.typeForm = this.buildTypeForm();
 
     this.subscriptions$.add(
       this.postCreateModalFacade.getPostType().subscribe((postType: E_POST_TYPE) => {
         if (postType) {
           this.postCreateModalFacade.setPostType(postType);
-          setTimeout(() => {
-            this.stepper.next();
-          }, 400);
         }
       }),
     );
@@ -41,8 +39,11 @@ export class TypeComponent implements OnDestroy {
   }
 
   continue(): void {
-    this.stepper.next();
     this.typeForm.reset();
+  }
+
+  selectTab(index: number): void {
+    this.tabSelected.emit(index);
   }
 
   @HostListener('window:beforeunload')

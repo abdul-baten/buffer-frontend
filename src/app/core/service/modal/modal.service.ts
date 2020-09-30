@@ -14,11 +14,12 @@ export class ModalService {
 
   constructor(private dialogService: DialogService) {}
 
-  openPostModal(header: string, postData: Partial<I_POST>): DynamicDialogRef {
+  openPostModal(_header: string, postData: Partial<I_POST>): DynamicDialogRef {
     const dialogRef = this.dialogService.open(PostModalComponent, {
-      header,
-      width: '550px',
-      contentStyle: { 'max-height': '650px', overflow: 'auto' },
+      showHeader: false,
+      width: '100%',
+      height: '100%',
+      contentStyle: { overflow: 'auto', height: '100%' },
       data: {
         postData,
       },

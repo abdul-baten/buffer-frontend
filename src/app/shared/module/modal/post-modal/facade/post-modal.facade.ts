@@ -1,16 +1,15 @@
 import { AppState } from 'src/app/reducers';
 import { ConnectionService } from '@core/service/connection/connection.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
-import { finalize, map, tap } from 'rxjs/operators';
 import { forkJoin, Observable } from 'rxjs';
 import { formatISO, roundToNearestMinutes } from 'date-fns';
 import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from '@core/model';
 import { Injectable, Injector } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
 import { NotificationService } from '@core/service/notification/notification.service';
 import { PostService } from '@core/service/post/post.service';
-import { removeNewPostAllMedia, removeNewPostData, setNewPostData, setPostType } from 'src/app/actions';
 import { selectNewPostActiveConnectionID, selectNewPostDate, selectNewPostMedias, selectNewPostType, selectPostInfo } from 'src/app/selectors';
+import { setNewPostData, setPostType } from 'src/app/actions';
 import { Store } from '@ngrx/store';
 import { UserService } from '@core/service/user/user.service';
 
@@ -18,7 +17,6 @@ import { UserService } from '@core/service/user/user.service';
 export class PostModalFacade {
   constructor(
     private readonly connectionService: ConnectionService,
-    private readonly dialogRef: DynamicDialogRef,
     private readonly injector: Injector,
     private readonly notificationService: NotificationService,
     private readonly postService: PostService,
@@ -53,12 +51,12 @@ export class PostModalFacade {
     return this.store.select(selectNewPostDate);
   }
 
-  sendPost(postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST[]> {
+  sendPost(postType: E_POST_TYPE, postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST[]> {
     const requests: any[] = [];
     postData.postCaption = postData.postCaption.trim();
     postData.postStatus = postStatus;
     postData.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(postData.postScheduleDateTime), { nearestTo: 15 }));
-    this.store.select(selectNewPostType).subscribe((postType: E_POST_TYPE) => (postData.postType = postType));
+    postData.postType = postType;
     this.store.select(selectNewPostMedias).subscribe((postMedias: I_MEDIA[]) => {
       if (postMedias.length > 0) {
         postData.postMedia = postMedias;
@@ -75,12 +73,7 @@ export class PostModalFacade {
     return forkJoin([...requests]).pipe(
       map(([...responses]: I_POST[]) => responses),
       tap(() => {
-        this.dialogRef.destroy();
         this.notificationService.showSuccess(`Your post has been ${postData.postStatus} successfully.`);
-      }),
-      finalize(() => {
-        this.store.dispatch(removeNewPostData());
-        this.store.dispatch(removeNewPostAllMedia());
       }),
     );
   }

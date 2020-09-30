@@ -1,30 +1,29 @@
-<section>
-  <form novalidate [formGroup]="textForm">
-    <div class="p-fluid p-formgrid">
-      <div class="p-field p-col-12">
-        <buffer--connections (connectionChange)="changeConnectionSelection($event)">
-        </buffer--connections>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="postCaption">Caption</label>
-        <textarea class="b-w-full" formControlName="postCaption" placeholder="Write something" [autoResize]="true"
-          cols="30" id="postCaption" pInputTextarea rows="4" type="text"></textarea>
-      </div>
-      <div class="p-field p-col-12">
-        <label for="postScheduleDateTime">Date</label>
-        <p-calendar [hourFormat]="12" [minDate]="currentDateTime" [readonlyInput]="true" [showButtonBar]="true"
-          [showIcon]="true" [stepHour]="1" [stepMinute]="60" appendTo="body" dateFormat="D, M dd, yy" inputId="postScheduleDateTime"
-          [showTime]="true" formControlName="postScheduleDateTime" placeholder="Select a Date">
-        </p-calendar>
-      </div>
-      <div class="p-col-12 p-pt-4 b-br-t">
-        <div class="p-d-flex p-jc-between p-ai-center">
-          <button (click)="onPreviousButtonClicked()" class="p-button-plain p-button-rounded p-button-text"
-            icon="pi pi-arrow-left" pButton title="Select Type" type="button"></button>
-          <p-splitButton [disabled]="isButtonDisabled()" appendTo="body" menuStyleClass="p-p-2"
-            (onClick)="savePost(postStatus.PUBLISHED)" [model]="menuItems" label="Share now"></p-splitButton>
-        </div>
+<form novalidate [formGroup]="textForm">
+  <div class="p-fluid p-formgrid">
+    <div class="p-field p-col-12">
+      <buffer--connections (connectionChange)="changeConnectionSelection($event)">
+      </buffer--connections>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="postCaption">Caption</label>
+      <textarea class="b-w-full" formControlName="postCaption" placeholder="Write something" [autoResize]="true"
+        cols="30" id="postCaption" pInputTextarea rows="4" type="text"></textarea>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="postScheduleDateTime">Date</label>
+      <p-calendar [hourFormat]="12" [minDate]="currentDateTime" [readonlyInput]="true" [showButtonBar]="true"
+        [showIcon]="true" [stepHour]="1" [stepMinute]="60" appendTo="body" dateFormat="D, M dd, yy"
+        inputId="postScheduleDateTime" [showTime]="true" formControlName="postScheduleDateTime"
+        placeholder="Select a Date">
+      </p-calendar>
+    </div>
+    <div class="p-col-12 p-pt-4 b-br-t">
+      <div class="p-d-flex p-jc-between p-ai-center">
+        <button (click)="previous()" class="p-button-plain p-button-rounded p-button-text" icon="pi pi-arrow-left"
+          pButton title="Select Type" type="button"></button>
+        <p-splitButton [disabled]="isButtonDisabled()" appendTo="body" menuStyleClass="p-p-2"
+          (onClick)="savePost(postStatus.PUBLISHED)" [model]="menuItems" label="Share now"></p-splitButton>
       </div>
     </div>
-  </form>
-</section>
+  </div>
+</form>

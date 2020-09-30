@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
 import { ConnectionService } from '@core/service/connection/connection.service';
 import { E_CONNECTION_TYPE } from '@core/enum';
-import { I_CONNECTION, I_DROPDOWN, I_INSIGHT, I_USER } from '@core/model';
+import { I_CONNECTION, I_DROPDOWN, I_INSIGHT, I_INS_FB, I_USER } from '@core/model';
 import { Injectable } from '@angular/core';
 import { InsightService } from '@core/service/insight/insight.service';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
@@ -20,7 +20,7 @@ export class FacebookFacade {
     return format(new Date(date), 'MMM dd, yyyy');
   }
 
-  getInsights(payload: { id: string; dateRange: string[] }): Observable<I_INSIGHT> {
+  getInsights(payload: { id: string; dateRange: string[] }): Observable<I_INS_FB> {
     const { id, dateRange } = payload;
     const since = format(new Date(dateRange[0]), 'yyyy-MM-dd');
     const until = format(new Date(dateRange[1]), 'yyyy-MM-dd');

@@ -13,7 +13,7 @@
   </div>
 
   <ng-template #connectionsCarousel>
-    <p-carousel [value]="connections$ | async" [numVisible]="10" [numScroll]="1">
+    <p-carousel [value]="connections$ | async" [numVisible]="14" [numScroll]="5" indicatorsContentClass="b-d-h">
       <ng-template let-connection pTemplate="item">
         <div (click)="clicked(connection)" [pTooltip]="connection.connectionName" tooltipPosition="bottom"
           class="b-ca b-ca-md b-post-cl">

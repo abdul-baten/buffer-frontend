@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_FB } from '@core/model';
+import { I_FB_OVERVIEW } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,9 +8,9 @@ import { I_INS_FB } from '@core/model';
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent implements OnChanges {
-  @Input() insight: I_INS_FB;
+  @Input() overview: I_FB_OVERVIEW;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.insight = changes?.insight?.currentValue;
+    this.overview = changes?.overview?.currentValue;
   }
 }

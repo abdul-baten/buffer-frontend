@@ -2,42 +2,42 @@
   <div class="p-grid">
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Organic Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_organic?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_organic?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Paid Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_paid?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_paid?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Autoplayed" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Clicked-To-Play" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="3 Sec Repeat Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_repeat_views?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_repeat_views?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
@@ -47,25 +47,25 @@
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="3 Sec View History" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: '3 Sec View History', data: insight?.page_video_views?.response, type: 'area'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: '3 Sec View History', data: videos?.page_video_views?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="View Source (3 Sec)" chartType="column"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Organic', data: insight?.page_video_views_organic?.response, type: 'column'}, {name: 'Paid', data: insight?.page_video_views_paid?.response, type: 'column'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: 'Organic', data: videos?.page_video_views_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_paid?.response, type: 'column'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (3 Sec)" chartType="pie"
-        [chartLabels]="insight?.categories" [chartSeries]="[{name: 'Play Type (3 Sec)', data: [{
+        [chartLabels]="videos?.categories" [chartSeries]="[{name: 'Play Type (3 Sec)', data: [{
           name: 'Auto played',
-          y: insight?.page_video_views_autoplayed?.total,
+          y: videos?.page_video_views_autoplayed?.total,
           sliced: true
       }, {
         name: 'Clicked to play',
-          y: insight?.page_video_views_click_to_play?.total,
+          y: videos?.page_video_views_click_to_play?.total,
           sliced: true
       }]}]">
       </buffer--analyze-chart>
@@ -75,42 +75,42 @@
   <div class="p-grid">
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Organic Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s_organic?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s_organic?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Paid Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s_paid?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s_paid?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Autoplayed" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Clicked-To-Play" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="10 Sec Repeat Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_views_10s_repeat?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_views_10s_repeat?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
@@ -120,25 +120,25 @@
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="10 Sec View History" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: '10 Sec View History', data: insight?.page_video_views_10s?.response, type: 'area'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: '10 Sec View History', data: videos?.page_video_views_10s?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="View Source (10 Sec)" chartType="column"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Organic', data: insight?.page_video_views_10s_organic?.response, type: 'column'}, {name: 'Paid', data: insight?.page_video_views_10s_paid?.response, type: 'column'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: 'Organic', data: videos?.page_video_views_10s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_10s_paid?.response, type: 'column'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (10 Sec)" chartType="pie"
-        [chartLabels]="insight?.categories" [chartSeries]="[{name: 'Play Type (10 Sec)', data: [{
+        [chartLabels]="videos?.categories" [chartSeries]="[{name: 'Play Type (10 Sec)', data: [{
           name: 'Auto played',
-          y: insight?.page_video_views_10s_autoplayed?.total,
+          y: videos?.page_video_views_10s_autoplayed?.total,
           sliced: true
       }, {
         name: 'Clicked to play',
-          y: insight?.page_video_views_10s_click_to_play?.total,
+          y: videos?.page_video_views_10s_click_to_play?.total,
           sliced: true
       }]}]">
       </buffer--analyze-chart>
@@ -148,42 +148,42 @@
   <div class="p-grid">
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Organic Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s_organic?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s_organic?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Paid Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s_paid?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s_paid?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Autoplayed" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s_autoplayed?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Clicked-To-Play" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s_click_to_play?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Complete Repeat Views" cardIcon="pi-video"
-        [cardCounter]="insight?.page_video_complete_views_30s_repeat_views?.total" cardInfoTitle="Total 3 Sec Views"
+        [cardCounter]="videos?.page_video_complete_views_30s_repeat_views?.total" cardInfoTitle="Total 3 Sec Views"
         cardHelpInfo="The total number of views your videos had during the selected date range."
         cardIconColor="primary">
       </buffer--analyze-card>
@@ -193,25 +193,25 @@
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Complete View History" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Complete View History', data: insight?.page_video_complete_views_30s?.response, type: 'area'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: 'Complete View History', data: videos?.page_video_complete_views_30s?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="View Source (Complete)" chartType="column"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Organic', data: insight?.page_video_complete_views_30s_organic?.response, type: 'column'}, {name: 'Paid', data: insight?.page_video_complete_views_30s_paid?.response, type: 'column'}]">
+        [chartLabels]="videos?.categories"
+        [chartSeries]="[{name: 'Organic', data: videos?.page_video_complete_views_30s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_complete_views_30s_paid?.response, type: 'column'}]">
       </buffer--analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (Complete)" chartType="pie"
-        [chartLabels]="insight?.categories" [chartSeries]="[{name: 'Play Type (Complete)', data: [{
+        [chartLabels]="videos?.categories" [chartSeries]="[{name: 'Play Type (Complete)', data: [{
           name: 'Auto played',
-          y: insight?.page_video_complete_views_30s_autoplayed?.total,
+          y: videos?.page_video_complete_views_30s_autoplayed?.total,
           sliced: true
       }, {
         name: 'Clicked to play',
-          y: insight?.page_video_complete_views_30s_click_to_play?.total,
+          y: videos?.page_video_complete_views_30s_click_to_play?.total,
           sliced: true
       }]}]">
       </buffer--analyze-chart>

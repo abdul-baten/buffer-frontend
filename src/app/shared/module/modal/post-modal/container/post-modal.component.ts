@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostModalFacade } from '../facade/post-modal.facade';
 
 @Component({
@@ -8,7 +8,17 @@ import { PostModalFacade } from '../facade/post-modal.facade';
   templateUrl: './post-modal.component.html',
 })
 export class PostModalComponent {
-  constructor(public postInfo: DynamicDialogConfig, private facade: PostModalFacade) {
+  activeIndex: number = 0;
+
+  constructor(public postInfo: DynamicDialogConfig, private readonly facade: PostModalFacade, public dialogRef: DynamicDialogRef) {
     this.facade.setNewPostData(postInfo.data.postData);
+  }
+
+  openTab(index: number): void {
+    this.activeIndex = index;
+  }
+
+  isDisabled(index: number): boolean {
+    return this.activeIndex !== index;
   }
 }

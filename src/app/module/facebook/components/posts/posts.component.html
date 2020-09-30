@@ -2,25 +2,25 @@
   <div class="p-grid">
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Posts" cardIcon="pi-copy"
-        [cardCounter]="insight?.postData?.posts?.total" cardInfoTitle="Total Posts"
+        [cardCounter]="posts?.posts?.total" cardInfoTitle="Total Posts"
         cardHelpInfo="The number of posts created within this date range." cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Hash Tags" cardIcon="pi-tags"
-        [cardCounter]="insight?.postData?.hashTags" cardInfoTitle="Total Hash Tags"
+        [cardCounter]="posts?.hashTags" cardInfoTitle="Total Hash Tags"
         cardHelpInfo="Total Hash Tags for the posts created with this date range." cardIconColor="secondary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Engagement" cardIcon="pi-users"
-        [cardCounter]="totalCount(insight?.postData?.engagedUsers)" cardInfoTitle="Total Engagement"
+        [cardCounter]="totalCount(posts?.engagedUsers)" cardInfoTitle="Total Engagement"
         cardHelpInfo="The number of people who clicked anywhere in your posts." cardIconColor="warning">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Engagement Rate" cardIcon="pi-users"
-        [cardCounter]="engagementRate(insight?.postData?.engagedUsers, insight?.postData?.postImpressions)"
+        [cardCounter]="engagementRate(posts?.engagedUsers, posts?.postImpressions)"
         cardInfoTitle="Total Engagement Rate"
         cardHelpInfo="Impressions that resulted in an engagement (engagement divided by impressions)."
         cardIconColor="help">
@@ -28,65 +28,64 @@
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Engaged Fans" cardIcon="pi-user-plus"
-        [cardCounter]="totalCount(insight?.postData?.engagedFan)" cardInfoTitle="Total Engaged Fans"
+        [cardCounter]="totalCount(posts?.engagedFan)" cardInfoTitle="Total Engaged Fans"
         cardHelpInfo="People who have liked your Page and engaged with your post." cardIconColor="info">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Impressions" cardIcon="pi-eye"
-        [cardCounter]="totalCount(insight?.postData?.postImpressions)" cardInfoTitle="Total Post Impressions"
+        [cardCounter]="totalCount(posts?.postImpressions)" cardInfoTitle="Total Post Impressions"
         cardHelpInfo="The number of times your Page's post entered a person's screen. Posts include statuses, photos, links, videos and more."
         cardIconColor="success">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Reach" cardIcon="pi-directions"
-        [cardCounter]="totalCount(insight?.postData?.postReach)" cardInfoTitle="Total Reach"
+        [cardCounter]="totalCount(posts?.postReach)" cardInfoTitle="Total Reach"
         cardHelpInfo="The number of unique people who saw the post(s) sent during this period." cardIconColor="danger">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Post Clicks" cardIcon="pi-paperclip"
-        [cardCounter]="totalCount(insight?.postData?.postClicks)" cardInfoTitle="Total Post Clicks"
+        [cardCounter]="totalCount(posts?.postClicks)" cardInfoTitle="Total Post Clicks"
         cardHelpInfo="The number of times people clicked on anywhere in your posts without generating a story."
         cardIconColor="secondary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Likes" cardIcon="pi-thumbs-up"
-        [cardCounter]="totalCount(insight?.postData?.totalLikes)" cardInfoTitle="Total Likes"
+        [cardCounter]="totalCount(posts?.totalLikes)" cardInfoTitle="Total Likes"
         cardHelpInfo="The number of likes on your post(s)" cardIconColor="primary">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Comments" cardIcon="pi-comments"
-        [cardCounter]="totalCount(insight?.postData?.totalComments)" cardInfoTitle="Total Comments"
+        [cardCounter]="totalCount(posts?.totalComments)" cardInfoTitle="Total Comments"
         cardHelpInfo="The number of comments on your post(s)" cardIconColor="help">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Shares" cardIcon="pi-share-alt"
-        [cardCounter]="totalCount(insight?.postData?.totalShares)" cardInfoTitle="Total Shares"
+        [cardCounter]="totalCount(posts?.totalShares)" cardInfoTitle="Total Shares"
         cardHelpInfo="The number of shares on your post(s)" cardIconColor="info">
       </buffer--analyze-card>
     </div>
     <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
       <buffer--analyze-card class="b-w-full b-h-full" cardTitle="Reactions" cardIcon="pi-thumbs-up"
-        [cardCounter]="totalCount(insight?.postData?.totalReactions)" cardInfoTitle="Total Reactions"
+        [cardCounter]="totalCount(posts?.totalReactions)" cardInfoTitle="Total Reactions"
         cardHelpInfo="The number of reactions on your post(s)" cardIconColor="success">
       </buffer--analyze-card>
     </div>
   </div>
 
   <div class="b-bg-white p-my-3 b-br b-br-sm">
-    <buffer--post-table [posts]="insight?.postData?.tableData"></buffer--post-table>
+    <buffer--post-table [posts]="posts?.postTable"></buffer--post-table>
   </div>
 
   <div class="p-grid p-mt-2">
     <div class="p-col">
       <buffer--analyze-chart class="b-w-full b-h-full" chartTitle="Posts" chartType="area"
-        [chartLabels]="insight?.categories"
-        [chartSeries]="[{name: 'Posts', data: insight?.postData?.posts?.response, type: 'area'}]">
+        [chartLabels]="posts?.categories" [chartSeries]="[{name: 'Posts', data: posts?.posts?.response, type: 'area'}]">
       </buffer--analyze-chart>
     </div>
   </div>

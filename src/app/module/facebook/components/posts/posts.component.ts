@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_FB } from '@core/model';
+import { I_FB_POSTS } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,10 +8,10 @@ import { I_INS_FB } from '@core/model';
   templateUrl: './posts.component.html',
 })
 export class PostsComponent implements OnChanges {
-  @Input() insight: I_INS_FB;
+  @Input() posts: I_FB_POSTS;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.insight = changes?.insight?.currentValue;
+    this.posts = changes?.posts?.currentValue;
   }
 
   totalCount(totalData: number[]): number {

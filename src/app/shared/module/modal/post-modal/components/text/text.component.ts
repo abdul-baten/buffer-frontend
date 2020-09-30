@@ -1,13 +1,12 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { E_POST_STATUS } from '@core/enum';
-import { finalize } from 'rxjs/operators';
+import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_POST } from '@core/model';
-import { MatStepper } from '@angular/material/stepper';
 import { MenuItem } from 'primeng/api/menuitem';
-import { noop } from 'rxjs';
+// import { noop } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { SubSink } from 'subsink';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'buffer--text',
@@ -15,14 +14,17 @@ import { SubSink } from 'subsink';
   templateUrl: './text.component.html',
 })
 export class TextComponent implements OnInit, OnDestroy {
+  @Output() tabSelected = new EventEmitter<number>();
+  @Input() dialogRef: DynamicDialogRef;
   currentDateTime: Date;
   menuItems: MenuItem[] = [];
   postStatus = E_POST_STATUS;
+  postType = E_POST_TYPE;
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
   textForm: FormGroup;
 
-  constructor(private readonly formBuilder: FormBuilder, private readonly facade: PostModalFacade, private readonly stepper: MatStepper) {
+  constructor(private readonly formBuilder: FormBuilder, private readonly facade: PostModalFacade) {
     this.textForm = this.buildTextForm();
   }
 
@@ -63,8 +65,8 @@ export class TextComponent implements OnInit, OnDestroy {
     });
   }
 
-  onPreviousButtonClicked(): void {
-    this.stepper.reset();
+  previous(): void {
+    this.tabSelected.emit(0);
   }
 
   changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
@@ -79,10 +81,9 @@ export class TextComponent implements OnInit, OnDestroy {
     if (this.textForm.valid) {
       const { value } = this.textForm;
       this.subscriptions$.add(
-        this.facade
-          .sendPost(value, postStatus, this.selectedConnections)
-          .pipe(finalize(() => this.textForm.reset()))
-          .subscribe(noop),
+        this.facade.sendPost(E_POST_TYPE.TEXT, value, postStatus, this.selectedConnections).subscribe(() => {
+          this.dialogRef.destroy();
+        }),
       );
     }
   }

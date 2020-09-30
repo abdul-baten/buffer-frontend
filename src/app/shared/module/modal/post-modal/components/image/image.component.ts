@@ -1,12 +1,11 @@
 import { AppState } from 'src/app/reducers';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { E_POST_STATUS } from '@core/enum';
-import { map } from 'rxjs/operators';
+import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_MEDIA, I_POST } from '@core/model';
-import { MatStepper } from '@angular/material/stepper';
+import { map } from 'rxjs/operators';
 import { MenuItem } from 'primeng/api/menuitem';
-import { Observable, noop } from 'rxjs';
+import { noop, Observable } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { selectNewPostMedias } from 'src/app/selectors';
 import { Store } from '@ngrx/store';
@@ -18,14 +17,16 @@ import { SubSink } from 'subsink';
   templateUrl: './image.component.html',
 })
 export class ImageComponent implements OnInit, OnDestroy {
+  @Output() tabSelected = new EventEmitter<number>();
   currentDateTime: Date;
   imageForm: FormGroup;
   menuItems: MenuItem[];
   postStatus = E_POST_STATUS;
+  postType = E_POST_TYPE;
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
 
-  constructor(private facade: PostModalFacade, private formBuilder: FormBuilder, private stepper: MatStepper, private store: Store<AppState>) {
+  constructor(private facade: PostModalFacade, private formBuilder: FormBuilder, private store: Store<AppState>) {
     this.imageForm = this.biuldImageForm();
   }
 
@@ -64,12 +65,10 @@ export class ImageComponent implements OnInit, OnDestroy {
         this.imageForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
       }),
     );
-
-    
   }
 
-  onPreviousButtonClicked(): void {
-    this.stepper.previous();
+  previous(): void {
+    this.tabSelected.emit(0);
   }
 
   changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
@@ -87,7 +86,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   savePost(postStatus: E_POST_STATUS): void {
     if (this.imageForm.valid) {
       const { value } = this.imageForm;
-      this.subscriptions$.add(this.facade.sendPost(value, postStatus, this.selectedConnections).subscribe(noop));
+      this.subscriptions$.add(this.facade.sendPost(E_POST_TYPE.IMAGE, value, postStatus, this.selectedConnections).subscribe(noop));
     }
   }
 

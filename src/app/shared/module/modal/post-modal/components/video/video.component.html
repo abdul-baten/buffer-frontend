@@ -5,7 +5,7 @@
         <buffer--connections (connectionChange)="changeConnectionSelection($event)"></buffer--connections>
       </div>
       <div class="p-field p-col-12">
-        <buffer--media></buffer--media>
+        <buffer--media [postType]="postType.VIDEO"></buffer--media>
         <small>Maximum file size 150MB. Acceptable file types .mp4.</small>
       </div>
       <div class="p-field p-col-12">
@@ -22,7 +22,7 @@
       </div>
       <div class="p-col-12 p-pt-4 b-br-t">
         <div class="p-d-flex p-jc-between p-ai-center">
-          <button (click)="onPreviousButtonClicked()" class="p-button-plain p-button-rounded p-button-text"
+          <button (click)="previous()" class="p-button-plain p-button-rounded p-button-text"
             icon="pi pi-arrow-left" pButton title="Select Type" type="button"></button>
           <p-splitButton [disabled]="isButtonDisabled() | async" appendTo="body" menuStyleClass="p-p-2"
             (onClick)="savePost(postStatus.PUBLISHED)" [model]="menuItems" label="Share now"></p-splitButton>

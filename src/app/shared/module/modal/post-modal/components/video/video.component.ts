@@ -1,10 +1,9 @@
 import { AppState } from 'src/app/reducers';
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { E_POST_STATUS } from '@core/enum';
+import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
 import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_MEDIA, I_POST } from '@core/model';
-import { MatStepper } from '@angular/material/stepper';
 import { MenuItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
@@ -18,19 +17,16 @@ import { SubSink } from 'subsink';
   templateUrl: './video.component.html',
 })
 export class VideoComponent implements OnInit, OnDestroy {
+  @Output() tabSelected = new EventEmitter<number>();
   currentDateTime: Date;
   menuItems: MenuItem[];
   postStatus = E_POST_STATUS;
+  postType = E_POST_TYPE;
   private subscriptions$ = new SubSink();
   selectedConnections: Partial<I_CONNECTION>[] = [];
   videoForm: FormGroup;
 
-  constructor(
-    private readonly facade: PostModalFacade,
-    private readonly formBuilder: FormBuilder,
-    private readonly stepper: MatStepper,
-    private readonly store: Store<AppState>,
-  ) {
+  constructor(private readonly facade: PostModalFacade, private readonly formBuilder: FormBuilder, private readonly store: Store<AppState>) {
     this.videoForm = this.buildVideoForm();
   }
 
@@ -75,8 +71,8 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.selectedConnections = connections;
   }
 
-  onPreviousButtonClicked(): void {
-    this.stepper.previous();
+  previous(): void {
+    this.tabSelected.emit(0);
   }
 
   isButtonDisabled(): Observable<boolean> {
@@ -92,7 +88,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       const { value } = this.videoForm;
       this.subscriptions$.add(
         this.facade
-          .sendPost(value, postStatus, this.selectedConnections)
+          .sendPost(E_POST_TYPE.VIDEO, value, postStatus, this.selectedConnections)
           .pipe(finalize(() => this.videoForm.controls.postCaption.reset()))
           .subscribe(),
       );

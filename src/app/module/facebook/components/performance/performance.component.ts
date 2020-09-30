@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_FB } from '@core/model';
+import { I_FB_PERFORMANCE } from '@core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,9 +8,9 @@ import { I_INS_FB } from '@core/model';
   templateUrl: './performance.component.html',
 })
 export class PerformanceComponent implements OnChanges {
-  @Input() insight: I_INS_FB;
+  @Input() performance: I_FB_PERFORMANCE;
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.insight = changes?.insight?.currentValue;
+    this.performance = changes?.performance?.currentValue;
   }
 }

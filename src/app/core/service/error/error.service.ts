@@ -15,9 +15,6 @@ export class ErrorService {
   }
 
   private serverError(error: I_ERROR): void {
-    console.clear();
-    console.warn(error);
-
     const { errorCode, message } = error;
 
     this.notificationService.showError(message);
