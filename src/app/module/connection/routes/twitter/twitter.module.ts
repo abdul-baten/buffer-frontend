@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
-import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module';
 import { TwitterComponent } from './container/twitter.component';
 import { TwitterFacade } from './facade/twitter.facade';
 import { TwitterRoutingModule } from './twitter-routing.module';

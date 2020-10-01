@@ -1,15 +1,15 @@
 import { Calendar, CalendarOptions, EventContentArg } from '@fullcalendar/core';
-import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
-import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
+import { CALENDAR_POST_DATA } from '../../data/calendar-post.data';
+import { CALENDAR_VIEW } from '../../enum/calendar-view-options.enum';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { HeaderComponent } from '../header/header.component';
-import { I_POST } from '@core/model';
+import { I_POST } from 'src/app/core/model';
 import { PostComponent } from '../post/post.component';
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
-import { SubSink } from 'subsink';
+import { ScheduleFacade } from '../../facade/schedule.facade';
+import { Subscription } from 'rxjs';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
@@ -36,7 +36,7 @@ const name = Calendar.name;
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--calendar',
-  styleUrls: ['./calendar.component.scss'],
+  styleUrls: ['./calendar.component.css'],
   templateUrl: './calendar.component.html',
 })
 export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
@@ -45,7 +45,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('calendar') calendar: FullCalendarComponent;
 
   private calendarApi: Calendar;
-  private subscriptions$ = new SubSink();
+  private subscription$ = new Subscription();
 
   calendarOptions: CalendarOptions = {
     allDaySlot: false,
@@ -128,11 +128,11 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.calendarApi = this.calendar.getApi();
     this.facade.setCalendarApi(this.calendarApi);
 
-    this.subscriptions$.add(
+    this.subscription$.add(
       this.facade
         .isWeb()
         .pipe(delay(10))
-        .subscribe((isWeb) => {
+        .subscribe((isWeb: boolean) => {
           this.facade.setCalendarView(isWeb ? CALENDAR_VIEW.DAY_GRID_MONTH : CALENDAR_VIEW.TIME_GRID_DAY);
         }),
     );
@@ -143,7 +143,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   datesRendered(): void {
-    const toolbarHeader = document.querySelector('.fc-header-toolbar');
+    const toolbarHeader = this.facade.getQuerySelector('.fc-header-toolbar');
     const toolbarCenterSec = toolbarHeader.querySelector('.b-calendar-toolbar');
     if (!toolbarCenterSec) {
       const toolbarPortalHost = this.getBodyPortalHost(toolbarHeader);
@@ -198,7 +198,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy() {
-    this.subscriptions$.unsubscribe();
+  ngOnDestroy(): void {
+    this.subscription$.unsubscribe();
   }
 }

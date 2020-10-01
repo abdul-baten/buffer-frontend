@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { AuctionRoutingModule } from '@app/auction/auction-routing.module';
-import { MainHeaderModule } from '@shared/module/header/main-header/main-header.module';
-import { NgModule } from '@angular/core';
 import { AuctionComponent } from './container/auction.component';
-import { PlanPricingModule } from '@shared/module/plan-pricing/plan-pricing.module';
+import { AuctionRoutingModule } from './auction-routing.module';
+import { CommonModule } from '@angular/common';
+import { MainHeaderModule } from 'src/app/shared/header/main-header/main-header.module';
+import { NgModule } from '@angular/core';
+import { PlanPricingModule } from 'src/app/shared/plan-pricing/plan-pricing.module';
 
 @NgModule({
   declarations: [AuctionComponent],

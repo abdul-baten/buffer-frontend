@@ -1,4 +1,4 @@
-import { E_SUBSCRIPTION_PLAN } from '@core/enum';
+import { E_SUBSCRIPTION_PLAN } from '../enum';
 
 // tslint:disable-next-line
 export interface I_SUBSCRIPTION {

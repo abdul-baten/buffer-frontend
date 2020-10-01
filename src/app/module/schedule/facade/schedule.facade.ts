@@ -1,30 +1,27 @@
 import { Calendar } from '@fullcalendar/core';
 import { CalViewState } from '../model/calendar.model';
 import { ConfirmationService } from 'primeng/api';
-import { ConnectionService } from '@core/service/connection/connection.service';
+import { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
 import { EventDropArg } from '@fullcalendar/interaction';
 import { format } from 'date-fns';
-import { I_CONNECTION, I_POST } from '@core/model';
+import { I_CONNECTION, I_POST } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { ModalService } from '@core/service/modal/modal.service';
-import { NotificationService } from '@core/service/notification/notification.service';
-import { Observable } from 'rxjs';
-import { PostService } from '@core/service/post/post.service';
-import { removeNewPostData, setPostType } from 'src/app/actions';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
-import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { removeNewPostData, setPostType } from 'src/app/actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class ScheduleFacade {
   private calendarApi: Calendar;
   constructor(
-    private modalService: ModalService,
     private readonly confirmationService: ConfirmationService,
+    private readonly connectionService: ConnectionService,
+    private readonly globalService: GlobalService,
+    private readonly modalService: ModalService,
     private readonly postService: PostService,
-    private responsiveLayoutService: ResponsiveLayoutService,
-    private connectionService: ConnectionService,
-    private snackbarService: NotificationService,
+    private readonly responsiveLayoutService: ResponsiveLayoutService,
+    private readonly snackbarService: NotificationService,
     private store: Store<CalViewState>,
   ) {}
 
@@ -145,5 +142,9 @@ export class ScheduleFacade {
 
   getPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
     return this.postService.filterPostsByConnectionID(connectionID);
+  }
+
+  getQuerySelector(className: string): HTMLElement {
+    return this.globalService.getQuerySelector(className);
   }
 }

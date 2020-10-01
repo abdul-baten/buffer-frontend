@@ -1,17 +1,16 @@
 import format from 'date-fns/format';
-import { ConnectionService } from '@core/service/connection/connection.service';
-import { E_CONNECTION_TYPE } from '@core/enum';
-import { I_CONNECTION, I_DROPDOWN, I_INSIGHT, I_INS_FB, I_USER } from '@core/model';
+import { ConnectionService, GlobalService, InsightService, UserService } from 'src/app/core/service';
+import { E_CONNECTION_TYPE } from 'src/app/core/enum';
+import { first, map, shareReplay, switchMap } from 'rxjs/operators';
+import { I_CONNECTION, I_DROPDOWN, I_INS_FB, I_INSIGHT, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { InsightService } from '@core/service/insight/insight.service';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class FacebookFacade {
   constructor(
     private readonly connectionService: ConnectionService,
+    private readonly globalService: GlobalService,
     private readonly insightService: InsightService,
     private readonly userService: UserService,
   ) {}
@@ -31,6 +30,7 @@ export class FacebookFacade {
         return this.insightService.getFBInsights({ userID, id, since, until });
       }),
       shareReplay(1),
+      first(),
     );
   }
 
@@ -49,5 +49,13 @@ export class FacebookFacade {
         return dropdown;
       }),
     );
+  }
+
+  viewPost(url: string): void {
+    this.globalService.getWindow().open(url, '_blank');
+  }
+
+  profileInsight(connectionType: string, connectionID: string): void {
+    this.globalService.getLocation().assign(`analyze/${connectionType}/${connectionID}`);
   }
 }

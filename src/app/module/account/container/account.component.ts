@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'buffer--account',
   templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss'],
+  styleUrls: ['./account.component.css'],
 })
 export class AccountComponent {}

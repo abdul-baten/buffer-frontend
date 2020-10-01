@@ -1,4 +1,4 @@
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
+import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '../enum';
 import { I_USER } from './user.model';
 
 // tslint:disable-next-line

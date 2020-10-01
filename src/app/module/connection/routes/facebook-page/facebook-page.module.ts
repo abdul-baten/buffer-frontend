@@ -7,7 +7,7 @@ import { FacebookPageService } from './service/facebook-page.service';
 import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
-import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [FacebookPageComponent],

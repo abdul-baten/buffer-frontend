@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { I_CONNECTION } from '@core/model';
+import { I_CONNECTION } from 'src/app/core/model';
 import { Observable, of } from 'rxjs';
-import { PAGES } from '@core/constant/page/page.constant';
+import { PAGES } from 'src/app/core/constant';
 import { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
   selector: 'buffer--profiles',
-  styleUrls: ['./profiles.component.scss'],
+  styleUrls: ['./profiles.component.css'],
   templateUrl: './profiles.component.html',
 })
 export class ProfilesComponent implements OnInit {

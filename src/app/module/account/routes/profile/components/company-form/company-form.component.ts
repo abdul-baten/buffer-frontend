@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_COUNTRY, I_DROPDOWN } from '@core/model';
+import { I_COUNTRY, I_DROPDOWN } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer--company-form',
-  styleUrls: ['./company-form.component.scss'],
+  styleUrls: ['./company-form.component.css'],
   templateUrl: './company-form.component.html',
 })
 export class CompanyFormComponent {

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
 import { entityConfig } from './entity/entity.meta';
-import { environment } from '@env/environment';
+import { environment } from 'src/environments/environment';
 import { NgModule } from '@angular/core';
 import { reducers } from './reducers';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';

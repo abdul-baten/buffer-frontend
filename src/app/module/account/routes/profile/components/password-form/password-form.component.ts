@@ -1,12 +1,11 @@
-import { CommonValidator } from '@core/validation/common.validation';
+import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidator } from '@core/validation/password.validation';
 
 @Component({
   selector: 'buffer--password-form',
   templateUrl: './password-form.component.html',
-  styleUrls: ['./password-form.component.scss'],
+  styleUrls: ['./password-form.component.css'],
 })
 export class PasswordFormComponent {
   passwordForm: FormGroup;

@@ -1,5 +1,5 @@
-const brotli = require('brotli');
 const fs = require('fs');
+const brotli = require('brotli');
 const dir = require('node-dir');
 
 const brotliCompressionOption = {
@@ -11,7 +11,7 @@ const brotliCompressionOption = {
   threshold: 10240,
 };
 
-dir.files('dist', function(err: Error, files: string[]) {
+dir.files('dist', function (err: Error, files: string[]) {
   if (err) throw err;
   files.forEach((file: string) => compress(file));
 });

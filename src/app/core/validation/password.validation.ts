@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-import { REG_EX_PATTERNS } from '@core/util/regex/regex.util';
+import { REG_EX_PATTERNS } from '../constant';
 
 export class PasswordValidator {
   static oneUpperCase(control: FormControl): { [key: string]: boolean } {
@@ -25,8 +25,6 @@ export class PasswordValidator {
   static allowedPasswordSpecialChars(control: FormControl): { [key: string]: boolean } {
     const regex = REG_EX_PATTERNS.PASSWORD_SPECIAL_CHARACTER;
     const allowedChars = REG_EX_PATTERNS.PASSWORD;
-    return !regex.test(control.value) || !control.value.match(allowedChars)
-      ? { allowedPasswordSpecialChars: true }
-      : null;
+    return !regex.test(control.value) || !control.value.match(allowedChars) ? { allowedPasswordSpecialChars: true } : null;
   }
 }

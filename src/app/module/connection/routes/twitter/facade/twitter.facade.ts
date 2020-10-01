@@ -1,13 +1,11 @@
-import { ConnectionService } from '@core/service/connection/connection.service';
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
-import { I_CONNECTION, I_USER } from '@core/model';
+import { ConnectionService, ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
+import { I_CONNECTION, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Params, Router } from '@angular/router';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { TwitterService } from '../service/twitter.service';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class TwitterFacade {
@@ -15,8 +13,8 @@ export class TwitterFacade {
     private readonly connectionService: ConnectionService,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router,
+    private readonly twitterService: TwitterService,
     private readonly userService: UserService,
-    private twitterService: TwitterService,
   ) {}
 
   isWeb(): Observable<boolean> {

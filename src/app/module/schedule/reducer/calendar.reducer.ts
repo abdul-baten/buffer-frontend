@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { CalViewState } from '@app/schedule/model/calendar.model';
-import { E_CAL_WEEK_DAY } from '@core/enum';
-import { setCalendarFirstDay, setCalendarNonCurrentDates } from '@app/schedule/action/calendar.action';
+import { CalViewState } from '../model/calendar.model';
+import { E_CAL_WEEK_DAY } from 'src/app/core/enum';
+import { setCalendarFirstDay, setCalendarNonCurrentDates } from '../action/calendar.action';
 
 const schedulePostFeatureKey = 'schedulePostData';
 

@@ -1,8 +1,8 @@
-import { AppState } from 'src/app/reducers';
-import { I_POST } from '@core/model';
+import { AppState } from '../../../../../reducers';
+import { I_POST } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { ModalService } from '@core/service/modal/modal.service';
-import { removeNewPostData, setPostType } from 'src/app/actions';
+import { ModalService } from '../../../../../core/service/modal.service';
+import { removeNewPostData, setPostType } from '../../../../../actions';
 import { Store } from '@ngrx/store';
 
 @Injectable()

@@ -1,8 +1,8 @@
-import { AnalyzeCardModule } from '@shared/module/analyze/analyze-card/analyze-card.module';
+import { AnalyzeCardModule } from '../../shared/analyze/analyze-card/analyze-card.module';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './container/dashboard.component';
 import { DashboardFacade } from './facade/dashboard.facade';
-import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
+import { DashboardHeaderModule } from '../../shared/header/dashboard-header/dashboard-header.module';
 import { DashboardPostsOverviewComponent } from './components/dashboard-posts-overview/dashboard-posts-overview.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardSocialPerformanceComponent } from './components/dashboard-social-performance/dashboard-social-performance.component';
@@ -10,7 +10,7 @@ import { DashboardSocialProfileOverviewComponent } from './components/dashboard-
 import { FieldsetModule } from 'primeng/fieldset';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NgModule } from '@angular/core';
-import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { ToolbarModule } from '../../shared/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [DashboardComponent, DashboardPostsOverviewComponent, DashboardSocialPerformanceComponent, DashboardSocialProfileOverviewComponent],

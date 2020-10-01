@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { I_USER } from '@core/model';
-import { setUserInfo } from 'src/app/actions';
+import { I_USER } from '../core/model';
+import { setUserInfo } from '../actions';
 
 const userFeatureKey = 'user';
 

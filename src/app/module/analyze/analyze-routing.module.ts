@@ -1,7 +1,7 @@
 import { AnalyzeComponent } from './container/analyze.component';
-import { DocumentResolver } from 'src/app/resolvers/document.resolver';
+import { DocumentResolver } from 'src/app/resolvers';
 import { NgModule } from '@angular/core';
-import { PAGES } from '@core/constant/page/page.constant';
+import { PAGES } from 'src/app/core/constant';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [

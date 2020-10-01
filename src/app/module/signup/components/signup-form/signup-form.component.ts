@@ -1,18 +1,17 @@
 import { AppState } from 'src/app/reducers';
-import { CommonValidator } from '@core/validation/common.validation';
+import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_USER } from '@core/model';
+import { I_USER } from 'src/app/core/model';
 import { noop } from 'rxjs';
-import { PasswordValidator } from '@core/validation/password.validation';
 import { setUserInfo } from 'src/app/actions';
-import { SignupFacade } from '@app/signup/facade/signup.facade';
+import { SignupFacade } from '../../facade/signup.facade';
 import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer--signup-form',
-  styleUrls: ['./signup-form.component.scss'],
+  styleUrls: ['./signup-form.component.css'],
   templateUrl: './signup-form.component.html',
 })
 export class SignupFormComponent {

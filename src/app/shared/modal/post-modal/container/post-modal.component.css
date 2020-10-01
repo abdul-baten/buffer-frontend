@@ -1,0 +1,17 @@
+:host {
+	position: relative;
+	display: block;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav {
+	padding: 0;
+}
+
+:host ::ng-deep .p-tabview-nav {
+	justify-content: space-between;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+	margin: 0;
+	padding: 0 5rem;
+}

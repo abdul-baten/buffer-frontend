@@ -1,11 +1,9 @@
 import { catchError, first, map, switchMap } from 'rxjs/operators';
-import { ErrorService } from '@core/service/error/error.service';
-import { I_POST, I_USER } from '@core/model';
+import { ErrorService, PostService, UserService } from '../core/service';
+import { I_POST, I_USER } from '../core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PostService } from '@core/service/post/post.service';
 import { Resolve } from '@angular/router';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable({
   providedIn: 'root',

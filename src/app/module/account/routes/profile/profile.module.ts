@@ -14,7 +14,7 @@ import { ProfileFacade } from './facade/profile.facade';
 import { ProfileFormComponent } from './components/profile-form/profile-form.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { TabViewModule } from 'primeng/tabview';
-import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module';
 @NgModule({
   declarations: [CompanyFormComponent, PasswordFormComponent, ProfileComponent, ProfileFormComponent],
   imports: [

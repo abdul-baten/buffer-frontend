@@ -21,6 +21,10 @@ module.exports = {
     rules: [
       { test: /\.ts$/, loader: 'ts-loader' },
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
         // Removing this will cause deprecation warnings to appear.
         parser: { system: true },
@@ -50,7 +54,7 @@ module.exports = {
     ),
     new StyleLintPlugin({
       configFile: '.stylelintrc',
-      files: ['src/scss/**/*.scss', 'src/app/**/*.scss'],
+      files: ['src/app/**/*.css'],
       fix: true,
     }),
     new PurgecssPlugin({

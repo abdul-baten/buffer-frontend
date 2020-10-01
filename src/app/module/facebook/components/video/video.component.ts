@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_FB_VIDEOS } from '@core/model';
+import { I_FB_VIDEOS } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--video',
-  styleUrls: ['./video.component.scss'],
+  styleUrls: ['./video.component.css'],
   templateUrl: './video.component.html',
 })
 export class VideoComponent implements OnChanges {

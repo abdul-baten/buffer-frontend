@@ -1,13 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { FacebookGroupFacade } from '../facade/facebook-group.facade';
-import { I_CONNECTION } from '@core/model';
-import { Observable } from 'rxjs';
-import { SubSink } from 'subsink';
+import { I_CONNECTION } from 'src/app/core/model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'buffer--facebook-group',
-  styleUrls: ['./facebook-group.component.scss'],
+  styleUrls: ['./facebook-group.component.css'],
   templateUrl: './facebook-group.component.html',
 })
 export class FacebookGroupComponent implements OnDestroy {
@@ -15,7 +14,7 @@ export class FacebookGroupComponent implements OnDestroy {
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
-  private subscriptions$ = new SubSink();
+  private subscription$ = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private facade: FacebookGroupFacade) {
     this.isHandset$ = this.facade.isHandset();
@@ -30,11 +29,11 @@ export class FacebookGroupComponent implements OnDestroy {
   }
 
   addFacebookGroup(pageInfo: I_CONNECTION): void {
-    this.subscriptions$.add(this.facade.addFacebookGroup(pageInfo).subscribe(() => this.facade.navigateToGroup('connection/profiles')));
+    this.subscription$.add(this.facade.addFacebookGroup(pageInfo).subscribe(() => this.facade.navigateToGroup('connection/profiles')));
   }
 
   @HostListener('window:beforeunload')
   ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }

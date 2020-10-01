@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { E_POST_TYPE } from '@core/enum';
-import { I_POST, I_CONNECTION } from '@core/model';
+import { E_POST_TYPE } from '../core/enum';
+import { I_CONNECTION, I_POST } from '../core/model';
 
 const removeNewPostData = createAction('[Post Create Modal Facade] Remove Post Data');
 

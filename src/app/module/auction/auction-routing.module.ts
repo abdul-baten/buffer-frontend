@@ -1,4 +1,4 @@
-import { AuctionComponent } from '@app/auction/container/auction.component';
+import { AuctionComponent } from './container/auction.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

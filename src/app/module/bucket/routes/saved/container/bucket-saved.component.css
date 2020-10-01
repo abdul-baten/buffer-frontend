@@ -1,0 +1,23 @@
+:host {
+	position: relative;
+	display: block;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-header {
+	border-width: 0 0 1px 0;
+}
+
+:host ::ng-deep .p-datatable .p-paginator-bottom {
+	position: fixed;
+	bottom: 0;
+	width: calc(100vw - 15rem);
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+:host ::ng-deep .p-carousel-container {
+	height: 100%;
+}
+
+:host ::ng-deep .b-d-h {
+	display: none;
+}

@@ -7,7 +7,7 @@ import { LinkedInPageFacade } from './facade/linkedin-page.facade';
 import { LinkedInPageRoutingModule } from './linkedin-page-routing.module';
 import { LinkedInPageService } from './service/linkedin-page.service';
 import { NgModule } from '@angular/core';
-import { ToolbarModule } from '@shared/module/header/toolbar/toolbar.module';
+import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [LinkedInPageComponent],

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_COUNTRY } from '@core/model';
+import { I_COUNTRY } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer--profile-form',
-  styleUrls: ['./profile-form.component.scss'],
+  styleUrls: ['./profile-form.component.css'],
   templateUrl: './profile-form.component.html',
 })
 export class ProfileFormComponent {

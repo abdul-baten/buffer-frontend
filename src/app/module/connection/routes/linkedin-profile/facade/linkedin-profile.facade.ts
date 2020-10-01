@@ -1,14 +1,11 @@
-import { ConnectionService } from '@core/service/connection/connection.service';
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
-import { I_CONNECTION } from '@core/model/connection.model';
-import { I_USER } from '@core/model';
+import { ConnectionService, ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
+import { finalize, switchMap, tap } from 'rxjs/operators';
+import { I_CONNECTION, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { LinkedInProfileService } from '../service/linkedin-profile.service';
 import { Observable, of } from 'rxjs';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { Router } from '@angular/router';
-import { switchMap, tap, finalize } from 'rxjs/operators';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class LinkedInProfileFacade {

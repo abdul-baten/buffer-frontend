@@ -1,20 +1,19 @@
-import { CommonValidator } from '@core/validation/common.validation';
+import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PasswordValidator } from '@core/validation/password.validation';
-import { SigninFacade } from '@app/signin/facade/signin.facade';
+import { SigninFacade } from '../../facade/signin.facade';
 
 @Component({
   selector: 'buffer--signin-form',
-  styleUrls: ['./signin-form.component.scss'],
+  styleUrls: ['./signin-form.component.css'],
   templateUrl: './signin-form.component.html',
 })
 export class SigninFormComponent {
   formClicked = false;
   signinForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private signinFacade: SigninFacade) {
+  constructor(private formBuilder: FormBuilder, private readonly facade: SigninFacade) {
     this.signinForm = this.buildSigninForm();
   }
 
@@ -38,18 +37,18 @@ export class SigninFormComponent {
   login(): void {
     this.formClicked = true;
     const { email, password } = this.signinForm.value;
-    this.signinFacade
+    this.facade
       .loginUser(email, password)
       .pipe(
         finalize(() => {
-          // this.signinForm.reset();
+          this.signinForm.reset();
           this.formClicked = false;
         }),
       )
-      .subscribe(() => location.replace('/dashboard'));
+      .subscribe(() => this.facade.navigateToDashboard());
   }
 
   handleAuthNavigateBtn(authURL: string): void {
-    this.signinFacade.navigate(authURL);
+    this.facade.navigate(authURL);
   }
 }

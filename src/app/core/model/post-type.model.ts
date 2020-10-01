@@ -1,5 +1,6 @@
-import { PostTypeImageService } from '@core/service/post-type-media-selection/post-type-image.service';
-import { PostTypeVideoService } from '@core/service/post-type-media-selection/post-type-video.service';
+import { PostTypeImageService } from '../service/post-type-image.service';
+import { PostTypeVideoService } from '../service/post-type-video.service';
+
 
 // tslint:disable-next-line
 export interface I_POST_TYPE_GENERATOR {

@@ -1,6 +1,6 @@
-import { E_POST_STATUS, E_POST_TYPE } from '@core/enum';
+import { E_POST_STATUS, E_POST_TYPE } from '../enum';
 import { EventInput } from '@fullcalendar/core';
-import { I_CONNECTION } from '.';
+import { I_CONNECTION } from './connection.model';
 import { I_MEDIA } from './media.model';
 
 // tslint:disable-next-line

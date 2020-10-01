@@ -1,14 +1,14 @@
 import differenceInDays from 'date-fns/differenceInDays';
-import { CALENDAR_POST_DATA } from '@app/schedule/data/calendar-post.data';
+import { CALENDAR_POST_DATA } from '../../data/calendar-post.data';
 import { Component, Inject } from '@angular/core';
-import { E_POST_TYPE } from '@core/enum';
-import { I_POST } from '@core/model';
+import { E_POST_TYPE } from 'src/app/core/enum';
+import { I_POST } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { ScheduleFacade } from '../../facade/schedule.facade';
 
 @Component({
   selector: 'buffer--post',
-  styleUrls: ['./post.component.scss'],
+  styleUrls: ['./post.component.css'],
   templateUrl: './post.component.html',
 })
 export class PostComponent {

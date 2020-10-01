@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { PlanFacade } from '../facade/plan.facade';
 
 @Component({
   selector: 'buffer--plan',
   templateUrl: './plan.component.html',
-  styleUrls: ['./plan.component.scss'],
+  styleUrls: ['./plan.component.css'],
 })
 export class PlanComponent {
   checked = true;
@@ -71,8 +72,10 @@ export class PlanComponent {
     { groupName: '', groupHeader: false, name: 'Page Performance', pro: true, premium: true, advanced: true },
   ];
 
+  constructor(private readonly facade: PlanFacade) {}
+
   scrollIntoView(): void {
-    const elementId = document.getElementById('comparisonTable');
-    elementId.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const element = this.facade.getElement('comparisonTable');
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }

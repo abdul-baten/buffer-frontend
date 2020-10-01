@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'buffer--bucket',
   templateUrl: './bucket.component.html',
-  styleUrls: ['./bucket.component.scss'],
+  styleUrls: ['./bucket.component.css'],
 })
 export class BucketComponent {}

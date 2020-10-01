@@ -1,0 +1,19 @@
+:host {
+	display: block;
+	overflow: hidden;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+	position: sticky;
+	top: 0;
+	box-shadow: 0 2px 0 #0074e4;
+}
+
+:host ::ng-deep .p-datatable-wrapper {
+	padding: 0;
+}
+
+:host ::ng-deep .b-table-group {
+	background: #ffffff;
+	box-shadow: 0 2px 0 #88929e;
+}

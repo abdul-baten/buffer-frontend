@@ -1,14 +1,14 @@
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { CALENDAR_VIEW } from '@app/schedule/enum/calendar-view-options.enum';
+import { CALENDAR_VIEW } from '../enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
-import { I_CONNECTION_SELECTED, I_POST } from '@core/model';
+import { I_CONNECTION_SELECTED, I_POST } from 'src/app/core/model';
 import { mergeMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { ScheduleFacade } from '@app/schedule/facade/schedule.facade';
+import { ScheduleFacade } from '../facade/schedule.facade';
 
 @Component({
   selector: 'buffer--schedule',
-  styleUrls: ['./schedule.component.scss'],
+  styleUrls: ['./schedule.component.css'],
   templateUrl: './schedule.component.html',
 })
 export class ScheduleComponent {
@@ -18,7 +18,7 @@ export class ScheduleComponent {
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
 
-  constructor(private router: Router, private readonly facade: ScheduleFacade, private activatedRoute: ActivatedRoute) {
+  constructor(private readonly router: Router, private readonly facade: ScheduleFacade, private activatedRoute: ActivatedRoute) {
     this.isHandset$ = this.facade.isHandset();
     this.isTablet$ = this.facade.isTablet();
 

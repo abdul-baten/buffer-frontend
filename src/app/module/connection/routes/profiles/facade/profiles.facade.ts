@@ -1,10 +1,9 @@
 import { ConfirmationService } from 'primeng/api';
-import { ConnectionService } from '@core/service/connection/connection.service';
+import { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
 import { finalize } from 'rxjs/operators';
-import { I_CONNECTION } from '@core/model';
+import { I_CONNECTION } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { Router } from '@angular/router';
 
 @Injectable()

@@ -3,6 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'buffer--connection',
   templateUrl: './connection.component.html',
-  styleUrls: ['./connection.component.scss'],
+  styleUrls: ['./connection.component.css'],
 })
 export class ConnectionComponent {}

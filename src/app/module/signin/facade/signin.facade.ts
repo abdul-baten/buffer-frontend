@@ -1,14 +1,18 @@
-import { AuthService } from '@core/service/auth/auth.service';
-import { I_USER } from '@core/model';
+import { AuthService, GlobalService, UserService } from 'src/app/core/service';
+import { I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class SigninFacade {
-  constructor(private readonly authService: AuthService, private readonly router: Router, private readonly userService: UserService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly globalService: GlobalService,
+    private readonly router: Router,
+    private readonly userService: UserService,
+  ) {}
 
   navigate(authURL: string): void {
     this.router.navigateByUrl(authURL);
@@ -20,5 +24,9 @@ export class SigninFacade {
         this.userService.addUserToState(user);
       }),
     );
+  }
+
+  navigateToDashboard(): void {
+    this.globalService.getLocation().replace('/dashboard');
   }
 }

@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
-import { HttpService } from '@core/service/http/http.service';
-import { I_CONNECTION, I_LN_ACCESS_TOKEN_RESPONSE } from '@core/model/connection.model';
+import { HttpService } from 'src/app/core/service';
+import { I_CONNECTION, I_LN_ACCESS_TOKEN_RESPONSE } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';

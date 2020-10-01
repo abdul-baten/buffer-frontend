@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_FB_PERFORMANCE } from '@core/model';
+import { I_FB_PERFORMANCE } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--performance',
-  styleUrls: ['./performance.component.scss'],
+  styleUrls: ['./performance.component.css'],
   templateUrl: './performance.component.html',
 })
 export class PerformanceComponent implements OnChanges {

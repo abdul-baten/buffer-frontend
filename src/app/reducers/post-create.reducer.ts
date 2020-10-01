@@ -1,6 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { addMinutes, formatISO } from 'date-fns';
-import { I_POST } from '@core/model';
+import { I_POST } from '../core/model';
+
 import {
   setNewPostConnectionID,
   setNewPostConnections,
@@ -69,7 +70,7 @@ const reducer = createReducer(
       postMedia: [...state.postMedia.slice(0, mediaIndex), ...state.postMedia.slice(mediaIndex + 1)],
     };
   }),
-  on(removeNewPostData, _ => {
+  on(removeNewPostData, (_) => {
     return initialState;
   }),
   on(removeNewPostAllMedia, (state: any) => {

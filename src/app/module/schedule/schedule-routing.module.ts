@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ScheduleComponent } from '@app/schedule/container/schedule.component';
+import { ScheduleComponent } from './container/schedule.component';
 
 const routes: Routes = [
   {

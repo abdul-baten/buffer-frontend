@@ -1,8 +1,7 @@
-import { DocumentResolver } from './resolvers/document.resolver';
+import { DocumentResolver, UserConnectionResolver } from './resolvers';
 import { NgModule } from '@angular/core';
-import { PAGES } from './core/constant/page/page.constant';
+import { PAGES } from './core/constant';
 import { RouterModule, Routes } from '@angular/router';
-import { UserConnectionResolver } from './resolvers/user-connection.resolver';
 
 const routes: Routes = [
   {
@@ -37,7 +36,7 @@ const routes: Routes = [
     data: { title: PAGES.DASHBOARD_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/dashboard/dashboard.module').then((m) => m.DashboardModule),
     path: PAGES.DASHBOARD_PAGE.PAGE_ROUTE,
-    resolve: { documentResolver: DocumentResolver },
+    resolve: { userData: UserConnectionResolver, documentResolver: DocumentResolver },
     runGuardsAndResolvers: 'always',
   },
   {
@@ -66,7 +65,7 @@ const routes: Routes = [
     loadChildren: () => import('./module/analyze/analyze.module').then((m) => m.AnalyzeModule),
     path: PAGES.ANALYZE_PAGE.PAGE_ROUTE,
     resolve: { userData: UserConnectionResolver, documentData: DocumentResolver },
-    runGuardsAndResolvers: 'always',
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange',
   },
   {
     data: { title: PAGES.CONNECTION_MODULE.PAGE_TITLE },
@@ -79,16 +78,19 @@ const routes: Routes = [
     data: { title: PAGES.VIDEO_MODULE.PAGE_TITLE },
     loadChildren: () => import('./module/video/video.module').then((m) => m.VideoModule),
     path: PAGES.VIDEO_MODULE.PAGE_ROUTE,
+    resolve: { documentResolver: DocumentResolver },
+    runGuardsAndResolvers: 'always',
   },
   {
     data: { title: PAGES.ANALYZE_FACEBOOK_PAGE.PAGE_TITLE },
     loadChildren: () => import('./module/facebook/analyze-facebook.module').then((m) => m.AnalyzeFacebookModule),
     path: PAGES.ANALYZE_FACEBOOK_PAGE.PAGE_ROUTE,
-    resolve: { documentResolver: DocumentResolver },
+    resolve: { documentData: DocumentResolver },
     runGuardsAndResolvers: 'always',
   },
   {
     path: '**',
+    pathMatch: 'full',
     redirectTo: 'dashboard',
   },
 ];
@@ -98,13 +100,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       enableTracing: false,
+      initialNavigation: 'enabled',
       onSameUrlNavigation: 'ignore',
       relativeLinkResolution: 'corrected',
       scrollOffset: [0, 0],
       scrollPositionRestoration: 'top',
       urlUpdateStrategy: 'eager',
       useHash: false,
-      initialNavigation: 'enabled',
     }),
   ],
   exports: [RouterModule],

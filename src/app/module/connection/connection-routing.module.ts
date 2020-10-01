@@ -1,8 +1,8 @@
 import { ConnectionComponent } from './container/connection.component';
+import { DocumentResolver } from 'src/app/resolvers';
 import { NgModule } from '@angular/core';
-import { PAGES } from '@core/constant/page/page.constant';
+import { PAGES } from 'src/app/core/constant';
 import { RouterModule, Routes } from '@angular/router';
-import { DocumentResolver } from 'src/app/resolvers/document.resolver';
 
 const routes: Routes = [
   {

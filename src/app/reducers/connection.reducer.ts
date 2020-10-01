@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { I_CONNECTION } from '@core/model';
-import { setConnection, deleteConnection } from 'src/app/actions';
+import { deleteConnection, setConnection } from '../actions';
+import { I_CONNECTION } from '../core/model';
 
 const connectionFeatureKey = 'connection';
 

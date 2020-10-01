@@ -1,0 +1,14 @@
+:host {
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+
+:host ::ng-deep .fc-widget-header {
+	margin-right: 0 !important;
+	border-right-width: 0;
+}
+
+:host ::ng-deep .buffer--schedule-calendar-sec {
+	width: 100%;
+}

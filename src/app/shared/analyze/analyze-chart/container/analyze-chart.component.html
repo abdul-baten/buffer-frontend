@@ -1,0 +1,25 @@
+<p-fieldset class="b-w-full b-h-full">
+  <p-header>
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <i class="p-mr-2 b-ci pi pi-chart-line b-text-primary"></i>
+      <h5>{{ chartTitle }}</h5>
+    </div>
+  </p-header>
+
+  <div class="p-d-flex p-flex-column">
+    <div class="p-d-flex p-jc-end">
+      <button aria-label="Export as JPEG" (click)="exportToJPEG()" pButton pTooltip="Export as JPEG"
+        tooltipPosition="top" type="button" icon="pi pi-image"
+        class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
+      <button aria-label="Export as Excel" (click)="exportToExcel()" pButton pTooltip="Export as Excel"
+        tooltipPosition="top" type="button" icon="pi pi-file-excel"
+        class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
+    </div>
+
+    <highcharts-chart [(update)]="updateFromInput" [callbackFunction]="chartCallback" [oneToOne]="true"
+      *ngIf="isHighcharts" [Highcharts]="Highcharts" [constructorType]="'chart'" [options]="optFromInput"
+      class="b-w-full">
+    </highcharts-chart>
+
+  </div>
+</p-fieldset>

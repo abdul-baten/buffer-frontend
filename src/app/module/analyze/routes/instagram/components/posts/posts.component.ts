@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_IG } from '@core/model';
+import { I_INS_IG } from 'src/app/core/model';
+
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--posts',
-  styleUrls: ['./posts.component.scss'],
+  styleUrls: ['./posts.component.css'],
   templateUrl: './posts.component.html',
 })
 export class PostsComponent implements OnChanges {

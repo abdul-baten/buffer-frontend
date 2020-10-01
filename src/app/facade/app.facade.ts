@@ -1,12 +1,8 @@
 import { catchError, first, map, mergeMap, switchMap, take } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import { ErrorService } from '@core/service/error/error.service';
+import { ConnectionService, ErrorService, PostService, UserService } from '../core/service';
 import { forkJoin, Observable, of } from 'rxjs';
-import { I_CONNECTION, I_POST, I_USER } from '@core/model';
-import { Router } from '@angular/router';
-import { UserService } from '@core/service/user/user.service';
-import { ConnectionService } from '@core/service/connection/connection.service';
-import { PostService } from '@core/service/post/post.service';
+import { I_CONNECTION, I_POST, I_USER } from '../core/model';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AppFacade {
@@ -14,25 +10,16 @@ export class AppFacade {
     private readonly connectionService: ConnectionService,
     private readonly errorService: ErrorService,
     private readonly postService: PostService,
-    private readonly router: Router,
     private readonly userService: UserService,
   ) {}
 
   getData() {
     return this.getUser().pipe(
       map((user: I_USER) => user),
-      mergeMap(async () => {
+      mergeMap(() => {
         const connections = this.getConnections();
         const posts = this.getPosts();
-
-        return await forkJoin({
-          connections,
-          posts,
-        }).toPromise();
-      }),
-      catchError((error) => {
-        this.router.navigate(['/enter']);
-        throw new Error(error);
+        return forkJoin([connections, posts]).toPromise();
       }),
     );
   }

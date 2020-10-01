@@ -1,7 +1,7 @@
 import { BucketSavedFacade } from '../facade/bucket-saved.facade';
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
-import { I_POST } from '@core/model';
+import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
+import { I_POST } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
 import { Observable, of } from 'rxjs';
 import { Table } from 'primeng/table';
@@ -9,7 +9,7 @@ import { Table } from 'primeng/table';
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--bucket-saved',
-  styleUrls: ['./bucket-saved.component.scss'],
+  styleUrls: ['./bucket-saved.component.css'],
   templateUrl: './bucket-saved.component.html',
 })
 export class BucketSavedComponent {

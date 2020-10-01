@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_FB_OVERVIEW } from '@core/model';
+import { I_FB_OVERVIEW } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--overview',
-  styleUrls: ['./overview.component.scss'],
+  styleUrls: ['./overview.component.css'],
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent implements OnChanges {

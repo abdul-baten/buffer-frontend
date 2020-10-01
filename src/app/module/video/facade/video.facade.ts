@@ -1,4 +1,4 @@
-import { DocumentMetaService } from '@core/service/document-meta/document-meta.service';
+import { DocumentMetaService } from 'src/app/core/service';
 import { Injectable } from '@angular/core';
 
 @Injectable()

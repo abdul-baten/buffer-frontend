@@ -1,10 +1,3 @@
-import {
-  selectNewPostActiveConnectionID,
-  selectPostInfo,
-  selectNewPostDataState,
-  selectNewPostDate,
-  selectNewPostMedias,
-  selectNewPostType,
-} from './post-create.selector';
-
-export { selectNewPostActiveConnectionID, selectPostInfo, selectNewPostDataState, selectNewPostDate, selectNewPostType, selectNewPostMedias };
+export * from './connection.selector';
+export * from './post-create.selector';
+export * from './user.selector';

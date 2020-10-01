@@ -1,19 +1,19 @@
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { I_CONNECTION_SELECTED, I_INS_IG } from 'src/app/core/model';
 import { InstagramFacade } from '../facade/instagram.facade';
-import { I_CONNECTION_SELECTED, I_INS_IG } from '@core/model';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'buffer--instagram',
-  styleUrls: ['./instagram.component.scss'],
+  styleUrls: ['./instagram.component.css'],
   templateUrl: './instagram.component.html',
 })
 export class AnalyzeInstagramComponent {
   insight$: Observable<I_INS_IG>;
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: InstagramFacade, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private facade: InstagramFacade, private readonly router: Router) {
     this.insight$ = this.activatedRoute.paramMap.pipe(
       switchMap((params: ParamMap) => {
         const id = params.get('id');

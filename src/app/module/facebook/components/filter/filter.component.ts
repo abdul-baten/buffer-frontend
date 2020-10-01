@@ -3,27 +3,23 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { FacebookFacade } from '../../facade/analyze-facebook.facade';
 import { lastDayOfMonth, lastDayOfWeek, startOfMonth, startOfWeek, subDays, subWeeks } from 'date-fns';
-import { noop } from 'rxjs';
+import { noop, Subscription } from 'rxjs';
 import { OverlayPanel } from 'primeng/overlaypanel';
-import { SubSink } from 'subsink';
 
 @Component({
   selector: 'buffer--filter',
-  styleUrls: ['./filter.component.scss'],
+  styleUrls: ['./filter.component.css'],
   templateUrl: './filter.component.html',
 })
 export class FilterComponent implements OnDestroy {
   @ViewChild('overlayPanel') overlayPanel: OverlayPanel;
-
   calendarDateRange: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
   dateRange: string[];
   maxDate = new Date();
-
-  private subscriptions$ = new SubSink();
+  private subscription$ = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private facade: FacebookFacade) {
     this.dateRange = [this.facade.formatDate(subDays(new Date(), 6)), this.facade.formatDate(new Date())];
-    this.setDate();
   }
 
   formattedDate(dates: string[]): string {
@@ -65,12 +61,12 @@ export class FilterComponent implements OnDestroy {
   private setDate(): void {
     this.activatedRoute.parent.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
-      this.subscriptions$.add(this.facade.getInsights({ id, dateRange: this.dateRange }).subscribe(noop));
+      this.subscription$.add(this.facade.getInsights({ id, dateRange: this.dateRange }).subscribe(noop));
     });
   }
 
   @HostListener('window:beforeunload')
   ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }

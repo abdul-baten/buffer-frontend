@@ -1,14 +1,11 @@
 import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component } from '@angular/core';
-import { E_CONNECTION_TYPE } from '@core/enum';
-import { environment } from '@env/environment';
-import { PAGES } from '@core/constant/page/page.constant';
-
-const API_URL = environment.apiURL;
+import { E_CONNECTION_TYPE } from 'src/app/core/enum';
+import { PAGES } from 'src/app/core/constant';
 
 @Component({
   selector: 'buffer--choose-connection',
-  styleUrls: ['./choose-connection.component.scss'],
+  styleUrls: ['./choose-connection.component.css'],
   templateUrl: './choose-connection.component.html',
 })
 export class ChooseConnectionComponent {
@@ -65,8 +62,8 @@ export class ChooseConnectionComponent {
   chooseNewConnection(oauthType: E_CONNECTION_TYPE): void {
     const oAuthTypeArray = oauthType.toLowerCase().split('_');
     const connectionType = oAuthTypeArray.join('-');
-
     const authType = oAuthTypeArray[0];
-    window.location.replace(API_URL + `${authType}/authorize?connectionType=${connectionType}`);
+
+    this.facade.authConnection(authType, connectionType);
   }
 }

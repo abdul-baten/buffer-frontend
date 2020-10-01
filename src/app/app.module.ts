@@ -5,21 +5,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DashboardHeaderModule } from '@shared/module/header/dashboard-header/dashboard-header.module';
+import { DashboardHeaderModule } from './shared/header/dashboard-header/dashboard-header.module';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EntityStoreModule } from './entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { ErrorInterceptor } from '@core/interceptor/error/error.interceptor';
-import { GlobalErrorHandlerUtil } from '@core/util/error/error-handler.util';
+import { ErrorInterceptor, HTTPRequestInterceptor, LoaderInterceptor, LoggerInterceptor } from './core/interceptor';
+import { GlobalErrorHandlerUtil } from './core/util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { HTTPRequestInterceptor } from '@core/interceptor/http-request/http-request.interceptor';
-import { LoaderInterceptor } from '@core/interceptor/loader/loader.interceptor';
-import { LoaderModule } from '@shared/module/loader/loader.module';
-import { LoggerInterceptor } from '@core/interceptor/logger/logger.interceptor';
-import { ModalService } from '@core/service/modal/modal.service';
-import { PostModalModule } from '@shared/module/modal/post-modal/post-modal.module';
+import { LoaderModule } from './shared/loader/loader.module';
+import { ModalService } from './core/service';
+import { PostModalModule } from './shared/modal/post-modal/post-modal.module';
 import { ToastModule } from 'primeng/toast';
-import { ViewModalModule } from '@shared/module/modal/view-modal/view-modal.module';
+import { TransferHttpCacheModule } from '@nguniversal/common';
+import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
+
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [AppComponent],
@@ -36,6 +35,7 @@ import { ViewModalModule } from '@shared/module/modal/view-modal/view-modal.modu
     LoaderModule,
     PostModalModule,
     ToastModule,
+    TransferHttpCacheModule,
     ViewModalModule,
   ],
   providers: [
@@ -47,12 +47,12 @@ import { ViewModalModule } from '@shared/module/modal/view-modal/view-modal.modu
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: HTTPRequestInterceptor,
+      useClass: LoggerInterceptor,
     },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: LoggerInterceptor,
+      useClass: HTTPRequestInterceptor,
     },
     {
       multi: true,

@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
-import { I_DROPDOWN, I_POST } from '@core/model';
+import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
+import { I_DROPDOWN, I_POST } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
-import { Table } from 'primeng/table';
 import { Observable, of } from 'rxjs';
+import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--bucket-scheduled',
   templateUrl: './bucket-scheduled.component.html',
-  styleUrls: ['./bucket-scheduled.component.scss'],
+  styleUrls: ['./bucket-scheduled.component.css'],
 })
 export class BucketScheduledComponent {
   @ViewChild('postTable', { static: true }) postTable: Table;

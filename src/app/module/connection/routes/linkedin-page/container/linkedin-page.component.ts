@@ -1,6 +1,6 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { I_CONNECTION } from '@core/model';
+import { I_CONNECTION } from 'src/app/core/model';
 import { LinkedInPageFacade } from '../facade/linkedin-page.facade';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'buffer--linkedin-page',
   templateUrl: './linkedin-page.component.html',
-  styleUrls: ['./linkedin-page.component.scss'],
+  styleUrls: ['./linkedin-page.component.css'],
 })
 export class LinkedInPageComponent implements OnInit {
   isHandset$: Observable<boolean>;

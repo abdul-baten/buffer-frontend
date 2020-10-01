@@ -1,18 +1,17 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from '@core/enum';
-import { I_POST } from '@core/model';
+import { E_CONNECTION_TYPE, E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
+import { I_POST } from 'src/app/core/model';
 import { Observable, of } from 'rxjs';
 import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--bucket-published',
-  styleUrls: ['./bucket-published.component.scss'],
+  styleUrls: ['./bucket-published.component.css'],
   templateUrl: './bucket-published.component.html',
 })
 export class BucketPublishedComponent {
   @ViewChild('postTable', { static: true }) postTable: Table;
-
   postType = E_POST_TYPE;
 
   calendarPosts: Observable<I_POST[]> = of([

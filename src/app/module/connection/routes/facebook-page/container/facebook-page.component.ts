@@ -1,21 +1,20 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { FacebookPageFacade } from '../facade/facebook-page.facade';
-import { I_CONNECTION } from '@core/model';
-import { Observable } from 'rxjs';
-import { SubSink } from 'subsink';
+import { I_CONNECTION } from 'src/app/core/model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'buffer--app-facebook-page',
   templateUrl: './facebook-page.component.html',
-  styleUrls: ['./facebook-page.component.scss'],
+  styleUrls: ['./facebook-page.component.css'],
 })
 export class FacebookPageComponent implements OnDestroy {
   connections$: Observable<I_CONNECTION[]>;
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
-  private subscriptions$ = new SubSink();
+  private subscription$ = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private facade: FacebookPageFacade) {
     this.isHandset$ = this.facade.isHandset();
@@ -30,11 +29,11 @@ export class FacebookPageComponent implements OnDestroy {
   }
 
   addFacebookPage(pageInfo: I_CONNECTION): void {
-    this.subscriptions$.add(this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
+    this.subscription$.add(this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
   }
 
   @HostListener('window:beforeunload')
   ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }

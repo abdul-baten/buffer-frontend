@@ -1,16 +1,14 @@
 import { AppState } from 'src/app/reducers';
-import { ConnectionService } from '@core/service/connection/connection.service';
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '@core/enum';
+import { ConnectionService, ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
 import { FacebookPageService } from '../service/facebook-page.service';
-import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from '@core/model';
+import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Params, Router } from '@angular/router';
-import { ResponsiveLayoutService } from '@core/service/responsive-layout/responsive-layout.service';
 import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
-import { UserService } from '@core/service/user/user.service';
 
 @Injectable()
 export class FacebookPageFacade {
@@ -18,8 +16,8 @@ export class FacebookPageFacade {
     private readonly connectionService: ConnectionService,
     private readonly facebookPageService: FacebookPageService,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
+    private readonly router: Router,
     private readonly userService: UserService,
-    private router: Router,
     private store: Store<AppState>,
   ) {}
 

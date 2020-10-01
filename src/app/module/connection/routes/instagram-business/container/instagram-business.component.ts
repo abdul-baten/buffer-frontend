@@ -1,21 +1,20 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy } from '@angular/core';
+import { I_CONNECTION } from 'src/app/core/model';
 import { InstagramBusinessFacade } from '../facade/instagram-business.facade';
-import { I_CONNECTION } from '@core/model';
-import { Observable } from 'rxjs';
-import { SubSink } from 'subsink';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'buffer--instagram-business',
   templateUrl: './instagram-business.component.html',
-  styleUrls: ['./instagram-business.component.scss'],
+  styleUrls: ['./instagram-business.component.css'],
 })
 export class InstagramBusinessComponent implements OnDestroy {
   connections$: Observable<I_CONNECTION[]>;
   isHandset$: Observable<boolean>;
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
-  private subscriptions$ = new SubSink();
+  private subscription$ = new Subscription();
 
   constructor(private activatedRoute: ActivatedRoute, private facade: InstagramBusinessFacade) {
     this.isHandset$ = this.facade.isHandset();
@@ -30,11 +29,11 @@ export class InstagramBusinessComponent implements OnDestroy {
   }
 
   addInstagramBusiness(pageInfo: I_CONNECTION): void {
-    this.subscriptions$.add(this.facade.addInstagramBusiness(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
+    this.subscription$.add(this.facade.addInstagramBusiness(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
   }
 
   @HostListener('window:beforeunload')
   ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+    this.subscription$.unsubscribe();
   }
 }

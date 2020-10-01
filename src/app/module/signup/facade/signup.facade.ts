@@ -1,6 +1,6 @@
 import { AppState } from 'src/app/reducers';
-import { AuthService } from '@core/service/auth/auth.service';
-import { I_USER } from '@core/model';
+import { AuthService } from 'src/app/core/service';
+import { I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class SignupFacade {
-  constructor(private authService: AuthService, private router: Router, private store: Store<AppState>) {}
+  constructor(private readonly authService: AuthService, private readonly router: Router, private store: Store<AppState>) {}
 
   navigate(authURL: string): void {
     this.router.navigateByUrl(authURL);

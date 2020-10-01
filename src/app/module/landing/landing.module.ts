@@ -1,12 +1,12 @@
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { IntroCreateComponent } from '@app/landing/components/intro-create/intro-create.component';
-import { IntroJumboComponent } from '@app/landing/components/intro-jumbo/intro-jumbo.component';
-import { IntroPublishComponent } from '@app/landing/components/intro-publish/intro-publish.component';
-import { LandingComponent } from '@app/landing/container/landing.component';
-import { LandingFacade } from '@app/landing/facade/landing.facade';
-import { LandingRoutingModule } from '@app/landing/landing-routing.module';
-import { MainHeaderModule } from '@shared/module/header/main-header/main-header.module';
+import { IntroCreateComponent } from './components/intro-create/intro-create.component';
+import { IntroJumboComponent } from './components/intro-jumbo/intro-jumbo.component';
+import { IntroPublishComponent } from './components/intro-publish/intro-publish.component';
+import { LandingComponent } from './container/landing.component';
+import { LandingFacade } from './facade/landing.facade';
+import { LandingRoutingModule } from './landing-routing.module';
+import { MainHeaderModule } from 'src/app/shared/header/main-header/main-header.module';
 import { NgModule } from '@angular/core';
 
 @NgModule({

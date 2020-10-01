@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
-import { HttpService } from '@core/service/http/http.service';
-import { I_FB_PAGE_RESPONSE, I_CONNECTION } from '@core/model';
+import { HttpService } from 'src/app/core/service';
+import { I_CONNECTION, I_FB_PAGE_RESPONSE } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
