@@ -1,8 +1,9 @@
+import formatISO from 'date-fns/formatISO';
+import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
 import { AppState } from 'src/app/reducers';
 import { ConnectionService } from 'src/app/core/service/connection.service';
 import { E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
 import { forkJoin, Observable } from 'rxjs';
-import { formatISO, roundToNearestMinutes } from 'date-fns';
 import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from 'src/app/core/model';
 import { Injectable, Injector } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
@@ -52,7 +53,7 @@ export class PostModalFacade {
   }
 
   sendPost(postType: E_POST_TYPE, postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST[]> {
-    const requests: any[] = [];
+    const requests: Observable<I_POST>[] = [];
     postData.postCaption = postData.postCaption.trim();
     postData.postStatus = postStatus;
     postData.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(postData.postScheduleDateTime), { nearestTo: 15 }));
@@ -71,7 +72,7 @@ export class PostModalFacade {
     });
 
     return forkJoin([...requests]).pipe(
-      map(([...responses]: I_POST[]) => responses),
+      map(([...responses]: I_POST[]) => responses as I_POST[]),
       tap(() => {
         this.notificationService.showSuccess(`Your post has been ${postData.postStatus} successfully.`);
       }),

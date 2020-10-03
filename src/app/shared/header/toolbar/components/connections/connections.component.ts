@@ -1,5 +1,5 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { I_CONNECTION, I_CONNECTION_SELECTED } from 'src/app/core/model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -10,24 +10,21 @@ import { ToolbarFacade } from '../../facade/toolbar.facade';
   styleUrls: ['./connections.component.css'],
   templateUrl: './connections.component.html',
 })
-export class ConnectionsComponent implements OnInit {
+export class ConnectionsComponent {
   @Output() connectionSelected = new EventEmitter<I_CONNECTION_SELECTED>();
   isWeb: Observable<boolean>;
 
   connections$: Observable<I_CONNECTION[]>;
   activeConnection$: Observable<string>;
 
-  constructor(private activatedRoute: ActivatedRoute, private readonly facade: ToolbarFacade) {
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: ToolbarFacade) {
     this.isWeb = this.facade.isWeb();
-  }
-
-  ngOnInit(): void {
     this.connections$ = this.facade.getConnections();
-    this.activeConnection$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id')));
+    this.activeConnection$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id') as string));
   }
 
-  trackByConnectionID(connection: I_CONNECTION): string {
-    return connection.id;
+  trackBy(_index: number, connection: I_CONNECTION): number {
+    return +connection.id;
   }
 
   clicked(connection: I_CONNECTION): void {

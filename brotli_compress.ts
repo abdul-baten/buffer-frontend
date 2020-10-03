@@ -8,7 +8,7 @@ const brotliCompressionOption = {
   mode: 1, // 0 = generic, 1 = text, 2 = font (WOFF2)
   quality: 11, // 0 - 11,
   lgwin: 22, // default
-  threshold: 10240,
+  threshold: 1024,
 };
 
 dir.files('dist', function (err: Error, files: string[]) {

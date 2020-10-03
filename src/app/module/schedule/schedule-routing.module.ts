@@ -11,8 +11,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [],
+  imports: [RouterModule.forChild(routes)],
 })
 export class ScheduleRoutingModule {}

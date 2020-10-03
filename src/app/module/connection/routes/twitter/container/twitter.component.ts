@@ -16,16 +16,11 @@ export class TwitterComponent implements OnDestroy {
   isWeb$: Observable<boolean>;
   private subscription$ = new Subscription();
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: TwitterFacade) {
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: TwitterFacade) {
     this.isHandset$ = this.facade.isHandset();
     this.isTablet$ = this.facade.isTablet();
     this.isWeb$ = this.facade.isWeb();
-
-    this.getTwitterProfile();
-  }
-
-  private getTwitterProfile(): void {
-    this.connection$ = this.facade.fetchTwitterProfile(this.activatedRoute.queryParams);
+    this.connection$ = this.facade.fetchTwitterProfile(this.activatedRoute.queryParamMap);
   }
 
   addTwitterProfile(connection: I_CONNECTION): void {

@@ -21,7 +21,7 @@ export class InsightService extends EntityCollectionServiceBase<I_INSIGHT> {
 
     return forkJoin({ overview: overview$, posts: posts$, videos: videos$, performance: performance$ }).pipe(
       tap(({ overview, posts, videos, performance }: I_INS_FB) => {
-        const { id } = overview;
+        const { id } = overview as I_FB_OVERVIEW;
         this.upsertOneInCache({ id, overview, posts, videos, performance });
       }),
     );
@@ -36,10 +36,6 @@ export class InsightService extends EntityCollectionServiceBase<I_INSIGHT> {
   }
 
   fbInsightFromState(id: string): Observable<I_INSIGHT> {
-    return this.entities$.pipe(
-      map((connections: I_INSIGHT[]) => {
-        return connections.find((insight: any) => insight.id === id);
-      }),
-    );
+    return this.entities$.pipe(map((connections: I_INSIGHT[]) => connections.find((insight: any) => insight.id === id) as I_INSIGHT));
   }
 }

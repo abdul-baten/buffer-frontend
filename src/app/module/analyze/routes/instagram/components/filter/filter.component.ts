@@ -1,8 +1,12 @@
+import lastDayOfMonth from 'date-fns/lastDayOfMonth';
+import lastDayOfWeek from 'date-fns/lastDayOfWeek';
+import startOfMonth from 'date-fns/startOfMonth';
+import startOfWeek from 'date-fns/startOfWeek';
 import subMonths from 'date-fns/subMonths';
+import subWeeks from 'date-fns/subWeeks';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { InstagramFacade } from '../../facade/instagram.facade';
-import { lastDayOfMonth, lastDayOfWeek, startOfMonth, startOfWeek, subWeeks } from 'date-fns';
 import { noop, Subscription } from 'rxjs';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
@@ -12,13 +16,14 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   templateUrl: './filter.component.html',
 })
 export class FilterComponent implements OnDestroy {
-  @ViewChild('overlayPanel') overlayPanel: OverlayPanel;
+  @ViewChild('overlayPanel')
+  overlayPanel!: OverlayPanel;
   calendarDateRange: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
   dateRange: string[];
   maxDate = new Date();
   private subscription$ = new Subscription();
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: InstagramFacade) {
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: InstagramFacade) {
     this.dateRange = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
     this.setDate();
   }
@@ -60,8 +65,8 @@ export class FilterComponent implements OnDestroy {
   }
 
   private setDate(): void {
-    this.activatedRoute.parent.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
+    this.activatedRoute.parent?.paramMap.subscribe((params: ParamMap) => {
+      const id = params.get('id') as string;
       this.subscription$.add(this.facade.getInsights({ id, dateRange: this.dateRange }).subscribe(noop));
     });
   }

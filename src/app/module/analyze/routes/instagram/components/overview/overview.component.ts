@@ -8,7 +8,7 @@ import { I_INS_IG } from 'src/app/core/model';
   templateUrl: './overview.component.html',
 })
 export class OverviewComponent implements OnChanges {
-  @Input() insight: I_INS_IG;
+  @Input() insight: Partial<I_INS_IG> = {};
 
   ngOnChanges(changes: SimpleChanges): void {
     this.insight = changes?.insight?.currentValue;

@@ -12,11 +12,11 @@
       <p-tabView>
         <p-tabPanel header="Overview">
           <ng-template pTemplate="content">
-            <buffer--overview [insight]="insight$ | async"></buffer--overview>
+            <buffer--overview [insight]="(insight$ | async)!"></buffer--overview>
           </ng-template>
         </p-tabPanel>
         <p-tabPanel header="Media">
-          <buffer--posts [insight]="insight$ | async"></buffer--posts>
+          <buffer--posts [insight]="(insight$ | async)!"></buffer--posts>
         </p-tabPanel>
       </p-tabView>
     </div>

@@ -1,19 +1,19 @@
+import format from 'date-fns/format';
 import { Calendar } from '@fullcalendar/core';
 import { CalViewState } from '../model/calendar.model';
 import { ConfirmationService } from 'primeng/api';
 import { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
 import { EventDropArg } from '@fullcalendar/interaction';
-import { format } from 'date-fns';
 import { I_CONNECTION, I_POST } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { removeNewPostData, setPostType } from 'src/app/actions';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ScheduleFacade {
-  private calendarApi: Calendar;
+  private calendarApi!: Calendar;
   constructor(
     private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,

@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
+
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
-import * as domino from 'domino';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppServerModule } from './src/main.server';
 import { createServer, Server } from 'https';
@@ -14,18 +14,47 @@ import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { Request, Response, static as expressStatic } from 'express';
 
-require('raf/polyfill');
+require('raf').polyfill();
 
 enableProdMode();
 
+const domino = require('domino');
 const template = readFileSync(join('dist/browser', 'index.html')).toString();
-const fetch = require('node-fetch');
-const win = domino.createWindow(template);
+const window = domino.createWindow(template);
 
-win.fetch = fetch;
 // @ts-ignore:next-line
-global['window'] = win;
-Object.defineProperty(win.document.body.style, 'transform', {
+global.window = window;
+global.document = window.document;
+global.navigator = window.navigator;
+global.getComputedStyle = window.getComputedStyle;
+global.innerHeight = window.innerHeight;
+global.innerWidth = window.innerWidth;
+global.outerHeight = window.outerHeight;
+global.outerWidth = window.outerWidth;
+global.HTMLElement = window.HTMLElement;
+global.HTMLElement.prototype.getBoundingClientRect = () => {
+  return {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    x: 0,
+    y: 0,
+    height: 0,
+    width: 0,
+    toJSON: () => {},
+  };
+};
+
+// If using IgxIconService to register icons
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
+// Other optional depending on your application configuration
+global.navigator = window.navigator;
+global.localStorage = window.localStorage;
+global.DOMTokenList = window.DOMTokenList;
+
+Object.defineProperty(window.document.body.style, 'transform', {
   value: () => {
     return {
       configurable: true,
@@ -33,12 +62,6 @@ Object.defineProperty(win.document.body.style, 'transform', {
     };
   },
 });
-// @ts-ignore:next-line
-global['document'] = win.document;
-// @ts-ignore:next-line
-global['CSS'] = null;
-// @ts-ignore:next-line
-global['Prism'] = null;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): Server {
@@ -47,6 +70,7 @@ export function app(): Server {
   const credentials = { key: privateKey, cert: certificate };
 
   const express = require('express')();
+  const helmet = require('helmet');
   const server = createServer(credentials, express);
   const distFolder = join(process.cwd(), 'dist/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -59,7 +83,11 @@ export function app(): Server {
     }),
   );
 
-  // Middlewares
+  express.use(
+    helmet({
+      contentSecurityPolicy: false,
+    }),
+  );
   express.use(compression());
   express.use(cookieParser());
   express.use(cors());

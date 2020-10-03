@@ -7,18 +7,19 @@
     <div class="b-h-full b-of-auto">
       <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngFor="let connection of connections$ | async" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
+          <div *ngFor="let connection of connections$ | async; trackBy:trackBy;"
+            class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
-                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
-                    defaultImage="/assets/images/svg/default-media.svg"
+                  <img [alt]="connection.connectionName" [lazyLoad]="connection.connectionPicture"
+                    class="b-w-full b-h-full b-br-full" defaultImage="/assets/images/svg/default-media.svg"
                     errorImage="/assets/images/svg/default-media.svg" />
                 </div>
               </p-header>
               <h6 class="p-text-capitalize">{{ connection.connectionName }}</h6>
               <small>{{ connection.connectionCategory }}</small>
-              <button (click)="addFacebookPage(connection)"
+              <button aria-label="Add to plan" (click)="addFacebookPage(connection)"
                 class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
                 type="button">
               </button>

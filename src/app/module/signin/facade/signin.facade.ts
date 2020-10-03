@@ -19,11 +19,7 @@ export class SigninFacade {
   }
 
   loginUser(email: string, password: string): Observable<Partial<I_USER>> {
-    return this.authService.loginUser(email, password).pipe(
-      tap((user: I_USER) => {
-        this.userService.addUserToState(user);
-      }),
-    );
+    return this.authService.loginUser(email, password).pipe(tap((user: Partial<I_USER>) => this.userService.addUserToState(user as I_USER)));
   }
 
   navigateToDashboard(): void {

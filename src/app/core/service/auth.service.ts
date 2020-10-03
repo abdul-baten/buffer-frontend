@@ -25,7 +25,7 @@ export class AuthService {
 
   signupUser(userInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
     const { fullName, email, password: userPassword } = userInfo;
-    const password = this.getPasswordHash(userPassword);
+    const password = this.getPasswordHash(userPassword as string);
     return this.httpService.post<Partial<I_USER>>('auth/join', { fullName, email, password });
   }
 

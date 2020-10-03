@@ -13,7 +13,7 @@ import { Table } from 'primeng/table';
   templateUrl: './bucket-saved.component.html',
 })
 export class BucketSavedComponent {
-  @ViewChild('postTable', { static: true }) postTable: Table;
+  @ViewChild('postTable', { static: true }) postTable!: Table;
 
   postType = E_POST_TYPE;
 

@@ -21,15 +21,15 @@ export class FacebookPageComponent implements OnDestroy {
     this.isTablet$ = this.facade.isTablet();
     this.isWeb$ = this.facade.isWeb();
 
-    this.getFacebookPages();
-  }
-
-  private getFacebookPages(): void {
-    this.connections$ = this.facade.fetchFBPages(this.activatedRoute.queryParams, 'facebook-page');
+    this.connections$ = this.facade.fetchFBPages(this.activatedRoute.queryParamMap, 'facebook-page');
   }
 
   addFacebookPage(pageInfo: I_CONNECTION): void {
     this.subscription$.add(this.facade.addFacebookPage(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
+  }
+
+  trackBy(_index: number, connection: I_CONNECTION): number {
+    return +connection.connectionID;
   }
 
   @HostListener('window:beforeunload')

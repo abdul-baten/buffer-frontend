@@ -47,7 +47,7 @@ export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
           withCredentials: true,
           onload: (fileInfo: I_MEDIA) => {
             const media = JSON.parse((fileInfo as unknown) as string) as I_MEDIA;
-            this.store.dispatch(setNewPostMedia({ media: media.mediaURL }));
+            this.store.dispatch(setNewPostMedia({ media: media.mediaURL as string }));
             return media.id;
           },
           onerror: (error: any) => {
@@ -64,7 +64,7 @@ export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
 
         revert: (uniqueFileId: string) => {
           this.mediaService.deleteMedia(uniqueFileId).subscribe((media: I_MEDIA) => {
-            this.store.dispatch(removeNewPostMedia({ media: media.mediaURL }));
+            this.store.dispatch(removeNewPostMedia({ media: media.mediaURL as string }));
           });
         },
 

@@ -5,7 +5,7 @@
 
   <section class="b-hs-wt-h b-of-h">
     <div class="b-h-full b-of-auto">
-      <p-table #profilesTable [showCurrentPageReport]="true" [value]="connections$ | async" dataKey="id"
+      <p-table #profilesTable [showCurrentPageReport]="true" [value]="$any(connections$ | async)" dataKey="id"
         [filterDelay]="0" [globalFilterFields]="['connectionName']" sortMode="multiple">
         <ng-template pTemplate="caption">
           <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
@@ -13,7 +13,8 @@
               <span class="p-input-icon-left b-w-full">
                 <i class="pi pi-search"></i>
                 <input type="text" pInputText placeholder="Search profile" autocomplete="off"
-                  (input)="profilesTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
+                  (input)="profilesTable.filterGlobal($any($event.target).value, 'contains')"
+                  class="p-inputtext-sm b-w-full">
               </span>
             </div>
             <div class="p-col-2">

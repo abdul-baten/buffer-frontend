@@ -20,7 +20,7 @@ export class PostService extends EntityCollectionServiceBase<I_POST> {
       postStatus,
       postConnection: { connectionType },
     } = postInfo;
-    const connType = connectionType.split('_')[0].toLowerCase();
+    const connType = connectionType?.split('_')[0].toLowerCase();
     const status = postStatus.toLowerCase();
 
     return this.httpService.post<I_POST>(`post/${postType}-${connType}-${status}`, postInfo).pipe(

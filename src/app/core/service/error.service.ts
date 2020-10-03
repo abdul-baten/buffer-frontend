@@ -20,12 +20,13 @@ export class ErrorService {
     this.notificationService.showError(message);
 
     switch (errorCode) {
-      case '100':
-      case '101':
+      case 100:
+      case 101:
         this.router.navigate(['/enter']);
         break;
 
-      case '1000':
+      case 1500:
+        this.notificationService.showError(message);
         this.router.navigate(['/connection/choose']);
         break;
     }

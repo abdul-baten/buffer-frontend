@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { I_CONNECTION, I_CONNECTION_SELECTED } from 'src/app/core/model';
+import { I_CONNECTION_SELECTED } from 'src/app/core/model';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,13 +10,10 @@ import { Router } from '@angular/router';
   templateUrl: './toolbar.component.html',
 })
 export class ToolbarComponent implements OnChanges {
-  @Input() backButton = true;
-  @Input() headerTitle: string;
-  @Input() showConnections = true;
+  @Input() backButton: boolean = true;
+  @Input() headerTitle: string = '';
+  @Input() showConnections: boolean = true;
   @Output() connectionSelected = new EventEmitter<I_CONNECTION_SELECTED>();
-
-  connections$: Observable<I_CONNECTION[]>;
-  activeConnection$: Observable<string>;
 
   constructor(private readonly location: Location, private readonly router: Router) {}
 

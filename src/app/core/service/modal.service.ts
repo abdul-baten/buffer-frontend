@@ -1,5 +1,7 @@
 import { ComponentRef, Injectable } from '@angular/core';
-import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DynamicDialogComponent } from 'primeng/dynamicdialog/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog/dynamicdialog-ref';
 import { I_POST } from '../model/post.model';
 import { LoaderComponent } from '../../shared/loader/container/loader.component';
 import { Observable, of } from 'rxjs';
@@ -12,7 +14,7 @@ import { ViewModalComponent } from '../../shared/modal/view-modal/container/view
 export class ModalService {
   private loaderCounter = 0;
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private readonly dialogService: DialogService) {}
 
   openPostModal(_header: string, postData: Partial<I_POST>): DynamicDialogRef {
     const dialogRef = this.dialogService.open(PostModalComponent, {
@@ -47,10 +49,11 @@ export class ModalService {
     if (this.loaderCounter === 1) {
       this.dialogService.open(LoaderComponent, {
         autoZIndex: true,
-        baseZIndex: 10000,
+        baseZIndex: 10001,
         closable: false,
-        contentStyle: { background: 'transparent' },
+        contentStyle: { padding: '1.25rem' },
         dismissableMask: false,
+        showHeader: false,
         style: { 'box-shadow': 'none' },
       });
     }
@@ -64,6 +67,7 @@ export class ModalService {
 
   closeLoader(dialogRef: ComponentRef<DynamicDialogComponent>) {
     this.loaderCounter--;
+    console.warn(this.loaderCounter);
 
     if (this.loaderCounter === 0) {
       dialogRef.destroy();

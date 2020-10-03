@@ -1,16 +1,16 @@
-import * as express from 'express';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 export class TranslatorInterceptor implements HttpInterceptor {
   private readonly PORT = process.env.PORT || 5000;
 
-  constructor(@Inject(REQUEST) private request: express.Request) {}
+  constructor(@Inject(REQUEST) private request: Request) {}
 
-  getBaseUrl(req: express.Request) {
-    const { protocol, hostname } = req;
+  getBaseUrl(request: Request) {
+    const { protocol, hostname } = request;
     return this.PORT ? `${protocol}://${hostname}:${this.PORT}` : `${protocol}://${hostname}`;
   }
 

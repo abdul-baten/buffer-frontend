@@ -1,8 +1,8 @@
 <div class="p-my-4">
-  <div *ngFor="let menu of menuItems">
-    <button *ngIf="menu.visible !== false" pButton [icon]="menu.icon"
+  <div *ngFor="let menu of menuItems; trackBy:trackBy;">
+    <button *ngIf="menu.visible !== false" pButton [icon]="$any(menu.icon)"
       class="p-button-rounded p-button-text p-button-plain p-p-4 p-mb-3" (click)="clicked(menu.routerLink)"
       [attr.aria-label]="menu.label" [routerLinkActiveOptions]="{ exact: false }"
-      routerLinkActive="b-main-header-active-menu" [pTooltip]="menu.label"></button>
+      routerLinkActive="b-main-header-active-menu" [pTooltip]="$any(menu.label)"></button>
   </div>
 </div>

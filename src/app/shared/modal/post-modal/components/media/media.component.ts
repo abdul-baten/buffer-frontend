@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './media.component.html',
 })
 export class MediaComponent implements OnChanges, OnDestroy {
-  @Input() postType: E_POST_TYPE;
+  @Input() postType: E_POST_TYPE = E_POST_TYPE.IMAGE;
   filePondOptions = {};
   postMedias: any[] = [];
   private subscription$ = new Subscription();

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { I_CONNECTION } from 'src/app/core/model';
 import { Observable, of } from 'rxjs';
-import { PAGES } from 'src/app/core/constant';
 import { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
@@ -10,14 +9,13 @@ import { ProfilesFacade } from '../facade/profiles.facade';
   templateUrl: './profiles.component.html',
 })
 export class ProfilesComponent implements OnInit {
-  chooseConnectionPage = `${PAGES.CONNECTION_MODULE.PAGE_ROUTE}/${PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE}`;
+  chooseConnectionPage = 'connection/choose';
 
   isTablet$: Observable<boolean>;
   isWeb$: Observable<boolean>;
 
   connections$: Observable<I_CONNECTION[]> = of([]);
-  loading$: Observable<boolean>;
-  totalConnections$: Observable<number>;
+  totalConnections$: Observable<number> = of(0);
 
   constructor(private readonly facade: ProfilesFacade) {
     this.isTablet$ = this.facade.isTablet();
@@ -30,7 +28,6 @@ export class ProfilesComponent implements OnInit {
 
   private getConnections(): void {
     this.connections$ = this.facade.getConnectionsFromState();
-    this.loading$ = this.facade.getLoadingState();
     this.totalConnections$ = this.facade.getTotalConnections();
   }
 

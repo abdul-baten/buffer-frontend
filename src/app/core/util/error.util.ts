@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class GlobalErrorHandlerUtil implements ErrorHandler {
   constructor(private readonly errorService: ErrorService) {}
 
-  handleError(error: Error | HttpErrorResponse) {
+  handleError(error: Error | HttpErrorResponse): void {
     if (error instanceof HttpErrorResponse) {
       this.errorService.handleServerError(error);
     } else {

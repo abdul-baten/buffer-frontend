@@ -16,20 +16,20 @@ export class FacebookGroupComponent implements OnDestroy {
   isWeb$: Observable<boolean>;
   private subscription$ = new Subscription();
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: FacebookGroupFacade) {
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookGroupFacade) {
     this.isHandset$ = this.facade.isHandset();
     this.isTablet$ = this.facade.isTablet();
     this.isWeb$ = this.facade.isWeb();
 
-    this.getFacebookGroups();
-  }
-
-  private getFacebookGroups(): void {
-    this.connections$ = this.facade.fetchFBGroups(this.activatedRoute.queryParams, 'facebook-group');
+    this.connections$ = this.facade.fetchFBGroups(this.activatedRoute.queryParamMap, 'facebook-group');
   }
 
   addFacebookGroup(pageInfo: I_CONNECTION): void {
     this.subscription$.add(this.facade.addFacebookGroup(pageInfo).subscribe(() => this.facade.navigateToGroup('connection/profiles')));
+  }
+
+  trackBy(_index: number, connection: I_CONNECTION): number {
+    return +connection.connectionID;
   }
 
   @HostListener('window:beforeunload')

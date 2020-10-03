@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { I_INS_IG } from 'src/app/core/model';
 
-
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer--posts',
@@ -9,7 +8,7 @@ import { I_INS_IG } from 'src/app/core/model';
   templateUrl: './posts.component.html',
 })
 export class PostsComponent implements OnChanges {
-  @Input() insight: I_INS_IG;
+  @Input() insight!: I_INS_IG;
 
   ngOnChanges(changes: SimpleChanges): void {
     this.insight = changes?.insight?.currentValue;

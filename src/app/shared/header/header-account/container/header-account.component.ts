@@ -9,9 +9,9 @@ import { PAGES } from 'src/app/core/constant';
   templateUrl: './header-account.component.html',
 })
 export class HeaderAccountComponent implements OnInit {
-  menuItems: MenuItem[];
+  menuItems: MenuItem[] = [];
 
-  constructor(private facade: HeaderAccountFacade) {}
+  constructor(private readonly facade: HeaderAccountFacade) {}
 
   ngOnInit(): void {
     this.menuItems = [

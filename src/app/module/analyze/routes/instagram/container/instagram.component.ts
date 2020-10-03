@@ -15,8 +15,8 @@ export class AnalyzeInstagramComponent {
 
   constructor(private activatedRoute: ActivatedRoute, private facade: InstagramFacade, private readonly router: Router) {
     this.insight$ = this.activatedRoute.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        const id = params.get('id');
+      switchMap((param: ParamMap) => {
+        const id = param.get('id') as string;
         return this.facade.getInsightFromState(id).pipe(map((response: any) => response));
       }),
     );

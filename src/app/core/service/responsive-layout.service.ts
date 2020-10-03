@@ -1,4 +1,4 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ResponsiveLayoutService {
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private readonly breakpointObserver: BreakpointObserver) {}
 
   isWeb(): Observable<boolean> {
-    return this.breakpointObserver.observe(Breakpoints.Web).pipe(map(result => result.matches));
+    return this.breakpointObserver.observe(Breakpoints.Web).pipe(map((result: BreakpointState) => result.matches));
   }
 
   isTablet(): Observable<boolean> {
-    return this.breakpointObserver.observe(Breakpoints.Tablet).pipe(map(result => result.matches));
+    return this.breakpointObserver.observe(Breakpoints.Tablet).pipe(map((result: BreakpointState) => result.matches));
   }
 
   isHandset(): Observable<boolean> {
-    return this.breakpointObserver.observe(Breakpoints.Handset).pipe(map(result => result.matches));
+    return this.breakpointObserver.observe(Breakpoints.Handset).pipe(map((result: BreakpointState) => result.matches));
   }
 }

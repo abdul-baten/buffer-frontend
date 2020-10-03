@@ -11,10 +11,10 @@
     </div>
     <div class="p-field p-col-12">
       <label for="postScheduleDateTime">Date</label>
-      <p-calendar [hourFormat]="12" [minDate]="currentDateTime" [readonlyInput]="true" [showButtonBar]="true"
-        [showIcon]="true" [stepHour]="1" [stepMinute]="60" appendTo="body" dateFormat="D, M dd, yy"
-        inputId="postScheduleDateTime" [showTime]="true" formControlName="postScheduleDateTime"
-        placeholder="Select a Date">
+      <p-calendar [showButtonBar]="true" [showIcon]="true" [showTime]="true" [stepHour]="1" [stepMinute]="60"
+        appendTo="body" dateFormat="D, M dd, yy" formControlName="postScheduleDateTime" inputId="postScheduleDateTime"
+        placeholder="Select a Date" [autoZIndex]="true" [baseZIndex]="10001" [minDate]="currentDateTime"
+        [readonlyInput]="true" hourFormat="12">
       </p-calendar>
     </div>
     <div class="p-col-12 p-pt-4 b-br-t">

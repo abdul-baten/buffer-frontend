@@ -16,7 +16,7 @@ export class PostComponent {
   postType = E_POST_TYPE;
   upcomingPost: boolean;
 
-  constructor(private scheduleFacade: ScheduleFacade, @Inject(CALENDAR_POST_DATA) public calendarData: I_POST) {
+  constructor(private readonly facade: ScheduleFacade, @Inject(CALENDAR_POST_DATA) public calendarData: I_POST) {
     this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
 
     this.menuItems = [
@@ -25,7 +25,7 @@ export class PostComponent {
         icon: 'pi pi-eye',
         command: () => {
           const { extendedProps } = this.calendarData.event;
-          this.scheduleFacade.viewPost(extendedProps);
+          this.facade.viewPost(extendedProps);
         },
       },
       {
@@ -33,7 +33,7 @@ export class PostComponent {
         icon: 'pi pi-pencil',
         command: () => {
           const { extendedProps } = this.calendarData.event;
-          this.scheduleFacade.editPost(extendedProps);
+          this.facade.editPost(extendedProps);
         },
       },
       { separator: true },
@@ -41,9 +41,13 @@ export class PostComponent {
         label: 'Delete',
         icon: 'pi pi-trash',
         command: () => {
-          this.scheduleFacade.deletePost(this.calendarData.event.id);
+          this.facade.deletePost(this.calendarData.event.id);
         },
       },
     ];
+  }
+
+  trackBy(index: number, _media: string): number {
+    return index;
   }
 }

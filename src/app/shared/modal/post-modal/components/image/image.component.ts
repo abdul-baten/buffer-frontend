@@ -17,9 +17,9 @@ import { Store } from '@ngrx/store';
 })
 export class ImageComponent implements OnInit, OnDestroy {
   @Output() tabSelected = new EventEmitter<number>();
-  currentDateTime: Date;
+  currentDateTime: Date = new Date();
   imageForm: FormGroup;
-  menuItems: MenuItem[];
+  menuItems: MenuItem[] = [];
   postStatus = E_POST_STATUS;
   postType = E_POST_TYPE;
   private subscriptions$ = new Subscription();

@@ -46,7 +46,7 @@ export class SignupFormComponent {
       this.signupFacade
         .signupUser(this.signupForm.value)
         .pipe(
-          tap((user: I_USER) => {
+          tap((user: Partial<I_USER>) => {
             this.store.dispatch(setUserInfo({ user }));
             this.signupFacade.navigate('/dashboard');
             this.signupForm.reset();

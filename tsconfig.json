@@ -17,11 +17,15 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "inlineSourceMap": true,
+    "strictNullChecks": true,
+    "strict": true,
+    "noImplicitThis": true,
     "outDir": "./dist/out-tsc",
     "paths": {},
     "pretty": true,
     "skipLibCheck": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
@@ -33,7 +37,10 @@
     ]
   },
   "angularCompilerOptions": {
+    "annotateForClosureCompiler": false,
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "skipMetadataEmit": true,
+    "strictInjectionParameters": true,
+    "strictTemplates": true
   }
 }

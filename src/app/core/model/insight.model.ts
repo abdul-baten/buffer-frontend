@@ -10,12 +10,12 @@ export interface I_INS_TOTAL {
 
 // tslint:disable-next-line
 export interface I_INS_CHART extends I_INS_TOTAL {
-  categories?: string[];
+  categories: string[];
   response: number[];
 }
 
 // tslint:disable-next-line
 export interface I_INS_BASE {
-  categories: string[];
-  id: string;
+  categories?: string[];
+  id?: string;
 }

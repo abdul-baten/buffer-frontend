@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { I_CONNECTION, I_POST } from 'src/app/core/model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 
 @Component({
@@ -11,7 +11,7 @@ import { PostModalFacade } from '../../facade/post-modal.facade';
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
   @Output() connectionChange = new EventEmitter<Partial<I_CONNECTION>[]>();
-  activeConnectionID$: Observable<string>;
+  activeConnectionID$: Observable<string> = of('');
   connections$: Observable<I_CONNECTION[]>;
   private subscription$ = new Subscription();
   selectedConnections: Partial<I_CONNECTION>[] = [];
@@ -41,8 +41,8 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
 
   connectionSelected(connection: I_CONNECTION) {
-    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.id === connection.id);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: I_CONNECTION) => entry.id === connection.id);
+    const findConnection = this.selectedConnections.find((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
+    const findConnectionIndex = this.selectedConnections.findIndex((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
     if (!findConnection) {
       const { connectionType, id } = connection;
       this.selectedConnections.push({ connectionType, id });
@@ -54,8 +54,12 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
   }
 
   isConnectionSelected(connection: I_CONNECTION): boolean {
-    const findConnection = this.selectedConnections.find((entry: I_CONNECTION) => entry.id === connection.id);
+    const findConnection = this.selectedConnections.find((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
     return !!findConnection;
+  }
+
+  trackBy(_index: number, connection: I_CONNECTION): number {
+    return +connection.connectionID;
   }
 
   @HostListener('window:beforeunload')

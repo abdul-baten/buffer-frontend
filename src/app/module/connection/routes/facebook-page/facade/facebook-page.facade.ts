@@ -6,7 +6,7 @@ import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Params, Router } from '@angular/router';
+import { ParamMap, Router } from '@angular/router';
 import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
 
@@ -37,10 +37,10 @@ export class FacebookPageFacade {
     this.router.navigate([pageToNavigate]);
   }
 
-  fetchFBPages(queryParams: Observable<Params>, connectionType: string): Observable<I_CONNECTION[]> {
+  fetchFBPages(queryParams: Observable<ParamMap>, connectionType: string): Observable<I_CONNECTION[]> {
     return queryParams.pipe(
-      switchMap((params: { code: string }) => {
-        const { code } = params;
+      switchMap((params: ParamMap) => {
+        const code = params.get('code') as string;
         return this.facebookPageService.fetchFacebookPages(code, connectionType).pipe(
           map((resp: I_FB_PAGE_RESPONSE) => {
             this.store.dispatch(setUserInfo({ user: resp.user }));

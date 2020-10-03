@@ -1,16 +1,15 @@
-
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
 const API_URL = environment.apiURL;
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private readonly httpClient: HttpClient) {}
 
   get<T>(apiURL: string, params?: HttpParams): Observable<T> {
     return this.httpClient

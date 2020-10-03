@@ -1,7 +1,6 @@
 import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component } from '@angular/core';
 import { E_CONNECTION_TYPE } from 'src/app/core/enum';
-import { PAGES } from 'src/app/core/constant';
 
 @Component({
   selector: 'buffer--choose-connection',
@@ -55,7 +54,7 @@ export class ChooseConnectionComponent {
   constructor(private readonly facade: ChooseConnectionFacade) {}
 
   navigateToPage(): void {
-    const routeToNavigate = PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE;
+    const routeToNavigate = 'connection/choose';
     this.facade.navigateToRoute(routeToNavigate);
   }
 
@@ -65,5 +64,9 @@ export class ChooseConnectionComponent {
     const authType = oAuthTypeArray[0];
 
     this.facade.authConnection(authType, connectionType);
+  }
+
+  trackBy(index: number, _connection: any): number {
+    return +index;
   }
 }

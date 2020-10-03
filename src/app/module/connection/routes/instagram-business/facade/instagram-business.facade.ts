@@ -4,10 +4,10 @@ import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
 import { I_CONNECTION, I_FB_PAGE_RESPONSE, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { InstagramBusinessService } from '../service/instagram-business.service';
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Params, Router } from '@angular/router';
-import { setUserInfo } from '../../../../../actions';
+import { ParamMap, Router } from '@angular/router';
+import { setUserInfo } from 'src/app/actions';
 import { Store } from '@ngrx/store';
 
 @Injectable()
@@ -15,9 +15,9 @@ export class InstagramBusinessFacade {
   constructor(
     private readonly connectionService: ConnectionService,
     private readonly facebookPageService: InstagramBusinessService,
-    private readonly userService: UserService,
-    private responsiveLayoutService: ResponsiveLayoutService,
+    private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router,
+    private readonly userService: UserService,
     private store: Store<AppState>,
   ) {}
 
@@ -37,10 +37,10 @@ export class InstagramBusinessFacade {
     this.router.navigate([pageToNavigate]);
   }
 
-  fetchFBPages(queryParams: Observable<Params>, connectionType: string): Observable<I_CONNECTION[]> {
+  fetchFBPages(queryParams: Observable<ParamMap>, connectionType: string): Observable<I_CONNECTION[]> {
     return queryParams.pipe(
-      mergeMap((params: { code: string }) => {
-        const { code } = params;
+      switchMap((params: ParamMap) => {
+        const code = params.get('code') as string;
         return this.facebookPageService.fetchInstagramBusiness(code, connectionType).pipe(
           map((resp: I_FB_PAGE_RESPONSE) => {
             this.store.dispatch(setUserInfo({ user: resp.user }));

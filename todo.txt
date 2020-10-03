@@ -1,0 +1,7 @@
+Remove loglevel
+Use ng-container where possible
+Use trackBy
+Use zone
+Use ChangeDetectorRef
+Add aria-label alt
+Add error mapping

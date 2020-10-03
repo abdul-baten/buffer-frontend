@@ -2,9 +2,9 @@ import { ConnectionService, ResponsiveLayoutService, UserService } from 'src/app
 import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
 import { I_CONNECTION, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Params, Router } from '@angular/router';
+import { ParamMap, Router } from '@angular/router';
 import { TwitterService } from '../service/twitter.service';
 
 @Injectable()
@@ -33,15 +33,12 @@ export class TwitterFacade {
     this.router.navigate([pageToNavigate]);
   }
 
-  fetchTwitterProfile(queryParams: Observable<Params>): Observable<I_CONNECTION> {
+  fetchTwitterProfile(queryParams: Observable<ParamMap>): Observable<I_CONNECTION> {
     return queryParams.pipe(
-      mergeMap((params: { oauth_token: string; oauth_verifier: string }) => {
-        const { oauth_token, oauth_verifier } = params;
-        return this.twitterService.fetchTwitterProfiles(oauth_token, oauth_verifier).pipe(
-          map((resp: any) => {
-            return resp;
-          }),
-        );
+      switchMap((params: ParamMap) => {
+        const oauth_token = params.get('oauth_token') as string,
+          oauth_verifier = params.get('oauth_verifier') as string;
+        return this.twitterService.fetchTwitterProfiles(oauth_token, oauth_verifier).pipe(map((response: any) => response));
       }),
     );
   }

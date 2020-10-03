@@ -1,7 +1,7 @@
 import { AppState } from 'src/app/reducers';
 import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { E_POST_STATUS, E_POST_TYPE } from '../../../../../core/enum';
-import { finalize, map } from 'rxjs/operators';
+import { defaultIfEmpty, finalize, map } from 'rxjs/operators';
+import { E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { I_CONNECTION, I_MEDIA, I_POST } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
@@ -17,8 +17,8 @@ import { Store } from '@ngrx/store';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   @Output() tabSelected = new EventEmitter<number>();
-  currentDateTime: Date;
-  menuItems: MenuItem[];
+  currentDateTime: Date = new Date();
+  menuItems: MenuItem[] = [];
   postStatus = E_POST_STATUS;
   postType = E_POST_TYPE;
   private subscription$ = new Subscription();
@@ -76,9 +76,9 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   isButtonDisabled(): Observable<boolean> {
     return this.store.select(selectNewPostMedias).pipe(
-      map((medias: I_MEDIA[]) => {
-        return !!!medias.length || !!!this.selectedConnections.length || this.videoForm.invalid;
-      }),
+      map((medias: I_MEDIA[]) => !!!medias.length || !!!this.selectedConnections.length || this.videoForm.invalid),
+      map((response: boolean) => response),
+      defaultIfEmpty(true),
     );
   }
 

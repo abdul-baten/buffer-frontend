@@ -11,7 +11,8 @@ import { Table } from 'primeng/table';
   templateUrl: './bucket-published.component.html',
 })
 export class BucketPublishedComponent {
-  @ViewChild('postTable', { static: true }) postTable: Table;
+  @ViewChild('postTable', { static: true })
+  postTable!: Table;
   postType = E_POST_TYPE;
 
   calendarPosts: Observable<I_POST[]> = of([

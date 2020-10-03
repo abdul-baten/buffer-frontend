@@ -16,20 +16,20 @@ export class InstagramBusinessComponent implements OnDestroy {
   isWeb$: Observable<boolean>;
   private subscription$ = new Subscription();
 
-  constructor(private activatedRoute: ActivatedRoute, private facade: InstagramBusinessFacade) {
+  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: InstagramBusinessFacade) {
     this.isHandset$ = this.facade.isHandset();
     this.isTablet$ = this.facade.isTablet();
     this.isWeb$ = this.facade.isWeb();
 
-    this.getInstagramBusinesss();
-  }
-
-  private getInstagramBusinesss(): void {
-    this.connections$ = this.facade.fetchFBPages(this.activatedRoute.queryParams, 'instagram-business');
+    this.connections$ = this.facade.fetchFBPages(this.activatedRoute.queryParamMap, 'instagram-business');
   }
 
   addInstagramBusiness(pageInfo: I_CONNECTION): void {
     this.subscription$.add(this.facade.addInstagramBusiness(pageInfo).subscribe(() => this.facade.navigateToPage('connection/profiles')));
+  }
+
+  trackBy(_index: number, connection: I_CONNECTION): number {
+    return +connection.connectionID;
   }
 
   @HostListener('window:beforeunload')

@@ -17,14 +17,14 @@ import {
 const newPostFeatureKey = 'newPost';
 
 const initialState: Partial<I_POST> = {
-  id: null,
-  postCaption: null,
+  id: undefined,
+  postCaption: undefined,
   postConnection: {},
   postMedia: [],
-  postScheduleDateTime: null,
-  postStatus: null,
-  postType: null,
-  userID: null,
+  postScheduleDateTime: undefined,
+  postStatus: undefined,
+  postType: undefined,
+  userID: undefined,
 };
 
 const reducer = createReducer(

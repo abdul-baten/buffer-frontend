@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoaderInterceptor implements HttpInterceptor {
-  constructor(private modalService: ModalService) {}
+  constructor(private readonly modalService: ModalService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.modalService.openLoader().pipe(

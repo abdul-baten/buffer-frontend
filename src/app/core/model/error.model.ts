@@ -1,5 +1,5 @@
 export interface I_ERROR {
-  errorCode: string;
+  errorCode: number;
   httpCode: number;
   message: string;
 }

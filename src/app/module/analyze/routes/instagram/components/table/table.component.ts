@@ -9,7 +9,7 @@ import { InstagramFacade } from '../../facade/instagram.facade';
   templateUrl: './table.component.html',
 })
 export class PostTableComponent implements OnChanges {
-  @Input() posts: I_INS_IG_MEDIA[];
+  @Input() posts: I_INS_IG_MEDIA[] = [];
 
   constructor(private readonly facade: InstagramFacade) {}
 

@@ -1,7 +1,7 @@
 <div [ngSwitch]="postData.postType" class="p-mb-4">
   <div *ngSwitchCase="postType.IMAGE">
     <div class="p-d-flex p-jc-between p-ai-center">
-      <img *ngFor="let image of postData.postMedia" [defaultImage]="image" [lazyLoad]="image" class="b-w-full" />
+      <img *ngFor="let image of postData.postMedia; trackBy:trackBy;" [defaultImage]="image" [lazyLoad]="image" class="b-w-full" />
     </div>
   </div>
   <div *ngSwitchCase="postType.VIDEO">

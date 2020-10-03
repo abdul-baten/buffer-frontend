@@ -12,5 +12,5 @@ export * from './post-type-image.service';
 export * from './post-type-video.service';
 export * from './post.service';
 export * from './responsive-layout.service';
-export * from './schedule.service';
+export * from './user-connection.service';
 export * from './user.service';

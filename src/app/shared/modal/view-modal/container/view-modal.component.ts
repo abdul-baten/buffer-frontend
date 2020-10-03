@@ -10,7 +10,12 @@ import { E_POST_TYPE } from 'src/app/core/enum';
 export class ViewModalComponent {
   postType = E_POST_TYPE;
   postData: any;
+
   constructor(public postInfo: DynamicDialogConfig) {
     this.postData = this.postInfo.data.postData;
+  }
+
+  trackBy(index: number, _media: string): number {
+    return index;
   }
 }

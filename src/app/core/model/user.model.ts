@@ -2,11 +2,11 @@ import { E_SUBSCRIPTION_PLAN } from '../enum';
 
 // tslint:disable-next-line
 export interface I_SUBSCRIPTION {
-  isTrial: boolean;
-  subscriptionPlan: E_SUBSCRIPTION_PLAN;
-  subscriptionPlanAdded: Date;
-  subscriptionPlanEnds: Date;
-  trialEnds: Date;
+  isTrial?: boolean;
+  subscriptionPlan?: E_SUBSCRIPTION_PLAN;
+  subscriptionPlanAdded?: Date;
+  subscriptionPlanEnds?: Date;
+  trialEnds?: Date;
 }
 
 // tslint:disable-next-line

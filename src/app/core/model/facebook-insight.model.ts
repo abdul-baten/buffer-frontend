@@ -21,10 +21,10 @@ export interface I_INS_PAGE {
 
 // tslint:disable-next-line
 export interface I_INS_FB {
-  overview: I_FB_OVERVIEW;
-  performance: I_FB_PERFORMANCE;
-  posts: I_FB_POSTS;
-  videos: I_FB_VIDEOS;
+  overview?: I_FB_OVERVIEW;
+  performance?: I_FB_PERFORMANCE;
+  posts?: I_FB_POSTS;
+  videos?: I_FB_VIDEOS;
 }
 
 // tslint:disable-next-line
@@ -72,18 +72,18 @@ export interface I_FB_POST {
 
 // tslint:disable-next-line
 export interface I_FB_POSTS extends I_INS_BASE {
-  engagedFan: number[];
-  engagedUsers: number[];
-  hashTags: number;
-  postClicks: number[];
-  postImpressions: number[];
-  postReach: number[];
-  postTable: I_FB_POST[];
-  posts: I_INS_CHART;
-  totalComments: number[];
-  totalLikes: number[];
-  totalReactions: number[];
-  totalShares: number[];
+  engagedFan?: number[];
+  engagedUsers?: number[];
+  hashTags?: number;
+  postClicks?: number[];
+  postImpressions?: number[];
+  postReach?: number[];
+  postTable?: I_FB_POST[];
+  posts?: I_INS_CHART;
+  totalComments?: number[];
+  totalLikes?: number[];
+  totalReactions?: number[];
+  totalShares?: number[];
 }
 
 // tslint:disable-next-line
@@ -113,11 +113,11 @@ export interface I_FB_VIDEOS extends I_INS_BASE {
 
 // tslint:disable-next-line
 export interface I_FB_PERFORMANCE extends I_INS_BASE {
-  page_call_phone_clicks_logged_in_unique: I_INS_CHART;
-  page_get_directions_clicks_logged_in_unique: I_INS_CHART;
-  page_tab_views_login_top: I_INS_CHART;
-  page_total_actions: I_INS_CHART;
-  page_views_logged_in_total: I_INS_CHART;
-  page_views_logout: I_INS_CHART;
-  page_website_clicks_logged_in_unique: I_INS_CHART;
+  page_call_phone_clicks_logged_in_unique?: I_INS_CHART;
+  page_get_directions_clicks_logged_in_unique?: I_INS_CHART;
+  page_tab_views_login_top?: I_INS_CHART;
+  page_total_actions?: I_INS_CHART;
+  page_views_logged_in_total?: I_INS_CHART;
+  page_views_logout?: I_INS_CHART;
+  page_website_clicks_logged_in_unique?: I_INS_CHART;
 }

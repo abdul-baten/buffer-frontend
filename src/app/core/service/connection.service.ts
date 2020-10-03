@@ -1,6 +1,6 @@
 import { E_CONNECTION_TYPE } from '../enum';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { finalize, first, map, mergeAll, take, tap } from 'rxjs/operators';
+import { first, map, mergeAll, take, tap } from 'rxjs/operators';
 import { HttpParams } from '@angular/common/http';
 import { HttpService } from './http.service';
 import { I_CONNECTION } from '../model';
@@ -25,7 +25,6 @@ export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION>
             this.upsertManyInCache(connections);
           }
         }),
-        finalize(() => this.setLoading(false)),
       );
   }
 
@@ -55,12 +54,8 @@ export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION>
   }
 
   getConnectionByID(id: string): Observable<I_CONNECTION> {
-    this.setLoading(true);
     return this.entities$.pipe(
-      map((connections: I_CONNECTION[]) => {
-        return connections.find((connection: I_CONNECTION) => connection.id === id);
-      }),
-      finalize(() => this.setLoading(false)),
+      map((connections: I_CONNECTION[]) => connections.find((connection: I_CONNECTION) => connection.id === id) as I_CONNECTION),
     );
   }
 }

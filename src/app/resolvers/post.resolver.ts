@@ -1,33 +1,26 @@
-import { catchError, first, map, switchMap } from 'rxjs/operators';
-import { ErrorService, PostService, UserService } from '../core/service';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { first, map, switchMap } from 'rxjs/operators';
 import { I_POST, I_USER } from '../core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Resolve } from '@angular/router';
+import { PostService, UserService } from '../core/service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostResolver implements Resolve<I_POST[]> {
-  constructor(private readonly errorService: ErrorService, private readonly postService: PostService, private readonly userService: UserService) {}
+  constructor(private readonly postService: PostService, private readonly userService: UserService) {}
 
-  resolve(): Observable<I_POST[]> {
-    const userIDFromState$ = this.userService.getUserFromState();
-    const connectionsFromState$ = this.postService.entities$;
-    const userInfofromRequest$ = userIDFromState$.pipe(
-      switchMap((user: I_USER) => this.postService.getPosts(user.id).pipe(map((posts: I_POST[]) => posts))),
-    );
+  resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<I_POST[]> {
+    const userIDFromState$ = this.userService.getUserFromState(),
+      connectionsFromState$ = this.postService.entities$,
+      userInfofromRequest$ = userIDFromState$.pipe(
+        switchMap((user: I_USER) => this.postService.getPosts(user.id).pipe(map((posts: I_POST[]) => posts))),
+      );
 
     return connectionsFromState$.pipe(
-      switchMap((posts: I_POST[]) => {
-        return !!posts.length ? of(posts) : userInfofromRequest$;
-      }),
-      map((posts: I_POST[]) => posts),
+      switchMap((posts: I_POST[]) => (!!posts.length ? of(posts) : userInfofromRequest$)),
       first(),
-      catchError((error: any) => {
-        this.errorService.handleServerError(error);
-        throw of(error);
-      }),
     );
   }
 }

@@ -1,10 +1,10 @@
 import { AppComponent } from './app.component';
-import { AppFacade } from './facade/app.facade';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConnectionServiceModule } from 'ng-connection-service';
 import { DashboardHeaderModule } from './shared/header/dashboard-header/dashboard-header.module';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EntityStoreModule } from './entity-store.module';
@@ -13,7 +13,6 @@ import { ErrorInterceptor, HTTPRequestInterceptor, LoaderInterceptor, LoggerInte
 import { GlobalErrorHandlerUtil } from './core/util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from './shared/loader/loader.module';
-import { ModalService } from './core/service';
 import { PostModalModule } from './shared/modal/post-modal/post-modal.module';
 import { ToastModule } from 'primeng/toast';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -37,13 +36,12 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
     ToastModule,
     TransferHttpCacheModule,
     ViewModalModule,
+    ConnectionServiceModule,
   ],
   providers: [
     ConfirmationService,
     DialogService,
     MessageService,
-    ModalService,
-    AppFacade,
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,

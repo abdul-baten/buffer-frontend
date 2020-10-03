@@ -1,19 +1,18 @@
 import { Calendar, CalendarOptions, EventContentArg } from '@fullcalendar/core';
+
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+
 import { CALENDAR_POST_DATA } from '../../data/calendar-post.data';
 import { CALENDAR_VIEW } from '../../enum/calendar-view-options.enum';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
-import { delay } from 'rxjs/operators';
 import { differenceInDays, format, subMinutes } from 'date-fns';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { HeaderComponent } from '../header/header.component';
 import { I_POST } from 'src/app/core/model';
 import { PostComponent } from '../post/post.component';
 import { ScheduleFacade } from '../../facade/schedule.facade';
-import { Subscription } from 'rxjs';
-
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
-import timeGrigPlugin from '@fullcalendar/timegrid';
 
 import {
   AfterViewInit,
@@ -29,9 +28,11 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 // tslint:disable-next-line
-const name = Calendar.name;
+Calendar.name;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,9 +43,10 @@ const name = Calendar.name;
 export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() posts: any = [];
   @Input() calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
-  @ViewChild('calendar') calendar: FullCalendarComponent;
+  @ViewChild('calendar')
+  calendar!: FullCalendarComponent;
 
-  private calendarApi: Calendar;
+  private calendarApi!: Calendar;
   private subscription$ = new Subscription();
 
   calendarOptions: CalendarOptions = {
@@ -115,10 +117,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
     private facade: ScheduleFacade,
-  ) {
-    console.warn(name);
-    console.clear();
-  }
+  ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.calendarOptions.events = changes.posts.currentValue;
@@ -161,7 +160,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   postDropped(postInfo: EventDropArg): void {
-    switch (differenceInDays(new Date(), new Date(postInfo.event.start.toString())) <= 0) {
+    switch (differenceInDays(new Date(), new Date((postInfo.event.start as Date).toString())) <= 0) {
       case true:
         this.facade.handlePostDrag(postInfo);
         break;

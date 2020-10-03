@@ -8,25 +8,15 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class ProfilesFacade {
-  loading$: Observable<boolean>;
-  connections$: Observable<I_CONNECTION[]>;
-
   constructor(
     private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router,
-  ) {
-    this.loading$ = this.connectionService.loading$;
-    this.connections$ = this.connectionService.entities$;
-  }
-
-  getLoadingState(): Observable<boolean> {
-    return this.loading$;
-  }
+  ) {}
 
   getConnectionsFromState(): Observable<I_CONNECTION[]> {
-    return this.connections$;
+    return this.connectionService.entities$;
   }
 
   getTotalConnections(): Observable<number> {

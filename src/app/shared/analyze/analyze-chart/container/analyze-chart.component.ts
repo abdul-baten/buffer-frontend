@@ -21,13 +21,14 @@ NoData(Highcharts);
 export class AnalyzeChartComponent implements OnChanges {
   @Input() chartLabels?: string[];
   @Input() chartTitle = '';
-  @Input() chartType: string;
-  @Input() chartSeries: { name: string; data?: any[]; type?: string; color?: string }[];
+  @Input() chartType = '';
+  @Input()
+  chartSeries!: { name: string; data?: any[]; type?: string; color?: string }[];
 
   Highcharts = Highcharts;
   isHighcharts = typeof Highcharts === 'object';
   updateFromInput: boolean = false;
-  chartRef: Highcharts.Chart;
+  chartRef!: Highcharts.Chart;
 
   chartOptions = {
     ...this.getOptions(),

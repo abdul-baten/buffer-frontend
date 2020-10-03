@@ -9,10 +9,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard-header-menu.component.html',
 })
 export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
-  menuItems: MenuItem[];
+  menuItems: MenuItem[] = [];
   private subscription$ = new Subscription();
 
-  constructor(private facade: DashboardHeaderFacade) {}
+  constructor(private readonly facade: DashboardHeaderFacade) {}
 
   ngOnInit(): void {
     this.subscription$.add(
@@ -41,6 +41,11 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
   }
 
   clicked(route: [string]): void {
-    this.facade.replaceRoute(route.join('/'));
+    // this.facade.replaceRoute(route.join('/'));
+    this.facade.navigate(route);
+  }
+
+  trackBy(index: number, _menu: MenuItem): number {
+    return index;
   }
 }

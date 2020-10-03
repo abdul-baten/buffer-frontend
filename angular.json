@@ -18,13 +18,13 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "loglevel",
               "highcharts",
               "highcharts/highcharts-more",
-              "highcharts/modules/exporting",
               "highcharts/modules/export-data",
+              "highcharts/modules/exporting",
+              "highcharts/modules/no-data-to-display",
               "highcharts/modules/offline-exporting",
-              "highcharts/modules/no-data-to-display"
+              "loglevel"
             ],
             "outputPath": "dist/browser",
             "index": "src/index.html",
@@ -40,7 +40,6 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
@@ -55,18 +54,22 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "buildOptimizer": true,
-              "extractCss": true,
-              "extractLicenses": false,
-              "namedChunks": false,
+              "aot": true,
               "optimization": true,
               "outputHashing": "all",
-              "progress": true,
-              "showCircularDependencies": true,
-              "sourceMap": false,
-              "statsJson": true,
+              "sourceMap": {
+                "scripts": false,
+                "styles": false,
+                "vendor": false
+              },
+              "extractCss": true,
+              "extractLicenses": false,
+              "buildOptimizer": true,
               "vendorChunk": false,
-              "watch": true,
+              "commonChunk": false,
+              "namedChunks": false,
+              "deleteOutputPath": true,
+              "forkTypeChecker": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -87,7 +90,19 @@
           "options": {
             "browserTarget": "buffer:build",
             "aot": true,
-            "port": 5000
+            "port": 5000,
+            "optimization": true,
+            "sourceMap": {
+              "scripts": false,
+              "styles": false,
+              "vendor": false
+            },
+            "vendorChunk": false,
+            "commonChunk": false,
+            "ssl": true,
+            "sslCert": "/cert/cert.crt",
+            "sslKey": "/cert/cert.key",
+            "open": true
           },
           "configurations": {
             "production": {
@@ -193,7 +208,17 @@
   },
   "defaultProject": "buffer",
   "cli": {
-    "defaultCollection": "@ngrx/schematics",
     "analytics": "ea2891d8-1643-47b8-90c5-6798b6df5e89"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "inlineStyle": false
+    },
+    "@schematics/angular:module": {
+      "routing": true,
+      "routingScope": "Child"
+    }
   }
 }

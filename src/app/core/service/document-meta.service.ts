@@ -1,4 +1,3 @@
-// Core Modules
 import { Injectable } from '@angular/core';
 import { Meta, MetaDefinition } from '@angular/platform-browser';
 
@@ -6,7 +5,7 @@ import { Meta, MetaDefinition } from '@angular/platform-browser';
   providedIn: 'root',
 })
 export class DocumentMetaService {
-  constructor(private meta: Meta) {}
+  constructor(private readonly meta: Meta) {}
 
   addDocumentMetaTag(tag: MetaDefinition, forceCreation: boolean = false): void {
     this.meta.addTag(tag, forceCreation);

@@ -5,7 +5,7 @@
 
   <section class="b-hs-wt-h b-of-h">
     <p-table #postTable [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
-      [value]="calendarPosts | async" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+      [value]="(calendarPosts | async)!" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
       dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']"
       [paginator]="true" styleClass="p-datatable-striped">
       <ng-template pTemplate="caption">

@@ -7,7 +7,7 @@
     <div class="b-h-full b-of-auto">
       <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngFor="let connection of connections$ | async"
+          <div *ngFor="let connection of connections$ | async; trackBy:trackBy;"
             class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 buffer--padding-2">
             <p-fieldset>
               <p-header>

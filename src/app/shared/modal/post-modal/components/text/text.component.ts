@@ -14,8 +14,8 @@ import { Subscription } from 'rxjs';
 })
 export class TextComponent implements OnInit, OnDestroy {
   @Output() tabSelected = new EventEmitter<number>();
-  @Input() dialogRef: DynamicDialogRef;
-  currentDateTime: Date;
+  @Input() dialogRef: DynamicDialogRef = new DynamicDialogRef();
+  currentDateTime: Date = new Date();
   menuItems: MenuItem[] = [];
   postStatus = E_POST_STATUS;
   postType = E_POST_TYPE;

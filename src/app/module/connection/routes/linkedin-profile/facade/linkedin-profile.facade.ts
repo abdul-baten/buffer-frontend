@@ -1,16 +1,14 @@
 import { ConnectionService, ResponsiveLayoutService, UserService } from 'src/app/core/service';
 import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from 'src/app/core/enum';
-import { finalize, switchMap, tap } from 'rxjs/operators';
 import { I_CONNECTION, I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { LinkedInProfileService } from '../service/linkedin-profile.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class LinkedInProfileFacade {
-  private loading: Observable<boolean> = of(true);
-
   constructor(
     private readonly connectionService: ConnectionService,
     private readonly linkedInProfileService: LinkedInProfileService,
@@ -35,22 +33,13 @@ export class LinkedInProfileFacade {
     return this.responsiveLayoutService.isTablet();
   }
 
-  setLoadingStatus(loadingStatus: boolean = true): void {
-    this.loading = of(loadingStatus);
-  }
-
-  getLoadingStatus(): Observable<boolean> {
-    return this.loading;
-  }
-
   getLinkedInProfile(connectionType: string, code: string): Observable<I_CONNECTION> {
-    return this.linkedInProfileService.getLinkedInProfile(connectionType, code).pipe(finalize(() => this.setLoadingStatus(false)));
+    return this.linkedInProfileService.getLinkedInProfile(connectionType, code);
   }
 
   addLinkedInProfile(connectionInfo: I_CONNECTION): Observable<I_CONNECTION> {
     const userFromState$ = this.userService.getUserFromState();
     return userFromState$.pipe(
-      tap(() => this.setLoadingStatus(true)),
       switchMap((user: I_USER) => {
         connectionInfo.connectionUserID = user.id;
         connectionInfo.connectionStatus = E_CONNECTION_STATUS.ENABLED;

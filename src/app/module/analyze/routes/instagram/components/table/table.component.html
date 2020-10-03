@@ -10,7 +10,7 @@
         <span class="p-input-icon-left b-w-full">
           <i class="pi pi-search"></i>
           <input type="text" pInputText placeholder="Filter by status" autocomplete="off"
-            (input)="postTable.filterGlobal($event.target.value, 'contains')" class="p-inputtext-sm b-w-full">
+            (input)="postTable.filterGlobal($any($event.target).value, 'contains')" class="p-inputtext-sm b-w-full">
         </span>
       </div>
     </div>

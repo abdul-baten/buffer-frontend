@@ -18,7 +18,7 @@
       <div class="p-col">
         <span class="p-input-icon-left b-w-full">
           <i class="pi pi-search"></i>
-          <input pInputText type="text" (input)="inputChanged($event.target.value)" placeholder="Search post"
+          <input pInputText type="text" (input)="inputChanged($any($event.target).value)" placeholder="Search post"
             class="p-inputtext-sm b-w-full" />
         </span>
       </div>

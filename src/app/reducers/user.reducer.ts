@@ -5,14 +5,14 @@ import { setUserInfo } from '../actions';
 const userFeatureKey = 'user';
 
 const userInitialState: I_USER = {
-  createdAt: null,
-  email: null,
-  fullName: null,
-  id: null,
-  password: null,
-  subscription: null,
-  updatedAt: null,
-  userSuspended: null,
+  createdAt: new Date(),
+  email: '',
+  fullName: '',
+  id: '',
+  password: '',
+  subscription: {},
+  updatedAt: new Date(),
+  userSuspended: false,
 };
 
 const reducer = createReducer(

@@ -1,13 +1,9 @@
+import { E_HTTP_RESPONSE } from '../enum';
 import { error, info, setLevel } from 'loglevel';
 import { finalize, tap } from 'rxjs/operators';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export enum E_HTTP_RESPONSE {
-  SUCCEEDED = 'SUCCEEDED',
-  FAILED = 'FAILED',
-}
 
 setLevel('INFO');
 
@@ -26,7 +22,7 @@ export class LoggerInterceptor implements HttpInterceptor {
       ),
       finalize(() => {
         const elapsedTime = Date.now() - reqStarted;
-        const message = ` [${resStatus}] => ${request.method} "${request.urlWithParams}" in ${elapsedTime} ms`;
+        const message = `[${resStatus}] => ${request.method} "${request.urlWithParams}" in ${elapsedTime} ms`;
         resStatus === E_HTTP_RESPONSE.SUCCEEDED ? info(message) : error(message);
       }),
     );

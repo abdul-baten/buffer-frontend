@@ -17,7 +17,7 @@
     <div [ngSwitch]="calendarData.event.extendedProps.postType">
       <div *ngSwitchCase="postType.IMAGE">
         <div class="p-d-flex p-jc-between p-ai-center">
-          <img *ngFor="let image of calendarData.event.extendedProps.postMedia" [defaultImage]="image"
+          <img *ngFor="let image of calendarData.event.extendedProps.postMedia; trackBy:trackBy;" [defaultImage]="image"
             [lazyLoad]="image" class="b-w-full" />
         </div>
       </div>
