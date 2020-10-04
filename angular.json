@@ -70,6 +70,7 @@
               "namedChunks": false,
               "deleteOutputPath": true,
               "forkTypeChecker": true,
+              "experimentalRollupPass": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -102,7 +103,8 @@
             "ssl": true,
             "sslCert": "/cert/cert.crt",
             "sslKey": "/cert/cert.key",
-            "open": true
+            "open": true,
+            "watch": true
           },
           "configurations": {
             "production": {

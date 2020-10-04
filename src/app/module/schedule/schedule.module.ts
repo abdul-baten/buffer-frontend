@@ -40,6 +40,5 @@ import { TooltipModule } from 'primeng/tooltip';
     TooltipModule,
   ],
   providers: [ScheduleFacade],
-  entryComponents: [PostComponent, HeaderComponent],
 })
 export class ScheduleModule {}

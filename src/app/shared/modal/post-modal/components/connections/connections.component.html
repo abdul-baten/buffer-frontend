@@ -1,4 +1,4 @@
-<div *ngIf="(connections$ | async)?.length! <= 8; else connectionsCarousel" class="p-d-flex">
+<ng-container *ngIf="(connections$ | async)?.length! <= 8; else connectionsCarousel">
   <div [attr.area-selected]="isConnectionSelected(connection)" [title]="generateTooltip(connection)"
     class="b-ca b-ca-md p-mr-2 b-post-cl" (click)="connectionSelected(connection)"
     *ngFor="let connection of connections$ | async; trackBy:trackBy;">
@@ -7,7 +7,7 @@
     <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
     </div>
   </div>
-</div>
+</ng-container>
 
 <ng-template #connectionsCarousel>
   <p-carousel [value]="(connections$ | async)!" [numVisible]="8" [numScroll]="8">

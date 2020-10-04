@@ -41,7 +41,6 @@ FilePond.registerPlugin(
 
 @NgModule({
   declarations: [ConnectionsComponent, ImageComponent, MediaComponent, PostModalComponent, TextComponent, TypeComponent, VideoComponent],
-  entryComponents: [PostModalComponent],
   imports: [
     ButtonModule,
     CalendarModule,

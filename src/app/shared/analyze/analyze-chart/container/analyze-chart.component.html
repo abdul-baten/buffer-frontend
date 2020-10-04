@@ -16,10 +16,11 @@
         class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
     </div>
 
-    <highcharts-chart [(update)]="updateFromInput" [callbackFunction]="chartCallback" [oneToOne]="true"
-      *ngIf="isHighcharts" [Highcharts]="Highcharts" [constructorType]="'chart'" [options]="optFromInput"
-      class="b-w-full">
-    </highcharts-chart>
+    <ng-container *ngIf="isHighcharts">
+      <highcharts-chart [(update)]="updateFromInput" [callbackFunction]="chartCallback" [oneToOne]="true"
+        [Highcharts]="Highcharts" [constructorType]="'chart'" [options]="optFromInput" class="b-w-full">
+      </highcharts-chart>
+    </ng-container>
 
   </div>
 </p-fieldset>

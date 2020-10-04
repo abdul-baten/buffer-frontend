@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import 'zone.js/dist/zone-node';
 
 import * as bodyParser from 'body-parser';
@@ -7,12 +6,13 @@ import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppServerModule } from './src/main.server';
-import { createServer, Server } from 'https';
 import { enableProdMode } from '@angular/core';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import { Request, Response, static as expressStatic } from 'express';
+import { Request, Response } from 'express';
+
+import { createServer, Server } from 'spdy';
 
 require('raf').polyfill();
 
@@ -65,15 +65,23 @@ Object.defineProperty(window.document.body.style, 'transform', {
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): Server {
-  const privateKey = readFileSync('cert/cert.key', 'utf8');
-  const certificate = readFileSync('cert/cert.crt', 'utf8');
-  const credentials = { key: privateKey, cert: certificate };
-
-  const express = require('express')();
-  const helmet = require('helmet');
-  const server = createServer(credentials, express);
-  const distFolder = join(process.cwd(), 'dist/browser');
-  const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+  const privateKey = readFileSync('cert/cert.key', 'utf8'),
+    certificate = readFileSync('cert/cert.crt', 'utf8'),
+    express = require('express')(),
+    helmet = require('helmet'),
+    hpp = require('hpp'),
+    express_enforces_ssl = require('express-enforces-ssl'),
+    expressStaticGzip = require('express-static-gzip'),
+    server = createServer(
+      '',
+      {
+        key: privateKey,
+        cert: certificate,
+      },
+      express,
+    ),
+    distFolder = join(process.cwd(), 'dist/browser'),
+    indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   express.engine(
@@ -83,24 +91,38 @@ export function app(): Server {
     }),
   );
 
+  express.enable('trust proxy');
+
+  express.use(express_enforces_ssl());
+  express.use(cookieParser());
+
+  express.use(helmet({ contentSecurityPolicy: false }));
+  express.use(compression());
+
   express.use(
-    helmet({
-      contentSecurityPolicy: false,
+    cors({
+      origin: 'https://localhost:5000',
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      credentials: true,
+      preflightContinue: false,
+      maxAge: 3600,
     }),
   );
-  express.use(compression());
-  express.use(cookieParser());
-  express.use(cors());
   express.use(bodyParser.json());
   express.use(bodyParser.urlencoded({ extended: true }));
+  express.use(hpp());
 
   express.set('view engine', 'html');
   express.set('views', distFolder);
 
   express.get(
     '*.*',
-    expressStatic(distFolder, {
-      maxAge: '1y',
+    expressStaticGzip(distFolder, {
+      enableBrotli: true,
+      orderPreference: ['br', 'deflate', 'gzip'],
+      serveStatic: {
+        maxAge: '1y',
+      },
     }),
   );
 

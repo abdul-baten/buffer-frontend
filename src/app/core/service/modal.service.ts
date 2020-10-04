@@ -67,7 +67,6 @@ export class ModalService {
 
   closeLoader(dialogRef: ComponentRef<DynamicDialogComponent>) {
     this.loaderCounter--;
-    console.warn(this.loaderCounter);
 
     if (this.loaderCounter === 0) {
       dialogRef.destroy();

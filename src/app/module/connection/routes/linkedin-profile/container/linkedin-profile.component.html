@@ -7,7 +7,7 @@
     <div class="b-h-full b-of-auto">
       <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngIf="connection$ | async as connection" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
+          <ng-container *ngIf="connection$ | async as connection" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
@@ -23,7 +23,7 @@
                 type="button">
               </button>
             </p-fieldset>
-          </div>
+          </ng-container>
         </section>
       </div>
     </div>

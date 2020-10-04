@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [LoaderComponent],
-  entryComponents: [LoaderComponent],
   exports: [LoaderComponent],
   imports: [CommonModule],
 })

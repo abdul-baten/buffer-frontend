@@ -1,5 +1,5 @@
-<div *ngIf="isWeb | async">
-  <div *ngIf="(connections$ | async)?.length! <= 10; else connectionsCarousel" class="p-d-flex">
+<div *ngIf="isWeb | async" class="p-d-flex">
+  <ng-container *ngIf="(connections$ | async)?.length! <= 10; else connectionsCarousel" class="p-d-flex">
     <div [ngClass]="{'b-tb-con-active': connection.id === (activeConnection$ | async)}" class="b-tb-con p-ml-2"
       *ngFor="let connection of connections$ | async; trackBy:trackBy;">
       <div [pTooltip]="connection.connectionName" tooltipPosition="bottom" class="b-ca b-ca-md b-post-cl b-outline-none"
@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 
   <ng-template #connectionsCarousel>
     <p-carousel [value]="(connections$ | async)!" [numVisible]="14" [numScroll]="5" indicatorsContentClass="b-d-h">

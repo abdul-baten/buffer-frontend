@@ -30,7 +30,7 @@
       <ng-template pTemplate="body" let-post>
         <tr>
           <td colspan="2">
-            <div class="b-w-full" *ngIf="post.postType === postType.IMAGE || post.postType === postType.VIDEO">
+            <ng-container class="b-w-full" *ngIf="post.postType === postType.IMAGE || post.postType === postType.VIDEO">
               <div [ngSwitch]="post.postType">
                 <div *ngSwitchCase="postType.IMAGE">
                   <p-carousel [value]="post.postMedia" [numVisible]="1" [numScroll]="2" indicatorsContentClass="b-d-h"
@@ -48,7 +48,7 @@
                   </video>
                 </div>
               </div>
-            </div>
+            </ng-container>
           </td>
           <td colspan="4">
             <div class="b-text-fade">

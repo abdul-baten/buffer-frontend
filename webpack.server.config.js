@@ -12,6 +12,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HTMLInlineCSSWebpackPlugin = require("html-inline-css-webpack-plugin").default;
+const ClosureCompilerPlugin = require('closure-webpack-plugin');
 
 const PATHS = {
   src: path.join(__dirname, 'src'),
@@ -23,7 +24,7 @@ module.exports = {
   mode: 'production',
   module: {
     rules: [
-      { test: /\.ts$/, loader: 'ts-loader' },
+      { test: /\.ts$/, loader: 'tsickle-loader' },
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -49,11 +50,28 @@ module.exports = {
           ],
         },
       }),
-      new OptimizeCSSAssetsPlugin({})
+      new OptimizeCSSAssetsPlugin({}),
+      new ClosureCompilerPlugin({
+        mode: 'STANDARD',
+        childCompilations: true,
+        platform: 'native'
+      }, {
+       
+        languageOut: 'ECMASCRIPT5',
+        compilation_level: 'ADVANCED',
+        formatting: 'PRETTY_PRINT',
+        debug: true,
+        renaming: true,
+      })
     ],
+    usedExports: true,
+    splitChunks: {
+      minSize: 0
+    },
+    concatenateModules: true
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     path: path.join(__dirname, 'dist')
   },
   plugins: [

@@ -36,7 +36,9 @@
           [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
       </td>
       <td>
-        <img *ngIf="post?.attachment" [src]="post?.attachment" class="b-w-full b-br b-br-sm p-p-1" />
+        <ng-container *ngIf="post?.attachment">
+          <img [src]="post?.attachment" class="b-w-full b-br b-br-sm p-p-1" />
+        </ng-container>
       </td>
       <td colspan="3">
         <div class="b-text-fade">
