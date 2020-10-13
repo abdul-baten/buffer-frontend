@@ -1,33 +1,13 @@
 import { createAction, props } from '@ngrx/store';
-import { E_POST_TYPE } from '../core/enum';
-import { I_CONNECTION, I_POST } from '../core/model';
+import type { EPostType } from '../core/enum';
+import type { IConnection, IPost } from '../core/model';
 
-const removeNewPostData = createAction('[Post Create Modal Facade] Remove Post Data');
-
-const setNewPostDate = createAction('[Post Create Modal Facade] Set New Post Date', props<{ postOriginalDate: string }>());
-
-const setPostType = createAction('[Post Create Modal Facade] Set New Post Type', props<{ postType: E_POST_TYPE }>());
-
-const setNewPostConnectionID = createAction('[Post Create Modal Facade] Set New Post Connection ID', props<{ activeConnectionID: string }>());
-
-const setNewPostData = createAction('[Post Create Modal Facade] Set New Post Data', props<{ postData: I_POST }>());
-
-const setNewPostConnections = createAction('[Post Create Modal Facade] Set New Post Connections', props<{ connection: Partial<I_CONNECTION> }>());
-
-const setNewPostMedia = createAction('[Post Create Modal Facade] Set New Post Media', props<{ media: string }>());
-
-const removeNewPostMedia = createAction('[Post Create Modal Facade] Remove New Post Media', props<{ media: string }>());
-
-const removeNewPostAllMedia = createAction('[Post Create Modal Facade] Remove New Post All Medias');
-
-export {
-  removeNewPostAllMedia,
-  removeNewPostData,
-  removeNewPostMedia,
-  setNewPostConnectionID,
-  setNewPostConnections,
-  setNewPostData,
-  setNewPostDate,
-  setNewPostMedia,
-  setPostType,
-};
+export const remove_all_post_media = createAction('[Post Create Modal Facade] Remove New Post All Medias');
+export const remove_post = createAction('[Post Create Modal Facade] Remove Post Data');
+export const remove_post_media = createAction('[Post Create Modal Facade] Remove New Post Media', props<{ media: string }>());
+export const set_post = createAction('[Post Create Modal Facade] Set New Post Data', props<{ post_data: IPost }>());
+export const set_post_connection_id = createAction('[Post Create Modal Facade] Set New Post Connection ID', props<{ connection_id: string }>());
+export const set_post_connections = createAction('[Post Create Modal Facade] Set New Post Connections', props<{ connection: Partial<IConnection> }>());
+export const set_post_date = createAction('[Post Create Modal Facade] Set New Post Date', props<{ post_date_time: string }>());
+export const set_post_media = createAction('[Post Create Modal Facade] Set New Post Media', props<{ media: string }>());
+export const set_post_type = createAction('[Post Create Modal Facade] Set New Post Type', props<{ post_type: EPostType }>());

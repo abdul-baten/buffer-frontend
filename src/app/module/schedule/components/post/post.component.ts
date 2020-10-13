@@ -1,53 +1,55 @@
 import differenceInDays from 'date-fns/differenceInDays';
-import { CALENDAR_POST_DATA } from '../../data/calendar-post.data';
+import { CalendarPostData } from '../../data/calendar-post.data';
 import { Component, Inject } from '@angular/core';
-import { E_POST_TYPE } from 'src/app/core/enum';
-import { I_POST } from 'src/app/core/model';
-import { MenuItem } from 'primeng/api';
-import { ScheduleFacade } from '../../facade/schedule.facade';
+import { EPostType } from 'src/app/core/enum';
+import type { IPost } from 'src/app/core/model';
+import type { MenuItem } from 'primeng/api';
+import type { ScheduleFacade } from '../../facade/schedule.facade';
 
 @Component({
-  selector: 'buffer--post',
+  selector: 'buffer-post',
   styleUrls: ['./post.component.css'],
-  templateUrl: './post.component.html',
+  templateUrl: './post.component.html'
 })
 export class PostComponent {
-  menuItems: MenuItem[];
-  postType = E_POST_TYPE;
-  upcomingPost: boolean;
+  menu_items: MenuItem[];
+  post_type = EPostType;
+  upcoming_post: boolean;
 
-  constructor(private readonly facade: ScheduleFacade, @Inject(CALENDAR_POST_DATA) public calendarData: I_POST) {
-    this.upcomingPost = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
+  constructor (private readonly facade: ScheduleFacade, @Inject(CalendarPostData) public calendarData: IPost) {
+    this.upcoming_post = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
 
-    this.menuItems = [
+    this.menu_items = [
       {
-        label: 'Details',
-        icon: 'pi pi-eye',
         command: () => {
-          const { extendedProps } = this.calendarData.event;
-          this.facade.viewPost(extendedProps);
+          const { extendedProps: extended_props } = this.calendarData.event;
+
+          this.facade.viewPost(extended_props);
         },
+        icon: 'pi pi-eye',
+        label: 'Details'
       },
       {
-        label: 'Edit',
-        icon: 'pi pi-pencil',
         command: () => {
-          const { extendedProps } = this.calendarData.event;
-          this.facade.editPost(extendedProps);
+          const { extendedProps: extended_props } = this.calendarData.event;
+
+          this.facade.editPost(extended_props);
         },
+        icon: 'pi pi-pencil',
+        label: 'Edit'
       },
       { separator: true },
       {
-        label: 'Delete',
-        icon: 'pi pi-trash',
         command: () => {
           this.facade.deletePost(this.calendarData.event.id);
         },
-      },
+        icon: 'pi pi-trash',
+        label: 'Delete'
+      }
     ];
   }
 
-  trackBy(index: number, _media: string): number {
+  public trackBy (index: number): number {
     return index;
   }
 }

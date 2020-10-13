@@ -14,12 +14,12 @@ NoData(Highcharts);
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--analyze-chart',
+  selector: 'bufferAnalyzeChart',
   styleUrls: ['./analyze-chart.component.css'],
-  templateUrl: './analyze-chart.component.html',
+  templateUrl: './analyze-chart.component.html'
 })
 export class AnalyzeChartComponent implements OnChanges {
-  @Input() chartLabels?: string[];
+  @Input() chart_labels?: string[];
   @Input() chartTitle = '';
   @Input() chartType = '';
   @Input()
@@ -27,26 +27,27 @@ export class AnalyzeChartComponent implements OnChanges {
 
   Highcharts = Highcharts;
   isHighcharts = typeof Highcharts === 'object';
-  updateFromInput: boolean = false;
+  updateFromInput = false;
   chartRef!: Highcharts.Chart;
 
   chartOptions = {
-    ...this.getOptions(),
+    ...this.getOptions()
   };
+
   optFromInput = JSON.parse(JSON.stringify(this.chartOptions));
 
-  private getOptions(type: string = '', categories: string[] = []): Highcharts.Options {
+  private getOptions (type: string = '', categories: string[] = []): Highcharts.Options {
     return {
       chart: {
         type,
         style: {
           width: 400,
           fontFamily:
-            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
-        },
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
+        }
       },
       title: {
-        text: '',
+        text: ''
       },
       legend: {
         align: 'right',
@@ -55,28 +56,28 @@ export class AnalyzeChartComponent implements OnChanges {
         enabled: true,
         padding: 16,
         itemStyle: {
-          fontSize: '0.725rem',
+          fontSize: '0.725rem'
         },
         itemCheckboxStyle: {
           height: 20,
-          width: 20,
-        },
+          width: 20
+        }
       },
       credits: {
-        enabled: false,
+        enabled: false
       },
       xAxis: {
         type: 'category',
         categories,
         gridLineColor: '#f2f2f2',
-        gridLineDashStyle: 'LongDashDotDot',
+        gridLineDashStyle: 'LongDashDotDot'
       },
       yAxis: {
         gridLineColor: '#f2f2f2',
         gridLineDashStyle: 'LongDashDotDot',
         title: {
-          text: '',
-        },
+          text: ''
+        }
       },
       colors: ['#4B75F2', '#04D98B', '#2196f3', '#9c27b0', '#fbc02d', '#e0245e'],
       tooltip: {
@@ -87,44 +88,44 @@ export class AnalyzeChartComponent implements OnChanges {
         padding: 16,
         style: {
           color: '#ffffff',
-          fontSize: '0.875rem',
+          fontSize: '0.875rem'
         },
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b>',
+        pointFormat: '{series.name} <b>{point.y:,.0f}</b>'
       },
       data: {
-        decimalPoint: '.',
+        decimalPoint: '.'
       },
       exporting: { enabled: false },
       lang: {
-        noData: 'Whoops! Seems no data is there for this date range',
+        noData: 'Whoops! Seems no data is there for this date range'
       },
       plotOptions: {
         series: {
           gapSize: 5,
-          turboThreshold: 0,
+          turboThreshold: 0
         },
         pie: {
           allowPointSelect: true,
           cursor: 'pointer',
           dataLabels: {
-            enabled: false,
+            enabled: false
           },
-          showInLegend: true,
+          showInLegend: true
         },
         column: {
           opacity: 0.95,
           allAreas: true,
           stacking: 'normal',
           dataLabels: {
-            enabled: false,
-          },
+            enabled: false
+          }
         },
         areaspline: {
           borderColor: 'transparent',
           borderWidth: 0,
           fillOpacity: 0.5,
           lineColor: '#ffffff',
-          lineWidth: 1,
+          lineWidth: 1
         },
         area: {
           stacking: 'overlap',
@@ -133,10 +134,10 @@ export class AnalyzeChartComponent implements OnChanges {
           fillOpacity: 0.5,
           marker: {
             lineWidth: 1,
-            lineColor: '#ffffff',
-          },
-        },
-      },
+            lineColor: '#ffffff'
+          }
+        }
+      }
     };
   }
 
@@ -144,27 +145,27 @@ export class AnalyzeChartComponent implements OnChanges {
     this.chartRef = chart;
   };
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges (changes: SimpleChanges): void {
     const chartOptions: Highcharts.Options = {
-      ...this.getOptions(changes?.chartType?.currentValue, changes?.chartLabels?.currentValue),
-      series: [...(changes?.chartSeries?.currentValue || [])],
+      ...this.getOptions(changes?.chartType?.currentValue, changes?.chart_labels?.currentValue),
+      series: [...changes?.chartSeries?.currentValue || []]
     };
 
     this.optFromInput = JSON.parse(JSON.stringify(chartOptions));
     this.updateFromInput = true;
   }
 
-  exportToJPEG(): void {
+  exportToJPEG (): void {
     this.chartRef.exportChart(
       {
         type: 'image/jpeg',
-        filename: this.chartTitle,
+        filename: this.chartTitle
       },
-      {},
+      {}
     );
   }
 
-  exportToExcel(): void {
+  exportToExcel (): void {
     this.chartRef.downloadXLS();
   }
 }

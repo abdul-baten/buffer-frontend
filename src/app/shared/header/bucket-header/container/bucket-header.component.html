@@ -30,8 +30,8 @@
         </p-calendar>
       </div>
       <div class="p-col">
-        <p-dropdown [options]="connectionItems"
-          (onChange)="dataChanged($event.value, 'postConnection.connectionType', 'equals')" appendTo="body"
+        <p-dropdown [options]="connection_items"
+          (onChange)="dataChanged($event.value, 'postConnection.connection_type', 'equals')" appendTo="body"
           styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Connection" [showClear]="true"
           [filter]="true">
           <ng-template let-option pTemplate="item">
@@ -40,7 +40,7 @@
         </p-dropdown>
       </div>
       <div class="p-col">
-        <p-dropdown [options]="postTypes" (onChange)="dataChanged($event.value, 'postType', 'equals')" appendTo="body"
+        <p-dropdown [options]="post_types" (onChange)="dataChanged($event.value, 'postType', 'equals')" appendTo="body"
           styleClass="p-column-filter b-w-full p-inputtext-sm" placeholder="Post type" [showClear]="true"
           [filter]="true">
           <ng-template let-option pTemplate="item">

@@ -1,26 +1,27 @@
-import { HttpParams } from '@angular/common/http';
-import { HttpService } from 'src/app/core/service';
-import { I_CONNECTION, I_LN_ACCESS_TOKEN_RESPONSE } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+
+import type { HttpService } from 'src/app/core/service';
+import type { IConnection } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class LinkedInPageService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor (private readonly httpService: HttpService) {}
 
-  getLinkedInPage(connectionType: string, code: string): Observable<I_CONNECTION[]> {
-    return this.httpService
-      .get<I_LN_ACCESS_TOKEN_RESPONSE>('linkedin/access-token', ({ connectionType, code } as unknown) as HttpParams)
-      .pipe(
-        switchMap((response: I_LN_ACCESS_TOKEN_RESPONSE) => {
-          return this.httpService.get<I_CONNECTION[]>('linkedin/organisation', ({ accessToken: response.access_token } as unknown) as HttpParams);
-        }),
-        map((connectionInfo: I_CONNECTION[]) => connectionInfo),
+  getLinkedInPage (connection_type: string, code: string): Observable<IConnection[]> {
+    return this.httpService.
+      get<string>('linkedin/access-token', {
+        code,
+        connection_type
+      }).
+      pipe(
+        switchMap((access_token: string) => this.httpService.get<IConnection[]>('linkedin/organisation', { access_token })),
+        map((connections: IConnection[]) => connections)
       );
   }
 
-  addLinkedInPage(connectionInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('connection/add', connectionInfo);
+  addLinkedInPage (connection_info: IConnection): Observable<IConnection> {
+    return this.httpService.post<IConnection>('connection/add', connection_info);
   }
 }

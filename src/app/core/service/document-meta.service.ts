@@ -1,37 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Meta, MetaDefinition } from '@angular/platform-browser';
+import type { Meta, MetaDefinition } from '@angular/platform-browser';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DocumentMetaService {
-  constructor(private readonly meta: Meta) {}
+  constructor (private readonly meta: Meta) {}
 
-  addDocumentMetaTag(tag: MetaDefinition, forceCreation: boolean = false): void {
-    this.meta.addTag(tag, forceCreation);
+  public addDocumentMetaTag (tag: MetaDefinition, force_creation: boolean = false): void {
+    this.meta.addTag(tag, force_creation);
   }
 
-  addDocumentMetaTags(tags: MetaDefinition[], forceCreation: boolean = false): void {
-    this.meta.addTags(tags, forceCreation);
+  public addDocumentMetaTags (tags: MetaDefinition[], force_creation: boolean = false): void {
+    this.meta.addTags(tags, force_creation);
   }
 
-  getDocumentMetaTag(attrSelector: string): HTMLMetaElement | null {
-    return this.meta.getTag(attrSelector);
+  public getDocumentMetaTag (attribute_selector: string): HTMLMetaElement | null {
+    return this.meta.getTag(attribute_selector);
   }
 
-  getDocumentMetaTags(attrSelector: string): HTMLMetaElement[] {
-    return this.meta.getTags(attrSelector);
+  public getDocumentMetaTags (attribute_selector: string): HTMLMetaElement[] {
+    return this.meta.getTags(attribute_selector);
   }
 
-  updateDocumentMetaTag(tag: MetaDefinition): void {
+  public updateDocumentMetaTag (tag: MetaDefinition): void {
     this.meta.updateTag(tag);
   }
 
-  removeDocumentMetaTag(attrSelector: string): void {
-    this.meta.removeTag(attrSelector);
+  public removeDocumentMetaTag (attribute_selector: string): void {
+    this.meta.removeTag(attribute_selector);
   }
 
-  removeDocumentMetaTagElement(meta: HTMLMetaElement): void {
+  public removeDocumentMetaTagElement (meta: HTMLMetaElement): void {
     this.meta.removeTagElement(meta);
   }
 }

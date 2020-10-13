@@ -1,28 +1,28 @@
 <section class="b-main-content b-of-h">
   <div class="b-w-full b-h-toolbar b-br-b">
-    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Scheduled"></buffer--toolbar>
+    <buffer-toolbar [back_button]="true" [show_connections]="false" header_title="Scheduled"></buffer-toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
     <p-table #postTable [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
-      [value]="(calendarPosts | async)!" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
-      dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['postCaption']"
+      [value]="(calendar_posts | async)!" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
+      dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['post_message']"
       [paginator]="true" styleClass="p-datatable-striped">
       <ng-template pTemplate="caption">
         <div class="p-px-4 b-h-toolbar">
-          <buffer--bucket-header (inputChange)="inputChanged($event)" (dropdownChange)="dropdownChanged($event)">
-          </buffer--bucket-header>
+          <buffer-bucket-header (inputChange)="inputChanged($event)" (dropdownChange)="dropdownChanged($event)">
+          </buffer-bucket-header>
         </div>
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th colspan="2">Media</th>
-          <th colspan="4" pSortableColumn="postCaption">Status <p-sortIcon field="postCaption"></p-sortIcon>
+          <th colspan="4" pSortableColumn="post_message">Status <p-sortIcon field="post_message"></p-sortIcon>
           </th>
-          <th colspan="2" pSortableColumn="postScheduleDateTime">Scheduled on <p-sortIcon field="postScheduleDateTime">
+          <th colspan="2" pSortableColumn="post_date_time">Scheduled on <p-sortIcon field="post_date_time">
             </p-sortIcon>
           </th>
-          <th pSortableColumn="postType">Type <p-sortIcon field="postType"></p-sortIcon>
+          <th pSortableColumn="post_type">Type <p-sortIcon field="post_type"></p-sortIcon>
           </th>
           <th>Connection</th>
           <th colspan="2"></th>
@@ -31,11 +31,12 @@
       <ng-template pTemplate="body" let-post>
         <tr>
           <td colspan="2">
-            <ng-container class="b-w-full" *ngIf="post.postType === postType.IMAGE || post.postType === postType.VIDEO">
-              <div [ngSwitch]="post.postType">
-                <div *ngSwitchCase="postType.IMAGE">
+            <ng-container class="b-w-full"
+              *ngIf="post.post_type === post_type.IMAGE || post.post_type === post_type.VIDEO">
+              <div [ngSwitch]="post.post_type">
+                <div *ngSwitchCase="post_type.IMAGE">
                   <p-carousel [value]="post.postMedia" [numVisible]="1" [numScroll]="2" indicatorsContentClass="b-d-h"
-                    styleClass="buffer--height-20">
+                    styleClass="buffer-height-20">
                     <ng-template let-postMedia pTemplate="item">
                       <div class="b-w-full b-h-full p-d-flex p-jc-between p-ai-center">
                         <img [alt]="postMedia" [src]="postMedia" class="b-w-full b-br-sm" />
@@ -43,7 +44,7 @@
                     </ng-template>
                   </p-carousel>
                 </div>
-                <div *ngSwitchCase="postType.VIDEO">
+                <div *ngSwitchCase="post_type.VIDEO">
                   <video id="postVideo" preload="auto" [src]="post.postMedia[0]" type="video/mp4" controls
                     controlsList="nodownload" playsinline preload class="b-w-full b-br-sm">
                   </video>
@@ -53,27 +54,27 @@
           </td>
           <td colspan="4">
             <div class="b-text-fade">
-              <p class="b-c-black">{{ post.postCaption }}</p>
+              <p class="b-c-black">{{ post.post_message }}</p>
             </div>
           </td>
           <td colspan="2">
             <div class="p-d-flex p-flex-column">
               <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
-                {{ post.postScheduleDateTime | date: 'EEE, MMM dd, y' }}</small>
-              <small><i class="pi pi-clock b-va-m p-mr-1"></i> {{ post.postScheduleDateTime | date: 'h:mm a' }}</small>
+                {{ post.post_date_time | date: 'EEE, MMM dd, y' }}</small>
+              <small><i class="pi pi-clock b-va-m p-mr-1"></i> {{ post.post_date_time | date: 'h:mm a' }}</small>
             </div>
           </td>
           <td>
             <span
-              [ngClass]="{ 'p-tag-warning': post.postType === postType.TEXT, 'p-tag-success': post.postType === postType.IMAGE, 'p-tag-info': post.postType === postType.VIDEO}"
-              class="p-text-capitalize p-tag">{{ post.postType }}</span>
+              [ngClass]="{ 'p-tag-warning': post.post_type === post_type.TEXT, 'p-tag-success': post.post_type === post_type.IMAGE, 'p-tag-info': post.post_type === post_type.VIDEO}"
+              class="p-text-capitalize p-tag">{{ post.post_type }}</span>
           </td>
           <td>
             <div class="b-ca b-ca-md"
-              [title]="splitConnectionType(post.postConnection.connectionType ? post.postConnection.connectionType: '')">
-              <img [lazyLoad]="post.postConnection.connectionPicture" class="b-w-full b-h-full b-br-full"
+              [title]="splitConnectionType(post.post_connection.connection_type ? post.post_connection.connection_type: '')">
+              <img [lazyLoad]="post.post_connection.connection_picture" class="b-w-full b-h-full b-br-full"
                 defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
-              <div [attr.class]="'b-ca-sl b-ca-sl-' + post.postConnection.connectionType">
+              <div [attr.class]="'b-ca-sl b-ca-sl-' + post.post_connection.connection_type">
               </div>
             </div>
           </td>
@@ -88,9 +89,9 @@
         <tr>
           <td colspan="5">
             <div class="b-hs-w-h">
-              <buffer--no-data-found class="b-h-full">
+              <buffer-no-data-found class="b-h-full">
                 <h3>No post found</h3>
-              </buffer--no-data-found>
+              </buffer-no-data-found>
             </div>
           </td>
         </tr>

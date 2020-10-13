@@ -1,15 +1,19 @@
-import { EntityMetadataMap } from '@ngrx/data';
+import type { EntityMetadataMap } from '@ngrx/data';
 
-const entityMetadata: EntityMetadataMap = {
-  Connection: {},
-  Insight: {},
-  Post: {},
-  User: {},
+const entity_metadata: EntityMetadataMap = {
+  connection: {},
+  facebook_insight: {},
+  instagram_insight: {},
+  post: {},
+  user: {}
 };
 
-const pluralNames = {};
+const plural_names = {};
 
-export const entityConfig = {
-  entityMetadata,
-  pluralNames,
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const entity_config = {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  entityMetadata: entity_metadata,
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  pluralNames: plural_names
 };

@@ -1,6 +1,4 @@
-import { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 import { InjectionToken } from '@angular/core';
+import type { EventInput as CalPostInfoInterface } from '@fullcalendar/core';
 
-const CALENDAR_POST_DATA = new InjectionToken<CalPostInfoInterface>('CALENDAR_POST_DATA');
-
-export { CALENDAR_POST_DATA };
+export const CalendarPostData = new InjectionToken<CalPostInfoInterface>('CalendarPostData');

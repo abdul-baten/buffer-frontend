@@ -1,21 +1,27 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class HTTPRequestInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+export class HttpRequestInterceptor implements HttpInterceptor {
+  intercept (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      'Content-Type': 'application/json'
     });
 
     const req = request.clone({
       headers,
-      reportProgress: true,
       responseType: 'json',
-      withCredentials: true,
+      withCredentials: true
     });
 
     return next.handle(req);

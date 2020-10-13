@@ -28,7 +28,7 @@ import { TooltipModule } from 'primeng/tooltip';
     FilterComponent,
     OverviewComponent,
     PostTableComponent,
-    PostsComponent,
+    PostsComponent
   ],
   imports: [
     AnalyzeCardModule,
@@ -47,8 +47,8 @@ import { TooltipModule } from 'primeng/tooltip';
     TableModule,
     TabViewModule,
     ToolbarModule,
-    TooltipModule,
+    TooltipModule
   ],
-  providers: [InstagramFacade],
+  providers: [InstagramFacade]
 })
 export class AnalyzeInstagramModule {}

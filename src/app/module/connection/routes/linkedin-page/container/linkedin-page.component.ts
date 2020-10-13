@@ -1,53 +1,59 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component } from '@angular/core';
-import { I_CONNECTION } from 'src/app/core/model';
-import { LinkedInPageFacade } from '../facade/linkedin-page.facade';
-import { Observable } from 'rxjs';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import type { ActivatedRoute, ParamMap } from '@angular/router';
+import type { IConnection } from 'src/app/core/model';
+import type { LinkedInPageFacade } from '../facade/linkedin-page.facade';
 
 @Component({
-  selector: 'buffer--linkedin-page',
+  selector: 'buffer-linkedin-page',
   styleUrls: ['./linkedin-page.component.css'],
-  templateUrl: './linkedin-page.component.html',
+  templateUrl: './linkedin-page.component.html'
 })
-export class LinkedInPageComponent {
-  isHandset$: Observable<boolean>;
-  isTablet$: Observable<boolean>;
-  isWeb$: Observable<boolean>;
+export class LinkedInPageComponent implements OnDestroy {
+  public connection$: Observable<IConnection[]>;
+  public is_platform_handset$: Observable<boolean>;
+  public is_platform_tablet$: Observable<boolean>;
+  public is_platform_web$: Observable<boolean>;
+  private subscription$ = new Subscription();
 
-  connection$: Observable<I_CONNECTION[]>;
-
-  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: LinkedInPageFacade) {
-    this.isHandset$ = this.facade.isHandset();
-    this.isTablet$ = this.facade.isTablet();
-    this.isWeb$ = this.facade.isWeb();
+  constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: LinkedInPageFacade) {
     this.connection$ = this.getConnections();
+    this.is_platform_handset$ = this.facade.isHandset();
+    this.is_platform_tablet$ = this.facade.isTablet();
+    this.is_platform_web$ = this.facade.isWeb();
   }
 
-  private getConnections(): Observable<I_CONNECTION[]> {
-    return this.activatedRoute.queryParamMap.pipe(
-      switchMap((queryParamMap: ParamMap) => {
-        const code = queryParamMap.get('code') as string,
-          state = queryParamMap.get('state') as string;
+  private getConnections (): Observable<IConnection[]> {
+    return this.activatedRoute.queryParamMap.pipe(switchMap((query_param_map: ParamMap) => {
+      const code = query_param_map.get('code') as string,
+        state = query_param_map.get('state') as string;
 
-        if (!code && !state) {
-          this.navigateToRoute('/connection/choose');
-        }
+      if (!code && !state) {
+        this.navigateToRoute('/connection/choose');
+      }
 
-        return this.facade.getLinkedInPage('linkedin-page', code);
-      }),
-    );
+      return this.facade.getLinkedInPage('linkedin-page', code);
+    }));
   }
 
-  navigateToRoute(routeToNavigate: string): void {
-    this.facade.navigateToRoute(routeToNavigate);
+  public navigateToRoute (route: string): void {
+    this.facade.navigateToRoute(route);
   }
 
-  addConnection(connectionInfo: I_CONNECTION) {
-    this.facade.addLinkedInPage(connectionInfo).subscribe(() => this.navigateToRoute('connection/profiles'));
+  public addConnection (connection_info: IConnection): void {
+    this.subscription$.add(this.facade.addLinkedInPage(connection_info).subscribe(() => this.navigateToRoute('connection/profiles')));
   }
 
-  trackBy(_index: number, connection: I_CONNECTION): number {
-    return +connection.connectionID;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public trackBy (_index: number, connection: IConnection): number {
+    return Number(connection.connection_id);
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy (): void {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

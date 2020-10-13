@@ -1,5 +1,5 @@
 import { AppState } from 'src/app/reducers';
-import { I_MEDIA, I_POST_TYPE_GENERATOR } from '../model';
+import { I_MEDIA, IPost_TYPE_GENERATOR } from '../model';
 import { Injectable } from '@angular/core';
 import { MediaService } from './media.service';
 import { NotificationService } from './notification.service';
@@ -7,7 +7,7 @@ import { removeNewPostMedia, setNewPostMedia } from 'src/app/actions';
 import { Store } from '@ngrx/store';
 
 @Injectable()
-export class PostTypeVideoService implements I_POST_TYPE_GENERATOR {
+export class PostTypeVideoService implements IPost_TYPE_GENERATOR {
   constructor(public readonly mediaService: MediaService, public readonly notificationService: NotificationService, public store: Store<AppState>) {}
   generateConfig(): Record<string, any> {
     const config = {

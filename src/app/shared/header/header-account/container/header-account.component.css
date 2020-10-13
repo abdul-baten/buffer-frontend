@@ -9,15 +9,15 @@
 	flex-shrink: 0;
 	justify-content: space-between;
 
-	.buffer--header-logo-sec {
+	.buffer-header-logo-sec {
 		height: 80px;
 	}
 
-	.buffer--header-menu-sec {
+	.buffer-header-menu-sec {
 		height: calc(100vh - 160px);
 	}
 
-	.buffer--header-account-sec {
+	.buffer-header-account-sec {
 		display: flex;
 		height: 80px;
 	}

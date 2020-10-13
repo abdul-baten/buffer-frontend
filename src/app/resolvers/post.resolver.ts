@@ -1,26 +1,30 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { first, map, switchMap } from 'rxjs/operators';
-import { I_POST, I_USER } from '../core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { PostService, UserService } from '../core/service';
+import type { Resolve } from '@angular/router';
+import type { IPost, IUser } from '../core/model';
+import type { PostService, UserService } from '../core/service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class PostResolver implements Resolve<I_POST[]> {
-  constructor(private readonly postService: PostService, private readonly userService: UserService) {}
+export class PostResolver implements Resolve<IPost[]> {
+  constructor (private readonly postService: PostService, private readonly userService: UserService) {}
 
-  resolve(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<I_POST[]> {
-    const userIDFromState$ = this.userService.getUserFromState(),
-      connectionsFromState$ = this.postService.entities$,
-      userInfofromRequest$ = userIDFromState$.pipe(
-        switchMap((user: I_USER) => this.postService.getPosts(user.id).pipe(map((posts: I_POST[]) => posts))),
-      );
+  public resolve (): Observable<IPost[]> {
+    const user_id_from_state$ = this.userService.getUserFromState();
+    const connections_from_state$ = this.postService.entities$;
+    const user_info_from_server$ = user_id_from_state$.pipe(switchMap((user: IUser) => this.postService.getPosts(user.id).pipe(map((posts: IPost[]) => posts))));
 
-    return connectionsFromState$.pipe(
-      switchMap((posts: I_POST[]) => (!!posts.length ? of(posts) : userInfofromRequest$)),
-      first(),
+    return connections_from_state$.pipe(
+      switchMap((posts: IPost[]) => {
+        if (posts.length) {
+          return of(posts);
+        }
+
+        return user_info_from_server$;
+      }),
+      first()
     );
   }
 }

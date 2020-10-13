@@ -2,11 +2,11 @@
   <form novalidate [formGroup]="videoForm">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
-        <buffer--connections class="p-d-flex" (connectionChange)="changeConnectionSelection($event)">
-        </buffer--connections>
+        <buffer-connections class="p-d-flex" (connectionChange)="changeConnectionSelection($event)">
+        </buffer-connections>
       </div>
       <div class="p-field p-col-12">
-        <buffer--media [postType]="postType.VIDEO"></buffer--media>
+        <buffer-media [postType]="postType.VIDEO"></buffer-media>
         <small>Maximum file size 150MB. Acceptable file types .mp4.</small>
       </div>
       <div class="p-field p-col-12">
@@ -27,7 +27,7 @@
           <button (click)="previous()" class="p-button-plain p-button-rounded p-button-text" icon="pi pi-arrow-left"
             pButton title="Select Type" type="button"></button>
           <p-splitButton [disabled]="(isButtonDisabled() | async)!" appendTo="body" menuStyleClass="p-p-2"
-            (onClick)="savePost(postStatus.PUBLISHED)" [model]="menuItems" label="Share now"></p-splitButton>
+            (onClick)="savePost(postStatus.PUBLISHED)" [model]="menu_items" label="Share now"></p-splitButton>
         </div>
       </div>
     </div>

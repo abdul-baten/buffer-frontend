@@ -1,17 +1,23 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_FB_OVERVIEW } from 'src/app/core/model';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
+import type { IFbOverviewInsight } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--overview',
+  selector: 'buffer-overview',
   styleUrls: ['./overview.component.css'],
-  templateUrl: './overview.component.html',
+  templateUrl: './overview.component.html'
 })
 export class OverviewComponent implements OnChanges {
   @Input()
-  overview!: I_FB_OVERVIEW;
+  overview!: IFbOverviewInsight;
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges (changes: SimpleChanges): void {
     this.overview = changes?.overview?.currentValue;
   }
 }

@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
     component: FacebookGroupComponent,
-  },
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class FacebookGroupRoutingModule {}

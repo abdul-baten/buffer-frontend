@@ -8,6 +8,6 @@ import { ViewModalComponent } from './container/view-modal.component';
 @NgModule({
   declarations: [ViewModalComponent],
   imports: [ButtonModule, CommonModule, LazyLoadImageModule],
-  providers: [DynamicDialogRef],
+  providers: [DynamicDialogRef]
 })
 export class ViewModalModule {}

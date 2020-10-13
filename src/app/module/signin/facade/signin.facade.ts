@@ -1,28 +1,28 @@
-import { AuthService, GlobalService, UserService } from 'src/app/core/service';
-import { I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
+import type { AuthService, GlobalService, UserService } from 'src/app/core/service';
+import type { IUser } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
+import type { Router } from '@angular/router';
 
 @Injectable()
 export class SigninFacade {
-  constructor(
+  constructor (
     private readonly authService: AuthService,
     private readonly globalService: GlobalService,
     private readonly router: Router,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
-  navigate(authURL: string): void {
-    this.router.navigateByUrl(authURL);
+  public navigate (route: string): void {
+    this.router.navigateByUrl(route);
   }
 
-  loginUser(email: string, password: string): Observable<Partial<I_USER>> {
-    return this.authService.loginUser(email, password).pipe(tap((user: Partial<I_USER>) => this.userService.addUserToState(user as I_USER)));
+  public loginUser (user_email: string, user_password: string): Observable<Partial<IUser>> {
+    return this.authService.loginUser(user_email, user_password).pipe(tap((user: Partial<IUser>) => this.userService.addUserToState(user as IUser)));
   }
 
-  navigateToDashboard(): void {
+  public navigateToDashboard (): void {
     this.globalService.getLocation().replace('/dashboard');
   }
 }

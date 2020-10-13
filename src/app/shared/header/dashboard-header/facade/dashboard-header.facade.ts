@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 import { AppState } from 'src/app/reducers';
 import { ConnectionService, GlobalService, ModalService } from 'src/app/core/service';
 import { DashboardHeaderService } from '../service/dashboard-header.service';
-import { I_CONNECTION } from 'src/app/core/model';
+import { IConnection } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -23,9 +23,9 @@ export class DashboardHeaderFacade {
 
   getFirstConnection(): Observable<{ id: string; type: string }> {
     return this.connectionService.getFirstConnection().pipe(
-      map((connection: I_CONNECTION) => {
-        const { id, connectionType } = connection;
-        const type = connectionType.split('_')[0].toLowerCase();
+      map((connection: IConnection) => {
+        const { id, connection_type } = connection;
+        const type = connection_type.split('_')[0].toLowerCase();
 
         return { id, type };
       }),

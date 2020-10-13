@@ -1,26 +1,31 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { Observable } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { Request } from 'express';
+import type { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import type { Observable } from 'rxjs';
+import type { Request } from 'express';
 
 export class TranslatorInterceptor implements HttpInterceptor {
-  private readonly PORT = process.env.PORT || 5000;
+  private readonly PORT = process.env.PORT;
 
-  constructor(@Inject(REQUEST) private request: Request) {}
+  constructor (@Inject(REQUEST) private request: Request) {}
 
-  getBaseUrl(request: Request) {
+  private getBaseUrl (request: Request) {
     const { protocol, hostname } = request;
+
     return this.PORT ? `${protocol}://${hostname}:${this.PORT}` : `${protocol}://${hostname}`;
   }
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let cloned_request;
+
     if (request.url.startsWith('./assets')) {
-      const baseUrl = this.getBaseUrl(this.request);
-      request = request.clone({
-        url: `${baseUrl}/${request.url.replace('./assets', 'assets')}`,
+      const base_uri = this.getBaseUrl(this.request);
+
+      cloned_request = request.clone({
+        url: `${base_uri}/${request.url.replace('./assets', 'assets')}`
       });
     }
-    return next.handle(request);
+
+    return next.handle(cloned_request as HttpRequest<any>);
   }
 }

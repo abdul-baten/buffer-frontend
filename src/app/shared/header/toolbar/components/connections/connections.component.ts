@@ -1,35 +1,39 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { I_CONNECTION, I_CONNECTION_SELECTED } from 'src/app/core/model';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { ToolbarFacade } from '../../facade/toolbar.facade';
+import type { ActivatedRoute, ParamMap } from '@angular/router';
+import type { IConnection, IConnectionSelected } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
+import type { ToolbarFacade } from '../../facade/toolbar.facade';
 
 @Component({
-  selector: 'buffer--connections',
+  selector: 'buffer-connections',
   styleUrls: ['./connections.component.css'],
-  templateUrl: './connections.component.html',
+  templateUrl: './connections.component.html'
 })
 export class ConnectionsComponent {
-  @Output() connectionSelected = new EventEmitter<I_CONNECTION_SELECTED>();
-  isWeb: Observable<boolean>;
+  @Output() selected_connection = new EventEmitter<IConnectionSelected>();
+  active_connection$: Observable<string>;
+  connections$: Observable<IConnection[]>;
+  is_platform_web: Observable<boolean>;
 
-  connections$: Observable<I_CONNECTION[]>;
-  activeConnection$: Observable<string>;
-
-  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: ToolbarFacade) {
-    this.isWeb = this.facade.isWeb();
+  constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: ToolbarFacade) {
+    this.is_platform_web = this.facade.isWeb();
     this.connections$ = this.facade.getConnections();
-    this.activeConnection$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id') as string));
+    this.active_connection$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id') as string));
   }
 
-  trackBy(_index: number, connection: I_CONNECTION): number {
-    return +connection.id;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  trackBy (_index: number, connection: IConnection): number {
+    return Number(connection.id);
   }
 
-  clicked(connection: I_CONNECTION): void {
-    const { id, connectionType } = connection;
-    const type = connectionType.split('_')[0].toLowerCase();
-    this.connectionSelected.emit({ id, type });
+  clicked (connection: IConnection): void {
+    const { id, connection_type } = connection;
+    const type = connection_type.split('_')[0].toLowerCase();
+
+    this.selected_connection.emit({
+      id,
+      type
+    });
   }
 }

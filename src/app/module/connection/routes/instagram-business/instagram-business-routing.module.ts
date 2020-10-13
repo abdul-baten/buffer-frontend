@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
     component: InstagramBusinessComponent,
-  },
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class InstagramBusinessRoutingModule {}

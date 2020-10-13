@@ -1,16 +1,17 @@
-<div [ngSwitch]="postData.postType" class="p-mb-4">
-  <div *ngSwitchCase="postType.IMAGE">
+<div [ngSwitch]="post_info.post_type" class="p-mb-4">
+  <div *ngSwitchCase="post_type.IMAGE">
     <div class="p-d-flex p-jc-between p-ai-center">
-      <img *ngFor="let image of postData.postMedia; trackBy:trackBy;" [defaultImage]="image" [lazyLoad]="image" class="b-w-full" />
+      <img *ngFor="let image of post_info.post_media; trackBy:trackBy;" [defaultImage]="image" [lazyLoad]="image"
+        class="b-w-full" />
     </div>
   </div>
-  <div *ngSwitchCase="postType.VIDEO">
-    <video #media id="postVideo" preload="auto" [src]="postData.postMedia[0]" type="video/mp4" class="b-w-full">
+  <div *ngSwitchCase="post_type.VIDEO">
+    <video #media id="postVideo" preload="auto" [src]="post_info.post_media[0]" type="video/mp4" class="b-w-full">
     </video>
   </div>
 </div>
 
-<p>{{ postData.postCaption }}</p>
+<p>{{ post_info.post_message }}</p>
 <small class=" p-mr-2">
-  <i class="pi pi-clock b-va-m"></i> {{ postData.postScheduleDateTime | date: 'shortTime' }}
+  <i class="pi pi-clock b-va-m"></i> {{ post_info.post_date_time | date: 'shortTime' }}
 </small>

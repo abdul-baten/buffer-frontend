@@ -12,6 +12,6 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
 @NgModule({
   declarations: [FacebookPageComponent],
   imports: [ButtonModule, CommonModule, ToolbarModule, FacebookPageRoutingModule, FieldsetModule, LazyLoadImageModule],
-  providers: [FacebookPageFacade, FacebookPageService],
+  providers: [FacebookPageFacade, FacebookPageService]
 })
 export class FacebookPageModule {}

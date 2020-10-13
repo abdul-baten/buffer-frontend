@@ -1,5 +1,5 @@
 <div class="p-px-6 p-pt-5 p-pb-2 b-bg-white b-br-sm">
-  <form novalidate [formGroup]="companyForm">
+  <form novalidate [formGroup]="form">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
         <label for="companyName">Company<span class="b-input-label-required">*</span></label>
@@ -7,22 +7,22 @@
       </div>
       <div class="p-field p-col-12">
         <label for="companySize">Company size<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="companySize" [options]="companySizeOptions" formControlName="companySize"
+        <p-dropdown inputId="companySize" [options]="company_size_options" formControlName="companySize"
           class="p-inputtext-lg" optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
         <label for="businessType">Business type<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="businessType" [options]="businessTypeOptions" formControlName="businessType"
+        <p-dropdown inputId="businessType" [options]="business_type_options" formControlName="businessType"
           class="p-inputtext-lg" optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
         <label for="industry">Industry<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="industry" [options]="industryOptions" formControlName="industry" class="p-inputtext-lg"
+        <p-dropdown inputId="industry" [options]="industry_options" formControlName="industry" class="p-inputtext-lg"
           optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
         <button pButton type="button" label="Save changes" class="b-w-full p-button-lg"
-          [disabled]="companyForm.invalid"></button>
+          [disabled]="form.invalid"></button>
       </div>
     </div>
   </form>

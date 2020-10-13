@@ -5,7 +5,7 @@ import { NoDataFoundComponent } from './container/no-data-found.component';
 
 @NgModule({
   declarations: [NoDataFoundComponent],
-  imports: [ButtonModule, CommonModule],
   exports: [NoDataFoundComponent],
+  imports: [ButtonModule, CommonModule]
 })
 export class NoDataFoundModule {}

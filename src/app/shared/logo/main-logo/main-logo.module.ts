@@ -5,6 +5,6 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [MainLogoComponent],
   exports: [MainLogoComponent],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class MainLogoModule {}

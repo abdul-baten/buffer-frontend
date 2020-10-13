@@ -1,44 +1,47 @@
 import format from 'date-fns/format';
-import { CALENDAR_VIEW } from '../../enum/calendar-view-options.enum';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ScheduleFacade } from '../../facade/schedule.facade';
-import { SelectItem } from 'primeng/api';
+import { ECalendarView } from 'src/app/core/enum';
+
+import type { Observable } from 'rxjs';
+import type { ScheduleFacade } from '../../facade/schedule.facade';
+import type { SelectItem } from 'primeng/api';
 
 @Component({
-  selector: 'buffer--header',
+  selector: 'buffer-header',
   styleUrls: ['./header.component.css'],
-  templateUrl: './header.component.html',
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  isWeb$: Observable<boolean>;
-  currentDate = format(new Date(), 'eeee, MMMM dd');
-
-  selectedCalendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
-
-  calendarViewSelectionItems: SelectItem[] = [
-    { label: 'Month', value: CALENDAR_VIEW.DAY_GRID_MONTH },
-    { label: 'Week', value: CALENDAR_VIEW.TIME_GRID_WEEK },
-    { label: 'Day', value: CALENDAR_VIEW.TIME_GRID_DAY },
+  public is_platform_web$: Observable<boolean>;
+  public current_date = format(new Date(), 'eeee, MMMM dd');
+  public selected_calendar_view = ECalendarView.DAY_GRID_MONTH;
+  public calendar_view_selection_items: SelectItem[] = [
+    { label: 'Month',
+      value: ECalendarView.DAY_GRID_MONTH },
+    { label: 'Week',
+      value: ECalendarView.TIME_GRID_WEEK },
+    { label: 'Day',
+      value: ECalendarView.TIME_GRID_DAY }
   ];
 
-  constructor(private facade: ScheduleFacade) {
-    this.isWeb$ = this.facade.isWeb();
+  constructor (private facade: ScheduleFacade) {
+    this.is_platform_web$ = this.facade.isWeb();
   }
 
-  onCalendarViewChanged(calendarViewSelection: any): void {
-    this.facade.changeCalendarViewOption(calendarViewSelection.value);
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onCalendarViewChanged (calendar_view: SelectItem): void {
+    this.facade.changeCalendarViewOption(calendar_view.value);
   }
 
-  onTodayBtnClicked(): void {
+  onTodayBtnClicked (): void {
     this.facade.calendarToday();
   }
 
-  onPrevBtnClicked(): void {
+  onPrevBtnClicked (): void {
     this.facade.calendarPrev();
   }
 
-  onNextBtnClicked(): void {
+  onNextBtnClicked (): void {
     this.facade.calendarNext();
   }
 }

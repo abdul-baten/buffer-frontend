@@ -1,22 +1,22 @@
 <div class="b-w-full b-h-toolbar b-br-b">
-  <buffer--toolbar [backButton]="true" [showConnections]="true" headerTitle="Instagram Insight"
+  <buffer-toolbar [back_button]="true" [show_connections]="true" header_title="Instagram Insight"
     (connectionSelected)="connectionSelected($event)">
-  </buffer--toolbar>
+  </buffer-toolbar>
 </div>
 
 <section class="b-main-content b-of-h">
-  <buffer--filter></buffer--filter>
+  <buffer-filter></buffer-filter>
 
   <section class="b-hs-wt-h b-of-auto">
     <div class="b-w-full">
       <p-tabView>
         <p-tabPanel header="Overview">
           <ng-template pTemplate="content">
-            <buffer--overview [insight]="(insight$ | async)!"></buffer--overview>
+            <buffer-overview [insight]="(insight$ | async)!"></buffer-overview>
           </ng-template>
         </p-tabPanel>
         <p-tabPanel header="Media">
-          <buffer--posts [insight]="(insight$ | async)!"></buffer--posts>
+          <buffer-posts [insight]="(insight$ | async)!"></buffer-posts>
         </p-tabPanel>
       </p-tabView>
     </div>

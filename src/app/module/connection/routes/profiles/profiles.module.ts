@@ -23,8 +23,8 @@ import { TooltipModule } from 'primeng/tooltip';
     ProfilesRoutingModule,
     TableModule,
     ToolbarModule,
-    TooltipModule,
+    TooltipModule
   ],
-  providers: [ProfilesFacade],
+  providers: [ProfilesFacade]
 })
 export class ProfilesModule {}

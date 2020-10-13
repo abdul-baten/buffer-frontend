@@ -9,6 +9,6 @@
 	border-right-width: 0;
 }
 
-:host ::ng-deep .buffer--schedule-calendar-sec {
+:host ::ng-deep .buffer-schedule-calendar-sec {
 	width: 100%;
 }

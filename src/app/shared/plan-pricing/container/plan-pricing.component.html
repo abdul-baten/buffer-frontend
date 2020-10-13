@@ -9,7 +9,7 @@
             <label for="switchPricing">
               <h6 class="p-text-bold b-cursor-pointer">Yearly billing</h6>
             </label>
-            <p-inputSwitch [(ngModel)]="pricingMonthly" inputId="switchPricing" styleClass="p-mx-3"></p-inputSwitch>
+            <p-inputSwitch [(ngModel)]="is_monthly_price" inputId="switchPricing" styleClass="p-mx-3"></p-inputSwitch>
             <label for="switchPricing">
               <h6 class="p-text-bold b-cursor-pointer">Monthly billing</h6>
             </label>
@@ -25,9 +25,9 @@
         <h2 class="p-mt-2">Pro</h2>
         <p>For Small Businesses and Professional Marketers</p>
         <div class="p-mt-3">
-          <h1 class="b-text-primary">{{(pricingMonthly ?  29 : (29 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
+          <h1 class="b-text-primary">{{(is_monthly_price ?  29 : (29 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
             <small>/month</small></h1>
-          <h6>Billed {{ pricingMonthly ? 'monthly' : 'annually' }}</h6>
+          <h6>Billed {{ is_monthly_price ? 'monthly' : 'annually' }}</h6>
         </div>
         <button pButton type="button" disabled label="Current Plan" class="b-w-full p-button-lg p-my-6"></button>
         <div>
@@ -49,9 +49,9 @@
         <h2 class="p-mt-2">Premium</h2>
         <p>For Marketing Teams</p>
         <div class="p-mt-3">
-          <h1 class="b-text-primary">{{(pricingMonthly ?  59 : (59 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
+          <h1 class="b-text-primary">{{(is_monthly_price ?  59 : (59 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
             <small>/month</small></h1>
-          <h6>Billed {{ pricingMonthly ? 'monthly' : 'annually' }}</h6>
+          <h6>Billed {{ is_monthly_price ? 'monthly' : 'annually' }}</h6>
         </div>
         <button pButton type="button" label="Try free for 14 days" class="b-w-full p-button-lg p-my-6"></button>
         <div>
@@ -73,9 +73,9 @@
         <h2 class="p-mt-2">Advanced</h2>
         <p>For large teams of 10 to 149.</p>
         <div class="p-mt-3">
-          <h1 class="b-text-primary">{{(pricingMonthly ?  89 : (89 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
+          <h1 class="b-text-primary">{{(is_monthly_price ?  89 : (89 * 12) )| currency : 'USD' : 'symbol' : '1.0-0'}}
             <small>/month</small></h1>
-          <h6>Billed {{ pricingMonthly ? 'monthly' : 'annually' }}</h6>
+          <h6>Billed {{ is_monthly_price ? 'monthly' : 'annually' }}</h6>
         </div>
         <button pButton type="button" label="Try free for 30 days" class="b-w-full p-button-lg p-my-6"></button>
         <div>
@@ -128,7 +128,8 @@
           </tr>
           <tr>
             <td colspan="2" class="p-p-5">
-              <h6 [pTooltip]="product.name" tooltipPosition="top" class="p-text-capitalize b-br-b-dashed b-w-max-content b-cursor-help">
+              <h6 [pTooltip]="product.name" tooltipPosition="top"
+                class="p-text-capitalize b-br-b-dashed b-w-max-content b-cursor-help">
                 {{product.name}}
               </h6>
             </td>

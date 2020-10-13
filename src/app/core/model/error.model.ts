@@ -1,5 +1,7 @@
-export interface I_ERROR {
-  errorCode: number;
-  httpCode: number;
+
+export interface IError {
+  error_code: number;
+  error_details?: Error;
+  http_code: number;
   message: string;
 }

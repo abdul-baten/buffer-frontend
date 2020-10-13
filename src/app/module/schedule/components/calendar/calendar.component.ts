@@ -1,19 +1,6 @@
-import { Calendar, CalendarOptions, EventContentArg } from '@fullcalendar/core';
-
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
 import timeGrigPlugin from '@fullcalendar/timegrid';
-
-import { CALENDAR_POST_DATA } from '../../data/calendar-post.data';
-import { CALENDAR_VIEW } from '../../enum/calendar-view-options.enum';
-import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
-import { differenceInDays, format, subMinutes } from 'date-fns';
-import { FullCalendarComponent } from '@fullcalendar/angular';
-import { HeaderComponent } from '../header/header.component';
-import { I_POST } from 'src/app/core/model';
-import { PostComponent } from '../post/post.component';
-import { ScheduleFacade } from '../../facade/schedule.facade';
-
 import {
   AfterViewInit,
   ApplicationRef,
@@ -26,178 +13,196 @@ import {
   OnChanges,
   OnDestroy,
   SimpleChanges,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {
+  Calendar,
+  CalendarOptions,
+  DateSelectArg,
+  EventContentArg
+} from '@fullcalendar/core';
+import { CalendarPostData } from '../../data/calendar-post.data';
+import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
+import { differenceInDays, format, subMinutes } from 'date-fns';
+import { ECalendarView } from 'src/app/core/enum';
+import { HeaderComponent } from '../header/header.component';
+import { PostComponent } from '../post/post.component';
+import { Subscription } from 'rxjs';
+/* eslint-disable @typescript-eslint/naming-convention */
 
-// tslint:disable-next-line
+import type { FullCalendarComponent } from '@fullcalendar/angular';
+import type { IPost } from 'src/app/core/model';
+import type { ScheduleFacade } from '../../facade/schedule.facade';
+
+// eslint-disable-next-line no-unused-expressions
 Calendar.name;
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--calendar',
+  selector: 'buffer-calendar',
   styleUrls: ['./calendar.component.css'],
-  templateUrl: './calendar.component.html',
+  templateUrl: './calendar.component.html'
 })
 export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
+  @Input() calendar_view = ECalendarView.DAY_GRID_MONTH;
   @Input() posts: any = [];
-  @Input() calendarView = CALENDAR_VIEW.DAY_GRID_MONTH;
-  @ViewChild('calendar')
-  calendar!: FullCalendarComponent;
+  @ViewChild('calendar') calendar!: FullCalendarComponent;
 
-  private calendarApi!: Calendar;
+  private calendar_api!: Calendar;
+
   private subscription$ = new Subscription();
 
-  calendarOptions: CalendarOptions = {
-    allDaySlot: false,
-    businessHours: false,
-    datesSet: () => {
-      this.datesRendered();
-    },
-    dayHeaders: true,
-    dayMaxEventRows: false,
-    defaultAllDay: false,
-    displayEventTime: false,
-    eventOverlap: false,
-    eventDidMount: (post: EventContentArg) => {
-      this.postRendered(post);
-    },
-    events: this.posts,
-    eventDisplay: 'block',
-    eventBackgroundColor: 'white',
-    eventBorderColor: 'transparent',
-    eventTextColor: '#000001',
-    fixedWeekCount: false,
-    handleWindowResize: true,
-    headerToolbar: {
-      left: 'title',
-      center: '',
-      right: '',
-    },
-    initialView: this.calendarView,
-    moreLinkClick: 'popover',
-    navLinks: true,
-    navLinkDayClick: (date) => {
-      this.calendarApi.changeView(CALENDAR_VIEW.TIME_GRID_DAY, date);
-    },
-    nowIndicator: true,
-    plugins: [dayGridPlugin, timeGrigPlugin, interactionPlugin],
-    progressiveEventRendering: false,
-    scrollTime: format(subMinutes(new Date(), 5), 'HH:mm:ss'),
-    select: (date) => {
-      this.dateClicked(date);
-    },
-    selectAllow: this.selectAllow,
-    selectable: true,
-    slotDuration: '00:15:00',
-    slotEventOverlap: false,
-    slotLabelFormat: {
-      hour: 'numeric',
-      minute: '2-digit',
-      omitZeroMinute: false,
-      meridiem: 'short',
-    },
-    slotLabelInterval: {
-      minutes: 2,
-    },
-    slotMaxTime: '24:00:00',
-    slotMinWidth: 400,
-    themeSystem: 'standard',
-    weekends: true,
-    monthMode: false,
-    lazyFetching: true,
-    eventDrop: (postInfo: EventDropArg) => {
-      this.postDropped(postInfo);
-    },
-  };
+  calendar_options (): CalendarOptions {
+    return {
+      allDaySlot: false,
+      businessHours: false,
+      datesSet: () => {
+        this.datesRendered();
+      },
+      dayHeaders: true,
+      dayMaxEventRows: false,
+      defaultAllDay: false,
+      displayEventTime: false,
+      eventBackgroundColor: 'white',
+      eventBorderColor: 'transparent',
+      eventDidMount: (post: EventContentArg) => {
+        this.postRendered(post);
+      },
+      eventDisplay: 'block',
+      eventDrop: (post_info: EventDropArg) => {
+        this.postDropped(post_info);
+      },
+      eventOverlap: false,
+      eventTextColor: '#000001',
+      events: this.posts,
+      fixedWeekCount: false,
+      handleWindowResize: true,
+      headerToolbar: {
+        center: '',
+        left: 'title',
+        right: ''
+      },
+      initialView: this.calendar_view,
+      lazyFetching: true,
+      monthMode: false,
+      moreLinkClick: 'popover',
+      navLinkDayClick: (date) => {
+        this.calendar_api.changeView(ECalendarView.TIME_GRID_DAY, date);
+      },
+      navLinks: true,
+      nowIndicator: true,
+      plugins: [dayGridPlugin, timeGrigPlugin, interactionPlugin],
+      progressiveEventRendering: false,
+      scrollTime: format(subMinutes(new Date(), parseInt('5', 10)), 'HH:mm:ss'),
+      select: (date) => {
+        this.dateClicked(date);
+      },
+      selectAllow: (post_info) => differenceInDays(new Date(), new Date(post_info.start as Date)) <= 0,
+      selectable: true,
+      slotDuration: '00:15:00',
+      slotEventOverlap: false,
+      slotLabelFormat: {
+        hour: 'numeric',
+        meridiem: 'short',
+        minute: '2-digit',
+        omitZeroMinute: false
+      },
+      slotLabelInterval: {
+        minutes: 2
+      },
+      slotMaxTime: '24:00:00',
+      slotMinWidth: 400,
+      themeSystem: 'standard',
+      weekends: true
+    };
+  }
 
-  constructor(
+  constructor (
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    private facade: ScheduleFacade,
+    private facade: ScheduleFacade
   ) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.calendarOptions.events = changes.posts.currentValue;
+  ngOnChanges (changes: SimpleChanges): void {
+    this.calendar_options().events = changes.posts.currentValue;
   }
 
-  ngAfterViewInit(): void {
-    this.calendarApi = this.calendar.getApi();
-    this.facade.setCalendarApi(this.calendarApi);
+  ngAfterViewInit (): void {
+    this.calendar_api = this.calendar.getApi();
+    this.facade.setCalendarApi(this.calendar_api);
 
-    this.subscription$.add(
-      this.facade
-        .isWeb()
-        .pipe(delay(10))
-        .subscribe((isWeb: boolean) => {
-          this.facade.setCalendarView(isWeb ? CALENDAR_VIEW.DAY_GRID_MONTH : CALENDAR_VIEW.TIME_GRID_DAY);
-        }),
-    );
+    this.subscription$.add(this.facade.
+      isWeb().
+      pipe(delay(parseInt('10', 10))).
+      subscribe((is_platform_web: boolean) => {
+        this.facade.setCalendarView(is_platform_web ? ECalendarView.DAY_GRID_MONTH : ECalendarView.TIME_GRID_DAY);
+      }));
   }
 
-  private getBodyPortalHost(element: Element): DomPortalOutlet {
+  private getBodyPortalHost (element: Element): DomPortalOutlet {
     return new DomPortalOutlet(element, this.componentFactoryResolver, this.applicationRef, this.injector);
   }
 
-  datesRendered(): void {
-    const toolbarHeader = this.facade.getQuerySelector('.fc-header-toolbar');
-    const toolbarCenterSec = toolbarHeader.querySelector('.b-calendar-toolbar');
-    if (!toolbarCenterSec) {
-      const toolbarPortalHost = this.getBodyPortalHost(toolbarHeader);
-      const componentToAppend = new ComponentPortal(HeaderComponent);
-      toolbarPortalHost.attach(componentToAppend);
+  datesRendered (): void {
+    const toolbar_header = this.facade.getQuerySelector('.fc-header-toolbar');
+    const toolbar_center_sec = toolbar_header.querySelector('.b-calendar-toolbar');
+
+    if (!toolbar_center_sec) {
+      const toolbar_host = this.getBodyPortalHost(toolbar_header);
+      const component_to_add = new ComponentPortal(HeaderComponent);
+
+      toolbar_host.attach(component_to_add);
     }
   }
 
-  dateClicked(dateInfo: any): void {
-    this.facade.handlePostCreateDialogOpen(dateInfo.start);
+  dateClicked (date_time: DateSelectArg): void {
+    this.facade.handlePostCreateDialogOpen(date_time.start as Date);
   }
 
-  selectAllow(arg: any): boolean {
-    return differenceInDays(new Date(), new Date(arg.start)) <= 0;
-  }
-
-  postDropped(postInfo: EventDropArg): void {
-    switch (differenceInDays(new Date(), new Date((postInfo.event.start as Date).toString())) <= 0) {
-      case true:
-        this.facade.handlePostDrag(postInfo);
-        break;
-      default:
-        this.facade.revertPost(postInfo);
-        break;
+  postDropped (post_info: EventDropArg): void {
+    switch (differenceInDays(new Date(), new Date(post_info.event.start as Date)) <= 0) {
+    case true:
+      this.facade.handlePostDrag(post_info);
+      break;
+    default:
+      this.facade.revertPost(post_info);
+      break;
     }
   }
 
-  postRendered(postInfo: any): void {
-    const element = postInfo.el.firstChild;
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  postRendered (post_info: any): void {
+    const element = post_info.el.firstChild;
+    const portal_host = this.getBodyPortalHost(element);
+    const component_to_append = new ComponentPortal(PostComponent, null, this.createPostDataInjector(post_info));
 
-    const postPortalHost = this.getBodyPortalHost(element);
-    const componentToAppend = new ComponentPortal(PostComponent, null, this.createPostDataInjector(postInfo));
-    postPortalHost.attach(componentToAppend);
+    portal_host.attach(component_to_append);
   }
 
-  private createPostDataInjector(postInfo: I_POST): PortalInjector {
-    const injectorToken = new WeakMap();
-    injectorToken.set(CALENDAR_POST_DATA, postInfo);
-    return new PortalInjector(this.injector, injectorToken);
+  private createPostDataInjector (post_info: IPost): PortalInjector {
+    const injector_token = new WeakMap();
+
+    injector_token.set(CalendarPostData, post_info);
+
+    return new PortalInjector(this.injector, injector_token);
   }
 
-  calendarToday() {
+  public calendarToday (): void {
     this.facade.calendarToday();
   }
 
-  calendarPrev() {
+  public calendarPrev (): void {
     this.facade.calendarPrev();
   }
 
-  calendarNext() {
+  public calendarNext (): void {
     this.facade.calendarNext();
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
+  ngOnDestroy (): void {
     this.subscription$.unsubscribe();
   }
 }

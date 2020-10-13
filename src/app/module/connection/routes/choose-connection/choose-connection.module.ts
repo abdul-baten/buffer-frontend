@@ -10,6 +10,6 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
 @NgModule({
   declarations: [ChooseConnectionComponent],
   imports: [ButtonModule, ChooseConnectionRoutingModule, CommonModule, FieldsetModule, ToolbarModule],
-  providers: [ChooseConnectionFacade],
+  providers: [ChooseConnectionFacade]
 })
 export class ChooseConnectionModule {}

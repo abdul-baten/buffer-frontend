@@ -19,6 +19,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
+    "importsNotUsedAsValues": "error",
     "incremental": true,
     "inlineSourceMap": true,
     "lib": [

@@ -4,13 +4,13 @@ import { SigninComponent } from './container/signin.component';
 
 const routes: Routes = [
   {
-    path: '',
     component: SigninComponent,
-  },
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class SigninRoutingModule {}

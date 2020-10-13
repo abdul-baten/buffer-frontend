@@ -3,45 +3,45 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'buffer--password-form',
-  templateUrl: './password-form.component.html',
+  selector: 'buffer-password-form',
   styleUrls: ['./password-form.component.css'],
+  templateUrl: './password-form.component.html'
 })
 export class PasswordFormComponent {
-  passwordForm: FormGroup;
+  form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.passwordForm = this.buildProfileChangePasswordForm();
+  constructor (private formBuilder: FormBuilder) {
+    this.form = this.buildProfileChangePasswordForm();
   }
 
-  private buildProfileChangePasswordForm(): FormGroup {
+  private buildProfileChangePasswordForm (): FormGroup {
     return this.formBuilder.group(
       {
-        profilePassword: [''],
-        profileNewPassword: [
+        confirm_password: [
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(8),
+            Validators.minLength(parseInt('8', 10)),
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars,
-          ]),
+            PasswordValidator.allowedPasswordSpecialChars
+          ])
         ],
-        profileNewConfirmPassword: [
+        new_password: [
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(8),
+            Validators.minLength(parseInt('8', 10)),
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars,
-          ]),
+            PasswordValidator.allowedPasswordSpecialChars
+          ])
         ],
+        user_password: ['']
       },
-      { validator: CommonValidator.compareTwoFields('profileNewPassword', 'profileNewConfirmPassword') },
+      { validator: CommonValidator.compareTwoFields('new_password', 'confirm_password') }
     );
   }
 }

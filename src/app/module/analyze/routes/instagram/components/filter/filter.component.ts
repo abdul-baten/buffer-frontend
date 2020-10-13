@@ -4,75 +4,87 @@ import startOfMonth from 'date-fns/startOfMonth';
 import startOfWeek from 'date-fns/startOfWeek';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, HostListener, OnDestroy, ViewChild } from '@angular/core';
-import { InstagramFacade } from '../../facade/instagram.facade';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import { noop, Subscription } from 'rxjs';
-import { OverlayPanel } from 'primeng/overlaypanel';
+import type { ActivatedRoute, ParamMap } from '@angular/router';
+import type { InstagramFacade } from '../../facade/instagram.facade';
+import type { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
-  selector: 'buffer--filter',
+  selector: 'buffer-filter',
   styleUrls: ['./filter.component.css'],
-  templateUrl: './filter.component.html',
+  templateUrl: './filter.component.html'
 })
 export class FilterComponent implements OnDestroy {
-  @ViewChild('overlayPanel')
-  overlayPanel!: OverlayPanel;
-  calendarDateRange: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
-  dateRange: string[];
-  maxDate = new Date();
+  @ViewChild('overlay')
+  overlay!: OverlayPanel;
+
+  public calendar_date_range: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
+  public date_range: string[];
+  public max_date = new Date();
   private subscription$ = new Subscription();
 
-  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: InstagramFacade) {
-    this.dateRange = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
+  constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: InstagramFacade) {
+    this.date_range = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
     this.setDate();
   }
 
-  formattedDate(dates: string[]): string {
+  public formattedDate (dates: string[]): string {
     return dates.join(' - ');
   }
 
-  setThisWeek(): void {
-    this.dateRange = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
-    this.overlayPanel.hide();
+  public setThisWeek (): void {
+    this.date_range = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
+    this.overlay.hide();
     this.setDate();
   }
 
-  setLastWeek(): void {
-    const lastWeek = subWeeks(new Date(), 1);
-    this.dateRange = [this.facade.formatDate(startOfWeek(lastWeek)), this.facade.formatDate(lastDayOfWeek(lastWeek))];
-    this.overlayPanel.hide();
+  public setLastWeek (): void {
+    const last_week = subWeeks(new Date(), 1);
+
+    this.date_range = [this.facade.formatDate(startOfWeek(last_week)), this.facade.formatDate(lastDayOfWeek(last_week))];
+    this.overlay.hide();
     this.setDate();
   }
 
-  setThisMonth(): void {
-    this.dateRange = [this.facade.formatDate(startOfMonth(new Date())), this.facade.formatDate(lastDayOfMonth(new Date()))];
-    this.overlayPanel.hide();
+  public setThisMonth (): void {
+    this.date_range = [this.facade.formatDate(startOfMonth(new Date())), this.facade.formatDate(lastDayOfMonth(new Date()))];
+    this.overlay.hide();
     this.setDate();
   }
 
-  setLastMonth(): void {
-    const lastWeek = subMonths(new Date(), 1);
-    this.dateRange = [this.facade.formatDate(startOfMonth(lastWeek)), this.facade.formatDate(lastDayOfMonth(lastWeek))];
-    this.overlayPanel.hide();
+  public setLastMonth (): void {
+    const last_month = subMonths(new Date(), 1);
+
+    this.date_range = [this.facade.formatDate(startOfMonth(last_month)), this.facade.formatDate(lastDayOfMonth(last_month))];
+    this.overlay.hide();
     this.setDate();
   }
 
-  setCalendarDate(): void {
-    this.dateRange = this.calendarDateRange.map((date) => this.facade.formatDate(date));
-    this.overlayPanel.hide();
+  public setCalendarDate (): void {
+    this.date_range = this.calendar_date_range.map((date) => this.facade.formatDate(date));
+    this.overlay.hide();
     this.setDate();
   }
 
-  private setDate(): void {
+  private setDate (): void {
     this.activatedRoute.parent?.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id') as string;
-      this.subscription$.add(this.facade.getInsights({ id, dateRange: this.dateRange }).subscribe(noop));
+
+      this.subscription$.add(this.facade.getInsights({
+        date_range: this.date_range,
+        id
+      }).subscribe(noop));
     });
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
+  ngOnDestroy (): void {
     this.subscription$.unsubscribe();
   }
 }

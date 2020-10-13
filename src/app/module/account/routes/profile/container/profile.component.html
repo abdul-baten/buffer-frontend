@@ -1,23 +1,23 @@
 <section class="b-main-content b-of-h">
   <div class="b-w-full b-h-toolbar b-br-b">
-    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Account Settings"></buffer--toolbar>
+    <buffer-toolbar [back_button]="true" [show_connections]="false" header_title="Account Settings"></buffer-toolbar>
   </div>
 
   <div class="b-hs-wt-h b-of-auto b-bg-lg">
     <p-tabView>
       <p-tabPanel class="p-d-flex p-jc-center" header="Profile" [cache]="false">
         <ng-template pTemplate="content">
-          <buffer--profile-form></buffer--profile-form>
+          <buffer-profile-form></buffer-profile-form>
         </ng-template>
       </p-tabPanel>
       <p-tabPanel class="p-d-flex p-jc-center" header="Security" [cache]="false">
         <ng-template pTemplate="content">
-          <buffer--password-form></buffer--password-form>
+          <buffer-password-form></buffer-password-form>
         </ng-template>
       </p-tabPanel>
       <p-tabPanel class="p-d-flex p-jc-center" header="Company info" [cache]="false">
         <ng-template pTemplate="content">
-          <buffer--company-form></buffer--company-form>
+          <buffer-company-form></buffer-company-form>
         </ng-template>
       </p-tabPanel>
     </p-tabView>

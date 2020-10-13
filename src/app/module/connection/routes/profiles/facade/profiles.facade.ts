@@ -1,50 +1,50 @@
-import { ConfirmationService } from 'primeng/api';
-import { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
 import { finalize } from 'rxjs/operators';
-import { I_CONNECTION } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import type { ConfirmationService } from 'primeng/api';
+import type { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
+import type { IConnection } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
+import type { Router } from '@angular/router';
 
 @Injectable()
 export class ProfilesFacade {
-  constructor(
+  constructor (
     private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
-    private readonly router: Router,
+    private readonly router: Router
   ) {}
 
-  getConnectionsFromState(): Observable<I_CONNECTION[]> {
+  public getConnectionsFromState (): Observable<IConnection[]> {
     return this.connectionService.entities$;
   }
 
-  getTotalConnections(): Observable<number> {
+  public getTotalConnections (): Observable<number> {
     return this.connectionService.count$;
   }
 
-  deleteConnection(connection: I_CONNECTION): void {
+  public deleteConnection (connection: IConnection): void {
     this.confirmationService.confirm({
-      key: 'connectionDelete',
-      message: 'Are you sure you want to delete this connection?',
       accept: () => {
-        this.connectionService
-          .deleteConnection(connection)
-          .pipe(finalize(() => this.confirmationService.close()))
-          .subscribe();
+        this.connectionService.
+          deleteConnection(connection).
+          pipe(finalize(() => this.confirmationService.close())).
+          subscribe();
       },
+      key: 'connectionDelete',
+      message: 'Are you sure you want to delete this connection?'
     });
   }
 
-  navigate(pageToNavigate: string[]): void {
-    this.router.navigate(pageToNavigate);
+  public navigate (route: string[]): void {
+    this.router.navigate(route);
   }
 
-  isWeb(): Observable<boolean> {
+  public isWeb (): Observable<boolean> {
     return this.responsiveLayoutService.isWeb();
   }
 
-  isTablet(): Observable<boolean> {
+  public isTablet (): Observable<boolean> {
     return this.responsiveLayoutService.isTablet();
   }
 }

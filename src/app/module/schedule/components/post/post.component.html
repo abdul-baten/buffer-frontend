@@ -1,9 +1,9 @@
-<div [attr.class]="'b-bg-white p-p-2 p-shadow-2 b-post-br b-post-br-t-' + calendarData.event.extendedProps.postType"
-  [ngClass]="{ 'b-op-5': !upcomingPost }">
+<div [attr.class]="'b-bg-white p-p-2 p-shadow-2 b-post-br b-post-br-t-' + calendarData.event.extendedProps.post_type"
+  [ngClass]="{ 'b-op-5': !upcoming_post }">
   <div class="p-d-flex p-jc-between p-ai-center">
     <div [ngClass]="{
-      'b-text-primary': upcomingPost,
-      'b-text-danger': !upcomingPost
+      'b-text-primary': upcoming_post,
+      'b-text-danger': !upcoming_post
     }" class="p-my-2">
       <small class="p-mr-2">
         <i class="pi pi-clock b-va-m"></i> {{ calendarData.event.start | date: 'shortTime' }}
@@ -14,25 +14,25 @@
   </div>
 
   <div class="p-my-2">
-    <div [ngSwitch]="calendarData.event.extendedProps.postType">
-      <div *ngSwitchCase="postType.IMAGE">
+    <div [ngSwitch]="calendarData.event.extendedProps.post_type">
+      <div *ngSwitchCase="post_type.IMAGE">
         <div class="p-d-flex p-jc-between p-ai-center">
-          <img *ngFor="let image of calendarData.event.extendedProps.postMedia; trackBy:trackBy;" [defaultImage]="image"
-            [lazyLoad]="image" class="b-w-full" />
+          <img *ngFor="let image of calendarData.event.extendedProps.post_media; trackBy:trackBy;"
+            [defaultImage]="image" [lazyLoad]="image" class="b-w-full" />
         </div>
       </div>
-      <div *ngSwitchCase="postType.VIDEO">
-        <video #media id="postVideo" preload="auto" [src]="calendarData.event.extendedProps.postMedia[0]"
+      <div *ngSwitchCase="post_type.VIDEO">
+        <video #media id="postVideo" preload="auto" [src]="calendarData.event.extendedProps.post_media[0]"
           type="video/mp4" class="b-w-full">
         </video>
       </div>
       <div *ngSwitchDefault>
         <p>
-          {{ calendarData.event.extendedProps.postCaption }}
+          {{ calendarData.event.extendedProps.post_message }}
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<p-menu #menu [model]="menuItems" [popup]="true" appendTo="body" styleClass="p-px-2"></p-menu>
+<p-menu #menu [model]="menu_items" [popup]="true" appendTo="body" styleClass="p-px-2"></p-menu>

@@ -1,21 +1,21 @@
-import { HttpParams } from '@angular/common/http';
-import { HttpService } from 'src/app/core/service';
-import { I_CONNECTION, I_FB_PAGE_RESPONSE } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import type { HttpService } from 'src/app/core/service';
+import type { IConnection } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class TwitterService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor (private readonly httpService: HttpService) {}
 
-  fetchTwitterProfiles(oauthToken: string, oauthVerifier: string): Observable<I_FB_PAGE_RESPONSE> {
-    return this.httpService.get<any>('twitter/accessToken', ({
-      oauth_token: oauthToken,
-      oauth_verifier: oauthVerifier,
-    } as unknown) as HttpParams);
+  getTwitterProfile (oauth_token: string, oauth_verifier: string): Observable<IConnection> {
+    return this.httpService.get<IConnection>('twitter/profiles', {
+      oauth_token,
+      oauth_verifier
+    });
   }
 
-  addTwitterProfile(profileInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('connection/add', profileInfo);
+  addTwitterProfile (profile_info: IConnection): Observable<IConnection> {
+    return this.httpService.post<IConnection>('connection/add', profile_info);
   }
 }

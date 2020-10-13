@@ -1,30 +1,45 @@
-import { E_HTTP_RESPONSE } from '../enum';
+import { EHttpResponse } from '../enum';
 import { error, info, setLevel } from 'loglevel';
 import { finalize, tap } from 'rxjs/operators';
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { Observable } from 'rxjs';
 
 setLevel('INFO');
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoggerInterceptor implements HttpInterceptor {
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const reqStarted = Date.now();
-    let resStatus: string;
+  intercept (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const request_start = Date.now();
+    let response_status: string;
 
     return next.handle(request).pipe(
       tap(
-        (event: HttpEvent<any>) => (resStatus = event instanceof HttpResponse ? E_HTTP_RESPONSE.SUCCEEDED : ''),
-        (_: HttpErrorResponse) => (resStatus = E_HTTP_RESPONSE.FAILED),
+        (event: HttpEvent<any>) => {
+          response_status = event instanceof HttpResponse ? EHttpResponse.SUCCEEDED : '';
+        },
+        () => {
+          response_status = EHttpResponse.FAILED;
+        }
       ),
       finalize(() => {
-        const elapsedTime = Date.now() - reqStarted;
-        const message = `[${resStatus}] => ${request.method} "${request.urlWithParams}" in ${elapsedTime} ms`;
-        resStatus === E_HTTP_RESPONSE.SUCCEEDED ? info(message) : error(message);
-      }),
+        const request_time = Date.now() - request_start;
+        const message = `[${response_status}] => ${request.method} "${request.urlWithParams}" in ${request_time} ms`;
+
+        if (response_status === EHttpResponse.SUCCEEDED) {
+          info(message);
+        } else {
+          error(message);
+        }
+      })
     );
   }
 }

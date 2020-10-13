@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { I_CONNECTION, I_POST } from 'src/app/core/model';
+import { IConnection, IPost } from 'src/app/core/model';
 import { Observable, of, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--connections',
+  selector: 'buffer-connections',
   styleUrls: ['./connections.component.css'],
   templateUrl: './connections.component.html',
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
-  @Output() connectionChange = new EventEmitter<Partial<I_CONNECTION>[]>();
+  @Output() connectionChange = new EventEmitter<Partial<IConnection>[]>();
   activeConnectionID$: Observable<string> = of('');
-  connections$: Observable<I_CONNECTION[]>;
+  connections$: Observable<IConnection[]>;
   private subscription$ = new Subscription();
-  selectedConnections: Partial<I_CONNECTION>[] = [];
+  selectedConnections: Partial<IConnection>[] = [];
 
   constructor(private readonly postCreateModalFacade: PostModalFacade) {
     this.connections$ = this.postCreateModalFacade.getConnections();
@@ -24,9 +24,9 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
     this.activeConnectionID$ = this.postCreateModalFacade.getActiveConnectionID();
 
     this.subscription$.add(
-      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: IPost) => {
         const postConnection = postInfo.postConnection;
-        if (!!postConnection.connectionID) {
+        if (!!postConnection.connection_id) {
           this.selectedConnections.push(postConnection);
           this.connectionChange.emit(this.selectedConnections);
         }
@@ -34,18 +34,18 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
     );
   }
 
-  generateTooltip(connection: I_CONNECTION): string {
-    const connectionType = connection.connectionType.split('_').join(' ').trim();
+  generateTooltip(connection: IConnection): string {
+    const connection_type = connection.connection_type.split('_').join(' ').trim();
 
-    return `${connection.connectionName} | ${connectionType}`;
+    return `${connection.connection_name} | ${connection_type}`;
   }
 
-  connectionSelected(connection: I_CONNECTION) {
-    const findConnection = this.selectedConnections.find((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
+  connectionSelected(connection: IConnection) {
+    const findConnection = this.selectedConnections.find((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
+    const findConnectionIndex = this.selectedConnections.findIndex((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
     if (!findConnection) {
-      const { connectionType, id } = connection;
-      this.selectedConnections.push({ connectionType, id });
+      const { connection_type, id } = connection;
+      this.selectedConnections.push({ connection_type, id });
     } else {
       this.selectedConnections.splice(findConnectionIndex, 1);
     }
@@ -53,13 +53,13 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
     this.connectionChange.emit(this.selectedConnections);
   }
 
-  isConnectionSelected(connection: I_CONNECTION): boolean {
-    const findConnection = this.selectedConnections.find((entry: Partial<I_CONNECTION>) => (entry.id as string) === connection.id);
+  isConnectionSelected(connection: IConnection): boolean {
+    const findConnection = this.selectedConnections.find((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
     return !!findConnection;
   }
 
-  trackBy(_index: number, connection: I_CONNECTION): number {
-    return +connection.connectionID;
+  trackBy(_index: number, connection: IConnection): number {
+    return +connection.connection_id;
   }
 
   @HostListener('window:beforeunload')

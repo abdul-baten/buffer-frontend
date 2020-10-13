@@ -1,6 +1,6 @@
-export enum E_CONNECTION_TYPE {
+export enum EConnectionType {
   FACEBOOK_GROUP = 'Facebook_Group',
-  FACEBOOK_PAGE = 'Facebook_Page',
+  FACEBOOK = 'Facebook_Page',
   INSTAGRAM_BUSINESS = 'Instagram_Business',
   INSTAGRAM_PERSONAL = 'Instagram_Personal',
   LINKEDIN_PAGE = 'Linkedin_Page',
@@ -9,7 +9,7 @@ export enum E_CONNECTION_TYPE {
   TWITTER = 'Twitter',
 }
 
-export enum E_CONNECTION_STATUS {
+export enum EConnectionStatus {
   ENABLED = 'enabled',
   DISABLED = 'disabled',
 }

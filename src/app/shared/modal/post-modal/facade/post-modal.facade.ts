@@ -1,91 +1,81 @@
 import formatISO from 'date-fns/formatISO';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
-import { AppState } from 'src/app/reducers';
-import { ConnectionService } from 'src/app/core/service/connection.service';
-import { E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
 import { forkJoin, Observable } from 'rxjs';
-import { I_CONNECTION, I_MEDIA, I_POST, I_POST_TYPE_MAP, I_USER } from 'src/app/core/model';
+import {
+  IConnection,
+  IPost,
+  IUser,
+  PostTypeMap
+} from 'src/app/core/model';
 import { Injectable, Injector } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { NotificationService } from 'src/app/core/service/notification.service';
-import { PostService } from 'src/app/core/service/post.service';
-import { selectNewPostActiveConnectionID, selectNewPostDate, selectNewPostMedias, selectNewPostType, selectPostInfo } from 'src/app/selectors';
-import { setNewPostData, setPostType } from 'src/app/actions';
-import { Store } from '@ngrx/store';
-import { UserService } from 'src/app/core/service/user.service';
+
+import type { ConnectionService } from 'src/app/core/service/connection.service';
+import type { EPostStatus, EPostType } from 'src/app/core/enum';
+import type { NotificationService } from 'src/app/core/service/notification.service';
+import type { PostService } from 'src/app/core/service/post.service';
+import type { UserService } from 'src/app/core/service/user.service';
 
 @Injectable()
 export class PostModalFacade {
-  constructor(
+  constructor (
     private readonly connectionService: ConnectionService,
     private readonly injector: Injector,
     private readonly notificationService: NotificationService,
     private readonly postService: PostService,
-    private readonly userService: UserService,
-    private store: Store<AppState>,
+    private readonly userService: UserService
   ) {}
 
-  getConnections(): Observable<I_CONNECTION[]> {
+  getConnections (): Observable<IConnection[]> {
     return this.connectionService.entities$;
   }
 
-  setPostType(postType: E_POST_TYPE): void {
-    this.store.dispatch(setPostType({ postType }));
+  setNewPostInfo (post_info: IPost): void {
+    const post = JSON.parse(JSON.stringify(post_info));
+
+    post.post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.postScheduleDateTime), { nearestTo: 15 }));
   }
 
-  getPostType(): Observable<E_POST_TYPE> {
-    return this.store.select(selectNewPostType);
-  }
+  sendPost (post_type: EPostType, post_info: IPost, post_status: EPostStatus, connections: Partial<IConnection>[]): Observable<IPost[]> {
+    const requests: Observable<IPost>[] = [];
 
-  setNewPostData(postInfo: I_POST): void {
-    const postData = JSON.parse(JSON.stringify(postInfo));
+    post_info.postCaption = post_info.postCaption.trim();
+    post_info.post_status = post_status;
+    post_info.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(post_info.postScheduleDateTime), { nearestTo: 15 }));
+    post_info.post_type = post_type;
 
-    postData.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(postData.postScheduleDateTime), { nearestTo: 15 }));
-    this.store.dispatch(setNewPostData({ postData }));
-  }
+    /*
+     * This.store.select(selectNewPostMedias).subscribe((postMedias: IMedia[]) => {
+     *   if (postMedias.length > 0) {
+     *     post_info.postMedia = postMedias;
+     *   }
+     * });
+     */
+    this.userService.getUserFromState().subscribe(({ id }: IUser) => {
+      post_info.post_user_id = id;
 
-  getPostInfo(): Observable<I_POST> {
-    return this.store.select(selectPostInfo);
-  }
-
-  getPostDate(): Observable<string> {
-    return this.store.select(selectNewPostDate);
-  }
-
-  sendPost(postType: E_POST_TYPE, postData: I_POST, postStatus: E_POST_STATUS, connections: Partial<I_CONNECTION>[]): Observable<I_POST[]> {
-    const requests: Observable<I_POST>[] = [];
-    postData.postCaption = postData.postCaption.trim();
-    postData.postStatus = postStatus;
-    postData.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(postData.postScheduleDateTime), { nearestTo: 15 }));
-    postData.postType = postType;
-    this.store.select(selectNewPostMedias).subscribe((postMedias: I_MEDIA[]) => {
-      if (postMedias.length > 0) {
-        postData.postMedia = postMedias;
-      }
+      return post_info;
     });
-    this.userService.getUserFromState().subscribe((user: I_USER) => (postData.userID = user.id));
 
-    connections.forEach((connection: Partial<I_CONNECTION>) => {
-      postData.postConnection = connection;
-      const clonedPostData = JSON.parse(JSON.stringify(postData));
-      requests.push(this.postService.addPost(clonedPostData));
+    connections.forEach((connection: Partial<IConnection>) => {
+      post_info.post_connection = connection;
+      const clonedpost_info = JSON.parse(JSON.stringify(post_info));
+
+      requests.push(this.postService.addPost(clonedpost_info));
     });
 
     return forkJoin([...requests]).pipe(
-      map(([...responses]: I_POST[]) => responses as I_POST[]),
+      map(([...responses]: IPost[]) => responses as IPost[]),
       tap(() => {
-        this.notificationService.showSuccess(`Your post has been ${postData.postStatus} successfully.`);
-      }),
+        this.notificationService.showSuccess(`Your post has been ${post_info.postStatus} successfully.`);
+      })
     );
   }
 
-  getActiveConnectionID(): Observable<string> {
-    return this.store.select(selectNewPostActiveConnectionID);
-  }
+  generateDropZoneConfig (type: EPostType): Record<string, any> {
+    const injectable_service = PostTypeMap.get(type);
+    const service = this.injector.get(injectable_service);
 
-  generateDropZoneConfig(type: E_POST_TYPE): Record<string, any> {
-    const injectableService = I_POST_TYPE_MAP.get(type);
-    const service = this.injector.get(injectableService);
     return service.generateConfig();
   }
 }

@@ -1,33 +1,29 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { I_USER } from '../core/model';
-import { setUserInfo } from '../actions';
+import { set_user_info } from '../actions';
+import type { IUser } from '../core/model';
 
-const userFeatureKey = 'user';
-
-const userInitialState: I_USER = {
-  createdAt: new Date(),
-  email: '',
-  fullName: '',
+export const user_feature_key = 'user';
+export const user_initial_state: IUser = {
   id: '',
-  password: '',
-  subscription: {},
-  updatedAt: new Date(),
-  userSuspended: false,
+  user_created_at: new Date(),
+  user_email: '',
+  user_full_name: '',
+  user_is_suspended: false,
+  user_password: '',
+  user_subscription_plan: {},
+  user_updated_at: new Date()
 };
 
 const reducer = createReducer(
-  userInitialState,
-  on(setUserInfo, (state: I_USER, action: { user: Partial<I_USER> }) => {
+  user_initial_state,
+  on(set_user_info, (state: IUser, action: { user: Partial<IUser> }) => {
     const { user } = action;
+
     return {
       ...state,
-      ...user,
+      ...user
     };
-  }),
+  })
 );
 
-function userReducer(state: I_USER | undefined, action: Action) {
-  return reducer(state, action);
-}
-
-export { userFeatureKey, userInitialState, userReducer };
+export const user_reducer = (state: IUser, action: Action): IUser => reducer(state, action);

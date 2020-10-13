@@ -1,58 +1,52 @@
-import { AppState } from 'src/app/reducers';
 import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_USER } from 'src/app/core/model';
 import { noop } from 'rxjs';
-import { setUserInfo } from 'src/app/actions';
-import { SignupFacade } from '../../facade/signup.facade';
-import { Store } from '@ngrx/store';
 import { tap } from 'rxjs/operators';
 
+import type { SignupFacade } from '../../facade/signup.facade';
+
 @Component({
-  selector: 'buffer--signup-form',
+  selector: 'buffer-signup-form',
   styleUrls: ['./signup-form.component.css'],
-  templateUrl: './signup-form.component.html',
+  templateUrl: './signup-form.component.html'
 })
 export class SignupFormComponent {
-  formClicked = false;
-  signupForm: FormGroup;
+  form_clicked = false;
+  form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private signupFacade: SignupFacade, private store: Store<AppState>) {
-    this.signupForm = this.buildSignupForm();
+  constructor (private formBuilder: FormBuilder, private signupFacade: SignupFacade) {
+    this.form = this.buildSignupForm();
   }
 
-  private buildSignupForm(): FormGroup {
+  private buildSignupForm (): FormGroup {
     return this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), CommonValidator.alphaNumeric]],
-      email: ['', [Validators.required, CommonValidator.emailAddress]],
-      password: [
+      user_email: ['', [Validators.required, CommonValidator.emailAddress]],
+      user_full_name: ['', [Validators.required, Validators.minLength(parseInt('3', 10)), Validators.maxLength(parseInt('50', 10)), CommonValidator.alphaNumeric]],
+      user_password: [
         '',
         [
           Validators.required,
-          Validators.minLength(8),
+          Validators.minLength(parseInt('8', 10)),
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
-          PasswordValidator.allowedPasswordSpecialChars,
-        ],
-      ],
+          PasswordValidator.allowedPasswordSpecialChars
+        ]
+      ]
     });
   }
 
-  signUp(): void {
-    if (this.signupForm.valid) {
-      this.formClicked = true;
-      this.signupFacade
-        .signupUser(this.signupForm.value)
-        .pipe(
-          tap((user: Partial<I_USER>) => {
-            this.store.dispatch(setUserInfo({ user }));
-            this.signupFacade.navigate('/dashboard');
-            this.signupForm.reset();
-          }),
-        )
-        .subscribe(noop);
+  public signUp (): void {
+    if (this.form.valid) {
+      this.form_clicked = true;
+      this.signupFacade.
+        signupUser(this.form.value).
+        pipe(tap(() => {
+          this.signupFacade.navigate('/dashboard');
+          this.form.reset();
+        })).
+        subscribe(noop);
     }
   }
 }

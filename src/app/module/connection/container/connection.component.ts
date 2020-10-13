@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'buffer--connection',
-  templateUrl: './connection.component.html',
+  selector: 'buffer-connection',
   styleUrls: ['./connection.component.css'],
+  templateUrl: './connection.component.html'
 })
 export class ConnectionComponent {}

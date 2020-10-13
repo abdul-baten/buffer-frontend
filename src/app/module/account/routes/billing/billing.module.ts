@@ -5,6 +5,6 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [BillingComponent],
-  imports: [CommonModule, BillingRoutingModule],
+  imports: [CommonModule, BillingRoutingModule]
 })
 export class BillingModule {}

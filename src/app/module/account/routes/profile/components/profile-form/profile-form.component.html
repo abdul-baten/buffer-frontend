@@ -1,5 +1,5 @@
 <div class="p-px-6 p-pt-5 p-pb-2 b-bg-white b-br-sm">
-  <form novalidate [formGroup]="profileSetupForm">
+  <form novalidate [formGroup]="form">
     <div class="p-fluid p-formgrid p-grid p-p-2">
       <div class="p-field p-col-12">
         <label for="profileFirstName">First name<span class="b-input-label-required">*</span></label>
@@ -31,7 +31,7 @@
       </div>
       <div class="p-field p-col-12">
         <button pButton type="button" label="Save changes" class="b-w-full p-button-lg"
-          [disabled]="profileSetupForm.invalid"></button>
+          [disabled]="form.invalid"></button>
       </div>
     </div>
   </form>

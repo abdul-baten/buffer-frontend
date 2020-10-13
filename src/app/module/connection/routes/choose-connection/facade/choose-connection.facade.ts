@@ -1,18 +1,19 @@
 import { environment } from 'src/environments/environment';
-import { GlobalService } from 'src/app/core/service';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import type { GlobalService } from 'src/app/core/service';
+import type { Router } from '@angular/router';
 
-const API_URL = environment.apiURL;
+const { api_base_uri } = environment;
+
 @Injectable()
 export class ChooseConnectionFacade {
-  constructor(private readonly globalService: GlobalService, private readonly router: Router) {}
+  constructor (private readonly globalService: GlobalService, private readonly router: Router) {}
 
-  navigateToRoute(routeToNavigate: string): void {
-    this.router.navigate([routeToNavigate]);
+  public navigateToRoute (route: string): void {
+    this.router.navigate([route]);
   }
 
-  authConnection(authType: string, connectionType: string): void {
-    this.globalService.getLocation().replace(API_URL + `${authType}/authorize?connectionType=${connectionType}`);
+  public authConnection (auth_type: string, connection_type: string): void {
+    this.globalService.getLocation().replace(`${api_base_uri}${auth_type}/authorize?connection_type=${connection_type}`);
   }
 }

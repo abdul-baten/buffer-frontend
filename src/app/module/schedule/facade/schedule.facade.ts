@@ -1,150 +1,128 @@
 import format from 'date-fns/format';
-import { Calendar } from '@fullcalendar/core';
-import { CalViewState } from '../model/calendar.model';
-import { ConfirmationService } from 'primeng/api';
-import { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
-import { EventDropArg } from '@fullcalendar/interaction';
-import { I_CONNECTION, I_POST } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { removeNewPostData, setPostType } from 'src/app/actions';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import type { Calendar } from '@fullcalendar/core';
+import type { ConfirmationService } from 'primeng/api';
+import type { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
+import type { EventDropArg } from '@fullcalendar/interaction';
+import type { IConnection, IPost } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class ScheduleFacade {
-  private calendarApi!: Calendar;
-  constructor(
+  private calendar_api!: Calendar;
+
+  constructor (
     private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,
     private readonly globalService: GlobalService,
     private readonly modalService: ModalService,
     private readonly postService: PostService,
     private readonly responsiveLayoutService: ResponsiveLayoutService,
-    private readonly snackbarService: NotificationService,
-    private store: Store<CalViewState>,
+    private readonly snackbarService: NotificationService
   ) {}
 
-  getFirstConnection(): Observable<{ id: string; type: string }> {
-    return this.connectionService.getFirstConnection().pipe(
-      map((connection: I_CONNECTION) => {
-        const { id, connectionType } = connection;
-        const type = connectionType.split('_')[0].toLowerCase();
+  public getFirstConnection (): Observable<{ id: string; type: string }> {
+    return this.connectionService.getFirstConnection().pipe(map((connection: IConnection) => {
+      const { id, connection_type } = connection;
+      const type = connection_type.split('_')[0].toLowerCase();
 
-        return { id, type };
-      }),
-    );
+      return { id,
+        type };
+    }));
   }
 
-  setCalendarApi(calendar: any): void {
-    this.calendarApi = calendar;
+  public setCalendarApi (calendar: Calendar): void {
+    this.calendar_api = calendar;
   }
 
-  setCalendarView(view: string): void {
-    this.calendarApi.changeView(view);
+  public setCalendarView (view: string): void {
+    this.calendar_api.changeView(view);
   }
 
-  calendarToday() {
-    this.calendarApi.today();
+  public calendarToday (): void {
+    this.calendar_api.today();
   }
 
-  calendarPrev() {
-    this.calendarApi.prev();
+  public calendarPrev (): void {
+    this.calendar_api.prev();
   }
 
-  calendarNext() {
-    this.calendarApi.next();
+  public calendarNext (): void {
+    this.calendar_api.next();
   }
 
-  calendarDate(date: Date): void {
-    this.calendarApi.gotoDate(date);
+  public calendarDate (date: Date): void {
+    this.calendar_api.gotoDate(date);
   }
 
-  changeCalendarViewOption(viewOption: string) {
-    this.calendarApi.changeView(viewOption);
+  public changeCalendarViewOption (view_option: string): void {
+    this.calendar_api.changeView(view_option);
   }
 
-  handlePostCreateDialogOpen(postScheduleDateTime: Date): void {
-    const dialogRef = this.modalService.openPostModal('Create Post', {
-      postScheduleDateTime: format(postScheduleDateTime, `yyyy-MM-dd'T'HH:mm:ssxxx`),
-    });
-
-    dialogRef.onClose.subscribe(() => {
-      this.store.dispatch(removeNewPostData());
+  public handlePostCreateDialogOpen (post_date_time: Date): void {
+    this.modalService.openPostModal({
+      post_date_time: format(post_date_time, `yyyy-MM-dd'T'HH:mm:ssxxx`)
     });
   }
 
-  revertPost(postInfo: EventDropArg): void {
-    postInfo.revert();
+  public revertPost (post_info: EventDropArg): void {
+    post_info.revert();
     this.openSnackbar('Post can not be rescheduled to past date.');
   }
 
-  handlePostDrag(postInfo: EventDropArg): void {
+  public handlePostDrag (post_info: EventDropArg): void {
     this.confirmationService.confirm({
+      accept: () => {
+        console.warn('asasasas accepted', post_info);
+      },
       key: 'postReschedule',
       message: 'Are you sure you want to reschedule this post?',
-      accept: () => {
-        console.warn('asasasas accepted', postInfo);
-      },
       reject: () => {
-        this.revertPost(postInfo);
-      },
+        this.revertPost(post_info);
+      }
     });
   }
 
-  openSnackbar(message: string): void {
+  public openSnackbar (message: string): void {
     this.snackbarService.showSuccess(message);
   }
 
-  viewPost(postInfo: I_POST): void {
-    this.store.dispatch(setPostType({ postType: postInfo.postType }));
-    setTimeout(() => {
-      const dialogRef = this.modalService.openViewModal('Edit Post', postInfo);
-
-      dialogRef.onDestroy.subscribe(() => {
-        this.store.dispatch(removeNewPostData());
-      });
-    }, 200);
+  public viewPost (post_info: IPost): void {
+    this.modalService.openViewModal('Edit Post', post_info);
   }
 
-  deletePost(postId: string): void {
+  public deletePost (post_id: string): void {
     this.confirmationService.confirm({
-      key: 'postDelete',
-      message: 'Are you sure you want to delete this post?',
       accept: () => {
-        console.warn('asasasas accepted', postId);
+        console.warn('asasasas accepted', post_id);
       },
+      key: 'postDelete',
+      message: 'Are you sure you want to delete this post?'
     });
   }
 
-  editPost(postInfo: I_POST): void {
-    this.store.dispatch(setPostType({ postType: postInfo.postType }));
-    setTimeout(() => {
-      const dialogRef = this.modalService.openPostModal('Edit Post', postInfo);
-
-      dialogRef.onDestroy.subscribe(() => {
-        this.store.dispatch(removeNewPostData());
-      });
-    }, 200);
+  public editPost (post_info: IPost): void {
+    this.modalService.openPostModal(post_info);
   }
 
-  isWeb(): Observable<boolean> {
+  public isWeb (): Observable<boolean> {
     return this.responsiveLayoutService.isWeb();
   }
 
-  isHandset(): Observable<boolean> {
+  public isHandset (): Observable<boolean> {
     return this.responsiveLayoutService.isHandset();
   }
 
-  isTablet(): Observable<boolean> {
+  public isTablet (): Observable<boolean> {
     return this.responsiveLayoutService.isTablet();
   }
 
-  getPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
-    return this.postService.filterPostsByConnectionID(connectionID);
+  public getPostsByConnectionID (connection_id: string): Observable<IPost[]> {
+    return this.postService.filterPostsByConnectionID(connection_id);
   }
 
-  getQuerySelector(className: string): HTMLElement {
-    return this.globalService.getQuerySelector(className);
+  public getQuerySelector (class_name: string): HTMLElement {
+    return this.globalService.getQuerySelector(class_name);
   }
 }

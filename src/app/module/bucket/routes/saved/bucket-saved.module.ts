@@ -26,8 +26,8 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
     NoDataFoundModule,
     SplitButtonModule,
     TableModule,
-    ToolbarModule,
+    ToolbarModule
   ],
-  providers: [BucketSavedFacade],
+  providers: [BucketSavedFacade]
 })
 export class BucketSavedModule {}

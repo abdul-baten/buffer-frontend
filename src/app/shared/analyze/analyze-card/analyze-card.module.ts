@@ -7,6 +7,6 @@ import { TooltipModule } from 'primeng/tooltip';
 @NgModule({
   declarations: [AnalyzeCardComponent],
   exports: [AnalyzeCardComponent],
-  imports: [CommonModule, FieldsetModule, TooltipModule],
+  imports: [CommonModule, FieldsetModule, TooltipModule]
 })
 export class AnalyzeCardModule {}

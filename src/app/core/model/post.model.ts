@@ -1,16 +1,15 @@
-import { E_POST_STATUS, E_POST_TYPE } from '../enum';
-import { EventInput } from '@fullcalendar/core';
-import { I_CONNECTION } from './connection.model';
-import { I_MEDIA } from './media.model';
+import type { EPostStatus, EPostType } from '../enum';
+import type { EventInput } from '@fullcalendar/core';
+import type { IConnection } from './connection.model';
+import type { IMedia } from './media.model';
 
-// tslint:disable-next-line
-export interface I_POST extends EventInput {
+export interface IPost extends EventInput {
   id: string;
-  postCaption: string;
-  postConnection: Partial<I_CONNECTION>;
-  postMedia?: I_MEDIA[];
-  postScheduleDateTime: string;
-  postStatus: E_POST_STATUS;
-  postType: E_POST_TYPE;
-  userID: string;
+  post_connection: Partial<IConnection>;
+  post_date_time: string;
+  post_media?: IMedia['id'][];
+  post_message: string;
+  post_status: EPostStatus;
+  post_type: EPostType;
+  post_user_id: string;
 }

@@ -1,25 +1,19 @@
 import { ComponentRef, Injectable } from '@angular/core';
-import { DynamicDialogComponent } from 'primeng/dynamicdialog';
+import type { DynamicDialogComponent } from 'primeng/dynamicdialog';
 import { finalize, switchMap } from 'rxjs/operators';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { ModalService } from '../service/modal.service';
-import { Observable } from 'rxjs';
+import type { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import type { ModalService } from '../service/modal.service';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoaderInterceptor implements HttpInterceptor {
-  constructor(private readonly modalService: ModalService) {}
+  constructor (private readonly modalService: ModalService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return this.modalService.openLoader().pipe(
-      switchMap((ref: ComponentRef<DynamicDialogComponent>) => {
-        return next.handle(req).pipe(
-          finalize(() => {
-            this.modalService.closeLoader(ref);
-          }),
-        );
-      }),
-    );
+  intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return this.modalService.openLoader().pipe(switchMap((ref: ComponentRef<DynamicDialogComponent>) => next.handle(req).pipe(finalize(() => {
+      this.modalService.closeLoader(ref);
+    }))));
   }
 }

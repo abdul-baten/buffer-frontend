@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { ConnectionService } from 'ng-connection-service';
-import { Observable } from 'rxjs';
+import type { ConnectionService } from 'ng-connection-service';
+import type { Observable } from 'rxjs';
 
 @Component({
-  selector: 'buffer--root',
+  selector: 'bufferRoot',
   styleUrls: ['./app.component.css'],
-  templateUrl: './app.component.html',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  isConnected: Observable<boolean>;
+  is_online: Observable<boolean>;
 
-  constructor(private connectionService: ConnectionService) {
-    this.isConnected = this.connectionService.monitor();
+  constructor (private readonly connectionService: ConnectionService) {
+    this.is_online = this.connectionService.monitor();
   }
 }

@@ -1,61 +1,59 @@
-import { E_CONNECTION_TYPE } from '../enum';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { first, map, mergeAll, take, tap } from 'rxjs/operators';
-import { HttpParams } from '@angular/common/http';
-import { HttpService } from './http.service';
-import { I_CONNECTION } from '../model';
+import {
+  first,
+  map,
+  mergeAll,
+  take,
+  tap
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { EConnectionType } from '../enum';
+import type { HttpService } from './http.service';
+import type { IConnection } from '../model';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ConnectionService extends EntityCollectionServiceBase<I_CONNECTION> {
-  constructor(private readonly httpService: HttpService, serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Connection', serviceElementsFactory);
+export class ConnectionService extends EntityCollectionServiceBase<IConnection> {
+  constructor (
+    private readonly httpService: HttpService,
+    public serviceElementsFactory: EntityCollectionServiceElementsFactory
+  ) {
+    super('connection', serviceElementsFactory);
   }
 
-  getConnections(userID: string): Observable<I_CONNECTION[]> {
-    this.setLoading(true);
-    return this.httpService
-      .get<I_CONNECTION[]>('connection/connections', ({ userID } as unknown) as HttpParams)
-      .pipe(
-        tap((connections: I_CONNECTION[]) => {
-          if (!!connections.length) {
-            this.upsertManyInCache(connections);
-          }
-        }),
-      );
+  public getConnections (user_id: string): Observable<IConnection[]> {
+    return this.httpService.
+      get<IConnection[]>('connection/connections', { user_id }).
+      pipe(tap((connections: IConnection[]) => {
+        if (connections.length) {
+          this.upsertManyInCache(connections);
+        }
+      }));
   }
 
-  deleteConnection(connection: I_CONNECTION): Observable<I_CONNECTION> {
+  deleteConnection (connection: IConnection): Observable<IConnection> {
     const { id } = connection;
-    return this.httpService.delete<I_CONNECTION>('connection/delete', id).pipe(
-      tap(() => {
-        this.removeOneFromCache(connection);
-      }),
-    );
+
+    return this.httpService.delete<IConnection>('connection/delete', id).pipe(tap(() => {
+      this.removeOneFromCache(connection);
+    }));
   }
 
-  addConnectionToState(connection: I_CONNECTION): void {
+  addConnectionToState (connection: IConnection): void {
     this.upsertOneInCache(connection);
   }
 
-  connectionsByType(connectionType: E_CONNECTION_TYPE): Observable<I_CONNECTION[]> {
-    return this.entities$.pipe(
-      map((connections: I_CONNECTION[]) => {
-        return connections.filter((connection: I_CONNECTION) => connection.connectionType === connectionType);
-      }),
-    );
+  connectionsByType (connection_type: EConnectionType): Observable<IConnection[]> {
+    return this.entities$.pipe(map((connections: IConnection[]) => connections.filter((connection: IConnection) => connection.connection_type === connection_type)));
   }
 
-  getFirstConnection(): Observable<I_CONNECTION> {
+  getFirstConnection (): Observable<IConnection> {
     return this.entities$.pipe(mergeAll(), take(1), first());
   }
 
-  getConnectionByID(id: string): Observable<I_CONNECTION> {
-    return this.entities$.pipe(
-      map((connections: I_CONNECTION[]) => connections.find((connection: I_CONNECTION) => connection.id === id) as I_CONNECTION),
-    );
+  getConnectionByID (id: string): Observable<IConnection> {
+    return this.entities$.pipe(map((connections: IConnection[]) => connections.find((connection: IConnection) => connection.id === id) as IConnection));
   }
 }

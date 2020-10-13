@@ -1,6 +1,6 @@
 <div class="p-d-flex p-jc-start p-flex-column">
   <div class="b-w-full b-h-toolbar b-br-b">
-    <buffer--toolbar headerTitle="Facebook Group"></buffer--toolbar>
+    <buffer-toolbar header_title="Facebook Group"></buffer-toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
@@ -8,20 +8,19 @@
       <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
           <div *ngFor="let connection of connections$ | async; trackBy:trackBy;"
-            class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 buffer--padding-2">
+            class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12 buffer-padding-2">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
-                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                  <img [lazyLoad]="connection.connection_picture" class="b-w-full b-h-full b-br-full"
                     defaultImage="/assets/images/svg/default-media.svg"
                     errorImage="/assets/images/svg/default-media.svg" />
                 </div>
               </p-header>
-              <h6>{{ connection.connectionName }}</h6>
-              <p>{{ connection.connectionCategory }}</p>
-              <button (click)="addFacebookGroup(connection)"
-                class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
-                type="button">
+              <h6>{{ connection.connection_name }}</h6>
+              <p>{{ connection.connection_category }}</p>
+              <button (click)="addGroup(connection)" class="p-button-success p-button-sm p-button-text b-w-full p-mt-4"
+                label="Add to plan" pButton type="button">
               </button>
             </p-fieldset>
           </div>

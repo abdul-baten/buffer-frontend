@@ -1,11 +1,9 @@
-// tslint:disable-next-line
-interface I_PAGE_PROPERTY {
-  PAGE_ROUTE: string;
-  PAGE_TITLE: string;
-  ROUTES?: { [key: string]: I_PAGE_PROPERTY };
+
+interface IPage {
+  ROUTE: string;
+  TITLE: string;
 }
 
-// tslint:disable-next-line
-export interface I_PAGE {
-  [key: string]: I_PAGE_PROPERTY;
+export interface I {
+  [key: string]: IPage;
 }

@@ -1,6 +1,6 @@
 <div class="b-calendar-toolbar">
   <div class="p-d-flex p-jc-between p-ai-center">
-    <button (click)="onTodayBtnClicked()" [pTooltip]="currentDate" tooltipPosition="bottom" pButton label="Today"
+    <button (click)="onTodayBtnClicked()" [pTooltip]="current_date" tooltipPosition="bottom" pButton label="Today"
       class="p-button-text p-button-plain p-button-sm"></button>
 
     <div class="p-mx-2 p-d-flex p-jc-between p-ai-center">
@@ -14,8 +14,8 @@
       </div>
     </div>
 
-    <ng-container *ngIf="isWeb$ | async">
-      <p-selectButton [options]="calendarViewSelectionItems" [(ngModel)]="selectedCalendarView"
+    <ng-container *ngIf="is_platform_web$ | async">
+      <p-selectButton [options]="calendar_view_selection_items" [(ngModel)]="selected_calendar_view"
         (onChange)="onCalendarViewChanged($event)" styleClass="p-button-sm">
       </p-selectButton>
     </ng-container>

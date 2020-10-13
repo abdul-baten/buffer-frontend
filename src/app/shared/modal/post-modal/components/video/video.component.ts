@@ -1,9 +1,9 @@
 import { AppState } from 'src/app/reducers';
 import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import { defaultIfEmpty, finalize, map } from 'rxjs/operators';
-import { E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
+import { EPostStatus, EPostType } from 'src/app/core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_CONNECTION, I_MEDIA, I_POST } from 'src/app/core/model';
+import { IConnection, I_MEDIA, IPost } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
@@ -11,18 +11,18 @@ import { selectNewPostMedias } from 'src/app/selectors';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'buffer--video',
+  selector: 'buffer-video',
   styleUrls: ['./video.component.css'],
   templateUrl: './video.component.html',
 })
 export class VideoComponent implements OnInit, OnDestroy {
   @Output() tabSelected = new EventEmitter<number>();
   currentDateTime: Date = new Date();
-  menuItems: MenuItem[] = [];
-  postStatus = E_POST_STATUS;
-  postType = E_POST_TYPE;
+  menu_items: MenuItem[] = [];
+  postStatus = EPostStatus;
+  postType = EPostType;
   private subscription$ = new Subscription();
-  selectedConnections: Partial<I_CONNECTION>[] = [];
+  selectedConnections: Partial<IConnection>[] = [];
   videoForm: FormGroup;
 
   constructor(private readonly facade: PostModalFacade, private readonly formBuilder: FormBuilder, private readonly store: Store<AppState>) {
@@ -30,7 +30,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.menuItems = [
+    this.menu_items = [
       {
         label: 'Schedule',
         icon: 'pi pi-calendar-plus',
@@ -49,7 +49,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     ];
 
     this.subscription$.add(
-      this.facade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.facade.getPostInfo().subscribe((postInfo: IPost) => {
         const { postCaption, postScheduleDateTime } = postInfo;
         if (!!postCaption) {
           this.videoForm.patchValue({ postCaption });
@@ -66,7 +66,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     });
   }
 
-  changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
+  changeConnectionSelection(connections: Partial<IConnection>[]): void {
     this.selectedConnections = connections;
   }
 
@@ -82,12 +82,12 @@ export class VideoComponent implements OnInit, OnDestroy {
     );
   }
 
-  savePost(postStatus: E_POST_STATUS): void {
+  savePost(postStatus: EPostStatus): void {
     if (this.videoForm.valid) {
       const { value } = this.videoForm;
       this.subscription$.add(
         this.facade
-          .sendPost(E_POST_TYPE.VIDEO, value, postStatus, this.selectedConnections)
+          .sendPost(EPostType.VIDEO, value, postStatus, this.selectedConnections)
           .pipe(finalize(() => this.videoForm.controls.postCaption.reset()))
           .subscribe(),
       );

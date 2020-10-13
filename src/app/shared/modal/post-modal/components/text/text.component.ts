@@ -1,14 +1,14 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { E_POST_STATUS, E_POST_TYPE } from 'src/app/core/enum';
+import { EPostStatus, EPostType } from 'src/app/core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_CONNECTION, I_POST } from 'src/app/core/model';
+import { IConnection, IPost } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api/menuitem';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'buffer--text',
+  selector: 'buffer-text',
   styleUrls: ['./text.component.css'],
   templateUrl: './text.component.html',
 })
@@ -16,11 +16,11 @@ export class TextComponent implements OnInit, OnDestroy {
   @Output() tabSelected = new EventEmitter<number>();
   @Input() dialogRef: DynamicDialogRef = new DynamicDialogRef();
   currentDateTime: Date = new Date();
-  menuItems: MenuItem[] = [];
-  postStatus = E_POST_STATUS;
-  postType = E_POST_TYPE;
+  menu_items: MenuItem[] = [];
+  postStatus = EPostStatus;
+  postType = EPostType;
   private subscriptions$ = new Subscription();
-  selectedConnections: Partial<I_CONNECTION>[] = [];
+  selectedConnections: Partial<IConnection>[] = [];
   textForm: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder, private readonly facade: PostModalFacade) {
@@ -28,7 +28,7 @@ export class TextComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.menuItems = [
+    this.menu_items = [
       {
         label: 'Schedule',
         icon: 'pi pi-calendar-plus',
@@ -47,7 +47,7 @@ export class TextComponent implements OnInit, OnDestroy {
     ];
 
     this.subscriptions$.add(
-      this.facade.getPostInfo().subscribe((postInfo: I_POST) => {
+      this.facade.getPostInfo().subscribe((postInfo: IPost) => {
         const { postCaption, postScheduleDateTime } = postInfo;
         if (!!postCaption) {
           this.textForm.patchValue({ postCaption });
@@ -68,7 +68,7 @@ export class TextComponent implements OnInit, OnDestroy {
     this.tabSelected.emit(0);
   }
 
-  changeConnectionSelection(connections: Partial<I_CONNECTION>[]): void {
+  changeConnectionSelection(connections: Partial<IConnection>[]): void {
     this.selectedConnections = connections;
   }
 
@@ -76,11 +76,11 @@ export class TextComponent implements OnInit, OnDestroy {
     return this.textForm.invalid || !!!this.selectedConnections.length;
   }
 
-  savePost(postStatus: E_POST_STATUS): void {
+  savePost(postStatus: EPostStatus): void {
     if (this.textForm.valid) {
       const { value } = this.textForm;
       this.subscriptions$.add(
-        this.facade.sendPost(E_POST_TYPE.TEXT, value, postStatus, this.selectedConnections).subscribe(() => {
+        this.facade.sendPost(EPostType.TEXT, value, postStatus, this.selectedConnections).subscribe(() => {
           this.dialogRef.destroy();
         }),
       );

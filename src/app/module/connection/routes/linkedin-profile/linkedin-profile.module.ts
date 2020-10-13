@@ -12,6 +12,6 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
 @NgModule({
   declarations: [LinkedInProfileComponent],
   imports: [ButtonModule, CommonModule, FieldsetModule, LazyLoadImageModule, LinkedInProfileRoutingModule, ToolbarModule],
-  providers: [LinkedInProfileFacade, LinkedInProfileService],
+  providers: [LinkedInProfileFacade, LinkedInProfileService]
 })
 export class LinkedInProfileModule {}

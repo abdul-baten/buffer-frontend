@@ -1,15 +1,16 @@
-import { AppState } from 'src/app/reducers';
-import { I_MEDIA, I_POST_TYPE_GENERATOR } from '../model';
 import { Injectable } from '@angular/core';
-import { MediaService } from './media.service';
-import { NotificationService } from './notification.service';
-import { removeNewPostMedia, setNewPostMedia } from 'src/app/actions';
-import { Store } from '@ngrx/store';
+import { remove_post_media, set_post_media } from 'src/app/actions';
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { IAppState } from 'src/app/reducers';
+import type { IMedia, IPostTypeGenerator } from '../model';
+import type { MediaService } from './media.service';
+import type { NotificationService } from './notification.service';
+import type { Store } from '@ngrx/store';
 
 @Injectable()
-export class PostTypeImageService implements I_POST_TYPE_GENERATOR {
-  constructor(public readonly mediaService: MediaService, public readonly notificationService: NotificationService, public store: Store<AppState>) {}
-  generateConfig(): Record<string, any> {
+export class PostTypeImageService implements IPostTypeGenerator {
+  constructor (public readonly mediaService: MediaService, public readonly notificationService: NotificationService, public store: Store<IAppState>) {}
+  generateConfig (): Record<string, any> {
     const config = {
       acceptedFileTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/tiff'],
       allowFileEncode: true,
@@ -37,45 +38,43 @@ export class PostTypeImageService implements I_POST_TYPE_GENERATOR {
       maxFiles: 4,
       name: 'postMedia',
       required: true,
-      stylePanelLayout: 'compact',
       server: {
-        url: 'https://localhost:3000/api/v1.0.0/media',
-
-        process: {
-          url: '/add',
-          method: 'POST',
-          withCredentials: true,
-          onload: (fileInfo: I_MEDIA) => {
-            const media = JSON.parse((fileInfo as unknown) as string) as I_MEDIA;
-            this.store.dispatch(setNewPostMedia({ media: media.mediaURL as string }));
-            return media.id;
-          },
-          onerror: (error: any) => {
-            this.notificationService.showError(error.errorMsg);
-          },
-        },
-
         load: (uniqueFileId: string, load: any, error: any) => {
           console.warn(uniqueFileId);
 
-          fetch(uniqueFileId)
-            .then((res) => res.blob())
-            .then(load)
-            .catch(error);
+          fetch(uniqueFileId).
+            then((res) => res.blob()).
+            then(load).
+            catch(error);
         },
+        process: {
+          method: 'POST',
+          onerror: (error: any) => {
+            this.notificationService.showError(error.errorMsg);
+          },
+          onload: (fileInfo: IMedia) => {
+            const media = JSON.parse((fileInfo as unknown) as string) as IMedia;
 
-        revert: (uniqueFileId: string) => {
-          this.mediaService.deleteMedia(uniqueFileId).subscribe((media: I_MEDIA) => {
-            this.store.dispatch(removeNewPostMedia({ media: media.mediaURL as string }));
-          });
+            this.store.dispatch(set_post_media({ media: media.media_url as string }));
+
+            return media.id;
+          },
+          url: '/add',
+          withCredentials: true
         },
-
         remove: (media: string, load: any, error: any) => {
-          this.store.dispatch(removeNewPostMedia({ media }));
+          this.store.dispatch(remove_post_media({ media }));
           error('Something went wrong.');
           load();
         },
+        revert: (uniqueFileId: string) => {
+          this.mediaService.deleteMedia(uniqueFileId).subscribe((media: IMedia) => {
+            this.store.dispatch(remove_post_media({ media: media.media_url as string }));
+          });
+        },
+        url: 'https://localhost:3000/api/v1.0.0/media'
       },
+      stylePanelLayout: 'compact'
     };
 
     return config;

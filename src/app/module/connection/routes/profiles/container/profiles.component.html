@@ -1,12 +1,12 @@
 <div class="p-d-flex p-jc-start p-flex-column">
   <div class="b-w-full b-h-toolbar b-br-b">
-    <buffer--toolbar [backButton]="true" [showConnections]="false" headerTitle="Social Profiles"></buffer--toolbar>
+    <buffer-toolbar [back_button]="true" [show_connections]="false" header_title="Social Profiles"></buffer-toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
     <div class="b-h-full b-of-auto">
       <p-table #profilesTable [showCurrentPageReport]="true" [value]="$any(connections$ | async)" dataKey="id"
-        [filterDelay]="0" [globalFilterFields]="['connectionName']" sortMode="multiple">
+        [filterDelay]="0" [globalFilterFields]="['connection_name']" sortMode="multiple">
         <ng-template pTemplate="caption">
           <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
             <div class="p-col-4 p-p-0">
@@ -19,15 +19,15 @@
             </div>
             <div class="p-col-2">
               <button pButton type="button" label="Add Social Profile(s)" class="p-button-sm b-w-full"
-                (click)="navigate([chooseConnectionPage])"></button>
+                (click)="navigate([choose_connection_route])"></button>
             </div>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
-            <th colspan="2" pSortableColumn="connectionName">Profile <p-sortIcon field="connectionName"></p-sortIcon>
+            <th colspan="2" pSortableColumn="connection_name">Profile <p-sortIcon field="connection_name"></p-sortIcon>
             </th>
-            <th pSortableColumn="connectionCategory">Type <p-sortIcon field="connectionCategory"></p-sortIcon>
+            <th pSortableColumn="connection_category">Type <p-sortIcon field="connection_category"></p-sortIcon>
             </th>
             <th pSortableColumn="connectionAdded">Added on <p-sortIcon field="connectionAdded"></p-sortIcon>
             </th>
@@ -39,19 +39,19 @@
             <td colspan="2">
               <div class="b-h-full p-d-flex p-ai-center p-jc-start">
                 <div class="b-ca b-ca-lg p-mr-3">
-                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                  <img [lazyLoad]="connection.connection_picture" class="b-w-full b-h-full b-br-full"
                     defaultImage="/assets/images/svg/default-media.svg"
                     errorImage="/assets/images/svg/default-media.svg" />
-                  <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+                  <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connection_type">
                   </div>
                 </div>
                 <div>
-                  <h6>{{ connection.connectionName }}</h6>
+                  <h6>{{ connection.connection_name }}</h6>
                 </div>
               </div>
             </td>
             <td>
-              <p>{{ getConnectionType(connection.connectionType) }}</p>
+              <p>{{ getConnectionType(connection.connection_type) }}</p>
             </td>
             <td>
               <small>
@@ -84,7 +84,8 @@
                     <h3>No connection found</h3>
                     <p>When you connect, it'll show up here.</p>
                   </div>
-                  <button pButton (click)="navigate([chooseConnectionPage])" label="Connect Social Accounts"></button>
+                  <button pButton (click)="navigate([choose_connection_route])"
+                    label="Connect Social Accounts"></button>
                 </div>
               </div>
             </td>

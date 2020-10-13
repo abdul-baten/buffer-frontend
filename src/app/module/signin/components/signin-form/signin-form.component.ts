@@ -2,53 +2,52 @@ import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SigninFacade } from '../../facade/signin.facade';
+import type { SigninFacade } from '../../facade/signin.facade';
 
 @Component({
-  selector: 'buffer--signin-form',
+  selector: 'buffer-signin-form',
   styleUrls: ['./signin-form.component.css'],
-  templateUrl: './signin-form.component.html',
+  templateUrl: './signin-form.component.html'
 })
 export class SigninFormComponent {
-  formClicked = false;
-  signinForm: FormGroup;
+  form_clicked = false;
+  form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private readonly facade: SigninFacade) {
-    this.signinForm = this.buildSigninForm();
+  constructor (private formBuilder: FormBuilder, private readonly facade: SigninFacade) {
+    this.form = this.buildSigninForm();
   }
 
-  private buildSigninForm(): FormGroup {
+  private buildSigninForm (): FormGroup {
     return this.formBuilder.group({
       email: ['alamin@technoflame.com', [Validators.required, CommonValidator.emailAddress]],
       password: [
         'baten@CAT2019',
         [
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(parseInt('6', 10)),
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
-          PasswordValidator.allowedPasswordSpecialChars,
-        ],
-      ],
+          PasswordValidator.allowedPasswordSpecialChars
+        ]
+      ]
     });
   }
 
-  login(): void {
-    this.formClicked = true;
-    const { email, password } = this.signinForm.value;
-    this.facade
-      .loginUser(email, password)
-      .pipe(
-        finalize(() => {
-          this.signinForm.reset();
-          this.formClicked = false;
-        }),
-      )
-      .subscribe(() => this.facade.navigateToDashboard());
+  public login (): void {
+    this.form_clicked = true;
+    const { email, password } = this.form.value;
+
+    this.facade.
+      loginUser(email, password).
+      pipe(finalize(() => {
+        this.form.reset();
+        this.form_clicked = false;
+      })).
+      subscribe(() => this.facade.navigateToDashboard());
   }
 
-  handleAuthNavigateBtn(authURL: string): void {
-    this.facade.navigate(authURL);
+  public navigate (route: string): void {
+    this.facade.navigate(route);
   }
 }

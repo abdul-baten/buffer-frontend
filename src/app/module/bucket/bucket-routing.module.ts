@@ -1,46 +1,46 @@
 import { BucketComponent } from './container/bucket.component';
 import { DocumentResolver } from 'src/app/resolvers';
 import { NgModule } from '@angular/core';
-import { PAGES } from 'src/app/core/constant';
+import { RouteMeta } from 'src/app/core/constant';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    component: BucketComponent,
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: PAGES.BUCKET_SAVED_PAGE.PAGE_ROUTE,
+        redirectTo: RouteMeta.BUCKET_SAVED.ROUTE
       },
       {
-        data: { title: PAGES.BUCKET_SCHEDULED_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/scheduled/bucket-scheduled.module').then((m) => m.BucketScheduledModule),
-        path: PAGES.BUCKET_SCHEDULED_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
-        runGuardsAndResolvers: 'always',
+        data: { title: RouteMeta.BUCKET_SCHEDULED.TITLE },
+        loadChildren: () => import('./routes/scheduled/bucket-scheduled.module').then((module) => module.BucketScheduledModule),
+        path: RouteMeta.BUCKET_SCHEDULED.ROUTE,
+        resolve: { document_data: DocumentResolver },
+        runGuardsAndResolvers: 'always'
       },
       {
-        data: { title: PAGES.BUCKET_PUBLISHED_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/published/bucket-published.module').then((m) => m.BucketPublishedModule),
-        path: PAGES.BUCKET_PUBLISHED_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
-        runGuardsAndResolvers: 'always',
+        data: { title: RouteMeta.BUCKET_PUBLISHED.TITLE },
+        loadChildren: () => import('./routes/published/bucket-published.module').then((module) => module.BucketPublishedModule),
+        path: RouteMeta.BUCKET_PUBLISHED.ROUTE,
+        resolve: { document_data: DocumentResolver },
+        runGuardsAndResolvers: 'always'
       },
       {
-        data: { title: PAGES.BUCKET_SAVED_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/saved/bucket-saved.module').then((m) => m.BucketSavedModule),
-        path: PAGES.BUCKET_SAVED_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
-        runGuardsAndResolvers: 'always',
-      },
+        data: { title: RouteMeta.BUCKET_SAVED.TITLE },
+        loadChildren: () => import('./routes/saved/bucket-saved.module').then((module) => module.BucketSavedModule),
+        path: RouteMeta.BUCKET_SAVED.ROUTE,
+        resolve: { document_data: DocumentResolver },
+        runGuardsAndResolvers: 'always'
+      }
     ],
-  },
+    component: BucketComponent,
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class BucketRoutingModule {}

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-export const loadApps = createAction('[App] Load Apps');
-export const loadAppsSuccess = createAction('[App] Load Apps Success', props<{ data: any }>());
-export const loadAppsFailure = createAction('[App] Load Apps Failure', props<{ error: any }>());
+export const load_app = createAction('[App] Load Apps');
+export const looad_app_success = createAction('[App] Load Apps Success', props<{ data: any }>());
+export const looad_app_failure = createAction('[App] Load Apps Failure', props<{ error: any }>());

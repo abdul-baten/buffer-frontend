@@ -4,13 +4,13 @@ import { VideoComponent } from './container/video.component';
 
 const routes: Routes = [
   {
-    path: '',
     component: VideoComponent,
-  },
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class VideoRoutingModule {}

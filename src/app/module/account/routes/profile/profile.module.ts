@@ -29,8 +29,8 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
     ProfileRoutingModule,
     ReactiveFormsModule,
     TabViewModule,
-    ToolbarModule,
+    ToolbarModule
   ],
-  providers: [ProfileFacade],
+  providers: [ProfileFacade]
 })
 export class ProfileModule {}

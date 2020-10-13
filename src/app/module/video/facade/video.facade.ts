@@ -1,11 +1,14 @@
-import { DocumentMetaService } from 'src/app/core/service';
 import { Injectable } from '@angular/core';
+import type { DocumentMetaService } from 'src/app/core/service';
 
 @Injectable()
 export class VideoFacade {
-  constructor(private readonly documentMetaService: DocumentMetaService) {}
+  constructor (private readonly documentMetaService: DocumentMetaService) {}
 
-  updateMetaTag(name: string, content: string) {
-    this.documentMetaService.addDocumentMetaTag({ name, content }, true);
+  public updateMetaTag (name: string, content: string): void {
+    this.documentMetaService.addDocumentMetaTag({
+      content,
+      name
+    }, true);
   }
 }

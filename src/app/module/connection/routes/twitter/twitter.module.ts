@@ -11,6 +11,6 @@ import { TwitterService } from './service/twitter.service';
 @NgModule({
   declarations: [TwitterComponent],
   imports: [ButtonModule, CommonModule, FieldsetModule, LazyLoadImageModule, ToolbarModule, TwitterRoutingModule],
-  providers: [TwitterFacade, TwitterService],
+  providers: [TwitterFacade, TwitterService]
 })
 export class TwitterModule {}

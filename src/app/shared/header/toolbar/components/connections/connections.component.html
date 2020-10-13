@@ -1,13 +1,13 @@
-<div *ngIf="isWeb | async" class="p-d-flex">
+<div *ngIf="is_platform_web | async" class="p-d-flex">
   <ng-container *ngIf="(connections$ | async)?.length! <= 10; else connectionsCarousel" class="p-d-flex">
-    <div [ngClass]="{'b-tb-con-active': connection.id === (activeConnection$ | async)}" class="b-tb-con p-ml-2"
+    <div [ngClass]="{'b-tb-con-active': connection.id === (active_connection$ | async)}" class="b-tb-con p-ml-2"
       *ngFor="let connection of connections$ | async; trackBy:trackBy;">
-      <div [pTooltip]="connection.connectionName" tooltipPosition="bottom" class="b-ca b-ca-md b-post-cl b-outline-none"
-        (click)="clicked(connection)">
-        <img [alt]="connection.connectionName" [lazyLoad]="connection.connectionPicture"
+      <div [pTooltip]="connection.connection_name" tooltipPosition="bottom"
+        class="b-ca b-ca-md b-post-cl b-outline-none" (click)="clicked(connection)">
+        <img [alt]="connection.connection_name" [lazyLoad]="connection.connection_picture"
           class="b-w-full b-h-full b-br-full" defaultImage="/assets/images/svg/default-media.svg"
           errorImage="/assets/images/svg/default-media.svg" />
-        <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+        <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connection_type">
         </div>
       </div>
     </div>
@@ -16,12 +16,12 @@
   <ng-template #connectionsCarousel>
     <p-carousel [value]="(connections$ | async)!" [numVisible]="14" [numScroll]="5" indicatorsContentClass="b-d-h">
       <ng-template let-connection pTemplate="item">
-        <div (click)="clicked(connection)" [pTooltip]="connection.connectionName" tooltipPosition="bottom"
+        <div (click)="clicked(connection)" [pTooltip]="connection.connection_name" tooltipPosition="bottom"
           class="b-ca b-ca-md b-post-cl">
-          <img [alt]="connection.connectionName" [lazyLoad]="connection.connectionPicture"
+          <img [alt]="connection.connection_name" [lazyLoad]="connection.connection_picture"
             class="b-w-full b-h-full b-br-full" defaultImage="/assets/images/svg/default-media.svg"
             errorImage="/assets/images/svg/default-media.svg" />
-          <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connectionType">
+          <div [attr.class]="'b-ca-sl b-ca-sl-' + connection.connection_type">
           </div>
         </div>
       </ng-template>

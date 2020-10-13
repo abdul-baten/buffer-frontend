@@ -7,6 +7,6 @@ import { PlanPricingModule } from 'src/app/shared/plan-pricing/plan-pricing.modu
 
 @NgModule({
   declarations: [AuctionComponent],
-  imports: [CommonModule, AuctionRoutingModule, MainHeaderModule, PlanPricingModule],
+  imports: [CommonModule, AuctionRoutingModule, MainHeaderModule, PlanPricingModule]
 })
 export class AuctionModule {}

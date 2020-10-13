@@ -1,50 +1,45 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { HttpParams } from '@angular/common/http';
-import { HttpService } from './http.service';
-import { I_POST } from '../model';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import type { HttpService } from './http.service';
+import type { IPost } from '../model';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class PostService extends EntityCollectionServiceBase<I_POST> {
-  constructor(private readonly httpService: HttpService, serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('Post', serviceElementsFactory);
+export class PostService extends EntityCollectionServiceBase<IPost> {
+  constructor (private readonly httpService: HttpService, public serviceElementsFactory: EntityCollectionServiceElementsFactory) {
+    super('post', serviceElementsFactory);
   }
 
-  addPost(postInfo: I_POST): Observable<I_POST> {
+  public addPost (post_info: IPost): Observable<IPost> {
     const {
-      postType,
-      postStatus,
-      postConnection: { connectionType },
-    } = postInfo;
-    const connType = connectionType?.split('_')[0].toLowerCase();
-    const status = postStatus.toLowerCase();
+      post_type,
+      post_status,
+      post_connection: { connection_type }
+    } = post_info;
+    const type = connection_type?.split('_')[0].toLowerCase();
+    const status = post_status.toLowerCase();
 
-    return this.httpService.post<I_POST>(`post/${postType}-${connType}-${status}`, postInfo).pipe(
-      tap((post: I_POST) => {
-        if (post.id) {
-          this.upsertOneInCache(post);
+    return this.httpService.post<IPost>(`post/${post_type}-${type}-${status}`, post_info).pipe(tap((post: IPost) => {
+      if (post.id) {
+        this.upsertOneInCache(post);
+      }
+    }));
+  }
+
+  public getPosts (user_id: string): Observable<IPost[]> {
+    return this.httpService.
+      get<IPost[]>('post/posts', { user_id }).
+      pipe(tap((posts: IPost[]) => {
+        if (posts.length) {
+          this.upsertManyInCache(posts);
         }
-      }),
-    );
+      }));
   }
 
-  getPosts(userID: string): Observable<I_POST[]> {
-    return this.httpService
-      .get<I_POST[]>('post/posts', ({ userID } as unknown) as HttpParams)
-      .pipe(
-        tap((posts: I_POST[]) => {
-          if (!!posts.length) {
-            this.upsertManyInCache(posts);
-          }
-        }),
-      );
-  }
-
-  filterPostsByConnectionID(connectionID: string): Observable<I_POST[]> {
-    return this.entities$.pipe(map((posts: I_POST[]) => posts.filter((post: I_POST) => post.postConnection.id === connectionID)));
+  public filterPostsByConnectionID (connection_id: string): Observable<IPost[]> {
+    return this.entities$.pipe(map((posts: IPost[]) => posts.filter((post: IPost) => post.postConnection.id === connection_id)));
   }
 }

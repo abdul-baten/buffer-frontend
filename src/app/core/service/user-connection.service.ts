@@ -1,52 +1,69 @@
-import { catchError, first, map, switchMap, take } from 'rxjs/operators';
-import { ConnectionService } from './connection.service';
-import { ErrorService } from './error.service';
-import { I_CONNECTION, I_USER } from '../model';
+import {
+  catchError,
+  first,
+  map,
+  switchMap,
+  take
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { UserService } from './user.service';
+import type { ConnectionService } from './connection.service';
+import type { ErrorService } from './error.service';
+import type { IConnection, IUser } from '../model';
+import type { UserService } from './user.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserConnectionService {
-  constructor(
+  constructor (
     private readonly connectionService: ConnectionService,
     private readonly errorService: ErrorService,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
-  private getUser(): Observable<I_USER> {
-    const userFromState$ = this.userService.entities$,
-      userFromResponse$ = this.userService.getUser();
+  private getUser (): Observable<IUser> {
+    const user_from_state$ = this.userService.entities$;
+    const user_from_server$ = this.userService.getUser();
 
-    return userFromState$.pipe(
-      switchMap((users: I_USER[]) => (!!users.length ? of(users[0]) : userFromResponse$)),
-      take(1),
+    return user_from_state$.pipe(
+      switchMap((users: IUser[]) => {
+        if (users.length) {
+          return of(users[0]);
+        }
+
+        return user_from_server$;
+      }),
+      take(1)
     );
   }
 
-  private getConnections(): Observable<I_CONNECTION[]> {
-    const userIDFromState$ = this.userService.getUserFromState(),
-      connectionsFromState$ = this.connectionService.entities$,
-      userInfofromRequest$ = userIDFromState$.pipe(
-        switchMap((user: I_USER) => this.connectionService.getConnections(user.id).pipe(map((connections: I_CONNECTION[]) => connections))),
-      );
+  private getConnections (): Observable<IConnection[]> {
+    const user_from_state$ = this.userService.getUserFromState();
+    const connections_from_state$ = this.connectionService.entities$;
+    const user_info_from_server$ =
+      user_from_state$.pipe(switchMap((user: IUser) => this.connectionService.getConnections(user.id).pipe(map((connections: IConnection[]) => connections))));
 
-    return connectionsFromState$.pipe(
-      switchMap((connections: I_CONNECTION[]) => (!!connections.length ? of(connections) : userInfofromRequest$)),
-      map((connections: I_CONNECTION[]) => connections),
-      first(),
+    return connections_from_state$.pipe(
+      switchMap((connections: IConnection[]) => {
+        if (connections.length) {
+          return of(connections);
+        }
+
+        return user_info_from_server$;
+      }),
+      map((connections: IConnection[]) => connections),
+      first()
     );
   }
 
-  resolve(): Observable<I_CONNECTION[]> {
+  public resolve (): Observable<IConnection[]> {
     return this.getUser().pipe(
       switchMap(() => this.getConnections()),
       catchError((error) => {
         this.errorService.handleServerError(error);
         throw of(null);
-      }),
+      })
     );
   }
 }

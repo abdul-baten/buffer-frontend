@@ -1,39 +1,40 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, HostListener, OnDestroy } from '@angular/core';
-import { FacebookGroupFacade } from '../facade/facebook-group.facade';
-import { I_CONNECTION } from 'src/app/core/model';
 import { Observable, Subscription } from 'rxjs';
+import type { ActivatedRoute } from '@angular/router';
+import type { FacebookGroupFacade } from '../facade/facebook-group.facade';
+import type { IConnection } from 'src/app/core/model';
 
 @Component({
-  selector: 'buffer--facebook-group',
+  selector: 'buffer-facebook-group',
   styleUrls: ['./facebook-group.component.css'],
-  templateUrl: './facebook-group.component.html',
+  templateUrl: './facebook-group.component.html'
 })
 export class FacebookGroupComponent implements OnDestroy {
-  connections$: Observable<I_CONNECTION[]>;
-  isHandset$: Observable<boolean>;
-  isTablet$: Observable<boolean>;
-  isWeb$: Observable<boolean>;
   private subscription$ = new Subscription();
+  public connections$: Observable<IConnection[]>;
+  public is_platform_handset$: Observable<boolean>;
+  public is_platform_tablet$: Observable<boolean>;
+  public is_platform_web$: Observable<boolean>;
 
-  constructor(private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookGroupFacade) {
-    this.isHandset$ = this.facade.isHandset();
-    this.isTablet$ = this.facade.isTablet();
-    this.isWeb$ = this.facade.isWeb();
+  constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookGroupFacade) {
+    this.is_platform_handset$ = this.facade.isHandset();
+    this.is_platform_tablet$ = this.facade.isTablet();
+    this.is_platform_web$ = this.facade.isWeb();
 
-    this.connections$ = this.facade.fetchFBGroups(this.activatedRoute.queryParamMap, 'facebook-group');
+    this.connections$ = this.facade.getGroups(this.activatedRoute.queryParamMap, 'facebook-group');
   }
 
-  addFacebookGroup(pageInfo: I_CONNECTION): void {
-    this.subscription$.add(this.facade.addFacebookGroup(pageInfo).subscribe(() => this.facade.navigateToGroup('connection/profiles')));
+  public addGroup (group_info: IConnection): void {
+    this.subscription$.add(this.facade.addGroup(group_info).subscribe(() => this.facade.navigateToGroup('connection/profiles')));
   }
 
-  trackBy(_index: number, connection: I_CONNECTION): number {
-    return +connection.connectionID;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public trackBy (_index: number, connection: IConnection): number {
+    return Number(connection.connection_id);
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
+  ngOnDestroy (): void {
     this.subscription$.unsubscribe();
   }
 }

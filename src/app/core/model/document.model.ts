@@ -1,11 +1,10 @@
-// tslint:disable-next-line
-export interface I_DOCUMENT {
-  title: string;
+
+export interface IDocument {
   meta: { [tag: string]: string };
+  title: string;
 }
 
-// tslint:disable-next-line
-export interface I_DROPDOWN {
+export interface IDropdown {
   label: string;
   value: string;
 }

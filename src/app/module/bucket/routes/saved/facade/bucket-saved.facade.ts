@@ -1,20 +1,12 @@
-import { AppState } from 'src/app/reducers';
-import { I_POST } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { ModalService } from 'src/app/core/service';
-import { removeNewPostData, setPostType } from 'src/app/actions';
-import { Store } from '@ngrx/store';
+import type { IPost } from 'src/app/core/model';
+import type { ModalService } from 'src/app/core/service';
 
 @Injectable()
 export class BucketSavedFacade {
-  constructor(private readonly modalService: ModalService, private store: Store<AppState>) {}
+  constructor (private readonly modalService: ModalService) {}
 
-  editPost(post: I_POST): void {
-    this.store.dispatch(setPostType({ postType: post.postType }));
-    const dialogRef = this.modalService.openPostModal('Edit Post', post);
-
-    dialogRef.onDestroy.subscribe(() => {
-      this.store.dispatch(removeNewPostData());
-    });
+  public editPost (post_info: IPost): void {
+    this.modalService.openPostModal(post_info);
   }
 }

@@ -14,6 +14,6 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
 @NgModule({
   declarations: [PlanComponent],
   imports: [ButtonModule, CardModule, CommonModule, FormsModule, InputSwitchModule, PlanPricingModule, PlanRoutingModule, TableModule, ToolbarModule],
-  providers: [PlanFacade],
+  providers: [PlanFacade]
 })
 export class PlanModule {}

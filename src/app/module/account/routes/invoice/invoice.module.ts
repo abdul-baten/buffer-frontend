@@ -6,6 +6,6 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [InvoiceComponent],
-  imports: [CommonModule, InvoiceRoutingModule],
+  imports: [CommonModule, InvoiceRoutingModule]
 })
 export class InvoiceModule {}

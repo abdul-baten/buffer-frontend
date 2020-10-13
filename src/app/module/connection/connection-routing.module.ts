@@ -1,73 +1,74 @@
 import { ConnectionComponent } from './container/connection.component';
 import { DocumentResolver } from 'src/app/resolvers';
 import { NgModule } from '@angular/core';
-import { PAGES } from 'src/app/core/constant';
+import { RouteMeta } from 'src/app/core/constant';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ConnectionComponent,
+
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_ROUTE,
+        redirectTo: RouteMeta.CONNECTION_PROFILES.ROUTE
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/choose-connection/choose-connection.module').then((m) => m.ChooseConnectionModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_CHOOSE_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_CHOOSE.TITLE },
+        loadChildren: () => import('./routes/choose-connection/choose-connection.module').then((module) => module.ChooseConnectionModule),
+        path: RouteMeta.CONNECTION_CHOOSE.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/facebook-page/facebook-page.module').then((m) => m.FacebookPageModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_FB.TITLE },
+        loadChildren: () => import('./routes/facebook-page/facebook-page.module').then((module) => module.FacebookPageModule),
+        path: RouteMeta.CONNECTION_FB.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_GROUP.PAGE_TITLE },
-        loadChildren: () => import('./routes/facebook-group/facebook-group.module').then((m) => m.FacebookGroupModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_FB_GROUP.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_FB_GROUP.TITLE },
+        loadChildren: () => import('./routes/facebook-group/facebook-group.module').then((module) => module.FacebookGroupModule),
+        path: RouteMeta.CONNECTION_FB_GROUP.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_IG_BUSINESS.PAGE_TITLE },
-        loadChildren: () => import('./routes/instagram-business/instagram-business.module').then((m) => m.InstagramBusinessModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_IG_BUSINESS.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_IG_BUSINESS.TITLE },
+        loadChildren: () => import('./routes/instagram-business/instagram-business.module').then((module) => module.InstagramBusinessModule),
+        path: RouteMeta.CONNECTION_IG_BUSINESS.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_TWITTER_PROFILE.PAGE_TITLE },
-        loadChildren: () => import('./routes/twitter/twitter.module').then((m) => m.TwitterModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_TWITTER_PROFILE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_TWITTER_PROFILE.TITLE },
+        loadChildren: () => import('./routes/twitter/twitter.module').then((module) => module.TwitterModule),
+        path: RouteMeta.CONNECTION_TWITTER_PROFILE.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PAGE.PAGE_TITLE },
-        loadChildren: () => import('./routes/linkedin-page/linkedin-page.module').then((m) => m.LinkedInPageModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PAGE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_LINKEDIN.TITLE },
+        loadChildren: () => import('./routes/linkedin-page/linkedin-page.module').then((module) => module.LinkedInPageModule),
+        path: RouteMeta.CONNECTION_LINKEDIN.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PROFILE.PAGE_TITLE },
-        loadChildren: () => import('./routes/linkedin-profile/linkedin-profile.module').then((m) => m.LinkedInProfileModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_LINKEDIN_PROFILE.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
+        data: { title: RouteMeta.CONNECTION_LINKEDIN_PROFILE.TITLE },
+        loadChildren: () => import('./routes/linkedin-profile/linkedin-profile.module').then((module) => module.LinkedInProfileModule),
+        path: RouteMeta.CONNECTION_LINKEDIN_PROFILE.ROUTE,
+        resolve: { document_data: DocumentResolver }
       },
       {
-        data: { title: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_TITLE },
-        loadChildren: () => import('./routes/profiles/profiles.module').then((m) => m.ProfilesModule),
-        path: PAGES.CONNECTION_MODULE.ROUTES.CONNECTION_PROFILES.PAGE_ROUTE,
-        resolve: { documentResolver: DocumentResolver },
-      },
+        data: { title: RouteMeta.CONNECTION_PROFILES.TITLE },
+        loadChildren: () => import('./routes/profiles/profiles.module').then((module) => module.ProfilesModule),
+        path: RouteMeta.CONNECTION_PROFILES.ROUTE,
+        resolve: { document_data: DocumentResolver }
+      }
     ],
-  },
+    component: ConnectionComponent,
+    path: ''
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)]
 })
 export class ConnectionRoutingModule {}

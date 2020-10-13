@@ -1,12 +1,12 @@
-export enum E_POST_STATUS {
-  SAVED = 'saved',
+export enum EPostStatus {
   DELETED = 'deleted',
-  SCHEDULED = 'scheduled',
   PUBLISHED = 'published',
+  SAVED = 'saved',
+  SCHEDULED = 'scheduled',
 }
 
-export enum E_POST_TYPE {
-  TEXT = 'text',
+export enum EPostType {
   IMAGE = 'image',
+  TEXT = 'text',
   VIDEO = 'video',
 }

@@ -1,34 +1,19 @@
-import { E_CONNECTION_STATUS, E_CONNECTION_TYPE } from '../enum';
-import { I_USER } from './user.model';
+import type { EConnectionStatus, EConnectionType } from '../enum';
 
-// tslint:disable-next-line
-export interface I_CONNECTION {
+export interface IConnection {
+  connection_added?: Date;
+  connection_category?: string;
+  connection_id: string;
+  connection_name: string;
+  connection_picture: string;
+  connection_status: EConnectionStatus;
+  connection_token: string;
+  connection_type: EConnectionType;
+  connection_user_id: string;
   id: string;
-  connectionAdded?: Date;
-  connectionCategory?: string;
-  connectionID: string;
-  connectionName: string;
-  connectionPicture: string;
-  connectionStatus: E_CONNECTION_STATUS;
-  connectionToken: string;
-  connectionType: E_CONNECTION_TYPE;
-  connectionUserID: string;
 }
 
-// tslint:disable-next-line
-export interface I_FB_PAGE_RESPONSE {
-  user: I_USER;
-  pages: I_CONNECTION[];
-}
-
-// tslint:disable-next-line
-export interface I_LN_ACCESS_TOKEN_RESPONSE {
-  access_token: string;
-  expires_in: number;
-}
-
-// tslint:disable-next-line
-export interface I_CONNECTION_SELECTED {
+export interface IConnectionSelected {
   id: string;
   type?: string;
 }

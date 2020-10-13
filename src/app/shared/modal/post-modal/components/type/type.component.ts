@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'buffer--type',
+  selector: 'buffer-type',
   styleUrls: ['./type.component.css'],
   templateUrl: './type.component.html',
 })

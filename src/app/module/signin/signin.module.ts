@@ -14,6 +14,6 @@ import { SigninRoutingModule } from './signin-routing.module';
 @NgModule({
   declarations: [SigninComponent, SigninFormComponent],
   imports: [CommonModule, InputTextModule, ButtonModule, MainLogoModule, ReactiveFormsModule, RouterModule, SigninRoutingModule],
-  providers: [SigninFacade, AuthService, HttpService],
+  providers: [SigninFacade, AuthService, HttpService]
 })
 export class SigninModule {}

@@ -1,21 +1,21 @@
-import { HttpParams } from '@angular/common/http';
-import { HttpService } from 'src/app/core/service';
-import { I_CONNECTION, I_FB_PAGE_RESPONSE } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import type { HttpService } from 'src/app/core/service';
+import type { IConnection } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class InstagramBusinessService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor (private readonly httpService: HttpService) {}
 
-  fetchInstagramBusiness(code: string, connectionType: string): Observable<I_FB_PAGE_RESPONSE> {
-    return this.httpService.get<I_FB_PAGE_RESPONSE>(`instagram/${connectionType}`, ({
+  public getBusinessAccounts (code: string, connection_type: string): Observable<IConnection[]> {
+    return this.httpService.get<IConnection[]>(`instagram/${connection_type}`, {
       code,
-      connectionType,
-    } as unknown) as HttpParams);
+      connection_type
+    });
   }
 
-  addInstagramBusiness(pageInfo: I_CONNECTION): Observable<I_CONNECTION> {
-    return this.httpService.post<I_CONNECTION>('connection/add', pageInfo);
+  public addBusinessAccount (connection_info: IConnection): Observable<IConnection> {
+    return this.httpService.post<IConnection>('connection/add', connection_info);
   }
 }

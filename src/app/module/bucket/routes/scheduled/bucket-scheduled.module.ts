@@ -28,8 +28,8 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
     SplitButtonModule,
     TableModule,
     ToolbarModule,
-    BucketHeaderModule,
+    BucketHeaderModule
   ],
-  providers: [BucketScheduledFacade],
+  providers: [BucketScheduledFacade]
 })
 export class BucketScheduledModule {}

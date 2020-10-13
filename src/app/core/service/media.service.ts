@@ -1,15 +1,15 @@
-import { HttpService } from './http.service';
-import { I_MEDIA } from '../model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { HttpService } from './http.service';
+import type { IMedia } from '../model';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class MediaService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor (private readonly httpService: HttpService) {}
 
-  deleteMedia(mediaID: string): Observable<I_MEDIA> {
-    return this.httpService.delete<I_MEDIA>('media/delete', mediaID);
+  public deleteMedia (media_id: string): Observable<IMedia> {
+    return this.httpService.delete<IMedia>('media/delete', media_id);
   }
 }

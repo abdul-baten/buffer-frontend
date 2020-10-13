@@ -12,6 +12,6 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
 @NgModule({
   declarations: [InstagramBusinessComponent],
   imports: [ButtonModule, CommonModule, ToolbarModule, InstagramBusinessRoutingModule, FieldsetModule, LazyLoadImageModule],
-  providers: [InstagramBusinessFacade, InstagramBusinessService],
+  providers: [InstagramBusinessFacade, InstagramBusinessService]
 })
 export class InstagramBusinessModule {}

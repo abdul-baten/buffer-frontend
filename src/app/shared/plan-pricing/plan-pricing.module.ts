@@ -12,6 +12,6 @@ import { TooltipModule } from 'primeng/tooltip';
   declarations: [PlanPricingComponent],
   exports: [PlanPricingComponent],
   imports: [ButtonModule, CommonModule, FormsModule, InputSwitchModule, TooltipModule, TableModule],
-  providers: [PlanPricingFacade],
+  providers: [PlanPricingFacade]
 })
 export class PlanPricingModule {}

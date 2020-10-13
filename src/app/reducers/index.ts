@@ -1,17 +1,15 @@
-import { ActionReducerMap } from '@ngrx/store';
-import { connectionFeatureKey, connectionReducer } from './connection.reducer';
-import { newPostFeatureKey, newPostReducer } from './post-create.reducer';
+import { connection_feature_key, connection_reducer } from './connection.reducer';
 import { routerReducer } from '@ngrx/router-store';
-import { userFeatureKey, userReducer } from './user.reducer';
+import { user_feature_key, user_reducer } from './user.reducer';
+import type { ActionReducerMap } from '@ngrx/store';
 
-// tslint:disable-next-line
-interface AppState {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface IAppState {}
 
 const reducers: ActionReducerMap<any> = {
+  connection: connection_reducer,
   router: routerReducer,
-  user: userReducer,
-  connection: connectionReducer,
-  newPost: newPostReducer,
+  user: user_reducer
 };
 
-export { AppState, reducers, userFeatureKey, connectionFeatureKey, newPostFeatureKey };
+export { reducers, user_feature_key, connection_feature_key };

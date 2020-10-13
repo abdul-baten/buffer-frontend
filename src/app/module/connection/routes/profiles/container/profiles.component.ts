@@ -1,53 +1,51 @@
 import { Component, OnInit } from '@angular/core';
-import { I_CONNECTION } from 'src/app/core/model';
 import { Observable, of } from 'rxjs';
-import { ProfilesFacade } from '../facade/profiles.facade';
+import type { IConnection } from 'src/app/core/model';
+import type { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
-  selector: 'buffer--profiles',
+  selector: 'buffer-profiles',
   styleUrls: ['./profiles.component.css'],
-  templateUrl: './profiles.component.html',
+  templateUrl: './profiles.component.html'
 })
 export class ProfilesComponent implements OnInit {
-  chooseConnectionPage = 'connection/choose';
+  public choose_connection_route = 'connection/choose';
+  public connections$: Observable<IConnection[]> = of([]);
+  public is_platform_tablet$: Observable<boolean>;
+  public is_platform_web$: Observable<boolean>;
+  public total_connections$: Observable<number> = of(0);
 
-  isTablet$: Observable<boolean>;
-  isWeb$: Observable<boolean>;
-
-  connections$: Observable<I_CONNECTION[]> = of([]);
-  totalConnections$: Observable<number> = of(0);
-
-  constructor(private readonly facade: ProfilesFacade) {
-    this.isTablet$ = this.facade.isTablet();
-    this.isWeb$ = this.facade.isWeb();
+  constructor (private readonly facade: ProfilesFacade) {
+    this.is_platform_tablet$ = this.facade.isTablet();
+    this.is_platform_web$ = this.facade.isWeb();
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.getConnections();
   }
 
-  private getConnections(): void {
+  private getConnections (): void {
     this.connections$ = this.facade.getConnectionsFromState();
-    this.totalConnections$ = this.facade.getTotalConnections();
+    this.total_connections$ = this.facade.getTotalConnections();
   }
 
-  trackByConnectionID(connection: I_CONNECTION): string {
+  public trackByConnectionID (connection: IConnection): string {
     return connection.id;
   }
 
-  connectionSelect(connection: I_CONNECTION): void {
+  public connectionSelect (connection: IConnection): void {
     this.facade.navigate(['/schedule', connection.id]);
   }
 
-  deleteConnection(connection: I_CONNECTION): void {
+  public deleteConnection (connection: IConnection): void {
     this.facade.deleteConnection(connection);
   }
 
-  navigate(pageToNavigate: string[]): void {
-    this.facade.navigate(pageToNavigate);
+  public navigate (route: string[]): void {
+    this.facade.navigate(route);
   }
 
-  getConnectionType(connectionType: string): string {
-    return connectionType.split('_').join(' ');
+  public getConnectionType (connection_type: string): string {
+    return connection_type.split('_').join(' ');
   }
 }

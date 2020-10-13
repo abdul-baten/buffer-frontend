@@ -1,61 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderAccountFacade } from '../facade/header-account.facade';
-import { MenuItem } from 'primeng/api';
-import { PAGES } from 'src/app/core/constant';
+import { RouteMeta } from 'src/app/core/constant';
+import type { HeaderAccountFacade } from '../facade/header-account.facade';
+import type { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'buffer--header-account',
+  selector: 'buffer-header-account',
   styleUrls: ['./header-account.component.css'],
-  templateUrl: './header-account.component.html',
+  templateUrl: './header-account.component.html'
 })
 export class HeaderAccountComponent implements OnInit {
-  menuItems: MenuItem[] = [];
+  menu_items: MenuItem[] = [];
 
-  constructor(private readonly facade: HeaderAccountFacade) {}
+  constructor (private readonly facade: HeaderAccountFacade) {}
 
-  ngOnInit(): void {
-    this.menuItems = [
+  ngOnInit (): void {
+    this.menu_items = [
       {
-        label: 'Account settings',
         icon: 'pi pi-cog',
+        label: 'Account settings',
         routerLink: ['/account/profile'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: { exact: true }
       },
       {
-        label: 'Plan & Pricing',
         icon: 'pi pi-sort-amount-up',
+        label: 'Plan & Pricing',
         routerLink: ['/account/plan'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: { exact: true }
       },
       {
-        label: 'Invoice',
         icon: 'pi pi-bars',
+        label: 'Invoice',
         routerLink: ['/account/invoice'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: { exact: true }
       },
       {
-        label: 'Billing',
         icon: 'pi pi-dollar',
+        label: 'Billing',
         routerLink: ['/account/billing'],
-        routerLinkActiveOptions: { exact: true },
+        routerLinkActiveOptions: { exact: true }
       },
       { separator: true },
       {
-        label: 'Sign out',
-        icon: 'pi pi-sign-out',
         command: () => {
           this.logoutUser();
         },
-      },
+        icon: 'pi pi-sign-out',
+        label: 'Sign out'
+      }
     ];
   }
 
-  handleAccountNavigationClick(): void {
-    const pageTiNavigate = `${PAGES.ACCOUNT_MODULE.PAGE_ROUTE}/${PAGES.ACCOUNT_MODULE.ROUTES.PROFILE_MODULE.PAGE_ROUTE}`;
-    this.facade.navigateToRoute(pageTiNavigate);
+  handleAccountNavigationClick (): void {
+    const page_to_navigate = `${RouteMeta.ACCOUNT_MODULE.ROUTE}/${RouteMeta.EDIT_PROFILE.ROUTE}`;
+
+    this.facade.navigateToRoute(page_to_navigate);
   }
 
-  logoutUser(): void {
+  logoutUser (): void {
     this.facade.logoutUser();
   }
 }

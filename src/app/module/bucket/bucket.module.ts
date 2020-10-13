@@ -8,6 +8,6 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [BucketComponent],
-  imports: [BucketRoutingModule, ButtonModule, CommonModule, DashboardHeaderModule, RouterModule],
+  imports: [BucketRoutingModule, ButtonModule, CommonModule, DashboardHeaderModule, RouterModule]
 })
 export class BucketModule {}

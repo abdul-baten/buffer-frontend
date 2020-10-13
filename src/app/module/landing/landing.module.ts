@@ -12,6 +12,6 @@ import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [LandingComponent, IntroJumboComponent, IntroCreateComponent, IntroPublishComponent],
   imports: [CommonModule, LandingRoutingModule, MainHeaderModule, ButtonModule],
-  providers: [LandingFacade],
+  providers: [LandingFacade]
 })
 export class LandingModule {}

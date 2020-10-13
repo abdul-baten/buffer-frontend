@@ -2,19 +2,19 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--analyze-card',
+  selector: 'bufferAnalyzeCard',
   styleUrls: ['./analyze-card.component.css'],
-  templateUrl: './analyze-card.component.html',
+  templateUrl: './analyze-card.component.html'
 })
 export class AnalyzeCardComponent implements OnChanges {
-  @Input() cardCounter: number = 0;
-  @Input() cardHelpInfo: string = '';
-  @Input() cardIcon: string = '';
-  @Input() cardIconColor: string = '';
-  @Input() cardInfoTitle: string = '';
-  @Input() cardTitle: string = '';
+  @Input() counter = 0;
+  @Input() help_info = '';
+  @Input() icon = '';
+  @Input() icon_color = '';
+  @Input() info_title = '';
+  @Input() title = '';
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.cardCounter = changes?.cardCounter?.currentValue;
+  ngOnChanges (changes: SimpleChanges): void {
+    this.counter = changes?.counter?.currentValue;
   }
 }

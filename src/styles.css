@@ -270,20 +270,20 @@ small {
 /*
   * BREAKS
 */
-.buffer--break-normal {
+.buffer-break-normal {
   overflow-wrap: normal;
   word-break: normal;
 }
 
-.buffer--break-words {
+.buffer-break-words {
   overflow-wrap: break-word;
 }
 
-.buffer--break-all {
+.buffer-break-all {
   word-break: break-all;
 }
 
-.buffer--truncate {
+.buffer-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -12105,13 +12105,13 @@ p-togglebutton.ng-dirty.ng-invalid > .p-togglebutton.p-button {
 /*
   * ANIMATION
 */
-.buffer--pulse-white-animation {
+.buffer-pulse-white-animation {
   -webkit-animation: pulse-white 2s;
   /* triangle pointing right... */
   animation: pulse-white 2s;
 }
 
-.buffer--pulse-green-animation {
+.buffer-pulse-green-animation {
   -webkit-animation: pulse-green 2s;
   /* triangle pointing right... */
   animation: pulse-green 2s;

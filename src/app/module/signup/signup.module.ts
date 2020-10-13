@@ -14,6 +14,6 @@ import { SignupRoutingModule } from './signup-routing.module';
 @NgModule({
   declarations: [SignupComponent, SignupFormComponent],
   imports: [ButtonModule, CommonModule, InputTextModule, FormsModule, MainLogoModule, ReactiveFormsModule, RouterModule, SignupRoutingModule],
-  providers: [SignupFacade, AuthService],
+  providers: [SignupFacade, AuthService]
 })
 export class SignupModule {}

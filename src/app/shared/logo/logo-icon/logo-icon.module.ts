@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [LogoIconComponent],
-  imports: [CommonModule],
   exports: [LogoIconComponent],
+  imports: [CommonModule]
 })
 export class LogoIconModule {}

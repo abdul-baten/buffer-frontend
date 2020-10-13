@@ -1,4 +1,9 @@
-import 'zone.js/dist/zone-node';
+/* eslint-disable no-empty-function */
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-var-requires */
+import 'zone.js/dist/zone-node.min';
+import 'zone.js/dist/zone-patch-rxjs.min';
 
 import * as bodyParser from 'body-parser';
 import * as compression from 'compression';
@@ -10,7 +15,7 @@ import { enableProdMode } from '@angular/core';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import { Request, Response } from 'express';
+import type { Request, Response } from 'express';
 
 import { createServer, Server } from 'spdy';
 
@@ -22,7 +27,6 @@ const domino = require('domino');
 const template = readFileSync(join('dist/browser', 'index.html')).toString();
 const window = domino.createWindow(template);
 
-// @ts-ignore:next-line
 global.window = window;
 global.document = window.document;
 global.navigator = window.navigator;
@@ -32,19 +36,20 @@ global.innerWidth = window.innerWidth;
 global.outerHeight = window.outerHeight;
 global.outerWidth = window.outerWidth;
 global.HTMLElement = window.HTMLElement;
-global.HTMLElement.prototype.getBoundingClientRect = () => {
-  return {
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    x: 0,
-    y: 0,
-    height: 0,
-    width: 0,
-    toJSON: () => {},
-  };
-};
+global.HTMLElement.prototype.getBoundingClientRect = () => ({
+  bottom: 0,
+  height: 0,
+  left: 0,
+  right: 0,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  toJSON: () => {},
+  top: 0,
+  width: 0,
+  // eslint-disable-next-line id-length
+  x: 0,
+  // eslint-disable-next-line id-length
+  y: 0
+});
 
 // If using IgxIconService to register icons
 global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -54,41 +59,23 @@ global.navigator = window.navigator;
 global.localStorage = window.localStorage;
 global.DOMTokenList = window.DOMTokenList;
 
-Object.defineProperty(window.document.body.style, 'transform', {
-  value: () => {
-    return {
-      configurable: true,
-      enumerable: true,
-    };
-  },
+Reflect.defineProperty(window.document.body.style, 'transform', {
+  value: () => ({
+    configurable: true,
+    enumerable: true
+  })
 });
 
-// The Express app is exported so that it can be used by serverless Functions.
-export function app(): Server {
-  const privateKey = readFileSync('cert/cert.key', 'utf8'),
-    certificate = readFileSync('cert/cert.crt', 'utf8'),
-    express = require('express')(),
-    helmet = require('helmet'),
-    hpp = require('hpp'),
-    express_enforces_ssl = require('express-enforces-ssl'),
-    expressStaticGzip = require('express-static-gzip'),
-    server = createServer(
-      '',
-      {
-        key: privateKey,
-        cert: certificate,
-      },
-      express,
-    ),
-    distFolder = join(process.cwd(), 'dist/browser'),
-    indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+const middlewares = (express: any) => {
+  const helmet = require('helmet');
+  const hpp = require('hpp');
+  const express_enforces_ssl = require('express-enforces-ssl');
 
-  // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   express.engine(
     'html',
     ngExpressEngine({
-      bootstrap: AppServerModule,
-    }),
+      bootstrap: AppServerModule
+    })
   );
 
   express.enable('trust proxy');
@@ -99,58 +86,91 @@ export function app(): Server {
   express.use(helmet({ contentSecurityPolicy: false }));
   express.use(compression());
 
-  express.use(
-    cors({
-      origin: 'https://localhost:5000',
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      credentials: true,
-      preflightContinue: false,
-      maxAge: 3600,
-    }),
-  );
+  express.use(cors({
+    credentials: true,
+    maxAge: 3600,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    origin: 'https://localhost:5000',
+    preflightContinue: false
+  }));
   express.use(bodyParser.json());
   express.use(bodyParser.urlencoded({ extended: true }));
   express.use(hpp());
+};
+
+export const app = (): Server => {
+  const key = readFileSync('cert/cert.key', 'utf8');
+  const cert = readFileSync('cert/cert.crt', 'utf8');
+  const express = require('express')();
+  const express_static = require('express-static-gzip');
+
+  const server = createServer(
+    '',
+    {
+      cert,
+      key
+    },
+    express
+  );
+  const dist_folder = join(process.cwd(), 'dist/browser');
+  const index_html = existsSync(join(dist_folder, 'index.original.html')) ? 'index.original.html' : 'index';
+
+  middlewares(express);
 
   express.set('view engine', 'html');
-  express.set('views', distFolder);
+  express.set('views', dist_folder);
 
   express.get(
     '*.*',
-    expressStaticGzip(distFolder, {
+    express_static(dist_folder, {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       enableBrotli: true,
       orderPreference: ['br', 'deflate', 'gzip'],
       serveStatic: {
-        maxAge: '1y',
-      },
-    }),
+        maxAge: '1y'
+      }
+    })
   );
 
   // All regular routes use the Universal engine
   express.get('*', (req: Request, res: Response) => {
-    res.render(indexHtml, { preboot: true, req, res, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(index_html, { preboot: true,
+
+      providers: [
+        { provide: APP_BASE_HREF,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          useValue: req.baseUrl }
+      ],
+      req,
+      res });
   });
 
   return server;
-}
+};
 
-function run(): void {
-  const port = process.env.PORT || 5000;
+const run = (): void => {
+  const port = process.env.PORT;
 
   // Start up the Node server
   const server = app();
+
   server.listen(port, () => {
+    // eslint-disable-next-line no-console
     console.log(`Node Express server listening on https://localhost:${port}`);
   });
-}
+};
 
-// Webpack will replace 'require' with '__webpack_require__'
-// '__non_webpack_require__' is a proxy to Node 'require'
-// The below code is to ensure that the server is run only when not requiring the bundle.
-declare const __non_webpack_require__: NodeRequire;
-const mainModule = __non_webpack_require__.main;
-const moduleFilename = (mainModule && mainModule.filename) || '';
-if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
+/*
+ * Webpack will replace 'require' with '__webpack_require__'
+ * '__non_webpack_require__' is a proxy to Node 'require'
+ * The below code is to ensure that the server is run only when not requiring the bundle.
+ */
+// eslint-disable-next-line no-undef
+declare const non_webpack_require: NodeRequire;
+const main_module = non_webpack_require.main;
+const module_file_name = (main_module && main_module.filename) || '';
+
+if (module_file_name === __filename || module_file_name.includes('iisnode')) {
   run();
 }
 

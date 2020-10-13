@@ -2,28 +2,28 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GlobalService {
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {}
+  constructor (@Inject(DOCUMENT) private readonly document: Document) {}
 
-  public getWindow(): Window {
+  public getWindow (): Window {
     return this.document.defaultView as Window;
   }
 
-  public getLocation(): Location {
+  public getLocation (): Location {
     return this.document.location;
   }
 
-  public createElement(tag: string): HTMLElement {
+  public createElement (tag: string): HTMLElement {
     return this.document.createElement(tag);
   }
 
-  public getElement(elementID: string): HTMLElement {
-    return this.document.getElementById(elementID) as HTMLElement;
+  public getElement (element_id: string): HTMLElement {
+    return this.document.getElementById(element_id) as HTMLElement;
   }
 
-  public getQuerySelector(className: string): HTMLElement {
-    return this.document.querySelector(className) as HTMLElement;
+  public getQuerySelector (class_name: string): HTMLElement {
+    return this.document.querySelector(class_name) as HTMLElement;
   }
 }

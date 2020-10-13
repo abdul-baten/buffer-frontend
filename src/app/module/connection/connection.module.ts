@@ -7,6 +7,6 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [ConnectionComponent],
-  imports: [CommonModule, ConnectionRoutingModule, DashboardHeaderModule, HeaderAccountModule],
+  imports: [CommonModule, ConnectionRoutingModule, DashboardHeaderModule, HeaderAccountModule]
 })
 export class ConnectionModule {}

@@ -9,6 +9,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [BucketHeaderComponent],
   exports: [BucketHeaderComponent],
-  imports: [ButtonModule, CalendarModule, DropdownModule, InputTextModule, RouterModule],
+  imports: [ButtonModule, CalendarModule, DropdownModule, InputTextModule, RouterModule]
 })
 export class BucketHeaderModule {}

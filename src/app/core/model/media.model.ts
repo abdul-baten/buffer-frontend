@@ -1,9 +1,9 @@
-// tslint:disable-next-line
-export interface I_MEDIA {
+
+export interface IMedia {
   id: string;
-  mediaMimeType?: string;
-  mediaName?: string;
-  mediaType?: string;
-  mediaSize?: string;
-  mediaURL?: string;
+  media_mime_type: string;
+  media_name: string;
+  media_size: string;
+  media_type: string;
+  media_url: string;
 }

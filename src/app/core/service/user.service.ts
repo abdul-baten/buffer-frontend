@@ -1,31 +1,34 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { first, mergeAll, take, tap } from 'rxjs/operators';
-import { HttpService } from './http.service';
-import { I_USER } from '../model';
+import {
+  first,
+  mergeAll,
+  take,
+  tap
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { HttpService } from './http.service';
+import type { IUser } from '../model';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class UserService extends EntityCollectionServiceBase<I_USER> {
-  constructor(private readonly httpService: HttpService, serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super('User', serviceElementsFactory);
+export class UserService extends EntityCollectionServiceBase<IUser> {
+  constructor (private readonly httpService: HttpService, public serviceElementsFactory: EntityCollectionServiceElementsFactory) {
+    super('user', serviceElementsFactory);
   }
 
-  getUser(): Observable<I_USER> {
-    return this.httpService.get<I_USER>('user/get').pipe(
-      tap((user: I_USER) => {
-        this.upsertOneInCache(user);
-      }),
-    );
+  public getUser (): Observable<IUser> {
+    return this.httpService.get<IUser>('user/get').pipe(tap((user: IUser) => {
+      this.upsertOneInCache(user);
+    }));
   }
 
-  getUserFromState(): Observable<I_USER> {
+  public getUserFromState (): Observable<IUser> {
     return this.entities$.pipe(mergeAll(), take(1), first());
   }
 
-  addUserToState(user: I_USER): void {
+  public addUserToState (user: IUser): void {
     this.upsertOneInCache(user);
   }
 }

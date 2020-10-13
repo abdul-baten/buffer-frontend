@@ -1,35 +1,43 @@
 import jsSHA from 'jssha';
-import { HttpService } from './http.service';
-import { I_USER } from '../model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { HttpService } from './http.service';
+import type { IUser } from '../model';
+import type { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private httpService: HttpService) {}
+  constructor (private httpService: HttpService) {}
 
-  private getPasswordHash(password: string): string {
-    const shaObj = new jsSHA('SHA-256', 'TEXT', { encoding: 'UTF8' });
-    shaObj.update(password);
-    const hash = shaObj.getHash('HEX');
+  private getPasswordHash (password: string): string {
+    const sha_obj = new jsSHA('SHA-256', 'TEXT', { encoding: 'UTF8' });
+
+    sha_obj.update(password);
+    const hash = sha_obj.getHash('HEX');
 
     return hash;
   }
 
-  loginUser(email: string, pass: string): Observable<Partial<I_USER>> {
-    const password = this.getPasswordHash(pass);
-    return this.httpService.post<Partial<I_USER>>('auth/enter', { email, password });
+  loginUser (user_email: string, password: string): Observable<Partial<IUser>> {
+    const user_password = this.getPasswordHash(password);
+
+    return this.httpService.post<Partial<IUser>>('auth/enter', { user_email,
+      user_password });
   }
 
-  signupUser(userInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
-    const { fullName, email, password: userPassword } = userInfo;
-    const password = this.getPasswordHash(userPassword as string);
-    return this.httpService.post<Partial<I_USER>>('auth/join', { fullName, email, password });
+  signupUser (user_info: Partial<IUser>): Observable<Partial<IUser>> {
+    const { user_full_name, user_email, user_password } = user_info;
+    const password = this.getPasswordHash(user_password as string);
+
+    return this.httpService.post<Partial<IUser>>('auth/join', {
+      user_email,
+      user_full_name,
+      user_password: password
+    });
   }
 
-  onboardUser(memberInfo: Partial<I_USER>): Observable<Partial<I_USER>> {
-    return this.httpService.patch<Partial<I_USER>>('auth/onboard', memberInfo);
+  onboardUser (member_info: Partial<IUser>): Observable<Partial<IUser>> {
+    return this.httpService.patch<Partial<IUser>>('auth/onboard', member_info);
   }
 }

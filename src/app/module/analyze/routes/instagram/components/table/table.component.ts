@@ -1,23 +1,29 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { I_INS_IG_MEDIA } from 'src/app/core/model';
-import { InstagramFacade } from '../../facade/instagram.facade';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
+import type { IInstaMediaInsight } from 'src/app/core/model';
+import type { InstagramFacade } from '../../facade/instagram.facade';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'buffer--post-table',
+  selector: 'buffer-post-table',
   styleUrls: ['./table.component.css'],
-  templateUrl: './table.component.html',
+  templateUrl: './table.component.html'
 })
 export class PostTableComponent implements OnChanges {
-  @Input() posts: I_INS_IG_MEDIA[] = [];
+  @Input() posts: IInstaMediaInsight[] = [];
 
-  constructor(private readonly facade: InstagramFacade) {}
+  constructor (private readonly facade: InstagramFacade) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges (changes: SimpleChanges): void {
     this.posts = changes?.posts?.currentValue;
   }
 
-  viewPost(url: string): void {
+  public viewPost (url: string): void {
     this.facade.viewPost(url);
   }
 }

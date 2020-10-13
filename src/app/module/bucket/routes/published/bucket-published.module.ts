@@ -28,8 +28,8 @@ import { ToolbarModule } from '../../../../shared/header/toolbar/toolbar.module'
     LazyLoadImageModule,
     NoDataFoundModule,
     TableModule,
-    ToolbarModule,
+    ToolbarModule
   ],
-  providers: [BucketPublishedFacade],
+  providers: [BucketPublishedFacade]
 })
 export class BucketPublishedModule {}

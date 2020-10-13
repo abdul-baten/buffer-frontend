@@ -1,61 +1,70 @@
 import format from 'date-fns/format';
-import { ConnectionService, GlobalService, InsightService, UserService } from 'src/app/core/service';
-import { E_CONNECTION_TYPE } from 'src/app/core/enum';
-import { first, map, shareReplay, switchMap } from 'rxjs/operators';
-import { I_CONNECTION, I_DROPDOWN, I_INS_FB, I_USER } from 'src/app/core/model';
+import { EConnectionType } from 'src/app/core/enum';
+import {
+  first,
+  map,
+  shareReplay,
+  switchMap
+} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { ConnectionService, GlobalService, FacebookInsightService, UserService } from 'src/app/core/service';
+import type { IConnection, IDropdown, IFbInsight, IUser } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
 
 @Injectable()
 export class FacebookFacade {
-  constructor(
+  constructor (
     private readonly connectionService: ConnectionService,
+    private readonly facebookInsightService: FacebookInsightService,
     private readonly globalService: GlobalService,
-    private readonly insightService: InsightService,
-    private readonly userService: UserService,
+    private readonly userService: UserService
   ) {}
 
-  formatDate(date: string | Date): string {
+  formatDate (date: string | Date): string {
     return format(new Date(date), 'MMM dd, yyyy');
   }
 
-  getInsights(payload: { id: string; dateRange: string[] }): Observable<I_INS_FB> {
-    const { id, dateRange } = payload;
-    const since = format(new Date(dateRange[0]), 'yyyy-MM-dd');
-    const until = format(new Date(dateRange[1]), 'yyyy-MM-dd');
+  public getInsights (payload: { id: string; date_range: string[] }): Observable<IFbInsight> {
+    const { id, date_range } = payload;
+    const since = format(new Date(date_range[0]), 'yyyy-MM-dd');
+    const until = format(new Date(date_range[1]), 'yyyy-MM-dd');
 
     return this.userService.getUserFromState().pipe(
-      switchMap((user: I_USER) => {
-        const userID = user.id;
-        return this.insightService.getFBInsights({ userID, id, since, until });
-      }),
+      switchMap(({ id: user_id }: IUser) => this.facebookInsightService.getInsights({
+        id,
+        since,
+        until,
+        user_id
+      })),
       shareReplay(1),
-      first(),
+      first()
     );
   }
 
-  getInsightFromState(id: string): Observable<I_INS_FB> {
-    return (this.insightService.fbInsightFromState(id) as unknown) as Observable<I_INS_FB>;
+  public getInsightFromState (id: string): Observable<IFbInsight> {
+    return (this.facebookInsightService.fbInsightFromState(id) as unknown) as Observable<IFbInsight>;
   }
 
-  getFacebookPages(): Observable<I_DROPDOWN[]> {
-    return this.connectionService.connectionsByType(E_CONNECTION_TYPE.FACEBOOK_PAGE).pipe(
-      map((connections: I_CONNECTION[]) => {
-        const dropdown: I_DROPDOWN[] = [];
-        connections.forEach((connection: I_CONNECTION) => {
-          dropdown.push({ label: connection.connectionName, value: connection.connectionID });
+  getFacebookPages (): Observable<IDropdown[]> {
+    return this.connectionService.connectionsByType(EConnectionType.FACEBOOK).pipe(map((connections: IConnection[]) => {
+      const dropdown: IDropdown[] = [];
+
+      connections.forEach((connection: IConnection) => {
+        dropdown.push({
+          label: connection.connection_name,
+          value: connection.connection_id
         });
+      });
 
-        return dropdown;
-      }),
-    );
+      return dropdown;
+    }));
   }
 
-  viewPost(url: string): void {
+  viewPost (url: string): void {
     this.globalService.getWindow().open(url, '_blank');
   }
 
-  profileInsight(connectionType: string, connectionID: string): void {
-    this.globalService.getLocation().assign(`analyze/${connectionType}/${connectionID}`);
+  profileInsight (connection_type: string, connection_id: string): void {
+    this.globalService.getLocation().assign(`analyze/${connection_type}/${connection_id}`);
   }
 }

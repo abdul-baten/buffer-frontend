@@ -1,27 +1,25 @@
-import { AppState } from 'src/app/reducers';
-import { AuthService } from 'src/app/core/service';
-import { I_USER } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
-import { setUserInfo } from 'src/app/actions';
-import { Store } from '@ngrx/store';
-import { tap } from 'rxjs/operators';
+
+import type { AuthService } from 'src/app/core/service';
+import type { IUser } from 'src/app/core/model';
+import type { Observable } from 'rxjs';
+import type { Router } from '@angular/router';
 
 @Injectable()
 export class SignupFacade {
-  constructor(private readonly authService: AuthService, private readonly router: Router, private store: Store<AppState>) {}
+  constructor (private readonly authService: AuthService, private readonly router: Router) {}
 
-  navigate(authURL: string): void {
-    this.router.navigateByUrl(authURL);
+  public navigate (route: string): void {
+    this.router.navigateByUrl(route);
   }
 
-  signupUser(formValue: Partial<I_USER>): Observable<Partial<I_USER>> {
-    const { fullName, email, password } = formValue;
-    return this.authService.signupUser({ fullName, email, password }).pipe(
-      tap((user: Partial<I_USER>) => {
-        this.store.dispatch(setUserInfo({ user }));
-      }),
-    );
+  public signupUser (form_value: Partial<IUser>): Observable<Partial<IUser>> {
+    const { user_full_name, user_email, user_password } = form_value;
+
+    return this.authService.signupUser({
+      user_email,
+      user_full_name,
+      user_password
+    });
   }
 }

@@ -15,6 +15,6 @@ import { ToolbarModule } from '../../shared/header/toolbar/toolbar.module';
 @NgModule({
   declarations: [DashboardComponent, DashboardPostsOverviewComponent, DashboardSocialPerformanceComponent, DashboardSocialProfileOverviewComponent],
   imports: [AnalyzeCardModule, CommonModule, DashboardHeaderModule, DashboardRoutingModule, FieldsetModule, LazyLoadImageModule, ToolbarModule],
-  providers: [DashboardFacade],
+  providers: [DashboardFacade]
 })
 export class DashboardModule {}

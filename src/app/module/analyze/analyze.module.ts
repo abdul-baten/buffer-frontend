@@ -9,6 +9,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [AnalyzeComponent],
   imports: [AnalyzeRoutingModule, ButtonModule, CommonModule, RouterModule],
-  providers: [AnalyzeFacade],
+  providers: [AnalyzeFacade]
 })
 export class AnalyzeModule {}

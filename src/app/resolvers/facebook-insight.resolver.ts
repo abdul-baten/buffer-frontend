@@ -1,48 +1,61 @@
 import format from 'date-fns/format';
 import subDays from 'date-fns/subDays';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { catchError, switchMap } from 'rxjs/operators';
-import { ErrorService, InsightService, UserService } from '../core/service';
-import { I_INS_FB, I_USER } from '../core/model';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable, of } from 'rxjs';
+import type { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import type { ErrorService, FacebookInsightService, UserService } from '../core/service';
+import type { IFbInsight, IUser } from '../core/model';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class AnalyzeFacebookResolver implements Resolve<I_INS_FB | null> {
-  constructor(
+export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
+  constructor (
+    // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private readonly platformId: Object,
     private readonly errorService: ErrorService,
-    private readonly insightService: InsightService,
-    private readonly userService: UserService,
+    private readonly facebookInsightService: FacebookInsightService,
+    private readonly userService: UserService
   ) {}
 
-  private formatDate(date: string | Date): string {
+  private formatDate (date: string | Date): string {
     return format(new Date(date), 'MMM dd, yyyy');
   }
 
-  private getInsights(payload: { id: string; dateRange: string[] }): Observable<I_INS_FB> {
-    const { id, dateRange } = payload;
-    const since = format(new Date(dateRange[0]), 'yyyy-MM-dd');
-    const until = format(new Date(dateRange[1]), 'yyyy-MM-dd');
+  private getInsights (payload: { id: string; date_range: string[] }): Observable<IFbInsight> {
+    const { id, date_range } = payload;
+    const since = format(new Date(date_range[0]), 'yyyy-MM-dd');
+    const until = format(new Date(date_range[1]), 'yyyy-MM-dd');
 
     return this.userService.getUserFromState().pipe(
-      switchMap((user: I_USER) => {
-        const { id: userID } = user;
-        return this.insightService.getFBInsights({ userID, id, since, until });
-      }),
+      switchMap(({ id: user_id }: IUser) => this.facebookInsightService.getFBInsights({
+        id,
+        since,
+        until,
+        user_id
+      })),
+
       catchError((error) => {
         this.errorService.handleServerError(error);
+
         return of(error);
-      }),
+      })
     );
   }
 
-  resolve(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<I_INS_FB | null> {
-    const dateRange = [this.formatDate(subDays(new Date(), 6)), this.formatDate(new Date())];
+  public resolve (route: ActivatedRouteSnapshot): Observable<IFbInsight | null> {
+    const date_range = [this.formatDate(subDays(new Date(), parseInt('6', 10))), this.formatDate(new Date())];
     const { id } = route.params;
-    return isPlatformBrowser(this.platformId) ? this.getInsights({ id, dateRange }) : of(null);
+
+    if (isPlatformBrowser(this.platformId)) {
+      return this.getInsights({
+        date_range,
+        id
+      });
+    }
+
+    return of(null);
   }
 }

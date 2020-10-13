@@ -1,35 +1,36 @@
 import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import type { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
-const API_URL = environment.apiURL;
+const { api_base_uri } = environment;
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HttpService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor (private readonly httpClient: HttpClient) {}
 
-  get<T>(apiURL: string, params?: HttpParams): Observable<T> {
-    return this.httpClient
-      .get<T>(API_URL + apiURL, {
-        params: { ...params },
-      })
-      .pipe(shareReplay(1));
+  public get<T> (uri: string, params?: Record<string, string>): Observable<T> {
+    return this.httpClient.
+      get<T>(api_base_uri + uri, {
+        params: { ...params } as HttpParams
+      }).
+      pipe(shareReplay(1));
   }
 
-  post<T>(apiURL: string, postInfo: T): Observable<T> {
-    return this.httpClient.post<T>(API_URL + apiURL, postInfo).pipe(shareReplay(1));
+  public post<T> (uri: string, post_info: T): Observable<T> {
+    return this.httpClient.post<T>(api_base_uri + uri, post_info).pipe(shareReplay(1));
   }
 
-  patch<T>(apiURL: string, postInfo: T): Observable<T> {
-    return this.httpClient.patch<T>(API_URL + apiURL, postInfo).pipe(shareReplay(1));
+  public patch<T> (uri: string, post_info: T): Observable<T> {
+    return this.httpClient.patch<T>(api_base_uri + uri, post_info).pipe(shareReplay(1));
   }
 
-  delete<T>(apiURL: string, deletedID: string): Observable<T> {
-    return this.httpClient
-      .delete<T>(API_URL + apiURL, { params: { deletedID } })
-      .pipe(shareReplay(1));
+  public delete<T> (uri: string, delete_id: string): Observable<T> {
+    return this.httpClient.
+      delete<T>(api_base_uri + uri, { params: { delete_id } }).
+      pipe(shareReplay(1));
   }
 }

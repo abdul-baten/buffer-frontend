@@ -27,7 +27,9 @@ import { TextComponent } from './components/text/text.component';
 import { TypeComponent } from './components/type/type.component';
 import { VideoComponent } from './components/video/video.component';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const FilePondPluginFileEncode = require('filepond-plugin-file-encode');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const FilePondPluginMediaPreview = require('filepond-plugin-media-preview');
 
 FilePond.registerPlugin(
@@ -36,7 +38,7 @@ FilePond.registerPlugin(
   FilePondPluginFileValidateType,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,
-  FilePondPluginMediaPreview,
+  FilePondPluginMediaPreview
 );
 
 @NgModule({
@@ -54,8 +56,8 @@ FilePond.registerPlugin(
     RouterModule,
     SplitButtonModule,
     TabViewModule,
-    StepsModule,
+    StepsModule
   ],
-  providers: [PostModalFacade, PostTypeImageService, PostTypeVideoService, DialogService],
+  providers: [PostModalFacade, PostTypeImageService, PostTypeVideoService, DialogService]
 })
 export class PostModalModule {}

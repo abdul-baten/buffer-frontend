@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
-import { E_POST_TYPE } from 'src/app/core/enum';
+import type { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { EPostType } from 'src/app/core/enum';
+import type { IPost } from 'src/app/core/model';
 
 @Component({
-  selector: 'buffer--view-modal',
+  selector: 'buffer-view-modal',
   styleUrls: ['./view-modal.component.css'],
-  templateUrl: './view-modal.component.html',
+  templateUrl: './view-modal.component.html'
 })
 export class ViewModalComponent {
-  postType = E_POST_TYPE;
-  postData: any;
+  public post_info: IPost;
+  public post_type = EPostType;
 
-  constructor(public postInfo: DynamicDialogConfig) {
-    this.postData = this.postInfo.data.postData;
+  constructor (public postInfo: DynamicDialogConfig) {
+    this.post_info = this.postInfo.data.post_info;
   }
 
-  trackBy(index: number, _media: string): number {
+  public trackBy (index: number): number {
     return index;
   }
 }

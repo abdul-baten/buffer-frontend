@@ -2,7 +2,7 @@
 	position: relative;
 	width: 100%;
 
-	.buffer--intro-publish-content {
+	.buffer-intro-publish-content {
 		-webkit-box-align: center;
 		-webkit-box-direction: normal;
 		-webkit-box-orient: horizontal;
@@ -13,10 +13,10 @@
 		height: 400px;
 		justify-content: center;
 
-		.buffer--intro-publish-content-photo {
+		.buffer-intro-publish-content-photo {
 			width: 100%;
 			height: 100%;
-			background-image: url('/assets/images/background/buffer--publish-graphics.svg');
+			background-image: url('/assets/images/background/buffer-publish-graphics.svg');
 			background-position: left center;
 			background-size: contain;
 			background-repeat: no-repeat;
@@ -24,7 +24,7 @@
 			order: 1;
 		}
 
-		.buffer--intro-publish-content-text {
+		.buffer-intro-publish-content-text {
 			-webkit-box-ordinal-group: 3;
 			order: 2;
 		}

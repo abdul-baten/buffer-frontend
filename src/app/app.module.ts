@@ -9,7 +9,7 @@ import { DashboardHeaderModule } from './shared/header/dashboard-header/dashboar
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { EntityStoreModule } from './entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { ErrorInterceptor, HTTPRequestInterceptor, LoaderInterceptor, LoggerInterceptor } from './core/interceptor';
+import { ErrorInterceptor, HttpRequestInterceptor, LoaderInterceptor, LoggerInterceptor } from './core/interceptor';
 import { GlobalErrorHandlerUtil } from './core/util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from './shared/loader/loader.module';
@@ -27,6 +27,7 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
     BrowserModule.withServerTransition({ appId: 'buffer' }),
     BrowserTransferStateModule,
     ConfirmDialogModule,
+    ConnectionServiceModule,
     DashboardHeaderModule,
     DynamicDialogModule,
     EntityStoreModule,
@@ -35,8 +36,7 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
     PostModalModule,
     ToastModule,
     TransferHttpCacheModule,
-    ViewModalModule,
-    ConnectionServiceModule,
+    ViewModalModule
   ],
   providers: [
     ConfirmationService,
@@ -45,27 +45,28 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: LoggerInterceptor,
+      useClass: LoggerInterceptor
     },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: HTTPRequestInterceptor,
+      useClass: HttpRequestInterceptor
     },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
+      useClass: LoaderInterceptor
     },
     {
+      multi: true,
       provide: ErrorHandler,
-      useClass: GlobalErrorHandlerUtil,
+      useClass: GlobalErrorHandlerUtil
     },
     {
       multi: true,
       provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-    },
-  ],
+      useClass: ErrorInterceptor
+    }
+  ]
 })
 export class AppModule {}

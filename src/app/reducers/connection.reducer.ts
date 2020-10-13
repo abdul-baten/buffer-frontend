@@ -1,26 +1,27 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { deleteConnection, setConnection } from '../actions';
-import { I_CONNECTION } from '../core/model';
+import {
+  Action,
+  createReducer,
+  on
+} from '@ngrx/store';
+import { delete_connection, set_connection } from '../actions';
+import type { IConnection } from '../core/model';
 
-const connectionFeatureKey = 'connection';
-
-const connectionInitialState: I_CONNECTION[] = [];
+export const connection_feature_key = 'connection';
+export const connection_initial_state: IConnection[] = [];
 
 const reducer = createReducer(
-  connectionInitialState,
-  on(setConnection, (state: I_CONNECTION[], action: { connection: I_CONNECTION }) => {
+  connection_initial_state,
+  on(set_connection, (state: IConnection[], action: { connection: IConnection }) => {
     const { connection } = action;
+
     return [...state, connection];
   }),
-  on(deleteConnection, (state: I_CONNECTION[], action: { connection: I_CONNECTION }) => {
+  on(delete_connection, (state: IConnection[], action: { connection: IConnection }) => {
     const { connection } = action;
-    const removedConnections = state.filter((entry: I_CONNECTION) => entry.id !== connection.id);
-    return [...removedConnections];
-  }),
+    const remove_connections = state.filter((entry: IConnection) => entry.id !== connection.id);
+
+    return [...remove_connections];
+  })
 );
 
-function connectionReducer(state: I_CONNECTION[], action: Action) {
-  return reducer(state, action);
-}
-
-export { connectionFeatureKey, connectionInitialState, connectionReducer };
+export const connection_reducer = (state: IConnection[], action: Action): IConnection[] => reducer(state, action);

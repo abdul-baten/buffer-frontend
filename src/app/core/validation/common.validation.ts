@@ -1,52 +1,48 @@
-import { FormControl, FormGroup } from '@angular/forms';
-import { REG_EX_PATTERNS } from '../constant';
+import { RegexPatterns } from '../constant';
+import type { FormControl, FormGroup } from '@angular/forms';
 
 export class CommonValidator {
-  static alphaNumeric(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.ALPHA_NUMERIC_WITH_SPACE;
-    return !regex.test(control.value) ? { alphaNumericontrol: true } : null;
+  public static alphaNumeric (control: FormControl): { [key: string]: boolean } | null {
+    const regex = RegexPatterns.ALPHA_NUMERIC_WITH_SPACE;
+
+    return regex.test(control.value) ? null : { ALPHA_NUMERIC: true };
   }
 
-  static emailAddress(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.EMAIL;
-    return !regex.test(control.value) ? { invalidEmail: true } : null;
+  public static emailAddress (control: FormControl): { [key: string]: boolean } | null {
+    const regex = RegexPatterns.EMAIL;
+
+    return regex.test(control.value) ? null : { INVALID_EMAIL: true };
   }
 
-  static notAllowRepeatingCharacter(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.NOT_ALLOWED_REPEATING_CHARACTER;
-    return !regex.test(control.value) ? { notAllowRepeatingCharacter: true } : null;
+  public static numbersOnly (control: FormControl): { [key: string]: boolean } | null {
+    const regex = RegexPatterns.ONLY_NUMBER;
+
+    return !regex.test(control.value) || control.value.trim() === '' ? { ONLY_NUMBER: true } : null;
   }
 
-  static numbersOnly(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.ONLY_NUMBER;
-    return !regex.test(control.value) || control.value.trim() === '' ? { numbersOnly: true } : null;
+  public static validURL (control: FormControl): { [key: string]: boolean } | null {
+    const regex = RegexPatterns.URL;
+
+    if (control.value) {
+      return regex.test(control.value) ? null : { INVALID_URL: true };
+    }
+
+    return null;
   }
 
-  static numberSpaceOnly(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.NUMBER_WITH_SPACE;
-    return !regex.test(control.value) || control.value.trim() === '' ? { numberSpaceOnly: true } : null;
-  }
+  public static compareTwoFields (control_name: string, matching_control: string): (form_group: FormGroup)=> void {
+    return (form_group: FormGroup) => {
+      const control = form_group.controls[control_name];
+      const match_control = form_group.controls[matching_control];
 
-  static validURL(control: FormControl): { [key: string]: boolean } | null {
-    const regex = REG_EX_PATTERNS.URL;
-    return control.value ? (!regex.test(control.value) ? { validURL: true } : null) : null;
-  }
-
-  static compareTwoFields(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-        // return if another validator has already found an error on the matchingControl
+      if (match_control.errors && !match_control.errors.MISMATCH) {
         return;
       }
 
-      // set error on matchingControl if validation fails
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
+      if (control.value === match_control.value) {
+        match_control.setErrors(null);
       } else {
-        matchingControl.setErrors(null);
+        match_control.setErrors({ MISMATCH: true });
       }
     };
   }

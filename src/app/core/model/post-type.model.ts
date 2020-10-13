@@ -1,14 +1,12 @@
 import { PostTypeImageService } from '../service/post-type-image.service';
 import { PostTypeVideoService } from '../service/post-type-video.service';
 
-
-// tslint:disable-next-line
-export interface I_POST_TYPE_GENERATOR {
+export interface IPostTypeGenerator {
   generateConfig(): Record<string, any>;
 }
 
-export const I_POST_TYPE_MAP = new Map([
-  ['text', null],
+export const PostTypeMap = new Map([
   ['image', PostTypeImageService],
-  ['video', PostTypeVideoService],
+  ['text', null],
+  ['video', PostTypeVideoService]
 ]);

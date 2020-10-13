@@ -11,6 +11,6 @@ import { VideoRoutingModule } from './video-routing.module';
 @NgModule({
   declarations: [VideoComponent],
   imports: [CommonModule, MainLogoModule, ReactiveFormsModule, RouterModule, VideoRoutingModule],
-  providers: [VideoFacade, AuthService, HttpService],
+  providers: [VideoFacade, AuthService, HttpService]
 })
 export class VideoModule {}

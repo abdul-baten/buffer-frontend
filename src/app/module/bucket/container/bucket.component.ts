@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'buffer--bucket',
-  templateUrl: './bucket.component.html',
+  selector: 'buffer-bucket',
   styleUrls: ['./bucket.component.css'],
+  templateUrl: './bucket.component.html'
 })
 export class BucketComponent {}

@@ -1,23 +1,24 @@
 <div class="p-d-flex p-jc-start p-flex-column">
   <div class="b-w-full b-h-toolbar b-br-b">
-    <buffer--toolbar [backButton]="true" [showConnections]="true" headerTitle="LinkedIn Page"></buffer--toolbar>
+    <buffer-toolbar [back_button]="true" [show_connections]="true" header_title="LinkedIn Page"></buffer-toolbar>
   </div>
 
   <section class="b-hs-wt-h b-of-h">
     <div class="b-h-full b-of-auto">
       <div class="p-p-4 b-h-full b-of-auto">
         <section class="p-grid">
-          <div *ngFor="let connection of connection$ | async; trackBy:trackBy;" class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
+          <div *ngFor="let connection of connection$ | async; trackBy:trackBy;"
+            class="p-col-12 p-md-6 p-lg-4 p-sm-12 p-xs-12">
             <p-fieldset>
               <p-header>
                 <div class="b-ca b-ca-lg">
-                  <img [lazyLoad]="connection.connectionPicture" class="b-w-full b-h-full b-br-full"
+                  <img [lazyLoad]="connection.connection_picture" class="b-w-full b-h-full b-br-full"
                     defaultImage="/assets/images/svg/default-media.svg"
                     errorImage="/assets/images/svg/default-media.svg" />
                 </div>
               </p-header>
-              <h6 class="p-text-capitalize">{{ connection.connectionName }}</h6>
-              <small>{{ connection.connectionCategory }}</small>
+              <h6 class="p-text-capitalize">{{ connection.connection_name }}</h6>
+              <small>{{ connection.connection_category }}</small>
               <button (click)="addConnection(connection)"
                 class="p-button-success p-button-sm p-button-text b-w-full p-mt-4" label="Add to plan" pButton
                 type="button">

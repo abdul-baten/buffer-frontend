@@ -1,27 +1,27 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { I_COUNTRY } from 'src/app/core/model';
+import type { ICountry } from 'src/app/core/model';
 
 @Component({
-  selector: 'buffer--profile-form',
+  selector: 'buffer-profile-form',
   styleUrls: ['./profile-form.component.css'],
-  templateUrl: './profile-form.component.html',
+  templateUrl: './profile-form.component.html'
 })
 export class ProfileFormComponent {
-  profileSetupForm: FormGroup;
-  countries: I_COUNTRY[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
-  constructor(private formBuilder: FormBuilder) {
-    this.profileSetupForm = this.buildProfileSetupForm();
+  form: FormGroup;
+  countries: ICountry[] = [{ name: 'Bangladesh' }, { name: 'India' }, { name: 'Pakistan' }];
+  constructor (private formBuilder: FormBuilder) {
+    this.form = this.buildProfileSetupForm();
   }
 
-  private buildProfileSetupForm(): FormGroup {
+  private buildProfileSetupForm (): FormGroup {
     return this.formBuilder.group({
-      profileBio: [''],
-      profileCountry: [''],
-      profileTimezone: [''],
-      profileEmailAddress: ['', Validators.compose([Validators.required, Validators.email])],
-      profileFirstName: ['', Validators.required],
-      profileLastName: ['', Validators.required],
+      user_bio: [''],
+      user_country: [''],
+      user_email: ['', Validators.compose([Validators.required, Validators.email])],
+      user_first_name: ['', Validators.required],
+      user_last_name: ['', Validators.required],
+      user_time_zone: ['']
     });
   }
 }
