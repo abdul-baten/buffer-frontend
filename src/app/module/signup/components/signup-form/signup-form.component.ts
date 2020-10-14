@@ -2,9 +2,8 @@ import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { noop } from 'rxjs';
+import { SignupFacade } from '../../facade/signup.facade';
 import { tap } from 'rxjs/operators';
-
-import type { SignupFacade } from '../../facade/signup.facade';
 
 @Component({
   selector: 'buffer-signup-form',
@@ -12,10 +11,13 @@ import type { SignupFacade } from '../../facade/signup.facade';
   templateUrl: './signup-form.component.html'
 })
 export class SignupFormComponent {
-  form_clicked = false;
-  form: FormGroup;
+  public form: FormGroup;
+  public form_clicked = false;
 
-  constructor (private formBuilder: FormBuilder, private signupFacade: SignupFacade) {
+  constructor (
+    private readonly facade: SignupFacade,
+    private readonly formBuilder: FormBuilder
+  ) {
     this.form = this.buildSignupForm();
   }
 
@@ -40,10 +42,10 @@ export class SignupFormComponent {
   public signUp (): void {
     if (this.form.valid) {
       this.form_clicked = true;
-      this.signupFacade.
+      this.facade.
         signupUser(this.form.value).
         pipe(tap(() => {
-          this.signupFacade.navigate('/dashboard');
+          this.facade.navigate('/dashboard');
           this.form.reset();
         })).
         subscribe(noop);

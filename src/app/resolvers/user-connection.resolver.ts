@@ -7,12 +7,12 @@ import {
 } from 'rxjs';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import type { Resolve } from '@angular/router';
-import type { ConnectionResolver } from './connection.resolver';
-import type { ErrorService } from '../core/service';
-import type { IConnection, IPost } from '../core/model';
-import type { PostResolver } from './post.resolver';
-import type { UserResolver } from './user.resolver';
+import { Resolve } from '@angular/router';
+import { ConnectionResolver } from './connection.resolver';
+import { ErrorService } from '../core/service';
+import { IConnection, IPost } from '../core/model';
+import { PostResolver } from './post.resolver';
+import { UserResolver } from './user.resolver';
 
 @Injectable({
   providedIn: 'root'

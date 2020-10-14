@@ -1,8 +1,8 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import type { ActivatedRoute } from '@angular/router';
-import type { FacebookPageFacade } from '../facade/facebook-page.facade';
-import type { IConnection } from 'src/app/core/model';
+import { ActivatedRoute } from '@angular/router';
+import { FacebookPageFacade } from '../facade/facebook-page.facade';
+import { IConnection } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer-app-facebook-page',
@@ -34,6 +34,8 @@ export class FacebookPageComponent implements OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

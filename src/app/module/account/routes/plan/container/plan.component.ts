@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { PlanFacade } from '../facade/plan.facade';
+import { PlanFacade } from '../facade/plan.facade';
 
 @Component({
   selector: 'buffer-plan',

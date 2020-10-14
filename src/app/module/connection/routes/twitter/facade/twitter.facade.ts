@@ -1,11 +1,11 @@
 import { EConnectionStatus, EConnectionType } from 'src/app/core/enum';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import type { ResponsiveLayoutService, UserService } from 'src/app/core/service';
-import type { IConnection, IUser } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { ParamMap, Router } from '@angular/router';
-import type { TwitterService } from '../service/twitter.service';
+import { ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { IConnection, IUser } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { ParamMap, Router } from '@angular/router';
+import { TwitterService } from '../service/twitter.service';
 
 @Injectable()
 export class TwitterFacade {

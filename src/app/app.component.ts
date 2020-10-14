@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import type { ConnectionService } from 'ng-connection-service';
-import type { Observable } from 'rxjs';
+import { ConnectionService } from 'ng-connection-service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'bufferRoot',
+  selector: 'buffer-root',
   styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
 })

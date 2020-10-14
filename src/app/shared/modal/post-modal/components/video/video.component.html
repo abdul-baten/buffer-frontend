@@ -1,12 +1,12 @@
 <section>
-  <form novalidate [formGroup]="videoForm">
+  <form novalidate [formGroup]="form">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
-        <buffer-connections class="p-d-flex" (connectionChange)="changeConnectionSelection($event)">
+        <buffer-connections class="p-d-flex" (connection_changed)="changeConnectionSelection($event)">
         </buffer-connections>
       </div>
       <div class="p-field p-col-12">
-        <buffer-media [postType]="postType.VIDEO"></buffer-media>
+        <buffer-media [post_type]="post_type.VIDEO"></buffer-media>
         <small>Maximum file size 150MB. Acceptable file types .mp4.</small>
       </div>
       <div class="p-field p-col-12">
@@ -15,10 +15,10 @@
           cols="30" id="postCaption" pInputTextarea rows="4" type="text"></textarea>
       </div>
       <div class="p-field p-col-12">
-        <label for="postScheduleDateTime">Date</label>
+        <label for="post_date_time">Date</label>
         <p-calendar [showButtonBar]="true" [showIcon]="true" [showTime]="true" [stepHour]="1" [stepMinute]="60"
-          appendTo="body" dateFormat="D, M dd, yy" formControlName="postScheduleDateTime" inputId="postScheduleDateTime"
-          placeholder="Select a Date" [autoZIndex]="true" [baseZIndex]="10001" [minDate]="currentDateTime"
+          appendTo="body" dateFormat="D, M dd, yy" formControlName="post_date_time" inputId="post_date_time"
+          placeholder="Select a Date" [autoZIndex]="true" [baseZIndex]="10001" [minDate]="current_date_time"
           [readonlyInput]="true" hourFormat="12">
         </p-calendar>
       </div>
@@ -27,7 +27,7 @@
           <button (click)="previous()" class="p-button-plain p-button-rounded p-button-text" icon="pi pi-arrow-left"
             pButton title="Select Type" type="button"></button>
           <p-splitButton [disabled]="(isButtonDisabled() | async)!" appendTo="body" menuStyleClass="p-p-2"
-            (onClick)="savePost(postStatus.PUBLISHED)" [model]="menu_items" label="Share now"></p-splitButton>
+            (onClick)="savePost(post_status.PUBLISHED)" [model]="menu_items" label="Share now"></p-splitButton>
         </div>
       </div>
     </div>

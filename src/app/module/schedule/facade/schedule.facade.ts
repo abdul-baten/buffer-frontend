@@ -1,12 +1,12 @@
 import format from 'date-fns/format';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import type { Calendar } from '@fullcalendar/core';
-import type { ConfirmationService } from 'primeng/api';
-import type { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
-import type { EventDropArg } from '@fullcalendar/interaction';
-import type { IConnection, IPost } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { Calendar } from '@fullcalendar/core';
+import { ConfirmationService } from 'primeng/api';
+import { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
+import { EventDropArg } from '@fullcalendar/interaction';
+import { IConnection, IPost } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ScheduleFacade {

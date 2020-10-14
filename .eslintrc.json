@@ -617,7 +617,7 @@
         "leadingUnderscore": "forbid",
         "trailingUnderscore": "forbid",
         "filter": {
-          "regex": "(providedIn|responseType|withCredentials|appId|useClass|contentStyle|showHeader|autoZIndex|baseZIndex|dismissableMask|runGuardsAndResolvers|pathMatch|redirectTo|anchorScrolling|enableTracing|initialNavigation|onSameUrlNavigation|relativeLinkResolution|scrollOffset|scrollPositionRestoration|urlUpdateStrategy|useHash|styleUrls|templateUrl|changeDetection|routerLink|routerLinkActiveOptions|nearestTo|allDay|hasEnd)",
+          "regex": "(providedIn|responseType|withCredentials|appId|useClass|contentStyle|showHeader|autoZIndex|baseZIndex|dismissableMask|runGuardsAndResolvers|pathMatch|redirectTo|anchorScrolling|enableTracing|initialNavigation|onSameUrlNavigation|paramsInheritanceStrategy|preloadingStrategy|relativeLinkResolution|scrollOffset|scrollPositionRestoration|urlUpdateStrategy|useHash|styleUrls|templateUrl|changeDetection|routerLink|routerLinkActiveOptions|nearestTo|allDay|hasEnd)",
           "match": false
         }
       },

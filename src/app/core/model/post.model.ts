@@ -1,7 +1,7 @@
-import type { EPostStatus, EPostType } from '../enum';
-import type { EventInput } from '@fullcalendar/core';
-import type { IConnection } from './connection.model';
-import type { IMedia } from './media.model';
+import { EPostStatus, EPostType } from '../enum';
+import { EventInput } from '@fullcalendar/core';
+import { IConnection } from './connection.model';
+import { IMedia } from './media.model';
 
 export interface IPost extends EventInput {
   id: string;

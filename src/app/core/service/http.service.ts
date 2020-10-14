@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
-import type { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import type { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
 
 const { api_base_uri } = environment;

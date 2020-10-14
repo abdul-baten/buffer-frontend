@@ -1,9 +1,9 @@
 import { first, map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import type { Resolve } from '@angular/router';
-import type { IPost, IUser } from '../core/model';
-import type { PostService, UserService } from '../core/service';
+import { Resolve } from '@angular/router';
+import { IPost, IUser } from '../core/model';
+import { PostService, UserService } from '../core/service';
 
 @Injectable({
   providedIn: 'root'

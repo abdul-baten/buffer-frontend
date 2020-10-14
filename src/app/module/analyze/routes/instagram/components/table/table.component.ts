@@ -5,8 +5,8 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import type { IInstaMediaInsight } from 'src/app/core/model';
-import type { InstagramFacade } from '../../facade/instagram.facade';
+import { IInstaMediaInsight } from 'src/app/core/model';
+import { InstagramFacade } from '../../facade/instagram.facade';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

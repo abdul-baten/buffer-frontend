@@ -2,11 +2,11 @@ import { EConnectionStatus, EConnectionType } from 'src/app/core/enum';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 
-import type { ResponsiveLayoutService, UserService } from 'src/app/core/service';
-import type { IConnection, IUser } from 'src/app/core/model';
-import type { InstagramBusinessService } from '../service/instagram-business.service';
-import type { Observable } from 'rxjs';
-import type { ParamMap, Router } from '@angular/router';
+import { ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { IConnection, IUser } from 'src/app/core/model';
+import { InstagramBusinessService } from '../service/instagram-business.service';
+import { Observable } from 'rxjs';
+import { ParamMap, Router } from '@angular/router';
 
 @Injectable()
 export class InstagramBusinessFacade {

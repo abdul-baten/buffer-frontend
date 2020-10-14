@@ -81,6 +81,10 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
+                },
+                {
+                  "type": "anyScript",
+                  "maximumWarning": "500kb"
                 }
               ]
             }
@@ -198,7 +202,8 @@
             "browserTarget": "buffer:build:production",
             "serverTarget": "buffer:server:production",
             "routes": [
-              "/"
+              "/",
+              "/enter"
             ]
           },
           "configurations": {
@@ -225,7 +230,8 @@
     "@schematics/angular:component": {
       "changeDetection": "OnPush",
       "displayBlock": true,
-      "inlineStyle": false
+      "inlineStyle": false,
+      "style": "css"
     },
     "@schematics/angular:module": {
       "routing": true,

@@ -1,8 +1,8 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import type { ActivatedRoute } from '@angular/router';
-import type { IConnection } from 'src/app/core/model';
-import type { TwitterFacade } from '../facade/twitter.facade';
+import { ActivatedRoute } from '@angular/router';
+import { IConnection } from 'src/app/core/model';
+import { TwitterFacade } from '../facade/twitter.facade';
 
 @Component({
   selector: 'buffer-twitter',
@@ -29,6 +29,8 @@ export class TwitterComponent implements OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

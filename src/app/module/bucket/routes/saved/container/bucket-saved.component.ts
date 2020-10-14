@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { EConnectionType, EPostStatus, EPostType } from 'src/app/core/enum';
 import { Observable, of } from 'rxjs';
-import type { BucketSavedFacade } from '../facade/bucket-saved.facade';
-import type { IDropdown, IPost } from 'src/app/core/model';
-import type { MenuItem } from 'primeng/api';
-import type { Table } from 'primeng/table';
+import { BucketSavedFacade } from '../facade/bucket-saved.facade';
+import { IDropdown, IPost } from 'src/app/core/model';
+import { MenuItem } from 'primeng/api';
+import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

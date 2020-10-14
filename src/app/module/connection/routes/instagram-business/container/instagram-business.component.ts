@@ -1,8 +1,8 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import type { ActivatedRoute } from '@angular/router';
-import type { IConnection } from 'src/app/core/model';
-import type { InstagramBusinessFacade } from '../facade/instagram-business.facade';
+import { ActivatedRoute } from '@angular/router';
+import { IConnection } from 'src/app/core/model';
+import { InstagramBusinessFacade } from '../facade/instagram-business.facade';
 
 @Component({
   selector: 'buffer-instagram-business',
@@ -34,6 +34,8 @@ export class InstagramBusinessComponent implements OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

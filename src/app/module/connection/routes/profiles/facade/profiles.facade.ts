@@ -1,10 +1,10 @@
 import { finalize } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import type { ConfirmationService } from 'primeng/api';
-import type { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
-import type { IConnection } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
+import { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
+import { IConnection } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ProfilesFacade {

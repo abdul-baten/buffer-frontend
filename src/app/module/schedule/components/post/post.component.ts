@@ -2,9 +2,9 @@ import differenceInDays from 'date-fns/differenceInDays';
 import { CalendarPostData } from '../../data/calendar-post.data';
 import { Component, Inject } from '@angular/core';
 import { EPostType } from 'src/app/core/enum';
-import type { IPost } from 'src/app/core/model';
-import type { MenuItem } from 'primeng/api';
-import type { ScheduleFacade } from '../../facade/schedule.facade';
+import { IPost } from 'src/app/core/model';
+import { MenuItem } from 'primeng/api';
+import { ScheduleFacade } from '../../facade/schedule.facade';
 
 @Component({
   selector: 'buffer-post',

@@ -15,8 +15,7 @@ import { enableProdMode } from '@angular/core';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import type { Request, Response } from 'express';
-
+import { Request, Response } from 'express';
 import { createServer, Server } from 'spdy';
 
 require('raf').polyfill();
@@ -88,10 +87,7 @@ const middlewares = (express: any) => {
 
   express.use(cors({
     credentials: true,
-    maxAge: 3600,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    origin: 'https://localhost:5000',
-    preflightContinue: false
+    origin: true
   }));
   express.use(bodyParser.json());
   express.use(bodyParser.urlencoded({ extended: true }));

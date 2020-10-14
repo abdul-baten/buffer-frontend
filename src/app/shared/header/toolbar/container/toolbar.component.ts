@@ -7,9 +7,9 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
-import type { IConnectionSelected } from 'src/app/core/model';
-import type { Location } from '@angular/common';
-import type { Router } from '@angular/router';
+import { IConnectionSelected } from 'src/app/core/model';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

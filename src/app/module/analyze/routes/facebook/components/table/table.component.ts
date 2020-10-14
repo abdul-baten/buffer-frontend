@@ -5,8 +5,8 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import type { FacebookFacade } from '../../facade/facebook.facade';
-import type { IFbPost } from 'src/app/core/model';
+import { FacebookFacade } from '../../facade/facebook.facade';
+import { IFbPost } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

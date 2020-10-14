@@ -1,5 +1,5 @@
 import { RegexPatterns } from '../constant';
-import type { FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 export class PasswordValidator {
   static oneUpperCase (control: FormControl): { [key: string]: boolean } | null {

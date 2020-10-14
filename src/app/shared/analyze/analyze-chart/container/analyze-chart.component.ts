@@ -1,10 +1,19 @@
+/* eslint-disable sort-keys */
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable max-lines-per-function */
 import * as Highcharts from 'highcharts';
 import Exporting from 'highcharts/modules/exporting';
 import Exporting_D from 'highcharts/modules/export-data';
 import Exporting_O from 'highcharts/modules/offline-exporting';
 import More from 'highcharts/highcharts-more';
 import NoData from 'highcharts/modules/no-data-to-display';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 
 Exporting(Highcharts);
 Exporting_D(Highcharts);
@@ -14,27 +23,29 @@ NoData(Highcharts);
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'bufferAnalyzeChart',
+  selector: 'buffer-analyze-chart',
   styleUrls: ['./analyze-chart.component.css'],
   templateUrl: './analyze-chart.component.html'
 })
 export class AnalyzeChartComponent implements OnChanges {
   @Input() chart_labels?: string[];
-  @Input() chartTitle = '';
-  @Input() chartType = '';
+  @Input() chart_title = '';
+  @Input() chart_type = '';
   @Input()
-  chartSeries!: { name: string; data?: any[]; type?: string; color?: string }[];
+  chart_series!: { name: string; data?: any[]; type?: string; color?: string }[];
 
-  Highcharts = Highcharts;
-  isHighcharts = typeof Highcharts === 'object';
-  updateFromInput = false;
-  chartRef!: Highcharts.Chart;
+  high_charts = Highcharts;
+  is_high_charts = typeof Highcharts === 'object';
+  update_from_input = false;
+  chart_ref!: Highcharts.Chart;
 
-  chartOptions = {
+  chart_options = {
+    // eslint-disable-next-line no-invalid-this
     ...this.getOptions()
   };
 
-  optFromInput = JSON.parse(JSON.stringify(this.chartOptions));
+  // eslint-disable-next-line no-invalid-this
+  opt_from_input = JSON.parse(JSON.stringify(this.chart_options));
 
   private getOptions (type: string = '', categories: string[] = []): Highcharts.Options {
     return {
@@ -141,31 +152,32 @@ export class AnalyzeChartComponent implements OnChanges {
     };
   }
 
-  chartCallback: Highcharts.ChartCallbackFunction = (chart: Highcharts.Chart) => {
-    this.chartRef = chart;
-  };
+  chartCallback = (chart: Highcharts.Chart): void => {
+    // eslint-disable-next-line no-invalid-this
+    this.chart_ref = chart;
+  }
 
   ngOnChanges (changes: SimpleChanges): void {
-    const chartOptions: Highcharts.Options = {
-      ...this.getOptions(changes?.chartType?.currentValue, changes?.chart_labels?.currentValue),
-      series: [...changes?.chartSeries?.currentValue || []]
+    const chart_options: Highcharts.Options = {
+      ...this.getOptions(changes?.chart_type?.currentValue, changes?.chart_labels?.currentValue),
+      series: [...changes?.chart_series?.currentValue || []]
     };
 
-    this.optFromInput = JSON.parse(JSON.stringify(chartOptions));
-    this.updateFromInput = true;
+    this.opt_from_input = JSON.parse(JSON.stringify(chart_options));
+    this.update_from_input = true;
   }
 
   exportToJPEG (): void {
-    this.chartRef.exportChart(
+    this.chart_ref.exportChart(
       {
-        type: 'image/jpeg',
-        filename: this.chartTitle
+        filename: this.chart_title,
+        type: 'image/jpeg'
       },
       {}
     );
   }
 
   exportToExcel (): void {
-    this.chartRef.downloadXLS();
+    this.chart_ref.downloadXLS();
   }
 }

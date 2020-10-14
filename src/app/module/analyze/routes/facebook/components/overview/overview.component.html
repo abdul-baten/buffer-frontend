@@ -43,52 +43,52 @@
 
   <div class="p-grid p-mt-2">
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Engagements" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Engagements" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Engagements', data: overview?.page_engaged_users?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Engagements', data: overview?.page_engaged_users?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Page Impressions" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page Impressions" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Page Impressions', data: overview?.page_impressions?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Page Impressions', data: overview?.page_impressions?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Reactions" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Reactions" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Reactions', data: overview?.page_actions_post_reactions_like_total?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Reactions', data: overview?.page_actions_post_reactions_like_total?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Fan Growth" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Fan Growth" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Fan Growth', data: overview?.page_fan_adds?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Fan Growth', data: overview?.page_fan_adds?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Fans Lost" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Fans Lost" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Fans Lost', data: overview?.page_fan_removes?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Fans Lost', data: overview?.page_fan_removes?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Page Views" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page Views" chart_type="area"
         [chart_labels]="overview?.categories"
-        [chartSeries]="[{name: 'Page Views', data: overview?.page_views_total?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Page Views', data: overview?.page_views_total?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Page likes/unlikes history" chartType="column"
-        [chart_labels]="overview?.categories" [chartSeries]="[
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page likes/unlikes history" chart_type="column"
+        [chart_labels]="overview?.categories" [chart_series]="[
         {name: 'Likes', data: overview?.page_fan_adds?.response, type: 'column', color: '#04D98B'},
         {name: 'Unlikes', data: overview?.page_fan_removes?.response, type: 'column', color: '#e0245e'}
         ]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Reactions Type" chartType="column"
-        [chart_labels]="overview?.categories" [chartSeries]="[
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Reactions Type" chart_type="column"
+        [chart_labels]="overview?.categories" [chart_series]="[
         {name: 'Like', data: overview?.page_actions_post_reactions_like_total?.response, type: 'column'},
         {name: 'Love', data: overview?.page_actions_post_reactions_love_total?.response, type: 'column'},
         {name: 'Wow', data: overview?.page_actions_post_reactions_wow_total?.response, type: 'column'},

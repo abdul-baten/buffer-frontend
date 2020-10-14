@@ -1,69 +1,87 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { IConnection, IPost } from 'src/app/core/model';
-import { Observable, of, Subscription } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { IConnection } from 'src/app/core/model';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer-connections',
   styleUrls: ['./connections.component.css'],
-  templateUrl: './connections.component.html',
+  templateUrl: './connections.component.html'
 })
 export class ConnectionsComponent implements OnInit, OnDestroy {
-  @Output() connectionChange = new EventEmitter<Partial<IConnection>[]>();
-  activeConnectionID$: Observable<string> = of('');
+  @Output() connection_changed = new EventEmitter<Partial<IConnection>[]>();
   connections$: Observable<IConnection[]>;
   private subscription$ = new Subscription();
-  selectedConnections: Partial<IConnection>[] = [];
+  selected_connections: Partial<IConnection>[] = [];
 
-  constructor(private readonly postCreateModalFacade: PostModalFacade) {
+  constructor (private readonly postCreateModalFacade: PostModalFacade) {
     this.connections$ = this.postCreateModalFacade.getConnections();
   }
 
-  ngOnInit(): void {
-    this.activeConnectionID$ = this.postCreateModalFacade.getActiveConnectionID();
+  ngOnInit (): void {
 
-    this.subscription$.add(
-      this.postCreateModalFacade.getPostInfo().subscribe((postInfo: IPost) => {
-        const postConnection = postInfo.postConnection;
-        if (!!postConnection.connection_id) {
-          this.selectedConnections.push(postConnection);
-          this.connectionChange.emit(this.selectedConnections);
-        }
-      }),
-    );
+    /*
+     * This.subscription$.add(this.postCreateModalFacade.getPostInfo().subscribe((postInfo: IPost) => {
+     *   const { postConnection } = postInfo;
+     */
+
+    /*
+     *   If (postConnection.connection_id) {
+     *     this.selected_connections.push(postConnection);
+     *     this.connection_changed.emit(this.selected_connections);
+     *   }
+     * }));
+     */
   }
 
-  generateTooltip(connection: IConnection): string {
-    const connection_type = connection.connection_type.split('_').join(' ').trim();
+  generateTooltip (connection: IConnection): string {
+    const connection_type = connection.connection_type.split('_').join(' ').
+      trim();
 
     return `${connection.connection_name} | ${connection_type}`;
   }
 
-  connectionSelected(connection: IConnection) {
-    const findConnection = this.selectedConnections.find((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
-    const findConnectionIndex = this.selectedConnections.findIndex((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
-    if (!findConnection) {
-      const { connection_type, id } = connection;
-      this.selectedConnections.push({ connection_type, id });
+  connectionSelected (selected_connection: IConnection): void {
+    const found_connection = this.selected_connections.find((entry: Partial<IConnection>) => entry.id as string === selected_connection.id);
+    const found_connection_index = this.selected_connections.findIndex((entry: Partial<IConnection>) => entry.id as string === selected_connection.id);
+
+    if (found_connection) {
+      this.selected_connections.splice(found_connection_index, 1);
     } else {
-      this.selectedConnections.splice(findConnectionIndex, 1);
+      const { connection_type, id } = selected_connection;
+
+      this.selected_connections.push({
+        connection_type,
+        id });
     }
 
-    this.connectionChange.emit(this.selectedConnections);
+    this.connection_changed.emit(this.selected_connections);
   }
 
-  isConnectionSelected(connection: IConnection): boolean {
-    const findConnection = this.selectedConnections.find((entry: Partial<IConnection>) => (entry.id as string) === connection.id);
-    return !!findConnection;
+  isConnectionSelected (selected_connection: IConnection): boolean {
+    const found_connection = this.selected_connections.find((entry: Partial<IConnection>) => entry.id as string === selected_connection.id);
+
+    return Boolean(found_connection);
   }
 
-  trackBy(_index: number, connection: IConnection): number {
-    return +connection.connection_id;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  trackBy (_index: number, connection: IConnection): number {
+    return Number(connection.connection_id);
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
+  ngOnDestroy (): void {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

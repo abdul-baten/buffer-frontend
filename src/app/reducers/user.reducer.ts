@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { set_user_info } from '../actions';
-import type { IUser } from '../core/model';
+import { IUser } from '../core/model';
 
 export const user_feature_key = 'user';
 export const user_initial_state: IUser = {

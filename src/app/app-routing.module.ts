@@ -1,5 +1,6 @@
 import { DocumentResolver, UserConnectionResolver } from './resolvers';
 import { NgModule } from '@angular/core';
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { RouteMeta } from './core/constant';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -103,11 +104,14 @@ const routes: Routes = [
 @NgModule({
   exports: [RouterModule],
   imports: [
+    QuicklinkModule,
     RouterModule.forRoot(routes, {
       anchorScrolling: 'enabled',
       enableTracing: false,
       initialNavigation: 'enabled',
       onSameUrlNavigation: 'ignore',
+      paramsInheritanceStrategy: 'emptyOnly',
+      preloadingStrategy: QuicklinkStrategy,
       relativeLinkResolution: 'corrected',
       scrollOffset: [0, 0],
       scrollPositionRestoration: 'top',

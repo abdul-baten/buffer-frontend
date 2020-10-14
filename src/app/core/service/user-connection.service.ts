@@ -7,10 +7,10 @@ import {
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import type { ConnectionService } from './connection.service';
-import type { ErrorService } from './error.service';
-import type { IConnection, IUser } from '../model';
-import type { UserService } from './user.service';
+import { ConnectionService } from './connection.service';
+import { ErrorService } from './error.service';
+import { IConnection, IUser } from '../model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'

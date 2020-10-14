@@ -7,9 +7,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConnectionServiceModule } from 'ng-connection-service';
 import { DashboardHeaderModule } from './shared/header/dashboard-header/dashboard-header.module';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { EntityStoreModule } from './entity-store.module';
+import { EntityStoreModule } from './store/entity-store.module';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { ErrorInterceptor, HttpRequestInterceptor, LoaderInterceptor, LoggerInterceptor } from './core/interceptor';
+import {
+  ErrorInterceptor,
+  HttpRequestInterceptor,
+  LoaderInterceptor,
+  LoggerInterceptor
+} from './core/interceptor';
 import { GlobalErrorHandlerUtil } from './core/util';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoaderModule } from './shared/loader/loader.module';
@@ -58,7 +63,6 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
       useClass: LoaderInterceptor
     },
     {
-      multi: true,
       provide: ErrorHandler,
       useClass: GlobalErrorHandlerUtil
     },

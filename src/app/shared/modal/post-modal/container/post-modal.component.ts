@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import type { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
-import type { PostModalFacade } from '../facade/post-modal.facade';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { PostModalFacade } from '../facade/post-modal.facade';
 
 @Component({
   selector: 'buffer-post-modal',

@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import type { IFbOverviewInsight } from 'src/app/core/model';
+import { IFbOverviewInsight } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer-audience',

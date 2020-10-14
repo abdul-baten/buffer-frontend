@@ -51,11 +51,12 @@ import { VideoComponent } from './components/video/video.component';
     NoDataFoundModule,
     OverlayPanelModule,
     ReactiveFormsModule,
+    SumPipeModule,
     TableModule,
     TabViewModule,
     ToolbarModule,
     TooltipModule
   ],
-  providers: [FacebookFacade, SumPipeModule]
+  providers: [FacebookFacade]
 })
 export class AnalyzeFacebookModule {}

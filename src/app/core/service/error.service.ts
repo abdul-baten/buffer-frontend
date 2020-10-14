@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import type { HttpErrorResponse } from '@angular/common/http';
-import type { IError } from '../model';
-import type { NotificationService } from './notification.service';
-import type { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { IError } from '../model';
+import { NotificationService } from './notification.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'

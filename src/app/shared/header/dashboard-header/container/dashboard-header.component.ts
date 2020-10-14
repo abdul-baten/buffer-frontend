@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import type { DashboardHeaderFacade } from '../facade/dashboard-header.facade';
+import { DashboardHeaderFacade } from '../facade/dashboard-header.facade';
 
 @Component({
   selector: 'buffer-dashboard-header',

@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class HeaderAccountFacade {
-  constructor(private dashboardHeaderService: HeaderAccountService, private readonly router: Router) {}
+  constructor (private dashboardHeaderService: HeaderAccountService, private readonly router: Router) {}
 
-  navigateToRoute(routeToNavigate: string): void {
-    this.router.navigate([routeToNavigate]);
+  navigateToRoute (route: string): void {
+    this.router.navigate([route]);
   }
 
-  logoutUser(): void {
+  logoutUser (): void {
     this.dashboardHeaderService.logoutUser();
   }
 }

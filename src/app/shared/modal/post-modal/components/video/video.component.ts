@@ -1,101 +1,108 @@
-import { AppState } from 'src/app/reducers';
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
-import { defaultIfEmpty, finalize, map } from 'rxjs/operators';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
+import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IConnection, I_MEDIA, IPost } from 'src/app/core/model';
+import { Observable, of, Subscription } from 'rxjs';
+
+import { IConnection } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
-import { Observable, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
-import { selectNewPostMedias } from 'src/app/selectors';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'buffer-video',
   styleUrls: ['./video.component.css'],
-  templateUrl: './video.component.html',
+  templateUrl: './video.component.html'
 })
 export class VideoComponent implements OnInit, OnDestroy {
-  @Output() tabSelected = new EventEmitter<number>();
-  currentDateTime: Date = new Date();
-  menu_items: MenuItem[] = [];
-  postStatus = EPostStatus;
-  postType = EPostType;
+  @Output() tab_selected = new EventEmitter<number>();
   private subscription$ = new Subscription();
-  selectedConnections: Partial<IConnection>[] = [];
-  videoForm: FormGroup;
+  public current_date_time: Date = new Date();
+  public form: FormGroup;
+  public menu_items: MenuItem[] = [];
+  public post_status = EPostStatus;
+  public post_type = EPostType;
+  public selected_connections: Partial<IConnection>[] = [];
 
-  constructor(private readonly facade: PostModalFacade, private readonly formBuilder: FormBuilder, private readonly store: Store<AppState>) {
-    this.videoForm = this.buildVideoForm();
+  constructor (private readonly facade: PostModalFacade, private readonly formBuilder: FormBuilder) {
+    this.form = this.buildVideoForm();
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.menu_items = [
       {
-        label: 'Schedule',
-        icon: 'pi pi-calendar-plus',
         command: () => {
-          this.savePost(this.postStatus.SCHEDULED);
+          this.savePost(this.post_status.SCHEDULED);
         },
+        icon: 'pi pi-calendar-plus',
+        label: 'Schedule'
       },
       { separator: true },
       {
-        label: 'Save post',
-        icon: 'pi pi-save',
         command: () => {
-          this.savePost(this.postStatus.SAVED);
+          this.savePost(this.post_status.SAVED);
         },
-      },
+        icon: 'pi pi-save',
+        label: 'Save post'
+      }
     ];
 
-    this.subscription$.add(
-      this.facade.getPostInfo().subscribe((postInfo: IPost) => {
-        const { postCaption, postScheduleDateTime } = postInfo;
-        if (!!postCaption) {
-          this.videoForm.patchValue({ postCaption });
-        }
-        this.videoForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
-      }),
-    );
+    /*
+     * This.subscription$.add(this.facade.getPostInfo().subscribe((post_info: IPost) => {
+     *   const { post_message, post_date_time } = post_info;
+     */
+
+    /*
+     *   If (post_message) {
+     *     this.form.patchValue({ post_message });
+     *   }
+     *   this.form.patchValue({ post_date_time: new Date(post_date_time) });
+     * }));
+     */
   }
 
-  private buildVideoForm(): FormGroup {
+  private buildVideoForm (): FormGroup {
     return this.formBuilder.group({
-      postScheduleDateTime: [null, Validators.required],
-      postCaption: [null, Validators.required],
+      post_date_time: [null, Validators.required],
+      post_message: [null, Validators.required]
     });
   }
 
-  changeConnectionSelection(connections: Partial<IConnection>[]): void {
-    this.selectedConnections = connections;
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  changeConnectionSelection (connections: any): void {
+    this.selected_connections = connections;
   }
 
-  previous(): void {
-    this.tabSelected.emit(0);
+  previous (): void {
+    this.tab_selected.emit(0);
   }
 
-  isButtonDisabled(): Observable<boolean> {
-    return this.store.select(selectNewPostMedias).pipe(
-      map((medias: I_MEDIA[]) => !!!medias.length || !!!this.selectedConnections.length || this.videoForm.invalid),
-      map((response: boolean) => response),
-      defaultIfEmpty(true),
-    );
+  isButtonDisabled (): Observable<boolean> {
+    // Return of(Boolean(!medias.length) || Boolean(!this.selected_connections.length) || this.form.invalid)
+    return of(Boolean(!this.selected_connections.length) || this.form.invalid);
   }
 
-  savePost(postStatus: EPostStatus): void {
-    if (this.videoForm.valid) {
-      const { value } = this.videoForm;
-      this.subscription$.add(
-        this.facade
-          .sendPost(EPostType.VIDEO, value, postStatus, this.selectedConnections)
-          .pipe(finalize(() => this.videoForm.controls.postCaption.reset()))
-          .subscribe(),
-      );
+  savePost (post_status: EPostStatus): void {
+    if (this.form.valid) {
+      const { value } = this.form;
+
+      this.subscription$.add(this.facade.
+        sendPost(EPostType.VIDEO, value, post_status, this.selected_connections).
+        pipe(finalize(() => this.form.controls.postCaption.reset())).
+        subscribe());
     }
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscription$.unsubscribe();
+  ngOnDestroy (): void {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

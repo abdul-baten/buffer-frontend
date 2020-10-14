@@ -31,9 +31,9 @@ import { PostComponent } from '../post/post.component';
 import { Subscription } from 'rxjs';
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import type { FullCalendarComponent } from '@fullcalendar/angular';
-import type { IPost } from 'src/app/core/model';
-import type { ScheduleFacade } from '../../facade/schedule.facade';
+import { FullCalendarComponent } from '@fullcalendar/angular';
+import { IPost } from 'src/app/core/model';
+import { ScheduleFacade } from '../../facade/schedule.facade';
 
 // eslint-disable-next-line no-unused-expressions
 Calendar.name;
@@ -203,6 +203,8 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

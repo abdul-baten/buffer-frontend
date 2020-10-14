@@ -1,6 +1,6 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
-import type { DashboardHeaderFacade } from '../../facade/dashboard-header.facade';
-import type { MenuItem } from 'primeng/api';
+import { DashboardHeaderFacade } from '../../facade/dashboard-header.facade';
+import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -52,7 +52,9 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 
   clicked (route: [string]): void {

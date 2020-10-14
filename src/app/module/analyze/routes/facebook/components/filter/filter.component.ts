@@ -12,9 +12,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { noop, Subscription } from 'rxjs';
-import type { ActivatedRoute, ParamMap } from '@angular/router';
-import type { FacebookFacade } from '../../facade/facebook.facade';
-import type { OverlayPanel } from 'primeng/overlaypanel';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { FacebookFacade } from '../../facade/facebook.facade';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'buffer-filter',
@@ -22,29 +22,27 @@ import type { OverlayPanel } from 'primeng/overlaypanel';
   templateUrl: './filter.component.html'
 })
 export class FilterComponent implements OnDestroy {
-  @ViewChild('overlay')
-  overlay!: OverlayPanel;
-
-  calendar_date_range: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
-  date_range: string[];
-  max_date = new Date();
+  @ViewChild('overlay') overlay!: OverlayPanel;
   private subscription$ = new Subscription();
+  public calendar_date_range: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
+  public current_date_time = new Date();
+  public date_range: string[];
 
-  constructor (private activatedRoute: ActivatedRoute, private facade: FacebookFacade) {
+  constructor (private activatedRoute: ActivatedRoute, private readonly facade: FacebookFacade) {
     this.date_range = [this.facade.formatDate(subDays(new Date(), parseInt('6', 10))), this.facade.formatDate(new Date())];
   }
 
-  formattedDate (dates: string[]): string {
+  public formattedDate (dates: string[]): string {
     return dates.join(' - ');
   }
 
-  setThisWeek (): void {
+  public setThisWeek (): void {
     this.date_range = [this.facade.formatDate(startOfWeek(new Date())), this.facade.formatDate(lastDayOfWeek(new Date()))];
     this.overlay.hide();
     this.setDate();
   }
 
-  setLastWeek (): void {
+  public setLastWeek (): void {
     const last_week = subWeeks(new Date(), 1);
 
     this.date_range = [this.facade.formatDate(startOfWeek(last_week)), this.facade.formatDate(lastDayOfWeek(last_week))];
@@ -52,13 +50,13 @@ export class FilterComponent implements OnDestroy {
     this.setDate();
   }
 
-  setThisMonth (): void {
+  public setThisMonth (): void {
     this.date_range = [this.facade.formatDate(startOfMonth(new Date())), this.facade.formatDate(lastDayOfMonth(new Date()))];
     this.overlay.hide();
     this.setDate();
   }
 
-  setLastMonth (): void {
+  public setLastMonth (): void {
     const last_month = subMonths(new Date(), 1);
 
     this.date_range = [this.facade.formatDate(startOfMonth(last_month)), this.facade.formatDate(lastDayOfMonth(last_month))];
@@ -66,7 +64,7 @@ export class FilterComponent implements OnDestroy {
     this.setDate();
   }
 
-  setCalendarDate (): void {
+  public setCalendarDate (): void {
     this.date_range = this.calendar_date_range.map((date) => this.facade.formatDate(date));
     this.overlay.hide();
     this.setDate();
@@ -85,6 +83,8 @@ export class FilterComponent implements OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

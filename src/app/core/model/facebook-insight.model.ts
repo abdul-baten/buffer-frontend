@@ -1,4 +1,4 @@
-import type { IInsightBase, IInsightChart } from './insight.model';
+import { IInsightBase, IInsightChart } from './insight.model';
 
 export interface IFbInsightPayload {
   id: string;

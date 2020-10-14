@@ -1,4 +1,4 @@
-import type { EConnectionStatus, EConnectionType } from '../enum';
+import { EConnectionStatus, EConnectionType } from '../enum';
 
 export interface IConnection {
   connection_added?: Date;

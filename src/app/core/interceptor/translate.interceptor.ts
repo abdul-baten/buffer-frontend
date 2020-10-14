@@ -1,8 +1,8 @@
 import { Inject } from '@angular/core';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
-import type { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import type { Observable } from 'rxjs';
-import type { Request } from 'express';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Request } from 'express';
 
 export class TranslatorInterceptor implements HttpInterceptor {
   private readonly PORT = process.env.PORT;

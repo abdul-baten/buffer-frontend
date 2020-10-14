@@ -2,11 +2,11 @@ import { EConnectionStatus, EConnectionType } from 'src/app/core/enum';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 
-import type { ResponsiveLayoutService, UserService } from 'src/app/core/service';
-import type { FacebookPageService } from '../service/facebook-page.service';
-import type { IConnection, IUser } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { ParamMap, Router } from '@angular/router';
+import { ResponsiveLayoutService, UserService } from 'src/app/core/service';
+import { FacebookPageService } from '../service/facebook-page.service';
+import { IConnection, IUser } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { ParamMap, Router } from '@angular/router';
 
 @Injectable()
 export class FacebookPageFacade {

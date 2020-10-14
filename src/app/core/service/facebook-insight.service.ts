@@ -2,8 +2,8 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import { forkJoin, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import type { HttpService } from './http.service';
-import type { IFbInsightPayload, IFbInsight, IFbOverviewInsight, IFbPerformanceInsight, IFbPostInsight, IFbVideoInsight } from '../model';
+import { HttpService } from './http.service';
+import { IFbInsightPayload, IFbInsight, IFbOverviewInsight, IFbPerformanceInsight, IFbPostInsight, IFbVideoInsight } from '../model';
 
 @Injectable({
   providedIn: 'root'

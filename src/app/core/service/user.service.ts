@@ -6,9 +6,9 @@ import {
   tap
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import type { HttpService } from './http.service';
-import type { IUser } from '../model';
-import type { Observable } from 'rxjs';
+import { HttpService } from './http.service';
+import { IUser } from '../model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class UserService extends EntityCollectionServiceBase<IUser> {
   }
 
   public getUser (): Observable<IUser> {
-    return this.httpService.get<IUser>('user/get').pipe(tap((user: IUser) => {
+    return this.httpService.get<IUser>('user').pipe(tap((user: IUser) => {
       this.upsertOneInCache(user);
     }));
   }

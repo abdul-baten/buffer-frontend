@@ -1,4 +1,5 @@
 export * from './auth.service';
+export * from './common.service';
 export * from './connection.service';
 export * from './document-meta.service';
 export * from './error.service';

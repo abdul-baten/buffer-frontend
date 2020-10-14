@@ -1,4 +1,4 @@
-import type { ESubscriptionPlan } from '../enum';
+import { ESubscriptionPlan } from '../enum';
 
 export interface ISubscriptionPlan {
   is_trial: boolean;

@@ -7,9 +7,9 @@ import {
   switchMap
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import type { ConnectionService, GlobalService, FacebookInsightService, UserService } from 'src/app/core/service';
-import type { IConnection, IDropdown, IFbInsight, IUser } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { ConnectionService, GlobalService, FacebookInsightService, UserService } from 'src/app/core/service';
+import { IConnection, IDropdown, IFbInsight, IUser } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class FacebookFacade {

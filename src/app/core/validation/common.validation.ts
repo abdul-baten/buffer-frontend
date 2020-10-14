@@ -1,5 +1,5 @@
 import { RegexPatterns } from '../constant';
-import type { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 export class CommonValidator {
   public static alphaNumeric (control: FormControl): { [key: string]: boolean } | null {

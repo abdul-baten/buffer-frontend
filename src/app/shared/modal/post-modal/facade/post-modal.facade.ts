@@ -1,5 +1,7 @@
 import formatISO from 'date-fns/formatISO';
 import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
+import { ConnectionService } from 'src/app/core/service/connection.service';
+import { EPostStatus, EPostType } from 'src/app/core/enum';
 import { forkJoin, Observable } from 'rxjs';
 import {
   IConnection,
@@ -9,12 +11,9 @@ import {
 } from 'src/app/core/model';
 import { Injectable, Injector } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-
-import type { ConnectionService } from 'src/app/core/service/connection.service';
-import type { EPostStatus, EPostType } from 'src/app/core/enum';
-import type { NotificationService } from 'src/app/core/service/notification.service';
-import type { PostService } from 'src/app/core/service/post.service';
-import type { UserService } from 'src/app/core/service/user.service';
+import { NotificationService } from 'src/app/core/service/notification.service';
+import { PostService } from 'src/app/core/service/post.service';
+import { UserService } from 'src/app/core/service/user.service';
 
 @Injectable()
 export class PostModalFacade {
@@ -31,18 +30,19 @@ export class PostModalFacade {
   }
 
   setNewPostInfo (post_info: IPost): void {
-    const post = JSON.parse(JSON.stringify(post_info));
+    const post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.post_date_time), { nearestTo: 15 }));
 
-    post.post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.postScheduleDateTime), { nearestTo: 15 }));
+    Object.assign(post_info, { post_date_time });
   }
 
   sendPost (post_type: EPostType, post_info: IPost, post_status: EPostStatus, connections: Partial<IConnection>[]): Observable<IPost[]> {
     const requests: Observable<IPost>[] = [];
-
-    post_info.postCaption = post_info.postCaption.trim();
-    post_info.post_status = post_status;
-    post_info.postScheduleDateTime = formatISO(roundToNearestMinutes(new Date(post_info.postScheduleDateTime), { nearestTo: 15 }));
-    post_info.post_type = post_type;
+    const post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.post_date_time), { nearestTo: 15 }));
+    const post_data: Partial<IPost> = {
+      post_date_time,
+      post_status,
+      post_type
+    };
 
     /*
      * This.store.select(selectNewPostMedias).subscribe((postMedias: IMedia[]) => {
@@ -51,17 +51,15 @@ export class PostModalFacade {
      *   }
      * });
      */
-    this.userService.getUserFromState().subscribe(({ id }: IUser) => {
-      post_info.post_user_id = id;
-
-      return post_info;
+    this.userService.getUserFromState().subscribe(({ id: post_user_id }: IUser) => {
+      Object.assign(post_data, { post_user_id });
     });
 
     connections.forEach((connection: Partial<IConnection>) => {
-      post_info.post_connection = connection;
-      const clonedpost_info = JSON.parse(JSON.stringify(post_info));
+      post_data.post_connection = connection;
+      const cloned_post_info = { ...post_data };
 
-      requests.push(this.postService.addPost(clonedpost_info));
+      requests.push(this.postService.addPost(cloned_post_info as IPost));
     });
 
     return forkJoin([...requests]).pipe(

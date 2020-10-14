@@ -1,96 +1,104 @@
-import { AppState } from 'src/app/reducers';
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IConnection, I_MEDIA, IPost } from 'src/app/core/model';
-import { map } from 'rxjs/operators';
+import { noop, Observable, of, Subscription } from 'rxjs';
+
+import { IConnection } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api/menuitem';
-import { noop, Observable, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
-import { selectNewPostMedias } from 'src/app/selectors';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'buffer-image',
   styleUrls: ['./image.component.css'],
-  templateUrl: './image.component.html',
+  templateUrl: './image.component.html'
 })
 export class ImageComponent implements OnInit, OnDestroy {
-  @Output() tabSelected = new EventEmitter<number>();
-  currentDateTime: Date = new Date();
-  imageForm: FormGroup;
-  menu_items: MenuItem[] = [];
-  postStatus = EPostStatus;
-  postType = EPostType;
+  @Output() tab_selected = new EventEmitter<number>();
+  public current_date_time: Date = new Date();
+  public form: FormGroup;
+  public menu_items: MenuItem[] = [];
+  public post_status = EPostStatus;
+  public post_type = EPostType;
   private subscriptions$ = new Subscription();
-  selectedConnections: Partial<IConnection>[] = [];
+  public selected_connections: Partial<IConnection>[] = [];
 
-  constructor(private facade: PostModalFacade, private formBuilder: FormBuilder, private store: Store<AppState>) {
-    this.imageForm = this.biuldImageForm();
+  constructor (private facade: PostModalFacade, private formBuilder: FormBuilder) {
+    this.form = this.biuldImageForm();
   }
 
-  private biuldImageForm(): FormGroup {
+  private biuldImageForm (): FormGroup {
     return this.formBuilder.group({
-      postScheduleDateTime: [null, Validators.required],
-      postCaption: [null, Validators.required],
+      post_date_time: [null, Validators.required],
+      post_message: [null, Validators.required]
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.menu_items = [
       {
-        label: 'Schedule',
-        icon: 'pi pi-calendar-plus',
         command: () => {
-          this.savePost(this.postStatus.SCHEDULED);
+          this.savePost(this.post_status.SCHEDULED);
         },
+        icon: 'pi pi-calendar-plus',
+        label: 'Schedule'
       },
       { separator: true },
-      {
-        label: 'Save post',
-        icon: 'pi pi-save',
-        command: () => {
-          this.savePost(this.postStatus.SAVED);
-        },
+      { command: () => {
+        this.savePost(this.post_status.SAVED);
       },
+      icon: 'pi pi-save',
+      label: 'Save post'
+
+      }
     ];
 
-    this.subscriptions$.add(
-      this.facade.getPostInfo().subscribe((postInfo: IPost) => {
-        const { postCaption, postScheduleDateTime } = postInfo;
-        if (!!postCaption) {
-          this.imageForm.patchValue({ postCaption });
-        }
-        this.imageForm.patchValue({ postScheduleDateTime: new Date(postScheduleDateTime) });
-      }),
-    );
+    /*
+     * This.subscriptions$.add(this.facade.getPostInfo().subscribe((postInfo: IPost) => {
+     *   const { post_message, post_date_time } = postInfo;
+     */
+
+    /*
+     *   If (post_message) {
+     *     this.form.patchValue({ post_message });
+     *   }
+     *   this.form.patchValue({ post_date_time: new Date(post_date_time) });
+     * }));
+     */
   }
 
-  previous(): void {
-    this.tabSelected.emit(0);
+  previous (): void {
+    this.tab_selected.emit(0);
   }
 
-  changeConnectionSelection(connections: Partial<IConnection>[]): void {
-    this.selectedConnections = connections;
+  changeConnectionSelection (connections: Partial<IConnection>[]): void {
+    this.selected_connections = connections;
   }
 
-  isButtonDisabled(): Observable<boolean> {
-    return this.store.select(selectNewPostMedias).pipe(
-      map((medias: I_MEDIA[]) => {
-        return !!!medias.length || !!!this.selectedConnections.length || this.imageForm.invalid;
-      }),
-    );
+  isButtonDisabled (): Observable<boolean> {
+    // Return this.store.select(selectNewPostMedias).pipe(map((medias: IMedia[]) => Boolean(!medias.length) || Boolean(!this.selected_connections.length) || this.form.invalid));
+
+    return of(Boolean(!this.selected_connections.length) || this.form.invalid);
   }
 
-  savePost(postStatus: EPostStatus): void {
-    if (this.imageForm.valid) {
-      const { value } = this.imageForm;
-      this.subscriptions$.add(this.facade.sendPost(EPostType.IMAGE, value, postStatus, this.selectedConnections).subscribe(noop));
+  savePost (post_status: EPostStatus): void {
+    if (this.form.valid) {
+      const { value } = this.form;
+
+      this.subscriptions$.add(this.facade.sendPost(EPostType.IMAGE, value, post_status, this.selected_connections).subscribe(noop));
     }
   }
 
   @HostListener('window:beforeunload')
-  ngOnDestroy(): void {
-    this.subscriptions$.unsubscribe();
+  ngOnDestroy (): void {
+    if (this.subscriptions$) {
+      this.subscriptions$.unsubscribe();
+    }
   }
 }

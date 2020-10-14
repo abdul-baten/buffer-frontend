@@ -1,13 +1,13 @@
 <section class="b-h-full">
   <div class="b-bg-white p-my-3 b-br b-br-sm">
-    <buffer-post-table [posts]="insight?.mediaData!"></buffer-post-table>
+    <buffer-post-table [posts]="insight?.media_data!"></buffer-post-table>
   </div>
 
   <div class="p-grid p-mt-2">
     <div class="p-col">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Medias" chartType="line"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Medias" chart_type="line"
         [chart_labels]="insight.medias.categories"
-        [chartSeries]="[{name: 'Posts', data: insight?.medias?.response, type: 'line'}]">
+        [chart_series]="[{name: 'Posts', data: insight?.medias?.response, type: 'line'}]">
       </buffer-analyze-chart>
     </div>
   </div>

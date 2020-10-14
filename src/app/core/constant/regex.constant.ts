@@ -1,4 +1,4 @@
-export const RegexPatterns = {
+export const RegexPatterns = Object.freeze({
   ALLOWED_CHARACTER: /[\s]/u,
   // ALPHABETICAL input pattern
   ALPHABETICAL: /[^a-zA-Z ]/gu,
@@ -21,4 +21,4 @@ export const RegexPatterns = {
   URL: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/u,
   USERNAME: /^[a-zA-Z0-9]*$/u,
   WHITE_SPACE: /\s/gu
-};
+});

@@ -1,9 +1,9 @@
 import { Component, HostListener, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import type { ActivatedRoute, ParamMap } from '@angular/router';
-import type { IConnection } from 'src/app/core/model';
-import type { LinkedInPageFacade } from '../facade/linkedin-page.facade';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { IConnection } from 'src/app/core/model';
+import { LinkedInPageFacade } from '../facade/linkedin-page.facade';
 
 @Component({
   selector: 'buffer-linkedin-page',

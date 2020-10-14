@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { EConnectionType, EPostStatus, EPostType } from 'src/app/core/enum';
 import { Observable, of } from 'rxjs';
-import type { IDropdown, IPost } from 'src/app/core/model';
-import type { Table } from 'primeng/table';
+import { IDropdown, IPost } from 'src/app/core/model';
+import { Table } from 'primeng/table';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

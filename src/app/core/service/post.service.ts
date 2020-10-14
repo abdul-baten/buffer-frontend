@@ -1,9 +1,9 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import type { HttpService } from './http.service';
-import type { IPost } from '../model';
-import type { Observable } from 'rxjs';
+import { HttpService } from './http.service';
+import { IPost } from '../model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

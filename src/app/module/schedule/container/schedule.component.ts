@@ -2,10 +2,10 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ECalendarView } from 'src/app/core/enum';
 import { isPlatformBrowser } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import type { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import type { IConnectionSelected, IPost } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { ScheduleFacade } from '../facade/schedule.facade';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { IConnectionSelected, IPost } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { ScheduleFacade } from '../facade/schedule.facade';
 
 @Component({
   selector: 'buffer-schedule',

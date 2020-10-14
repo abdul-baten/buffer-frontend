@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  selector: 'bufferAnalyzeCard',
+  selector: 'buffer-analyze-card',
   styleUrls: ['./analyze-card.component.css'],
   templateUrl: './analyze-card.component.html'
 })

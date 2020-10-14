@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-import type { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import type { IConnectionSelected, IInstaInsight } from 'src/app/core/model';
-import type { InstagramFacade } from '../facade/instagram.facade';
-import type { Observable } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { IConnectionSelected, IInstaInsight } from 'src/app/core/model';
+import { InstagramFacade } from '../facade/instagram.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'buffer-instagram',

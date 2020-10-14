@@ -11,9 +11,9 @@ import {
   ViewChild
 } from '@angular/core';
 import { noop, Subscription } from 'rxjs';
-import type { ActivatedRoute, ParamMap } from '@angular/router';
-import type { InstagramFacade } from '../../facade/instagram.facade';
-import type { OverlayPanel } from 'primeng/overlaypanel';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { InstagramFacade } from '../../facade/instagram.facade';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'buffer-filter',
@@ -26,7 +26,7 @@ export class FilterComponent implements OnDestroy {
 
   public calendar_date_range: Date[] = [startOfWeek(new Date()), lastDayOfWeek(new Date())];
   public date_range: string[];
-  public max_date = new Date();
+  public current_date_time = new Date();
   private subscription$ = new Subscription();
 
   constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: InstagramFacade) {
@@ -85,6 +85,8 @@ export class FilterComponent implements OnDestroy {
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    this.subscription$.unsubscribe();
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

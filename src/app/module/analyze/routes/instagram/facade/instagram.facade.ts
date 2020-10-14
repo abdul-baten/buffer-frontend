@@ -1,9 +1,9 @@
 import format from 'date-fns/format';
 import { first, shareReplay, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import type { GlobalService, InstagramInsightService, UserService } from 'src/app/core/service';
-import type { IInstaInsight, IUser } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { GlobalService, InstagramInsightService, UserService } from 'src/app/core/service';
+import { IInstaInsight, IUser } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class InstagramFacade {

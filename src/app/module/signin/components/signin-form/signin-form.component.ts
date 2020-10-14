@@ -2,7 +2,7 @@ import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import type { SigninFacade } from '../../facade/signin.facade';
+import { SigninFacade } from '../../facade/signin.facade';
 
 @Component({
   selector: 'buffer-signin-form',
@@ -19,8 +19,8 @@ export class SigninFormComponent {
 
   private buildSigninForm (): FormGroup {
     return this.formBuilder.group({
-      email: ['alamin@technoflame.com', [Validators.required, CommonValidator.emailAddress]],
-      password: [
+      user_email: ['alamin@technoflame.com', [Validators.required, CommonValidator.emailAddress]],
+      user_password: [
         'baten@CAT2019',
         [
           Validators.required,
@@ -36,10 +36,10 @@ export class SigninFormComponent {
 
   public login (): void {
     this.form_clicked = true;
-    const { email, password } = this.form.value;
+    const { user_email, user_password } = this.form.value;
 
     this.facade.
-      loginUser(email, password).
+      loginUser(user_email, user_password).
       pipe(finalize(() => {
         this.form.reset();
         this.form_clicked = false;

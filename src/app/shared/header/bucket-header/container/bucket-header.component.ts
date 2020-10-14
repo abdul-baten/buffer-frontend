@@ -6,7 +6,7 @@ import {
   Output
 } from '@angular/core';
 import { EConnectionType, EPostType } from 'src/app/core/enum';
-import type { IDropdown } from 'src/app/core/model';
+import { IDropdown } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,

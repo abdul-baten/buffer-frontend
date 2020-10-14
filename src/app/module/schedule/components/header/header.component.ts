@@ -2,9 +2,9 @@ import format from 'date-fns/format';
 import { Component } from '@angular/core';
 import { ECalendarView } from 'src/app/core/enum';
 
-import type { Observable } from 'rxjs';
-import type { ScheduleFacade } from '../../facade/schedule.facade';
-import type { SelectItem } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { ScheduleFacade } from '../../facade/schedule.facade';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'buffer-header',

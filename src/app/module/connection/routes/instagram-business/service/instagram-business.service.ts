@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import type { HttpService } from 'src/app/core/service';
-import type { IConnection } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { HttpService } from 'src/app/core/service';
+import { IConnection } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class InstagramBusinessService {

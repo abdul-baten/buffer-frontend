@@ -1,7 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
-import type { GlobalService } from 'src/app/core/service';
-import type { Router } from '@angular/router';
+import { GlobalService } from 'src/app/core/service';
+import { Router } from '@angular/router';
 
 const { api_base_uri } = environment;
 

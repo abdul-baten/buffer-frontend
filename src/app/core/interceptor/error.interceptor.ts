@@ -1,7 +1,7 @@
 import { catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import type {
+import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandler,

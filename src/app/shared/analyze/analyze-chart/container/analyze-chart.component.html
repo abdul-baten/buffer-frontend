@@ -2,7 +2,7 @@
   <p-header>
     <div class="p-d-flex p-ai-center p-jc-between">
       <i class="p-mr-2 b-ci pi pi-chart-line b-text-primary"></i>
-      <h5>{{ chartTitle }}</h5>
+      <h5>{{ chart_title }}</h5>
     </div>
   </p-header>
 
@@ -16,9 +16,9 @@
         class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
     </div>
 
-    <ng-container *ngIf="isHighcharts">
-      <highcharts-chart [(update)]="updateFromInput" [callbackFunction]="chartCallback" [oneToOne]="true"
-        [Highcharts]="Highcharts" [constructorType]="'chart'" [options]="optFromInput" class="b-w-full">
+    <ng-container *ngIf="is_high_charts">
+      <highcharts-chart [(update)]="update_from_input" [callbackFunction]="chartCallback" [oneToOne]="true"
+        [Highcharts]="high_charts" [constructorType]="'chart'" [options]="opt_from_input" class="b-w-full">
       </highcharts-chart>
     </ng-container>
 

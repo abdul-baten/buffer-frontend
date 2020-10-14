@@ -1,13 +1,13 @@
 import { environment } from 'src/environments/environment';
-import { GlobalService } from 'src/app/core/service';
 import { Injectable } from '@angular/core';
+import { GlobalService } from 'src/app/core/service';
 
-const API_URL = environment.apiURL;
+const { api_base_uri } = environment;
 
 @Injectable()
 export class HeaderAccountService {
-  constructor(private readonly globalService: GlobalService) {}
-  logoutUser(): void {
-    this.globalService.getLocation().replace(API_URL + 'auth/logout');
+  constructor (private readonly globalService: GlobalService) {}
+  logoutUser (): void {
+    this.globalService.getLocation().replace(`${api_base_uri}auth/logout`);
   }
 }

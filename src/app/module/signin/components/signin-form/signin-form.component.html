@@ -1,5 +1,5 @@
 <div class="b-bg-white p-p-6 b-br-sm">
-  <form [formGroup]="signinForm" novalidate>
+  <form [formGroup]="form" novalidate>
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
         <h1>Sign in</h1>
@@ -7,18 +7,18 @@
         </h6>
       </div>
       <div class="p-field p-col-12">
-        <label for="email">Email Address</label>
-        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="email" id="email" pInputText
-          type="email" />
+        <label for="user_email">Email Address</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_email" id="user_email"
+          pInputText type="email" />
       </div>
       <div class="p-field p-col-12">
-        <label for="password">Password</label>
-        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="password" id="password"
-          pInputText type="password" />
+        <label for="user_password">Password</label>
+        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_password"
+          id="user_password" pInputText type="password" />
       </div>
       <div class="p-field p-col-12">
-        <button [disabled]="signinForm.invalid || formClicked" (click)="login()" class="b-w-full p-button-lg"
-          label="Sign in" pButton type="button"></button>
+        <button [disabled]="form.invalid || form_clicked" (click)="login()" class="b-w-full p-button-lg" label="Sign in"
+          pButton type="button"></button>
       </div>
       <div class="p-col-12 p-mt-6">
         <div class="p-grid p-justify-center p-align-center">

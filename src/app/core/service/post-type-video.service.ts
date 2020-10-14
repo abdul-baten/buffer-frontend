@@ -1,15 +1,14 @@
-import { AppState } from 'src/app/reducers';
-import { I_MEDIA, IPost_TYPE_GENERATOR } from '../model';
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Injectable } from '@angular/core';
+
+import { IMedia, IPostTypeGenerator } from '../model';
 import { MediaService } from './media.service';
 import { NotificationService } from './notification.service';
-import { removeNewPostMedia, setNewPostMedia } from 'src/app/actions';
-import { Store } from '@ngrx/store';
 
 @Injectable()
-export class PostTypeVideoService implements IPost_TYPE_GENERATOR {
-  constructor(public readonly mediaService: MediaService, public readonly notificationService: NotificationService, public store: Store<AppState>) {}
-  generateConfig(): Record<string, any> {
+export class PostTypeVideoService implements IPostTypeGenerator {
+  constructor (public readonly mediaService: MediaService, public readonly notificationService: NotificationService) {}
+  generateConfig (): Record<string, unknown> {
     const config = {
       acceptedFileTypes: ['video/mp4'],
       allowFileEncode: true,
@@ -37,43 +36,36 @@ export class PostTypeVideoService implements IPost_TYPE_GENERATOR {
       maxFiles: 1,
       mediaPreviewHeight: 100,
       name: 'postMedia',
-      stylePanelLayout: 'compact',
       server: {
-        url: 'https://localhost:3000/api/v1.0.0/media',
-
+        load: (uniqueFileId: string, load: () => void, error: (reason: unknown) => PromiseLike<never>) => {
+          fetch(uniqueFileId).
+            then((res) => res.blob()).
+            then(load).
+            catch(error);
+        },
         process: {
-          url: '/add',
           method: 'POST',
-          withCredentials: true,
-          onload: (fileInfo: I_MEDIA) => {
-            const media = JSON.parse((fileInfo as unknown) as string) as I_MEDIA;
-            this.store.dispatch(setNewPostMedia({ media: media.mediaURL as string }));
-            return media.id;
-          },
-          onerror: (error: any) => {
+          onerror: (error: Record<string, string>) => {
             this.notificationService.showError(error.errorMsg);
           },
-        },
+          onload: (fileInfo: IMedia) => {
+            const media = JSON.parse((fileInfo as unknown) as string) as IMedia;
 
-        load: (uniqueFileId: string, load: any, error: any) => {
-          fetch(uniqueFileId)
-            .then((res) => res.blob())
-            .then(load)
-            .catch(error);
+            return media.id;
+          },
+          url: '/add',
+          withCredentials: true
         },
-
-        revert: (uniqueFileId: string) => {
-          this.mediaService.deleteMedia(uniqueFileId).subscribe((media: I_MEDIA) => {
-            this.store.dispatch(removeNewPostMedia({ media: media.mediaURL as string }));
-          });
-        },
-
-        remove: (media: string, load: any, error: any) => {
-          this.store.dispatch(removeNewPostMedia({ media }));
+        remove: (_media: string, load: () => void, error: (message: string) => void) => {
           error('Something went wrong.');
           load();
         },
+        revert: (uniqueFileId: string) => {
+          this.mediaService.deleteMedia(uniqueFileId).subscribe();
+        },
+        url: 'https://localhost:3000/api/v1.0.0/media'
       },
+      stylePanelLayout: 'compact'
     };
 
     return config;

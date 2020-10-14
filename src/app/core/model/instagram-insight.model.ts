@@ -1,4 +1,4 @@
-import type { IInsightChart } from './insight.model';
+import { IInsightChart } from './insight.model';
 
 export interface IInstaMediaInsight {
   caption: string;

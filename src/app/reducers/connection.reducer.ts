@@ -4,7 +4,7 @@ import {
   on
 } from '@ngrx/store';
 import { delete_connection, set_connection } from '../actions';
-import type { IConnection } from '../core/model';
+import { IConnection } from '../core/model';
 
 export const connection_feature_key = 'connection';
 export const connection_initial_state: IConnection[] = [];

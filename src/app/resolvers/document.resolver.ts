@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import type { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import type { Title } from '@angular/platform-browser';
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'

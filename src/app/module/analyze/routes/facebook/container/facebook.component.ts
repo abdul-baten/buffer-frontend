@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { shareReplay, switchMap } from 'rxjs/operators';
-import type { ActivatedRoute, ParamMap } from '@angular/router';
-import type { FacebookFacade } from '../facade/facebook.facade';
-import type { IConnectionSelected, IFbInsight } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { FacebookFacade } from '../facade/facebook.facade';
+import { IConnectionSelected, IFbInsight } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'buffer-facebook',

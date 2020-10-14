@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
 
-import type { HttpService } from 'src/app/core/service';
-import type { IConnection } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
+import { HttpService } from 'src/app/core/service';
+import { IConnection } from 'src/app/core/model';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LinkedInProfileService {
@@ -11,7 +11,7 @@ export class LinkedInProfileService {
 
   getLinkedInProfile (connection_type: string, code: string): Observable<IConnection> {
     return this.httpService.
-      get<IConnection>('linkedin/access-token', {
+      get<string>('linkedin/access-token', {
         code,
         connection_type
       }).

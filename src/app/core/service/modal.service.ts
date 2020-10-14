@@ -1,12 +1,11 @@
-import { ComponentRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LoaderComponent } from '../../shared/loader/container/loader.component';
 import { Observable, of } from 'rxjs';
 import { PostModalComponent } from '../../shared/modal/post-modal/container/post-modal.component';
 import { ViewModalComponent } from '../../shared/modal/view-modal/container/view-modal.component';
-import type { DialogService } from 'primeng/dynamicdialog';
-import type { DynamicDialogComponent } from 'primeng/dynamicdialog/dynamicdialog';
-import type { DynamicDialogRef } from 'primeng/dynamicdialog/dynamicdialog-ref';
-import type { IPost } from '../model/post.model';
+import { DialogService } from 'primeng/dynamicdialog';
+import { DynamicDialogRef } from 'primeng/dynamicdialog/dynamicdialog-ref';
+import { IPost } from '../model/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +44,13 @@ export class ModalService {
     return dialog_ref;
   }
 
-  openLoader (): Observable<ComponentRef<DynamicDialogComponent>> {
+  openLoader (): Observable<DynamicDialogRef> {
+    let dialog_ref;
+
     this.loader_counter += 1;
 
     if (this.loader_counter === 1) {
-      this.dialogService.open(LoaderComponent, {
+      dialog_ref = this.dialogService.open(LoaderComponent, {
         autoZIndex: true,
         baseZIndex: 10001,
         closable: false,
@@ -60,14 +61,14 @@ export class ModalService {
       });
     }
 
-    return of(this.dialogService.dialogComponentRefMap);
+    return of(dialog_ref) as Observable<DynamicDialogRef>;
   }
 
   closeModal (dialog_ref: DynamicDialogRef): void {
     dialog_ref.close();
   }
 
-  closeLoader (dialog_ref: ComponentRef<DynamicDialogComponent>) {
+  public closeLoader (dialog_ref: DynamicDialogRef): void {
     this.loader_counter -= 1;
 
     if (this.loader_counter === 0) {

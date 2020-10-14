@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import type { Observable } from 'rxjs';
-import type { ResponsiveLayoutService } from 'src/app/core/service';
+import { Observable } from 'rxjs';
+import { ResponsiveLayoutService } from 'src/app/core/service';
 
 @Injectable()
 export class ProfileFacade {

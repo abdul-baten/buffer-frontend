@@ -1,16 +1,15 @@
+import { AuthService } from 'src/app/core/service';
 import { Injectable } from '@angular/core';
-
-import type { AuthService } from 'src/app/core/service';
-import type { IUser } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { Router } from '@angular/router';
+import { IUser } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SignupFacade {
   constructor (private readonly authService: AuthService, private readonly router: Router) {}
 
   public navigate (route: string): void {
-    this.router.navigateByUrl(route);
+    this.router.navigate([route]);
   }
 
   public signupUser (form_value: Partial<IUser>): Observable<Partial<IUser>> {

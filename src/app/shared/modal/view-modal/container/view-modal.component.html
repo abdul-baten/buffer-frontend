@@ -6,7 +6,7 @@
     </div>
   </div>
   <div *ngSwitchCase="post_type.VIDEO">
-    <video #media id="postVideo" preload="auto" [src]="post_info.post_media[0]" type="video/mp4" class="b-w-full">
+    <video preload="auto" [src]="post_info.post_media" type="video/mp4" class="b-w-full">
     </video>
   </div>
 </div>

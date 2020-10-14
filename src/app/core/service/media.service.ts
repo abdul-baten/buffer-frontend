@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import type { HttpService } from './http.service';
-import type { IMedia } from '../model';
-import type { Observable } from 'rxjs';
+import { HttpService } from './http.service';
+import { IMedia } from '../model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

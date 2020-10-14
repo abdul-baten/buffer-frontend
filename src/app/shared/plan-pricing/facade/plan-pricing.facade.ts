@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { GlobalService } from 'src/app/core/service';
+import { GlobalService } from 'src/app/core/service';
 
 @Injectable()
 export class PlanPricingFacade {

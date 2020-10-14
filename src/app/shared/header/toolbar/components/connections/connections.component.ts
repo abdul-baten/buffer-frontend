@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { map } from 'rxjs/operators';
-import type { ActivatedRoute, ParamMap } from '@angular/router';
-import type { IConnection, IConnectionSelected } from 'src/app/core/model';
-import type { Observable } from 'rxjs';
-import type { ToolbarFacade } from '../../facade/toolbar.facade';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { IConnection, IConnectionSelected } from 'src/app/core/model';
+import { Observable } from 'rxjs';
+import { ToolbarFacade } from '../../facade/toolbar.facade';
 
 @Component({
   selector: 'buffer-connections',

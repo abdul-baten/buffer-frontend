@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import type { IPost } from 'src/app/core/model';
-import type { ModalService } from 'src/app/core/service';
+import { IPost } from 'src/app/core/model';
+import { ModalService } from 'src/app/core/service';
 
 @Injectable()
 export class BucketSavedFacade {

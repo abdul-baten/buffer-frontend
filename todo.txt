@@ -1,7 +1,25 @@
+# Todo:
+
 Remove loglevel
-Use ng-container where possible
-Use trackBy
-Use zone
-Use ChangeDetectorRef
 Add aria-label alt
 Add error mapping
+
+
+
+# Performance:
+
+OnPush
+ng-container where possible
+trackBy in ngFor
+zone.runOutSideAngular
+ChangeDetectorRef.markForCheck()
+Pipes instead of methods in templates
+Caching
+Detach change detection
+Immutable.js
+@memo() decorator on pure methods
+avoid ngClass, ngStyle
+avoid *ngFor => for of
+use visibility: hidden avoid opacity: 0
+avoid letter-spacing
+will-change

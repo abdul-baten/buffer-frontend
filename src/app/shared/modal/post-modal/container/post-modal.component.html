@@ -1,27 +1,27 @@
 <p-tabView [(activeIndex)]="active_index">
   <p-tabPanel header="Type" [disabled]="isDisabled(0)">
     <ng-template pTemplate="content">
-      <buffer-type (tabSelected)="openTab($event)"></buffer-type>
+      <buffer-type (tabSelected)="openTab($any($event))"></buffer-type>
     </ng-template>
   </p-tabPanel>
   <p-tabPanel header="Status" [cache]="true" [disabled]="isDisabled(1)">
     <ng-template pTemplate="content">
-      <buffer-text (tabSelected)="openTab($event)" [dialogRef]="dialogRef"></buffer-text>
+      <buffer-text (tabSelected)="openTab($any($event))"></buffer-text>
     </ng-template>
   </p-tabPanel>
   <p-tabPanel header="Images" [cache]="true" [disabled]="isDisabled(2)">
     <ng-template pTemplate="content">
-      <buffer-image (tabSelected)="openTab($event)"></buffer-image>
+      <buffer-image (tabSelected)="openTab($any($event))"></buffer-image>
     </ng-template>
   </p-tabPanel>
   <p-tabPanel header="Videos" [cache]="true" [disabled]="isDisabled(3)">
     <ng-template pTemplate="content">
-      <buffer-video (tabSelected)="openTab($event)"></buffer-video>
+      <buffer-video (tabSelected)="openTab($any($event))"></buffer-video>
     </ng-template>
   </p-tabPanel>
   <p-tabPanel header="Confirmation" [cache]="true" [disabled]="isDisabled(4)">
     <ng-template pTemplate="content">
-      <buffer-video (tabSelected)="openTab($event)"></buffer-video>
+      <buffer-video (tabSelected)="openTab($any($event))"></buffer-video>
     </ng-template>
   </p-tabPanel>
 </p-tabView>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { EConnectionType } from 'src/app/core/enum';
-import type { ChooseConnectionFacade } from '../facade/choose-connection.facade';
+import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 
 @Component({
   selector: 'buffer-choose-connection',

@@ -10,7 +10,8 @@
       [paginator]="true" styleClass="p-datatable-striped">
       <ng-template pTemplate="caption">
         <div class="p-px-4 b-h-toolbar">
-          <buffer-bucket-header (inputChange)="inputChanged($event)" (dropdownChange)="dropdownChanged($event)">
+          <buffer-bucket-header (inputChange)="inputChanged($any($event))"
+            (dropdownChange)="dropdownChanged($any($event))">
           </buffer-bucket-header>
         </div>
       </ng-template>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import type { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { EPostType } from 'src/app/core/enum';
-import type { IPost } from 'src/app/core/model';
+import { IPost } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer-view-modal',

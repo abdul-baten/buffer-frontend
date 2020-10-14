@@ -3,20 +3,20 @@ import subDays from 'date-fns/subDays';
 import { catchError, switchMap } from 'rxjs/operators';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { ErrorService, FacebookInsightService, UserService } from '../core/service';
-import { IFbInsight, IUser } from '../core/model';
+import { IInstaInsight, IUser } from '../core/model';
+import { ErrorService, InstagramInsightService, UserService } from '../core/service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
+export class AnalyzeInstagramResolver implements Resolve<IInstaInsight | null> {
   constructor (
     // eslint-disable-next-line @typescript-eslint/ban-types
     @Inject(PLATFORM_ID) private readonly platformId: Object,
     private readonly errorService: ErrorService,
-    private readonly facebookInsightService: FacebookInsightService,
+    private readonly insightService: InstagramInsightService,
     private readonly userService: UserService
   ) {}
 
@@ -24,38 +24,39 @@ export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
     return format(new Date(date), 'MMM dd, yyyy');
   }
 
-  private getInsights (payload: { id: string; date_range: string[] }): Observable<IFbInsight> {
+  private getInsights (payload: { id: string; date_range: string[] }): Observable<IInstaInsight> {
     const { id, date_range } = payload;
     const since = format(new Date(date_range[0]), 'yyyy-MM-dd');
     const until = format(new Date(date_range[1]), 'yyyy-MM-dd');
 
     return this.userService.getUserFromState().pipe(
-      switchMap(({ id: user_id }: IUser) => this.facebookInsightService.getInsights({
-        id,
-        since,
-        until,
-        user_id
-      })),
+      switchMap((user: IUser) => {
+        const { id: user_id } = user;
 
+        return this.insightService.getInsights({
+          id,
+          since,
+          until,
+          user_id
+        });
+      }),
       catchError((error) => {
         this.errorService.handleServerError(error);
 
-        return of(error);
+        return throwError(error);
       })
     );
   }
 
-  public resolve (route: ActivatedRouteSnapshot): Observable<IFbInsight | null> {
+  resolve (route: ActivatedRouteSnapshot): Observable<IInstaInsight | null> {
     const date_range = [this.formatDate(subDays(new Date(), parseInt('6', 10))), this.formatDate(new Date())];
     const { id } = route.params;
 
-    if (isPlatformBrowser(this.platformId)) {
-      return this.getInsights({
+    return isPlatformBrowser(this.platformId) ?
+      this.getInsights({
         date_range,
         id
-      });
-    }
-
-    return of(null);
+      }) :
+      of(null);
   }
 }

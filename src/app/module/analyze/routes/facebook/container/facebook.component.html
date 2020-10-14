@@ -1,6 +1,6 @@
 <div class="b-w-full b-h-toolbar b-br-b">
   <buffer-toolbar [back_button]="true" [show_connections]="true" header_title="Facebook Page Insight"
-    (connectionSelected)="connectionSelected($event)">
+    (connectionSelected)="connectionSelected($any($event))">
   </buffer-toolbar>
 </div>
 
@@ -19,7 +19,7 @@
           <buffer-posts [posts]="(insight$ | async)?.posts!"></buffer-posts>
         </p-tabPanel>
         <p-tabPanel header="Audience">
-          <buffer-audience [insight]="(insight$ | async)!"></buffer-audience>
+          <buffer-audience [insight]="(insight$ | async)?.overview!"></buffer-audience>
         </p-tabPanel>
         <p-tabPanel header="Videos">
           <buffer-video [videos]="(insight$ | async)?.videos!"></buffer-video>

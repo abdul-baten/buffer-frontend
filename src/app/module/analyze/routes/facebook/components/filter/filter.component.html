@@ -1,4 +1,4 @@
-<button (click)="overlayPanel.toggle($event)" [label]="formattedDate(dateRange)" pTooltip="Change date range"
+<button (click)="overlayPanel.toggle($event)" [label]="formattedDate(date_range)" pTooltip="Change date range"
   tooltipPosition="bottom" class="b-w-full p-button-sm p-button-text" icon="pi pi-calendar" pButton
   type="button"></button>
 
@@ -26,10 +26,10 @@
     </div>
 
     <div class="b-br-t p-mt-3 p-pt-3">
-      <label for="dateRange" class="b-text-secondary p-text-bold">Select a Date range</label>
+      <label for="current_date_time" class="b-text-secondary p-text-bold">Select a Date range</label>
       <p-calendar dateFormat="M dd, yy" [readonlyInput]="true" [showIcon]="true" [inline]="false"
-        [(ngModel)]="calendarDateRange" [maxDate]="maxDate" inputId="dateRange" placeholder="" selectionMode="range"
-        styleClass="b-w-full p-inputtext-sm p-my-2">
+        [(ngModel)]="calendar_date_range" [maxDate]="current_date_time" inputId="current_date_time" placeholder=""
+        selectionMode="range" styleClass="b-w-full p-inputtext-sm p-my-2">
       </p-calendar>
 
       <button class="b-w-full p-button-sm p-button-text" type="button" pButton label="Set date"

@@ -25,8 +25,8 @@
       <div class="p-col">
         <p-calendar [readonlyInput]="true" [showButtonBar]="true" [showIcon]="true" appendTo="body"
           dateFormat="D, M dd, yy" placeholder="Date" styleClass="p-column-filter p-inputtext-sm b-w-full"
-          (onClearClick)="dataChanged('', 'postScheduleDateTime', 'equals')"
-          (onSelect)="dataChanged($event.toDateString(), 'postScheduleDateTime', 'equals')">
+          (onClearClick)="dataChanged('', 'post_date_time', 'equals')"
+          (onSelect)="dataChanged($event.toDateString(), 'post_date_time', 'equals')">
         </p-calendar>
       </div>
       <div class="p-col">

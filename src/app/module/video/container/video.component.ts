@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import type { VideoFacade } from '../facade/video.facade';
+import { VideoFacade } from '../facade/video.facade';
 
 @Component({
   selector: 'buffer-video',

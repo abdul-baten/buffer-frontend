@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { DocumentMetaService } from 'src/app/core/service';
+import { DocumentMetaService } from 'src/app/core/service';
 
 @Injectable()
 export class VideoFacade {

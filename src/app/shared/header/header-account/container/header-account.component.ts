@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteMeta } from 'src/app/core/constant';
-import type { HeaderAccountFacade } from '../facade/header-account.facade';
-import type { MenuItem } from 'primeng/api';
+import { HeaderAccountFacade } from '../facade/header-account.facade';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'buffer-header-account',

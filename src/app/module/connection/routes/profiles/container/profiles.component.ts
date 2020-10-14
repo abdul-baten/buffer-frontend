@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import type { IConnection } from 'src/app/core/model';
-import type { ProfilesFacade } from '../facade/profiles.facade';
+import { IConnection } from 'src/app/core/model';
+import { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
   selector: 'buffer-profiles',

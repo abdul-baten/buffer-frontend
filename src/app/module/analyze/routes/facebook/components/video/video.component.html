@@ -40,20 +40,20 @@
 
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="3 Sec View History" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="3 Sec View History" chart_type="area"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: '3 Sec View History', data: videos?.page_video_views?.response, type: 'area'}]">
+        [chart_series]="[{name: '3 Sec View History', data: videos?.page_video_views?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="View Source (3 Sec)" chartType="column"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (3 Sec)" chart_type="column"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: 'Organic', data: videos?.page_video_views_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_paid?.response, type: 'column'}]">
+        [chart_series]="[{name: 'Organic', data: videos?.page_video_views_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_paid?.response, type: 'column'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (3 Sec)" chartType="pie"
-        [chart_labels]="videos?.categories" [chartSeries]="[{name: 'Play Type (3 Sec)', data: [{
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (3 Sec)" chart_type="pie"
+        [chart_labels]="videos?.categories" [chart_series]="[{name: 'Play Type (3 Sec)', data: [{
           name: 'Auto played',
           y: videos?.page_video_views_autoplayed?.total,
           sliced: true
@@ -107,20 +107,20 @@
 
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="10 Sec View History" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="10 Sec View History" chart_type="area"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: '10 Sec View History', data: videos?.page_video_views_10s?.response, type: 'area'}]">
+        [chart_series]="[{name: '10 Sec View History', data: videos?.page_video_views_10s?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="View Source (10 Sec)" chartType="column"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (10 Sec)" chart_type="column"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: 'Organic', data: videos?.page_video_views_10s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_10s_paid?.response, type: 'column'}]">
+        [chart_series]="[{name: 'Organic', data: videos?.page_video_views_10s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_views_10s_paid?.response, type: 'column'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (10 Sec)" chartType="pie"
-        [chart_labels]="videos?.categories" [chartSeries]="[{name: 'Play Type (10 Sec)', data: [{
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (10 Sec)" chart_type="pie"
+        [chart_labels]="videos?.categories" [chart_series]="[{name: 'Play Type (10 Sec)', data: [{
           name: 'Auto played',
           y: videos?.page_video_views_10s_autoplayed?.total,
           sliced: true
@@ -174,20 +174,20 @@
 
   <div class="p-grid p-my-2">
     <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Complete View History" chartType="area"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Complete View History" chart_type="area"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: 'Complete View History', data: videos?.page_video_complete_views_30s?.response, type: 'area'}]">
+        [chart_series]="[{name: 'Complete View History', data: videos?.page_video_complete_views_30s?.response, type: 'area'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="View Source (Complete)" chartType="column"
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (Complete)" chart_type="column"
         [chart_labels]="videos?.categories"
-        [chartSeries]="[{name: 'Organic', data: videos?.page_video_complete_views_30s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_complete_views_30s_paid?.response, type: 'column'}]">
+        [chart_series]="[{name: 'Organic', data: videos?.page_video_complete_views_30s_organic?.response, type: 'column'}, {name: 'Paid', data: videos?.page_video_complete_views_30s_paid?.response, type: 'column'}]">
       </buffer-analyze-chart>
     </div>
     <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
-      <buffer-analyze-chart class="b-w-full b-h-full" chartTitle="Play Type (Complete)" chartType="pie"
-        [chart_labels]="videos?.categories" [chartSeries]="[{name: 'Play Type (Complete)', data: [{
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (Complete)" chart_type="pie"
+        [chart_labels]="videos?.categories" [chart_series]="[{name: 'Play Type (Complete)', data: [{
           name: 'Auto played',
           y: videos?.page_video_complete_views_30s_autoplayed?.total,
           sliced: true

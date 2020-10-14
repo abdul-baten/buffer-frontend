@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import type { ICountry } from 'src/app/core/model';
+import { ICountry } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer-profile-form',

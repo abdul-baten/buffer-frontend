@@ -7,10 +7,10 @@ import {
   tap
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import type { EConnectionType } from '../enum';
-import type { HttpService } from './http.service';
-import type { IConnection } from '../model';
-import type { Observable } from 'rxjs';
+import { EConnectionType } from '../enum';
+import { HttpService } from './http.service';
+import { IConnection } from '../model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class ConnectionService extends EntityCollectionServiceBase<IConnection> 
 
   public getConnections (user_id: string): Observable<IConnection[]> {
     return this.httpService.
-      get<IConnection[]>('connection/connections', { user_id }).
+      get<IConnection[]>(`connection/${user_id}`).
       pipe(tap((connections: IConnection[]) => {
         if (connections.length) {
           this.upsertManyInCache(connections);
@@ -36,7 +36,7 @@ export class ConnectionService extends EntityCollectionServiceBase<IConnection> 
   deleteConnection (connection: IConnection): Observable<IConnection> {
     const { id } = connection;
 
-    return this.httpService.delete<IConnection>('connection/delete', id).pipe(tap(() => {
+    return this.httpService.delete<IConnection>('connection', id).pipe(tap(() => {
       this.removeOneFromCache(connection);
     }));
   }

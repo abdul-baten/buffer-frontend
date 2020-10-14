@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { AppEffects } from './app.effects';
+import { AppEffects } from '../app.effects';
 import { CommonModule } from '@angular/common';
 import { DefaultDataServiceConfig, EntityDataModule } from '@ngrx/data';
 import { EffectsModule } from '@ngrx/effects';
-import { entity_config } from './entity/entity.meta';
+import { entity_config } from './entity.meta';
 import { environment } from 'src/environments/environment';
 import { NgModule } from '@angular/core';
-import { reducers } from './reducers';
+import { reducers } from '../reducers';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';

@@ -46,26 +46,26 @@
         </div>
         <div class="p-mt-3">
           <div class="badges">
-            <span *ngFor="let hashTag of post.hashTags; trackBy:trackBy;"
+            <span *ngFor="let hashTag of post.hash_tags; trackBy:trackBy;"
               class="p-tag p-tag-secondary">{{ hashTag }}</span>
           </div>
         </div>
       </td>
       <td colspan="2">
         <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
-          {{ post.createdTime | date: 'medium' }}</small>
+          {{ post.created_time | date: 'medium' }}</small>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ post.totalLikes || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ post.total_likes || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ post.totalComments || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ post.total_comments || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ post.totalShares || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ post.total_shares || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ post.totalReactions || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ post.total_reactions || 0 }}</h6>
       </td>
       <td>
         <button pTooltip="View post" tooltipPosition="top" pButton icon="pi pi-external-link"
@@ -94,32 +94,32 @@
   <ng-template pTemplate="body" let-insight>
     <tr>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.engagedUsers || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.engaged_users || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.engagedFan || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.engaged_fans || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.postClicks || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.post_clicks || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressions || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.post_impressions || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.postReach || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.post_reach || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ ((insight.engagedUsers/ insight.postImpressions) | percent) || 0 }}
+        <h6 class="b-text-primary p-text-bold">{{ ((insight.engaged_users/ insight.post_impressions) | percent) || 0 }}
         </h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressionsOrganic || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.post_impressions_organic || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.postImpressionsPaid || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.post_impressions_paid || 0 }}</h6>
       </td>
       <td>
-        <h6 class="b-text-primary p-text-bold">{{ insight.negativeFeedback || 0 }}</h6>
+        <h6 class="b-text-primary p-text-bold">{{ insight.negative_feedbacks || 0 }}</h6>
       </td>
     </tr>
   </ng-template>

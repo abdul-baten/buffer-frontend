@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import type { EPostType } from '../core/enum';
-import type { IConnection, IPost } from '../core/model';
+import { EPostType } from '../core/enum';
+import { IConnection, IPost } from '../core/model';
 
 export const remove_all_post_media = createAction('[Post Create Modal Facade] Remove New Post All Medias');
 export const remove_post = createAction('[Post Create Modal Facade] Remove Post Data');
