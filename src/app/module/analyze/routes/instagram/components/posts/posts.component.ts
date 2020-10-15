@@ -28,6 +28,6 @@ export class PostsComponent implements OnChanges {
     const engagement = this.totalCount(engagements);
     const impression = this.totalCount(impressions);
 
-    return Math.floor((engagement / impression) * parseInt('100', 10));
+    return Math.floor((engagement / impression) * Number.parseInt('100', 10));
   }
 }

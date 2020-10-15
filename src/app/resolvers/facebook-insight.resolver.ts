@@ -46,7 +46,7 @@ export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
   }
 
   public resolve (route: ActivatedRouteSnapshot): Observable<IFbInsight | null> {
-    const date_range = [this.formatDate(subDays(new Date(), parseInt('6', 10))), this.formatDate(new Date())];
+    const date_range = [this.formatDate(subDays(new Date(), Number.parseInt('6', 10))), this.formatDate(new Date())];
     const { id } = route.params;
 
     if (isPlatformBrowser(this.platformId)) {

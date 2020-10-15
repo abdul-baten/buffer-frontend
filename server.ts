@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-empty-function */
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -49,9 +51,6 @@ global.HTMLElement.prototype.getBoundingClientRect = () => ({
   // eslint-disable-next-line id-length
   y: 0
 });
-
-// If using IgxIconService to register icons
-global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 // Other optional depending on your application configuration
 global.navigator = window.navigator;
@@ -123,7 +122,7 @@ export const app = (): Server => {
       enableBrotli: true,
       orderPreference: ['br', 'deflate', 'gzip'],
       serveStatic: {
-        maxAge: '1y'
+        maxAge: '1h'
       }
     })
   );
@@ -145,7 +144,7 @@ export const app = (): Server => {
 };
 
 const run = (): void => {
-  const port = process.env.PORT;
+  const port = process.env.PORT || Number.parseInt('5000', 10);
 
   // Start up the Node server
   const server = app();
@@ -161,9 +160,8 @@ const run = (): void => {
  * '__non_webpack_require__' is a proxy to Node 'require'
  * The below code is to ensure that the server is run only when not requiring the bundle.
  */
-// eslint-disable-next-line no-undef
-declare const non_webpack_require: NodeRequire;
-const main_module = non_webpack_require.main;
+declare const __non_webpack_require__: NodeRequire;
+const main_module = __non_webpack_require__.main;
 const module_file_name = (main_module && main_module.filename) || '';
 
 if (module_file_name === __filename || module_file_name.includes('iisnode')) {

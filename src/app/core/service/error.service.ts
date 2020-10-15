@@ -20,12 +20,12 @@ export class ErrorService {
     this.notificationService.showError(message);
 
     switch (error_code) {
-    case parseInt('100', 10):
-    case parseInt('101', 10):
+    case Number.parseInt('100', 10):
+    case Number.parseInt('101', 10):
       this.router.navigate(['/enter']);
       break;
 
-    case parseInt('1500', 10):
+    case Number.parseInt('1500', 10):
       this.notificationService.showError(message);
       this.router.navigate(['/connection/choose']);
       break;

@@ -21,7 +21,7 @@ export class PasswordFormComponent {
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(parseInt('8', 10)),
+            Validators.minLength(Number.parseInt('8', 10)),
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,
@@ -32,7 +32,7 @@ export class PasswordFormComponent {
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(parseInt('8', 10)),
+            Validators.minLength(Number.parseInt('8', 10)),
             PasswordValidator.oneNumber,
             PasswordValidator.oneUpperCase,
             PasswordValidator.oneLowerCase,

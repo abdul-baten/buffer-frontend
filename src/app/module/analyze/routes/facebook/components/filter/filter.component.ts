@@ -29,7 +29,7 @@ export class FilterComponent implements OnDestroy {
   public date_range: string[];
 
   constructor (private activatedRoute: ActivatedRoute, private readonly facade: FacebookFacade) {
-    this.date_range = [this.facade.formatDate(subDays(new Date(), parseInt('6', 10))), this.facade.formatDate(new Date())];
+    this.date_range = [this.facade.formatDate(subDays(new Date(), Number.parseInt('6', 10))), this.facade.formatDate(new Date())];
   }
 
   public formattedDate (dates: string[]): string {

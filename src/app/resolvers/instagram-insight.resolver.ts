@@ -49,7 +49,7 @@ export class AnalyzeInstagramResolver implements Resolve<IInstaInsight | null> {
   }
 
   resolve (route: ActivatedRouteSnapshot): Observable<IInstaInsight | null> {
-    const date_range = [this.formatDate(subDays(new Date(), parseInt('6', 10))), this.formatDate(new Date())];
+    const date_range = [this.formatDate(subDays(new Date(), Number.parseInt('6', 10))), this.formatDate(new Date())];
     const { id } = route.params;
 
     return isPlatformBrowser(this.platformId) ?

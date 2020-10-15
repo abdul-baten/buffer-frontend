@@ -94,7 +94,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
       nowIndicator: true,
       plugins: [dayGridPlugin, timeGrigPlugin, interactionPlugin],
       progressiveEventRendering: false,
-      scrollTime: format(subMinutes(new Date(), parseInt('5', 10)), 'HH:mm:ss'),
+      scrollTime: format(subMinutes(new Date(), Number.parseInt('5', 10)), 'HH:mm:ss'),
       select: (date) => {
         this.dateClicked(date);
       },
@@ -135,7 +135,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
 
     this.subscription$.add(this.facade.
       isWeb().
-      pipe(delay(parseInt('10', 10))).
+      pipe(delay(Number.parseInt('10', 10))).
       subscribe((is_platform_web: boolean) => {
         this.facade.setCalendarView(is_platform_web ? ECalendarView.DAY_GRID_MONTH : ECalendarView.TIME_GRID_DAY);
       }));

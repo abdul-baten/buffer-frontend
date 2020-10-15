@@ -104,9 +104,6 @@
             },
             "vendorChunk": false,
             "commonChunk": false,
-            "ssl": true,
-            "sslCert": "/cert/cert.crt",
-            "sslKey": "/cert/cert.key",
             "open": true,
             "watch": true
           },
@@ -203,7 +200,8 @@
             "serverTarget": "buffer:server:production",
             "routes": [
               "/",
-              "/enter"
+              "/enter",
+              "/join"
             ]
           },
           "configurations": {

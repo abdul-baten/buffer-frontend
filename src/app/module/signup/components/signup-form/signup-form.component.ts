@@ -24,12 +24,12 @@ export class SignupFormComponent {
   private buildSignupForm (): FormGroup {
     return this.formBuilder.group({
       user_email: ['', [Validators.required, CommonValidator.emailAddress]],
-      user_full_name: ['', [Validators.required, Validators.minLength(parseInt('3', 10)), Validators.maxLength(parseInt('50', 10)), CommonValidator.alphaNumeric]],
+      user_full_name: ['', [Validators.required, Validators.minLength(Number.parseInt('3', 10)), Validators.maxLength(Number.parseInt('50', 10)), CommonValidator.alphaNumeric]],
       user_password: [
         '',
         [
           Validators.required,
-          Validators.minLength(parseInt('8', 10)),
+          Validators.minLength(Number.parseInt('8', 10)),
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,

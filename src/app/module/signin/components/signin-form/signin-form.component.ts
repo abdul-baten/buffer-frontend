@@ -24,7 +24,7 @@ export class SigninFormComponent {
         'baten@CAT2019',
         [
           Validators.required,
-          Validators.minLength(parseInt('6', 10)),
+          Validators.minLength(Number.parseInt('6', 10)),
           PasswordValidator.oneNumber,
           PasswordValidator.oneUpperCase,
           PasswordValidator.oneLowerCase,
