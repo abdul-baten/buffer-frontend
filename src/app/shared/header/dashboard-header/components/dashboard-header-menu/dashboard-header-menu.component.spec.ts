@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DashboardHeaderMenuComponent } from './dashboard-header-menu.component';
 
@@ -6,7 +6,7 @@ describe('DashboardHeaderMenuComponent', () => {
   let component: DashboardHeaderMenuComponent;
   let fixture: ComponentFixture<DashboardHeaderMenuComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardHeaderMenuComponent],
     }).compileComponents();

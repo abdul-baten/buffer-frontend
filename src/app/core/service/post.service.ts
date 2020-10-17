@@ -1,9 +1,9 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
 import { HttpService } from './http.service';
+import { Injectable } from '@angular/core';
 import { IPost } from '../model';
-import { Observable } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +29,21 @@ export class PostService extends EntityCollectionServiceBase<IPost> {
     }));
   }
 
-  public getPosts (user_id: string): Observable<IPost[]> {
+  public getPosts (post_user_id: string): Observable<IPost[]> {
+    const posts_from_state$ = this.entities$;
+
+    return posts_from_state$.pipe(switchMap((posts: IPost[]) => {
+      if (posts.length) {
+        return of(posts);
+      }
+
+      return this.getPostsFromServer(post_user_id);
+    }));
+  }
+
+  private getPostsFromServer (post_user_id: string): Observable<IPost[]> {
     return this.httpService.
-      get<IPost[]>('post/posts', { user_id }).
+      get<IPost[]>(`post/${post_user_id}`).
       pipe(tap((posts: IPost[]) => {
         if (posts.length) {
           this.upsertManyInCache(posts);

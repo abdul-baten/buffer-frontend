@@ -4,6 +4,8 @@
   </buffer-toolbar>
 </div>
 
-<ng-container class="b-hs-wt-h b-of-h" *ngIf="is_platform_browser">
-  <buffer-calendar [posts]="posts$ | async" [calendar_view]="calendar_view"></buffer-calendar>
+<ng-container *ngIf="is_platform_browser">
+  <div class="b-hs-wt-h b-of-h">
+    <buffer-calendar [posts]="posts$ | async" [calendar_view]="calendar_view"></buffer-calendar>
+  </div>
 </ng-container>

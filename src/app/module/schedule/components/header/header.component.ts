@@ -1,7 +1,6 @@
-import format from 'date-fns/format';
+import dayjs from 'dayjs';
 import { Component } from '@angular/core';
 import { ECalendarView } from 'src/app/core/enum';
-
 import { Observable } from 'rxjs';
 import { ScheduleFacade } from '../../facade/schedule.facade';
 import { SelectItem } from 'primeng/api';
@@ -13,7 +12,7 @@ import { SelectItem } from 'primeng/api';
 })
 export class HeaderComponent {
   public is_platform_web$: Observable<boolean>;
-  public current_date = format(new Date(), 'eeee, MMMM dd');
+  public current_date = dayjs(new Date()).format('dddd, MMMM DD');
   public selected_calendar_view = ECalendarView.DAY_GRID_MONTH;
   public calendar_view_selection_items: SelectItem[] = [
     { label: 'Month',

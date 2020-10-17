@@ -7,10 +7,10 @@
 import 'zone.js/dist/zone-node.min';
 import 'zone.js/dist/zone-patch-rxjs.min';
 
-import * as bodyParser from 'body-parser';
-import * as compression from 'compression';
-import * as cookieParser from 'cookie-parser';
-import * as cors from 'cors';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppServerModule } from './src/main.server';
 import { enableProdMode } from '@angular/core';
@@ -66,7 +66,6 @@ Reflect.defineProperty(window.document.body.style, 'transform', {
 
 const middlewares = (express: any) => {
   const helmet = require('helmet');
-  const hpp = require('hpp');
   const express_enforces_ssl = require('express-enforces-ssl');
 
   express.engine(
@@ -90,7 +89,6 @@ const middlewares = (express: any) => {
   }));
   express.use(bodyParser.json());
   express.use(bodyParser.urlencoded({ extended: true }));
-  express.use(hpp());
 };
 
 export const app = (): Server => {

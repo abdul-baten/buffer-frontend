@@ -8,11 +8,12 @@ import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
   templateUrl: './choose-connection.component.html'
 })
 export class ChooseConnectionComponent {
+  // TODO Change type
   connections: any[] = [
     {
       image: 'facebook',
       name: 'Facebook Page',
-      type: EConnectionType.FACEBOOK
+      type: EConnectionType.FACEBOOK_PAGE
     },
     {
       image: 'facebook',
@@ -52,12 +53,6 @@ export class ChooseConnectionComponent {
   ];
 
   constructor (private readonly facade: ChooseConnectionFacade) {}
-
-  public navigateToPage (): void {
-    const choose_connection_route = 'connection/choose';
-
-    this.facade.navigateToRoute(choose_connection_route);
-  }
 
   public chooseNewConnection (oauth_type: EConnectionType): void {
     const split_oauth_type = oauth_type.toLowerCase().split('_');

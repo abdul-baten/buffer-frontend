@@ -15,14 +15,13 @@ const routes: Routes = [
           document_data: DocumentResolver,
           insight_data: AnalyzeFacebookResolver
         },
-        runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+        runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
       },
       {
         data: { title: RouteMeta.ANALYZE_INSTAGRAM.TITLE },
         loadChildren: () => import('./routes/instagram/instagram.module').then((module) => module.AnalyzeInstagramModule),
         path: RouteMeta.ANALYZE_INSTAGRAM.ROUTE,
-        resolve: { document_data: DocumentResolver },
-        runGuardsAndResolvers: 'always'
+        resolve: { document_data: DocumentResolver }
       }
     ],
     component: AnalyzeComponent,

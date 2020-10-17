@@ -1,8 +1,8 @@
-<button (click)="overlayPanel.toggle($event)" [label]="formattedDate(date_range)" pTooltip="Change date range"
+<button (click)="overlay.toggle($event)" [label]="formattedDate(date_range)" pTooltip="Change date range"
   tooltipPosition="bottom" class="b-w-full p-button-sm p-button-text" icon="pi pi-calendar" pButton
   type="button"></button>
 
-<p-overlayPanel #overlayPanel [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [dismissable]="true"
+<p-overlayPanel #overlay [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [dismissable]="true"
   appendTo="body" [style]="{width: '450px'}">
   <ng-template pTemplate>
 

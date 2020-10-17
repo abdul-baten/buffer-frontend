@@ -99,8 +99,8 @@ export interface IFbPerformanceInsight extends IInsightBase {
 
 export interface IFbInsight {
   id?: string;
-  overview?: IFbOverviewInsight;
-  performance?: IFbPerformanceInsight;
-  posts?: IFbPostInsight;
-  videos?: IFbVideoInsight;
+  overview: IFbOverviewInsight;
+  performance: IFbPerformanceInsight;
+  posts: IFbPostInsight;
+  videos: IFbVideoInsight;
 }

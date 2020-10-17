@@ -20,7 +20,7 @@ export class HttpService {
       pipe(shareReplay(1));
   }
 
-  public post<T> (uri: string, post_info: T): Observable<T> {
+  public post<T> (uri: string, post_info: unknown): Observable<T> {
     return this.httpClient.post<T>(api_base_uri + uri, post_info).pipe(shareReplay(1));
   }
 
@@ -28,9 +28,9 @@ export class HttpService {
     return this.httpClient.patch<T>(api_base_uri + uri, post_info).pipe(shareReplay(1));
   }
 
-  public delete<T> (uri: string, delete_id: string): Observable<T> {
+  public delete<T> (uri: string): Observable<T> {
     return this.httpClient.
-      delete<T>(api_base_uri + uri, { params: { delete_id } }).
+      delete<T>(api_base_uri + uri).
       pipe(shareReplay(1));
   }
 }

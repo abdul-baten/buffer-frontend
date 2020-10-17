@@ -1,6 +1,6 @@
 export enum EConnectionType {
   FACEBOOK_GROUP = 'Facebook_Group',
-  FACEBOOK = 'Facebook_Page',
+  FACEBOOK_PAGE = 'Facebook_Page',
   INSTAGRAM_BUSINESS = 'Instagram_Business',
   INSTAGRAM_PERSONAL = 'Instagram_Personal',
   LINKEDIN_PAGE = 'Linkedin_Page',

@@ -1,9 +1,23 @@
+import {
+  distinctUntilChanged,
+  first,
+  map,
+  shareReplay,
+  switchMap,
+  tap
+} from 'rxjs/operators';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { forkJoin, Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { forkJoin, Observable, of } from 'rxjs';
 import { HttpService } from './http.service';
-import { IFbInsightPayload, IFbInsight, IFbOverviewInsight, IFbPerformanceInsight, IFbPostInsight, IFbVideoInsight } from '../model';
+import {
+  IFbInsight,
+  IFbInsightPayload,
+  IFbOverviewInsight,
+  IFbPerformanceInsight,
+  IFbPostInsight,
+  IFbVideoInsight
+} from '../model';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -14,30 +28,48 @@ export class FacebookInsightService extends EntityCollectionServiceBase<IFbInsig
   }
 
   public getInsights (payload: IFbInsightPayload): Observable<IFbInsight> {
-    const overview$ = this.httpService.post<IFbOverviewInsight>('insight/facebook/overview', (payload as unknown) as IFbOverviewInsight);
-    const performance$ = this.httpService.post<IFbPerformanceInsight>('insight/facebook/performance', (payload as unknown) as IFbPerformanceInsight);
-    const posts$ = this.httpService.post<IFbPostInsight>('insight/facebook/posts', (payload as unknown) as IFbPostInsight);
-    const videos$ = this.httpService.post<IFbVideoInsight>('insight/facebook/videos', (payload as unknown) as IFbVideoInsight);
+    return this.getInsightFromState(payload.id).pipe(
+      switchMap((insight) => {
+        if (insight) {
+          return of(insight);
+        }
+
+        return this.getInsightFromServer(payload);
+      }),
+      distinctUntilChanged(),
+      shareReplay(1)
+    );
+  }
+
+  private getInsightFromServer (payload: IFbInsightPayload): Observable<IFbInsight> {
+    const overview$ = this.httpService.post<IFbOverviewInsight>('facebook-insight/overview', payload);
+    const performance$ = this.httpService.post<IFbPerformanceInsight>('facebook-insight/performance', payload);
+    const posts$ = this.httpService.post<IFbPostInsight>('facebook-insight/posts', payload);
+    const videos$ = this.httpService.post<IFbVideoInsight>('facebook-insight/videos', payload);
 
     return forkJoin({
       overview: overview$,
       performance: performance$,
       posts: posts$,
       videos: videos$
-    }).pipe(tap(({ overview, performance, posts, videos }: IFbInsight) => {
-      const { id } = overview as IFbOverviewInsight;
+    }).pipe(
+      tap(({ overview, performance, posts, videos }: IFbInsight) => {
+        const { id } = payload;
 
-      this.upsertOneInCache({
-        id,
-        overview,
-        performance,
-        posts,
-        videos
-      });
-    }));
+        this.upsertOneInCache({
+          id,
+          overview,
+          performance,
+          posts,
+          videos
+        });
+      }),
+      distinctUntilChanged(),
+      shareReplay(1)
+    );
   }
 
-  public fbInsightFromState (id: string): Observable<IFbInsight> {
-    return this.entities$.pipe(map((connections: IFbInsight[]) => connections.find((insight: IFbInsight) => insight.id === id) as IFbInsight));
+  public getInsightFromState (id: string): Observable<IFbInsight> {
+    return this.entities$.pipe(map((connections: IFbInsight[]) => connections.find((insight: IFbInsight) => insight.id === id) as IFbInsight), first());
   }
 }

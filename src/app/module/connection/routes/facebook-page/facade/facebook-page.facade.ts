@@ -46,7 +46,7 @@ export class FacebookPageFacade {
 
     return user_info_from_state$.pipe(switchMap(({ id: connection_user_id }: IUser) => {
       const connection_status = EConnectionStatus.ENABLED;
-      const connection_type = EConnectionType.TWITTER;
+      const connection_type = EConnectionType.FACEBOOK_PAGE;
       const coonnection = Object.assign(connection_info, {
         connection_status,
         connection_type,

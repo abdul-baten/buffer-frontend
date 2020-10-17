@@ -60,7 +60,7 @@ export class CompanyFormComponent {
     }
   ];
 
-  industry_options: IDropdown[] = [
+  user_industry_options: IDropdown[] = [
     {
       label: 'Advertising and Public Relations',
       value: 'lessThan5'

@@ -29,7 +29,7 @@
             </th>
             <th pSortableColumn="connection_category">Type <p-sortIcon field="connection_category"></p-sortIcon>
             </th>
-            <th pSortableColumn="connectionAdded">Added on <p-sortIcon field="connectionAdded"></p-sortIcon>
+            <th pSortableColumn="connection_added">Added on <p-sortIcon field="connection_added"></p-sortIcon>
             </th>
             <th></th>
           </tr>
@@ -56,7 +56,7 @@
             <td>
               <small>
                 <i class="pi pi-calendar b-va-m p-mr-1"></i>
-                {{ connection.connectionAdded | date: 'EEE, MMM dd, y' }}</small>
+                {{ connection.connection_added | date: 'EEE, MMM dd, y' }}</small>
             </td>
             <td>
               <div class="p-d-flex p-jc-start p-ai-center">

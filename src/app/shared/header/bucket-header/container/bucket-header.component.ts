@@ -25,7 +25,7 @@ export class BucketHeaderComponent implements OnInit {
 
   ngOnInit (): void {
     this.connection_items = [
-      { label: this.splitConnectionType(EConnectionType.FACEBOOK),
+      { label: this.splitConnectionType(EConnectionType.FACEBOOK_PAGE),
         value: 'Facebook_Page' },
       { label: this.splitConnectionType(EConnectionType.FACEBOOK_GROUP),
         value: 'Facebook_Group' },

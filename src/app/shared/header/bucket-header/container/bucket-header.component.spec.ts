@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BucketHeaderComponent } from './bucket-header.component';
 
 describe('BucketHeaderComponent', () => {
   let component: BucketHeaderComponent;
   let fixture: ComponentFixture<BucketHeaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BucketHeaderComponent],
     }).compileComponents();

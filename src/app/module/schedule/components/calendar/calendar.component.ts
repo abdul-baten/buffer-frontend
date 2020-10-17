@@ -1,6 +1,3 @@
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
-import timeGrigPlugin from '@fullcalendar/timegrid';
 import {
   AfterViewInit,
   ApplicationRef,
@@ -35,6 +32,10 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import { IPost } from 'src/app/core/model';
 import { ScheduleFacade } from '../../facade/schedule.facade';
 
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { EventDropArg } from '@fullcalendar/interaction';
+import timeGrigPlugin from '@fullcalendar/timegrid';
+
 // eslint-disable-next-line no-unused-expressions
 Calendar.name;
 
@@ -50,7 +51,6 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   @ViewChild('calendar') calendar!: FullCalendarComponent;
 
   private calendar_api!: Calendar;
-
   private subscription$ = new Subscription();
 
   calendar_options (): CalendarOptions {

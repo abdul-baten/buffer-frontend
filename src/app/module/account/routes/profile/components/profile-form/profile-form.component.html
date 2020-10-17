@@ -2,31 +2,30 @@
   <form novalidate [formGroup]="form">
     <div class="p-fluid p-formgrid p-grid p-p-2">
       <div class="p-field p-col-12">
-        <label for="profileFirstName">First name<span class="b-input-label-required">*</span></label>
-        <input id="profileFirstName" type="text" pInputText formControlName="profileFirstName" class="p-inputtext-lg" />
+        <label for="user_first_name">First name<span class="b-input-label-required">*</span></label>
+        <input id="user_first_name" type="text" pInputText formControlName="user_first_name" class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileLastName">Last name<span class="b-input-label-required">*</span></label>
-        <input id="profileLastName" type="text" pInputText formControlName="profileLastName" class="p-inputtext-lg" />
+        <label for="user_last_name">Last name<span class="b-input-label-required">*</span></label>
+        <input id="user_last_name" type="text" pInputText formControlName="user_last_name" class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileEmailAddress">Email address<span class="b-input-label-required">*</span></label>
-        <input id="profileEmailAddress" type="email" pInputText formControlName="profileEmailAddress"
-          class="p-inputtext-lg" />
+        <label for="user_email">Email address<span class="b-input-label-required">*</span></label>
+        <input id="user_email" type="email" pInputText formControlName="user_email" class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
-        <label for="profileBio">Bio</label>
-        <textarea id="profileBio" type="text" rows="4" [autoResize]="true" pInputTextarea formControlName="profileBio"
+        <label for="user_bio">Bio</label>
+        <textarea id="user_bio" type="text" rows="4" [autoResize]="true" pInputTextarea formControlName="user_bio"
           class="p-inputtext-lg"></textarea>
       </div>
       <div class="p-field p-col-6 p-pr-2">
-        <label for="profileCountry">Country</label>
-        <p-dropdown inputId="profileCountry" [options]="countries" formControlName="profileCountry"
-          class="p-inputtext-lg" placeholder="Select country" optionLabel="name"></p-dropdown>
+        <label for="user_country">Country</label>
+        <p-dropdown inputId="user_country" [options]="countries" formControlName="user_country" class="p-inputtext-lg"
+          placeholder="Select country" optionLabel="name"></p-dropdown>
       </div>
       <div class="p-field p-col-6 p-pl-2">
-        <label for="profileTimezone">Timezone</label>
-        <p-dropdown inputId="profileTimezone" [options]="countries" formControlName="profileTimezone"
+        <label for="user_time_zone">Timezone</label>
+        <p-dropdown inputId="user_time_zone" [options]="countries" formControlName="user_time_zone"
           class="p-inputtext-lg" placeholder="Select timezone" optionLabel="name"></p-dropdown>
       </div>
       <div class="p-field p-col-12">

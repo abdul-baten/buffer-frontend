@@ -1,11 +1,10 @@
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Injectable } from '@angular/core';
+import { IPost } from '../model/post.model';
 import { LoaderComponent } from '../../shared/loader/container/loader.component';
-import { Observable, of } from 'rxjs';
 import { PostModalComponent } from '../../shared/modal/post-modal/container/post-modal.component';
 import { ViewModalComponent } from '../../shared/modal/view-modal/container/view-modal.component';
-import { DialogService } from 'primeng/dynamicdialog';
-import { DynamicDialogRef } from 'primeng/dynamicdialog/dynamicdialog-ref';
-import { IPost } from '../model/post.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +12,12 @@ import { IPost } from '../model/post.model';
 export class ModalService {
   private loader_counter = 0;
 
+  private dialog_ref: DynamicDialogRef = new DynamicDialogRef();
+
   constructor (private readonly dialogService: DialogService) {}
 
   openPostModal (post_info: Partial<IPost>): DynamicDialogRef {
-    const dialog_ref = this.dialogService.open(PostModalComponent, {
+    this.dialog_ref = this.dialogService.open(PostModalComponent, {
       contentStyle: {
         height: '100%',
         overflow: 'auto'
@@ -27,11 +28,11 @@ export class ModalService {
       width: '100%'
     });
 
-    return dialog_ref;
+    return this.dialog_ref;
   }
 
   openViewModal (header: string, post_info: Partial<IPost>): DynamicDialogRef {
-    const dialog_ref = this.dialogService.open(ViewModalComponent, {
+    this.dialog_ref = this.dialogService.open(ViewModalComponent, {
       contentStyle: {
         'max-height': '650px',
         overflow: 'auto'
@@ -41,16 +42,14 @@ export class ModalService {
       width: '550px'
     });
 
-    return dialog_ref;
+    return this.dialog_ref;
   }
 
   openLoader (): Observable<DynamicDialogRef> {
-    let dialog_ref;
-
     this.loader_counter += 1;
 
     if (this.loader_counter === 1) {
-      dialog_ref = this.dialogService.open(LoaderComponent, {
+      this.dialog_ref = this.dialogService.open(LoaderComponent, {
         autoZIndex: true,
         baseZIndex: 10001,
         closable: false,
@@ -61,11 +60,7 @@ export class ModalService {
       });
     }
 
-    return of(dialog_ref) as Observable<DynamicDialogRef>;
-  }
-
-  closeModal (dialog_ref: DynamicDialogRef): void {
-    dialog_ref.close();
+    return of(this.dialog_ref);
   }
 
   public closeLoader (dialog_ref: DynamicDialogRef): void {

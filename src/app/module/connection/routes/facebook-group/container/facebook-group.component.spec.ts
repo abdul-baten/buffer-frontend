@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FacebookGroupComponent } from './facebook-group.component';
 
 describe('FacebookGroupComponent', () => {
   let component: FacebookGroupComponent;
   let fixture: ComponentFixture<FacebookGroupComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [FacebookGroupComponent],
     }).compileComponents();

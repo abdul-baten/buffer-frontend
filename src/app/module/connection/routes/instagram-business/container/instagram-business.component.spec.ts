@@ -1,11 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { InstagramBusinessComponent } from './instagram-business.component';
 
 describe('InstagramBusinessComponent', () => {
   let component: InstagramBusinessComponent;
   let fixture: ComponentFixture<InstagramBusinessComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [InstagramBusinessComponent],
     }).compileComponents();

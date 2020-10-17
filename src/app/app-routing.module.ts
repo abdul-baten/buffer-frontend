@@ -85,7 +85,7 @@ const routes: Routes = [
       document_data: DocumentResolver,
       user_meta: UserConnectionResolver
     },
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },
   {
     data: { title: RouteMeta.VIDEO_MODULE.TITLE },

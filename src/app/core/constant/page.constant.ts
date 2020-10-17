@@ -37,7 +37,7 @@ export const RouteMeta = Object.freeze({
   },
   CONNECTION_CHOOSE: {
     ROUTE: 'choose',
-    TITLE: 'Connect'
+    TITLE: 'Choose connection'
   },
   CONNECTION_FB: {
     ROUTE: 'facebook-page',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { IConnection } from 'src/app/core/model';
+import { Observable, of } from 'rxjs';
 import { ProfilesFacade } from '../facade/profiles.facade';
 
 @Component({
@@ -11,13 +11,9 @@ import { ProfilesFacade } from '../facade/profiles.facade';
 export class ProfilesComponent implements OnInit {
   public choose_connection_route = 'connection/choose';
   public connections$: Observable<IConnection[]> = of([]);
-  public is_platform_tablet$: Observable<boolean>;
-  public is_platform_web$: Observable<boolean>;
   public total_connections$: Observable<number> = of(0);
 
   constructor (private readonly facade: ProfilesFacade) {
-    this.is_platform_tablet$ = this.facade.isTablet();
-    this.is_platform_web$ = this.facade.isWeb();
   }
 
   ngOnInit (): void {
@@ -29,12 +25,13 @@ export class ProfilesComponent implements OnInit {
     this.total_connections$ = this.facade.getTotalConnections();
   }
 
-  public trackByConnectionID (connection: IConnection): string {
-    return connection.id;
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  public trackByConnectionID (_index: number, connection: IConnection): number {
+    return Number(connection.id);
   }
 
   public connectionSelect (connection: IConnection): void {
-    this.facade.navigate(['/schedule', connection.id]);
+    this.navigate(['/schedule', connection.id]);
   }
 
   public deleteConnection (connection: IConnection): void {

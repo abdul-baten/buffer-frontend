@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { shareReplay, switchMap } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component } from '@angular/core';
 import { FacebookFacade } from '../facade/facebook.facade';
 import { IConnectionSelected, IFbInsight } from 'src/app/core/model';
 import { Observable } from 'rxjs';
+import { shareReplay, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer-facebook',
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './facebook.component.html'
 })
 export class FacebookComponent {
-  insight$: Observable<IFbInsight>;
+  public insight$: Observable<IFbInsight>;
 
   constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookFacade) {
     this.insight$ = this.activatedRoute.paramMap.pipe(
@@ -24,7 +24,7 @@ export class FacebookComponent {
     );
   }
 
-  connectionSelected (connection: IConnectionSelected): void {
+  public connectionSelected (connection: IConnectionSelected): void {
     const { id, type } = connection;
 
     this.facade.profileInsight(type as string, id);

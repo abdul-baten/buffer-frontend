@@ -1,7 +1,7 @@
 import { EConnectionStatus, EConnectionType } from '../enum';
 
 export interface IConnection {
-  connection_added?: Date;
+  connection_added: string;
   connection_category?: string;
   connection_id: string;
   connection_name: string;
@@ -9,6 +9,7 @@ export interface IConnection {
   connection_status: EConnectionStatus;
   connection_token: string;
   connection_type: EConnectionType;
+  connection_updated: string;
   connection_user_id: string;
   id: string;
 }

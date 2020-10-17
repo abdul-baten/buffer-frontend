@@ -2,23 +2,24 @@
   <form novalidate [formGroup]="form">
     <div class="p-fluid p-formgrid">
       <div class="p-field p-col-12">
-        <label for="companyName">Company<span class="b-input-label-required">*</span></label>
-        <input id="companyName" type="text" pInputText formControlName="companyName" class="p-inputtext-lg" />
+        <label for="user_company_name">Company<span class="b-input-label-required">*</span></label>
+        <input id="user_company_name" type="text" pInputText formControlName="user_company_name"
+          class="p-inputtext-lg" />
       </div>
       <div class="p-field p-col-12">
-        <label for="companySize">Company size<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="companySize" [options]="company_size_options" formControlName="companySize"
+        <label for="user_company_size">Company size<span class="b-input-label-required">*</span></label>
+        <p-dropdown inputId="user_company_size" [options]="company_size_options" formControlName="user_company_size"
           class="p-inputtext-lg" optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <label for="businessType">Business type<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="businessType" [options]="business_type_options" formControlName="businessType"
+        <label for="user_business_type">Business type<span class="b-input-label-required">*</span></label>
+        <p-dropdown inputId="user_business_type" [options]="business_type_options" formControlName="user_business_type"
           class="p-inputtext-lg" optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
-        <label for="industry">Industry<span class="b-input-label-required">*</span></label>
-        <p-dropdown inputId="industry" [options]="industry_options" formControlName="industry" class="p-inputtext-lg"
-          optionLabel="label"></p-dropdown>
+        <label for="user_industry">user_industry<span class="b-input-label-required">*</span></label>
+        <p-dropdown inputId="user_industry" [options]="user_industry_options" formControlName="user_industry"
+          class="p-inputtext-lg" optionLabel="label"></p-dropdown>
       </div>
       <div class="p-field p-col-12">
         <button pButton type="button" label="Save changes" class="b-w-full p-button-lg"

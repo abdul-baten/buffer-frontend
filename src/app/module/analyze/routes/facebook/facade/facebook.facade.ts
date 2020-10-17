@@ -1,14 +1,19 @@
-import format from 'date-fns/format';
+import dayJs from 'dayjs';
+import {
+  ConnectionService,
+  FacebookInsightService,
+  GlobalService,
+  UserService
+} from 'src/app/core/service';
 import { EConnectionType } from 'src/app/core/enum';
 import {
-  first,
-  map,
-  shareReplay,
-  switchMap
-} from 'rxjs/operators';
+  IConnection,
+  IDropdown,
+  IFbInsight,
+  IUser
+} from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { ConnectionService, GlobalService, FacebookInsightService, UserService } from 'src/app/core/service';
-import { IConnection, IDropdown, IFbInsight, IUser } from 'src/app/core/model';
+import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -21,32 +26,28 @@ export class FacebookFacade {
   ) {}
 
   formatDate (date: string | Date): string {
-    return format(new Date(date), 'MMM dd, yyyy');
+    return dayJs(new Date(date)).format('MMM DD, YYYY');
   }
 
   public getInsights (payload: { id: string; date_range: string[] }): Observable<IFbInsight> {
     const { id, date_range } = payload;
-    const since = format(new Date(date_range[0]), 'yyyy-MM-dd');
-    const until = format(new Date(date_range[1]), 'yyyy-MM-dd');
+    const since = dayJs(new Date(date_range[0])).format('YYYY-MM-DD');
+    const until = dayJs(new Date(date_range[1])).format('YYYY-MM-DD');
 
-    return this.userService.getUserFromState().pipe(
-      switchMap(({ id: user_id }: IUser) => this.facebookInsightService.getInsights({
-        id,
-        since,
-        until,
-        user_id
-      })),
-      shareReplay(1),
-      first()
-    );
+    return this.userService.getUserFromState().pipe(switchMap(({ id: user_id }: IUser) => this.facebookInsightService.getInsights({
+      id,
+      since,
+      until,
+      user_id
+    })));
   }
 
   public getInsightFromState (id: string): Observable<IFbInsight> {
-    return (this.facebookInsightService.fbInsightFromState(id) as unknown) as Observable<IFbInsight>;
+    return this.facebookInsightService.getInsightFromState(id).pipe(map((response) => response));
   }
 
   getFacebookPages (): Observable<IDropdown[]> {
-    return this.connectionService.connectionsByType(EConnectionType.FACEBOOK).pipe(map((connections: IConnection[]) => {
+    return this.connectionService.connectionsByType(EConnectionType.FACEBOOK_PAGE).pipe(map((connections: IConnection[]) => {
       const dropdown: IDropdown[] = [];
 
       connections.forEach((connection: IConnection) => {

@@ -1,7 +1,7 @@
 import { finalize } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { ConnectionService, ResponsiveLayoutService } from 'src/app/core/service';
+import { ConnectionService } from 'src/app/core/service';
 import { IConnection } from 'src/app/core/model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,7 +11,6 @@ export class ProfilesFacade {
   constructor (
     private readonly confirmationService: ConfirmationService,
     private readonly connectionService: ConnectionService,
-    private readonly responsiveLayoutService: ResponsiveLayoutService,
     private readonly router: Router
   ) {}
 
@@ -38,13 +37,5 @@ export class ProfilesFacade {
 
   public navigate (route: string[]): void {
     this.router.navigate(route);
-  }
-
-  public isWeb (): Observable<boolean> {
-    return this.responsiveLayoutService.isWeb();
-  }
-
-  public isTablet (): Observable<boolean> {
-    return this.responsiveLayoutService.isTablet();
   }
 }
