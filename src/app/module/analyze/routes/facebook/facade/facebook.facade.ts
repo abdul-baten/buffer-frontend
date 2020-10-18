@@ -13,7 +13,7 @@ import {
   IUser
 } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -43,7 +43,7 @@ export class FacebookFacade {
   }
 
   public getInsightFromState (id: string): Observable<IFbInsight> {
-    return this.facebookInsightService.getInsightFromState(id).pipe(map((response) => response));
+    return this.facebookInsightService.getInsightFromState(id).pipe(tap(console.warn));
   }
 
   getFacebookPages (): Observable<IDropdown[]> {

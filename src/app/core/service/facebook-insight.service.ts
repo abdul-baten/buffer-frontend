@@ -1,13 +1,10 @@
 import {
-  distinctUntilChanged,
-  first,
   map,
   shareReplay,
-  switchMap,
   tap
 } from 'rxjs/operators';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { HttpService } from './http.service';
 import {
   IFbInsight,
@@ -28,20 +25,6 @@ export class FacebookInsightService extends EntityCollectionServiceBase<IFbInsig
   }
 
   public getInsights (payload: IFbInsightPayload): Observable<IFbInsight> {
-    return this.getInsightFromState(payload.id).pipe(
-      switchMap((insight) => {
-        if (insight) {
-          return of(insight);
-        }
-
-        return this.getInsightFromServer(payload);
-      }),
-      distinctUntilChanged(),
-      shareReplay(1)
-    );
-  }
-
-  private getInsightFromServer (payload: IFbInsightPayload): Observable<IFbInsight> {
     const overview$ = this.httpService.post<IFbOverviewInsight>('facebook-insight/overview', payload);
     const performance$ = this.httpService.post<IFbPerformanceInsight>('facebook-insight/performance', payload);
     const posts$ = this.httpService.post<IFbPostInsight>('facebook-insight/posts', payload);
@@ -64,12 +47,11 @@ export class FacebookInsightService extends EntityCollectionServiceBase<IFbInsig
           videos
         });
       }),
-      distinctUntilChanged(),
       shareReplay(1)
     );
   }
 
   public getInsightFromState (id: string): Observable<IFbInsight> {
-    return this.entities$.pipe(map((connections: IFbInsight[]) => connections.find((insight: IFbInsight) => insight.id === id) as IFbInsight), first());
+    return this.entities$.pipe(map((connections: IFbInsight[]) => connections.find((insight: IFbInsight) => insight.id === id) as IFbInsight));
   }
 }

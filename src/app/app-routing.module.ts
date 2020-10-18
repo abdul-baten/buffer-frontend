@@ -115,7 +115,7 @@ const routes: Routes = [
       relativeLinkResolution: 'corrected',
       scrollOffset: [0, 0],
       scrollPositionRestoration: 'top',
-      urlUpdateStrategy: 'eager',
+      urlUpdateStrategy: 'deferred',
       useHash: false
     })
   ]

@@ -124,7 +124,9 @@
     "rxjs": "~6.6.3",
     "spdy": "^4.0.2",
     "tslib": "^2.0.3",
+    "universal-cookie-express": "^4.0.3",
     "web-animations-js": "^2.3.2",
+    "xhr2": "^0.2.0",
     "zone.js": "~0.11.1"
   },
   "devDependencies": {
@@ -183,7 +185,6 @@
     "tslint": "~6.1.3",
     "tslint-immutable": "6.0.1",
     "typescript": "~4.0.3",
-    "uglify-es": "^3.3.9",
     "webpack-cli": "^4.0.0"
   },
   "browser": {

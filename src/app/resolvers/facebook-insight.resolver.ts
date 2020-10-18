@@ -3,8 +3,7 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { catchError, switchMap } from 'rxjs/operators';
 import { ErrorService, FacebookInsightService, UserService } from '../core/service';
 import { IFbInsight, IUser } from '../core/model';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -12,8 +11,6 @@ import { Observable, of } from 'rxjs';
 })
 export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
   constructor (
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    @Inject(PLATFORM_ID) private readonly platformId: Object,
     private readonly errorService: ErrorService,
     private readonly facebookInsightService: FacebookInsightService,
     private readonly userService: UserService
@@ -51,13 +48,9 @@ export class AnalyzeFacebookResolver implements Resolve<IFbInsight | null> {
     const date_range = [this.formatDate(date), this.formatDate(new Date())];
     const { id } = route.params;
 
-    if (isPlatformBrowser(this.platformId)) {
-      return this.getInsights({
-        date_range,
-        id
-      });
-    }
-
-    return of(null);
+    return this.getInsights({
+      date_range,
+      id
+    });
   }
 }

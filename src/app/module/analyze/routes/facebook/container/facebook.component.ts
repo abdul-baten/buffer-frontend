@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FacebookFacade } from '../facade/facebook.facade';
 import { IConnectionSelected, IFbInsight } from 'src/app/core/model';
 import { Observable } from 'rxjs';
-import { shareReplay, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'buffer-facebook',
@@ -14,14 +14,11 @@ export class FacebookComponent {
   public insight$: Observable<IFbInsight>;
 
   constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookFacade) {
-    this.insight$ = this.activatedRoute.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        const id = params.get('id') as string;
+    this.insight$ = this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) => {
+      const id = params.get('id') as string;
 
-        return this.facade.getInsightFromState(id);
-      }),
-      shareReplay(1)
-    );
+      return this.facade.getInsightFromState(id);
+    }));
   }
 
   public connectionSelected (connection: IConnectionSelected): void {

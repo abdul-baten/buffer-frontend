@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+/* eslint-disable max-statements */
 /* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-empty-function */
@@ -13,16 +15,20 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppServerModule } from './src/main.server';
+import { Request, Response } from 'express';
+import { createServer, Server } from 'spdy';
 import { enableProdMode } from '@angular/core';
+import { env } from 'process';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import { Request, Response } from 'express';
-import { createServer, Server } from 'spdy';
+import cookiesMiddleware from 'universal-cookie-express';
 
 require('raf').polyfill();
 
 enableProdMode();
+
+env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const domino = require('domino');
 const template = readFileSync(join('dist/browser', 'index.html')).toString();
@@ -68,14 +74,9 @@ const middlewares = (express: any) => {
   const helmet = require('helmet');
   const express_enforces_ssl = require('express-enforces-ssl');
 
-  express.engine(
-    'html',
-    ngExpressEngine({
-      bootstrap: AppServerModule
-    })
-  );
-
   express.enable('trust proxy');
+
+  express.use(cookiesMiddleware());
 
   express.use(express_enforces_ssl());
   express.use(cookieParser());
@@ -100,16 +101,24 @@ export const app = (): Server => {
   const server = createServer(
     '',
     {
+      ca: cert,
       cert,
-      key
+      key,
+      rejectUnauthorized: true
     },
     express
   );
   const dist_folder = join(process.cwd(), 'dist/browser');
   const index_html = existsSync(join(dist_folder, 'index.original.html')) ? 'index.original.html' : 'index';
 
-  middlewares(express);
+  express.engine(
+    'html',
+    ngExpressEngine({
+      bootstrap: AppServerModule
+    })
+  );
 
+  middlewares(express);
   express.set('view engine', 'html');
   express.set('views', dist_folder);
 
@@ -127,12 +136,13 @@ export const app = (): Server => {
 
   // All regular routes use the Universal engine
   express.get('*', (req: Request, res: Response) => {
-    res.render(index_html, { preboot: true,
+    global.navigator = { userAgent: req.headers['user-agent'] } as Navigator;
 
+    res.render(index_html, {
       providers: [
         { provide: APP_BASE_HREF,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          useValue: req.baseUrl }
+          useValue: req.baseUrl
+        }
       ],
       req,
       res });
@@ -142,7 +152,7 @@ export const app = (): Server => {
 };
 
 const run = (): void => {
-  const port = process.env.PORT || Number.parseInt('5000', 10);
+  const port = env.PORT || Number.parseInt('5000', 10);
 
   // Start up the Node server
   const server = app();

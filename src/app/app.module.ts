@@ -24,7 +24,6 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
 
 @NgModule({
-  bootstrap: [AppComponent],
   declarations: [AppComponent],
   imports: [
     AppRoutingModule,
