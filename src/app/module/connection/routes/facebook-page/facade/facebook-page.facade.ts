@@ -1,44 +1,25 @@
 import { EConnectionStatus, EConnectionType } from 'src/app/core/enum';
+import { IConnection, IUser } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-
-import { ResponsiveLayoutService, UserService } from 'src/app/core/service';
-import { FacebookPageService } from '../service/facebook-page.service';
-import { IConnection, IUser } from 'src/app/core/model';
 import { Observable } from 'rxjs';
-import { ParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { ConnectionService, UserService } from 'src/app/core/service';
 
 @Injectable()
 export class FacebookPageFacade {
   constructor (
-    private readonly facebookPageService: FacebookPageService,
-    private readonly responsiveLayoutService: ResponsiveLayoutService,
+    private readonly connectionService: ConnectionService,
     private readonly router: Router,
     private readonly userService: UserService
   ) {}
 
-  public isWeb (): Observable<boolean> {
-    return this.responsiveLayoutService.isWeb();
-  }
-
-  public isHandset (): Observable<boolean> {
-    return this.responsiveLayoutService.isHandset();
-  }
-
-  public isTablet (): Observable<boolean> {
-    return this.responsiveLayoutService.isTablet();
-  }
-
-  public navigateToPage (route: string): void {
+  public navigate (route: string): void {
     this.router.navigate([route]);
   }
 
-  public getPages (query_param_map: Observable<ParamMap>, connection_type: string): Observable<IConnection[]> {
-    return query_param_map.pipe(switchMap((params: ParamMap) => {
-      const code = params.get('code') as string;
-
-      return this.facebookPageService.fetchFacebookPages(code, connection_type).pipe(map((connections: IConnection[]) => connections));
-    }));
+  public getPages (code: string, connection_type: string): Observable<IConnection[]> {
+    return this.connectionService.getFacebookConnections(code, connection_type).pipe(map((connections: IConnection[]) => connections));
   }
 
   public addFacebookPage (connection_info: IConnection): Observable<IConnection> {
@@ -53,7 +34,7 @@ export class FacebookPageFacade {
         connection_user_id
       });
 
-      return this.facebookPageService.addFacebookPage(coonnection);
+      return this.connectionService.addConnection(coonnection);
     }));
   }
 }

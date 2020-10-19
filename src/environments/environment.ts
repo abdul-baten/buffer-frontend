@@ -1,10 +1,3 @@
-/* eslint-disable global-require */
-/*
- * This file can be replaced during build by using the `fileReplacements` array.
- * `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
- * The list of file replacements can be found in `angular.json`.
- */
-
 export const environment = {
   api_base_uri: 'https://localhost:3000/api/v1.0.0/',
   production: false,
@@ -12,15 +5,18 @@ export const environment = {
     number_of_rounds: 10,
     secret_key: 'va#_-w,X+b/c%)b~Wg_z5%dXe8%99&Q-'
   },
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  version: require('../../package.json').version
+  social_platform: {
+    facebook: {
+      client_id: '466314977585281',
+      client_secret: '8628ebbe08dab12d34b5860df4336037',
+      dialog_api: 'https://www.facebook.com/v8.0/dialog/oauth',
+      scope: `read_insights,publish_video,pages_show_list,ads_read,business_management,
+        publish_to_groups,groups_access_member_info,pages_read_engagement,pages_manage_metadata,
+        pages_read_user_content,pages_manage_ads,pages_manage_posts,pages_manage_engagement,public_profile,
+        instagram_basic,instagram_manage_comments,instagram_manage_insights`
+    },
+    redirect_base_url: 'https://localhost:5000/connection'
+  }
 };
 
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// Import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';

@@ -57,11 +57,11 @@ export class BucketHeaderComponent implements OnInit {
     return type.split('_').join(' ');
   }
 
-  inputChanged (input_text: string): void {
+  public inputChanged (input_text: string): void {
     this.input_change.emit(input_text);
   }
 
-  dataChanged (data_text: string, property_name: string, comparison: string): void {
+  public dataChanged (data_text: string, property_name: string, comparison: string): void {
     this.dropdown_change.emit({
       comparison,
       // eslint-disable-next-line @typescript-eslint/naming-convention

@@ -29,7 +29,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   private subscriptions$ = new Subscription();
   public selected_connections: Partial<IConnection>[] = [];
 
-  constructor (private facade: PostModalFacade, private formBuilder: FormBuilder) {
+  constructor (private readonly facade: PostModalFacade, private formBuilder: FormBuilder) {
     this.form = this.biuldImageForm();
   }
 

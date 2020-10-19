@@ -46,6 +46,19 @@ export class ConnectionService extends EntityCollectionServiceBase<IConnection> 
       }));
   }
 
+  public getFacebookConnections (code: string, connection_type: string): Observable<IConnection[]> {
+    return this.httpService.get<IConnection[]>(`facebook/${connection_type}s`, {
+      code,
+      connection_type
+    });
+  }
+
+  public addConnection (connection: IConnection): Observable<IConnection> {
+    return this.httpService.post<IConnection>('connection', connection).pipe(tap((connection: IConnection) => {
+      this.upsertOneInCache(connection);
+    }));
+  }
+
   public deleteConnection (connection: IConnection): Observable<IConnection> {
     const { id: connection_id, connection_user_id } = connection;
 

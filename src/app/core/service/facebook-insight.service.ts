@@ -1,8 +1,3 @@
-import {
-  map,
-  shareReplay,
-  tap
-} from 'rxjs/operators';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { forkJoin, Observable } from 'rxjs';
 import { HttpService } from './http.service';
@@ -15,6 +10,7 @@ import {
   IFbVideoInsight
 } from '../model';
 import { Injectable } from '@angular/core';
+import { map, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

@@ -122,7 +122,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
     private applicationRef: ApplicationRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
-    private facade: ScheduleFacade
+    private readonly facade: ScheduleFacade
   ) {}
 
   ngOnChanges (changes: SimpleChanges): void {

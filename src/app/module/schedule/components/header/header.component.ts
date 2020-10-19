@@ -23,7 +23,7 @@ export class HeaderComponent {
       value: ECalendarView.TIME_GRID_DAY }
   ];
 
-  constructor (private facade: ScheduleFacade) {
+  constructor (private readonly facade: ScheduleFacade) {
     this.is_platform_web$ = this.facade.isWeb();
   }
 

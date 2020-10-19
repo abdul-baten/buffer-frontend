@@ -99,7 +99,6 @@ export const app = (): Server => {
   const express_static = require('express-static-gzip');
 
   const server = createServer(
-    '',
     {
       ca: cert,
       cert,

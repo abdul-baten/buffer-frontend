@@ -29,7 +29,7 @@ export class BucketSavedComponent {
       post_connection: { connection_type: EConnectionType.TWITTER },
       post_date_time: new Date('2020-01-05').toDateString(),
       post_media: [],
-      post_message: '',
+      post_message: 'asasas',
       post_status: EPostStatus.SCHEDULED,
       post_type: EPostType.IMAGE,
       post_user_id: '',

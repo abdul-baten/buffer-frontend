@@ -65,17 +65,16 @@ const routes: Routes = [
     loadChildren: () => import('./module/bucket/bucket.module').then((module) => module.BucketModule),
     path: RouteMeta.BUCKET.ROUTE,
     resolve: {
-      document_data: DocumentResolver,
       user_meta: UserConnectionResolver
     },
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
     data: { title: RouteMeta.ANALYZE.TITLE },
     loadChildren: () => import('./module/analyze/analyze.module').then((module) => module.AnalyzeModule),
     path: RouteMeta.ANALYZE.ROUTE,
     resolve: { user_meta: UserConnectionResolver },
-    runGuardsAndResolvers: 'always'
+    runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
     data: { title: RouteMeta.CONNECTION_MODULE.TITLE },
@@ -115,7 +114,7 @@ const routes: Routes = [
       relativeLinkResolution: 'corrected',
       scrollOffset: [0, 0],
       scrollPositionRestoration: 'top',
-      urlUpdateStrategy: 'deferred',
+      urlUpdateStrategy: 'eager',
       useHash: false
     })
   ]

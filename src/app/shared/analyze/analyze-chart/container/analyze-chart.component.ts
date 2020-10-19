@@ -1,7 +1,8 @@
 /* eslint-disable sort-keys */
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable max-lines-per-function */
-import * as Highcharts from 'highcharts';
+import Highcharts from 'highcharts';
+import safeJsonStringify from 'safe-json-stringify';
 import Exporting from 'highcharts/modules/exporting';
 import Exporting_D from 'highcharts/modules/export-data';
 import Exporting_O from 'highcharts/modules/offline-exporting';
@@ -21,6 +22,9 @@ Exporting_O(Highcharts);
 More(Highcharts);
 NoData(Highcharts);
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Parse = require('fast-json-parse');
+
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer-analyze-chart',
@@ -32,20 +36,20 @@ export class AnalyzeChartComponent implements OnChanges {
   @Input() chart_title = '';
   @Input() chart_type = '';
   @Input()
-  chart_series!: { name: string; data?: any[]; type?: string; color?: string }[];
+  chart_series!: { name: string; data?: unknown[]; type?: string; color?: string }[];
 
-  high_charts = Highcharts;
-  is_high_charts = typeof Highcharts === 'object';
-  update_from_input = false;
-  chart_ref!: Highcharts.Chart;
+  public high_charts = Highcharts;
+  public is_high_charts = typeof Highcharts === 'object';
+  public update_from_input = false;
+  public chart_ref!: Highcharts.Chart;
 
-  chart_options = {
+  public chart_options = {
     // eslint-disable-next-line no-invalid-this
     ...this.getOptions()
   };
 
   // eslint-disable-next-line no-invalid-this
-  opt_from_input = JSON.parse(JSON.stringify(this.chart_options));
+  public opt_from_input = Parse(safeJsonStringify(this.chart_options)).value;
 
   private getOptions (type: string = '', categories: string[] = []): Highcharts.Options {
     return {
@@ -152,7 +156,7 @@ export class AnalyzeChartComponent implements OnChanges {
     };
   }
 
-  chartCallback = (chart: Highcharts.Chart): void => {
+  public chartCallback = (chart: Highcharts.Chart): void => {
     // eslint-disable-next-line no-invalid-this
     this.chart_ref = chart;
   }
@@ -163,11 +167,11 @@ export class AnalyzeChartComponent implements OnChanges {
       series: [...changes?.chart_series?.currentValue || []]
     };
 
-    this.opt_from_input = JSON.parse(JSON.stringify(chart_options));
+    this.opt_from_input = Parse(safeJsonStringify(chart_options)).value;
     this.update_from_input = true;
   }
 
-  exportToJPEG (): void {
+  public exportToJPEG (): void {
     this.chart_ref.exportChart(
       {
         filename: this.chart_title,
@@ -177,7 +181,7 @@ export class AnalyzeChartComponent implements OnChanges {
     );
   }
 
-  exportToExcel (): void {
+  public exportToExcel (): void {
     this.chart_ref.downloadXLS();
   }
 }

@@ -1,35 +1,20 @@
+import { ConnectionService, UserService } from 'src/app/core/service';
 import { EConnectionStatus, EConnectionType } from 'src/app/core/enum';
+import { IConnection, IUser } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
 import { map, switchMap } from 'rxjs/operators';
-
-import { ResponsiveLayoutService, UserService } from 'src/app/core/service';
-import { FacebookGroupService } from '../service/facebook-group.service';
-import { IConnection, IUser } from 'src/app/core/model';
 import { Observable } from 'rxjs';
 import { ParamMap, Router } from '@angular/router';
 
 @Injectable()
 export class FacebookGroupFacade {
   constructor (
-    private readonly facebookGroupService: FacebookGroupService,
-    private readonly responsiveLayoutService: ResponsiveLayoutService,
+    private readonly connectionService: ConnectionService,
     private readonly router: Router,
     private readonly userService: UserService
   ) {}
 
-  public isWeb (): Observable<boolean> {
-    return this.responsiveLayoutService.isWeb();
-  }
-
-  public isHandset (): Observable<boolean> {
-    return this.responsiveLayoutService.isHandset();
-  }
-
-  public isTablet (): Observable<boolean> {
-    return this.responsiveLayoutService.isTablet();
-  }
-
-  public navigateToGroup (route: string): void {
+  public navigate (route: string): void {
     this.router.navigate([route]);
   }
 
@@ -37,7 +22,7 @@ export class FacebookGroupFacade {
     return query_param_map.pipe(switchMap((params: ParamMap) => {
       const code = params.get('code') as string;
 
-      return this.facebookGroupService.getGroups(code, connection_type).pipe(map((connections: IConnection[]) => connections));
+      return this.connectionService.getFacebookConnections(code, connection_type).pipe(map((connections: IConnection[]) => connections));
     }));
   }
 
@@ -47,13 +32,13 @@ export class FacebookGroupFacade {
     return user_info_from_state$.pipe(switchMap(({ id: connection_user_id }: IUser) => {
       const connection_status = EConnectionStatus.ENABLED;
       const connection_type = EConnectionType.LINKEDIN_PROFILE;
-      const coonnection = Object.assign(connection_info, {
+      const connection = Object.assign(connection_info, {
         connection_status,
         connection_type,
         connection_user_id
       });
 
-      return this.facebookGroupService.addGroup(coonnection);
+      return this.connectionService.addConnection(connection);
     }));
   }
 }

@@ -5,15 +5,15 @@ import startOfWeek from 'date-fns/startOfWeek';
 import subDays from 'date-fns/subDays';
 import subMonths from 'date-fns/subMonths';
 import subWeeks from 'date-fns/subWeeks';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import {
   Component,
   HostListener,
   OnDestroy,
   ViewChild
 } from '@angular/core';
-import { noop, Subscription } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FacebookFacade } from '../../facade/facebook.facade';
+import { noop, Subscription } from 'rxjs';
 import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
@@ -77,7 +77,8 @@ export class FilterComponent implements OnDestroy {
       this.subscription$.add(this.facade.getInsights({
         date_range: this.date_range,
         id
-      }).subscribe(noop));
+      }).
+        subscribe(noop));
     });
   }
 

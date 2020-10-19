@@ -18,3 +18,13 @@ export interface IConnectionSelected {
   id: string;
   type?: string;
 }
+
+export interface IRedirectResponse {
+  redirect_uri: string;
+}
+
+export interface IConnectionAvailable {
+  image: string,
+  name: string,
+  type: EConnectionType
+}

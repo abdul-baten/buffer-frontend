@@ -97,7 +97,7 @@ small{color:#88929e;font-size:.725rem;font-weight:500}
 .b-w-max-content{width:max-content}
 .b-text-fade{position:relative;overflow:hidden;margin:0;max-height:4rem;width:100%}
 .b-text-fade:after{position:absolute;right:0;bottom:0;width:50%;height:1.2em;background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,.3) 50%);content:'';text-align:right}
-.b-tr-menu{margin:0;margin-right:1rem;padding:1.5rem 0;outline:0;border-bottom:4px solid transparent;line-height:2;cursor:pointer}
+.b-tr-menu{margin:0;margin-right:1.5rem;padding:1.5rem 0;outline:0;border-bottom:4px solid transparent;line-height:2;cursor:pointer}
 .b-tr-menu:not(.b-tr-menu-active):hover{color:rgba(0,0,0,.6)}
 .b-tr-menu-active{height:100%;border-bottom:4px solid #1a73e8;color:#1a73e8}
 .b-sidenav-content{width:calc(100% - 16rem)}

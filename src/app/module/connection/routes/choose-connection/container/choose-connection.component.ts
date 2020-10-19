@@ -1,6 +1,7 @@
+import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
 import { Component } from '@angular/core';
 import { EConnectionType } from 'src/app/core/enum';
-import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
+import { IConnectionAvailable } from 'src/app/core/model';
 
 @Component({
   selector: 'buffer-choose-connection',
@@ -8,8 +9,7 @@ import { ChooseConnectionFacade } from '../facade/choose-connection.facade';
   templateUrl: './choose-connection.component.html'
 })
 export class ChooseConnectionComponent {
-  // TODO Change type
-  connections: any[] = [
+  public connections: IConnectionAvailable[] = [
     {
       image: 'facebook',
       name: 'Facebook Page',
@@ -57,9 +57,8 @@ export class ChooseConnectionComponent {
   public chooseNewConnection (oauth_type: EConnectionType): void {
     const split_oauth_type = oauth_type.toLowerCase().split('_');
     const connection_type = split_oauth_type.join('-');
-    const [auth_type] = split_oauth_type;
 
-    this.facade.authConnection(auth_type, connection_type);
+    this.facade.authConnection(oauth_type, connection_type);
   }
 
   public trackBy (index: number): number {

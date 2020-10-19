@@ -4,14 +4,14 @@
   </div>
 
   <section class="b-hs-wt-h b-of-h">
-    <p-table #postTable [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
+    <p-table #post_table [rowsPerPageOptions]="[10,25,50]" [rows]="10" [showCurrentPageReport]="true"
       [value]="(calendar_posts | async)!" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} posts"
       dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['post_message']"
       [paginator]="true" styleClass="p-datatable-striped">
       <ng-template pTemplate="caption">
         <div class="p-px-4 b-h-toolbar">
-          <buffer-bucket-header (inputChange)="inputChanged($any($event))"
-            (dropdownChange)="dropdownChanged($any($event))">
+          <buffer-bucket-header (input_change)="inputChanged($any($event))"
+            (dropdown_change)="dropdownChanged($any($event))">
           </buffer-bucket-header>
         </div>
       </ng-template>
@@ -86,7 +86,7 @@
       </ng-template>
       <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="5">
+          <td colspan="12">
             <div class="b-hs-w-h">
               <buffer-no-data-found class="b-h-full">
                 <h3>No post found</h3>

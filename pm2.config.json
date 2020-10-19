@@ -3,7 +3,7 @@
     {
       "name": "buffer",
       "script": "./dist/server/main.js",
-      "instances": 4,
+      "instances": 2,
       "exec_mode": "cluster",
       "time": true,
       "watch": true,
