@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable complexity */
 /* eslint-disable max-statements */
 /* eslint-disable no-undef */
@@ -29,6 +30,12 @@ require('raf').polyfill();
 enableProdMode();
 
 env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const xhr2 = require('xhr2');
+
+// eslint-disable-next-line no-underscore-dangle
+xhr2.prototype._restrictedHeaders.cookie = false;
 
 const domino = require('domino');
 const template = readFileSync(join('dist/browser', 'index.html')).toString();
@@ -138,13 +145,18 @@ export const app = (): Server => {
     global.navigator = { userAgent: req.headers['user-agent'] } as Navigator;
 
     res.render(index_html, {
+      baseUrl: '/',
+      originUrl: `https://localhost:${express.get('port')}`,
+      preboot: true,
       providers: [
         { provide: APP_BASE_HREF,
           useValue: req.baseUrl
         }
       ],
       req,
-      res });
+      requestUrl: req.originalUrl,
+      res
+    });
   });
 
   return server;

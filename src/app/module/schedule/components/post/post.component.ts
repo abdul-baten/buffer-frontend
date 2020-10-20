@@ -1,4 +1,4 @@
-import differenceInDays from 'date-fns/differenceInDays';
+import dayJs from 'dayjs';
 import { CalendarPostData } from '../../data/calendar-post.data';
 import { Component, Inject } from '@angular/core';
 import { EPostType } from 'src/app/core/enum';
@@ -17,7 +17,7 @@ export class PostComponent {
   upcoming_post: boolean;
 
   constructor (private readonly facade: ScheduleFacade, @Inject(CalendarPostData) public calendarData: IPost) {
-    this.upcoming_post = differenceInDays(new Date(), this.calendarData.event.start) <= 0;
+    this.upcoming_post = dayJs().isBefore(this.calendarData.event.start as Date, 'date');
 
     this.menu_items = [
       {

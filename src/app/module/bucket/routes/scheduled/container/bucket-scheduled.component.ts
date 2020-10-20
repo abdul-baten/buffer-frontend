@@ -12,7 +12,7 @@ import { Table } from 'primeng/table';
   templateUrl: './bucket-scheduled.component.html'
 })
 export class BucketScheduledComponent {
-  @ViewChild('post_table', { static: true }) post_table!: Table;
+  @ViewChild('post_table', { read: Table }) post_table!: Table;
 
   public connection_items: IDropdown[] = [];
   public post_type = EPostType;

@@ -3,12 +3,28 @@ export const RouteMeta = Object.freeze({
     ROUTE: 'account',
     TITLE: 'Account'
   },
-  ANALYZE: {
-    ROUTE: 'analyze',
-    TITLE: 'Analyze'
-  },
   ANALYZE_FACEBOOK: {
-    ROUTE: 'facebook/:id',
+    ROUTE: 'facebook',
+    TITLE: 'Facebook'
+  },
+  ANALYZE_FACEBOOK_AUDIENCE: {
+    ROUTE: 'facebook/audience/:id',
+    TITLE: 'Analyze | Facebook'
+  },
+  ANALYZE_FACEBOOK_OVERVIEW: {
+    ROUTE: 'facebook/overview/:id',
+    TITLE: 'Analyze | Facebook'
+  },
+  ANALYZE_FACEBOOK_PERFORMANCE: {
+    ROUTE: 'facebook/performance/:id',
+    TITLE: 'Analyze | Facebook'
+  },
+  ANALYZE_FACEBOOK_POST: {
+    ROUTE: 'facebook/post/:id',
+    TITLE: 'Analyze | Facebook'
+  },
+  ANALYZE_FACEBOOK_VIDEO: {
+    ROUTE: 'facebook/video/:id',
     TITLE: 'Analyze | Facebook'
   },
   ANALYZE_INSTAGRAM: {

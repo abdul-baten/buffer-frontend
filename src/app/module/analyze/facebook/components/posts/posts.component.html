@@ -1,0 +1,108 @@
+<div class="b-w-full b-h-toolbar b-br-b">
+  <buffer-toolbar [back_button]="true" [show_connections]="true" header_title="Facebook Insight"
+    (connection_selected)="connectionSelected($any($event))">
+  </buffer-toolbar>
+</div>
+
+<div class="b-hs-wt-h b-of-h">
+  <div class="b-w-full b-br-b p-px-5 b-h-toolbar p-d-flex p-ai-center">
+    <buffer-filter class="b-w-full" [active_connection_id]="(active_connection_id$ | async) || ''"
+      [insight_type]="insight_type">
+    </buffer-filter>
+  </div>
+  <div class="b-hs-w-h b-of-auto b-bg-lg p-p-5">
+    <ng-container *ngIf="posts$ | async as posts_insight">
+      <div class="p-grid">
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="posts" icon="pi-copy"
+            [counter]="posts_insight.posts.total || 0" info_title="Total posts"
+            help_info="The number of posts created within this date range." icon_color="primary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Hash Tags" icon="pi-tags"
+            [counter]="posts_insight.hash_tags || 0" info_title="Total Hash Tags"
+            help_info="Total Hash Tags for the posts created with this date range." icon_color="secondary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Engagement" icon="pi-users"
+            [counter]="posts_insight.engaged_users | sum" info_title="Total Engagement"
+            help_info="The number of people who clicked anywhere in your posts_insight." icon_color="warning">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Engagement Rate" icon="pi-users"
+            [counter]="engagementRate(posts_insight.engaged_users, posts_insight.post_impressions)"
+            info_title="Total Engagement Rate"
+            help_info="Impressions that resulted in an engagement (engagement divided by impressions)."
+            icon_color="help">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Engaged Fans" icon="pi-user-plus"
+            [counter]="posts_insight.engaged_fans | sum" info_title="Total Engaged Fans"
+            help_info="People who have liked your Page and engaged with your post." icon_color="info">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Impressions" icon="pi-eye"
+            [counter]="posts_insight.post_impressions | sum" info_title="Total Post Impressions"
+            help_info="The number of times your Page's post entered a person's screen. Posts include statuses, photos, links, videos and more."
+            icon_color="success">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Reach" icon="pi-directions"
+            [counter]="posts_insight.post_reach | sum" info_title="Total Reach"
+            help_info="The number of unique people who saw the post(s) sent during this period." icon_color="danger">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Post Clicks" icon="pi-paperclip"
+            [counter]="posts_insight.post_clicks | sum" info_title="Total Post Clicks"
+            help_info="The number of times people clicked on anywhere in your posts without generating a story."
+            icon_color="secondary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Likes" icon="pi-thumbs-up"
+            [counter]="posts_insight.total_likes | sum" info_title="Total Likes"
+            help_info="The number of likes on your post(s)" icon_color="primary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Comments" icon="pi-comments"
+            [counter]="posts_insight.total_comments | sum" info_title="Total Comments"
+            help_info="The number of comments on your post(s)" icon_color="help">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Shares" icon="pi-share-alt"
+            [counter]="posts_insight.total_shares | sum" info_title="Total Shares"
+            help_info="The number of shares on your post(s)" icon_color="info">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-3">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Reactions" icon="pi-thumbs-up"
+            [counter]="posts_insight.total_reactions | sum" info_title="Total Reactions"
+            help_info="The number of reactions on your post(s)" icon_color="success">
+          </buffer-analyze-card>
+        </div>
+      </div>
+
+      <div class="b-bg-white p-my-3 b-br b-br-sm">
+        <buffer-post-table [posts]="posts_insight.posts_table!"></buffer-post-table>
+      </div>
+
+      <div class="p-grid p-mt-2 p-mb-5">
+        <div class="p-col">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="posts" chart_type="area"
+            [chart_labels]="posts_insight.categories"
+            [chart_series]="[{name: 'posts', data: posts_insight.posts.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

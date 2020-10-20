@@ -1,5 +1,4 @@
-import formatISO from 'date-fns/formatISO';
-import roundToNearestMinutes from 'date-fns/roundToNearestMinutes';
+import dayJs from 'dayjs';
 import { ConnectionService } from 'src/app/core/service/connection.service';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
 import { forkJoin, Observable } from 'rxjs';
@@ -30,14 +29,16 @@ export class PostModalFacade {
   }
 
   setNewPostInfo (post_info: IPost): void {
-    const post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.post_date_time), { nearestTo: 15 }));
+    // TODO: Set to nearest time
+    const post_date_time = dayJs(post_info.post_date_time).toISOString();
 
     Object.assign(post_info, { post_date_time });
   }
 
   sendPost (post_type: EPostType, post_info: IPost, post_status: EPostStatus, connections: Partial<IConnection>[]): Observable<IPost[]> {
+    // TODO: Set to nearest time
     const requests: Observable<IPost>[] = [];
-    const post_date_time = formatISO(roundToNearestMinutes(new Date(post_info.post_date_time), { nearestTo: 15 }));
+    const post_date_time = dayJs(post_info.post_date_time).toISOString();
     const post_data: Partial<IPost> = {
       post_date_time,
       post_status,

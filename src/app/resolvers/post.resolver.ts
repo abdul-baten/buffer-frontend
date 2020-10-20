@@ -1,15 +1,20 @@
-import { first, map, switchMap } from 'rxjs/operators';
+import {
+  catchError,
+  first,
+  map,
+  switchMap
+} from 'rxjs/operators';
+import { ErrorService, PostService, UserService } from '../core/service';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Resolve } from '@angular/router';
 import { IPost, IUser } from '../core/model';
-import { PostService, UserService } from '../core/service';
+import { Observable, of, throwError } from 'rxjs';
+import { Resolve } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostResolver implements Resolve<IPost[]> {
-  constructor (private readonly postService: PostService, private readonly userService: UserService) {}
+  constructor (private readonly errorService: ErrorService, private readonly postService: PostService, private readonly userService: UserService) {}
 
   public resolve (): Observable<IPost[]> {
     const user_id_from_state$ = this.userService.getUserFromState();
@@ -24,7 +29,12 @@ export class PostResolver implements Resolve<IPost[]> {
 
         return user_info_from_server$;
       }),
-      first()
+      first(),
+      catchError((error) => {
+        this.errorService.handleServerError(error);
+
+        return throwError(error);
+      })
     );
   }
 }

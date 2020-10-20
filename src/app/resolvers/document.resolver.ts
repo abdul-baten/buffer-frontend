@@ -1,6 +1,6 @@
+import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 @Injectable({

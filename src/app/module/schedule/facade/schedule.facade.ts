@@ -1,11 +1,18 @@
-import format from 'date-fns/format';
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import dayJs from 'dayjs';
 import { Calendar } from '@fullcalendar/core';
 import { ConfirmationService } from 'primeng/api';
-import { ConnectionService, GlobalService, ModalService, NotificationService, PostService, ResponsiveLayoutService } from 'src/app/core/service';
+import {
+  ConnectionService,
+  GlobalService,
+  ModalService,
+  NotificationService,
+  PostService,
+  ResponsiveLayoutService
+} from 'src/app/core/service';
 import { EventDropArg } from '@fullcalendar/interaction';
 import { IConnection, IPost } from 'src/app/core/model';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -62,7 +69,7 @@ export class ScheduleFacade {
 
   public handlePostCreateDialogOpen (post_date_time: Date): void {
     this.modalService.openPostModal({
-      post_date_time: format(post_date_time, `yyyy-MM-dd'T'HH:mm:ssxxx`)
+      post_date_time: dayJs(post_date_time).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
     });
   }
 

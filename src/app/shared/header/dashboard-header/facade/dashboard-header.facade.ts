@@ -1,8 +1,8 @@
-import format from 'date-fns/format';
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import dayJs from 'dayjs';
 import { ConnectionService, GlobalService, ModalService } from 'src/app/core/service';
 import { IConnection } from 'src/app/core/model';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -30,7 +30,7 @@ export class DashboardHeaderFacade {
   newPost (post_date_time: Date): void {
     // TODO
     this.modalService.openPostModal({
-      post_date_time: format(new Date(post_date_time), `yyyy-MM-dd'T'HH:mm:ssxxx`)
+      post_date_time: dayJs(post_date_time).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
     });
   }
 

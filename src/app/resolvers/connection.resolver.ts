@@ -4,11 +4,11 @@ import {
   map,
   switchMap
 } from 'rxjs/operators';
+import { ConnectionService, ErrorService, UserService } from '../core/service';
+import { IConnection, IUser } from '../core/model';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { Resolve } from '@angular/router';
-import { ConnectionService, ErrorService, UserService } from '../core/service';
-import { IConnection, IUser } from '../core/model';
 
 @Injectable({
   providedIn: 'root'

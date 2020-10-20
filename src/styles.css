@@ -383,7 +383,7 @@ p-togglebutton.ng-dirty.ng-invalid>.p-togglebutton.p-button{border-color:#e0245e
 .p-button.p-button-outlined:enabled:hover{border:1px solid;background:rgba(63,81,181,.04);color:#1a73e8}
 .p-button.p-button-outlined:enabled:active{border:1px solid;background:rgba(63,81,181,.16);color:#1a73e8}
 .p-button.p-button-text{border-color:transparent;background-color:rgba(0,116,228,.08);color:#1a73e8}
-.p-button.p-button-text:enabled:hover{border-color:transparent;background:rgba(0,116,228,.1);color:#1a73e8}
+.p-button.p-button-text:enabled:hover{border-color:transparent;background:rgba(0,116,228,.15);color:#1a73e8}
 .p-button.p-button-text:enabled:active{border-color:transparent;background:rgba(63,81,181,.16);color:#1a73e8}
 .p-button.p-button-text.p-button-plain{background:rgba(0,0,0,.04);color:rgba(0,0,0,.8)}
 .p-button.p-button-text.p-button-plain:enabled:hover{background:rgba(0,0,0,.1);color:rgba(0,0,0,.6)}
@@ -827,13 +827,13 @@ p-togglebutton.ng-dirty.ng-invalid>.p-togglebutton.p-button{border-color:#e0245e
 .p-megamenu.p-megamenu-vertical{padding:.5rem 0;width:12.5rem}
 .p-menu{padding:.5rem 0;min-width:13rem;width:auto;background:#fff;color:#000001}
 .p-menu .p-menuitem-link{position:relative;z-index:0;margin:.25rem 0;padding:.875rem 1rem;outline:0;border-radius:8px;color:#000001;white-space:pre-wrap;font-size:.875rem;font-weight:500;transition:none;-webkit-font-smoothing:antialiased;user-select:none}
-.p-menu .p-menuitem-link::before{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;display:block;visibility:hidden;background:rgba(0,116,228,.08);content:'';transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s;transition-property:transform,visibility;transform:scale(0)}
+.p-menu .p-menuitem-link::before{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;display:block;visibility:hidden;background:rgba(0,0,0,.1);content:'';transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:0s;transition-property:transform,visibility;transform:scale(0)}
 .p-menu .p-menuitem-link .p-menuitem-text{color:#000001}
 .p-menu .p-menuitem-link .p-menuitem-icon{margin-right:.5rem;color:rgba(0,0,0,.6)}
 .p-menu .p-menuitem-link .p-submenu-icon{color:rgba(0,0,0,.6)}
 .p-menu .p-menuitem-link:not(.p-disabled):hover::before{visibility:visible;transform:scale(1)}
-.p-menu .p-menuitem-link:not(.p-disabled):not(.p-menuitem-link-active):hover .p-menuitem-text{color:#1a73e8}
-.p-menu .p-menuitem-link:not(.p-disabled):not(.p-menuitem-link-active):hover .p-menuitem-icon{color:#1a73e8}
+.p-menu .p-menuitem-link:not(.p-disabled):not(.p-menuitem-link-active):hover .p-menuitem-text{color:#000001}
+.p-menu .p-menuitem-link:not(.p-disabled):not(.p-menuitem-link-active):hover .p-menuitem-icon{color:#000001}
 .p-menu .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon{color:rgba(0,0,0,.6)}
 .p-menu .p-menuitem-link:focus{outline:0 none;outline-offset:0;box-shadow:none}
 .p-menu.p-menu-overlay{border:0 none;background:#fff;box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12)}

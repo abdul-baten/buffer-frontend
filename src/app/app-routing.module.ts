@@ -1,4 +1,5 @@
-import { DocumentResolver, UserConnectionResolver } from './resolvers';
+/* eslint-disable sort-keys */
+import { DocumentResolver, UserResolver, PostResolver, ConnectionResolver } from './resolvers';
 import { NgModule } from '@angular/core';
 import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 import { RouteMeta } from './core/constant';
@@ -39,7 +40,8 @@ const routes: Routes = [
     path: RouteMeta.DASHBOARD.ROUTE,
     resolve: {
       document_data: DocumentResolver,
-      user_meta: UserConnectionResolver
+      user_data: UserResolver,
+      connection_data: ConnectionResolver
     },
     runGuardsAndResolvers: 'always'
   },
@@ -49,7 +51,9 @@ const routes: Routes = [
     path: RouteMeta.SCHEDULE.ROUTE,
     resolve: {
       document_data: DocumentResolver,
-      user_meta: UserConnectionResolver
+      user_data: UserResolver,
+      connection_data: ConnectionResolver,
+      post_data: PostResolver
     },
     runGuardsAndResolvers: 'always'
   },
@@ -57,7 +61,10 @@ const routes: Routes = [
     data: { title: RouteMeta.ACCOUNT_MODULE.TITLE },
     loadChildren: () => import('./module/account/account.module').then((module) => module.AccountModule),
     path: RouteMeta.ACCOUNT_MODULE.ROUTE,
-    resolve: { document_data: DocumentResolver },
+    resolve: {
+      document_data: DocumentResolver,
+      user_data: UserResolver
+    },
     runGuardsAndResolvers: 'always'
   },
   {
@@ -65,15 +72,20 @@ const routes: Routes = [
     loadChildren: () => import('./module/bucket/bucket.module').then((module) => module.BucketModule),
     path: RouteMeta.BUCKET.ROUTE,
     resolve: {
-      user_meta: UserConnectionResolver
+      user_data: UserResolver,
+      connection_data: ConnectionResolver,
+      post_data: PostResolver
     },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
-    data: { title: RouteMeta.ANALYZE.TITLE },
-    loadChildren: () => import('./module/analyze/analyze.module').then((module) => module.AnalyzeModule),
-    path: RouteMeta.ANALYZE.ROUTE,
-    resolve: { user_meta: UserConnectionResolver },
+    data: { title: RouteMeta.ANALYZE_FACEBOOK.TITLE },
+    loadChildren: () => import('./module/analyze/facebook/facebook.module').then((module) => module.AnalyzeFacebookModule),
+    path: RouteMeta.ANALYZE_FACEBOOK.ROUTE,
+    resolve: {
+      user_data: UserResolver,
+      connection_data: ConnectionResolver
+    },
     runGuardsAndResolvers: 'paramsOrQueryParamsChange'
   },
   {
@@ -82,7 +94,8 @@ const routes: Routes = [
     path: RouteMeta.CONNECTION_MODULE.ROUTE,
     resolve: {
       document_data: DocumentResolver,
-      user_meta: UserConnectionResolver
+      user_data: UserResolver,
+      connection_data: ConnectionResolver
     },
     runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
   },

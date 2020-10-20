@@ -5,27 +5,38 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
+import { isPlatformServer } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpRequestInterceptor implements HttpInterceptor {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  constructor (@Optional() @Inject(REQUEST) private req: Request) {}
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  constructor (@Optional() @Inject(REQUEST) private req: Request, @Inject(PLATFORM_ID) private readonly platformId: Object) {}
   intercept (request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const headers = new HttpHeaders({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json',
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      Cookie: this.req.headers.cookie || ''
-    });
+    if (isPlatformServer(this.platformId)) {
+      const cloned_req = request.clone({
+        headers: new HttpHeaders({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          'Content-Type': 'application/json',
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          cookie: this.req.headers.cookie || ''
+        }),
+        responseType: 'json'
+      });
+
+      return next.handle(cloned_req);
+    }
 
     const cloned_req = request.clone({
-      headers,
+      headers: new HttpHeaders({
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        'Content-Type': 'application/json'
+      }),
       responseType: 'json',
       withCredentials: true
     });

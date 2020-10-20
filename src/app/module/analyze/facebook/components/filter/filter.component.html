@@ -1,0 +1,67 @@
+<div class="b-h-full b-w-full p-d-flex p-jc-between p-ai-center">
+  <div class="b-h-full p-d-flex p-jc-start p-ai-center">
+    <h6 [routerLink]="['/facebook/overview', active_connection_id]" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: false}" class="b-tr-menu">
+      Overview
+    </h6>
+    <h6 [routerLink]="['/facebook/posts', active_connection_id]" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: false}" class="b-tr-menu">
+      Posts
+    </h6>
+    <h6 [routerLink]="['/facebook/audience', active_connection_id]" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: false}" class="b-tr-menu">
+      Audience
+    </h6>
+    <h6 [routerLink]="['/facebook/videos', active_connection_id]" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: false}" class="b-tr-menu">
+      Videos
+    </h6>
+    <h6 [routerLink]="['/facebook/performance', active_connection_id]" routerLinkActive="b-tr-menu-active"
+      [routerLinkActiveOptions]="{exact: false}" class="b-tr-menu">
+      Performance
+    </h6>
+  </div>
+  <button (click)="overlay.toggle($event)" [label]="formattedDate(date_range)" pTooltip="Change date range"
+    tooltipPosition="bottom" class="p-button-sm p-button-text" icon="pi pi-calendar" pButton type="button"></button>
+</div>
+
+<p-overlayPanel #overlay [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [dismissable]="true"
+  appendTo="body" [style]="{width: '450px'}">
+  <ng-template pTemplate>
+
+    <div class="p-grid p-m-0">
+      <div class="p-col-6 p-pr-2">
+        <button class="b-w-full p-button-sm p-button-text p-button-plain" type="button" pButton (click)="setThisWeek()"
+          label="This week"></button>
+      </div>
+      <div class="p-col-6 p-pl-2">
+        <button class="b-w-full p-button-sm p-button-text p-button-plain" type="button" pButton label="Last week"
+          (click)="setLastWeek()"></button>
+      </div>
+      <div class="p-col-6 p-pr-2">
+        <button class="b-w-full p-button-sm p-button-text p-button-plain" type="button" pButton label="This month"
+          (click)="setThisMonth()"></button>
+      </div>
+      <div class="p-col-6 p-pl-2">
+        <button class="b-w-full p-button-sm p-button-text p-button-plain" type="button" pButton label="Last month"
+          (click)="setLastMonth()"></button>
+      </div>
+    </div>
+
+    <div class="b-br-t p-mt-3 p-pt-3">
+      <label for="current_date_time" class="b-text-secondary p-text-bold">Select a Date range</label>
+      <p-calendar dateFormat="M dd, yy" [readonlyInput]="true" [showIcon]="true" [inline]="false"
+        [(ngModel)]="calendar_date_range" [maxDate]="current_date_time" inputId="current_date_time" placeholder=""
+        selectionMode="range" styleClass="b-w-full p-inputtext-sm p-mt-2 p-mb-3">
+      </p-calendar>
+
+      <div class="p-d-flex">
+        <button class="b-w-full p-button-sm p-button-text p-button-plain p-mr-2" type="button" pButton
+          label="Reset date" (click)="clearDate()"></button>
+        <button class="b-w-full p-button-sm p-button-text p-ml-2" type="button" pButton label="Set date"
+          (click)="setCalendarDate()"></button>
+      </div>
+    </div>
+
+  </ng-template>
+</p-overlayPanel>

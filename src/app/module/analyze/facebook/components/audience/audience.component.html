@@ -1,0 +1,146 @@
+<!-- <section class="b-h-full">
+  <div class="p-grid">
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Fan growth" chart_type="line">
+      </buffer-analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Top language" chart_type="bar">
+      </buffer-analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Top age" chart_type="line">
+      </buffer-analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Top gender" chart_type="line">
+      </buffer-analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Top countries" chart_type="line">
+      </buffer-analyze-chart>
+    </div>
+    <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+      <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Top cities" chart_type="line">
+      </buffer-analyze-chart>
+    </div>
+  </div>
+</section> -->
+
+<div class="b-w-full b-h-toolbar b-br-b">
+  <buffer-toolbar [back_button]="true" [show_connections]="true" header_title="Facebook Insight"
+    (connection_selected)="connectionSelected($any($event))">
+  </buffer-toolbar>
+</div>
+
+<div class="b-hs-wt-h b-of-h">
+  <div class="b-w-full b-br-b p-px-5 b-h-toolbar p-d-flex p-ai-center">
+    <buffer-filter class="b-w-full" [active_connection_id]="(active_connection_id$ | async) || ''"
+      [insight_type]="insight_type">
+    </buffer-filter>
+  </div>
+  <div class="b-hs-w-h b-of-auto b-bg-lg p-p-5">
+    <ng-container *ngIf="overview$ | async as overview_insight">
+      <div class="p-grid">
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Engaged Users" icon="pi-users"
+            [counter]="overview_insight.page_engaged_users?.total || 0" info_title="Total Engaged Users"
+            help_info="The number of people who engaged with your Page." icon_color="primary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Page Impressions" icon="pi-eye"
+            [counter]="overview_insight.page_impressions?.total || 0" info_title="Total Page Impressions"
+            help_info="The number of times any content from your Page or about your Page entered a person's screen. This includes posts, stories, check-ins, ads, social information from people who interact with your Page and more."
+            icon_color="secondary">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Reactions" icon="pi-thumbs-up"
+            [counter]="overview_insight.page_actions_post_reactions_like_total?.total || 0" info_title="Total Reactions"
+            icon_color="success">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="New Fans" icon="pi-user-plus"
+            [counter]="overview_insight.page_fan_adds?.total || 0" info_title="Total New Fans" icon_color="info"
+            help_info="The number of new people who have liked your Page.">
+          </buffer-analyze-card>
+        </div>
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Lost Fans" icon="pi-thumbs-down"
+            [counter]="overview_insight.page_fan_removes?.total || 0" info_title="Total Lost Fans"
+            help_info="The number of people who have unliked your Page." icon_color="danger">
+          </buffer-analyze-card>
+        </div>
+
+        <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
+          <buffer-analyze-card class="b-w-full b-h-full" title="Page Views" icon="pi-eye"
+            [counter]="overview_insight.page_views_total?.total || 0" info_title="Total Page Views" icon_color="primary"
+            help_info="The total number of times a Page has been viewed.">
+          </buffer-analyze-card>
+        </div>
+
+      </div>
+
+      <div class="p-grid p-mt-2 p-my-5">
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Engagements" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Engagements', data: overview_insight.page_engaged_users?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page Impressions" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Page Impressions', data: overview_insight.page_impressions?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Reactions" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Reactions', data: overview_insight.page_actions_post_reactions_like_total?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Fan Growth" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Fan Growth', data: overview_insight.page_fan_adds?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Fans Lost" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Fans Lost', data: overview_insight.page_fan_removes?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page Views" chart_type="area"
+            [chart_labels]="overview_insight.categories"
+            [chart_series]="[{name: 'Page Views', data: overview_insight.page_views_total?.response, type: 'area'}]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Page likes/unlikes history" chart_type="column"
+            [chart_labels]="overview_insight.categories" [chart_series]="[
+            {name: 'Likes', data: overview_insight.page_fan_adds?.response, type: 'column', color: '#04D98B'},
+            {name: 'Unlikes', data: overview_insight.page_fan_removes?.response, type: 'column', color: '#e0245e'}
+            ]">
+          </buffer-analyze-chart>
+        </div>
+        <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
+          <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Reactions Type" chart_type="column"
+            [chart_labels]="overview_insight.categories" [chart_series]="[
+            {name: 'Like', data: overview_insight.page_actions_post_reactions_like_total?.response, type: 'column'},
+            {name: 'Love', data: overview_insight.page_actions_post_reactions_love_total?.response, type: 'column'},
+            {name: 'Wow', data: overview_insight.page_actions_post_reactions_wow_total?.response, type: 'column'},
+            {name: 'Haha', data: overview_insight.page_actions_post_reactions_haha_total?.response, type: 'column'},
+            {name: 'Sorry', data: overview_insight.page_actions_post_reactions_sorry_total?.response, type: 'column'},
+            {name: 'Anger', data: overview_insight.page_actions_post_reactions_anger_total?.response, type: 'column'}
+            ]">
+          </buffer-analyze-chart>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

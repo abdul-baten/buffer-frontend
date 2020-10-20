@@ -1,5 +1,11 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { DashboardHeaderFacade } from '../../facade/dashboard-header.facade';
+import { EFbInsightType } from 'src/app/core/enum';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -9,8 +15,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard-header-menu.component.html'
 })
 export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
-  menu_items: MenuItem[] = [];
   private subscription$ = new Subscription();
+  public menu_items: MenuItem[] = [];
 
   constructor (private readonly facade: DashboardHeaderFacade) {}
 
@@ -44,7 +50,7 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
           visible: false },
         { icon: 'pi pi-fw pi-chart-line',
           label: 'Insights',
-          routerLink: ['analyze', type, id],
+          routerLink: [type, EFbInsightType.OVERVIEW, id],
           routerLinkActiveOptions: { exact: false } }
       ];
     }));
@@ -57,12 +63,11 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
     }
   }
 
-  clicked (route: [string]): void {
-    // This.facade.replaceRoute(route.join('/'));
+  public clicked (route: [string]): void {
     this.facade.navigate(route);
   }
 
-  trackBy (index: number): number {
+  public trackBy (index: number): number {
     return index;
   }
 }

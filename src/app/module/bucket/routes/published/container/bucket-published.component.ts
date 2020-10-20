@@ -11,7 +11,7 @@ import { Table } from 'primeng/table';
   templateUrl: './bucket-published.component.html'
 })
 export class BucketPublishedComponent {
-  @ViewChild('post_table', { static: true }) post_table!: Table;
+  @ViewChild('post_table', { read: Table }) post_table!: Table;
 
   connection_items: IDropdown[] = [];
   post_type = EPostType;

@@ -1,3 +1,4 @@
+import dayJs from 'dayjs';
 import {
   AfterViewInit,
   ApplicationRef,
@@ -21,7 +22,6 @@ import {
 import { CalendarPostData } from '../../data/calendar-post.data';
 import { ComponentPortal, DomPortalOutlet, PortalInjector } from '@angular/cdk/portal';
 import { delay } from 'rxjs/operators';
-import { differenceInDays, format, subMinutes } from 'date-fns';
 import { ECalendarView } from 'src/app/core/enum';
 import { HeaderComponent } from '../header/header.component';
 import { PostComponent } from '../post/post.component';
@@ -94,11 +94,12 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
       nowIndicator: true,
       plugins: [dayGridPlugin, timeGrigPlugin, interactionPlugin],
       progressiveEventRendering: false,
-      scrollTime: format(subMinutes(new Date(), Number.parseInt('5', 10)), 'HH:mm:ss'),
+      scrollTime: dayJs().subtract(Number.parseInt('5', 10), 'minute').
+        format('HH:mm:ss'),
       select: (date) => {
         this.dateClicked(date);
       },
-      selectAllow: (post_info) => differenceInDays(new Date(), new Date(post_info.start as Date)) <= 0,
+      selectAllow: (post_info) => dayJs().isBefore(post_info.start, 'date'),
       selectable: true,
       slotDuration: '00:15:00',
       slotEventOverlap: false,
@@ -162,7 +163,7 @@ export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   }
 
   postDropped (post_info: EventDropArg): void {
-    switch (differenceInDays(new Date(), new Date(post_info.event.start as Date)) <= 0) {
+    switch (dayJs().isBefore(post_info.event.start as Date, 'date')) {
     case true:
       this.facade.handlePostDrag(post_info);
       break;
