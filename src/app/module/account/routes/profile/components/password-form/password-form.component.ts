@@ -1,4 +1,4 @@
-import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
+import { CommonValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -21,22 +21,14 @@ export class PasswordFormComponent {
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(Number.parseInt('8', 10)),
-            PasswordValidator.oneNumber,
-            PasswordValidator.oneUpperCase,
-            PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars
+            Validators.minLength(Number.parseInt('8', 10))
           ])
         ],
         new_password: [
           '',
           Validators.compose([
             Validators.required,
-            Validators.minLength(Number.parseInt('8', 10)),
-            PasswordValidator.oneNumber,
-            PasswordValidator.oneUpperCase,
-            PasswordValidator.oneLowerCase,
-            PasswordValidator.allowedPasswordSpecialChars
+            Validators.minLength(Number.parseInt('8', 10))
           ])
         ],
         user_password: ['']

@@ -15,6 +15,7 @@ export class PostsComponent {
   public active_connection_id$: Observable<string>;
   public insight_type = EFbInsightType.POST;
   public posts$: Observable<IFbPostInsight>;
+  public posts_chart$: Observable<IFbPostInsight>;
 
   constructor (private readonly activatedRoute: ActivatedRoute, private readonly facade: FacebookFacade) {
     this.active_connection_id$ = this.activatedRoute.paramMap.pipe(map((params: ParamMap) => params.get('id') as string));
@@ -22,16 +23,13 @@ export class PostsComponent {
       switchMap((id: string) => this.facade.getInsightFromState<IFbPostInsight>(id, this.insight_type)),
       shareReplay(1)
     );
+    this.posts_chart$ = this.active_connection_id$.pipe(
+      switchMap((id: string) => this.facade.getInsightFromState<IFbPostInsight>(id, this.insight_type)),
+      shareReplay(1)
+    );
   }
 
-  private totalCount (input: number[]): number {
-    return input && input.length > 0 ? input.reduce((acc, num) => acc + num) : 0;
-  }
-
-  public engagementRate (engagements: number[] = [0], impressions: number[] = [0]): number {
-    const engagement = this.totalCount(engagements);
-    const impression = this.totalCount(impressions);
-
+  public engagementRate (engagement: number, impression: number): number {
     return Math.floor((engagement / impression) * Number.parseInt('100', 10));
   }
 

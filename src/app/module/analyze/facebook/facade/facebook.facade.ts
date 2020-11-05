@@ -26,6 +26,9 @@ export class FacebookFacade {
 
   public getInsights<T> (payload: { id: string; date_range: Date[], insight_type: EFbInsightType }): Observable<T> {
     const { id, date_range, insight_type } = payload;
+
+    console.warn(id);
+
     const since = dayJs(date_range[0]).format('YYYY-MM-DD');
     const until = dayJs(date_range[1]).format('YYYY-MM-DD');
 

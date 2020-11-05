@@ -1,3 +1,4 @@
+import { IUser } from './user.model';
 
 export interface IMedia {
   id: string;
@@ -5,5 +6,6 @@ export interface IMedia {
   media_name: string;
   media_size: string;
   media_type: string;
-  media_url: string;
+  media_uri: string;
+  media_user_id: IUser['id'];
 }

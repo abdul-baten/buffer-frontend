@@ -18,12 +18,13 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { OverviewComponent } from './components/overview/overview.component';
 import { PerformanceComponent } from './components/performance/performance.component';
 import { PostsComponent } from './components/posts/posts.component';
-import { PostTableComponent } from './components/table/table.component';
+import { PostTableComponent } from './components/post-table/post-table.component';
 import { SumPipeModule } from 'src/app/core/pipe';
 import { TableModule } from 'primeng/table';
 import { ToolbarModule } from 'src/app/shared/header/toolbar/toolbar.module';
 import { TooltipModule } from 'primeng/tooltip';
 import { VideoComponent } from './components/video/video.component';
+import { VideoTableComponent } from './components/video-table/video-table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VideoComponent } from './components/video/video.component';
     PerformanceComponent,
     PostTableComponent,
     PostsComponent,
-    VideoComponent
+    VideoComponent,
+    VideoTableComponent
   ],
   imports: [
     AnalyzeCardModule,

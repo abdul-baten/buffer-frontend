@@ -23,11 +23,12 @@ import { OverlayPanel } from 'primeng/overlaypanel';
 export class FilterComponent implements OnChanges, OnDestroy {
   @Input() active_connection_id = '';
   @Input() insight_type = EFbInsightType.OVERVIEW;
-  @ViewChild('overlay') overlay!: OverlayPanel;
+  @ViewChild('overlay', { read: OverlayPanel }) overlay!: OverlayPanel;
   private subscription$ = new Subscription();
   public calendar_date_range: Date[] = [
-    dayJs().subtract(Number.parseInt('6', 10), 'day').
-      toDate(), dayJs().toDate()
+    dayJs().startOf('month').
+      toDate(),
+    dayJs().toDate()
   ];
 
   public current_date_time = dayJs().toDate();
@@ -35,8 +36,9 @@ export class FilterComponent implements OnChanges, OnDestroy {
 
   constructor (private readonly facade: FacebookFacade) {
     this.date_range = [
-      dayJs().subtract(Number.parseInt('6', 10), 'day').
-        toDate(), dayJs().toDate()
+      dayJs().startOf('month').
+        toDate(),
+      dayJs().toDate()
     ];
   }
 

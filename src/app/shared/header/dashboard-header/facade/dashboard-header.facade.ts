@@ -1,4 +1,3 @@
-import dayJs from 'dayjs';
 import { ConnectionService, GlobalService, ModalService } from 'src/app/core/service';
 import { IConnection } from 'src/app/core/model';
 import { Injectable } from '@angular/core';
@@ -28,10 +27,7 @@ export class DashboardHeaderFacade {
   }
 
   newPost (post_date_time: Date): void {
-    // TODO
-    this.modalService.openPostModal({
-      post_date_time: dayJs(post_date_time).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
-    });
+    this.modalService.openPostModal({ post_date_time });
   }
 
   navigate (route: [string]): void {

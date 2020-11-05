@@ -1,24 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { PostModalFacade } from '../facade/post-modal.facade';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'buffer-post-modal',
   styleUrls: ['./post-modal.component.css'],
   templateUrl: './post-modal.component.html'
 })
-export class PostModalComponent {
-  active_index = 0;
+export class PostModalComponent implements OnDestroy {
+  private subscription$ = new Subscription();
+  public active_index = 0;
 
-  constructor (public postInfo: DynamicDialogConfig, private readonly facade: PostModalFacade, public dialogRef: DynamicDialogRef) {
-    this.facade.setNewPostInfo(postInfo.data.postData);
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  constructor (public post_info: DynamicDialogConfig, private readonly facade: PostModalFacade, public dialogRef: DynamicDialogRef) {
+    this.subscription$.add(this.facade.setComposeInfo(post_info.data.post_info).subscribe());
   }
 
-  openTab (index: number): void {
+  public openTab (index: number): void {
     this.active_index = index;
   }
 
-  isDisabled (index: number): boolean {
+  public isDisabled (index: number): boolean {
     return this.active_index !== index;
+  }
+
+  @HostListener('window:beforeunload')
+  ngOnDestroy (): void {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }

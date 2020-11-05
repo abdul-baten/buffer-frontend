@@ -6,3 +6,9 @@
 :host ::ng-deep svg {
 	width: 100% !important;
 }
+
+:host ::ng-deep .highcharts-tooltip span {
+	height:auto;
+	min-width:15rem;
+	padding: 1.5rem 1rem;
+}

@@ -567,14 +567,6 @@
       //   ]
       // },
       {
-        "selector": "default",
-        "format": [
-          "camelCase"
-        ],
-        "leadingUnderscore": "forbid",
-        "trailingUnderscore": "forbid"
-      },
-      {
         "selector": "class",
         "format": [
           "StrictPascalCase"
@@ -609,7 +601,7 @@
         "leadingUnderscore": "forbid",
         "trailingUnderscore": "forbid",
         "filter": {
-          "regex": "(providedIn|responseType|withCredentials|appId|useClass|contentStyle|showHeader|autoZIndex|baseZIndex|dismissableMask|runGuardsAndResolvers|pathMatch|redirectTo|anchorScrolling|enableTracing|initialNavigation|onSameUrlNavigation|paramsInheritanceStrategy|preloadingStrategy|relativeLinkResolution|scrollOffset|scrollPositionRestoration|urlUpdateStrategy|useHash|styleUrls|templateUrl|changeDetection|routerLink|routerLinkActiveOptions|nearestTo|allDay|hasEnd)",
+          "regex": "(providedIn|responseType|withCredentials|appId|useClass|contentStyle|showHeader|autoZIndex|baseZIndex|dismissableMask|runGuardsAndResolvers|pathMatch|redirectTo|anchorScrolling|enableTracing|initialNavigation|onSameUrlNavigation|paramsInheritanceStrategy|preloadingStrategy|relativeLinkResolution|scrollOffset|scrollPositionRestoration|urlUpdateStrategy|useHash|styleUrls|templateUrl|changeDetection|routerLink|routerLinkActiveOptions|nearestTo|allDay|hasEnd|minDomainSegments|'Content-Type'|entityMetadata|pluralNames|acceptedFileTypes|allowFileEncode|allowFileSizeValidation|allowImageExifOrientation|allowImagePreview|allowMultiple|allowRevert|allowmediaTypeValidation|dropOnPage|dropValidation|fileValidateTypeLabelExpectedTypes|imagePreviewHeight|imagePreviewMaxHeight|itemInsertLocation|labelFileProcessingAborted|labelFileProcessingComplete|labelIdle|labelMaxFileSize|labelMaxFileSizeExceeded|labelTapToCancel|labelTapToRetry|labelTapToUndo|labelmediaTypeNotAllowed|maxFileSize|maxFiles|mediaPreviewHeight|name|stylePanelLayout)",
           "match": false
         }
       },

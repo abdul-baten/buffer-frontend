@@ -32,11 +32,10 @@ const Parse = require('fast-json-parse');
   templateUrl: './analyze-chart.component.html'
 })
 export class AnalyzeChartComponent implements OnChanges {
-  @Input() chart_labels?: string[];
+  @Input() chart_labels?: string[] | number[];
+  @Input() chart_series!: { name: string; data?: unknown[]; type?: string; color?: string }[];
   @Input() chart_title = '';
-  @Input() chart_type = '';
-  @Input()
-  chart_series!: { name: string; data?: unknown[]; type?: string; color?: string }[];
+  @Input() connection_type = '';
 
   public high_charts = Highcharts;
   public is_high_charts = typeof Highcharts === 'object';
@@ -51,10 +50,9 @@ export class AnalyzeChartComponent implements OnChanges {
   // eslint-disable-next-line no-invalid-this
   public opt_from_input = Parse(safeJsonStringify(this.chart_options)).value;
 
-  private getOptions (type: string = '', categories: string[] = []): Highcharts.Options {
+  private getOptions (categories: string[] = []): Highcharts.Options {
     return {
       chart: {
-        type,
         style: {
           width: 400,
           fontFamily:
@@ -67,56 +65,79 @@ export class AnalyzeChartComponent implements OnChanges {
       legend: {
         align: 'right',
         backgroundColor: 'rgba(0, 0, 0, 0.04)',
-        borderRadius: 8,
+        borderRadius: 6,
         enabled: true,
         padding: 16,
         itemStyle: {
           fontSize: '0.725rem'
         },
         itemCheckboxStyle: {
-          height: 20,
-          width: 20
+          height: 30,
+          width: 30
         }
       },
       credits: {
         enabled: false
       },
       xAxis: {
-        type: 'category',
         categories,
+        className: 'p-text-bold',
+        crosshair: true,
         gridLineColor: '#f2f2f2',
-        gridLineDashStyle: 'LongDashDotDot'
+        gridLineDashStyle: 'LongDashDotDot',
+        showEmpty: true,
+        type: 'datetime'
       },
       yAxis: {
+        className: 'p-text-bold',
         gridLineColor: '#f2f2f2',
         gridLineDashStyle: 'LongDashDotDot',
         title: {
           text: ''
         }
       },
-      colors: ['#4B75F2', '#04D98B', '#2196f3', '#9c27b0', '#fbc02d', '#e0245e'],
+      colors: ['#3b49df', '#04D98B', '#2196f3', '#9c27b0', '#fbc02d', '#e0245e'],
       tooltip: {
-        backgroundColor: '#000001',
-        borderColor: '#000001',
-        borderRadius: 8,
-        shadow: false,
+        backgroundColor: '#333333',
+        borderColor: '#333333',
+        borderRadius: 6,
+        followPointer: true,
+        followTouchMove: true,
+        headerFormat: '<b>{point.key}</b><br/><br/>',
+        outside: true,
         padding: 16,
+        pointFormat: 'Total {series.name} <b>{point.y:,.0f} &nbsp;</b>',
+        shadow: false,
+        shared: true,
         style: {
           color: '#ffffff',
           fontSize: '0.875rem'
         },
-        pointFormat: '{series.name} <b>{point.y:,.0f}</b>'
+        useHTML: true
       },
       data: {
         decimalPoint: '.'
       },
       exporting: { enabled: false },
       lang: {
-        noData: 'Whoops! Seems no data is there for this date range'
+        noData: `
+        <h6 class="b-text-secondary p-text-center">
+          <i class="ico-2x ico-exclamation-circle"></i>
+          <p class="p-text-bold p-my-2">Whoops! Seems no data is available for this date range.</p>
+        </h6 >
+        `
+      },
+      noData: {
+        useHTML: true,
+        style: {
+          fontWeight: 'bold',
+          fontSize: '0.875rem',
+          color: '#333333'
+        }
       },
       plotOptions: {
         series: {
-          gapSize: 5,
+          gapSize: 10,
           turboThreshold: 0
         },
         pie: {
@@ -128,7 +149,7 @@ export class AnalyzeChartComponent implements OnChanges {
           showInLegend: true
         },
         column: {
-          opacity: 0.95,
+          opacity: 0.8,
           allAreas: true,
           stacking: 'normal',
           dataLabels: {
@@ -163,7 +184,7 @@ export class AnalyzeChartComponent implements OnChanges {
 
   ngOnChanges (changes: SimpleChanges): void {
     const chart_options: Highcharts.Options = {
-      ...this.getOptions(changes?.chart_type?.currentValue, changes?.chart_labels?.currentValue),
+      ...this.getOptions(changes?.chart_labels?.currentValue),
       series: [...changes?.chart_series?.currentValue || []]
     };
 

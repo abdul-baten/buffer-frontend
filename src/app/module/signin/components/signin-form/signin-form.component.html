@@ -10,20 +10,32 @@
         <label for="user_email">Email Address</label>
         <input pInputText placeholder="your.name@email.com" type="email" autocomplete="new-password" autofocus
           class="b-w-full p-inputtext-lg" formControlName="user_email" id="user_email" />
+        <ng-container *ngIf="form.controls.user_email.dirty && form.controls.user_email.invalid">
+          <small class="b-text-danger" id="email-help">{{ form.controls.user_email.getError('user_email') }}</small>
+        </ng-container>
       </div>
       <div class="p-field p-col-12">
         <label for="user_password">Password</label>
-        <input pInputText placeholder="••••••••••••••••" type="password" autocomplete="new-password"
-          class="b-w-full p-inputtext-lg" formControlName="user_password" id="user_password" />
+        <span class="p-input-icon-right">
+          <i class="ico-md" [ngClass]="{ 'ico-eye-open': is_password_visible, 'ico-eye-blocked': !is_password_visible }"
+            (click)="is_password_visible = !is_password_visible"></i>
+          <input pInputText placeholder="••••••••••••••••" [type]="is_password_visible ? 'text' : 'password'"
+            autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_password"
+            id="user_password" />
+        </span>
+        <ng-container *ngIf="form.controls.user_password.dirty && form.controls.user_password.invalid">
+          <small class="b-text-danger"
+            id="password-help">{{ form.controls.user_password.getError('user_password') }}</small>
+        </ng-container>
       </div>
       <div class="p-field p-col-12">
-        <button [disabled]="form.invalid || form_clicked" (click)="login()" class="b-w-full p-button-lg" label="Sign in"
-          pButton type="button"></button>
+        <button [disabled]="form.invalid || form_clicked" (click)="login()" class="b-w-full p-button-lg"
+          [label]="form_clicked ? 'Signing in' : 'Sign in'" pButton type="button"></button>
       </div>
       <div class="p-col-12 p-mt-6">
         <div class="p-grid p-justify-center p-align-center">
           <a routerLink="/join" class="p-text-bold">Forgotten password?</a>
-          <small class="b-text-sm pi pi-circle-on p-mx-2 p-text-secondary" style="font-size: 0.275rem"></small>
+          <small class="b-text-sm ico ico-brand-flikr p-mx-2 p-text-secondary"></small>
           <a routerLink="/join" class="p-text-bold">Don't have an account?</a>
         </div>
       </div>

@@ -1,7 +1,7 @@
-<p-fieldset class="b-w-full b-h-full">
+<!-- <p-fieldset class="b-w-full b-h-full">
   <p-header>
     <div class="p-d-flex p-ai-center p-jc-between">
-      <i class="p-mr-2 b-ci pi pi-chart-line b-text-primary"></i>
+      <div [attr.class]="'b-analyze-icon p-mr-2 b-ca-sl-' + connection_type"></div>
       <h5>{{ chart_title }}</h5>
     </div>
   </p-header>
@@ -9,10 +9,10 @@
   <div class="p-d-flex p-flex-column">
     <div class="p-d-flex p-jc-end">
       <button aria-label="Export as JPEG" (click)="exportToJPEG()" pButton pTooltip="Export as JPEG"
-        tooltipPosition="top" type="button" icon="pi pi-image"
+        tooltipPosition="top" type="button" icon="ico-md ico-image"
         class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
       <button aria-label="Export as Excel" (click)="exportToExcel()" pButton pTooltip="Export as Excel"
-        tooltipPosition="top" type="button" icon="pi pi-file-excel"
+        tooltipPosition="top" type="button" icon="ico ico-file-excel"
         class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
     </div>
 
@@ -23,4 +23,30 @@
     </ng-container>
 
   </div>
-</p-fieldset>
+</p-fieldset> -->
+
+<p-card class="b-w-full b-h-full">
+  <div class="p-d-flex p-ai-center p-jc-between">
+    <div class="p-d-flex p-ai-center p-jc-between">
+      <div [attr.class]="'b-analyze-icon p-mr-2 b-ca-sl-' + connection_type"></div>
+      <h5>{{ chart_title }}</h5>
+    </div>
+    <div class="p-d-flex p-jc-end">
+      <button aria-label="Export as JPEG" (click)="exportToJPEG()" pButton pTooltip="Export as JPEG"
+        tooltipPosition="top" type="button" icon="ico-md ico-image"
+        class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
+      <button aria-label="Export as Excel" (click)="exportToExcel()" pButton pTooltip="Export as Excel"
+        tooltipPosition="top" type="button" icon="ico ico-file-excel"
+        class="p-button-plain p-button-rounded p-button-text p-ml-3 p-p-4"></button>
+    </div>
+  </div>
+
+  <div class="p-d-flex p-flex-column p-mt-3">
+    <ng-container *ngIf="is_high_charts">
+      <highcharts-chart [(update)]="update_from_input" [callbackFunction]="chartCallback" [oneToOne]="true"
+        [Highcharts]="high_charts" [constructorType]="'chart'" [options]="opt_from_input" class="b-w-full">
+      </highcharts-chart>
+    </ng-container>
+
+  </div>
+</p-card>

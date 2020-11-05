@@ -1,4 +1,3 @@
-
 import { HttpErrorResponse } from '@angular/common/http';
 import { IError } from '../model';
 import { Injectable } from '@angular/core';
@@ -9,10 +8,18 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ErrorService {
-  constructor (private readonly notificationService: NotificationService, private readonly router: Router) {
+  constructor (
+    private readonly notificationService: NotificationService,
+    private readonly router: Router
+  ) { }
+
+  public handleClientError (error: Error): void {
+    console.warn(error);
   }
 
   public handleServerError (error: HttpErrorResponse): void {
+    console.warn(error);
+
     this.serverError(error.error);
   }
 

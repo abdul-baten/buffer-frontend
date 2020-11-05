@@ -62,13 +62,13 @@ import { ViewModalModule } from './shared/modal/view-modal/view-modal.module';
       useClass: LoaderInterceptor
     },
     {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandlerUtil
-    },
-    {
       multi: true,
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerUtil
     }
   ]
 })

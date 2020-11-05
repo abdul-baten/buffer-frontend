@@ -11,7 +11,7 @@
           <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
             <div class="p-col-4 p-p-0">
               <span class="p-input-icon-left b-w-full">
-                <i class="pi pi-search"></i>
+                <i class="ico ico-search"></i>
                 <input type="text" pInputText placeholder="Search profile" autocomplete="off"
                   (input)="profilesTable.filterGlobal($any($event.target).value, 'contains')"
                   class="p-inputtext-sm b-w-full">
@@ -55,18 +55,18 @@
             </td>
             <td>
               <small>
-                <i class="pi pi-calendar b-va-m p-mr-1"></i>
+                <i class="ico-lg ico-clock-time b-va-m p-mr-1"></i>
                 {{ connection.connection_added | date: 'EEE, MMM dd, y' }}</small>
             </td>
             <td>
               <div class="p-d-flex p-jc-start p-ai-center">
                 <p-inputSwitch pTooltip="Status" tooltipPosition="top"></p-inputSwitch>
                 <button (click)="connectionSelect(connection)"
-                  class="p-button-rounded p-button-text p-button-plain p-mx-3" icon="pi pi-plus" pButton type="button"
+                  class="p-button-rounded p-button-text p-button-plain p-mx-3" icon="ico ico-plus" pButton type="button"
                   pTooltip="Schedule" tooltipPosition="top">
                 </button>
                 <button (click)="deleteConnection(connection)" class="p-button-rounded p-button-text p-button-danger"
-                  icon="pi pi-trash" pButton type="button" pTooltip="Delete" tooltipPosition="top">
+                  icon="ico ico-bin" pButton type="button" pTooltip="Delete" tooltipPosition="top">
                 </button>
               </div>
             </td>

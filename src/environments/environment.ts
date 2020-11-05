@@ -19,4 +19,4 @@ export const environment = {
   }
 };
 
-import 'zone.js/dist/zone-error';
+// Import 'zone.js/dist/zone-error';

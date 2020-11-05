@@ -26,20 +26,20 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
 
       this.menu_items = [
         {
-          icon: 'pi pi-fw pi-th-large',
+          icon: 'ico-md ico-layout',
           label: 'Dashboard',
           routerLink: ['/dashboard'],
           routerLinkActiveOptions: { exact: true }
         },
-        { icon: 'pi pi-fw pi-calendar',
+        { icon: 'ico-lg ico-meeting-add',
           label: 'Schedule',
           routerLink: ['/schedule', id],
           routerLinkActiveOptions: { exact: false } },
-        { icon: 'pi pi-fw pi-sitemap',
+        { icon: 'ico-md ico-thunder-light',
           label: 'Connections',
           routerLink: ['/connection'],
           routerLinkActiveOptions: { exact: false } },
-        { icon: 'pi pi-fw pi-inbox',
+        { icon: 'ico-md ico-bucket',
           label: 'Bucket',
           routerLink: ['/bucket'],
           routerLinkActiveOptions: { exact: false } },
@@ -48,10 +48,11 @@ export class DashboardHeaderMenuComponent implements OnInit, OnDestroy {
           routerLink: ['/message'],
           routerLinkActiveOptions: { exact: true },
           visible: false },
-        { icon: 'pi pi-fw pi-chart-line',
+        { icon: 'ico-lg ico-sound-wave',
           label: 'Insights',
           routerLink: [type, EFbInsightType.OVERVIEW, id],
-          routerLinkActiveOptions: { exact: false } }
+          routerLinkActiveOptions: { exact: false }
+        }
       ];
     }));
   }

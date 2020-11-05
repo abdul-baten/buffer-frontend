@@ -60,9 +60,10 @@
           </td>
           <td colspan="2">
             <div class="p-d-flex p-flex-column">
-              <small class="p-mb-2"><i class="pi pi-calendar b-va-m p-mr-1"></i>
+              <small class="p-mb-2"><i class="ico-lg ico-calendar b-va-m p-mr-1"></i>
                 {{ post.post_date_time | date: 'EEE, MMM dd, y' }}</small>
-              <small><i class="pi pi-clock b-va-m p-mr-1"></i> {{ post.post_date_time | date: 'h:mm a' }}</small>
+              <small><i class="ico-lg ico-clock-time b-va-m p-mr-1"></i>
+                {{ post.post_date_time | date: 'h:mm a' }}</small>
             </div>
           </td>
           <td>
@@ -71,16 +72,13 @@
               class="p-text-capitalize p-tag">{{ post.post_type }}</span>
           </td>
           <td>
-            <div class="b-ca b-ca-md"
-              [title]="splitConnectionType(post.post_connection.connection_type ? post.post_connection.connection_type: '')">
-              <img [lazyLoad]="post.post_connection.connection_picture" class="b-w-full b-h-full b-br-full"
-                defaultImage="/assets/images/svg/default-media.svg" errorImage="/assets/images/svg/default-media.svg" />
-              <div [attr.class]="'b-ca-sl b-ca-sl-' + post.post_connection.connection_type">
+            <div class="b-ca b-ca-md" [title]="splitConnectionType(post.post_connection_type || '')">
+              <div [attr.class]="'b-ca-sl b-ca-sl-' + post.post_connection_type">
               </div>
             </div>
           </td>
           <td colspan="2">
-            <button pButton label="Reschedule" class="p-button-sm b-w-full"></button>
+            <button pButton label="Reschedule" class="b-w-full"></button>
           </td>
         </tr>
       </ng-template>

@@ -8,13 +8,12 @@ import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } f
 })
 export class AnalyzeCardComponent implements OnChanges {
   @Input() counter = 0;
-  @Input() help_info = '';
-  @Input() icon = '';
-  @Input() icon_color = '';
-  @Input() info_title = '';
-  @Input() title = '';
+  @Input() help_info!: string;
+  @Input() connection_type!: string;
+  @Input() info_title!: string;
+  @Input() title!: string;
 
   ngOnChanges (changes: SimpleChanges): void {
-    this.counter = changes?.counter?.currentValue;
+    this.counter = changes.counter.currentValue;
   }
 }

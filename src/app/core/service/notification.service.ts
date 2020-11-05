@@ -6,12 +6,11 @@ import { MessageService } from 'primeng/api';
 export class NotificationService {
   constructor (private readonly messageService: MessageService) {}
 
-  showSuccess (message: string): void {
-    if (message) {
+  showSuccess (summary: string): void {
+    if (summary) {
       this.messageService.add({
-        detail: message,
         severity: 'success',
-        summary: 'Yay!'
+        summary
       });
     }
   }
@@ -36,12 +35,11 @@ export class NotificationService {
     }
   }
 
-  showError (message: string): void {
-    if (message) {
+  showError (summary: string): void {
+    if (summary) {
       this.messageService.add({
-        detail: message,
         severity: 'error',
-        summary: 'Whoops!'
+        summary
       });
     }
   }

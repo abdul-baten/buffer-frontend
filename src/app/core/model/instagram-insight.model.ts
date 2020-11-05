@@ -3,7 +3,6 @@ import { IInsightChart } from './insight.model';
 export interface IInstaMediaInsight {
   caption: string;
   comments_count: number;
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   created_time: string;
   impressions: IInsightChart;
   like_count: number;

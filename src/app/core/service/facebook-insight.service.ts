@@ -1,4 +1,4 @@
-import { EFbInsightType } from '../enum';
+import { EFbInsightChartType, EFbInsightType } from '../enum';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
 import { HttpService } from './http.service';
 import { IFbInsight, IFbInsightPayload } from '../model';
@@ -15,7 +15,16 @@ export class FacebookInsightService extends EntityCollectionServiceBase<IFbInsig
   }
 
   public getInsightsFromServer<T> (payload: IFbInsightPayload, insight_type: EFbInsightType): Observable<T> {
-    const insight_response$ = this.httpService.post<T>(`facebook-insight/${insight_type}`, payload);
+    const { id,
+      since,
+      until,
+      user_id } = payload;
+    const insight_response$ = this.httpService.get<T>(`facebook/${insight_type}`, {
+      id,
+      since,
+      until,
+      user_id
+    });
 
     return insight_response$.pipe(
       tap((insight: T) => {
@@ -28,6 +37,20 @@ export class FacebookInsightService extends EntityCollectionServiceBase<IFbInsig
       }),
       shareReplay(1)
     );
+  }
+
+  public getChartsInsight<T> (payload: IFbInsightPayload, insight_chart_type: EFbInsightChartType): Observable<T> {
+    const { id,
+      since,
+      until,
+      user_id } = payload;
+
+    return this.httpService.get<T>(`facebook/${insight_chart_type}`, {
+      id,
+      since,
+      until,
+      user_id
+    });
   }
 
   public getInsightFromState<T> (id: string, insight_type: EFbInsightType): Observable<T> {

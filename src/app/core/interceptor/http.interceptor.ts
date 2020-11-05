@@ -5,11 +5,16 @@ import {
   HttpInterceptor,
   HttpRequest
 } from '@angular/common/http';
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  Optional,
+  PLATFORM_ID
+} from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { Observable } from 'rxjs';
 import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
-import { isPlatformServer } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +26,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     if (isPlatformServer(this.platformId)) {
       const cloned_req = request.clone({
         headers: new HttpHeaders({
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           'Content-Type': 'application/json',
-          // eslint-disable-next-line @typescript-eslint/naming-convention
           cookie: this.req.headers.cookie || ''
         }),
         responseType: 'json'
@@ -34,7 +37,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
     const cloned_req = request.clone({
       headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'Content-Type': 'application/json'
       }),
       responseType: 'json',

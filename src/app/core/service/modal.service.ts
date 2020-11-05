@@ -2,36 +2,34 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Injectable } from '@angular/core';
 import { IPost } from '../model/post.model';
 import { LoaderComponent } from '../../shared/loader/container/loader.component';
+import { Observable, of } from 'rxjs';
 import { PostModalComponent } from '../../shared/modal/post-modal/container/post-modal.component';
 import { ViewModalComponent } from '../../shared/modal/view-modal/container/view-modal.component';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalService {
-  private loader_counter = 0;
-
   private dialog_ref: DynamicDialogRef = new DynamicDialogRef();
+  private loader_counter = 0;
 
   constructor (private readonly dialogService: DialogService) {}
 
-  openPostModal (post_info: Partial<IPost>): DynamicDialogRef {
-    this.dialog_ref = this.dialogService.open(PostModalComponent, {
+  public openPostModal (post_info: Partial<IPost>): void {
+    this.dialogService.open(PostModalComponent, {
       contentStyle: {
         height: '100%',
         overflow: 'auto'
       },
       data: { post_info },
-      height: '100%',
-      showHeader: false,
-      width: '100%'
+      header: 'Compose new post',
+      height: 'auto',
+      showHeader: true,
+      width: '580px'
     });
-
-    return this.dialog_ref;
   }
 
-  openViewModal (header: string, post_info: Partial<IPost>): DynamicDialogRef {
+  public openViewModal (header: string, post_info: Partial<IPost>): DynamicDialogRef {
     this.dialog_ref = this.dialogService.open(ViewModalComponent, {
       contentStyle: {
         'max-height': '650px',
@@ -45,7 +43,7 @@ export class ModalService {
     return this.dialog_ref;
   }
 
-  openLoader (): Observable<DynamicDialogRef> {
+  public openLoader (): Observable<DynamicDialogRef> {
     this.loader_counter += 1;
 
     if (this.loader_counter === 1) {

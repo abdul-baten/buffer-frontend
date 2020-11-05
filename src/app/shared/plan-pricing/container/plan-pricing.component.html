@@ -33,13 +33,13 @@
         <div>
           <ul>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 10 social accounts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 10 social accounts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 100 scheduled posts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 100 scheduled posts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 2 users</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 2 users</h6>
             </li>
           </ul>
         </div>
@@ -57,13 +57,13 @@
         <div>
           <ul>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 15 social accounts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 15 social accounts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> Unlimited scheduled posts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> Unlimited scheduled posts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 5 users</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 5 users</h6>
             </li>
           </ul>
         </div>
@@ -81,13 +81,13 @@
         <div>
           <ul>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 30 social accounts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 30 social accounts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> Unlimited scheduled posts</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> Unlimited scheduled posts</h6>
             </li>
             <li class="p-my-2">
-              <h6><i class="pi pi-check b-text-primary p-mr-2 b-va-m"></i> 10 users</h6>
+              <h6><i class="ico-2x ico-check-alt b-text-primary p-mr-2 b-va-m"></i> 10 users</h6>
             </li>
           </ul>
         </div>
@@ -95,8 +95,8 @@
     </div>
 
     <div class="p-my-6">
-      <button (click)="scrollIntoView()" pButton class="b-w-full p-button-text p-button-lg" icon="pi pi-arrow-down"
-        label="See complete feature list"></button>
+      <button (click)="scrollIntoView()" pButton class="b-w-full p-button-text p-button-plain p-button-lg"
+        icon="ico-long-arrow-down" label="See complete feature list"></button>
     </div>
 
     <div id="comparisonTable">
@@ -136,10 +136,10 @@
             <td class="p-text-center ">
               <p [ngSwitch]="product.pro">
                 <span *ngSwitchCase="true">
-                  <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
+                  <i class="b-text-primary ico-2x ico-check-alt"></i>
                 </span>
                 <span *ngSwitchCase="false">
-                  <i style="font-size: 1.25rem;" class="b-text-secondary pi pi-minus"></i>
+                  <i class="b-text-secondary ico-2x ico-close-line"></i>
                 </span>
                 <span *ngSwitchDefault>
                   <h6 class="b-text">{{product.pro}}</h6>
@@ -149,10 +149,10 @@
             <td class="p-text-center ">
               <p [ngSwitch]="product.premium">
                 <span *ngSwitchCase="true">
-                  <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
+                  <i class="b-text-primary ico-2x ico-check-alt"></i>
                 </span>
                 <span *ngSwitchCase="false">
-                  <i style="font-size: 1.25rem;" class="b-text-secondary pi pi-minus"></i>
+                  <i class="b-text-secondary ico-2x ico-close-line"></i>
                 </span>
                 <span *ngSwitchDefault>
                   <h6 class="b-text">{{product.premium}}</h6>
@@ -162,10 +162,10 @@
             <td class="p-text-center">
               <p [ngSwitch]="product.advanced">
                 <span *ngSwitchCase="true">
-                  <i style="font-size: 1.25rem;" class="b-text-primary pi pi-check"></i>
+                  <i class="b-text-primary ico-2x ico-check-alt"></i>
                 </span>
                 <span *ngSwitchCase="false">
-                  <i style="font-size: 1.25rem;" class="b-text-secondary pi pi-minus"></i>
+                  <i class="b-text-secondary ico-2x ico-close-line"></i>
                 </span>
                 <span *ngSwitchDefault>
                   <h6 class="b-text">{{product.advanced}}</h6>

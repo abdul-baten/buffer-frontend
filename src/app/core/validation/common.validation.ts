@@ -1,33 +1,13 @@
-import { RegexPatterns } from '../constant';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import { Schema } from 'joi';
 
 export class CommonValidator {
-  public static alphaNumeric (control: FormControl): { [key: string]: boolean } | null {
-    const regex = RegexPatterns.ALPHA_NUMERIC_WITH_SPACE;
+  static validateControl (control_name: string, schema: Schema): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: string } | null => {
+      const { error } = schema.validate(control.value);
 
-    return regex.test(control.value) ? null : { ALPHA_NUMERIC: true };
-  }
-
-  public static emailAddress (control: FormControl): { [key: string]: boolean } | null {
-    const regex = RegexPatterns.EMAIL;
-
-    return regex.test(control.value) ? null : { INVALID_EMAIL: true };
-  }
-
-  public static numbersOnly (control: FormControl): { [key: string]: boolean } | null {
-    const regex = RegexPatterns.ONLY_NUMBER;
-
-    return !regex.test(control.value) || control.value.trim() === '' ? { ONLY_NUMBER: true } : null;
-  }
-
-  public static validURL (control: FormControl): { [key: string]: boolean } | null {
-    const regex = RegexPatterns.URL;
-
-    if (control.value) {
-      return regex.test(control.value) ? null : { INVALID_URL: true };
-    }
-
-    return null;
+      return error ? { [control_name]: error?.message } : null;
+    };
   }
 
   public static compareTwoFields (control_name: string, matching_control: string): (form_group: FormGroup)=> void {

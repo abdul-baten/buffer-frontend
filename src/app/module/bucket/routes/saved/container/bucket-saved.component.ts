@@ -26,11 +26,12 @@ export class BucketSavedComponent {
       hasEnd: false,
       id: '100',
       overlap: true,
-      post_connection: { connection_type: EConnectionType.TWITTER },
-      post_date_time: new Date('2020-01-05').toDateString(),
+      post_connection_id: '',
+      post_connection_type: EConnectionType.FACEBOOK_PAGE,
+      post_date_time: new Date('2020-01-05'),
       post_media: [],
       post_message: 'asasas',
-      post_status: EPostStatus.SCHEDULED,
+      post_status: EPostStatus.SCHEDULE,
       post_type: EPostType.IMAGE,
       post_user_id: '',
       start: '2020-08-07T20:30:00',
@@ -46,7 +47,7 @@ export class BucketSavedComponent {
         command: () => {
           this.facade.editPost(post);
         },
-        icon: 'pi pi-pencil',
+        icon: 'ico-md ico-ui-edit',
         label: 'Edit'
       },
       {
@@ -56,7 +57,7 @@ export class BucketSavedComponent {
         command: () => {
           this.facade.editPost(post);
         },
-        icon: 'pi pi-trash',
+        icon: 'ico-md ico-bin',
         label: 'Delete'
       }
     ];

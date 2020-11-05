@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PostTableComponent } from './table.component';
+import { VideoTableComponent } from './video-table.component';
 
-describe('PostTableComponent', () => {
-  let component: PostTableComponent;
-  let fixture: ComponentFixture<PostTableComponent>;
+describe('VideoTable Component', () => {
+  let component: VideoTableComponent;
+  let fixture: ComponentFixture<VideoTableComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PostTableComponent],
+      declarations: [VideoTableComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostTableComponent);
+    fixture = TestBed.createComponent(VideoTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

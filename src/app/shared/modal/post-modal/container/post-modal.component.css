@@ -8,10 +8,18 @@
 }
 
 :host ::ng-deep .p-tabview-nav {
+	display: none;
 	justify-content: space-between;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li {
+	margin: 0;
 }
 
 :host ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
 	margin: 0;
-	padding: 0 5rem;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels {
+	padding: 0;
 }

@@ -8,21 +8,44 @@
       </div>
       <div class="p-field p-col-12">
         <label for="user_full_name">Full Name</label>
-        <input pInputText type="text" autocomplete="new-password" class="b-w-full p-inputtext-lg"
-          formControlName="user_full_name" id="user_full_name" />
-        <small>Letters, numbers and space only</small>
+        <input pInputText placeholder="your name" type="text" autocomplete="new-password"
+          class="b-w-full p-inputtext-lg" formControlName="user_full_name" id="user_full_name" />
+        <ng-container
+          *ngIf="form.controls.user_full_name.dirty && form.controls.user_full_name.invalid; else name_is_valid">
+          <small class="b-text-danger"
+            id="full-name-help">{{ form.controls.user_full_name.getError('user_full_name') }}</small>
+        </ng-container>
+        <ng-template #name_is_valid>
+          <small>Letters, numbers & spaces only.</small>
+        </ng-template>
       </div>
       <div class="p-field p-col-12">
         <label for="user_email">Work Email</label>
         <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_email" id="user_email"
-          pInputText type="email" />
+          pInputText placeholder="your.name@email.com" type="email" />
+        <ng-container *ngIf="form.controls.user_email.dirty && form.controls.user_email.invalid">
+          <small class="b-text-danger"
+            id="email-address-help">{{ form.controls.user_email.getError('user_email') }}</small>
+        </ng-container>
       </div>
       <div class="p-field p-col-12">
         <label for="user_password">Password</label>
-        <input autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_password"
-          id="user_password" pInputText type="password" />
-        <small>8 characters minimum with a mix of letters, numbers &
-          symbols</small>
+        <span class="p-input-icon-right">
+          <i class="pi" [ngClass]="{ 'pi-eye': is_password_visible, 'pi-eye-slash': !is_password_visible }"
+            (click)="is_password_visible = !is_password_visible"></i>
+          <input pInputText placeholder="••••••••••••••••" [type]="is_password_visible ? 'text' : 'password'"
+            autocomplete="new-password" class="b-w-full p-inputtext-lg" formControlName="user_password"
+            id="user_password" />
+        </span>
+        <ng-container
+          *ngIf="form.controls.user_password.dirty && form.controls.user_password.invalid; else password_is_valid">
+          <small class="b-text-danger"
+            id="password-help">{{ form.controls.user_password.getError('user_password') }}</small>
+        </ng-container>
+        <ng-template #password_is_valid>
+          <small>Minimum 8 characters with a mix of letters, numbers &
+            symbols.</small>
+        </ng-template>
       </div>
       <div class="p-field p-col-12">
         <button [disabled]="form.invalid || form_clicked" (click)="signUp()" class="b-w-full p-button-lg"

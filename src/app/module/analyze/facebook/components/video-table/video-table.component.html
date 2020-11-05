@@ -1,0 +1,128 @@
+<p-table #videoTable [rowsPerPageOptions]="[10,25,50,100]" [rows]="10" [showCurrentPageReport]="true"
+  [value]="$any(single_video)" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} videos"
+  dataKey="id" [alwaysShowPaginator]="false" [filterDelay]="0" [globalFilterFields]="['video_description']"
+  [paginator]="true">
+  <ng-template pTemplate="caption">
+    <div class="b-h-full p-grid p-justify-between p-align-center p-px-5 p-m-0">
+      <div class="p-col-4 p-p-0">
+        <h5>Video views insights</h5>
+      </div>
+      <div class="p-col-4 p-p-0">
+        <span class="p-input-icon-left b-w-full">
+          <i class="ico ico-search"></i>
+          <input type="text" pInputText placeholder="Filter by description" autocomplete="off"
+            (input)="videoTable.filterGlobal($any($event.target).value, 'contains')" class="p-inputtext-sm b-w-full">
+        </span>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>Attachment</th>
+      <th colspan="5">Description</th>
+      <th colspan="2">Created</th>
+      <th>Likes </th>
+      <th>Comments</th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-video let-expanded="expanded">
+    <tr>
+      <td>
+        <button type="button" pButton [pRowToggler]="video" class="p-button-text p-button-rounded p-button-plain"
+          [icon]="expanded ? 'ico-md ico-curved-down' : 'ico-md ico-curved-right'"></button>
+      </td>
+      <td>
+        <ng-container *ngIf="video.video_thumbnail">
+          <img [src]="video.video_thumbnail" class="b-w-full b-br-sm p-p-1" />
+        </ng-container>
+      </td>
+      <td colspan="5">
+        <div class="b-text-fade">
+          <p class="b-c-black">{{ video.video_description }}</p>
+        </div>
+      </td>
+      <td colspan="2">
+        <small class="p-mb-2">
+          <i class="ico-md ico-clock-time b-va-m p-mr-1"></i>
+          {{ video.video_created_time | date: 'medium' }}
+        </small>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ video.total_likes || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ video.total_comments || 0 }}</h6>
+      </td>
+      <td>
+        <button pTooltip="View video" tooltipPosition="top" pButton icon="ico ico-external-link"
+          class="p-button-sm p-button-rounded p-button-text p-button-plain"
+          (click)="viewPost(video.video_permalink)"></button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-video>
+    <tr>
+      <td colspan="12">
+        <p-table [value]="video.insights" dataKey="id">
+          <ng-template pTemplate="header">
+    <tr>
+      <th>Total Views</th>
+      <th>Plays</th>
+      <th>Com. Views</th>
+      <th>Views (10 sec)</th>
+      <th>Views (15 sec)</th>
+      <th>Views (60 sec)</th>
+      <th>Average Time</th>
+      <th>Total Time</th>
+      <th>Impressions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-insight>
+    <tr>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_views || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_play_count || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_complete_views || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_10s_views || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_15s_views || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_60s_excludes_shorter_views || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_avg_time_watched || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_view_total_time || 0 }}</h6>
+      </td>
+      <td>
+        <h6 class="p-text-bold">{{ insight.total_video_impressions || 0 }}</h6>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+</td>
+</tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="12">
+      <div class="p-my-6">
+        <buffer-no-data-found class="b-h-full">
+          <h5>No videos found</h5>
+        </buffer-no-data-found>
+      </div>
+    </td>
+  </tr>
+</ng-template>
+</p-table>

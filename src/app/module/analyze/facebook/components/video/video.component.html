@@ -10,63 +10,67 @@
       [insight_type]="insight_type">
     </buffer-filter>
   </div>
-  <div class="b-hs-w-h b-of-auto b-bg-lg p-p-5">
+  <div class="b-hs-w-h b-of-auto b-bg-lg p-p-2">
     <ng-container *ngIf="videos$ | async as videos_insight">
       <div class="p-grid">
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Organic Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Organic Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_organic.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Paid Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Paid Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_paid.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Autoplayed" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Autoplayed" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_autoplayed.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Clicked-To-Play" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Clicked-To-Play" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_click_to_play.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Repeat Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="3 Sec Repeat Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_repeat_views.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
+      </div>
+
+      <div class="b-bg-white p-mx-2 p-my-3 b-br b-br-sm">
+        <buffer-video-table [single_video]="videos_insight.single_videos!"></buffer-video-table>
       </div>
 
       <div class="p-grid p-my-2">
         <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="3 Sec View History" chart_type="area"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: '3 Sec View History', data: videos_insight.page_video_views.response, type: 'area'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (3 Sec)" chart_type="column"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: 'Organic', data: videos_insight.page_video_views_organic.response, type: 'column'}, {name: 'Paid', data: videos_insight.page_video_views_paid.response, type: 'column'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (3 Sec)" chart_type="pie"
-            [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (3 Sec)', data: [{
+            connection_type="Facebook" [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (3 Sec)', data: [{
             name: 'Auto played',
             y: videos_insight.page_video_views_autoplayed.total,
             sliced: true
@@ -81,39 +85,39 @@
 
       <div class="p-grid">
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Organic Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Organic Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s_organic.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Paid Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Paid Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s_paid.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Autoplayed" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Autoplayed" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s_autoplayed.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Clicked-To-Play" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Clicked-To-Play" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s_click_to_play.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Repeat Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="10 Sec Repeat Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_views_10s_repeat.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
       </div>
@@ -121,19 +125,19 @@
       <div class="p-grid p-my-2">
         <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="10 Sec View History" chart_type="area"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: '10 Sec View History', data: videos_insight.page_video_views_10s.response, type: 'area'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (10 Sec)" chart_type="column"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: 'Organic', data: videos_insight.page_video_views_10s_organic.response, type: 'column'}, {name: 'Paid', data: videos_insight.page_video_views_10s_paid.response, type: 'column'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (10 Sec)" chart_type="pie"
-            [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (10 Sec)', data: [{
+            connection_type="Facebook" [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (10 Sec)', data: [{
             name: 'Auto played',
             y: videos_insight.page_video_views_10s_autoplayed.total,
             sliced: true
@@ -148,42 +152,42 @@
 
       <div class="p-grid">
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Organic Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Organic Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s_organic.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Paid Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Paid Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s_paid.total || 0" info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Autoplayed" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Autoplayed" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s_autoplayed.total || 0"
             info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Clicked-To-Play" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Clicked-To-Play" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s_click_to_play.total || 0"
             info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
         <div class="p-col-4 p-xs-12 p-sm-12 p-lg-4">
-          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Repeat Views" icon="pi-video"
+          <buffer-analyze-card class="b-w-full b-h-full" title="Complete Repeat Views" connection_type="Facebook"
             [counter]="videos_insight.page_video_complete_views_30s_repeat_views.total || 0"
             info_title="Total 3 Sec Views"
-            help_info="The total number of views your videos had during the selected date range." icon_color="primary">
+            help_info="The total number of views your videos had during the selected date range.">
           </buffer-analyze-card>
         </div>
       </div>
@@ -191,19 +195,19 @@
       <div class="p-grid p-mt-2 p-mb-5">
         <div class="p-col-12 p-xs-12 p-sm-12 p-lg-12">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Complete View History" chart_type="area"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: 'Complete View History', data: videos_insight.page_video_complete_views_30s.response, type: 'area'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="View Source (Complete)" chart_type="column"
-            [chart_labels]="videos_insight.categories"
+            connection_type="Facebook" [chart_labels]="videos_insight.categories"
             [chart_series]="[{name: 'Organic', data: videos_insight.page_video_complete_views_30s_organic.response, type: 'column'}, {name: 'Paid', data: videos_insight.page_video_complete_views_30s_paid.response, type: 'column'}]">
           </buffer-analyze-chart>
         </div>
         <div class="p-col-6 p-xs-12 p-sm-12 p-lg-6">
           <buffer-analyze-chart class="b-w-full b-h-full" chart_title="Play Type (Complete)" chart_type="pie"
-            [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (Complete)', data: [{
+            connection_type="Facebook" [chart_labels]="videos_insight.categories" [chart_series]="[{name: 'Play Type (Complete)', data: [{
             name: 'Auto played',
             y: videos_insight.page_video_complete_views_30s_autoplayed.total,
             sliced: true

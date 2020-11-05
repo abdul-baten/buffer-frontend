@@ -22,7 +22,7 @@
     </h6>
   </div>
   <button (click)="overlay.toggle($event)" [label]="formattedDate(date_range)" pTooltip="Change date range"
-    tooltipPosition="bottom" class="p-button-sm p-button-text" icon="pi pi-calendar" pButton type="button"></button>
+    tooltipPosition="bottom" class="p-button-sm p-button-text" icon="ico ico-calendar" pButton type="button"></button>
 </div>
 
 <p-overlayPanel #overlay [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [dismissable]="true"
@@ -51,8 +51,9 @@
     <div class="b-br-t p-mt-3 p-pt-3">
       <label for="current_date_time" class="b-text-secondary p-text-bold">Select a Date range</label>
       <p-calendar dateFormat="M dd, yy" [readonlyInput]="true" [showIcon]="true" [inline]="false"
-        [(ngModel)]="calendar_date_range" [maxDate]="current_date_time" inputId="current_date_time" placeholder=""
-        selectionMode="range" styleClass="b-w-full p-inputtext-sm p-mt-2 p-mb-3">
+        [(ngModel)]="calendar_date_range" [maxDate]="current_date_time" icon="ico ico-calendar"
+        inputId="current_date_time" placeholder="" selectionMode="range"
+        styleClass="b-w-full p-inputtext-sm p-mt-2 p-mb-3">
       </p-calendar>
 
       <div class="p-d-flex">

@@ -1,21 +1,11 @@
-<!-- <div class="b-bg-white b-br-sm p-p-2" *ngIf="!counter; else loggedOut" style="height: 190px;">
-  <div class="overlax b-br-sm b-h-full"></div>
-</div> -->
-
-<!-- <ng-template #loggedOut> -->
-<p-fieldset>
-  <p-header>
+<p-card>
+  <div class="p-d-flex p-ai-center p-jc-between">
     <div class="p-d-flex p-ai-center p-jc-between">
-      <i style="font-size: 1.25rem" [attr.class]="'p-mr-2 b-ci pi ' + icon + ' b-text-' + icon_color"></i>
-      <h5>{{ title }}</h5>
+      <div [attr.class]="'b-analyze-icon p-mr-2 b-ca-sl-' + connection_type">
+      </div>
+      <h6>{{ title }} <small [pTooltip]="help_info" tooltipPosition="top" class="ico ico-info-circle b-text-secondary"
+          style="vertical-align: super;"></small></h6>
     </div>
-  </p-header>
-  <div class="p-d-flex p-flex-column p-ai-center p-jc-between p-m-5">
-    <div class="p-text-center">
-      <h1 class="b-text-black p-text-bold">{{ counter || 0 }}</h1>
-      <p>{{ info_title }} <span [pTooltip]="help_info" tooltipPosition="top" class="pi pi-info-circle b-text-secondary"
-          style="vertical-align: super; font-size: 0.75rem;"></span></p>
-    </div>
+    <h3 class="b-text-black p-text-bold">{{ counter }}</h3>
   </div>
-</p-fieldset>
-<!-- </ng-template> -->
+</p-card>

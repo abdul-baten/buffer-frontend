@@ -1,8 +1,7 @@
 export enum EPostStatus {
-  DELETED = 'deleted',
-  PUBLISHED = 'published',
-  SAVED = 'saved',
-  SCHEDULED = 'scheduled',
+  DRAFT = 'draft',
+  PUBLISH = 'publish',
+  SCHEDULE = 'schedule',
 }
 
 export enum EPostType {

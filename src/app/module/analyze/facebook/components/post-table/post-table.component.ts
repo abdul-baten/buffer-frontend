@@ -6,21 +6,21 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { FacebookFacade } from '../../facade/facebook.facade';
-import { IFbPost } from 'src/app/core/model';
+import { IFbSinglePostInsight } from 'src/app/core/model';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'buffer-post-table',
-  styleUrls: ['./table.component.css'],
-  templateUrl: './table.component.html'
+  styleUrls: ['./post-table.component.css'],
+  templateUrl: './post-table.component.html'
 })
 export class PostTableComponent implements OnChanges {
-  @Input() posts!: IFbPost[];
+  @Input() single_posts!: IFbSinglePostInsight[];
 
   constructor (private readonly facade: FacebookFacade) {}
 
   ngOnChanges (changes: SimpleChanges): void {
-    this.posts = changes?.posts?.currentValue;
+    this.single_posts = changes.single_posts.currentValue;
   }
 
   viewPost (url: string): void {

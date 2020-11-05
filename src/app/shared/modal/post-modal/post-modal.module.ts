@@ -6,7 +6,7 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { CarouselModule } from 'primeng/carousel';
-import { CommonModule } from '@angular/common';
+import { CommonModule, I18nPluralPipe } from '@angular/common';
 import { ConnectionsComponent } from './components/connections/connections.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { FilePondModule } from 'ngx-filepond';
@@ -18,12 +18,13 @@ import { MediaComponent } from './components/media/media.component';
 import { NgModule } from '@angular/core';
 import { PostModalComponent } from './container/post-modal.component';
 import { PostModalFacade } from './facade/post-modal.facade';
-import { PostTypeImageService, PostTypeVideoService } from 'src/app/core/service';
 import { RouterModule } from '@angular/router';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { StepsModule } from 'primeng/steps';
 import { TabViewModule } from 'primeng/tabview';
 import { TextComponent } from './components/text/text.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { TooltipPipeModule } from 'src/app/core/pipe';
 import { TypeComponent } from './components/type/type.component';
 import { VideoComponent } from './components/video/video.component';
 
@@ -55,9 +56,11 @@ FilePond.registerPlugin(
     ReactiveFormsModule,
     RouterModule,
     SplitButtonModule,
+    StepsModule,
     TabViewModule,
-    StepsModule
+    TooltipModule,
+    TooltipPipeModule
   ],
-  providers: [PostModalFacade, PostTypeImageService, PostTypeVideoService, DialogService]
+  providers: [PostModalFacade, DialogService, I18nPluralPipe]
 })
 export class PostModalModule {}

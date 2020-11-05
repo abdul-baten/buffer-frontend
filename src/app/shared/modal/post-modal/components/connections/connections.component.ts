@@ -43,13 +43,6 @@ export class ConnectionsComponent implements OnInit, OnDestroy {
      */
   }
 
-  generateTooltip (connection: IConnection): string {
-    const connection_type = connection.connection_type.split('_').join(' ').
-      trim();
-
-    return `${connection.connection_name} | ${connection_type}`;
-  }
-
   connectionSelected (selected_connection: IConnection): void {
     const found_connection = this.selected_connections.find((entry: Partial<IConnection>) => entry.id as string === selected_connection.id);
     const found_connection_index = this.selected_connections.findIndex((entry: Partial<IConnection>) => entry.id as string === selected_connection.id);

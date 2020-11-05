@@ -23,7 +23,6 @@ import { env } from 'process';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import cookiesMiddleware from 'universal-cookie-express';
 
 require('raf').polyfill();
 
@@ -82,8 +81,6 @@ const middlewares = (express: any) => {
   const express_enforces_ssl = require('express-enforces-ssl');
 
   express.enable('trust proxy');
-
-  express.use(cookiesMiddleware());
 
   express.use(express_enforces_ssl());
   express.use(cookieParser());

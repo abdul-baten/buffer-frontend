@@ -9,7 +9,7 @@ import { DashboardHeaderFacade } from '../facade/dashboard-header.facade';
 export class DashboardHeaderComponent {
   constructor (private readonly facade: DashboardHeaderFacade) {}
 
-  public newPost (): void {
+  public compose (): void {
     this.facade.newPost(new Date());
   }
 }

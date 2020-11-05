@@ -17,14 +17,15 @@
     <div class="p-grid p-m-0">
       <div class="p-col">
         <span class="p-input-icon-left b-w-full">
-          <i class="pi pi-search"></i>
+          <i class="ico ico-search"></i>
           <input pInputText type="text" (input)="inputChanged($any($event.target).value)" placeholder="Search post"
             class="p-inputtext-sm b-w-full" />
         </span>
       </div>
       <div class="p-col">
         <p-calendar [readonlyInput]="true" [showButtonBar]="true" [showIcon]="true" appendTo="body"
-          dateFormat="D, M dd, yy" placeholder="Date" styleClass="p-column-filter p-inputtext-sm b-w-full"
+          dateFormat="D, M dd, yy" icon="ico ico-calendar" placeholder="Date"
+          styleClass="p-column-filter p-inputtext-sm b-w-full"
           (onClearClick)="dataChanged('', 'post_date_time', 'equals')"
           (onSelect)="dataChanged($event.toDateString(), 'post_date_time', 'equals')">
         </p-calendar>

@@ -63,7 +63,8 @@ const routes: Routes = [
     path: RouteMeta.ACCOUNT_MODULE.ROUTE,
     resolve: {
       document_data: DocumentResolver,
-      user_data: UserResolver
+      user_data: UserResolver,
+      connection_data: ConnectionResolver
     },
     runGuardsAndResolvers: 'always'
   },

@@ -16,7 +16,7 @@ import { OverlayPanel } from 'primeng/overlaypanel';
   templateUrl: './filter.component.html'
 })
 export class FilterComponent implements OnDestroy {
-  @ViewChild('overlay') overlay!: OverlayPanel;
+  @ViewChild('overlay', { read: OverlayPanel }) overlay!: OverlayPanel;
   private subscription$ = new Subscription();
   public calendar_date_range: Date[] = [
     dayJs().subtract(Number.parseInt('6', 10), 'day').

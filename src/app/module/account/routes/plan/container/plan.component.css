@@ -6,7 +6,7 @@
 :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
 	position: sticky;
 	top: 0;
-	box-shadow: 0 2px 0 #0074e4;
+	box-shadow: 0 2px 0 #3b49df;
 }
 
 :host ::ng-deep .p-datatable-wrapper {

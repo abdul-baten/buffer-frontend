@@ -6,12 +6,13 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
+import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { noop, Observable, of, Subscription } from 'rxjs';
-
-import { IConnection } from 'src/app/core/model';
+import { IConnection, IPost } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api/menuitem';
+import { Observable, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 
 @Component({
@@ -21,15 +22,43 @@ import { PostModalFacade } from '../../facade/post-modal.facade';
 })
 export class ImageComponent implements OnInit, OnDestroy {
   @Output() tab_selected = new EventEmitter<number>();
+  private subscriptions$ = new Subscription();
   public current_date_time: Date = new Date();
+  public file_pond_options = {};
   public form: FormGroup;
   public menu_items: MenuItem[] = [];
   public post_status = EPostStatus;
   public post_type = EPostType;
-  private subscriptions$ = new Subscription();
   public selected_connections: Partial<IConnection>[] = [];
 
-  constructor (private readonly facade: PostModalFacade, private formBuilder: FormBuilder) {
+  constructor (
+    private readonly dialogRef: DynamicDialogRef,
+    private readonly facade: PostModalFacade,
+    private readonly formBuilder: FormBuilder
+  ) {
+    this.file_pond_options = {
+      acceptedFileTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/bmp', 'image/tiff'],
+      labelIdle: '<p><span class="filepond--label-action">Upload an image</span> or drag and drop here</p>',
+      maxFileSize: '5MB',
+      maxFiles: 4
+    };
+    this.menu_items = [
+      {
+        command: () => {
+          this.savePost(this.post_status.SCHEDULE);
+        },
+        icon: 'ico-md ico-hour-glass',
+        label: 'Schedule'
+      },
+      { separator: true },
+      {
+        command: () => {
+          this.savePost(this.post_status.DRAFT);
+        },
+        icon: 'ico-md ico-save',
+        label: 'Save draft'
+      }
+    ];
     this.form = this.biuldImageForm();
   }
 
@@ -41,57 +70,39 @@ export class ImageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit (): void {
-    this.menu_items = [
-      {
-        command: () => {
-          this.savePost(this.post_status.SCHEDULED);
-        },
-        icon: 'pi pi-calendar-plus',
-        label: 'Schedule'
-      },
-      { separator: true },
-      { command: () => {
-        this.savePost(this.post_status.SAVED);
-      },
-      icon: 'pi pi-save',
-      label: 'Save post'
+    const post_compose_info$ = this.facade.getComposeInfo();
 
+    this.subscriptions$.add(post_compose_info$.subscribe((post_info: IPost) => {
+      if (post_info) {
+        const { post_message, post_date_time } = post_info;
+
+        this.form.patchValue({
+          post_date_time: post_date_time ? new Date(post_date_time) : new Date(),
+          post_message: post_message ?? ''
+        });
       }
-    ];
-
-    /*
-     * This.subscriptions$.add(this.facade.getPostInfo().subscribe((postInfo: IPost) => {
-     *   const { post_message, post_date_time } = postInfo;
-     */
-
-    /*
-     *   If (post_message) {
-     *     this.form.patchValue({ post_message });
-     *   }
-     *   this.form.patchValue({ post_date_time: new Date(post_date_time) });
-     * }));
-     */
+    }));
   }
 
-  previous (): void {
+  public previous (): void {
     this.tab_selected.emit(0);
   }
 
-  changeConnectionSelection (connections: Partial<IConnection>[]): void {
+  public changeConnectionSelection (connections: Partial<IConnection>[]): void {
     this.selected_connections = connections;
   }
 
-  isButtonDisabled (): Observable<boolean> {
-    // Return this.store.select(selectNewPostMedias).pipe(map((medias: IMedia[]) => Boolean(!medias.length) || Boolean(!this.selected_connections.length) || this.form.invalid));
-
-    return of(Boolean(!this.selected_connections.length) || this.form.invalid);
+  public isButtonDisabled (): Observable<boolean> {
+    return this.facade.getComposeInfo().pipe(map((post_info: IPost) => !post_info.post_media || !this.selected_connections.length || this.form.invalid));
   }
 
-  savePost (post_status: EPostStatus): void {
+  public savePost (post_status: EPostStatus): void {
     if (this.form.valid) {
       const { value } = this.form;
 
-      this.subscriptions$.add(this.facade.sendPost(EPostType.IMAGE, value, post_status, this.selected_connections).subscribe(noop));
+      this.subscriptions$.add(this.facade.sendPost(EPostType.IMAGE, value, post_status, this.selected_connections).
+        pipe(finalize(() => this.dialogRef.destroy())).
+        subscribe((compose_id: string) => this.facade.removeComposeInfo(compose_id)));
     }
   }
 

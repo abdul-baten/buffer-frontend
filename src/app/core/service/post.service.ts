@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { IPost } from '../model';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { EConnectionType } from '../enum';
 
 @Injectable({
   providedIn: 'root'
@@ -13,16 +14,15 @@ export class PostService extends EntityCollectionServiceBase<IPost> {
     super('post', serviceElementsFactory);
   }
 
-  public addPost (post_info: IPost): Observable<IPost> {
+  public addPost (post_info: IPost, connection_type: EConnectionType): Observable<IPost> {
     const {
       post_type,
-      post_status,
-      post_connection: { connection_type }
+      post_status
     } = post_info;
     const type = connection_type?.split('_')[0].toLowerCase();
     const status = post_status.toLowerCase();
 
-    return this.httpService.post<IPost>(`post/${post_type}-${type}-${status}`, post_info).pipe(tap((post: IPost) => {
+    return this.httpService.post<IPost>(`${type}/${post_type}-${status}`, post_info).pipe(tap((post: IPost) => {
       if (post.id) {
         this.upsertOneInCache(post);
       }
@@ -52,6 +52,6 @@ export class PostService extends EntityCollectionServiceBase<IPost> {
   }
 
   public filterPostsByConnectionID (connection_id: string): Observable<IPost[]> {
-    return this.entities$.pipe(map((posts: IPost[]) => posts.filter((post: IPost) => post.postConnection.id === connection_id)));
+    return this.entities$.pipe(map((posts: IPost[]) => posts.filter((post: IPost) => post.post_connection_id === connection_id)));
   }
 }

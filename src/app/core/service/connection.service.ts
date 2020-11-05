@@ -54,7 +54,10 @@ export class ConnectionService extends EntityCollectionServiceBase<IConnection> 
   }
 
   public addConnection (connection: IConnection): Observable<IConnection> {
-    return this.httpService.post<IConnection>('connection', connection).pipe(tap((connection: IConnection) => {
+    const { connection_type } = connection;
+    const [connection_base] = connection_type.split('_');
+
+    return this.httpService.post<IConnection>(connection_base.toLowerCase(), connection).pipe(tap((connection: IConnection) => {
       this.upsertOneInCache(connection);
     }));
   }

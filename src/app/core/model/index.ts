@@ -8,6 +8,6 @@ export * from './instagram-insight.model';
 export * from './linkedin.model';
 export * from './media.model';
 export * from './page.model';
-export * from './post-type.model';
 export * from './post.model';
+export * from './timeline.model';
 export * from './user.model';

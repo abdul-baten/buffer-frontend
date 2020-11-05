@@ -1,7 +1,5 @@
 export const RegexPatterns = Object.freeze({
-  ALLOWED_CHARACTER: /[\s]/u,
-  // ALPHABETICAL input pattern
-  ALPHABETICAL: /[^a-zA-Z ]/gu,
+  // TODO used this
   ALPHA_NUMERIC_WITH_SPACE: /^[a-z\d\s]+$/iu,
   // eslint-disable-next-line max-len
   EMAIL: /^(("[\w\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/iu,
@@ -16,7 +14,8 @@ export const RegexPatterns = Object.freeze({
   ONE_UPPER_CASE: /[A-Z]/u,
   // Only numbers,
   ONLY_NUMBER: /\D/gu,
-  PASSWORD: /^[a-zA-Z0-9!@#$%^&*\-_.]*$/u,
+  // TODO used this
+  PASSWORD: /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,64}$/u,
   PASSWORD_SPECIAL_CHARACTER: /[!@#$%^&*-]/u,
   URL: /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/u,
   USERNAME: /^[a-zA-Z0-9]*$/u,

@@ -24,28 +24,28 @@ const routes: Routes = [
         component: PostsComponent,
         data: { insight_type: EFbInsightType.POST },
         path: 'posts/:id',
-        resolve: { overview_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPostInsight> },
+        resolve: { posts_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPostInsight> },
         runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
       },
       {
         component: AudienceComponent,
         data: { insight_type: EFbInsightType.AUDIENCE },
         path: 'audience/:id',
-        resolve: { overview_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPostInsight> },
+        resolve: { audience_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPostInsight> },
         runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
       },
       {
         component: PerformanceComponent,
         data: { insight_type: EFbInsightType.PERFORMANCE },
         path: 'performance/:id',
-        resolve: { overview_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPerformanceInsight> },
+        resolve: { performance_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbPerformanceInsight> },
         runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
       },
       {
         component: VideoComponent,
         data: { insight_type: EFbInsightType.VIDEO },
         path: 'videos/:id',
-        resolve: { overview_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbVideoInsight> },
+        resolve: { videos_data: AnalyzeFacebookResolver as unknown as AnalyzeFacebookResolver<IFbVideoInsight> },
         runGuardsAndResolvers: 'pathParamsOrQueryParamsChange'
       }
     ],

@@ -16,25 +16,25 @@ export class HeaderAccountComponent implements OnInit {
   ngOnInit (): void {
     this.menu_items = [
       {
-        icon: 'pi pi-cog',
+        icon: 'ico-md ico-gear',
         label: 'Account settings',
         routerLink: ['/account/profile'],
         routerLinkActiveOptions: { exact: true }
       },
       {
-        icon: 'pi pi-sort-amount-up',
+        icon: 'ico-md ico-stylish-up',
         label: 'Plan & Pricing',
         routerLink: ['/account/plan'],
         routerLinkActiveOptions: { exact: true }
       },
       {
-        icon: 'pi pi-bars',
+        icon: 'ico-md ico-list',
         label: 'Invoice',
         routerLink: ['/account/invoice'],
         routerLinkActiveOptions: { exact: true }
       },
       {
-        icon: 'pi pi-dollar',
+        icon: 'ico-md ico-dollar',
         label: 'Billing',
         routerLink: ['/account/billing'],
         routerLinkActiveOptions: { exact: true }
@@ -44,7 +44,7 @@ export class HeaderAccountComponent implements OnInit {
         command: () => {
           this.logoutUser();
         },
-        icon: 'pi pi-sign-out',
+        icon: 'ico-md ico-sign-out',
         label: 'Sign out'
       }
     ];

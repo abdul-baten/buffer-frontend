@@ -1,7 +1,12 @@
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Inject } from '@angular/core';
-import { REQUEST } from '@nguniversal/express-engine/tokens';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
 import { Request } from 'express';
 
 export class TranslatorInterceptor implements HttpInterceptor {
@@ -15,7 +20,7 @@ export class TranslatorInterceptor implements HttpInterceptor {
     return this.PORT ? `${protocol}://${hostname}:${this.PORT}` : `${protocol}://${hostname}`;
   }
 
-  intercept (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept (request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let cloned_request;
 
     if (request.url.startsWith('./assets')) {
@@ -26,6 +31,6 @@ export class TranslatorInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(cloned_request as HttpRequest<any>);
+    return next.handle(cloned_request as HttpRequest<unknown>);
   }
 }

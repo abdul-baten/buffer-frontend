@@ -48,7 +48,7 @@ Calendar.name;
 export class CalendarComponent implements AfterViewInit, OnChanges, OnDestroy {
   @Input() calendar_view = ECalendarView.DAY_GRID_MONTH;
   @Input() posts: any = [];
-  @ViewChild('calendar') calendar!: FullCalendarComponent;
+  @ViewChild('calendar', { read: FullCalendarComponent }) calendar!: FullCalendarComponent;
 
   private calendar_api!: Calendar;
   private subscription$ = new Subscription();

@@ -1,7 +1,9 @@
-import { CommonValidator, PasswordValidator } from 'src/app/core/validation';
+import Joi from 'joi';
+import { CommonValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegexPatterns } from 'src/app/core/constant';
 import { SigninFacade } from '../../facade/signin.facade';
 
 @Component({
@@ -10,27 +12,40 @@ import { SigninFacade } from '../../facade/signin.facade';
   templateUrl: './signin-form.component.html'
 })
 export class SigninFormComponent {
-  form_clicked = false;
-  form: FormGroup;
+  public form: FormGroup;
+  public form_clicked = false;
+  public is_password_visible = false;
 
-  constructor (private formBuilder: FormBuilder, private readonly facade: SigninFacade) {
+  private email_address_validation_rules = Joi.string().
+    email({
+      minDomainSegments: Number.parseInt('2', 10),
+      tlds: false
+    }).
+    trim().
+    required().
+    messages({
+      'string.base': 'Email address should be of type text.',
+      'string.email': 'Please enter a valid email address.',
+      'string.empty': 'Email address cannot be empty.'
+    });
+
+  private password_validation_rules = Joi.string().
+    regex(RegexPatterns.PASSWORD).
+    required().
+    messages({
+      'string.base': 'Password should be of type text.',
+      'string.empty': 'Password cannot be empty.',
+      'string.pattern.base': 'Password should be minimum 8 characters long with a mix of letters, numbers & symbols.'
+    });
+
+  constructor (private readonly formBuilder: FormBuilder, private readonly facade: SigninFacade) {
     this.form = this.buildSigninForm();
   }
 
   private buildSigninForm (): FormGroup {
     return this.formBuilder.group({
-      user_email: ['alamin@technoflame.com', [Validators.required, CommonValidator.emailAddress]],
-      user_password: [
-        'baten@CAT2019',
-        [
-          Validators.required,
-          Validators.minLength(Number.parseInt('6', 10)),
-          PasswordValidator.oneNumber,
-          PasswordValidator.oneUpperCase,
-          PasswordValidator.oneLowerCase,
-          PasswordValidator.allowedPasswordSpecialChars
-        ]
-      ]
+      user_email: ['alamin@technoflame.com', CommonValidator.validateControl('user_email', this.email_address_validation_rules)],
+      user_password: ['baten@CAT2019', CommonValidator.validateControl('user_password', this.password_validation_rules)]
     });
   }
 

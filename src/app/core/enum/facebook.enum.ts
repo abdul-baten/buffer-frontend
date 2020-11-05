@@ -5,3 +5,8 @@ export enum EFbInsightType {
   POST = 'posts',
   VIDEO = 'videos',
 }
+
+export enum EFbInsightChartType {
+  POSTS = 'posts-chart',
+  VIDEOS = 'videos-chart',
+}

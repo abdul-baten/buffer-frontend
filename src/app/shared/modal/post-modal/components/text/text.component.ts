@@ -6,9 +6,11 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
+import { finalize, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IConnection } from 'src/app/core/model';
+import { IConnection, IPost } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api/menuitem';
 import { noop, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
@@ -21,47 +23,51 @@ import { PostModalFacade } from '../../facade/post-modal.facade';
 export class TextComponent implements OnInit, OnDestroy {
   @Output() tab_selected = new EventEmitter<number>();
   private subscriptions$ = new Subscription();
-  public current_date_time: Date = new Date();
+  public current_date_time = new Date();
   public form: FormGroup;
-  public menu_items: MenuItem[] = [];
+  public menu_items: MenuItem[];
   public post_status = EPostStatus;
   public post_type = EPostType;
   public selected_connections: Partial<IConnection>[] = [];
 
-  constructor (private readonly formBuilder: FormBuilder, private readonly facade: PostModalFacade) {
+  constructor (
+    private readonly dialogRef: DynamicDialogRef,
+    private readonly facade: PostModalFacade,
+    private readonly formBuilder: FormBuilder
+  ) {
     this.form = this.buildTextForm();
-  }
-
-  ngOnInit (): void {
     this.menu_items = [
       {
         command: () => {
-          this.savePost(this.post_status.SCHEDULED);
+          this.savePost(this.post_status.SCHEDULE);
         },
-        icon: 'pi pi-calendar-plus',
+        icon: 'ico-md ico-hour-glass',
         label: 'Schedule'
       },
       { separator: true },
       {
         command: () => {
-          this.savePost(this.post_status.SAVED);
+          this.savePost(this.post_status.DRAFT);
         },
-        icon: 'pi pi-save',
-        label: 'Save post'
+        icon: 'ico-md ico-save',
+        label: 'Save draft'
       }
     ];
+  }
 
-    /*
-     * This.subscriptions$.add(
-     *   this.facade.getPostInfo().subscribe((postInfo: IPost) => {
-     *     const { post_message, post_date_time } = postInfo;
-     *     if (!!post_message) {
-     *       this.form.patchValue({ post_message });
-     *     }
-     *     this.form.patchValue({ post_date_time: new Date(post_date_time) });
-     *   }),
-     * );
-     */
+  ngOnInit (): void {
+    const post_compose_info$ = this.facade.getComposeInfo();
+
+    this.subscriptions$.add(post_compose_info$.subscribe((post_info: IPost) => {
+      if (post_info) {
+        const { post_message, post_date_time } = post_info;
+
+        this.form.patchValue({
+          post_date_time: post_date_time ? new Date(post_date_time) : new Date(),
+          post_message: post_message ?? ''
+        });
+      }
+    }));
   }
 
   private buildTextForm (): FormGroup {
@@ -79,15 +85,22 @@ export class TextComponent implements OnInit, OnDestroy {
     this.selected_connections = connections;
   }
 
-  isButtonDisabled (): boolean {
-    return this.form.invalid || Boolean(!this.selected_connections.length);
+  public isButtonDisabled (): boolean {
+    return this.form.invalid || !this.selected_connections.length;
   }
 
-  savePost (post_status: EPostStatus): void {
+  public savePost (post_status: EPostStatus): void {
     if (this.form.valid) {
       const { value } = this.form;
 
-      this.subscriptions$.add(this.facade.sendPost(EPostType.TEXT, value, post_status, this.selected_connections).subscribe(noop));
+      this.subscriptions$.add(this.facade.sendPost(EPostType.TEXT, value, post_status, this.selected_connections).
+        pipe(
+          tap((compose_id: string) => this.facade.removeComposeInfo(compose_id)),
+          finalize(() => {
+            this.dialogRef.destroy();
+          })
+        ).
+        subscribe(noop));
     }
   }
 
@@ -95,6 +108,10 @@ export class TextComponent implements OnInit, OnDestroy {
   ngOnDestroy (): void {
     if (this.subscriptions$) {
       this.subscriptions$.unsubscribe();
+    }
+
+    if (this.facade.subscriptions$) {
+      this.facade.subscriptions$.unsubscribe();
     }
   }
 }

@@ -1,4 +1,3 @@
-import dayJs from 'dayjs';
 import { Calendar } from '@fullcalendar/core';
 import { ConfirmationService } from 'primeng/api';
 import {
@@ -68,9 +67,7 @@ export class ScheduleFacade {
   }
 
   public handlePostCreateDialogOpen (post_date_time: Date): void {
-    this.modalService.openPostModal({
-      post_date_time: dayJs(post_date_time).format('YYYY-MM-DDTHH:mm:ssZ[Z]')
-    });
+    this.modalService.openPostModal({ post_date_time });
   }
 
   public revertPost (post_info: EventDropArg): void {

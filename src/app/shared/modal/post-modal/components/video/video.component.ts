@@ -6,13 +6,13 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { EPostStatus, EPostType } from 'src/app/core/enum';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, of, Subscription } from 'rxjs';
-
-import { IConnection } from 'src/app/core/model';
+import { IConnection, IPost } from 'src/app/core/model';
 import { MenuItem } from 'primeng/api';
+import { Observable, Subscription } from 'rxjs';
 import { PostModalFacade } from '../../facade/post-modal.facade';
 
 @Component({
@@ -22,49 +22,60 @@ import { PostModalFacade } from '../../facade/post-modal.facade';
 })
 export class VideoComponent implements OnInit, OnDestroy {
   @Output() tab_selected = new EventEmitter<number>();
-  private subscription$ = new Subscription();
+  private subscriptions$ = new Subscription();
   public current_date_time: Date = new Date();
+  public file_pond_options = {};
   public form: FormGroup;
   public menu_items: MenuItem[] = [];
   public post_status = EPostStatus;
   public post_type = EPostType;
   public selected_connections: Partial<IConnection>[] = [];
 
-  constructor (private readonly facade: PostModalFacade, private readonly formBuilder: FormBuilder) {
-    this.form = this.buildVideoForm();
-  }
-
-  ngOnInit (): void {
+  constructor (
+    private readonly dialogRef: DynamicDialogRef,
+    private readonly facade: PostModalFacade,
+    private readonly formBuilder: FormBuilder
+  ) {
+    this.file_pond_options = {
+      acceptedFileTypes: ['video/mp4'],
+      labelIdle: '<p><span class="filepond--label-action">Upload a video</span> or drag and drop here</p>',
+      maxFileSize: '150MB',
+      maxFiles: 1,
+      mediaPreviewHeight: 100
+    };
     this.menu_items = [
       {
         command: () => {
-          this.savePost(this.post_status.SCHEDULED);
+          this.savePost(this.post_status.SCHEDULE);
         },
-        icon: 'pi pi-calendar-plus',
+        icon: 'ico-md ico-hour-glass',
         label: 'Schedule'
       },
       { separator: true },
       {
         command: () => {
-          this.savePost(this.post_status.SAVED);
+          this.savePost(this.post_status.DRAFT);
         },
-        icon: 'pi pi-save',
-        label: 'Save post'
+        icon: 'ico-md ico-save',
+        label: 'Save draft'
       }
     ];
+    this.form = this.buildVideoForm();
+  }
 
-    /*
-     * This.subscription$.add(this.facade.getPostInfo().subscribe((post_info: IPost) => {
-     *   const { post_message, post_date_time } = post_info;
-     */
+  ngOnInit (): void {
+    const post_compose_info$ = this.facade.getComposeInfo();
 
-    /*
-     *   If (post_message) {
-     *     this.form.patchValue({ post_message });
-     *   }
-     *   this.form.patchValue({ post_date_time: new Date(post_date_time) });
-     * }));
-     */
+    this.subscriptions$.add(post_compose_info$.subscribe((post_info: IPost) => {
+      if (post_info) {
+        const { post_message, post_date_time } = post_info;
+
+        this.form.patchValue({
+          post_date_time: post_date_time ? new Date(post_date_time) : new Date(),
+          post_message: post_message ?? ''
+        });
+      }
+    }));
   }
 
   private buildVideoForm (): FormGroup {
@@ -74,35 +85,33 @@ export class VideoComponent implements OnInit, OnDestroy {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  changeConnectionSelection (connections: any): void {
+  public changeConnectionSelection (connections: Partial<IConnection>[]): void {
     this.selected_connections = connections;
   }
 
-  previous (): void {
+  public previous (): void {
     this.tab_selected.emit(0);
   }
 
-  isButtonDisabled (): Observable<boolean> {
-    // Return of(Boolean(!medias.length) || Boolean(!this.selected_connections.length) || this.form.invalid)
-    return of(Boolean(!this.selected_connections.length) || this.form.invalid);
+  public isButtonDisabled (): Observable<boolean> {
+    return this.facade.getComposeInfo().pipe(map((post_info: IPost) => !post_info.post_media || !this.selected_connections.length || this.form.invalid));
   }
 
-  savePost (post_status: EPostStatus): void {
+  public savePost (post_status: EPostStatus): void {
     if (this.form.valid) {
       const { value } = this.form;
 
-      this.subscription$.add(this.facade.
+      this.subscriptions$.add(this.facade.
         sendPost(EPostType.VIDEO, value, post_status, this.selected_connections).
-        pipe(finalize(() => this.form.controls.postCaption.reset())).
-        subscribe());
+        pipe(finalize(() => this.dialogRef.destroy())).
+        subscribe((compose_id: string) => this.facade.removeComposeInfo(compose_id)));
     }
   }
 
   @HostListener('window:beforeunload')
   ngOnDestroy (): void {
-    if (this.subscription$) {
-      this.subscription$.unsubscribe();
+    if (this.subscriptions$) {
+      this.subscriptions$.unsubscribe();
     }
   }
 }
